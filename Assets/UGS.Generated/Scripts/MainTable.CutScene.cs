@@ -14,42 +14,42 @@ using System.Reflection;
 using UnityEngine;
 
 
-namespace DefaultTable
+namespace MainTable
 {
     [GoogleSheet.Attribute.TableStruct]
-    public partial class Data : ITable
+    public partial class CutScene : ITable
     { 
 
-        public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
+        public delegate void OnLoadedFromGoogleSheets(List<CutScene> loadedList, Dictionary<int, CutScene> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "1Eqyyd2hwyzenWCFLKCNjo0xhlPzI2aRyPGMaX_P3px4"; // it is file id
-        static string sheetID = "0"; // it is sheet id
+        static string spreadSheetID = "1iOK4MZd2CwVNCCvReWXOHTfdxVR3k6oS_cEeJ62SdGw"; // it is file id
+        static string sheetID = "1612729561"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 
 /* Your Loaded Data Storage. */
     
-        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>();  
-        public static List<Data> DataList = new List<Data>();   
+        public static Dictionary<int, CutScene> CutSceneMap = new Dictionary<int, CutScene>();  
+        public static List<CutScene> CutSceneList = new List<CutScene>();   
 
         /// <summary>
-        /// Get Data List 
+        /// Get CutScene List 
         /// Auto Load
         /// </summary>
-        public static List<Data> GetList()
+        public static List<CutScene> GetList()
         {{
            if (isLoaded == false) Load();
-           return DataList;
+           return CutSceneList;
         }}
 
         /// <summary>
-        /// Get Data Dictionary, keyType is your sheet A1 field type.
+        /// Get CutScene Dictionary, keyType is your sheet A1 field type.
         /// - Auto Load
         /// </summary>
-        public static Dictionary<int, Data>  GetDictionary()
+        public static Dictionary<int, CutScene>  GetDictionary()
         {{
            if (isLoaded == false) Load();
-           return DataMap;
+           return CutSceneMap;
         }}
 
     
@@ -57,6 +57,9 @@ namespace DefaultTable
 /* Fields. */
 
 		public System.Int32 index;
+		public System.String strType;
+		public System.Int32 TrustValue;
+		public System.Int32 NextIndex;
 		public System.String strValue;
   
 
@@ -68,12 +71,12 @@ namespace DefaultTable
             if(isLoaded && forceReload == false)
             {
 #if UGS_DEBUG
-                 Debug.Log("Data is already loaded! if you want reload then, forceReload parameter set true");
+                 Debug.Log("CutScene is already loaded! if you want reload then, forceReload parameter set true");
 #endif
                  return;
             }
 
-            string text = reader.ReadData("DefaultTable"); 
+            string text = reader.ReadData("MainTable"); 
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ReadSpreadSheetResult>(text);
@@ -84,7 +87,7 @@ namespace DefaultTable
         }
  
 
-        public static void LoadFromGoogle(System.Action<List<Data>, Dictionary<int, Data>> onLoaded, bool updateCurrentData = false)
+        public static void LoadFromGoogle(System.Action<List<CutScene>, Dictionary<int, CutScene>> onLoaded, bool updateCurrentData = false)
         {      
                 IHttpProtcol webInstance = null;
     #if UNITY_EDITOR
@@ -112,14 +115,14 @@ namespace DefaultTable
                
 
 
-    public static (List<Data> list, Dictionary<int, Data> map) CommonLoad(Dictionary<string, Dictionary<string, List<string>>> jsonObject, bool forceReload){
-            Dictionary<int, Data> Map = new Dictionary<int, Data>();
-            List<Data> List = new List<Data>();     
+    public static (List<CutScene> list, Dictionary<int, CutScene> map) CommonLoad(Dictionary<string, Dictionary<string, List<string>>> jsonObject, bool forceReload){
+            Dictionary<int, CutScene> Map = new Dictionary<int, CutScene>();
+            List<CutScene> List = new List<CutScene>();     
             TypeMap.Init();
-            FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(CutScene).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string, string, string)>(); 
             List<List<string>> rows = new List<List<string>>();
-            var sheet = jsonObject["Data"];
+            var sheet = jsonObject["CutScene"];
 
             foreach (var column in sheet.Keys)
             {
@@ -138,7 +141,7 @@ namespace DefaultTable
                         int rowCount = rows[0].Count;
                         for (int i = 0; i < rowCount; i++)
                         {
-                            Data instance = new Data();
+                            CutScene instance = new CutScene();
                             for (int j = 0; j < typeInfos.Count; j++)
                             {
                                 try
@@ -179,8 +182,8 @@ namespace DefaultTable
                         }
                         if(isLoaded == false || forceReload)
                         { 
-                            DataList = List;
-                            DataMap = Map;
+                            CutSceneList = List;
+                            CutSceneMap = Map;
                             isLoaded = true;
                         }
                     } 
@@ -190,10 +193,10 @@ namespace DefaultTable
 
  
 
-        public static void Write(Data data, System.Action<WriteObjectResult> onWriteCallback = null)
+        public static void Write(CutScene data, System.Action<WriteObjectResult> onWriteCallback = null)
         { 
             TypeMap.Init();
-            FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(CutScene).GetFields(BindingFlags.Public | BindingFlags.Instance);
             var datas = new string[fields.Length];
             for (int i = 0; i < fields.Length; i++)
             {
