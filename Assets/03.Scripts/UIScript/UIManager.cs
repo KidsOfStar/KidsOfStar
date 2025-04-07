@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -6,7 +8,8 @@ public class UIManager : Singleton<UIManager>
 {
 
     [SerializeField] private List<Transform> parents;
-    private List<UIBase> uiList = new List<UIBase>();
+    private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
+    //private List<UIBase> uiList = new List<UIBase>();
 
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정
@@ -27,29 +30,37 @@ public class UIManager : Singleton<UIManager>
     {
         // 이미 생성되어 있는지 확인
         string uiName = typeof(T).ToString();
-        var ui = Instance.uiList.Find(obj => obj.name == uiName);
+        var uiDictionary = Instance.uiList.TryGetValue(uiName, out var ui);
 
         // 없으면 Resource에서 로드하여 생성
-        if(ui == null)
+        if(!uiDictionary)
         {
             // ResourceManager에서 해당 UI 프리팹 로드
-            var prefab = ResourceManager.Instance.LoadAsset<T>(typeof(T).ToString(), ResourceType.UI);
+            var prefab = ResourceManager.Instance.LoadAsset<T>(uiName, ResourceType.UI);
             
+            if(prefab == null) return null; // 프리팹이 없으면 null 반환
+
+
             ui = Instantiate(prefab, Instance.parents[(int)prefab.uiPosition]); // 지정된 위치에 생성
-            ui.name = ui.name.Replace("(Clone)", ""); // 이름 정리
-            Instance.uiList.Add(ui);
+            ui.name = uiName;
+            Instance.uiList.Add(uiName, ui);
         }
+
+        // 같은 위치의 UI 비활성화
         if (ui.uiPosition == eUIPosition.UI)
         {
-            Instance.uiList.ForEach(obj =>
+            foreach (var other in Instance.uiList.Values)
             {
-                if (obj.uiPosition == eUIPosition.UI) obj.gameObject.SetActive(false);
-            });
+                if (other != ui && other.uiPosition == eUIPosition.UI)
+                {
+                    other.SetActive(false);
+                }
+            }
         }
+
         ui.SetActive(true);
         ui.Opened(param);
         return (T)ui;
-
     }
 
     /// <summary>
@@ -58,17 +69,23 @@ public class UIManager : Singleton<UIManager>
     public static void Hide<T>(params object[] param) where T : UIBase
     {
         string uiName = typeof(T).ToString();
-        var ui = Instance.uiList.Find(obj => obj.name == uiName);
+        var uiDictionary = Instance.uiList.TryGetValue(uiName, out var ui);
 
-        if (ui != null)
+        if (uiDictionary)
         {
-            Instance.uiList.Remove(ui);
+            Instance.uiList.Remove(uiName);
 
             // 이전 UI 복원
             if (ui.uiPosition == eUIPosition.UI)
             {
-                var prevUI = Instance.uiList.FindLast(obj => obj.uiPosition == eUIPosition.UI);
-                prevUI.SetActive(true);
+                foreach(var kvp in Instance.uiList.Reverse())
+                {
+                    if(kvp.Value.uiPosition == eUIPosition.UI)
+                    {
+                        kvp.Value.gameObject.SetActive(true);
+                        break;
+                    }
+                }
             }
 
             ui.closed?.Invoke(param);
@@ -79,7 +96,7 @@ public class UIManager : Singleton<UIManager>
             }
             else
             {
-                ui.SetActive(false);
+                ui.gameObject.SetActive(false);
             }
         }
     }
@@ -89,7 +106,8 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public static T Get<T>() where T : UIBase
     {
-        return (T)Instance.uiList.Find(obj => obj.name == typeof(T).ToString());
+        string uiName = typeof(T).Name;
+        return Instance.uiList.TryGetValue(uiName, out var ui) ? (T)ui : null;
     }
 
     /// <summary>
@@ -97,7 +115,7 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public static bool IsOpened<T>() where T : UIBase
     {
-        var ui = Instance.uiList.Find(obj => obj.name == typeof(T).ToString());
-        return ui != null && ui.gameObject.activeInHierarchy;
+        string uiName = typeof(T).Name;
+        return Instance.uiList.TryGetValue(uiName, out var ui) && ui.gameObject.activeInHierarchy;
     }
 }

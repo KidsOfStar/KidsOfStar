@@ -1,5 +1,4 @@
 using System;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public enum eUIPosition
@@ -12,25 +11,43 @@ public enum eUIPosition
     UI,
 }
 
-/// <summary>
-/// UI의 기본 클래스
-/// </summary>
-[System.Serializable]
+[Serializable]
 public class UIOptions
 {
-    public bool isDestroyOnHide = false; // 꺼질 때 파괴 여부
+    public bool isDestroyOnHide = false;
 }
+
 public abstract class UIBase : MonoBehaviour
 {
     [Header("UI 위치 설정")]
-    public eUIPosition uiPosition;
+    public eUIPosition uiPosition = eUIPosition.UI;
 
-    [Header("UI 옵션")]
+    [Header("UI 옵션 설정")]
     public UIOptions uiOptions = new UIOptions();
 
-    public event Action<object[]> closed; // closed 이벤트 추가
+    // 닫힐 때 호출될 콜백
+    public Action<object[]> closed;
 
-    public abstract void Opened(params object[] param);
-    public abstract void HideDirect();
-    public abstract void SetActive(bool isActive);
+    /// <summary>
+    /// UI가 열릴 때 호출되는 함수
+    /// </summary>
+    /// <param name="param"></param>
+    public virtual void Opened(params object[] param) { }
+
+    /// <summary>
+    /// UI를 즉시 비활성화할 때 호출되는 함수
+    /// </summary>
+    public virtual void HideDirect()
+    {
+        gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// UI 활성화/비활성화
+    /// </summary>
+    /// <param name="isActive"></param>
+    public virtual void SetActive(bool isActive)
+    {
+        gameObject.SetActive(isActive);
+    }
 }
