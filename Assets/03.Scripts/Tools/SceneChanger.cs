@@ -12,13 +12,18 @@ public class SceneChanger : Editor
     [MenuItem("Stars/Scene/Sample Scene &1")]  
     public static void ChangeSampleScene()
     {
-        EditorSceneManager.OpenScene(Application.dataPath + "/Scenes/SampleScene.unity");
+        EditorSceneManager.OpenScene(Application.dataPath + "/01.Scenes/SampleScene.unity");
     }
 
     [MenuItem("Stars/Scene/Test Scene &1")] 
     public static void ChangeIntroScene()
     {
-        EditorSceneManager.OpenScene(Application.dataPath + "/Scenes/TestScene.unity");
+        EditorSceneManager.OpenScene(Application.dataPath + "/01.Scenes/TestScene.unity");
     }
 
+    [MenuItem("Stars/Scene/CutScene_YDY &1")]
+    public static void ChangeCutScene()
+    {
+        EditorSceneManager.OpenScene(Application.dataPath + "/01.Scenes/CutScene_YDY.unity");
+    }
 }
