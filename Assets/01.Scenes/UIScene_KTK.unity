@@ -655,8 +655,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Kids of Star
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a5a21b948bb1fd44b4cc0f466760689, type: 2}
-  m_sharedMaterial: {fileID: 8508292165716057665, guid: 9a5a21b948bb1fd44b4cc0f466760689, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -893,8 +893,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBCC4\uC758 \uC544\uC774"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8516d3cacd269c6449b203e081ebde70, type: 2}
-  m_sharedMaterial: {fileID: 7677397324105662157, guid: 8516d3cacd269c6449b203e081ebde70, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e7ac7c8d4ee156d4cbce36c6aa827e00, type: 2}
+  m_sharedMaterial: {fileID: 1920106705258443379, guid: e7ac7c8d4ee156d4cbce36c6aa827e00, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -924,7 +924,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
