@@ -7,25 +7,25 @@ using UnityEngine.UI;
 public class PopupAlety : UIBase
 {
 
-    public TextMeshProUGUI titleText;   // Á¦¸ñ ÅØ½ºÆ®
-    public TextMeshProUGUI descText; // ³»¿ë ÅØ½ºÆ®
+    public TextMeshProUGUI titleText;   // ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
+    public TextMeshProUGUI descText; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
 
-    public Button closeButton; // ´Ý±â ¹öÆ°
+    public Button closeButton; // ï¿½Ý±ï¿½ ï¿½ï¿½Æ°
 
     void Awake()
     {
-        closeButton.onClick.AddListener(OnClickClose); // ´Ý±â ¹öÆ° Å¬¸¯ ½Ã OnClickClose ÇÔ¼ö È£Ãâ
+        closeButton.onClick.AddListener(OnClickClose); // ï¿½Ý±ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ OnClickClose ï¿½Ô¼ï¿½ È£ï¿½ï¿½
     }
 
     public override void Opened(params object[] param)
     {
-        titleText.text = (string)param[0]; // Ã¹ ¹øÂ° ÆÄ¶ó¹ÌÅÍ¸¦ Á¦¸ñÀ¸·Î ¼³Á¤
-        descText.text = (string)param[1]; // µÎ ¹øÂ° ÆÄ¶ó¹ÌÅÍ¸¦ ³»¿ëÀ¸·Î ¼³Á¤
+        titleText.text = (string)param[0]; // Ã¹ ï¿½ï¿½Â° ï¿½Ä¶ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        descText.text = (string)param[1]; // ï¿½ï¿½ ï¿½ï¿½Â° ï¿½Ä¶ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public override void HideDirect()
     {
-        UIManager.Hide<PopupAlety>();
+        Managers.Instance.UIManager.Hide<PopupAlety>();
     }
 
     public void OnClickClose()

@@ -12,28 +12,29 @@ public class SoundManager
     {
         sourceParent = new GameObject("AudioSource").transform;
         GameObject audioSource = Managers.Instance.ResourceManager.Load<GameObject>($"{Define.PrefabPath}{Define.AudioSourceKey}");
+        GameManager gameManager = Managers.Instance.GameManager;
         
         bgmSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         bgmSource.name = "BGM";
         bgmSource.loop = true;
-        bgmSource.volume = 0.7f; // TODO: 설정에서 가져오기
+        bgmSource.volume = gameManager.BgmVolume;
         
         sfxSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         sfxSource.name = "SFX";
         sfxSource.loop = false;
-        sfxSource.volume = 0.8f; // TODO: 설정에서 가져오기
+        sfxSource.volume = gameManager.SfxVolume;
         
         footstepSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         footstepSource.name = "Footstep";
         footstepSource.loop = false;
-        footstepSource.volume = 0.8f; // TODO: 설정에서 가져오기
+        footstepSource.volume = gameManager.SfxVolume;
         
         AttachAudioToCamera();
     }
 
-    public void AttachAudioToCamera()
+    private void AttachAudioToCamera()
     {
-        var camera = Managers.Instance.GameManager.mainCamera;
+        var camera = Managers.Instance.GameManager.MainCamera;
         if (camera == null)
         {
             EditorLog.LogError("SoundManager : Camera is not found.");
@@ -43,7 +44,7 @@ public class SoundManager
         sourceParent.SetParent(camera.transform);
     }
 
-    public void ReparentAudioToSoundManager()
+    private void ReparentAudioToSoundManager()
     {
         if (sourceParent == null)
         {
