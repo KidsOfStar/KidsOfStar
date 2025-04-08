@@ -16,24 +16,24 @@ public class UIOption : UIBase
     public Button endBtn; // 메인 메뉴 버튼
 
     private SoundManager soundManager;
-
-    private void Awake()
-    {
-        soundManager = Managers.Instance.SoundManager;
-    }
     void Start()
     {
+        soundManager = Managers.Instance.SoundManager;
+
         InitSlider();
         ButtonClick();
-
     }
 
     private void InitSlider()
     {
+       
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.7f); // 기본값 0.7
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.8f); // 기본값 0.8
 
-        // 슬라이더 초기화
+        //Managers.Instance.GameManager.SetBgmVolume(bgmSlider.value);
+        //Managers.Instance.GameManager.SetSfxVolume(sfxSlider.value);
+
+        //// 슬라이더 초기화
         bgmSlider.onValueChanged.AddListener(soundManager.SetBgmVolume);
         sfxSlider.onValueChanged.AddListener(soundManager.SetSfxVolume);
     }
@@ -44,7 +44,7 @@ public class UIOption : UIBase
         // 버튼 클릭 이벤트 등록
         closeBtn.onClick.AddListener(OnClickCloseBtn);
         retryBtn.onClick.AddListener(OnClickRetryBtn);
-        endBtn.onClick.AddListener(OnClickEndBtn);
+        endBtn.onClick.AddListener(OnExitBtnClick);
     }
 
     public void OnClickCloseBtn()
@@ -59,7 +59,7 @@ public class UIOption : UIBase
         SceneManager.LoadScene(currentSceneName);
     }
 
-    public void OnClickEndBtn()
+    private void OnExitBtnClick()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // 에디터에서 실행 중지
