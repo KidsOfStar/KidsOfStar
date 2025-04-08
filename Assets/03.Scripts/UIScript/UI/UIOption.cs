@@ -16,8 +16,6 @@ public class UIOption : UIBase
     public Button endBtn; // 메인 메뉴 버튼
 
     private SoundManager soundManager;
-
-
     void Start()
     {
         soundManager = Managers.Instance.SoundManager;
@@ -46,7 +44,7 @@ public class UIOption : UIBase
         // 버튼 클릭 이벤트 등록
         closeBtn.onClick.AddListener(OnClickCloseBtn);
         retryBtn.onClick.AddListener(OnClickRetryBtn);
-        endBtn.onClick.AddListener(OnClickEndBtn);
+        endBtn.onClick.AddListener(OnExitBtnClick);
     }
 
     public void OnClickCloseBtn()
@@ -61,7 +59,7 @@ public class UIOption : UIBase
         SceneManager.LoadScene(currentSceneName);
     }
 
-    public void OnClickEndBtn()
+    private void OnExitBtnClick()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // 에디터에서 실행 중지

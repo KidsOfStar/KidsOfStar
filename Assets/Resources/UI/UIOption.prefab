@@ -2073,7 +2073,7 @@ GameObject:
   - component: {fileID: 2578930976827950711}
   - component: {fileID: 9199984033666728613}
   m_Layer: 5
-  m_Name: Option
+  m_Name: UIOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2111,11 +2111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b20034ae8dd854794f386cf2b64138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 6
-  uiOptions:
-    isDestroyOnHide: 0
+  uiPosition: 1
   bgmSlider: {fileID: 2592237279192602301}
-  sfxSlider: {fileID: 0}
+  sfxSlider: {fileID: 1014170755849305765}
   closeBtn: {fileID: 8878396939862047633}
   retryBtn: {fileID: 2385762698543356146}
   endBtn: {fileID: 8905078217163179023}
