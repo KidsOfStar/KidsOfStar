@@ -6,7 +6,6 @@ public class UIManager : Singleton<UIManager>
 {
     [SerializeField] private List<Transform> parents;
     private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
-    //private List<UIBase> uiList = new List<UIBase>();
 
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정

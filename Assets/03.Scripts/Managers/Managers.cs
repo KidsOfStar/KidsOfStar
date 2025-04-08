@@ -10,6 +10,7 @@ public class Managers : Singleton<Managers>
     public SoundManager SoundManager { get; private set; }
     public DialogueManager DialogueManager { get; private set; }
     public GameManager GameManager { get; private set; }
+    public UIManager UIManager { get; private set; }
 
     protected override void Awake()
     {
@@ -20,8 +21,9 @@ public class Managers : Singleton<Managers>
         SoundManager = new SoundManager();
         DialogueManager = new DialogueManager();
         GameManager = new GameManager();
-
-        GameManager.Init();
+		UIManager = new UIManager();
+        
+		GameManager.Init();
         SoundManager.Init();
     }
 }
