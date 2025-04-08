@@ -21,6 +21,7 @@ public class Managers : Singleton<Managers>
         DialogueManager = new DialogueManager();
         GameManager = new GameManager();
 
+        GameManager.Init();
         SoundManager.Init();
     }
 }
