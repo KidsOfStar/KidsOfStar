@@ -1,4 +1,25 @@
+using MainTable;
+using System.Collections.Generic;
+
 public class DataManager
 {
-    // 데이터를 읽어오는 Manager
+    // TODO: PlayerData -> DialogData
+    private Dictionary<int, PlayerData> playerData = new();
+    
+    public void Init()
+    {
+        playerData = PlayerData.GetDictionary();
+    }
+
+    public PlayerData GetPlayerData(int index)
+    {
+        if (playerData.TryGetValue(index, out var data))
+            return data;
+            
+        else
+        {
+            EditorLog.LogError($"DataManager : Not found PlayerData with index: {index}");
+            return null;
+        }
+    }
 }
