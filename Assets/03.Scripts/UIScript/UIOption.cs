@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIOption : UIBase
 {
@@ -17,19 +16,51 @@ public class UIOption : UIBase
     private SoundManager soundManager;
 
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         soundManager = Managers.Instance.SoundManager;
-
-        // 슬라이더 초기화
         soundManager.Init();
+    }
+    void Start()
+    {
 
-        bgmSlider.onValueChanged.AddListener(soundManager.SetBgmVolume);
-        sfxSlider.onValueChanged.AddListener(soundManager.SetSfxVolume);
+        ButtonClick();
 
     }
 
+    private void InitSlider()
+    {
 
+    }
 
-    
+    public void ButtonClick()
+    {
+        // 버튼 클릭 이벤트 등록
+        closeBtn.onClick.AddListener(OnClickCloseBtn);
+        retryBtn.onClick.AddListener(OnClickRetryBtn);
+        endBtn.onClick.AddListener(OnClickEndBtn);
+    }
+
+    public void OnClickCloseBtn()
+    {
+        HideDirect();
+    }
+
+    public void OnClickRetryBtn()
+    {
+        // 현재 씬에서 재시작
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
+
+    public void OnClickEndBtn()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // 에디터에서 실행 중지
+#else
+        // 게임 종료
+        Application.Quit(); // 빌드된 게임에서 종료
+#endif
+    }
 }

@@ -260,6 +260,17 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &101974862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 169749125037309276, guid: 6f92a4a5b714fbb4fa9642240e921da9, type: 3}
+  m_PrefabInstance: {fileID: 5403822797891112617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &121338389
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +473,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &184729298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6379461592037008595, guid: 6f92a4a5b714fbb4fa9642240e921da9, type: 3}
+  m_PrefabInstance: {fileID: 5403822797891112617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &257337053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,6 +1730,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b20034ae8dd854794f386cf2b64138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 5
+  uiOptions:
+    isDestroyOnHide: 0
+  bgmSlider: {fileID: 184729298}
+  sfxSlider: {fileID: 101974862}
   closeBtn: {fileID: 1282643226}
   retryBtn: {fileID: 323136191}
   endBtn: {fileID: 477850331}
