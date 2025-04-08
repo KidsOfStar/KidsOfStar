@@ -9,4 +9,9 @@ public static class Extensions
     {
         return string.Empty;
     }
+    
+    public static string GetName(this SceneType sceneType)
+    {
+        return string.Empty;
+    }
 }

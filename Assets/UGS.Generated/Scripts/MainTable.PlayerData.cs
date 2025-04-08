@@ -59,6 +59,7 @@ namespace MainTable
 		public System.Int32 index;
 		public System.String strType;
 		public System.Int32 trustValue;
+		public System.Collections.Generic.List<Int32> nextIndex;
 		public System.String strValue;
   
 
