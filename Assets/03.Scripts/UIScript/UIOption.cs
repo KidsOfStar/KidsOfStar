@@ -17,23 +17,25 @@ public class UIOption : UIBase
 
     private SoundManager soundManager;
 
-    private void Awake()
-    {
-        soundManager = Managers.Instance.SoundManager;
-    }
+
     void Start()
     {
+        soundManager = Managers.Instance.SoundManager;
+
         InitSlider();
         ButtonClick();
-
     }
 
     private void InitSlider()
     {
+       
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.7f); // 기본값 0.7
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.8f); // 기본값 0.8
 
-        // 슬라이더 초기화
+        //Managers.Instance.GameManager.SetBgmVolume(bgmSlider.value);
+        //Managers.Instance.GameManager.SetSfxVolume(sfxSlider.value);
+
+        //// 슬라이더 초기화
         bgmSlider.onValueChanged.AddListener(soundManager.SetBgmVolume);
         sfxSlider.onValueChanged.AddListener(soundManager.SetSfxVolume);
     }
