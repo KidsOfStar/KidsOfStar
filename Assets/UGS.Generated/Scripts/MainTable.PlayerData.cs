@@ -56,11 +56,11 @@ namespace MainTable
 
 /* Fields. */
 
-		public System.Int32 index;
-		public System.String strType;
-		public System.Int32 trustValue;
-		public System.Collections.Generic.List<Int32> nextIndex;
-		public System.String strValue;
+		public System.Int32 Index;
+		public System.Collections.Generic.List<String> SelectOption;
+		public System.Collections.Generic.List<Int32> TrustValue;
+		public System.Collections.Generic.List<Int32> NextIndex;
+		public System.String DialogValue;
   
 
 #region fuctions
@@ -178,7 +178,7 @@ namespace MainTable
                               
                             }
                             List.Add(instance); 
-                            Map.Add(instance.index, instance);
+                            Map.Add(instance.Index, instance);
                         }
                         if(isLoaded == false || forceReload)
                         { 
