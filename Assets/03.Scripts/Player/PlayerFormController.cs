@@ -36,8 +36,10 @@ public class PlayerFormController : MonoBehaviour
 
     void Init()
     {
+        // 형태의 총 갯수
         int count = formData.PlayerFromDataList.Count;
 
+        // 딕셔너리에 옮겨 넣어준다
         for (int i = 0; i < count; i++)
         {
             formDataDictionary.Add(formData.PlayerFromDataList[i].FormName, formData.PlayerFromDataList[i]);
@@ -61,6 +63,8 @@ public class PlayerFormController : MonoBehaviour
         }
     }
 
+    // 형태 변환 함수
+    // 플레이어 캐릭터의 여러 속성을 변경해준다
     public void StateChange(FormData data)
     {
         if (data == curFormData || !data.IsActive) return;
