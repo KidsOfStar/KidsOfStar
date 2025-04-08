@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -26,4 +27,8 @@ public class SceneChanger : Editor
     {
         EditorSceneManager.OpenScene(Application.dataPath + "/01.Scenes/CutScene_YDY.unity");
     }
+
+    
 }
+
+
