@@ -7,25 +7,25 @@ using UnityEngine.UI;
 public class PopupAlety : UIBase
 {
 
-    public TextMeshProUGUI titleText;   // Á¦¸ñ ÅØ½ºÆ®
-    public TextMeshProUGUI descText; // ³»¿ë ÅØ½ºÆ®
+    public TextMeshProUGUI titleText;   // ì œëª© í…ìŠ¤íŠ¸
+    public TextMeshProUGUI descText; // ë‚´ìš© í…ìŠ¤íŠ¸
 
-    public Button closeButton; // ´İ±â ¹öÆ°
+    public Button closeButton; // ë‹«ê¸° ë²„íŠ¼
 
     void Awake()
     {
-        closeButton.onClick.AddListener(OnClickClose); // ´İ±â ¹öÆ° Å¬¸¯ ½Ã OnClickClose ÇÔ¼ö È£Ãâ
+        closeButton.onClick.AddListener(OnClickClose); // ë‹«ê¸° ë²„íŠ¼ í´ë¦­ ì‹œ OnClickClose í•¨ìˆ˜ í˜¸ì¶œ
     }
 
     public override void Opened(params object[] param)
     {
-        titleText.text = (string)param[0]; // Ã¹ ¹øÂ° ÆÄ¶ó¹ÌÅÍ¸¦ Á¦¸ñÀ¸·Î ¼³Á¤
-        descText.text = (string)param[1]; // µÎ ¹øÂ° ÆÄ¶ó¹ÌÅÍ¸¦ ³»¿ëÀ¸·Î ¼³Á¤
+        titleText.text = (string)param[0]; // ì²« ë²ˆì§¸ íŒŒë¼ë¯¸í„°ë¥¼ ì œëª©ìœ¼ë¡œ ì„¤ì •
+        descText.text = (string)param[1]; // ë‘ ë²ˆì§¸ íŒŒë¼ë¯¸í„°ë¥¼ ë‚´ìš©ìœ¼ë¡œ ì„¤ì •
     }
 
     public override void HideDirect()
     {
-        UIManager.Hide<PopupAlety>();
+        Managers.Instance.UIManager.Hide<PopupAlety>();
     }
 
     public void OnClickClose()
