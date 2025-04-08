@@ -103,6 +103,7 @@ public class SoundManager
     public void SetSfxVolume(float volume)
     {
         sfxSource.volume = volume;
+        footstepSource.volume = volume;
     }
 
     // 효과음 재생하고 재생 시간만큼 대기

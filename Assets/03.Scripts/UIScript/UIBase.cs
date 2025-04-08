@@ -9,6 +9,8 @@ public enum eUIPosition
     Right,
     Center,
     UI,
+    Popup,
+    None
 }
 
 [Serializable]
@@ -19,23 +21,23 @@ public class UIOptions
 
 public abstract class UIBase : MonoBehaviour
 {
-    [Header("UI À§Ä¡ ¼³Á¤")]
+    [Header("UI ìœ„ì¹˜ ì„¤ì •")]
     public eUIPosition uiPosition = eUIPosition.UI;
 
-    [Header("UI ¿É¼Ç ¼³Á¤")]
+    [Header("UI ì˜µì…˜ ì„¤ì •")]
     public UIOptions uiOptions = new UIOptions();
 
-    // ´İÈú ¶§ È£ÃâµÉ Äİ¹é
+    // ë‹«í ë•Œ í˜¸ì¶œë  ì½œë°±
     public Action<object[]> closed;
 
     /// <summary>
-    /// UI°¡ ¿­¸± ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+    /// UIê°€ ì—´ë¦´ ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="param"></param>
     public virtual void Opened(params object[] param) { }
 
     /// <summary>
-    /// UI¸¦ Áï½Ã ºñÈ°¼ºÈ­ÇÒ ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+    /// UIë¥¼ ì¦‰ì‹œ ë¹„í™œì„±í™”í•  ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public virtual void HideDirect()
     {
@@ -43,7 +45,7 @@ public abstract class UIBase : MonoBehaviour
     }
 
     /// <summary>
-    /// UI È°¼ºÈ­/ºñÈ°¼ºÈ­
+    /// UI í™œì„±í™”/ë¹„í™œì„±í™”
     /// </summary>
     /// <param name="isActive"></param>
     public virtual void SetActive(bool isActive)
