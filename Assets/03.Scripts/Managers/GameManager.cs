@@ -2,8 +2,33 @@ using UnityEngine;
 
 public class GameManager
 {
-    // 유저가 입력한 돌멩이의 이름
     // 스테이지 진행사항 (저장 및 NPC 대사 변화를 위해)
 
-    public Camera mainCamera { get; private set; }
+    public Camera MainCamera { get; private set; }
+    public float SfxVolume { get; private set; }
+    public float BgmVolume { get; private set; }
+
+    public void Init()
+    {
+        MainCamera = Camera.main;
+        LoadVolumeSetting();
+    }
+
+    public void SaveVolumeSetting()
+    {
+        PlayerPrefs.SetFloat("BgmVolume", BgmVolume);
+        PlayerPrefs.SetFloat("SfxVolume", SfxVolume);
+    }
+    
+    public void LoadVolumeSetting()
+    {
+        BgmVolume = PlayerPrefs.GetFloat("BgmVolume", 0.7f);
+        SfxVolume = PlayerPrefs.GetFloat("SfxVolume", 0.7f);
+    }
+    
+    public void DeleteVolumeSetting()
+    {
+        PlayerPrefs.DeleteKey("BgmVolume");
+        PlayerPrefs.DeleteKey("SfxVolume");
+    }
 }

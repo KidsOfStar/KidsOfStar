@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 91cef4d24750ce04a9162aafee008f41
+guid: 8bc8306f834470b4ba5265ff39b7c0a9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -107,7 +107,20 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,10 +139,10 @@ TextureImporter:
       name: Stone_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 5
-        width: 13
-        height: 11
+        x: 4
+        y: 4
+        width: 15
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d3110f2083b95949ab47467f9ac0221
-      internalID: 2146046522
+      spriteID: b06e34ab795b21745b1726b38abc5dc0
+      internalID: 761482113
       vertices: []
       indices: 
       edges: []
@@ -147,10 +160,10 @@ TextureImporter:
       name: Stone_1
       rect:
         serializedVersion: 2
-        x: 30
-        y: 5
-        width: 12
-        height: 11
+        x: 29
+        y: 4
+        width: 14
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99402464f4e430f4b87f8daaa1dbfa97
-      internalID: 607663087
+      spriteID: ec91b475e3d8fcf448fee386ad6953e7
+      internalID: -1748056602
       vertices: []
       indices: 
       edges: []
@@ -168,10 +181,10 @@ TextureImporter:
       name: Stone_2
       rect:
         serializedVersion: 2
-        x: 53
-        y: 5
-        width: 12
-        height: 11
+        x: 52
+        y: 4
+        width: 14
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa43f877295de0e48bf9990f51558820
-      internalID: 1512916692
+      spriteID: a47e250d41fc9c84a9c75147f1adffbf
+      internalID: 773330027
       vertices: []
       indices: 
       edges: []
@@ -196,9 +209,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Stone_0: 2146046522
-      Stone_1: 607663087
-      Stone_2: 1512916692
+      Stone_0: 761482113
+      Stone_1: -1748056602
+      Stone_2: 773330027
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

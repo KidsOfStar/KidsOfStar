@@ -57,6 +57,8 @@ namespace MainTable
 /* Fields. */
 
 		public System.Int32 Index;
+		public CharacterType Character;
+		public DialogActionType DialogType;
 		public System.Collections.Generic.List<String> SelectOption;
 		public System.Collections.Generic.List<Int32> TrustValue;
 		public System.Collections.Generic.List<Int32> NextIndex;
