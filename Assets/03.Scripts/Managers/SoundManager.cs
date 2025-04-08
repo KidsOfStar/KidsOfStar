@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager
@@ -90,7 +89,6 @@ public class SoundManager
     }
     
     // 발소리 재생
-    // TODO: 발소리 캐릭터마다 다르게 쓰려나?
     public void PlayFootstep(FootstepType sound)
     {
         AudioClip clip = GetAudioClip(sound.GetName());
