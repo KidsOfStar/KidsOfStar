@@ -1,52 +1,46 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 public class UIManager : Singleton<UIManager>
 {
-
     [SerializeField] private List<Transform> parents;
-    private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI ¸®½ºÆ®¸¦ Dictionary·Î º¯°æÇÏ¿© ÀÌ¸§À¸·Î Á¢±Ù °¡´ÉÇÏ°Ô ÇÔ
+    private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI ë¦¬ìŠ¤íŠ¸ë¥¼ Dictionaryë¡œ ë³€ê²½í•˜ì—¬ ì´ë¦„ìœ¼ë¡œ ì ‘ê·¼ ê°€ëŠ¥í•˜ê²Œ í•¨
     //private List<UIBase> uiList = new List<UIBase>();
 
     /// <summary>
-    /// UI¸¦ »ı¼ºÇÒ ºÎ¸ğ ¿ÀºêÁ§Æ® ¸®½ºÆ®¸¦ ¼³Á¤
-    /// º¸Åë Canvas ÇÏÀ§¿¡ Background, UI, Popup °°Àº À§Ä¡µéÀÌ ÀÖÀ½
+    /// UIë¥¼ ìƒì„±í•  ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ ë¦¬ìŠ¤íŠ¸ë¥¼ ì„¤ì •
+    /// ë³´í†µ Canvas í•˜ìœ„ì— Background, UI, Popup ê°™ì€ ìœ„ì¹˜ë“¤ì´ ìˆìŒ
     /// </summary>
     public static void SetParents(List<Transform> parents)
-    {
-        Instance.parents = parents;
-        Instance.uiList.Clear();    // ±âÁ¸ UI ¸®½ºÆ® ÃÊ±âÈ­
+    { Instance.parents = parents;
+        Instance.uiList.Clear();    // ê¸°ì¡´ UI ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
     }
 
     /// <summary>
-    /// UI¸¦ º¸¿©ÁÜ. ¾øÀ¸¸é »ı¼ºÇÏ°í, ÀÖÀ¸¸é ±âÁ¸ UI¸¦ ÀçÈ°¿ëÇÔ.
-    /// ¾øÀ¸¸é ¸®¼Ò½º¿¡¼­ ·ÎµåÇÏ¿© µ¿Àû »ı¼º
+    /// UIë¥¼ ë³´ì—¬ì¤Œ. ì—†ìœ¼ë©´ ìƒì„±í•˜ê³ , ìˆìœ¼ë©´ ê¸°ì¡´ UIë¥¼ ì¬í™œìš©í•¨.
+    /// ì—†ìœ¼ë©´ ë¦¬ì†ŒìŠ¤ì—ì„œ ë¡œë“œí•˜ì—¬ ë™ì  ìƒì„±
     /// </summary>
 
     public static T Show<T>(params object[] param) where T : UIBase
     {
-        // ÀÌ¹Ì »ı¼ºµÇ¾î ÀÖ´ÂÁö È®ÀÎ
+        // ì´ë¯¸ ìƒì„±ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸
         string uiName = typeof(T).ToString();
         var uiDictionary = Instance.uiList.TryGetValue(uiName, out var ui);
 
-        // ¾øÀ¸¸é Resource¿¡¼­ ·ÎµåÇÏ¿© »ı¼º
+        // ì—†ìœ¼ë©´ Resourceì—ì„œ ë¡œë“œí•˜ì—¬ ìƒì„±
         if(!uiDictionary)
         {
-            // ResourceManager¿¡¼­ ÇØ´ç UI ÇÁ¸®ÆÕ ·Îµå
-            var prefab = ResourceManager.Instance.LoadAsset<T>(uiName, ResourceType.UI);
-            
-            if(prefab == null) return null; // ÇÁ¸®ÆÕÀÌ ¾øÀ¸¸é null ¹İÈ¯
+            // ResourceManagerì—ì„œ í•´ë‹¹ UI í”„ë¦¬íŒ¹ ë¡œë“œ
+            var prefab = Managers.Instance.ResourceManager.Load<T>(Define.UIPath + uiName);
+            if(prefab == null) return null; // í”„ë¦¬íŒ¹ì´ ì—†ìœ¼ë©´ null ë°˜í™˜
 
-
-            ui = Instantiate(prefab, Instance.parents[(int)prefab.uiPosition]); // ÁöÁ¤µÈ À§Ä¡¿¡ »ı¼º
+            ui = Instantiate(prefab, Instance.parents[(int)prefab.uiPosition]) as T; // ì§€ì •ëœ ìœ„ì¹˜ì— ìƒì„±
             ui.name = uiName;
             Instance.uiList.Add(uiName, ui);
         }
 
-        // °°Àº À§Ä¡ÀÇ UI ºñÈ°¼ºÈ­
+        // ê°™ì€ ìœ„ì¹˜ì˜ UI ë¹„í™œì„±í™”
         if (ui.uiPosition == eUIPosition.UI)
         {
             foreach (var other in Instance.uiList.Values)
@@ -64,7 +58,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     /// <summary>
-    /// UI¸¦ ¼û±â°Å³ª ÆÄ±«ÇÔ
+    /// UIë¥¼ ìˆ¨ê¸°ê±°ë‚˜ íŒŒê´´í•¨
     /// </summary>
     public static void Hide<T>(params object[] param) where T : UIBase
     {
@@ -75,7 +69,7 @@ public class UIManager : Singleton<UIManager>
         {
             Instance.uiList.Remove(uiName);
 
-            // ÀÌÀü UI º¹¿ø
+            // ì´ì „ UI ë³µì›
             if (ui.uiPosition == eUIPosition.UI)
             {
                 foreach(var kvp in Instance.uiList.Reverse())
@@ -102,7 +96,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     /// <summary>
-    /// Æ¯Á¤ UI¸¦ °¡Á®¿È (¾øÀ¸¸é null)
+    /// íŠ¹ì • UIë¥¼ ê°€ì ¸ì˜´ (ì—†ìœ¼ë©´ null)
     /// </summary>
     public static T Get<T>() where T : UIBase
     {
@@ -111,7 +105,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     /// <summary>
-    /// Æ¯Á¤ UI°¡ ¿­·ÁÀÖ´ÂÁö È®ÀÎ
+    /// íŠ¹ì • UIê°€ ì—´ë ¤ìˆëŠ”ì§€ í™•ì¸
     /// </summary>
     public static bool IsOpened<T>() where T : UIBase
     {
