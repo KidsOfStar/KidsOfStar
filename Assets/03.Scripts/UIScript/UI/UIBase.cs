@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class UIBase : MonoBehaviour
 {
     [Header("UI 위치 설정")]
-    public eUIPosition uiPosition = eUIPosition.UI;
+    public UIPosition uiPosition = UIPosition.UI;
 
     // 닫힐 때 호출될 콜백
     public Action<object[]> closed;
