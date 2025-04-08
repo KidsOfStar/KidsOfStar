@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3222034681371800577}
+  - component: {fileID: 751627663635424330}
   m_Layer: 5
   m_Name: Option
   m_TagString: Untagged
@@ -36,6 +37,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &751627663635424330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204773533422872114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b20034ae8dd854794f386cf2b64138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiPosition: 6
+  uiOptions:
+    isDestroyOnHide: 0
+  bgmSlider: {fileID: 6379461592037008595}
+  sfxSlider: {fileID: 169749125037309276}
+  closeBtn: {fileID: 77274595482119960}
+  retryBtn: {fileID: 2686987813967235175}
+  endBtn: {fileID: 4494301130129911503}
 --- !u!1 &274015737489308257
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +262,7 @@ GameObject:
   - component: {fileID: 5568075111112229262}
   - component: {fileID: 2686987813967235175}
   m_Layer: 5
-  m_Name: LoadBtn
+  m_Name: RetryBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

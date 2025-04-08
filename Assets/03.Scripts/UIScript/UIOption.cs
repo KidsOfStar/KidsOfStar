@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIOption : UIBase
 {
     [Header("UI Audio")]
     public Slider bgmSlider; // BGM 슬라이더
     public Slider sfxSlider; // SFX 슬라이더
+
 
     [Header("UI Btn")]
     public Button closeBtn; // 닫기 버튼
@@ -15,24 +17,27 @@ public class UIOption : UIBase
 
     private SoundManager soundManager;
 
-    // Start is called before the first frame update
-
     private void Awake()
     {
         soundManager = Managers.Instance.SoundManager;
-        soundManager.Init();
     }
     void Start()
     {
-
+        InitSlider();
         ButtonClick();
 
     }
 
     private void InitSlider()
     {
+        bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.7f); // 기본값 0.7
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.8f); // 기본값 0.8
 
+        // 슬라이더 초기화
+        bgmSlider.onValueChanged.AddListener(soundManager.SetBgmVolume);
+        sfxSlider.onValueChanged.AddListener(soundManager.SetSfxVolume);
     }
+
 
     public void ButtonClick()
     {
@@ -63,4 +68,5 @@ public class UIOption : UIBase
         Application.Quit(); // 빌드된 게임에서 종료
 #endif
     }
+
 }
