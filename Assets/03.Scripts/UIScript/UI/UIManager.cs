@@ -12,8 +12,8 @@ public class UIManager
     /// 보통 Canvas 하위에 Background, UI, Popup 같은 위치들이 있음
     /// </summary>
     public void SetParents(List<Transform> parents)
-    { 
-        parents = parents;
+    {
+        this.parents = parents;
         uiList.Clear();    // 기존 UI 리스트 초기화
     }
 
@@ -25,7 +25,7 @@ public class UIManager
     public T Show<T>(params object[] param) where T : UIBase
     {
         // 이미 생성되어 있는지 확인
-        string uiName = typeof(T).ToString();
+        string uiName = typeof(T).Name;
         var uiDictionary = uiList.TryGetValue(uiName, out var ui);
 
         // 없으면 Resource에서 로드하여 생성
@@ -40,18 +40,6 @@ public class UIManager
             uiList.Add(uiName, ui);
         }
 
-        // 같은 위치의 UI 비활성화
-        if (ui.uiPosition == eUIPosition.UI)
-        {
-            foreach (var other in uiList.Values)
-            {
-                if (other != ui && other.uiPosition == eUIPosition.UI)
-                {
-                    other.SetActive(false);
-                }
-            }
-        }
-
         ui.SetActive(true);
         ui.Opened(param);
         return (T)ui;
@@ -62,36 +50,16 @@ public class UIManager
     /// </summary>
     public void Hide<T>(params object[] param) where T : UIBase
     {
-        string uiName = typeof(T).ToString();
+        string uiName = typeof(T).Name;
         var uiDictionary = uiList.TryGetValue(uiName, out var ui);
 
         if (uiDictionary)
         {
-            uiList.Remove(uiName);
-
-            // 이전 UI 복원
-            if (ui.uiPosition == eUIPosition.UI)
-            {
-                foreach(var kvp in uiList.Reverse())
-                {
-                    if(kvp.Value.uiPosition == eUIPosition.UI)
-                    {
-                        kvp.Value.gameObject.SetActive(true);
-                        break;
-                    }
-                }
-            }
+            //uiList.Remove(uiName);
 
             ui.closed?.Invoke(param);
+            ui.gameObject.SetActive(false);
 
-            if (ui.uiOptions.isDestroyOnHide)
-            {
-                Object.Destroy(ui.gameObject);
-            }
-            else
-            {
-                ui.gameObject.SetActive(false);
-            }
         }
     }
 

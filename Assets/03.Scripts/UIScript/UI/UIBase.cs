@@ -1,31 +1,10 @@
 using System;
 using UnityEngine;
 
-public enum eUIPosition
-{
-    Top,
-    Bottom,
-    Left,
-    Right,
-    Center,
-    UI,
-    Popup,
-    None
-}
-
-[Serializable]
-public class UIOptions
-{
-    public bool isDestroyOnHide = false;
-}
-
 public abstract class UIBase : MonoBehaviour
 {
     [Header("UI 위치 설정")]
     public eUIPosition uiPosition = eUIPosition.UI;
-
-    [Header("UI 옵션 설정")]
-    public UIOptions uiOptions = new UIOptions();
 
     // 닫힐 때 호출될 콜백
     public Action<object[]> closed;
