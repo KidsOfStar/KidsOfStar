@@ -44,11 +44,6 @@ public class PlayerController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    void Start()
-    {
-        
-    }
-
     private void Update()
     {
         GroundCheck();
