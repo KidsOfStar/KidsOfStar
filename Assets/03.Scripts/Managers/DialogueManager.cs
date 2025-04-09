@@ -65,14 +65,15 @@ public class DialogueManager
 
     private Vector2 WorldToCanvasPosition(Vector3 worldPos)
     {
-        Vector3 screenPos = Managers.Instance.GameManager.MainCamera.WorldToScreenPoint(worldPos);
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                                                                Managers.Instance.UIManager.CanvasRectTr,
-                                                                screenPos,
-                                                                null,
-                                                                out var localPos
-                                                               );
-        return localPos;
+        // Vector3 screenPos = Managers.Instance.GameManager.MainCamera.WorldToScreenPoint(worldPos);
+        // RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        //                                                         Managers.Instance.UIManager.CanvasRectTr,
+        //                                                         screenPos,
+        //                                                         null,
+        //                                                         out var localPos
+        //                                                        );
+        // return localPos;
+        return Vector2.zero;
     }
 
     // None

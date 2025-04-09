@@ -34,7 +34,6 @@ public class Managers : Singleton<Managers>
         DataManager.Init();
         GameManager.Init();
         SoundManager.Init(); // TODO: 씬 로드 시마다 필요
-        UIManager.Init();
         DialogueManager.Init();
     }
 }
