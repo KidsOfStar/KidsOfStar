@@ -9,6 +9,43 @@ public class UIManager
     [SerializeField] private List<Transform> parents;
     private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
 
+    public void Init()
+    {
+        var canvasPrefab = Managers.Instance.ResourceManager.Load<Canvas>("UI/Canvas");
+        EditorLog.Log("UIManager Init");
+
+        if (canvasPrefab == null)
+        {
+            return;
+        }
+
+        // Canvas 인스턴스 생성
+        var canvasInstance = Object.Instantiate(canvasPrefab);
+        canvasInstance.name = "Canvas"; // Canvas 이름 설정
+
+        List<Transform> parentList = new List<Transform>();
+
+        // Canvas 하위에 UI, Background, Popup, Top 위치 생성
+        string[] childNames = { "UI", "Popup", "Top"}; // 필요한 구조에 따라 추가
+
+        foreach (string childName in childNames)
+        {
+            var child = canvasInstance.transform.Find(childName);
+            if (child != null)
+            {
+                parentList.Add(child);
+            }
+            else
+            {
+                Debug.LogWarning($"Canvas 하위에서 '{childName}' 오브젝트를 찾지 못했습니다.");
+            }
+        }
+
+        // 부모 리스트 세팅
+        SetParents(parents);
+
+    }
+
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정
     /// 보통 Canvas 하위에 Background, UI, Popup 같은 위치들이 있음
@@ -52,7 +89,11 @@ public class UIManager
     private string GetPath(string name)
     {
         // 이미 생성되어 있는지 확인
-        if (name.Contains("Popup"))
+        if (name.Contains("Canvas"))
+        {
+            return Define.UIPath + name;
+        }
+        else if (name.Contains("Popup"))
         {
             return Define.PopupPath + name ;
         }
@@ -81,8 +122,6 @@ public class UIManager
 
         }
     }
-
-
 
     /// <summary>
     /// 특정 UI를 가져옴 (없으면 null)

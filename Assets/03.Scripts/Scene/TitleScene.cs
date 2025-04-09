@@ -7,9 +7,9 @@ public class TitleScene : MonoBehaviour
 
     void Start()
     {
-        Managers.Instance.UIManager.SetParents(parent);
+        Managers.Instance.InitManagers();
+        Managers.Instance.UIManager.Init();        // UIManager의 Canvas 및 Parent 자동 세팅
         Managers.Instance.UIManager.Show<UITitle>();
-        //Managers.Instance.InitManagers();
     }
 
 
