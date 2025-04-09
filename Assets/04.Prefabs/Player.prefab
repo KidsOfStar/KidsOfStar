@@ -201,6 +201,7 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 3
   jumpForce: 2
+  wallJumpForce: 7
 --- !u!114 &5902049473616058379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +308,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2176210955420354949}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 46caecf431f7980488379e14d1934cdc, type: 2}
   m_CullingMode: 0

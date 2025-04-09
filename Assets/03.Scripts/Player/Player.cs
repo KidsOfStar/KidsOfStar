@@ -5,14 +5,15 @@ public class Player : MonoBehaviour
     private PlayerController controller;
     public PlayerController Controller { get { return controller; } }
 
-    private PlayerFormController stateMachine;
-    public PlayerFormController StateMachine { get { return stateMachine; } }
+    private PlayerFormController formControl;
+    public PlayerFormController FormControl { get { return formControl; } }
 
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
-        stateMachine = GetComponent<PlayerFormController>();
+        formControl = GetComponent<PlayerFormController>();
 
-        stateMachine.PlayerSc = this;
+        controller.PlayerSc = this;
+        formControl.PlayerSc = this;
     }
 }
