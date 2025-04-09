@@ -13,8 +13,10 @@ public class BgLooper : MonoBehaviour
         {
             Managers.Instance.PoolManager.Despawn(collision.gameObject);
 
-            obstaclesSpawner.SpawnNextObstacle();
-
+            if (obstaclesSpawner != null)
+            {
+                obstaclesSpawner.SpawnNextObstacle();
+            }
         }
     }
 
