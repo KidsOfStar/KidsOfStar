@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class BgLooper : MonoBehaviour
 {
-    public int numBgCount = 3;
+    private ObstaclesSpawner obstaclesSpawner { get; }
+    public Vector3 obstacleLastPosition = Vector3.zero;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("BackGround"))
+      if(collision.CompareTag("Obstacle"))
         {
+            Managers.Instance.PoolManager.Despawn(collision.gameObject);
+
+            obstaclesSpawner.SpawnNextObstacle();
 
         }
     }
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
