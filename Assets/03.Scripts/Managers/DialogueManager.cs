@@ -1,27 +1,80 @@
+using MainTable;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class DialogueManager
 {
-    [SerializeField] private Transform maorum;
+    private Transform maorum; // 임시
     private UITextBubble textBubble;
-    
+
+    public Action OnClick;
+    private PlayerData currentDialogData;
+    private Queue<string> dialogQueue = new();
+
     public void Init()
     {
-        // textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
-        // textBubble.HideDirect();
-    }
+        textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
+        textBubble.HideDirect();
 
-    public void Test(Vector3 offset)
-    {
-        // NPC에서 말풍선 위치를 가져와서 띄우는 것까지.
-        var camera = Managers.Instance.GameManager.MainCamera;
-        Vector3 screenPos = camera.WorldToScreenPoint(maorum.position + offset);
-        
-        // TODO: 화면을 벗어나면 안쪽으로 당기기
-
-        // textBubble.SetDialog("이건 테스트란다.");
+        // 임시
+        maorum = Object.FindObjectOfType<NPC>().transform;
+        Managers.Instance.DialogInputHandler.gameObject.SetActive(true);
     }
     
+    // TODO: 씬에 진입하면 씬에 존재하는 NPC들을 가져옴
+    // npc를 가지고 있는 딕셔너리
+
+    public void SetCurrentDialogData(int index, Vector3 offset)
+    {
+        currentDialogData = Managers.Instance.DataManager.GetPlayerData(index);
+        var dialogs = currentDialogData.DialogValue.Split('@');
+        foreach (var dialog in dialogs)
+            dialogQueue.Enqueue(dialog);
+        
+        if (dialogQueue.Count > 0)
+        {
+            ShowDialog(dialogQueue.Dequeue(), offset);
+        }
+    }
+    
+    public void ShowDialog(string dialog, Vector3 offset)
+    {
+        var localPos = WorldToCanvasPosition(maorum.position + offset);
+
+        textBubble.SetActive(true);
+        textBubble.SetDialog(dialog, localPos);
+    }
+
+    // 한 라인이 끝났는지?
+    // 아니면 다음 인덱스로 넘어가는지?
+    public void OnDialogLineComplete()
+    {
+        if (dialogQueue.Count > 0)
+        {
+            ShowDialog(dialogQueue.Dequeue(), Vector3.zero);
+        }
+        else
+        {
+            textBubble.HideDirect();
+            Managers.Instance.DialogInputHandler.gameObject.SetActive(false);
+            OnClick?.Invoke();
+        }
+    }
+
+    private Vector2 WorldToCanvasPosition(Vector3 worldPos)
+    {
+        Vector3 screenPos = Managers.Instance.GameManager.MainCamera.WorldToScreenPoint(worldPos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                                                                Managers.Instance.UIManager.CanvasRectTr,
+                                                                screenPos,
+                                                                null,
+                                                                out var localPos
+                                                               );
+        return localPos;
+    }
+
     // None
     /// nextDialog가 없을 때까지 출력해야 함
     // ShowSelect
@@ -30,8 +83,7 @@ public class DialogueManager
     /// 대사 출력이 끝나고 데이터를 세이브할지 말지 결정해야함
     // ModifyTrust
     /// 대사 출력이 끝나고 신뢰도를 수정해야함
-    
-    
+
     // 대사가 끝나면 액션에 따라 할 일이 달라짐
     // Enum 타입으로 가지고 있음
 }

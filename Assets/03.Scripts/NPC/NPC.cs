@@ -4,13 +4,13 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     [SerializeField] private CharacterType characterType;
-    [SerializeField] private Vector3 speechBubbleOffset;
+    [SerializeField] private Vector3 bubbleOffset;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            // setText
+            Managers.Instance.DialogueManager.SetCurrentDialogData(2000, bubbleOffset);
         }
     }
 }
