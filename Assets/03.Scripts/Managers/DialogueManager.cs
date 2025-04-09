@@ -1,16 +1,25 @@
+using UnityEngine;
+
 public class DialogueManager
 {
-    // 대사 @로 구분해서 한줄씩 출력하기
-    // 선택지?
-    // NPC를 가져와서 NPC의 말풍선 위에 띄우기
-
+    [SerializeField] private Transform maorum;
+    private UITextBubble textBubble;
+    
     public void Init()
     {
-        var test = Managers.Instance.DataManager.GetPlayerData(1000);
-        foreach (var option in test.SelectOption)
-        {
-            EditorLog.Log(option);
-        }
+        textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
+        textBubble.HideDirect();
+    }
+
+    public void Test(Vector3 offset)
+    {
+        // NPC에서 말풍선 위치를 가져와서 띄우는 것까지.
+        var camera = Managers.Instance.GameManager.MainCamera;
+        Vector3 screenPos = camera.WorldToScreenPoint(maorum.position + offset);
+        
+        // TODO: 화면을 벗어나면 안쪽으로 당기기
+
+        textBubble.SetDialog("이건 테스트란다.");
     }
     
     // None
