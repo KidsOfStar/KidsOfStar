@@ -28,7 +28,12 @@ public class SceneChanger : Editor
         EditorSceneManager.OpenScene(Application.dataPath + "/01.Scenes/CutScene_YDY.unity");
     }
 
-    
+    [MenuItem("Stars/Scene/TitleScene &1")]
+    public static void ChangeTitleScene()
+    {
+        EditorSceneManager.OpenScene(Application.dataPath + "/01.Scenes/TitleScene.unity");
+    }
+
 }
 
 
