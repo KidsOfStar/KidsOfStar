@@ -7,14 +7,16 @@ public class ObstaclesSpawner : MonoBehaviour
     public float maxSpawnX = 9f;
     public float spawnXOffset;
     private float fixedPosY = -3.4f;
-    public float offScreenOffset = 14f;
+
+    public float minSpacing = 2f;
+    public float maxSpacing = 5f;
 
     private float stoneProbability = 0.3f;
     private float smallSeaweedProbability = 0.2f;
     private float mediumSeaweedProbability = 0.35f;
 
     public List<GameObject> obstaclePrefabs;
-
+    private float lastSpawnX;
     private void Start()
     {
         foreach(GameObject prefab in obstaclePrefabs)
@@ -68,9 +70,9 @@ public class ObstaclesSpawner : MonoBehaviour
 
     private Vector3 GetSpawnPosition()
     {
-        float spawnX = maxSpawnX + offScreenOffset;
-        
-        return new Vector3(spawnX, fixedPosY, 0f);
+        float spawnX = Random.Range(minSpacing,maxSpacing);
+        lastSpawnX += spawnX;
+        return new Vector3(lastSpawnX, fixedPosY, 0f);
     }
 
     public void SpawnNextObstacle()
