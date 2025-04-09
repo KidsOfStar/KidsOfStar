@@ -21,8 +21,8 @@ public class Managers : Singleton<Managers>
         DataManager = new DataManager();
         PoolManager = new PoolManager();
         SoundManager = new SoundManager();
-        DialogueManager = new DialogueManager();
         GameManager = new GameManager();
+        DialogueManager = new DialogueManager();
 		UIManager = new UIManager();
         DialogInputHandler.gameObject.SetActive(false);
 
@@ -31,7 +31,6 @@ public class Managers : Singleton<Managers>
 
     public void InitManagers()
     {
-        DataManager.Init();
         GameManager.Init();
         SoundManager.Init(); // TODO: 씬 로드 시마다 필요
         DialogueManager.Init();
