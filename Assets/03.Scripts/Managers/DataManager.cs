@@ -6,7 +6,7 @@ public class DataManager
     // TODO: PlayerData -> DialogData
     private Dictionary<int, PlayerData> playerData = new();
     
-    public void Init()
+    public DataManager()
     {
         playerData = PlayerData.GetDictionary();
     }
