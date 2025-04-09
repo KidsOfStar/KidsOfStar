@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class ObstaclesSpawner : MonoBehaviour
 {
+    public float startSpawnX = -4f;
+    public float maxSpawnX = 9f;
+    public float spawnXOffset;
+    private float fixedPosY = -3.4f;
+    public float offScreenOffset = 14f;
+
     private float stoneProbability = 0.3f;
     private float smallSeaweedProbability = 0.2f;
     private float mediumSeaweedProbability = 0.35f;
-    public float spawnXOffset = 3f;
-    private float lastSpawnX;
 
     public List<GameObject> obstaclePrefabs;
 
@@ -15,9 +19,13 @@ public class ObstaclesSpawner : MonoBehaviour
     {
         foreach(GameObject prefab in obstaclePrefabs)
         {
-            Managers.Instance.PoolManager.CreatePool(prefab, 4);
+            Managers.Instance.PoolManager.CreatePool(prefab, 10);
+        }
+        for (int i = 0; i < 5; i++)
+        {
             SpawnNextObstacle();
         }
+        lastSpawnX = startSpawnX;
     }
 
     private string GetPoolKey(ObstacleType type)
@@ -58,9 +66,15 @@ public class ObstaclesSpawner : MonoBehaviour
         }
     }
 
+    private Vector3 GetSpawnPosition()
+    {
+        float spawnX = maxSpawnX + offScreenOffset;
+        
+        return new Vector3(spawnX, fixedPosY, 0f);
+    }
+
     public void SpawnNextObstacle()
     {
-
         ObstacleType chosenType = ChooseRandomTypeSpawner();
         string poolKey = GetPoolKey(chosenType);
 
@@ -69,7 +83,8 @@ public class ObstaclesSpawner : MonoBehaviour
         Obstacle obstacle = obj.GetComponent<Obstacle>();
         if (obstacle != null)
         {
-            Vector3 spawnPos = obstacle.SetRandomPlace();
+            EditorLog.Log("출력됨");
+            Vector3 spawnPos = GetSpawnPosition();
             obstacle.InitObstacle(spawnPos, chosenType);
         }
     }

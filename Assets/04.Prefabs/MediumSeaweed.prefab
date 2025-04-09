@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4692914312386512818}
   m_Layer: 0
   m_Name: MediumSeaweed
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1010678122097542033}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.31, y: -3.15, z: 0}
+  m_LocalPosition: {x: 0, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 152367064, guid: e9904013842dd3340a391e4d2dcc1c05, type: 3}
+  m_Sprite: {fileID: 1963507697, guid: 4990766b386a8cc4e98b33d2ea5cd0d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,11 +157,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8551c5856042f5c4187c901e6ea67f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: -5
-  maxX: 7
-  fixedPosY: -3.15
-  type: 0
-  stoneProbability: 0.3
-  smallSeaweedProbability: 0.2
-  mediumSeaweedProbability: 0.35
-  largeSeaweedProbability: 0.45

@@ -12,22 +12,25 @@ public enum ObstacleType
 }
 public class Obstacle : MonoBehaviour
 {
-    public float minX = -5f;
-    public float maxX = 7f;
-    public float fixedPosY = -3.15f;
-
-    public Vector3 SetRandomPlace()
-    {
-        float randomX = Random.Range(minX, maxX);
-        Vector3 newPos = new Vector3(randomX, fixedPosY, 0f);
-        transform.position = newPos;
-        return newPos;
-    }
-
+    private float mediumYOffset = 0.1f;
+    private float largeYOffset = 0.2f;
+    private float fixedPosY = -3.4f;
     public void InitObstacle(Vector3 spawnPosition, ObstacleType chosenType)
     {
-        Vector3 pos = new Vector3(spawnPosition.x, -3.15f, 0f);
+        if (chosenType == ObstacleType.MediumSeaweed)
+        {
+            fixedPosY += mediumYOffset;
+        }
+        else if (chosenType == ObstacleType.LargeSeaweed)
+        {
+            fixedPosY += largeYOffset;
+        }
+        Vector3 pos = new Vector3(spawnPosition.x, fixedPosY, 0f);
         transform.position = pos;
         // SetupAnimation();  
+    }
+    private void Update()
+    {
+        
     }
 }
