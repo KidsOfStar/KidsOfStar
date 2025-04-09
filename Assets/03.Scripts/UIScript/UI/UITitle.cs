@@ -28,14 +28,12 @@ public class UITitle : UIBase
     {
         // 로드 Popup 띄우기
         // UIManager.Instance.ShowPopupUI<UILoad>(); (?)
-        EditorLog.Log("로드 버튼 클릭"); // 로드 버튼 클릭 로그
     }
 
     private void OnOptionBtnClick()
     {
         // 옵션 Popup 띄우기
-        Managers.Instance.UIManager.Show<UIOption>();
-        EditorLog.Log("옵션 버튼 클릭"); // 옵션 버튼 클릭 로그
+        Managers.Instance.UIManager.Show<OptionPopup>();
     }
 
     private void OnExitBtnClick()

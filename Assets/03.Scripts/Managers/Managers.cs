@@ -23,7 +23,7 @@ public class Managers : Singleton<Managers>
         GameManager = new GameManager();
 		UIManager = new UIManager();
 
-       InitManagers();
+        InitManagers();
     }
 
     public void InitManagers()

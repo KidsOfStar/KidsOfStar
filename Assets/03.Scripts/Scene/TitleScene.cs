@@ -9,7 +9,7 @@ public class TitleScene : MonoBehaviour
     {
         Managers.Instance.UIManager.SetParents(parent);
         Managers.Instance.UIManager.Show<UITitle>();
-        Managers.Instance.InitManagers();
+        //Managers.Instance.InitManagers();
     }
 
 
