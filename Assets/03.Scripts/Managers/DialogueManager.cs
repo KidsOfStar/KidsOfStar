@@ -7,8 +7,8 @@ public class DialogueManager
     
     public void Init()
     {
-        textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
-        textBubble.HideDirect();
+        // textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
+        // textBubble.HideDirect();
     }
 
     public void Test(Vector3 offset)
@@ -19,7 +19,7 @@ public class DialogueManager
         
         // TODO: 화면을 벗어나면 안쪽으로 당기기
 
-        textBubble.SetDialog("이건 테스트란다.");
+        // textBubble.SetDialog("이건 테스트란다.");
     }
     
     // None
