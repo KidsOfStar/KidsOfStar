@@ -22,7 +22,7 @@ MonoBehaviour:
     weight: 5
     IsActive: 1
   - formName: Human
-    formImage: {fileID: -1347073603, guid: 8bc86459d4cf0fb4eadd89efb1c72ea3, type: 3}
+    formImage: {fileID: 1727844007, guid: d06ffee833dc42d4cadc78e2351edaf8, type: 3}
     jumpForce: 3
     sizeX: 0.6
     sizeY: 1.35
@@ -30,10 +30,34 @@ MonoBehaviour:
     weight: 5
     IsActive: 1
   - formName: Squirrel
-    formImage: {fileID: -1347073603, guid: 8bc86459d4cf0fb4eadd89efb1c72ea3, type: 3}
+    formImage: {fileID: -1187302865, guid: 47d640f1e63671c489a4c8b38e6a4d6d, type: 3}
     jumpForce: 6
     sizeX: 0.9
     sizeY: 0.75
     force: 1
     weight: 1
+    IsActive: 0
+  - formName: Dog
+    formImage: {fileID: -372320300, guid: 4395c9b503ecf9d48a3476ceb874cc16, type: 3}
+    jumpForce: 5
+    sizeX: 1.125
+    sizeY: 0.75
+    force: 3
+    weight: 3
+    IsActive: 0
+  - formName: Cat
+    formImage: {fileID: -75012031, guid: be2052563e1f1934a8f0ea4869c3fcf0, type: 3}
+    jumpForce: 5
+    sizeX: 0.72
+    sizeY: 0.62
+    force: 2
+    weight: 2
+    IsActive: 0
+  - formName: Hide
+    formImage: {fileID: 1749720049, guid: 63ea964f811089f42865f4df70f2602f, type: 3}
+    jumpForce: 0
+    sizeX: 0.6
+    sizeY: 1.35
+    force: 2
+    weight: 5
     IsActive: 0

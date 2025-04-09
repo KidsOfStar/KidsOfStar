@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class FormData
 {
-    // 변신 형태 이름
+    // 형태 이름
     [SerializeField] private string formName;
     public string FormName { get { return formName; } }
     // 현재 형태의 스프라이트 이미지

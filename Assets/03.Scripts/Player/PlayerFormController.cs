@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerFormController : MonoBehaviour
 {
     [SerializeField, Tooltip("형태변환 데이터 모음집")] private PlayerFormData formData;
-    // 형태변환 데이터 딕셔너리
+    // 형태변화 데이터 딕셔너리
     private Dictionary<string, FormData> formDataDictionary = new Dictionary<string, FormData>();
 
     private Player playerSc;
@@ -17,7 +17,7 @@ public class PlayerFormController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
 
-    // 현재 변환 상태
+    // 현재변화 상태
     private FormData curFormData;
     public FormData CurFormData { get { return curFormData; } }
 
@@ -31,7 +31,7 @@ public class PlayerFormController : MonoBehaviour
     {
         controller = playerSc.Controller;
         Init();
-        StateChange(formDataDictionary["Stone"]);
+        FormChange(formDataDictionary["Stone"]);
     }
 
     void Init()
@@ -54,18 +54,34 @@ public class PlayerFormController : MonoBehaviour
         {
             if (curFormData.FormName == "Stone")
             {
-                StateChange(formDataDictionary["Human"]);
+                FormChange(formDataDictionary["Human"]);
+            }
+            else if(curFormData.FormName == "Human")
+            {
+                FormChange(formDataDictionary["Squirrel"]);
+            }
+            else if(curFormData.FormName == "Squirrel")
+            {
+                FormChange(formDataDictionary["Dog"]);
+            }
+            else if(curFormData.FormName == "Dog")
+            {
+                FormChange(formDataDictionary["Cat"]);
+            }
+            else if(curFormData.FormName == "Cat")
+            {
+                FormChange(formDataDictionary["Hide"]);
             }
             else
             {
-                StateChange(formDataDictionary["Stone"]);
+                FormChange(formDataDictionary["Stone"]);
             }
         }
     }
 
-    // 형태 변환 함수
+    // 형태변화 함수
     // 플레이어 캐릭터의 여러 속성을 변경해준다
-    public void StateChange(FormData data)
+    public void FormChange(FormData data)
     {
         if (data == curFormData || !data.IsActive) return;
 
