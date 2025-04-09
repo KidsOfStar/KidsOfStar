@@ -45,7 +45,7 @@ public enum SceneType
     Main,
 }
 
-public enum eUIPosition
+public enum UIPosition
 {
     UI,     // 기본 씬 UI
     Popup,  // 팝업 창
