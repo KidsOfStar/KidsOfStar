@@ -13,14 +13,16 @@ public class DialogueManager
     private PlayerData currentDialogData;
     private Queue<string> dialogQueue = new();
 
+    // TODO: 씬 로드시마다 NPC를 가져와야함
+    
     public void Init()
     {
         textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
         textBubble.HideDirect();
 
         // 임시
-        maorum = Object.FindObjectOfType<NPC>().transform;
-        Managers.Instance.DialogInputHandler.gameObject.SetActive(true);
+        // maorum = Object.FindObjectOfType<NPC>().transform;
+        // Managers.Instance.DialogInputHandler.gameObject.SetActive(true);
     }
     
     // TODO: 씬에 진입하면 씬에 존재하는 NPC들을 가져옴

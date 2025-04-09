@@ -7,8 +7,8 @@ public class SoundManager
     private AudioSource bgmSource;
     private AudioSource sfxSource;
     private AudioSource footstepSource;
-    
-    public void Init()
+
+    public SoundManager()
     {
         sourceParent = new GameObject("AudioSource").transform;
         GameObject audioSource = Managers.Instance.ResourceManager.Load<GameObject>($"{Define.PrefabPath}{Define.AudioSourceKey}");
@@ -28,8 +28,12 @@ public class SoundManager
         footstepSource.name = "Footstep";
         footstepSource.loop = false;
         footstepSource.volume = gameManager.SfxVolume;
-        
+    }
+    
+    public void Init()
+    {
         AttachAudioToCamera();
+        // TODO: 씬 언로드 시 Reparent
     }
 
     private void AttachAudioToCamera()

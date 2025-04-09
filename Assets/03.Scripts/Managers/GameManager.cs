@@ -2,16 +2,20 @@ using UnityEngine;
 
 public class GameManager
 {
-    // 스테이지 진행사항 (저장 및 NPC 대사 변화를 위해)
+    // TODO: 스테이지 진행사항 (저장 및 NPC 대사 변화를 위해)
 
     public Camera MainCamera { get; private set; }
     public float SfxVolume { get; private set; }
     public float BgmVolume { get; private set; }
 
+    public GameManager()
+    {
+        LoadVolumeSetting();
+    }
+    
     public void Init()
     {
         MainCamera = Camera.main;
-        LoadVolumeSetting();
     }
 
     public void SaveVolumeSetting()
