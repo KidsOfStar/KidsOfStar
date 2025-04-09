@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObstaclesSpawner : MonoBehaviour
 {
-    public float startSpawnX = -4f;
-    public float maxSpawnX = 9f;
-    public float spawnXOffset;
-    private float fixedPosY = -3.4f;
+    public float spawnXOffset = 10f;
+
+    private float fixedPosY = -2.7f;
 
     public float minSpacing = 2f;
     public float maxSpacing = 5f;
@@ -17,17 +17,31 @@ public class ObstaclesSpawner : MonoBehaviour
 
     public List<GameObject> obstaclePrefabs;
     private float lastSpawnX;
+
+    [Header("Wave")]
+    public int waveObstacleCount = 8; //Wave에 생성할 장애물의 갯수
+    private int currentWaveRemaining; //Wave에서 소멸되지 않은 장애물의 갯수 
+    private int currentWave = 1; // 현재 Wave
     private void Start()
     {
         foreach(GameObject prefab in obstaclePrefabs)
         {
             Managers.Instance.PoolManager.CreatePool(prefab, 10);
         }
-        for (int i = 0; i < 5; i++)
+        SpawnWave();
+    }
+
+    private void SpawnWave()
+    {
+        float screenRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
+        lastSpawnX = screenRight + spawnXOffset;
+
+        currentWaveRemaining = waveObstacleCount;
+
+        for(int i =0; i<waveObstacleCount; i++)
         {
             SpawnNextObstacle();
         }
-        lastSpawnX = startSpawnX;
     }
 
     private string GetPoolKey(ObstacleType type)
@@ -80,7 +94,6 @@ public class ObstaclesSpawner : MonoBehaviour
         ObstacleType chosenType = ChooseRandomTypeSpawner();
         string poolKey = GetPoolKey(chosenType);
 
-        // PoolManager를 통해 결정된 풀 키의 장애물을 스폰합니다.
         GameObject obj = Managers.Instance.PoolManager.Spawn(poolKey, Vector3.zero, Quaternion.identity);
         Obstacle obstacle = obj.GetComponent<Obstacle>();
         if (obstacle != null)
@@ -88,6 +101,23 @@ public class ObstaclesSpawner : MonoBehaviour
             EditorLog.Log("출력됨");
             Vector3 spawnPos = GetSpawnPosition();
             obstacle.InitObstacle(spawnPos, chosenType);
+        }
+    }
+    public void OnObstacleDespawned()
+    {
+        currentWaveRemaining--;
+
+        if (currentWaveRemaining <= 0)
+        {
+            if (currentWave >= 3)
+            {
+                // Managers.Instance.SceneManager.LoadScene(// 해당 다음 NextScene)
+            }
+            else
+            {
+                currentWave++;
+                SpawnWave();
+            }
         }
     }
 }
