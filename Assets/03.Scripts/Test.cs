@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UGS;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Test : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Test : MonoBehaviour
     {
         foreach (var value in playerdata)
         {
-            // Debug.Log(value.index.ToString());
+            Debug.Log(value.TrustValue);
         }
     }
 }
