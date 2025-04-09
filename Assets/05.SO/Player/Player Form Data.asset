@@ -36,7 +36,7 @@ MonoBehaviour:
     sizeY: 0.75
     force: 1
     weight: 1
-    IsActive: 0
+    IsActive: 1
   - formName: Dog
     formImage: {fileID: -372320300, guid: 4395c9b503ecf9d48a3476ceb874cc16, type: 3}
     jumpForce: 5
@@ -44,7 +44,7 @@ MonoBehaviour:
     sizeY: 0.75
     force: 3
     weight: 3
-    IsActive: 0
+    IsActive: 1
   - formName: Cat
     formImage: {fileID: -75012031, guid: be2052563e1f1934a8f0ea4869c3fcf0, type: 3}
     jumpForce: 5
@@ -52,7 +52,7 @@ MonoBehaviour:
     sizeY: 0.62
     force: 2
     weight: 2
-    IsActive: 0
+    IsActive: 1
   - formName: Hide
     formImage: {fileID: 1749720049, guid: 63ea964f811089f42865f4df70f2602f, type: 3}
     jumpForce: 0
@@ -60,4 +60,4 @@ MonoBehaviour:
     sizeY: 1.35
     force: 2
     weight: 5
-    IsActive: 0
+    IsActive: 1

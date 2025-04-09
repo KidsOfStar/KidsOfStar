@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask groundLayer;
 
+    // 플레이어 이동 방향
+    private Vector2 moveDir = Vector2.zero;
+
     // 플레이어 캐릭터 이동 속도
     [SerializeField] private float moveSpeed;
     public float MoveSpeed
@@ -47,6 +50,23 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GroundCheck();
+        Move();
+    }
+
+    void Move()
+    {
+        if (touchLadder)
+        {
+
+        }
+        else
+        {
+            if (moveDir != Vector2.up && moveDir != Vector2.down)
+            {
+                Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
+                rigid.velocity = playervelocity;
+            }
+        }
     }
 
     void GroundCheck()
@@ -56,33 +76,23 @@ public class PlayerController : MonoBehaviour
         isGround = hit.collider != null ? true : false;
     }
 
-    void OnMove(InputValue value)
+    public void OnMoveInput(InputAction.CallbackContext context)
     {
         if (!isControllable) return;
 
-        Vector2 dir = value.Get<Vector2>();
-        if(dir == Vector2.zero)
+        if (context.phase == InputActionPhase.Performed)
         {
-            rigid.velocity = Vector2.zero;
-            return;
+            moveDir = context.ReadValue<Vector2>();
         }
-
-        if(touchLadder)
+        else if(context.phase == InputActionPhase.Canceled)
         {
-
-        }
-        else
-        {
-            if(dir != Vector2.up && dir != Vector2.down)
-            {
-                rigid.velocity = dir * moveSpeed;
-            }
+            moveDir = Vector2.zero;
         }
     }
 
-    void OnJump(InputValue value)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        if(isGround)
+        if(context.phase == InputActionPhase.Canceled && isGround)
         {
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
