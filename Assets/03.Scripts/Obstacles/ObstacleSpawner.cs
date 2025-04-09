@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ObstaclesSpawner : MonoBehaviour
 {
@@ -98,7 +97,6 @@ public class ObstaclesSpawner : MonoBehaviour
         Obstacle obstacle = obj.GetComponent<Obstacle>();
         if (obstacle != null)
         {
-            EditorLog.Log("출력됨");
             Vector3 spawnPos = GetSpawnPosition();
             obstacle.InitObstacle(spawnPos, chosenType);
         }
