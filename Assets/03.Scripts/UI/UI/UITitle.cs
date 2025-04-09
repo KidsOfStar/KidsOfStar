@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,7 +49,16 @@ public class UITitle : UIBase
 
     private void OnStartBtnClick()
     {
-        // ScemeLoadManager.Instance.LoadScene(SceneType.Game);
+        // 나중에 데이터가 있을 경우 
+        Managers.Instance.UIManager.Show<WarningTop>();
+
+        // 게임 시작
+        NextScene();
         EditorLog.Log("게임 시작"); // 게임 시작 로그
+    }
+
+    private void NextScene()
+    {
+        // 다음 씬으로 이동
     }
 }

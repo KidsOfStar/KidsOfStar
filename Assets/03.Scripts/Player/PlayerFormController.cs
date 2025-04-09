@@ -10,7 +10,6 @@ public class PlayerFormController : MonoBehaviour
     private Player playerSc;
     public Player PlayerSc
     {
-        get { return playerSc; }
         set { playerSc = value; }
     }
     private PlayerController controller;
@@ -23,7 +22,7 @@ public class PlayerFormController : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -31,7 +30,7 @@ public class PlayerFormController : MonoBehaviour
     {
         controller = playerSc.Controller;
         Init();
-        FormChange(formDataDictionary["Stone"]);
+        curFormData = formDataDictionary["Human"];
     }
 
     void Init()
