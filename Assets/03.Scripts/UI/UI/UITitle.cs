@@ -27,7 +27,7 @@ public class UITitle : UIBase
     private void OnLoadBtnClick()
     {
         // 로드 Popup 띄우기
-        // UIManager.Instance.ShowPopupUI<UILoad>(); (?)
+         Managers.Instance.UIManager.Show<SaveLoadPopup>();
     }
 
     private void OnOptionBtnClick()
