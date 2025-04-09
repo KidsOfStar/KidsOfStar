@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class UIManager
@@ -26,14 +28,16 @@ public class UIManager
     {
         // 이미 생성되어 있는지 확인
         string uiName = typeof(T).Name;
+
         var uiDictionary = uiList.TryGetValue(uiName, out var ui);
 
         // 없으면 Resource에서 로드하여 생성
         if(!uiDictionary)
         {
-            // ResourceManager에서 해당 UI 프리팹 로드
-            var prefab = Managers.Instance.ResourceManager.Load<T>(Define.UIPath + uiName);
-            if(prefab == null) return null; // 프리팹이 없으면 null 반환
+            // 기본 UI 프리팹 로드
+            var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName));
+
+            if (prefab == null) return null; // 프리팹이 없으면 null 반환
 
             ui = Object.Instantiate(prefab, parents[(int)prefab.uiPosition]) as T; // 지정된 위치에 생성
             ui.name = uiName;
@@ -43,6 +47,23 @@ public class UIManager
         ui.SetActive(true);
         ui.Opened(param);
         return (T)ui;
+    }
+
+    private string GetPath(string name)
+    {
+        // 이미 생성되어 있는지 확인
+        if (name.Contains("Popup"))
+        {
+            return Define.PopupPath + name ;
+        }
+        else if (name.Contains("Top"))
+        {
+            return Define.TopPath + name;
+        }
+        else
+        {
+            return Define.UIPath + name;
+        }
     }
 
     /// <summary>
@@ -55,13 +76,13 @@ public class UIManager
 
         if (uiDictionary)
         {
-            //uiList.Remove(uiName);
-
             ui.closed?.Invoke(param);
             ui.gameObject.SetActive(false);
 
         }
     }
+
+
 
     /// <summary>
     /// 특정 UI를 가져옴 (없으면 null)

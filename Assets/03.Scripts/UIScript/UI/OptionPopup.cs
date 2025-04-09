@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-public class UIOption : UIBase
+public class OptionPopup : UIBase
 {
     [Header("UI Audio")]
     public Slider bgmSlider; // BGM 슬라이더
