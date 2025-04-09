@@ -8,32 +8,32 @@ public class Managers : Singleton<Managers>
     public ResourceManager ResourceManager { get; private set; }
     public DataManager DataManager { get; private set; }
     public PoolManager PoolManager { get; private set; }
+    public UIManager UIManager { get; private set; }
     public SoundManager SoundManager { get; private set; }
     public DialogueManager DialogueManager { get; private set; }
     public GameManager GameManager { get; private set; }
-    public UIManager UIManager { get; private set; }
 
-    // TODO: 생성자랑 Init이랑 나눌까?
     protected override void Awake()
     {
         base.Awake();
         ResourceManager = new ResourceManager();
         DataManager = new DataManager();
         PoolManager = new PoolManager();
-        SoundManager = new SoundManager();
         GameManager = new GameManager();
-        DialogueManager = new DialogueManager();
 		UIManager = new UIManager();
+        SoundManager = new SoundManager();
+        DialogueManager = new DialogueManager();
         DialogInputHandler.gameObject.SetActive(false);
 
+        // TODO: 씬 로드 시마다 필요
         InitManagers();
     }
 
     public void InitManagers()
     {
         GameManager.Init();
-        SoundManager.Init(); // TODO: 씬 로드 시마다 필요
-        DialogueManager.Init();
         UIManager.Init();
+        SoundManager.Init(); 
+        // DialogueManager.Init();
     }
 }
