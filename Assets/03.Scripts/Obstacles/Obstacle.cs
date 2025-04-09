@@ -3,53 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-
-public enum seaweedType
+public enum ObstacleType
 {
-    small,
-    medium,
-    large,
+    SmallSeaweed,
+    MediumSeaweed,
+    LargeSeaweed,
+    Stone
 }
 public class Obstacle : MonoBehaviour
 {
-    private Animator ani;
-    private Vector3 originalLocalPosition;
+    public float minX = -5f;
+    public float maxX = 7f;
+    public float fixedPosY = -3.15f;
 
-    private Vector3 smallYOffset = new Vector3(0, -0.25f, 0);
-    private Vector3 mediumYOffset = new Vector3(0, -0.1f, 0);
-
-    private void Awake()
+    public Vector3 SetRandomPlace()
     {
-        originalLocalPosition = transform.localPosition;
+        float randomX = Random.Range(minX, maxX);
+        Vector3 newPos = new Vector3(randomX, fixedPosY, 0f);
+        transform.position = newPos;
+        return newPos;
     }
 
-    public void ResetObstacle()
+    public void InitObstacle(Vector3 spawnPosition, ObstacleType chosenType)
     {
-        transform.localPosition = originalLocalPosition;
+        Vector3 pos = new Vector3(spawnPosition.x, -3.15f, 0f);
+        transform.position = pos;
+        // SetupAnimation();  
     }
-    public void InitializeObstacle(seaweedType type)
-    {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr == null) return;
-
-        ResetObstacle();
-
-        switch (type)
-        {
-            case seaweedType.small:
-                transform.localPosition += smallYOffset;
-                //ani.Play(); 작은 수초 애니메이션 
-                break;
-            case seaweedType.medium:
-                transform.localPosition += mediumYOffset;
-                //ani.Play();
-                break;
-            case seaweedType.large:
-                //ani.Play();
-                break;
-                
-        }
-    }
-
-
 }
