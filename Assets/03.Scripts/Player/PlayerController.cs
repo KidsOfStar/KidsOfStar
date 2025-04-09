@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     }
     // 플레이어 캐릭터가 땅에 닿으면 true
     private bool isGround;
+    public bool IsGround { get  { return isGround; } }
     // 플레이어 캐릭터 조작 가능하면 true
     private bool isControllable = true;
     public bool IsControllable

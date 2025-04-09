@@ -83,7 +83,7 @@ public class PlayerFormController : MonoBehaviour
     // 플레이어 캐릭터의 여러 속성을 변경해준다
     public void FormChange(FormData data)
     {
-        if (data == curFormData || !data.IsActive) return;
+        if (data == curFormData || !data.IsActive || !controller.IsGround || !controller.IsControllable) return;
 
         curFormData = data;
         spriteRenderer.sprite = curFormData.FormImage;
