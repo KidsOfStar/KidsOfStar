@@ -1,7 +1,8 @@
+using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
 
-public class LoadSlot
+public class LoadSlot : MonoBehaviour
 {
     public TextMeshProUGUI loadSlootName;
     public TextMeshProUGUI loadSlootData;
