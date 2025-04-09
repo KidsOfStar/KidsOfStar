@@ -11,22 +11,26 @@ public class UIManager
 
     public void Init()
     {
+
+        EditorLog.Log("UIManager!!");
+
         var canvasPrefab = Managers.Instance.ResourceManager.Load<Canvas>("UI/Canvas");
         EditorLog.Log("UIManager Init");
 
         if (canvasPrefab == null)
         {
+            Debug.LogError("Canvas prefab not found at path: UI/Canvas");
             return;
         }
 
         // Canvas 인스턴스 생성
         var canvasInstance = Object.Instantiate(canvasPrefab);
-        canvasInstance.name = "Canvas"; // Canvas 이름 설정
+        canvasInstance.name = "Canvas";
 
         List<Transform> parentList = new List<Transform>();
 
-        // Canvas 하위에 UI, Background, Popup, Top 위치 생성
-        string[] childNames = { "UI", "Popup", "Top"}; // 필요한 구조에 따라 추가
+        // Canvas 하위에 UI, Popup, Top 위치 생성
+        string[] childNames = { "UI", "Popup", "Top" };
 
         foreach (string childName in childNames)
         {
@@ -41,9 +45,8 @@ public class UIManager
             }
         }
 
-        // 부모 리스트 세팅
-        SetParents(parents);
-
+        // 생성된 parentList를 SetParents()에 전달하여 부모 목록을 설정
+        SetParents(parentList);
     }
 
     /// <summary>
