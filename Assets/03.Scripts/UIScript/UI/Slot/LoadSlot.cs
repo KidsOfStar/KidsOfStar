@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class LoadSlot : MonoBehaviour
+public class LoadSlot
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextMeshProUGUI loadSlootName;
+    public TextMeshProUGUI loadSlootData;
+
+
+    public void UpdateUI()
     {
-        
+
+    }
+    public void SetData()
+    {
+        // 저장된 슬롯 이름과 데이터
+        loadSlootName.text = "Save Slot 1";
+        loadSlootData.text = "Chapter1 25-03-224 14.14.38";
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClick()
     {
-        
+
+    }
+
+    public class SaveData
+    {
+
     }
 }
