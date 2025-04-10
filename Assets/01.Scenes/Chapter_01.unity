@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 13
+  <CharacterType>k__BackingField: 0
   bubbleOffset: {x: 0, y: 2, z: 0}
 --- !u!212 &430324845
 SpriteRenderer:
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 1
+  <CharacterType>k__BackingField: 0
   bubbleOffset: {x: 0, y: 2.5, z: 0}
 --- !u!212 &526798510
 SpriteRenderer:
@@ -997,7 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
+  <CharacterType>k__BackingField: 0
   bubbleOffset: {x: 0, y: 3, z: 0}
 --- !u!1 &933003542
 GameObject:
@@ -1299,6 +1299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826142278}
+  - component: {fileID: 1826142279}
   m_Layer: 0
   m_Name: Chapter 01
   m_TagString: Untagged
@@ -1321,6 +1322,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826142279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826142277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3cc77c423e5c94198bc3551e4015e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcs:
+  - {fileID: 848061915}
+  - {fileID: 430324844}
+  - {fileID: 526798509}
+  mainCamera: {fileID: 1600853006}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

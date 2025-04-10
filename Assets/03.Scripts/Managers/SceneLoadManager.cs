@@ -8,8 +8,9 @@ public class SceneLoadManager : MonoBehaviour
 {
     private const float fakeMinDuration = 3f;
     private const float fakeMaxDuration = 4f;
-    
-    private SceneType currentScene;
+    public SceneType CurrentScene { get; private set; } = SceneType.Title;
+
+    [field: SerializeField] public bool IsSceneLoadComplete { get; set; }
     
     public void LoadScene(SceneType loadScene)
     {
@@ -19,12 +20,15 @@ public class SceneLoadManager : MonoBehaviour
     // 씬을 로드하는 코루틴
     private IEnumerator LoadSceneCoroutine(SceneType loadScene)
     {
+        IsSceneLoadComplete = false;
+        Managers.Instance.OnSceneUnloaded();
+        
         // 로딩 씬을 먼저 로드
         yield return SceneManager.LoadSceneAsync(SceneType.Loading.GetName(), LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneType.Loading.GetName()));
         
         yield return null;
-        SceneManager.UnloadSceneAsync(currentScene.GetName());
+        SceneManager.UnloadSceneAsync(CurrentScene.GetName());
         
         // 씬 로드 시작
         AsyncOperation operation = SceneManager.LoadSceneAsync(loadScene.GetName(), LoadSceneMode.Additive);
@@ -51,37 +55,15 @@ public class SceneLoadManager : MonoBehaviour
         }
 
         // 로드 씬 활성화
-        SceneManager.UnloadSceneAsync(currentScene.GetName());
+        CurrentScene = loadScene;
         operation.allowSceneActivation = true;
         while (!operation.isDone) yield return null;
 
-        
         // 실제 씬 전환 완료 이후 초기화 및 로딩 시간 병렬 대기
-        bool isInitComplete = false;
-        StartCoroutine(InitCoroutine(loadScene, () => isInitComplete = true));
-
-        while (!isInitComplete)
+        while (!IsSceneLoadComplete)
             yield return null;
         
         yield return new WaitForSeconds(0.1f);
         SceneManager.UnloadSceneAsync(SceneType.Loading.GetName());
-    }
-
-    private IEnumerator InitCoroutine(SceneType loadScene, Action onComplete)
-    {
-        switch (loadScene)
-        {
-            case SceneType.Title:
-                break;
-            case SceneType.Chapter01:
-                // TODO: 각 씬에서 초기화 작업을 수행하는 메서드 호출
-                // MainSceneBase.Instance.OnMainSceneInitComplete += () => onComplete?.Invoke();
-                break;
-            default:
-                onComplete?.Invoke();
-                break;
-        }
-
-        yield return null;
     }
 }
