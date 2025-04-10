@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class UIManager
 {
-    [SerializeField] private List<Transform> parents;
+    private List<Transform> parents;
     private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
 
     public void Init()
     {
-        var canvasPrefab = Managers.Instance.ResourceManager.Load<Canvas>("UI/Canvas");
+        var canvasPrefab = Managers.Instance.ResourceManager.Load<Canvas>("UI/Canvas", true);
 
         if (canvasPrefab == null)
         {
@@ -71,7 +71,7 @@ public class UIManager
         if(!uiDictionary)
         {
             // 기본 UI 프리팹 로드
-            var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName));
+            var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName), false);
 
             if (prefab == null) return null; // 프리팹이 없으면 null 반환
 
