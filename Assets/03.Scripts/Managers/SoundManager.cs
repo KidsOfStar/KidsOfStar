@@ -11,6 +11,7 @@ public class SoundManager : ISceneLifecycleHandler
     public SoundManager()
     {
         sourceParent = new GameObject("AudioSource").transform;
+        sourceParent.SetParent(Managers.Instance.transform);
         GameObject audioSource = Managers.Instance.ResourceManager.Load<GameObject>($"{Define.PrefabPath}{Define.AudioSourceKey}");
         GameManager gameManager = Managers.Instance.GameManager;
         
@@ -32,6 +33,10 @@ public class SoundManager : ISceneLifecycleHandler
     
     private void AttachAudioToCamera()
     {
+        var currentScene = Managers.Instance.SceneLoadManager.CurrentScene;
+        if (currentScene == SceneType.Title)
+            return;
+        
         var camera = Managers.Instance.GameManager.MainCamera;
         if (camera == null)
         {
@@ -44,19 +49,23 @@ public class SoundManager : ISceneLifecycleHandler
 
     private void ReparentAudioToSoundManager()
     {
-        if (sourceParent == null)
+        var currentScene = Managers.Instance.SceneLoadManager.CurrentScene;
+        if (currentScene == SceneType.Title)
+            return;
+        
+        if (!sourceParent)
         {
             EditorLog.LogError("SoundManager : AudioSource is not found.");
             return;
         }
         
-        sourceParent.SetParent(null);
+        sourceParent.SetParent(Managers.Instance.transform);
     }
     
     private AudioClip GetAudioClip(string key)
     {
         AudioClip audioClip = Managers.Instance.ResourceManager.Load<AudioClip>($"{Define.SoundPath}{key}");
-        if (audioClip == null)
+        if (!audioClip)
         {
             EditorLog.LogError($"SoundManager : {key} is not found.");
             return null;

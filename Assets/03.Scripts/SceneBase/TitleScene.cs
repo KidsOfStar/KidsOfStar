@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class TitleScene : MonoBehaviour
 {
-    private void Start()
+    protected void Start()
     {
+        Managers.Instance.OnSceneLoaded();
+        Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
         Managers.Instance.UIManager.Show<UITitle>();
     }
 }
