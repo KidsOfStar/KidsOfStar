@@ -6,7 +6,7 @@ public class UIManager : ISceneLifecycleHandler
 {
     private List<Transform> parents;
     private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
-
+    private Dictionary<string, List<UIBase>> multiListUIList = new Dictionary<string, List<UIBase>>(); // 여러 개의 UI를 관리하기 위한 리스트
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정
     /// 보통 Canvas 하위에 Background, UI, Popup 같은 위치들이 있음
@@ -24,7 +24,7 @@ public class UIManager : ISceneLifecycleHandler
 
     public T Show<T>(params object[] param) where T : UIBase
     {
-        // 이미 생성되어 있는지 확인
+        // 이미 생성되어 있는지 확인 
         string uiName = typeof(T).Name;
 
         var uiDictionary = uiList.TryGetValue(uiName, out var ui);
@@ -45,6 +45,31 @@ public class UIManager : ISceneLifecycleHandler
         ui.SetActive(true);
         ui.Opened(param);
         return (T)ui;
+    }
+
+    // 똑같은 것을 여러개 생성하게 한다
+    public T AddShow<T>(params object[] param) where T : UIBase
+    {
+        // 이미 생성되어 있는지 확인 
+        string uiName = typeof(T).Name;
+
+        // 기본 UI 프리팹 로드
+        var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName), false);
+        if (prefab == null) return null; // 프리팹이 없으면 null 반환
+
+        var ui = Object.Instantiate(prefab, parents[(int)prefab.uiPosition]) as T; // 지정된 위치에 생성
+        ui.name = uiName;
+
+        ui.SetActive(true);
+        ui.Opened(param);
+
+        if(!multiListUIList.ContainsKey(uiName))
+        {   // 리스트가 없으면 생성
+            multiListUIList.Add(uiName, new List<UIBase>());
+        }
+        multiListUIList[uiName].Add(ui);
+
+        return ui;
     }
 
     private string GetPath(string name)
@@ -69,7 +94,7 @@ public class UIManager : ISceneLifecycleHandler
     }
 
     /// <summary>
-    /// UI를 숨기거나 파괴함
+    /// UI를 숨기기
     /// </summary>
     public void Hide<T>(params object[] param) where T : UIBase
     {
@@ -82,6 +107,21 @@ public class UIManager : ISceneLifecycleHandler
             ui.gameObject.SetActive(false);
 
         }
+    }
+    // 모든 UI를 숨기기
+    public void HideAll<T>(params object[] param) where T : UIBase
+    {
+        string uiName = typeof(T).Name;
+
+        if(multiListUIList.TryGetValue(uiName, out var uiList))
+        {
+            foreach (var ui in uiList)
+            {
+                ui.closed?.Invoke(param);
+                ui.gameObject.SetActive(false); // 파괴시 Destroy() 변경하기
+            }
+        }
+        // uiList.Clear(); - 파괴 후
     }
 
     /// <summary>

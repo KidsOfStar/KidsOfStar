@@ -32,25 +32,29 @@ public class PlayerBtn : UIBase
     public void OnJump()
     {
         // 점프 메소드 호출
+        //Managers.Instance.GameManager.Player.PlayerController.OnJump();
     }
 
     public void OnHide()
     {
         // 형태변화 스크립트에서 호출
+        //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Hide");
     }
     public void OnCat()
     {
         // 형태변화 스크립트에서 호출
-
+        //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Cat");
     }
     public void OnDog()
     {
         // 형태변화 스크립트에서 호출
+        //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Dog");
 
     }
     public void OnSquirrel()
     {
         // 형태변화 스크립트에서 호출
+        //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Squirrel");
 
     }
     public void OnStop()
@@ -65,7 +69,6 @@ public class PlayerBtn : UIBase
     public void OnInteraction()
     {
         // NPC와 상호작용 메소드 호출
-
 
         Managers.Instance.DialogueManager.OnClick?.Invoke();
     }
