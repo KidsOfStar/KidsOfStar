@@ -10,7 +10,6 @@ public class PlayerFormController : MonoBehaviour
     private Player playerSc;
     public Player PlayerSc
     {
-        get { return playerSc; }
         set { playerSc = value; }
     }
     private PlayerController controller;
@@ -23,7 +22,7 @@ public class PlayerFormController : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -31,7 +30,7 @@ public class PlayerFormController : MonoBehaviour
     {
         controller = playerSc.Controller;
         Init();
-        FormChange(formDataDictionary["Stone"]);
+        curFormData = formDataDictionary["Human"];
     }
 
     void Init()
@@ -54,40 +53,76 @@ public class PlayerFormController : MonoBehaviour
         {
             if (curFormData.FormName == "Stone")
             {
-                FormChange(formDataDictionary["Human"]);
+                FormChange("Human");
             }
             else if(curFormData.FormName == "Human")
             {
-                FormChange(formDataDictionary["Squirrel"]);
+                FormChange("Squirrel");
             }
             else if(curFormData.FormName == "Squirrel")
             {
-                FormChange(formDataDictionary["Dog"]);
+                FormChange("Dog");
             }
             else if(curFormData.FormName == "Dog")
             {
-                FormChange(formDataDictionary["Cat"]);
+                FormChange("Cat");
             }
             else if(curFormData.FormName == "Cat")
             {
-                FormChange(formDataDictionary["Hide"]);
+                FormChange("Hide");
             }
             else
             {
-                FormChange(formDataDictionary["Stone"]);
+                FormChange("Stone");
             }
         }
     }
 
     // 형태변화 함수
     // 플레이어 캐릭터의 여러 속성을 변경해준다
-    public void FormChange(FormData data)
+    public void FormChange(string formName)
     {
-        if (data == curFormData || !data.IsActive || !controller.IsGround || !controller.IsControllable) return;
+        if (!formDataDictionary[formName].IsActive 
+            || !controller.IsGround || !controller.IsControllable) return;
 
-        curFormData = data;
+        if(formName == curFormData.FormName)
+        {
+            curFormData = formDataDictionary["Human"];
+        }
+        else
+        {
+            curFormData = formDataDictionary[formName];
+        }
+
         spriteRenderer.sprite = curFormData.FormImage;
         boxCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
         controller.JumpForce = curFormData.JumpForce;
+    }
+
+    // 스프라이트 렌더러 플립
+    public void FlipControl(Vector2 dir)
+    {
+        if(dir.x > 0)
+        {
+            if(curFormData.Direction == DefaultDirection.Right)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+        else if(dir.x < 0)
+        {
+            if(curFormData.Direction == DefaultDirection.Right)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
     }
 }

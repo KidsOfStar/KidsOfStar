@@ -2,6 +2,12 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
+public enum DefaultDirection
+{
+    Right,
+    Left
+}
+
 [System.Serializable]
 public class FormData
 {
@@ -31,6 +37,9 @@ public class FormData
     public float Weight { get { return weight; } }
     // 해금 상태
     public bool IsActive = false;
+    // 스프라이트가 기본으로 바라보는 방향
+    [SerializeField] private DefaultDirection direction;
+    public DefaultDirection Direction { get { return direction; } }
 }
 
 [CreateAssetMenu(fileName = "new PlayerForm Data", menuName = "PlayerForm Data")]

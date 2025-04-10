@@ -1,50 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager
+public class UIManager : ISceneLifecycleHandler
 {
-    [SerializeField] private List<Transform> parents;
+    private List<Transform> parents;
     private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
 
-    public void Init()
-    {
-
-        EditorLog.Log("UIManager!!");
-
-        var canvasPrefab = Managers.Instance.ResourceManager.Load<Canvas>("UI/Canvas");
-        EditorLog.Log("UIManager Init");
-
-        if (canvasPrefab == null)
-        {
-            Debug.LogError("Canvas prefab not found at path: UI/Canvas");
-            return;
-        }
-
-        // Canvas 인스턴스 생성
-        var canvasInstance = Object.Instantiate(canvasPrefab);
-        canvasInstance.name = "Canvas";
-
-        List<Transform> parentList = new List<Transform>();
-
-        // Canvas 하위에 UI, Popup, Top 위치 생성
-        string[] childNames = { "UI", "Popup", "Top" };
-
-        foreach (string childName in childNames)
-        {
-            var child = canvasInstance.transform.Find(childName);
-            if (child != null)
-            {
-                parentList.Add(child);
-            }
-            else
-            {
-                Debug.LogWarning($"Canvas 하위에서 '{childName}' 오브젝트를 찾지 못했습니다.");
-            }
-        }
-
-        // 생성된 parentList를 SetParents()에 전달하여 부모 목록을 설정
-        SetParents(parentList);
-    }
 
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정
@@ -72,7 +33,7 @@ public class UIManager
         if(!uiDictionary)
         {
             // 기본 UI 프리팹 로드
-            var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName));
+            var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName), false);
 
             if (prefab == null) return null; // 프리팹이 없으면 null 반환
 
@@ -139,5 +100,46 @@ public class UIManager
     {
         string uiName = typeof(T).Name;
         return uiList.TryGetValue(uiName, out var ui) && ui.gameObject.activeInHierarchy;
+    }
+
+    public void OnSceneLoaded() // 씬 로드할 때마다
+    {
+        var canvasPrefab = Managers.Instance.ResourceManager.Load<Canvas>("UI/Canvas", true);
+
+        if (canvasPrefab == null)
+        {
+            Debug.LogError("Canvas prefab not found at path: UI/Canvas");
+            return;
+        }
+
+        // Canvas 인스턴스 생성
+        var canvasInstance = Object.Instantiate(canvasPrefab);
+        canvasInstance.name = "Canvas";
+
+        List<Transform> parentList = new List<Transform>();
+
+        // Canvas 하위에 UI, Popup, Top 위치 생성
+        string[] childNames = { "UI", "Popup", "Top" };
+
+        foreach (string childName in childNames)
+        {
+            var child = canvasInstance.transform.Find(childName);
+            if (child != null)
+            {
+                parentList.Add(child);
+            }
+            else
+            {
+                Debug.LogWarning($"Canvas 하위에서 '{childName}' 오브젝트를 찾지 못했습니다.");
+            }
+        }
+
+        // 생성된 parentList를 SetParents()에 전달하여 부모 목록을 설정
+        SetParents(parentList);
+    }
+
+    public void OnSceneUnloaded()
+    {
+        
     }
 }

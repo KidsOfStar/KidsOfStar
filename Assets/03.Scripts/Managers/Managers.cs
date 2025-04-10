@@ -31,7 +31,7 @@ public class Managers : Singleton<Managers>
     public void OnSceneLoaded()
     {
         GameManager.OnSceneLoaded();
-        UIManager.Init();
+        UIManager.OnSceneLoaded();
         SoundManager.OnSceneLoaded();
         // DialogueManager.OnSceneLoaded();
     }
