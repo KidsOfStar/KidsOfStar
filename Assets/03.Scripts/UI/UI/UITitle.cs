@@ -50,7 +50,7 @@ public class UITitle : UIBase
     private void OnStartBtnClick()
     {
         // 나중에 데이터가 있을 경우 
-        Managers.Instance.UIManager.Show<WarningTop>();
+        Managers.Instance.UIManager.Show<WarningStartTop>();
 
         // 게임 시작
         NextScene();
