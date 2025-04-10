@@ -6,20 +6,14 @@ public class SceneBase : MonoBehaviour
 {
     [Header("NPCs")]
     [SerializeField] private NPC[] npcs;
-    
-    public Action onSceneLoadComplete;
 
+    [Header("Camera")]
+    [SerializeField] private Camera mainCamera;
+    
     protected virtual void Awake()
     {
+        Managers.Instance.GameManager.SetCamera(mainCamera);
         Managers.Instance.OnSceneLoaded();
         Managers.Instance.DialogueManager.InitNPcs(npcs);
-        
-        // 씬 로드 완료
-        onSceneLoadComplete?.Invoke();
-    }
-
-    private void OnDestroy()
-    {
-        Managers.Instance.OnSceneUnloaded();
     }
 }

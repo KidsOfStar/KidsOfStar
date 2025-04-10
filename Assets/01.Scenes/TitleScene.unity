@@ -354,13 +354,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1685197246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba647ebed803efd4dab03861ec8829bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 635c11b3bbee1ac409202c7d0d87250d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Npcs: []
+  parent: []
 --- !u!4 &1685197248
 Transform:
   m_ObjectHideFlags: 0
