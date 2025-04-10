@@ -3,44 +3,38 @@ using UnityEngine;
 
 public class ResourceManager
 {
-    private readonly Dictionary<string, Object> resourceCache = new();
+    private readonly Dictionary<string, Object> globalCache = new();
+    private readonly Dictionary<string, Object> sceneCache = new();
 
-    public T Load<T>(string path) where T : Object
+    public T Load<T>(string path, bool isGlobal = false) where T : Object
     {
-        if (resourceCache.TryGetValue(path, out var value))
+        if (isGlobal)
         {
-            return value as T;
+            if (globalCache.TryGetValue(path, out var cached)) return (T)cached;
+            var obj = Resources.Load<T>(path);
+            globalCache[path] = obj;
+            return obj;
         }
-
-        T resource = Resources.Load<T>(path);
-
-        if (resource == null)
+        else
         {
-            EditorLog.LogError($"ResourceManager : Not found resource at path: {path}");
-            return null;
-        }
-
-        resourceCache.Add(path, resource);
-        return resource;
-    }
-
-    public bool IsLoaded(string path)
-    {
-        return resourceCache.ContainsKey(path);
-    }
-
-    public void Unload(string path)
-    {
-        if (resourceCache.TryGetValue(path, out var value))
-        {
-            resourceCache.Remove(path);
-            Resources.UnloadAsset(value);
+            if (sceneCache.TryGetValue(path, out var cached)) return (T)cached;
+            var obj = Resources.Load<T>(path);
+            sceneCache[path] = obj;
+            return obj;
         }
     }
 
-    public void UnloadAll()
+    public T Instantiate<T>(string path, Transform parent = null, bool isGlobal = false) where T : Object
     {
-        resourceCache.Clear();
-        Resources.UnloadUnusedAssets();
+        var prefab = Load<T>(path, isGlobal);
+        return prefab == null ? null : Object.Instantiate(prefab, parent);
+    }
+
+    public void UnloadSceneResource()
+    {
+        foreach (var obj in sceneCache.Values)
+            Resources.UnloadAsset(obj);
+
+        sceneCache.Clear();
     }
 }
