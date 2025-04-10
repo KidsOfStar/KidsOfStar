@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BgLooper : MonoBehaviour
 {
-    private ObstaclesSpawner obstaclesSpawner { get; }
-    public Vector3 obstacleLastPosition = Vector3.zero;
+    public ObstaclesSpawner obstaclesSpawner;
 
+    public Vector3 obstacleLastPosition = Vector3.zero;
     private void OnTriggerEnter2D(Collider2D collision)
     {
       if(collision.CompareTag("Obstacle"))
@@ -15,7 +15,7 @@ public class BgLooper : MonoBehaviour
 
             if (obstaclesSpawner != null)
             {
-                obstaclesSpawner.SpawnNextObstacle();
+                obstaclesSpawner.OnObstacleDespawned();
             }
         }
     }
