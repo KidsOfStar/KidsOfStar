@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleScene : SceneBase
+public class TitleScene : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
-        Managers.Instance.OnSceneLoaded();
         Managers.Instance.UIManager.Show<UITitle>();
     }
 }
