@@ -49,6 +49,11 @@ public class OptionPopup : UIBase
 
     public void OnClickCloseBtn()
     {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1; // 게임 재개
+        }
+
         HideDirect();
     }
 
