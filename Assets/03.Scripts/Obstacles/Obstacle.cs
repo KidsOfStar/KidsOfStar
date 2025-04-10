@@ -3,20 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public enum ObstacleType
-{
-    SmallSeaweed,
-    MediumSeaweed,
-    LargeSeaweed,
-    Stone
-}
 public class Obstacle : MonoBehaviour
 {
     private float mediumYOffset = 0.1f;
     private float largeYOffset = 0.2f;
-    private float fixedPosY = -3.4f;
+    private float fixedPosY = -2.7f;
 
-    public float scrollSpeed = 2f;
+    public float scrollSpeed = 7f;
     public void InitObstacle(Vector3 spawnPosition, ObstacleType chosenType)
     {
         if (chosenType == ObstacleType.MediumSeaweed)
@@ -34,5 +27,12 @@ public class Obstacle : MonoBehaviour
     private void Update()
     {
         transform.position += Vector3.left * scrollSpeed * Time.deltaTime;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            // Managers.Instance.GameManager.GameOver();
+        }
     }
 }
