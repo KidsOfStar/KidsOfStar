@@ -41,8 +41,9 @@ public enum FootstepType
 
 public enum SceneType
 {
+    Title,
     Loading,
-    Main,
+    Chapter01,
 }
 
 public enum UIPosition
