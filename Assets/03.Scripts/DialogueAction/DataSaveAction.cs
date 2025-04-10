@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using MainTable;
 
-public class DataSaveAction : MonoBehaviour
+public class DataSaveAction : IDialogActionHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Execute(PlayerData playerData)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        EditorLog.Log("데이터 세이브 미구현");
     }
 }

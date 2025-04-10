@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Text;
 using TMPro;
@@ -9,7 +8,6 @@ public class UITextBubble : UIBase
 {
     [SerializeField] private RectTransform rectTr;
     [SerializeField] private Image bubbleImage;
-    [SerializeField] private RectTransform tailRectTr;
     [SerializeField] private TextMeshProUGUI dialogText;
 
     private readonly StringBuilder dialogSb = new();
@@ -61,7 +59,7 @@ public class UITextBubble : UIBase
             isTyping = false;
         else
         {
-            // 다음 대사 출력
+            Managers.Instance.DialogueManager.OnDialogLineComplete();
         }
     }
 

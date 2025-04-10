@@ -13,6 +13,9 @@ public class NoneAction : IDialogActionHandler
 {
     public void Execute(PlayerData playerData)
     {
-        // Do nothing
+        if (playerData.NextIndex.Count <= 0) return;
+
+        var nextIndex = playerData.NextIndex[0];
+        Managers.Instance.DialogueManager.SetCurrentDialogData(nextIndex);
     }
 }
