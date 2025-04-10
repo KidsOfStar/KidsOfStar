@@ -65,6 +65,9 @@ public class PlayerBtn : UIBase
     public void OnInteraction()
     {
         // NPC와 상호작용 메소드 호출
+
+
+        Managers.Instance.DialogueManager.OnClick?.Invoke();
     }
 
 }
