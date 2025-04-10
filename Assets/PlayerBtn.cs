@@ -15,6 +15,16 @@ public class PlayerBtn : UIBase
     public Button skipBtn;          // 스킵 버튼
     public Button interactionBtn;   // 상호작용 버튼
 
+    [Header("UI Object")]
+    public Image jumpbg;       // 점프 배경
+    public GameObject jumpbg1;       // 점프 배경
+
+    public Image hidebg;       // 숨기기 배경
+    public Image catbg;        // 고양이 배경
+    public Image dogbg;        // 개 배경
+    public Image squirrelbg;   // 다람쥐 배경
+
+
     private void Start()
     {
         // 스킬 버튼
@@ -31,8 +41,13 @@ public class PlayerBtn : UIBase
 
     public void OnJump()
     {
+        //jumpbg.enabled = true; // 점프 배경 활성화
+        jumpbg1.gameObject.SetActive(true); // 점프 배경 활성화
         // 점프 메소드 호출
         //Managers.Instance.GameManager.Player.PlayerController.OnJump();
+        //jumpbg.enabled = false; // 점프 배경 비활성화
+        jumpbg1.gameObject.SetActive(false); // 점프 배경 활성화
+
     }
 
     public void OnHide()
