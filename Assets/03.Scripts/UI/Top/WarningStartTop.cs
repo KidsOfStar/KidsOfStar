@@ -1,10 +1,9 @@
 using UnityEngine.UI;
 
-public class WarningTop : TopBase
+public class WarningStartTop : TopBase
 {
     public Button closeBtn;
     public Button appltBtn;
-
 
     void Start()
     {

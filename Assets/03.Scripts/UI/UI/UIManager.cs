@@ -11,9 +11,7 @@ public class UIManager
 
     public void Init()
     {
-
         EditorLog.Log("UIManager!!");
-
         var canvasPrefab = Managers.Instance.ResourceManager.Load<Canvas>("UI/Canvas");
         EditorLog.Log("UIManager Init");
 
