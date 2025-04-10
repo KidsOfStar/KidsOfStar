@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Canceled && isGround)
+        if(context.phase == InputActionPhase.Started && isGround)
         {
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -139,9 +139,22 @@ public class PlayerController : MonoBehaviour
 
     private void WallRatationSet(Vector2 dir)
     {
-        Vector3 rot = dir.x > 0 ? new Vector3(0, 0, 90) : new Vector3(0, 0, -90);
-        transform.rotation = Quaternion.Euler(rot);
+        Vector3 rot;
 
+        if(dir.x > 0)
+        {
+            rot = new Vector3(0, 0, 90);
+        }
+        else if(dir.x < 0)
+        {
+            rot = new Vector3(0, 0, -90);
+        }
+        else
+        {
+            rot = new Vector3(0, 0, transform.rotation.z);
+        }
+
+        transform.rotation = Quaternion.Euler(rot);
     }
 
     IEnumerator WallJump()
