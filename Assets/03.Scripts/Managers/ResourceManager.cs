@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManager
+public class ResourceManager : ISceneLifecycleHandler
 {
     private readonly Dictionary<string, Object> globalCache = new();
     private readonly Dictionary<string, Object> sceneCache = new();
@@ -36,5 +36,11 @@ public class ResourceManager
             Resources.UnloadAsset(obj);
 
         sceneCache.Clear();
+    }
+
+    public void OnSceneLoaded() { }
+    public void OnSceneUnloaded()
+    {
+        UnloadSceneResource();
     }
 }

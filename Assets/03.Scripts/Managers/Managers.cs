@@ -25,15 +25,21 @@ public class Managers : Singleton<Managers>
         DialogueManager = new DialogueManager();
         DialogInputHandler.gameObject.SetActive(false);
 
-        // TODO: 씬 로드 시마다 필요
-        InitManagers();
+        OnSceneLoaded();
     }
 
-    public void InitManagers()
+    public void OnSceneLoaded()
     {
-        GameManager.Init();
+        GameManager.OnSceneLoaded();
         UIManager.Init();
-        SoundManager.Init(); 
-        // DialogueManager.Init();
+        SoundManager.OnSceneLoaded();
+        // DialogueManager.OnSceneLoaded();
+    }
+    
+    public void OnSceneUnloaded()
+    {
+        GameManager.OnSceneUnloaded();
+        SoundManager.OnSceneUnloaded();
+        // DialogueManager.OnSceneUnloaded();
     }
 }

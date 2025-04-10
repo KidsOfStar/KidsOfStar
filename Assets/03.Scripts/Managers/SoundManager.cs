@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SoundManager
+public class SoundManager : ISceneLifecycleHandler
 {
     private Transform sourceParent;
     private AudioSource bgmSource;
@@ -30,12 +30,6 @@ public class SoundManager
         footstepSource.volume = gameManager.SfxVolume;
     }
     
-    public void Init()
-    {
-        AttachAudioToCamera();
-        // TODO: 씬 언로드 시 Reparent
-    }
-
     private void AttachAudioToCamera()
     {
         var camera = Managers.Instance.GameManager.MainCamera;
@@ -117,5 +111,16 @@ public class SoundManager
         AudioClip clip = GetAudioClip(sound.GetName());
         sfxSource.PlayOneShot(clip);
         yield return new WaitForSeconds(clip.length); //사운드 종료되기 전 씬이 넘어가는 것을 방지
+    }
+
+    public void OnSceneLoaded()
+    {
+        AttachAudioToCamera();
+    }
+    
+    public void OnSceneUnloaded()
+    {
+        ReparentAudioToSoundManager();
+        StopBgm();
     }
 }

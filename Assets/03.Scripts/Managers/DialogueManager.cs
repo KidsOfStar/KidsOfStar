@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class DialogueManager
+public class DialogueManager : ISceneLifecycleHandler
 {
+    private Dictionary<CharacterType, NPC> npcDictionary = new();
     private Transform maorum; // 임시
     private UITextBubble textBubble;
 
@@ -14,19 +15,16 @@ public class DialogueManager
     private Queue<string> dialogQueue = new();
 
     // TODO: 씬 로드시마다 NPC를 가져와야함
-    
-    public void Init()
-    {
-        textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
-        textBubble.HideDirect();
-
-        // 임시
-        // maorum = Object.FindObjectOfType<NPC>().transform;
-        // Managers.Instance.DialogInputHandler.gameObject.SetActive(true);
-    }
-    
     // TODO: 씬에 진입하면 씬에 존재하는 NPC들을 가져옴
     // npc를 가지고 있는 딕셔너리
+
+    public void InitNPcs(NPC[] npcs)
+    {
+        foreach (var npc in npcs)
+        {
+            npcDictionary[npc.CharacterType] = npc;
+        }
+    }
 
     public void SetCurrentDialogData(int index, Vector3 offset)
     {
@@ -34,13 +32,13 @@ public class DialogueManager
         var dialogs = currentDialogData.DialogValue.Split('@');
         foreach (var dialog in dialogs)
             dialogQueue.Enqueue(dialog);
-        
+
         if (dialogQueue.Count > 0)
         {
             ShowDialog(dialogQueue.Dequeue(), offset);
         }
     }
-    
+
     public void ShowDialog(string dialog, Vector3 offset)
     {
         var localPos = WorldToCanvasPosition(maorum.position + offset);
@@ -89,4 +87,18 @@ public class DialogueManager
 
     // 대사가 끝나면 액션에 따라 할 일이 달라짐
     // Enum 타입으로 가지고 있음
+    public void OnSceneLoaded()
+    {
+        textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
+        textBubble.HideDirect();
+
+        // 임시
+        // maorum = Object.FindObjectOfType<NPC>().transform;
+        // Managers.Instance.DialogInputHandler.gameObject.SetActive(true);
+    }
+
+    public void OnSceneUnloaded()
+    {
+        npcDictionary.Clear();
+    }
 }

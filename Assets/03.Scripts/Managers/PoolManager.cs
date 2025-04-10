@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 씬에서 사용 할 오브젝트 풀만 동적으로 생성
-// 씬이 언로드 될 때 릴리즈
-public class PoolManager
+public class PoolManager : ISceneLifecycleHandler
 {
     private readonly Dictionary<string, Queue<GameObject>> poolDictionary = new();
     private readonly Dictionary<string, GameObject> prefabDictionary = new();
@@ -108,7 +106,7 @@ public class PoolManager
         despawnedObjects.Add(obj);
     }
 
-    public void LoadSceneClearPool()
+    public void ClearPool()
     {
         prefabDictionary.Clear();
         poolDictionary.Clear();
@@ -118,5 +116,11 @@ public class PoolManager
     public bool IsExistPool(string poolKey)
     {
         return poolDictionary.ContainsKey(poolKey);
+    }
+
+    public void OnSceneLoaded() { }
+    public void OnSceneUnloaded()
+    {
+        ClearPool();
     }
 }

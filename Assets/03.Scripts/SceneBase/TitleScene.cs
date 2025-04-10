@@ -7,10 +7,8 @@ public class TitleScene : MonoBehaviour
 
     void Start()
     {
-        Managers.Instance.InitManagers();
+        Managers.Instance.OnSceneLoaded();
 
         Managers.Instance.UIManager.Show<UITitle>();
     }
-
-
 }
