@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
-
     // 플레이어 캐릭터 이동 속도
     [SerializeField] private float moveSpeed;
     public float MoveSpeed
@@ -68,17 +67,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!wallJumping)
         {
-            if (touchLadder)
+            if (moveDir != Vector2.up && moveDir != Vector2.down)
             {
-
-            }
-            else
-            {
-                if (moveDir != Vector2.up && moveDir != Vector2.down)
-                {
-                    Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
-                    rigid.velocity = playervelocity;
-                }
+                Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
+                rigid.velocity = playervelocity;
             }
         }
     }
@@ -97,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             moveDir = context.ReadValue<Vector2>();
+            playerSc.FormControl.FlipControl(moveDir);
         }
         else if(context.phase == InputActionPhase.Canceled)
         {
