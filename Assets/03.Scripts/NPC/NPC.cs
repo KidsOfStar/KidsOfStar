@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    [SerializeField] private CharacterType characterType;
+    [field: SerializeField] public CharacterType CharacterType { get; private set; }
     [SerializeField] private Vector3 bubbleOffset;
 
     private void Update()

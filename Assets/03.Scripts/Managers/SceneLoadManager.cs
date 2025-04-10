@@ -21,6 +21,10 @@ public class SceneLoadManager : MonoBehaviour
     {
         // 로딩 씬을 먼저 로드
         yield return SceneManager.LoadSceneAsync(SceneType.Loading.GetName(), LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneType.Loading.GetName()));
+        
+        yield return null;
+        SceneManager.UnloadSceneAsync(currentScene.GetName());
         
         // 씬 로드 시작
         AsyncOperation operation = SceneManager.LoadSceneAsync(loadScene.GetName(), LoadSceneMode.Additive);

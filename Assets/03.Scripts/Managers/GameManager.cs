@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameManager
+public class GameManager : ISceneLifecycleHandler
 {
     // TODO: 스테이지 진행사항 (저장 및 NPC 대사 변화를 위해)
 
@@ -13,11 +13,6 @@ public class GameManager
         LoadVolumeSetting();
     }
     
-    public void Init()
-    {
-        MainCamera = Camera.main;
-    }
-
     public void SaveVolumeSetting()
     {
         PlayerPrefs.SetFloat("BgmVolume", BgmVolume);
@@ -34,5 +29,15 @@ public class GameManager
     {
         PlayerPrefs.DeleteKey("BgmVolume");
         PlayerPrefs.DeleteKey("SfxVolume");
+    }
+
+    public void OnSceneLoaded()
+    {
+        MainCamera = Camera.main;
+    }
+    
+    public void OnSceneUnloaded()
+    {
+        MainCamera = null;
     }
 }
