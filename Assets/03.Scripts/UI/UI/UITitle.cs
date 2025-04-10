@@ -39,22 +39,16 @@ public class UITitle : UIBase
 
     private void OnExitBtnClick()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // 에디터에서 실행 중지
-#else
-        // 게임 종료
-        Application.Quit(); // 빌드된 게임에서 종료
-#endif
+        Managers.Instance.UIManager.Show<WarningEndTop>(); // 종료 경고창 띄우기
     }
 
     private void OnStartBtnClick()
     {
         // 나중에 데이터가 있을 경우 
-        Managers.Instance.UIManager.Show<WarningTop>();
+        Managers.Instance.UIManager.Show<WarningStartTop>();
 
-        // 게임 시작
-        NextScene();
-        EditorLog.Log("게임 시작"); // 게임 시작 로그
+        // 아닐 경우 게임 시작
+        //NextScene();
     }
 
     private void NextScene()

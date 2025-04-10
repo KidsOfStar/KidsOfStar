@@ -1,3 +1,5 @@
+using System;
+
 public static class Extensions
 {
     public static string GetName(this SoundType soundType)
@@ -12,6 +14,12 @@ public static class Extensions
     
     public static string GetName(this SceneType sceneType)
     {
-        return string.Empty;
+        return sceneType switch
+        {
+            SceneType.Title     => "TitleScene",
+            SceneType.Loading   => "LoadingScene",
+            SceneType.Chapter01 => "Chapter_01",
+            _                   => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
+        };
     }
 }
