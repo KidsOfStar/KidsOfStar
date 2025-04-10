@@ -4,6 +4,31 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("공통")]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField, Tooltip("플레이어 캐릭터 이동 속도")] private float moveSpeed;
+    public float MoveSpeed
+    {
+        get { return moveSpeed; }
+        set { moveSpeed = value; }
+    }
+    [SerializeField, Tooltip("플레이어 캐릭터 점프력")] private float jumpForce;
+    public float JumpForce
+    {
+        get { return jumpForce; }
+        set { jumpForce = value; }
+    }
+
+    [Space, Header("고양이 벽 점프")]
+    [SerializeField, Tooltip("벽 점프력")] private float wallJumpForce;
+    [SerializeField, Tooltip("벽 점프 후 플레이어 입력이 제한되는 시간")] private float stopInputTime = 0.1f;
+    [SerializeField, Tooltip("벽 점프 후 캐릭터의 각도 변경이 유지되는 시간")] private float keepRotationTime = 0.5f;
+    // 벽 점프 중에 일시적으로 플레이어 조작 잠금
+    private bool wallJumping = false;
+    // 벽 점프 각도 변경 유지 시간인지 체크
+    private bool keepRotation = false;
+    
+
     private Player playerSc;
     public Player PlayerSc
     {
@@ -11,26 +36,9 @@ public class PlayerController : MonoBehaviour
     }
     private Rigidbody2D rigid;
     private BoxCollider2D boxCollider;
-    [SerializeField] private LayerMask groundLayer;
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
-    // 플레이어 캐릭터 이동 속도
-    [SerializeField] private float moveSpeed;
-    public float MoveSpeed
-    {
-        get { return moveSpeed; }
-        set { moveSpeed = value; }
-    }
-    // 플레이어 캐릭터 점프력
-    [SerializeField] private float jumpForce;
-    public float JumpForce
-    {
-        get { return jumpForce; }
-        set { jumpForce = value; }
-    }
-    // 벽 점프력
-    [SerializeField] private float wallJumpForce;
     // 플레이어 캐릭터가 사다리에 닿은 상태일 때 true
     private bool touchLadder = false;
     public bool TouchLadder
@@ -48,8 +56,6 @@ public class PlayerController : MonoBehaviour
         get { return isControllable; }
         set { isControllable = value; }
     }
-    // 벽 점프 중이라면 true
-    private bool wallJumping = false;
 
     private void Awake()
     {
@@ -71,6 +77,12 @@ public class PlayerController : MonoBehaviour
             {
                 Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
                 rigid.velocity = playervelocity;
+                playerSc.FormControl.FlipControl(moveDir);
+                
+                if (keepRotation)
+                {
+                    WallRatationSet(rigid.velocity);
+                }
             }
         }
     }
@@ -89,7 +101,6 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             moveDir = context.ReadValue<Vector2>();
-            playerSc.FormControl.FlipControl(moveDir);
         }
         else if(context.phase == InputActionPhase.Canceled)
         {
@@ -118,15 +129,34 @@ public class PlayerController : MonoBehaviour
                 rigid.velocity = Vector2.zero;
                 rigid.AddForce(dir, ForceMode2D.Impulse);
                 wallJumping = true;
+                keepRotation = true;
+                WallRatationSet(dir);
+                playerSc.FormControl.FlipControl(dir);
                 StartCoroutine(WallJump());
             }
         }
     }
 
+    private void WallRatationSet(Vector2 dir)
+    {
+        Vector3 rot = dir.x > 0 ? new Vector3(0, 0, 90) : new Vector3(0, 0, -90);
+        transform.rotation = Quaternion.Euler(rot);
+
+    }
+
     IEnumerator WallJump()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(stopInputTime);
 
         wallJumping = false;
+        StartCoroutine(ReturnRotation());
+    }
+
+    IEnumerator ReturnRotation()
+    {
+        yield return new WaitForSeconds(keepRotationTime);
+
+        keepRotation = false;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 }
