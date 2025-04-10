@@ -32,7 +32,7 @@ public class Managers : Singleton<Managers>
     public void InitManagers()
     {
         GameManager.Init();
-        UIManager.Init();
+        UIManager.OnSceneLoaded();
         SoundManager.Init(); 
         // DialogueManager.Init();
     }
