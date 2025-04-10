@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.WSA;
 
 public class UITitle : UIBase
 {
@@ -12,11 +13,6 @@ public class UITitle : UIBase
 
     // Start is called before the first frame update
     void Start()
-    {
-        Opened();
-    }
-
-    public override void Opened(params object[] param)
     {
         // 버튼 클릭 이벤트 등록
         startBtn.onClick.AddListener(OnStartBtnClick);
@@ -44,15 +40,16 @@ public class UITitle : UIBase
 
     private void OnStartBtnClick()
     {
-        // 나중에 데이터가 있을 경우 
-        Managers.Instance.UIManager.Show<WarningStartTop>();
+        // 데이터가 있을 경우 
+        //Managers.Instance.UIManager.Show<WarningStartTop>();
 
         // 아닐 경우 게임 시작
-        //NextScene();
+        NextScene();
     }
 
     private void NextScene()
     {
         // 다음 씬으로 이동
+        Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter01);
     }
 }
