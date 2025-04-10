@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public enum ObstacleType
-{
-    SmallSeaweed,
-    MediumSeaweed,
-    LargeSeaweed,
-    Stone
-}
 public class Obstacle : MonoBehaviour
 {
     private float mediumYOffset = 0.1f;

@@ -109,7 +109,7 @@ public class ObstaclesSpawner : MonoBehaviour
         {
             if (currentWave >= 3)
             {
-                // Managers.Instance.SceneManager.LoadScene(// 해당 다음 NextScene)
+                // Managers.Instance.SceneManager.LoadScene(// 해당 다음 이어질 NextScene)
             }
             else
             {
