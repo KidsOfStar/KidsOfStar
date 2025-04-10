@@ -5,7 +5,6 @@ public class WarningStartTop : TopBase
     public Button closeBtn;
     public Button appltBtn;
 
-
     void Start()
     {
         closeBtn.onClick.AddListener(OnClickClose);
