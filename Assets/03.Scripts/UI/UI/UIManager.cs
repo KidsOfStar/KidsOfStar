@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : ISceneLifecycleHandler
 {
     private List<Transform> parents;
     private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
-
 
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정
@@ -104,6 +104,7 @@ public class UIManager : ISceneLifecycleHandler
 
     public void OnSceneLoaded() // 씬 로드할 때마다
     {
+        var currentScene = Managers.Instance.SceneLoadManager.CurrentScene;
         var canvasPrefab = Managers.Instance.ResourceManager.Load<Canvas>("UI/Canvas", true);
 
         if (canvasPrefab == null)
@@ -134,6 +135,9 @@ public class UIManager : ISceneLifecycleHandler
             }
         }
 
+        var activeScene = SceneManager.GetSceneByName(currentScene.GetName());
+        SceneManager.MoveGameObjectToScene(canvasInstance.gameObject, activeScene);
+        
         // 생성된 parentList를 SetParents()에 전달하여 부모 목록을 설정
         SetParents(parentList);
     }

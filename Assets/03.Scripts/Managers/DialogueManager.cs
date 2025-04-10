@@ -58,7 +58,7 @@ public class DialogueManager : ISceneLifecycleHandler
         else
         {
             textBubble.HideDirect();
-            Managers.Instance.DialogInputHandler.gameObject.SetActive(false);
+            // Managers.Instance.DialogInputHandler.gameObject.SetActive(false);
             OnClick?.Invoke();
         }
     }
