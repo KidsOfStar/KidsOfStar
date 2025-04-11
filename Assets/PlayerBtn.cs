@@ -50,7 +50,7 @@ public class PlayerBtn : UIBase
     {
         // 점프 메소드 호출
         OnBlink(jumpBG, 0.1f); // 점프 배경 깜빡임 효과
-        Managers.Instance.GameManager.Player.PlayerController.OnJump();
+        Managers.Instance.GameManager.Player.Controller.Jump();
 
         // 점프한 후 땅에 착지했을 때 스킬창 보이기
         HideEffet();

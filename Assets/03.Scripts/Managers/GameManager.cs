@@ -11,7 +11,7 @@ public class GameManager
     public GameManager()
     {
 #if UNITY_WEBGL
-        Application.targetFrameRate = 80;
+        Application.targetFrameRate = 60;
 #elif UNITY_ANDROID || UNITY_IOS
         Application.targetFrameRate = 60;
 #endif
@@ -39,5 +39,10 @@ public class GameManager
     public void SetCamera(Camera camera)
     {
         MainCamera = camera;
+    }
+
+    public void SetPlayer(Player player)
+    {
+        Player = player;
     }
 }
