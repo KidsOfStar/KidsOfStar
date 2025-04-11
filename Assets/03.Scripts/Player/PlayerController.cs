@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started && isGround)
         {
-            rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            Jump();
         }
 
         if(!isGround && playerSc.FormControl.CurFormData.FormName == "Cat"
@@ -163,6 +163,11 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(WallJump());
             }
         }
+    }
+
+    public void Jump()
+    {
+        rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
     private void WallRatationSet(Vector2 dir)
