@@ -48,6 +48,7 @@ public class PlayerBtn : UIBase
 
         // 스킬 배경 리스트 초기화
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
+
     }
 
     private void Update()
@@ -168,8 +169,11 @@ public class PlayerBtn : UIBase
     // 상호작용 버튼 클릭 시 대화 시작
     public void OnInteraction()
     {
+        // 대화 시작
         Managers.Instance.DialogueManager.OnClick?.Invoke();
     }
+
+
 
     // 스킬 UI를 일괄 활성화/비활성화
     private void ToggleSkillUI(bool isActive)
