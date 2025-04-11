@@ -193,6 +193,8 @@ public class PlayerController : MonoBehaviour
         Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0);
         Vector2 direction = Vector2.right * Mathf.Sign(dir.x);
 
+        // Debug.DrawRay(origin, direction * pushDetectDistance, Color.red, 1f);
+
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, pushDetectDistance, pushableLayer);
         if(hit.collider != null && hit.collider.TryGetComponent<IWeightable>(out var weight))
         // IWeightable이 붙은 컴포넌트인지 확인하고, 맞으면 True반환과 무게를 반환        
