@@ -71,9 +71,10 @@ public class DialogueManager : ISceneLifecycleHandler
         Vector3 bubblePos = npc.BubblePos.position;
 
         var localPos = WorldToCanvasPosition(bubblePos);
-
+        var formattedDialog = dialog.Replace("\\n", "\n");
+        
         textBubble.SetActive(true);
-        textBubble.SetDialog(dialog, localPos);
+        textBubble.SetDialog(formattedDialog, localPos);
     }
 
     // 한 라인이 끝났는지?
