@@ -18,7 +18,7 @@ public class SceneBase : MonoBehaviour
     {
         Managers.Instance.GameManager.SetCamera(mainCamera);
         Managers.Instance.OnSceneLoaded();
-        Managers.Instance.DialogueManager.InitNPcs(npcs);
+        Managers.Instance.DialogueManager.InitSceneNPcs(npcs);
     }
 
     protected void SpawnPlayer()

@@ -4,12 +4,12 @@ using UnityEngine;
 public class GameManager
 {
     // TODO: 스테이지 진행사항 (저장 및 NPC 대사 변화를 위해)
-    
+
     // Settings
     public Camera MainCamera { get; private set; }
     public float SfxVolume { get; private set; }
     public float BgmVolume { get; private set; }
-    
+
     // Play Data
     private Dictionary<ChapterType, int> trustDict = new();
     public ChapterType currentChapter { get; private set; } // TODO: 챕터별 진행사항?
@@ -41,6 +41,14 @@ public class GameManager
     {
         PlayerPrefs.DeleteKey("BgmVolume");
         PlayerPrefs.DeleteKey("SfxVolume");
+    }
+    
+    public void ModifyTrust(int value)
+    {
+        if (trustDict.ContainsKey(currentChapter))
+            trustDict[currentChapter] = Mathf.Max(0, trustDict[currentChapter] + value);
+        else
+            trustDict.Add(currentChapter, Mathf.Max(0, value));
     }
 
     public void SetCamera(Camera camera)

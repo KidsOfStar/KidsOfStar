@@ -6,13 +6,19 @@ using UnityEngine;
 public class DialogueManager : ISceneLifecycleHandler
 {
     private readonly Dictionary<DialogActionType, IDialogActionHandler> dialogActionHandlers = new();
-    private readonly Dictionary<CharacterType, NPC> npcDictionary = new();
+    private readonly Dictionary<CharacterType, NPC> SceneNpcDict = new();
+    private readonly Dictionary<CharacterType, NPC> cutSceneNpcDict = new();
     private readonly Queue<string> dialogQueue = new();
     
     private PlayerData currentDialogData;
     private UITextBubble textBubble;
+    private bool isCutScene = false;
     public Action OnClick { get; set; }
+    public Action OnDialogEnd { get; set; }
 
+    // TODO: 대사 출력이 끝났는지를 알릴 이벤트
+    // TODO: 컷씬 쪽에서 여기에 
+    
     public DialogueManager()
     {
         dialogActionHandlers[DialogActionType.None] = new NoneAction();
@@ -21,11 +27,19 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.DataSave] = new DataSaveAction();
     }
     
-    public void InitNPcs(NPC[] npcs)
+    public void InitSceneNPcs(NPC[] npcs)
     {
         foreach (var npc in npcs)
         {
-            npcDictionary[npc.CharacterType] = npc;
+            SceneNpcDict[npc.CharacterType] = npc;
+        }
+    }
+    
+    public void InitCutSceneNPcs(NPC[] npcs)
+    {
+        foreach (var npc in npcs)
+        {
+            cutSceneNpcDict[npc.CharacterType] = npc;
         }
     }
 
@@ -39,6 +53,9 @@ public class DialogueManager : ISceneLifecycleHandler
             return;
         }
         
+        // 인덱스가 10000 미만이면 컷씬으로 판단
+        isCutScene = currentDialogData.Index < 10000;
+        
         // 데이터의 대사 value 값을 @로 나누어 대사 큐에 넣음 
         var dialogs = currentDialogData.DialogValue.Split('@');
         foreach (var dialog in dialogs)
@@ -50,10 +67,10 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
-    // 한 줄씩 대사를 출력
     public void ShowDialog(string dialog, CharacterType character)
     {
-        var bubblePos = npcDictionary[character].BubbleOffset;
+        Vector3 bubblePos = isCutScene ? cutSceneNpcDict[character].BubbleOffset : SceneNpcDict[character].BubbleOffset;
+
         var localPos = WorldToCanvasPosition(bubblePos);
 
         textBubble.SetActive(true);
@@ -107,6 +124,7 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public void OnSceneUnloaded()
     {
-        npcDictionary.Clear();
+        SceneNpcDict.Clear();
+        cutSceneNpcDict.Clear();
     }
 }
