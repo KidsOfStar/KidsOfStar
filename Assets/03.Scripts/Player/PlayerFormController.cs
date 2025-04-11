@@ -1,7 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+public interface IWeightable
+{
+    float GetWeight();
+}
 
-public class PlayerFormController : MonoBehaviour
+public interface IPusher
+{
+    float GetPushPower();
+}
+public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
 {
     [SerializeField, Tooltip("형태변환 데이터 모음집")] private PlayerFormData formData;
     // 형태변화 데이터 딕셔너리
@@ -124,5 +132,15 @@ public class PlayerFormController : MonoBehaviour
                 spriteRenderer.flipX = false;
             }
         }
+    }
+
+    public float GetWeight()
+    {
+        return curFormData.Weight;
+    }
+
+    public float GetPushPower()
+    {
+        return curFormData.Force;
     }
 }
