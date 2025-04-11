@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c4d9ab675d2a74ca4309233e943efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBtn: {fileID: 0}
 --- !u!114 &5167650260352110354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +203,12 @@ MonoBehaviour:
   moveSpeed: 3
   jumpForce: 2
   wallJumpForce: 7
+  stopInputTime: 0.1
+  keepRotationTime: 0.5
+  pushDetectDistance: 0.05
+  pushableLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5902049473616058379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +295,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1727844007, guid: d06ffee833dc42d4cadc78e2351edaf8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

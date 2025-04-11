@@ -46,6 +46,13 @@ public enum SceneType
     Chapter01,
 }
 
+public enum ChapterType
+{
+    Chapter01,
+    Chapter02,
+    Chapter03,
+}
+
 public enum UIPosition
 {
     UI,     // 기본 씬 UI

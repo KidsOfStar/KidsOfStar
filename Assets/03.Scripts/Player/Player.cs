@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private PlayerFormController formControl;
     public PlayerFormController FormControl { get { return formControl; } }
 
+    public PlayerBtn playerBtn; // PlayerBtn 참조
+
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
@@ -16,6 +18,23 @@ public class Player : MonoBehaviour
         controller.PlayerSc = this;
         formControl.PlayerSc = this;
 
-        Managers.Instance.GameManager.SetPlayer(this); // GamaManager에 플레이어 전달
+        Managers.Instance.GameManager.SetPlayer(this);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.CompareTag("Interactable"))
+        {
+            playerBtn.ShowInteractionButton(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Interactable"))
+        {
+            playerBtn.ShowInteractionButton(false);
+        }
+    }
+
 }

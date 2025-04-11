@@ -3,10 +3,9 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
-    [SerializeField] private Vector3 bubbleOffset;
+    [field: SerializeField] public Transform BubblePos { get; private set; }
 
-    public Vector3 BubbleOffset => transform.position + bubbleOffset;
-
+    // test
     private void Update()
     {
         if (CharacterType != CharacterType.Maorum)
@@ -14,7 +13,7 @@ public class NPC : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Managers.Instance.DialogueManager.SetCurrentDialogData(1001);
+            Managers.Instance.DialogueManager.SetCurrentDialogData(10016);
         }
     }
 }

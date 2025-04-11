@@ -14,55 +14,51 @@ using System.Reflection;
 using UnityEngine;
 
 
-namespace MainTable
+namespace DefaultTable
 {
     [GoogleSheet.Attribute.TableStruct]
-    public partial class PlayerData : ITable
+    public partial class Data : ITable
     { 
 
-        public delegate void OnLoadedFromGoogleSheets(List<PlayerData> loadedList, Dictionary<int, PlayerData> loadedDictionary);
+        public delegate void OnLoadedFromGoogleSheets(List<Data> loadedList, Dictionary<int, Data> loadedDictionary);
 
         static bool isLoaded = false;
-        static string spreadSheetID = "1iOK4MZd2CwVNCCvReWXOHTfdxVR3k6oS_cEeJ62SdGw"; // it is file id
-        static string sheetID = "964652582"; // it is sheet id
+        static string spreadSheetID = "1SuEbM3uHQPxjXMi9bQh3UjBN_3citXwANicri6uTpG4"; // it is file id
+        static string sheetID = "0"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 
 /* Your Loaded Data Storage. */
     
-        public static Dictionary<int, PlayerData> PlayerDataMap = new Dictionary<int, PlayerData>();  
-        public static List<PlayerData> PlayerDataList = new List<PlayerData>();   
+        public static Dictionary<int, Data> DataMap = new Dictionary<int, Data>();  
+        public static List<Data> DataList = new List<Data>();   
 
         /// <summary>
-        /// Get PlayerData List 
+        /// Get Data List 
         /// Auto Load
         /// </summary>
-        public static List<PlayerData> GetList()
+        public static List<Data> GetList()
         {{
            if (isLoaded == false) Load();
-           return PlayerDataList;
+           return DataList;
         }}
 
         /// <summary>
-        /// Get PlayerData Dictionary, keyType is your sheet A1 field type.
+        /// Get Data Dictionary, keyType is your sheet A1 field type.
         /// - Auto Load
         /// </summary>
-        public static Dictionary<int, PlayerData>  GetDictionary()
+        public static Dictionary<int, Data>  GetDictionary()
         {{
            if (isLoaded == false) Load();
-           return PlayerDataMap;
+           return DataMap;
         }}
 
     
 
 /* Fields. */
 
-		public System.Int32 Index;
-		public CharacterType Character;
-		public DialogActionType DialogType;
-		public System.Collections.Generic.List<String> SelectOption;
-		public System.Collections.Generic.List<Int32> TrustValue;
-		public System.Collections.Generic.List<Int32> NextIndex;
-		public System.String DialogValue;
+		public System.Int32 index;
+		public System.Int32 intValue;
+		public System.String strValue;
   
 
 #region fuctions
@@ -73,12 +69,12 @@ namespace MainTable
             if(isLoaded && forceReload == false)
             {
 #if UGS_DEBUG
-                 Debug.Log("PlayerData is already loaded! if you want reload then, forceReload parameter set true");
+                 Debug.Log("Data is already loaded! if you want reload then, forceReload parameter set true");
 #endif
                  return;
             }
 
-            string text = reader.ReadData("MainTable"); 
+            string text = reader.ReadData("DefaultTable"); 
             if (text != null)
             {
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<ReadSpreadSheetResult>(text);
@@ -89,7 +85,7 @@ namespace MainTable
         }
  
 
-        public static void LoadFromGoogle(System.Action<List<PlayerData>, Dictionary<int, PlayerData>> onLoaded, bool updateCurrentData = false)
+        public static void LoadFromGoogle(System.Action<List<Data>, Dictionary<int, Data>> onLoaded, bool updateCurrentData = false)
         {      
                 IHttpProtcol webInstance = null;
     #if UNITY_EDITOR
@@ -117,14 +113,14 @@ namespace MainTable
                
 
 
-    public static (List<PlayerData> list, Dictionary<int, PlayerData> map) CommonLoad(Dictionary<string, Dictionary<string, List<string>>> jsonObject, bool forceReload){
-            Dictionary<int, PlayerData> Map = new Dictionary<int, PlayerData>();
-            List<PlayerData> List = new List<PlayerData>();     
+    public static (List<Data> list, Dictionary<int, Data> map) CommonLoad(Dictionary<string, Dictionary<string, List<string>>> jsonObject, bool forceReload){
+            Dictionary<int, Data> Map = new Dictionary<int, Data>();
+            List<Data> List = new List<Data>();     
             TypeMap.Init();
-            FieldInfo[] fields = typeof(PlayerData).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string, string, string)>(); 
             List<List<string>> rows = new List<List<string>>();
-            var sheet = jsonObject["PlayerData"];
+            var sheet = jsonObject["Data"];
 
             foreach (var column in sheet.Keys)
             {
@@ -143,7 +139,7 @@ namespace MainTable
                         int rowCount = rows[0].Count;
                         for (int i = 0; i < rowCount; i++)
                         {
-                            PlayerData instance = new PlayerData();
+                            Data instance = new Data();
                             for (int j = 0; j < typeInfos.Count; j++)
                             {
                                 try
@@ -180,12 +176,12 @@ namespace MainTable
                               
                             }
                             List.Add(instance); 
-                            Map.Add(instance.Index, instance);
+                            Map.Add(instance.index, instance);
                         }
                         if(isLoaded == false || forceReload)
                         { 
-                            PlayerDataList = List;
-                            PlayerDataMap = Map;
+                            DataList = List;
+                            DataMap = Map;
                             isLoaded = true;
                         }
                     } 
@@ -195,10 +191,10 @@ namespace MainTable
 
  
 
-        public static void Write(PlayerData data, System.Action<WriteObjectResult> onWriteCallback = null)
+        public static void Write(Data data, System.Action<WriteObjectResult> onWriteCallback = null)
         { 
             TypeMap.Init();
-            FieldInfo[] fields = typeof(PlayerData).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(Data).GetFields(BindingFlags.Public | BindingFlags.Instance);
             var datas = new string[fields.Length];
             for (int i = 0; i < fields.Length; i++)
             {

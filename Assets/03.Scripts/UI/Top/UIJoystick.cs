@@ -8,46 +8,43 @@ public class UIJoystick : UIBase, IDragHandler, IPointerDownHandler, IPointerUpH
 {
     [SerializeField] private RectTransform joystickBase;
     [SerializeField] private RectTransform joystickHandle;
+    [SerializeField, Range(5f, 20f)] private float sensitivity = 5f;
 
     private Vector2 inputVector = Vector2.zero;
     public Vector2 Direction => inputVector;
 
-    private Camera mainCamera;
-    
+    private Vector2 startPos;
+    private float maxDistance;
+
     private void Start()
     {
-        mainCamera = Camera.main;
+        startPos = joystickHandle.position;
+        maxDistance = joystickBase.sizeDelta.x / 2f;
     }
 
-    private void Update()
-    {
-        EditorLog.Log(Direction);
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        OnDrag(eventData); // 처음 눌렀을 때도 바로 처리
-    }
+    public void OnPointerDown(PointerEventData eventData) { }
 
     public void OnDrag(PointerEventData eventData)
     {
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                                                                joystickBase, eventData.position,
-                                                                mainCamera, out Vector2 pos);
+        var direction = eventData.position - startPos;
+        var distance = direction.magnitude;
 
-        // 베이스 반지름 기준 정규화
-        float radius = joystickBase.sizeDelta.x / 2f;
-        inputVector = pos / radius;
-
-        inputVector = inputVector.magnitude > 1f ? inputVector.normalized : inputVector;
-
-        // 핸들 위치 설정
-        joystickHandle.anchoredPosition = inputVector * radius;
+        if (distance < sensitivity)
+        {
+            inputVector = Vector2.zero;
+            return;
+        }
+        
+        direction = direction.normalized;
+        distance = Mathf.Min(distance, maxDistance);
+        inputVector = direction;
+        
+        joystickHandle.position = startPos + direction * distance;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         inputVector = Vector2.zero;
-        joystickHandle.anchoredPosition = Vector2.zero;
+        joystickHandle.position = startPos;
     }
 }
