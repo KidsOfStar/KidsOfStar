@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     // 벽 점프 각도 변경 유지 시간인지 체크
     private bool keepRotation = false;
     
-
     private Player playerSc;
     public Player PlayerSc
     {
@@ -56,7 +55,16 @@ public class PlayerController : MonoBehaviour
         get { return isControllable; }
         set { isControllable = value; }
     }
+    [Header("Push")]
+    [SerializeField, Tooltip("플레이어 앞 박스를 감지할 거리")]
+    private float pushDetectDistance = 0.05f;
+    [SerializeField, Tooltip("밀 수 있는 박스 레이어")]
+    private LayerMask pushableLayer;
 
+    private IWeightable objWeight = null; 
+    // Ray로 감지한 물체의 무게
+    private Rigidbody2D objRigid = null;
+    // Ray로 감지한 물체의 rb
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -75,8 +83,28 @@ public class PlayerController : MonoBehaviour
         {
             if (moveDir != Vector2.up && moveDir != Vector2.down)
             {
-                Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
-                rigid.velocity = playervelocity;
+
+                if (TryDetectBox(moveDir))
+                {
+                    IPusher pusher = playerSc.FormControl;
+                    float pushPower = pusher.GetPushPower();
+                    float objWeight = this.objWeight.GetWeight();
+                    float pushSpeed = (pushPower / objWeight) * moveSpeed;
+                    //미는 속도 = 미는 힘 / 무게 * 이동속도
+                    pushSpeed = Mathf.Min(pushSpeed, moveSpeed);
+                    // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
+
+                    Vector2 velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
+                    rigid.velocity = velocity;
+
+                    objRigid.velocity = velocity;
+                }
+                else
+                {
+                    Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
+                    rigid.velocity = playervelocity;
+                }
+                   
                 playerSc.FormControl.FlipControl(moveDir);
                 
                 if (keepRotation)
@@ -171,5 +199,26 @@ public class PlayerController : MonoBehaviour
 
         keepRotation = false;
         transform.rotation = Quaternion.Euler(Vector3.zero);
+    }
+    private bool TryDetectBox(Vector2 dir)
+    {
+        float xOffset = boxCollider.bounds.extents.x + 0.01f; 
+        Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0);
+        Vector2 direction = Vector2.right * Mathf.Sign(dir.x);
+
+        // Debug.DrawRay(origin, direction * pushDetectDistance, Color.red, 1f);
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, pushDetectDistance, pushableLayer);
+        if(hit.collider != null && hit.collider.TryGetComponent<IWeightable>(out var weight))
+        // IWeightable이 붙은 컴포넌트인지 확인하고, 맞으면 True반환과 무게를 반환        
+        {
+            objWeight = weight;
+            objRigid = hit.collider.attachedRigidbody;
+            // Collider가 붙어있는 Rigidbody2D를 가져오고
+            return true;
+        }
+        objWeight = null;
+        objRigid = null;
+        return false;
     }
 }

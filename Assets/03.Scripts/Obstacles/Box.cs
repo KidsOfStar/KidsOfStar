@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : MonoBehaviour
+public class Box : MonoBehaviour, IWeightable
 {
-    public float boxWeight = 2f; // 박스 무게 설정 (예시값)
+    public float boxWeight = 2f;
 
     [HideInInspector] public Rigidbody2D rb;
 

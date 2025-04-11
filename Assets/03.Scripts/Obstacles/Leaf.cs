@@ -26,7 +26,6 @@ public class Leaf : MonoBehaviour
 
     private bool CheckBoundary(Transform target)
     {
-        // 파란 면 정확한 일치 로직 구현 필요 (위치/회전 등)
         float verticalTolerance = 0.3f;
         return target.position.y >= transform.position.y - verticalTolerance;
     }
