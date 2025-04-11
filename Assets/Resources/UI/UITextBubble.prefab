@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -289,7 +289,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 200}
+  m_SizeDelta: {x: 700, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7498444360132163869
 MonoBehaviour:
@@ -306,7 +306,6 @@ MonoBehaviour:
   uiPosition: 0
   rectTr: {fileID: 3436097123158878521}
   bubbleImage: {fileID: 5897721332910284101}
-  tailRectTr: {fileID: 4802150340427474642}
   dialogText: {fileID: 2447118732737719922}
 --- !u!1 &8825861955069922204
 GameObject:
