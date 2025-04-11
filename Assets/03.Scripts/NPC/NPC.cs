@@ -3,9 +3,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
-    [SerializeField] private Vector3 bubbleOffset;
-
-    public Vector3 BubbleOffset => transform.position + bubbleOffset;
+    [field: SerializeField] public Transform BubblePos { get; private set; }
 
     // test
     private void Update()
