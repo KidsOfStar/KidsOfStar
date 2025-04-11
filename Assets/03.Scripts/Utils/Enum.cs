@@ -52,3 +52,11 @@ public enum UIPosition
     Popup,  // 팝업 창
     Top,    // 에러 창 
 }
+
+public enum ObstacleType
+{
+    SmallSeaweed,
+    MediumSeaweed,
+    LargeSeaweed,
+    Stone
+}
