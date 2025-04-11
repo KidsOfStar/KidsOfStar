@@ -34,8 +34,8 @@ MonoBehaviour:
   - formName: Squirrel
     formImage: {fileID: -319783695, guid: 47d640f1e63671c489a4c8b38e6a4d6d, type: 3}
     jumpForce: 6
-    sizeX: 0.9
-    sizeY: 0.75
+    sizeX: 0.8
+    sizeY: 0.5
     force: 0.08
     weight: 1
     IsActive: 1
