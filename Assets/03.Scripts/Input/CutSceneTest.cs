@@ -21,6 +21,7 @@ public class CutSceneTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            currentIndex = 0;
             director.Play();
         }
     }
@@ -28,7 +29,6 @@ public class CutSceneTest : MonoBehaviour
     public void ShowDialog()
     {
         director.Pause();
-        
         var index = cutSceneData.DialogIndexes[currentIndex];
         Managers.Instance.DialogueManager.SetCurrentDialogData(index);
         currentIndex++;

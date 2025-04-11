@@ -15,7 +15,7 @@ public class NPC : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Managers.Instance.DialogueManager.SetCurrentDialogData(1001);
+            Managers.Instance.DialogueManager.SetCurrentDialogData(10016);
         }
     }
 }

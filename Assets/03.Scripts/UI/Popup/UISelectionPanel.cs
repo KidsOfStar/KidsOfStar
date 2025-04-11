@@ -6,10 +6,10 @@ using UnityEngine;
 public class UISelectionPanel : UIBase
 {
     [SerializeField] private UISelectButton[] selectButtons;
-    private PlayerData dialogData;
+    private DialogData dialogData;
     private const string SelectButtonKey = "UISelectButton";
     
-    public void SetPanel(PlayerData dialog)
+    public void SetPanel(DialogData dialog)
     {
         dialogData = dialog;
         var selectionList = dialogData.SelectOption;

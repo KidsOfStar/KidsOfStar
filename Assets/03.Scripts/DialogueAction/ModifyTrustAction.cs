@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ModifyTrustAction : IDialogActionHandler
 {
-    public void Execute(PlayerData playerData)
+    public void Execute(DialogData playerData)
     {
         // TODO
         // Managers.Instance.GameManager.ModifyTrust(playerData.TrustValue);

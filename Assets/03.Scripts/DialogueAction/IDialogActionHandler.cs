@@ -6,12 +6,12 @@ using UnityEngine;
 public interface IDialogActionHandler
 {
     // TODO: PlayerData -> DialogData
-    void Execute(PlayerData playerData);
+    void Execute(DialogData playerData);
 }
 
 public class NoneAction : IDialogActionHandler
 {
-    public void Execute(PlayerData playerData)
+    public void Execute(DialogData playerData)
     {
         if (playerData.NextIndex.Count <= 0)
         {
