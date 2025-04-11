@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class PlayerBtn : UIBase
     public GameObject dogSkill;     // 개 스킬
     public GameObject squirrelSkill; // 다람쥐 스킬
 
+    private List<GameObject> skillBGs;
 
     private void Start()
     {
@@ -44,40 +46,61 @@ public class PlayerBtn : UIBase
         skipBtn.onClick.AddListener(OnSkip);
         interactionBtn.onClick.AddListener(OnInteraction);
 
+        // 스킬 UI 비활성화
+        skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
+    }
+
+    private void Update()
+    {
+        // 스킬 UI 활성화 여부에 따라 버튼 비활성화
+        if (Managers.Instance.GameManager.Player.Controller.IsGround)
+        {
+            ToggleSkillUI(true); // 땅에 닿으면 스킬 UI 활성화
+        }
+        else
+        {
+            ToggleSkillUI(false); // 공중에 있으면 스킬 UI 비활성화
+        }
     }
 
     public void OnJump()
     {
+        ToggleSkillUI(false); // 스킬 UI 비활성화
+
         // 점프 메소드 호출
         OnBlink(jumpBG, 0.1f); // 점프 배경 깜빡임 효과
-        Managers.Instance.GameManager.Player.Controller.Jump();
-
-        // 점프한 후 땅에 착지했을 때 스킬창 보이기
-        HideEffet();
-
+        if (!Managers.Instance.GameManager.Player.Controller.IsGround)
+            return; // 땅에 닿지 않으면 점프 불가
+        else 
+            Managers.Instance.GameManager.Player.Controller.Jump();
     }
 
     public void OnHide()
     {
         // 형태변화 스크립트에서 호출
-        //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Hide");
+        Managers.Instance.GameManager.Player.FormControl.FormChange("Hide");
+        ShowSkillBG(hideBG);
+
     }
     public void OnCat()
     {
         // 형태변화 스크립트에서 호출
-        //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Cat");
+        Managers.Instance.GameManager.Player.FormControl.FormChange("Cat");
+        ShowSkillBG(catBG); // 고양이 스킬 UI 비활성화
+
     }
     public void OnDog()
     {
         // 형태변화 스크립트에서 호출
-        //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Dog");
+        Managers.Instance.GameManager.Player.FormControl.FormChange("Dog");
+        ShowSkillBG(dogBG);
 
     }
     public void OnSquirrel()
     {
         // 형태변화 스크립트에서 호출
-        //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Squirrel");
-
+        Managers.Instance.GameManager.Player.FormControl.FormChange("Squirrel");
+        ShowSkillBG(squirrelBG);
     }
 
     private IEnumerator BlinkEffect(GameObject obj, float duration)
@@ -110,37 +133,19 @@ public class PlayerBtn : UIBase
         Managers.Instance.DialogueManager.OnClick?.Invoke();
     }
 
-    public void ShowEffet(GameObject ObjBG)
+    private void ToggleSkillUI(bool isActive)
     {
-        // 스킬을 클릭 시 배경 나오고
-        ObjBG.SetActive(true);
-        
-        // 같은 스킬을 클릭 시 배경 사라짐
-        if(!ObjBG.activeSelf) ObjBG.SetActive(false);
-
-        //// 다른 스킬을 클릭 시 배경 사라짐
-        else if (!ObjBG.activeSelf) ObjBG.SetActive(false);
+        hideSkill.SetActive(isActive);
+        catSkill.SetActive(isActive);
+        dogSkill.SetActive(isActive);
+        squirrelSkill.SetActive(isActive);
     }
 
-    public void HideEffet()
+    private void ShowSkillBG(GameObject skillBG)
     {
-        // 점프 후 지면에 착지했을 때 스킬창 보이기
-       if(Managers.Instance.GameManager.Player.Controller.IsGround)
+        foreach (var bg in skillBGs)
         {
-            hideSkill.SetActive(true); // 숨기기 스킬 비활성화
-            catSkill.SetActive(true); // 고양이 스킬 비활성화
-            dogSkill.SetActive(true); // 개 스킬 비활성화
-            squirrelSkill.SetActive(true); // 다람쥐 스킬 비활성화
-
+            bg.SetActive(bg == skillBG); // 모든 스킬 배경 비활성화
         }
-        else
-        {
-            hideSkill.SetActive(false); // 숨기기 스킬 비활성화
-            catSkill.SetActive(false); // 고양이 스킬 비활성화
-            dogSkill.SetActive(false); // 개 스킬 비활성화
-            squirrelSkill.SetActive(false); // 다람쥐 스킬 비활성화
-
-        }
-
     }
 }
