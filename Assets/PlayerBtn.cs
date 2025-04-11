@@ -49,9 +49,7 @@ public class PlayerBtn : UIBase
         // 스킬 배경 리스트 초기화
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
-        interactionBtn.gameObject.SetActive(false);
-
-
+        interactionBtn.gameObject.SetActive(false); // 상호작용 버튼 비활성화
     }
 
     private void Update()
