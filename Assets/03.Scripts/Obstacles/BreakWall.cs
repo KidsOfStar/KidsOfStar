@@ -11,12 +11,6 @@ public class BreakWall : MonoBehaviour
 
     public Player player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out PlayerFormController playerFormController))

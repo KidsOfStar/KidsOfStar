@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,13 +18,17 @@ public class PlayerBtn : UIBase
     public Button interactionBtn;   // 상호작용 버튼
 
     [Header("UI Object")]
-    public Image jumpbg;       // 점프 배경
-    public GameObject jumpbg1;       // 점프 배경
+    public GameObject jumpBG;       // 점프 배경
+    public GameObject hideBG;       // 숨기기 배경
+    public GameObject catBG;        // 고양이 배경
+    public GameObject dogBG;        // 개 배경
+    public GameObject squirrelBG;   // 다람쥐 배경
 
-    public Image hidebg;       // 숨기기 배경
-    public Image catbg;        // 고양이 배경
-    public Image dogbg;        // 개 배경
-    public Image squirrelbg;   // 다람쥐 배경
+    [Header("UI HideSkill")]
+    public GameObject hideSkill;    // 숨기기 스킬
+    public GameObject catSkill;     // 고양이 스킬
+    public GameObject dogSkill;     // 개 스킬
+    public GameObject squirrelSkill; // 다람쥐 스킬
 
 
     private void Start()
@@ -37,16 +43,17 @@ public class PlayerBtn : UIBase
         stopBtn.onClick.AddListener(OnStop);
         skipBtn.onClick.AddListener(OnSkip);
         interactionBtn.onClick.AddListener(OnInteraction);
+
     }
 
     public void OnJump()
     {
-        //jumpbg.enabled = true; // 점프 배경 활성화
-        jumpbg1.gameObject.SetActive(true); // 점프 배경 활성화
         // 점프 메소드 호출
-        //Managers.Instance.GameManager.Player.PlayerController.OnJump();
-        //jumpbg.enabled = false; // 점프 배경 비활성화
-        jumpbg1.gameObject.SetActive(false); // 점프 배경 활성화
+        OnBlink(jumpBG, 0.1f); // 점프 배경 깜빡임 효과
+        Managers.Instance.GameManager.Player.PlayerController.OnJump();
+
+        // 점프한 후 땅에 착지했을 때 스킬창 보이기
+        HideEffet();
 
     }
 
@@ -72,6 +79,21 @@ public class PlayerBtn : UIBase
         //Managers.Instance.GameManager.Player.PlayerFormController.FormChange("Squirrel");
 
     }
+
+    private IEnumerator BlinkEffect(GameObject obj, float duration)
+    {
+        // 오브젝트 깜빡임 효과
+        obj.SetActive(true);
+        yield return new WaitForSeconds(duration);
+        obj.SetActive(false);
+    }
+
+    public void OnBlink(GameObject obj, float duration)
+    {
+        // 오브젝트 깜빡임 효과
+        StartCoroutine(BlinkEffect(obj, duration));
+    }
+
     public void OnStop()
     {
         Time.timeScale = 0; // 게임 일시 정지
@@ -88,4 +110,37 @@ public class PlayerBtn : UIBase
         Managers.Instance.DialogueManager.OnClick?.Invoke();
     }
 
+    public void ShowEffet(GameObject ObjBG)
+    {
+        // 스킬을 클릭 시 배경 나오고
+        ObjBG.SetActive(true);
+        
+        // 같은 스킬을 클릭 시 배경 사라짐
+        if(!ObjBG.activeSelf) ObjBG.SetActive(false);
+
+        //// 다른 스킬을 클릭 시 배경 사라짐
+        else if (!ObjBG.activeSelf) ObjBG.SetActive(false);
+    }
+
+    public void HideEffet()
+    {
+        // 점프 후 지면에 착지했을 때 스킬창 보이기
+       if(Managers.Instance.GameManager.Player.Controller.IsGround)
+        {
+            hideSkill.SetActive(true); // 숨기기 스킬 비활성화
+            catSkill.SetActive(true); // 고양이 스킬 비활성화
+            dogSkill.SetActive(true); // 개 스킬 비활성화
+            squirrelSkill.SetActive(true); // 다람쥐 스킬 비활성화
+
+        }
+        else
+        {
+            hideSkill.SetActive(false); // 숨기기 스킬 비활성화
+            catSkill.SetActive(false); // 고양이 스킬 비활성화
+            dogSkill.SetActive(false); // 개 스킬 비활성화
+            squirrelSkill.SetActive(false); // 다람쥐 스킬 비활성화
+
+        }
+
+    }
 }

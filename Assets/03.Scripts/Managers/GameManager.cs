@@ -6,6 +6,7 @@ public class GameManager
     public Camera MainCamera { get; private set; }
     public float SfxVolume { get; private set; }
     public float BgmVolume { get; private set; }
+    public Player Player { get; private set; }
 
     public GameManager()
     {

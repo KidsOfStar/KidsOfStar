@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 7316262598482839432}
   - component: {fileID: 3043588645956613962}
   m_Layer: 5
-  m_Name: stop
+  m_Name: StopBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 7596963381229783947}
   - component: {fileID: 4655701047829848827}
   m_Layer: 5
-  m_Name: BG
+  m_Name: JumpBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -524,7 +524,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3136695050458097799}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -533,8 +533,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -234, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7596963381229783947
 CanvasRenderer:
@@ -976,7 +976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -80, y: 80}
+  m_AnchoredPosition: {x: -80.00012, y: 79.99997}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &2398215843163350531
@@ -1073,7 +1073,7 @@ GameObject:
   - component: {fileID: 59191887364581225}
   - component: {fileID: 117710241326950723}
   m_Layer: 5
-  m_Name: BG
+  m_Name: DogBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1397,11 +1397,15 @@ MonoBehaviour:
   stopBtn: {fileID: 6899352835546882842}
   skipBtn: {fileID: 5506947748116757338}
   interactionBtn: {fileID: 4534340144739830969}
-  jumpObject: {fileID: 0}
-  hideObject: {fileID: 0}
-  catObject: {fileID: 0}
-  dogObject: {fileID: 0}
-  squirrelObject: {fileID: 0}
+  jumpBG: {fileID: 3136695050458097799}
+  hideBG: {fileID: 8087316214355392163}
+  catBG: {fileID: 8556681821104062620}
+  dogBG: {fileID: 5871563461903106033}
+  squirrelBG: {fileID: 8974544695567939549}
+  hideSkill: {fileID: 4604291537379460170}
+  catSkill: {fileID: 8052357830758210174}
+  dogSkill: {fileID: 3148351029134567705}
+  squirrelSkill: {fileID: 622275190652990827}
 --- !u!1 &6424630432682532004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,7 +1499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8119971975607957745
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1882,7 +1886,7 @@ GameObject:
   - component: {fileID: 7938781924106475153}
   - component: {fileID: 5508994243203504285}
   m_Layer: 5
-  m_Name: BG
+  m_Name: HideBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1957,7 +1961,7 @@ GameObject:
   - component: {fileID: 4261004549306540375}
   - component: {fileID: 4591376538571095360}
   m_Layer: 5
-  m_Name: BG
+  m_Name: CatBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2032,7 +2036,7 @@ GameObject:
   - component: {fileID: 7134881858746596637}
   - component: {fileID: 4493477197662878220}
   m_Layer: 5
-  m_Name: BG
+  m_Name: SquirrlBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
