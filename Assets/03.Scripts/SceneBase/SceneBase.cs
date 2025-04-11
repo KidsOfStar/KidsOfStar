@@ -16,10 +16,4 @@ public class SceneBase : MonoBehaviour
         Managers.Instance.OnSceneLoaded();
         Managers.Instance.DialogueManager.InitNPcs(npcs);
     }
-    
-    protected void CreateSelectionUI()
-    {
-        var selectObj = Managers.Instance.ResourceManager.Load<GameObject>(Define.UIPath + typeof(UISelectButton));
-        Managers.Instance.PoolManager.CreatePool(selectObj, 5);
-    }
 }
