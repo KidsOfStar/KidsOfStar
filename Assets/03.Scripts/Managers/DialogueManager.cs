@@ -2,22 +2,25 @@ using MainTable;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class DialogueManager : ISceneLifecycleHandler
 {
-    private Dictionary<CharacterType, NPC> npcDictionary = new();
-    private Transform maorum; // 임시
-    private UITextBubble textBubble;
-
-    public Action OnClick;
+    private readonly Dictionary<DialogActionType, IDialogActionHandler> dialogActionHandlers = new();
+    private readonly Dictionary<CharacterType, NPC> npcDictionary = new();
+    private readonly Queue<string> dialogQueue = new();
+    
     private PlayerData currentDialogData;
-    private Queue<string> dialogQueue = new();
+    private UITextBubble textBubble;
+    public Action OnClick { get; set; }
 
-    // TODO: 씬 로드시마다 NPC를 가져와야함
-    // TODO: 씬에 진입하면 씬에 존재하는 NPC들을 가져옴
-    // npc를 가지고 있는 딕셔너리
-
+    public DialogueManager()
+    {
+        dialogActionHandlers[DialogActionType.None] = new NoneAction();
+        dialogActionHandlers[DialogActionType.ShowSelect] = new ShowSelectAction();
+        dialogActionHandlers[DialogActionType.ModifyTrust] = new ModifyTrustAction();
+        dialogActionHandlers[DialogActionType.DataSave] = new DataSaveAction();
+    }
+    
     public void InitNPcs(NPC[] npcs)
     {
         foreach (var npc in npcs)
@@ -26,56 +29,65 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
-    public void SetCurrentDialogData(int index, Vector3 offset)
+    // 현재 출력 할 대사 데이터를 초기화
+    public void SetCurrentDialogData(int index)
     {
         currentDialogData = Managers.Instance.DataManager.GetPlayerData(index);
+        if (currentDialogData == null)
+        {
+            EditorLog.LogError($"DialogueManager : Not found PlayerData with index: {index}");
+            return;
+        }
+        
+        // 데이터의 대사 value 값을 @로 나누어 대사 큐에 넣음 
         var dialogs = currentDialogData.DialogValue.Split('@');
         foreach (var dialog in dialogs)
             dialogQueue.Enqueue(dialog);
 
         if (dialogQueue.Count > 0)
         {
-            ShowDialog(dialogQueue.Dequeue(), offset);
+            ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
     }
 
-    public void ShowDialog(string dialog, Vector3 offset)
+    // 한 줄씩 대사를 출력
+    public void ShowDialog(string dialog, CharacterType character)
     {
-        var localPos = WorldToCanvasPosition(maorum.position + offset);
+        var bubblePos = npcDictionary[character].BubbleOffset;
+        var localPos = WorldToCanvasPosition(bubblePos);
 
         textBubble.SetActive(true);
         textBubble.SetDialog(dialog, localPos);
     }
 
     // 한 라인이 끝났는지?
-    // 아니면 다음 인덱스로 넘어가는지?
     public void OnDialogLineComplete()
     {
         if (dialogQueue.Count > 0)
         {
-            ShowDialog(dialogQueue.Dequeue(), Vector3.zero);
+            ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
         else
         {
             textBubble.HideDirect();
-            // Managers.Instance.DialogInputHandler.gameObject.SetActive(false);
-            OnClick?.Invoke();
+            
+            // 타입에 따라 다이얼로그 액션 실행
+            dialogActionHandlers[currentDialogData.DialogType].Execute(currentDialogData);
         }
     }
 
     private Vector2 WorldToCanvasPosition(Vector3 worldPos)
     {
-        // Vector3 screenPos = Managers.Instance.GameManager.MainCamera.WorldToScreenPoint(worldPos);
-        // RectTransformUtility.ScreenPointToLocalPointInRectangle(
-        //                                                         Managers.Instance.UIManager.CanvasRectTr,
-        //                                                         screenPos,
-        //                                                         null,
-        //                                                         out var localPos
-        //                                                        );
-        // return localPos;
-        return Vector2.zero;
+        Vector3 screenPos = Managers.Instance.GameManager.MainCamera.WorldToScreenPoint(worldPos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                                                                Managers.Instance.UIManager.CanvasRectTr,
+                                                                screenPos,
+                                                                null,
+                                                                out var localPos
+                                                               );
+        return localPos;
     }
-
+    
     // None
     /// nextDialog가 없을 때까지 출력해야 함
     // ShowSelect
@@ -91,10 +103,6 @@ public class DialogueManager : ISceneLifecycleHandler
     {
         textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
         textBubble.HideDirect();
-
-        // 임시
-        // maorum = Object.FindObjectOfType<NPC>().transform;
-        // Managers.Instance.DialogInputHandler.gameObject.SetActive(true);
     }
 
     public void OnSceneUnloaded()

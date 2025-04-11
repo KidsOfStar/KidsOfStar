@@ -34,12 +34,12 @@ public class Managers : Singleton<Managers>
     {
         UIManager.OnSceneLoaded();
         SoundManager.OnSceneLoaded();
-        // DialogueManager.OnSceneLoaded();
+        DialogueManager.OnSceneLoaded();
     }
     
     public void OnSceneUnloaded()
     {
         SoundManager.OnSceneUnloaded();
-        // DialogueManager.OnSceneUnloaded();
+        DialogueManager.OnSceneUnloaded();
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : ISceneLifecycleHandler
 {
+    public RectTransform CanvasRectTr { get; private set; } 
     private List<Transform> parents;
     private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
     private Dictionary<string, List<UIBase>> multiListUIList = new Dictionary<string, List<UIBase>>(); // 여러 개의 UI를 관리하기 위한 리스트
@@ -156,6 +157,7 @@ public class UIManager : ISceneLifecycleHandler
         // Canvas 인스턴스 생성
         var canvasInstance = Object.Instantiate(canvasPrefab);
         canvasInstance.name = "Canvas";
+        CanvasRectTr = canvasInstance.transform as RectTransform;
 
         List<Transform> parentList = new List<Transform>();
 
@@ -175,6 +177,7 @@ public class UIManager : ISceneLifecycleHandler
             }
         }
 
+        // 활성화 된 씬에 배치
         var activeScene = SceneManager.GetSceneByName(currentScene.GetName());
         SceneManager.MoveGameObjectToScene(canvasInstance.gameObject, activeScene);
         

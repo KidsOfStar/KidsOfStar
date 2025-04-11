@@ -9,8 +9,7 @@ public class SceneLoadManager : MonoBehaviour
     private const float fakeMinDuration = 3f;
     private const float fakeMaxDuration = 4f;
     public SceneType CurrentScene { get; private set; } = SceneType.Title;
-
-    [field: SerializeField] public bool IsSceneLoadComplete { get; set; }
+    public bool IsSceneLoadComplete { get; set; }
     
     public void LoadScene(SceneType loadScene)
     {
