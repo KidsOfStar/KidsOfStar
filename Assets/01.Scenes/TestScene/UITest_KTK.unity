@@ -1316,30 +1316,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBtn
       objectReference: {fileID: 0}
-    - target: {fileID: 7920057993022008400, guid: 436a3d19ef009e94995d6cac236147ff, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8119971975607957745, guid: 436a3d19ef009e94995d6cac236147ff, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8119971975607957745, guid: 436a3d19ef009e94995d6cac236147ff, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8119971975607957745, guid: 436a3d19ef009e94995d6cac236147ff, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8119971975607957745, guid: 436a3d19ef009e94995d6cac236147ff, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -80
-      objectReference: {fileID: 0}
-    - target: {fileID: 8119971975607957745, guid: 436a3d19ef009e94995d6cac236147ff, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 420
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
