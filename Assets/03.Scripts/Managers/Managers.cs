@@ -11,6 +11,8 @@ public class Managers : Singleton<Managers>
     public SoundManager SoundManager { get; private set; }
     public DialogueManager DialogueManager { get; private set; }
     public GameManager GameManager { get; private set; }
+    
+    public CutSceneManager cutSceneManager { get; private set; }
 
     protected override void Awake()
     {
@@ -28,6 +30,7 @@ public class Managers : Singleton<Managers>
 		UIManager = new UIManager();
         SoundManager = new SoundManager();
         DialogueManager = new DialogueManager();
+        cutSceneManager = new CutSceneManager();
     }
 
     public void OnSceneLoaded()

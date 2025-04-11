@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 
     public Vector3 BubbleOffset => transform.position + bubbleOffset;
 
+    // test
     private void Update()
     {
         if (CharacterType != CharacterType.Maorum)
@@ -14,7 +15,7 @@ public class NPC : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Managers.Instance.DialogueManager.SetCurrentDialogData(1001);
+            Managers.Instance.DialogueManager.SetCurrentDialogData(10016);
         }
     }
 }

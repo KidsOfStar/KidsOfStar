@@ -3,17 +3,16 @@ using System.Collections.Generic;
 
 public class DataManager
 {
-    // TODO: PlayerData -> DialogData
-    private Dictionary<int, PlayerData> playerData = new();
+    private Dictionary<int, DialogData> dialogDatas = new();
     
     public DataManager()
     {
-        playerData = PlayerData.GetDictionary();
+        dialogDatas = DialogData.GetDictionary();
     }
 
-    public PlayerData GetPlayerData(int index)
+    public DialogData GetPlayerData(int index)
     {
-        if (playerData.TryGetValue(index, out var data))
+        if (dialogDatas.TryGetValue(index, out var data))
             return data;
             
         else

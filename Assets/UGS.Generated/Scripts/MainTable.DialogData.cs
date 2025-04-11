@@ -17,39 +17,39 @@ using UnityEngine;
 namespace MainTable
 {
     [GoogleSheet.Attribute.TableStruct]
-    public partial class NPCData : ITable
+    public partial class DialogData : ITable
     { 
 
-        public delegate void OnLoadedFromGoogleSheets(List<NPCData> loadedList, Dictionary<int, NPCData> loadedDictionary);
+        public delegate void OnLoadedFromGoogleSheets(List<DialogData> loadedList, Dictionary<int, DialogData> loadedDictionary);
 
         static bool isLoaded = false;
         static string spreadSheetID = "1iOK4MZd2CwVNCCvReWXOHTfdxVR3k6oS_cEeJ62SdGw"; // it is file id
-        static string sheetID = "0"; // it is sheet id
+        static string sheetID = "964652582"; // it is sheet id
         static UnityFileReader reader = new UnityFileReader();
 
 /* Your Loaded Data Storage. */
     
-        public static Dictionary<int, NPCData> NPCDataMap = new Dictionary<int, NPCData>();  
-        public static List<NPCData> NPCDataList = new List<NPCData>();   
+        public static Dictionary<int, DialogData> DialogDataMap = new Dictionary<int, DialogData>();  
+        public static List<DialogData> DialogDataList = new List<DialogData>();   
 
         /// <summary>
-        /// Get NPCData List 
+        /// Get DialogData List 
         /// Auto Load
         /// </summary>
-        public static List<NPCData> GetList()
+        public static List<DialogData> GetList()
         {{
            if (isLoaded == false) Load();
-           return NPCDataList;
+           return DialogDataList;
         }}
 
         /// <summary>
-        /// Get NPCData Dictionary, keyType is your sheet A1 field type.
+        /// Get DialogData Dictionary, keyType is your sheet A1 field type.
         /// - Auto Load
         /// </summary>
-        public static Dictionary<int, NPCData>  GetDictionary()
+        public static Dictionary<int, DialogData>  GetDictionary()
         {{
            if (isLoaded == false) Load();
-           return NPCDataMap;
+           return DialogDataMap;
         }}
 
     
@@ -60,7 +60,7 @@ namespace MainTable
 		public CharacterType Character;
 		public DialogActionType DialogType;
 		public System.Collections.Generic.List<String> SelectOption;
-		public System.Collections.Generic.List<Int32> TrustValue;
+		public System.Int32 TrustValue;
 		public System.Collections.Generic.List<Int32> NextIndex;
 		public System.String DialogValue;
   
@@ -73,7 +73,7 @@ namespace MainTable
             if(isLoaded && forceReload == false)
             {
 #if UGS_DEBUG
-                 Debug.Log("NPCData is already loaded! if you want reload then, forceReload parameter set true");
+                 Debug.Log("DialogData is already loaded! if you want reload then, forceReload parameter set true");
 #endif
                  return;
             }
@@ -89,7 +89,7 @@ namespace MainTable
         }
  
 
-        public static void LoadFromGoogle(System.Action<List<NPCData>, Dictionary<int, NPCData>> onLoaded, bool updateCurrentData = false)
+        public static void LoadFromGoogle(System.Action<List<DialogData>, Dictionary<int, DialogData>> onLoaded, bool updateCurrentData = false)
         {      
                 IHttpProtcol webInstance = null;
     #if UNITY_EDITOR
@@ -117,14 +117,14 @@ namespace MainTable
                
 
 
-    public static (List<NPCData> list, Dictionary<int, NPCData> map) CommonLoad(Dictionary<string, Dictionary<string, List<string>>> jsonObject, bool forceReload){
-            Dictionary<int, NPCData> Map = new Dictionary<int, NPCData>();
-            List<NPCData> List = new List<NPCData>();     
+    public static (List<DialogData> list, Dictionary<int, DialogData> map) CommonLoad(Dictionary<string, Dictionary<string, List<string>>> jsonObject, bool forceReload){
+            Dictionary<int, DialogData> Map = new Dictionary<int, DialogData>();
+            List<DialogData> List = new List<DialogData>();     
             TypeMap.Init();
-            FieldInfo[] fields = typeof(NPCData).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(DialogData).GetFields(BindingFlags.Public | BindingFlags.Instance);
             List<(string original, string propertyName, string type)> typeInfos = new List<(string, string, string)>(); 
             List<List<string>> rows = new List<List<string>>();
-            var sheet = jsonObject["NPCData"];
+            var sheet = jsonObject["DialogData"];
 
             foreach (var column in sheet.Keys)
             {
@@ -143,7 +143,7 @@ namespace MainTable
                         int rowCount = rows[0].Count;
                         for (int i = 0; i < rowCount; i++)
                         {
-                            NPCData instance = new NPCData();
+                            DialogData instance = new DialogData();
                             for (int j = 0; j < typeInfos.Count; j++)
                             {
                                 try
@@ -184,8 +184,8 @@ namespace MainTable
                         }
                         if(isLoaded == false || forceReload)
                         { 
-                            NPCDataList = List;
-                            NPCDataMap = Map;
+                            DialogDataList = List;
+                            DialogDataMap = Map;
                             isLoaded = true;
                         }
                     } 
@@ -195,10 +195,10 @@ namespace MainTable
 
  
 
-        public static void Write(NPCData data, System.Action<WriteObjectResult> onWriteCallback = null)
+        public static void Write(DialogData data, System.Action<WriteObjectResult> onWriteCallback = null)
         { 
             TypeMap.Init();
-            FieldInfo[] fields = typeof(NPCData).GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] fields = typeof(DialogData).GetFields(BindingFlags.Public | BindingFlags.Instance);
             var datas = new string[fields.Length];
             for (int i = 0; i < fields.Length; i++)
             {

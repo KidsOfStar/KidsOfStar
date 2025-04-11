@@ -51,5 +51,6 @@ public class UITitle : UIBase
     {
         // 다음 씬으로 이동
         Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter01);
+        //Managers.Instance.cutSceneManager.MapSceneToCutScene("Chapter01", "Intro");
     }
 }
