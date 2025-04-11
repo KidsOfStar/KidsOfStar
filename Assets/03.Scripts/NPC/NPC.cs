@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
 
     public Vector3 BubbleOffset => transform.position + bubbleOffset;
 
+    // test
     private void Update()
     {
         if (CharacterType != CharacterType.Maorum)

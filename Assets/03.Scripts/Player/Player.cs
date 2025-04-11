@@ -15,7 +15,5 @@ public class Player : MonoBehaviour
 
         controller.PlayerSc = this;
         formControl.PlayerSc = this;
-
-        Managers.Instance.GameManager.SetPlayer(this); // GamaManager에 플레이어 전달
     }
 }
