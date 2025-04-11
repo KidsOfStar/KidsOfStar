@@ -12,9 +12,10 @@ public class DialogueManager : ISceneLifecycleHandler
 
     private DialogData currentDialogData;
     private UITextBubble textBubble;
-    private bool isCutScene = false;
+    
     public Action OnClick { get; set; }
     public Action OnDialogEnd { get; set; }
+    private bool isCutScene;
 
     public DialogueManager()
     {
@@ -67,7 +68,7 @@ public class DialogueManager : ISceneLifecycleHandler
     public void ShowDialog(string dialog, CharacterType character)
     {
         var npc = isCutScene ? cutSceneNpcDict[character] : sceneNpcDict[character];
-        Vector3 bubblePos = npc.BubbleOffset;
+        Vector3 bubblePos = npc.BubblePos.position;
 
         var localPos = WorldToCanvasPosition(bubblePos);
 
@@ -100,6 +101,7 @@ public class DialogueManager : ISceneLifecycleHandler
                                                                 screenPos, null,
                                                                 out var localPos
                                                                );
+        
         return localPos;
     }
 
