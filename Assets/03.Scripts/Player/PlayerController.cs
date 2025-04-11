@@ -55,6 +55,14 @@ public class PlayerController : MonoBehaviour
         get { return isControllable; }
         set { isControllable = value; }
     }
+
+    private IFormState curState;
+    public IFormState CurState
+    {
+        get { return curState; }
+        set { curState = value; }
+    }
+
     [Header("Push")]
     [SerializeField, Tooltip("플레이어 앞 박스를 감지할 거리")]
     private float pushDetectDistance = 0.05f;
@@ -62,9 +70,12 @@ public class PlayerController : MonoBehaviour
     private LayerMask pushableLayer;
 
     private IWeightable objWeight = null; 
+    public IWeightable ObjWeight { get { return objWeight; } }
     // Ray로 감지한 물체의 무게
     private Rigidbody2D objRigid = null;
+    public Rigidbody2D ObjRigid { get { return objRigid; } }
     // Ray로 감지한 물체의 rb
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -74,46 +85,50 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GroundCheck();
-        Move();
-    }
-
-    void Move()
-    {
-        if (!wallJumping)
+        if (curState != null)
         {
-            if (moveDir != Vector2.up && moveDir != Vector2.down)
-            {
-
-                if (TryDetectBox(moveDir))
-                {
-                    IPusher pusher = playerSc.FormControl;
-                    float pushPower = pusher.GetPushPower();
-                    float objWeight = this.objWeight.GetWeight();
-                    float pushSpeed = (pushPower / objWeight) * moveSpeed;
-                    //미는 속도 = 미는 힘 / 무게 * 이동속도
-                    pushSpeed = Mathf.Min(pushSpeed, moveSpeed);
-                    // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
-
-                    Vector2 velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
-                    rigid.velocity = velocity;
-
-                    objRigid.velocity = velocity;
-                }
-                else
-                {
-                    Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
-                    rigid.velocity = playervelocity;
-                }
-                   
-                playerSc.FormControl.FlipControl(moveDir);
-                
-                if (keepRotation)
-                {
-                    WallRatationSet(rigid.velocity);
-                }
-            }
+            curState.OnMove(moveDir, moveSpeed);
         }
+        //Move();
     }
+
+    //void Move()
+    //{
+    //    if (!wallJumping)
+    //    {
+    //        if (moveDir != Vector2.up && moveDir != Vector2.down)
+    //        {
+
+    //            if (TryDetectBox(moveDir))
+    //            {
+    //                IPusher pusher = playerSc.FormControl;
+    //                float pushPower = pusher.GetPushPower();
+    //                float objWeight = this.objWeight.GetWeight();
+    //                float pushSpeed = (pushPower / objWeight) * moveSpeed;
+    //                //미는 속도 = 미는 힘 / 무게 * 이동속도
+    //                pushSpeed = Mathf.Min(pushSpeed, moveSpeed);
+    //                // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
+
+    //                Vector2 velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
+    //                rigid.velocity = velocity;
+
+    //                objRigid.velocity = velocity;
+    //            }
+    //            else
+    //            {
+    //                Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
+    //                rigid.velocity = playervelocity;
+    //            }
+                   
+    //            playerSc.FormControl.FlipControl(moveDir);
+                
+    //            if (keepRotation)
+    //            {
+    //                WallRatationSet(rigid.velocity);
+    //            }
+    //        }
+    //    }
+    //}
 
     void GroundCheck()
     {
@@ -138,36 +153,37 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started && isGround)
+        if(context.phase == InputActionPhase.Started)
         {
             Jump();
         }
 
-        if(!isGround && playerSc.FormControl.CurFormData.FormName == "Cat"
-            && !wallJumping)
-        {
-            Vector2 dir = new Vector2(moveDir.normalized.x, 0);
-            RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, dir, 0.02f,
-                groundLayer);
+        //if(!isGround && playerSc.FormControl.CurFormData.FormName == "Cat"
+        //    && !wallJumping)
+        //{
+        //    Vector2 dir = new Vector2(moveDir.normalized.x, 0);
+        //    RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, dir, 0.02f,
+        //        groundLayer);
             
-            if(hit.collider != null)
-            {
-                dir *= -wallJumpForce;
-                dir.y = jumpForce;
-                rigid.velocity = Vector2.zero;
-                rigid.AddForce(dir, ForceMode2D.Impulse);
-                wallJumping = true;
-                keepRotation = true;
-                WallRatationSet(dir);
-                playerSc.FormControl.FlipControl(dir);
-                StartCoroutine(WallJump());
-            }
-        }
+        //    if(hit.collider != null)
+        //    {
+        //        dir *= -wallJumpForce;
+        //        dir.y = jumpForce;
+        //        rigid.velocity = Vector2.zero;
+        //        rigid.AddForce(dir, ForceMode2D.Impulse);
+        //        wallJumping = true;
+        //        keepRotation = true;
+        //        WallRatationSet(dir);
+        //        //playerSc.FormControl.FlipControl(dir);
+        //        StartCoroutine(WallJump());
+        //    }
+        //}
     }
 
     public void Jump()
     {
-        rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        // 상태 패턴 구현 후 수정
+        curState.OnJump();
     }
 
     private void WallRatationSet(Vector2 dir)
@@ -205,7 +221,8 @@ public class PlayerController : MonoBehaviour
         keepRotation = false;
         transform.rotation = Quaternion.Euler(Vector3.zero);
     }
-    private bool TryDetectBox(Vector2 dir)
+    
+    public bool TryDetectBox(Vector2 dir)
     {
         float xOffset = boxCollider.bounds.extents.x + 0.01f; 
         Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0);
