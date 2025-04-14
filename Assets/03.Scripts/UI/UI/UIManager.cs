@@ -8,6 +8,7 @@ public class UIManager : ISceneLifecycleHandler
     private List<Transform> parents;
     private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
     private Dictionary<string, List<UIBase>> multiListUIList = new Dictionary<string, List<UIBase>>(); // 여러 개의 UI를 관리하기 위한 리스트
+
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정
     /// 보통 Canvas 하위에 Background, UI, Popup 같은 위치들이 있음
@@ -15,67 +16,45 @@ public class UIManager : ISceneLifecycleHandler
     public void SetParents(List<Transform> parents)
     {
         this.parents = parents;
-        uiList.Clear();    // 기존 UI 리스트 초기화
+        uiList.Clear();    // 기존 UI 리스트 초기화 (중복 방지 및 초기화 목적)
     }
 
     /// <summary>
     /// UI를 보여줌. 없으면 생성하고, 있으면 기존 UI를 재활용함.
-    /// 없으면 리소스에서 로드하여 동적 생성
+    /// param: UI가 열릴 때 필요한 매개변수 전달
     /// </summary>
-
     public T Show<T>(params object[] param) where T : UIBase
     {
-        // 이미 생성되어 있는지 확인 
-        string uiName = typeof(T).Name;
+        string uiName = typeof(T).Name; // 제네릭 타입의 이름으로 UI 이름 결정
 
+        // 이미 생성되어 있는 UI가 있는지 확인
         var uiDictionary = uiList.TryGetValue(uiName, out var ui);
 
         // 없으면 Resource에서 로드하여 생성
         if(!uiDictionary)
         {
-            // 기본 UI 프리팹 로드
+            // ResourceManager를 통해 UI 프리팹 로드
             var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName), false);
 
             if (prefab == null) return null; // 프리팹이 없으면 null 반환
 
             ui = Object.Instantiate(prefab, parents[(int)prefab.uiPosition]) as T; // 지정된 위치에 생성
             ui.name = uiName;
-            uiList.Add(uiName, ui);
+            uiList.Add(uiName, ui); // 생성된 UI를 Dictionary에 추가
         }
 
-        ui.SetActive(true);
-        ui.Opened(param);
-        return (T)ui;
-    }
-
-    // 똑같은 것을 여러개 생성하게 한다
-    public T AddShow<T>(params object[] param) where T : UIBase
-    {
-        // 이미 생성되어 있는지 확인 
-        string uiName = typeof(T).Name;
-
-        // 기본 UI 프리팹 로드
-        var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName), false);
-        if (prefab == null) return null; // 프리팹이 없으면 null 반환
-
-        var ui = Object.Instantiate(prefab, parents[(int)prefab.uiPosition]) as T; // 지정된 위치에 생성
-        ui.name = uiName;
-
-        ui.SetActive(true);
-        ui.Opened(param);
-
-        if(!multiListUIList.ContainsKey(uiName))
-        {   // 리스트가 없으면 생성
-            multiListUIList.Add(uiName, new List<UIBase>());
-        }
-        multiListUIList[uiName].Add(ui);
-
-        return ui;
+        ui.SetActive(true); 
+        ui.Opened(param);   // UI가 열릴 때 호출되는 함수
+        return (T)ui;       // UIBase로 캐스팅하여 반환
     }
 
     private string GetPath(string name)
     {
-        // 이미 생성되어 있는지 확인
+        /// <summary>
+        /// 주어진 이름에 따라 경로를 설정합니다
+        /// Canvas, Popup, Top에 따라 경로를 반환
+        /// 조건에 모두 해당하지 않을 경우 Define.UIPath를 사용하여 반환
+        /// </summary>
         if (name.Contains("Canvas"))
         {
             return Define.UIPath + name;
@@ -108,21 +87,6 @@ public class UIManager : ISceneLifecycleHandler
             ui.gameObject.SetActive(false);
 
         }
-    }
-    // 모든 UI를 숨기기
-    public void HideAll<T>(params object[] param) where T : UIBase
-    {
-        string uiName = typeof(T).Name;
-
-        if(multiListUIList.TryGetValue(uiName, out var uiList))
-        {
-            foreach (var ui in uiList)
-            {
-                ui.closed?.Invoke(param);
-                ui.gameObject.SetActive(false); // 파괴시 Destroy() 변경하기
-            }
-        }
-        // uiList.Clear(); - 파괴 후
     }
 
     /// <summary>
