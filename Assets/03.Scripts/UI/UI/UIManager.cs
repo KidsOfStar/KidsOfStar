@@ -178,8 +178,11 @@ public class UIManager : ISceneLifecycleHandler
         }
 
         // 활성화 된 씬에 배치
-        var activeScene = SceneManager.GetSceneByName(currentScene.GetName());
-        SceneManager.MoveGameObjectToScene(canvasInstance.gameObject, activeScene);
+        if (!Managers.Instance.IsDebugMode)
+        {
+            var activeScene = SceneManager.GetSceneByName(currentScene.GetName());
+            SceneManager.MoveGameObjectToScene(canvasInstance.gameObject, activeScene);
+        }
         
         // 생성된 parentList를 SetParents()에 전달하여 부모 목록을 설정
         SetParents(parentList);
