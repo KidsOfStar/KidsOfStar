@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
+    public Vector2 MoveDir { get { return moveDir; } }
     // 플레이어 캐릭터가 사다리에 닿은 상태일 때 true
     private bool touchLadder = false;
     public bool TouchLadder
@@ -110,7 +111,27 @@ public class PlayerController : MonoBehaviour
         // 상태 패턴 구현 후 수정
         curState.OnJump();
     }
-    
+
+    private void WallRatationSet(Vector2 dir)
+    {
+        Vector3 rot;
+
+        if (dir.x > 0)
+        {
+            rot = new Vector3(0, 0, 90);
+        }
+        else if (dir.x < 0)
+        {
+            rot = new Vector3(0, 0, -90);
+        }
+        else
+        {
+            //rot = new Vector3(0, 0, transform.rotation.z);
+        }
+
+        //transform.rotation = Quaternion.Euler(rot);
+    }
+
     public bool TryDetectBox(Vector2 dir)
     {
         float xOffset = boxCollider.bounds.extents.x + 0.01f; 

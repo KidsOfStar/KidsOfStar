@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +27,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     private BoxCollider2D boxCollider;
     private PlayerStateContext stateContext;
     private PlayerFormStateFactory factory;
+
 
     private void Awake()
     {
@@ -93,6 +96,17 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         {
             nextState.OnEnter();
         }
+    }
+
+    public void InvokeAfter(float delay, Action action)
+    {
+        StartCoroutine(InvokeCoroutine(delay, action));
+    }
+
+    private IEnumerator InvokeCoroutine(float delay, Action action)
+    {
+        yield return new WaitForSeconds(delay);
+        action?.Invoke();
     }
 
     public Dictionary<string, bool> GetFormLock()

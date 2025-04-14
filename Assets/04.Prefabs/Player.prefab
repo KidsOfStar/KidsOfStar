@@ -74,7 +74,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 194787036661805367}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1e5ebd6a9f91e704d8565b5c850a3bbe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -202,9 +202,6 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 3
   jumpForce: 2
-  wallJumpForce: 7
-  stopInputTime: 0.1
-  keepRotationTime: 0.5
   pushDetectDistance: 0.05
   pushableLayer:
     serializedVersion: 2
