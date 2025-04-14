@@ -11,8 +11,8 @@ public class GameManager
     public float BgmVolume { get; private set; }
 
     // Play Data
-    private Dictionary<ChapterType, int> trustDict = new();
-    public ChapterType currentChapter { get; private set; } // TODO: 챕터별 진행사항?
+    private readonly Dictionary<ChapterType, int> trustDict = new();
+    public ChapterType CurrentChapter { get; private set; } // TODO: 챕터별 진행사항?
     public Player Player { get; private set; }
 
     public GameManager()
@@ -45,10 +45,10 @@ public class GameManager
     
     public void ModifyTrust(int value)
     {
-        if (trustDict.ContainsKey(currentChapter))
-            trustDict[currentChapter] = Mathf.Max(0, trustDict[currentChapter] + value);
+        if (trustDict.ContainsKey(CurrentChapter))
+            trustDict[CurrentChapter] = Mathf.Max(0, trustDict[CurrentChapter] + value);
         else
-            trustDict.Add(currentChapter, Mathf.Max(0, value));
+            trustDict.Add(CurrentChapter, Mathf.Max(0, value));
     }
 
     public void SetCamera(Camera camera)

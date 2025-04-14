@@ -12,38 +12,46 @@ public class SoundManager : ISceneLifecycleHandler
     {
         sourceParent = new GameObject("AudioSource").transform;
         sourceParent.SetParent(Managers.Instance.transform);
-        GameObject audioSource = Managers.Instance.ResourceManager.Load<GameObject>($"{Define.PrefabPath}{Define.AudioSourceKey}");
+        GameObject audioSource =
+            Managers.Instance.ResourceManager.Load<GameObject>($"{Define.PrefabPath}{Define.AudioSourceKey}");
         GameManager gameManager = Managers.Instance.GameManager;
-        
+
         bgmSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         bgmSource.name = "BGM";
         bgmSource.loop = true;
         bgmSource.volume = gameManager.BgmVolume;
-        
+
         sfxSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         sfxSource.name = "SFX";
         sfxSource.loop = false;
         sfxSource.volume = gameManager.SfxVolume;
-        
+
         footstepSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         footstepSource.name = "Footstep";
         footstepSource.loop = false;
         footstepSource.volume = gameManager.SfxVolume;
     }
-    
+
     private void AttachAudioToCamera()
     {
         var currentScene = Managers.Instance.SceneLoadManager.CurrentScene;
-        if (currentScene == SceneType.Title)
-            return;
-        
+        if (currentScene == SceneType.Title) return;
+
         var camera = Managers.Instance.GameManager.MainCamera;
+#if UNITY_EDITOR
+        if (Managers.Instance.IsDebugMode)
+        {
+            camera = Camera.main;
+            sourceParent.SetParent(camera.transform);
+            return;
+        }
+#endif
         if (camera == null)
         {
             EditorLog.LogError("SoundManager : Camera is not found.");
             return;
         }
-        
+
         sourceParent.SetParent(camera.transform);
     }
 
@@ -52,16 +60,16 @@ public class SoundManager : ISceneLifecycleHandler
         var currentScene = Managers.Instance.SceneLoadManager.CurrentScene;
         if (currentScene == SceneType.Title)
             return;
-        
+
         if (!sourceParent)
         {
             EditorLog.LogError("SoundManager : AudioSource is not found.");
             return;
         }
-        
+
         sourceParent.SetParent(Managers.Instance.transform);
     }
-    
+
     private AudioClip GetAudioClip(string key)
     {
         AudioClip audioClip = Managers.Instance.ResourceManager.Load<AudioClip>($"{Define.SoundPath}{key}");
@@ -95,19 +103,19 @@ public class SoundManager : ISceneLifecycleHandler
         AudioClip clip = GetAudioClip(sound.GetName());
         sfxSource.PlayOneShot(clip);
     }
-    
+
     // 발소리 재생
     public void PlayFootstep(FootstepType sound)
     {
         AudioClip clip = GetAudioClip(sound.GetName());
         footstepSource.PlayOneShot(clip);
     }
-    
+
     public void SetBgmVolume(float volume)
     {
         bgmSource.volume = volume;
     }
-    
+
     public void SetSfxVolume(float volume)
     {
         sfxSource.volume = volume;
@@ -126,7 +134,7 @@ public class SoundManager : ISceneLifecycleHandler
     {
         AttachAudioToCamera();
     }
-    
+
     public void OnSceneUnloaded()
     {
         ReparentAudioToSoundManager();
