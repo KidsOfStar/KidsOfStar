@@ -17,7 +17,7 @@ MonoBehaviour:
     formImage: {fileID: 761482113, guid: 8bc8306f834470b4ba5265ff39b7c0a9, type: 3}
     jumpForce: 0
     offsetX: 0
-    offsetY: 0
+    offsetY: 0.3
     sizeX: 0.75
     sizeY: 0.6
     force: 0
@@ -39,9 +39,9 @@ MonoBehaviour:
     formImage: {fileID: -319783695, guid: 47d640f1e63671c489a4c8b38e6a4d6d, type: 3}
     jumpForce: 6
     offsetX: 0
-    offsetY: 0
-    sizeX: 0.8
-    sizeY: 0.5
+    offsetY: 0.3
+    sizeX: 0.3
+    sizeY: 0.6
     force: 0.08
     weight: 1
     IsActive: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
     formImage: {fileID: -372320300, guid: 4395c9b503ecf9d48a3476ceb874cc16, type: 3}
     jumpForce: 5
     offsetX: 0
-    offsetY: 0
+    offsetY: 0.38
     sizeX: 1.125
     sizeY: 0.75
     force: 1.8
@@ -61,7 +61,7 @@ MonoBehaviour:
     formImage: {fileID: -75012031, guid: be2052563e1f1934a8f0ea4869c3fcf0, type: 3}
     jumpForce: 5
     offsetX: 0
-    offsetY: 0
+    offsetY: 0.33
     sizeX: 0.72
     sizeY: 0.65
     force: 0.15
@@ -72,9 +72,9 @@ MonoBehaviour:
     formImage: {fileID: 1749720049, guid: 63ea964f811089f42865f4df70f2602f, type: 3}
     jumpForce: 0
     offsetX: 0
-    offsetY: 0
+    offsetY: 0.7
     sizeX: 0.6
-    sizeY: 1.35
+    sizeY: 1.4
     force: 0
     weight: 5
     IsActive: 1

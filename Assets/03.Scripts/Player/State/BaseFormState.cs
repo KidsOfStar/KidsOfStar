@@ -27,6 +27,7 @@ public class BaseFormState : IFormState
         context.Controller.CurState?.OnExit();
         context.Renderer.sprite = formData.FormImage;
         context.BoxCollider.size = new Vector2(formData.SizeX, formData.SizeY);
+        context.BoxCollider.offset = new Vector2(formData.OffsetX, formData.OffsetY);
         context.Controller.CurState = this;
     }
 
