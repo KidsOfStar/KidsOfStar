@@ -3,7 +3,10 @@ using UnityEngine;
 public class Managers : Singleton<Managers>
 {
     [field: SerializeField] public SceneLoadManager SceneLoadManager { get; private set; }
-    
+#if UNITY_EDITOR
+    [field: SerializeField] public bool IsDebugMode { get; private set; }
+#endif
+
     public ResourceManager ResourceManager { get; private set; }
     public DataManager DataManager { get; private set; }
     public PoolManager PoolManager { get; private set; }
@@ -11,8 +14,7 @@ public class Managers : Singleton<Managers>
     public SoundManager SoundManager { get; private set; }
     public DialogueManager DialogueManager { get; private set; }
     public GameManager GameManager { get; private set; }
-    
-    public CutSceneManager cutSceneManager { get; private set; }
+    public CutSceneManager CutSceneManager { get; private set; }
 
     protected override void Awake()
     {
@@ -30,7 +32,14 @@ public class Managers : Singleton<Managers>
 		UIManager = new UIManager();
         SoundManager = new SoundManager();
         DialogueManager = new DialogueManager();
-        cutSceneManager = new CutSceneManager();
+        CutSceneManager = new CutSceneManager();
+#if UNITY_EDITOR
+        if (!IsDebugMode) return;
+
+        EditorLog.Log("Debug Mode");
+        SceneLoadManager.DebugMode();
+        OnSceneLoaded();
+#endif
     }
 
     public void OnSceneLoaded()

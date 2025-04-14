@@ -65,4 +65,9 @@ public class SceneLoadManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         SceneManager.UnloadSceneAsync(SceneType.Loading.GetName());
     }
+
+    public void DebugMode()
+    {
+        CurrentScene = SceneType.Chapter01;
+    }
 }
