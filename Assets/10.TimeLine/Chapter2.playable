@@ -36,6 +36,15 @@ AnimationClip:
         inWeight: {x: 0, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
+        time: 5.016667
+        value: {x: 0, y: 180, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
         time: 9
         value: {x: 0, y: 180, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
@@ -377,6 +386,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 4.983333
         value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5.016667
+        value: 180
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1053,10 +1071,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: PlayerWalk
   - m_Version: 1
-    m_Start: 5
-    m_ClipIn: 0
+    m_Start: 5.000000000000004
+    m_ClipIn: 0.000000000000004440892098500626
     m_Asset: {fileID: -2835426354693656694}
-    m_Duration: 4
+    m_Duration: 3.9999999999999956
     m_TimeScale: 1
     m_ParentTrack: {fileID: -3395572733300576860}
     m_EaseInDuration: 0
