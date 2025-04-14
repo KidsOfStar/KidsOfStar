@@ -42,7 +42,7 @@ public class PlayerBtn : UIBase
         dogBtn.onClick.AddListener(OnDog);
         squirrelBtn.onClick.AddListener(OnSquirrel);
 
-        stopBtn.onClick.AddListener(OnStop);
+        stopBtn.onClick.AddListener(OnOptionBtnClick);
         skipBtn.onClick.AddListener(OnSkip);
         interactionBtn.onClick.AddListener(OnInteraction);
 
@@ -155,10 +155,10 @@ public class PlayerBtn : UIBase
     }
 
     // 정지 버튼 클릭 시 게임 일시정지
-    public void OnStop()
+    private void OnOptionBtnClick()
     {
-        Time.timeScale = 0;
         Managers.Instance.UIManager.Show<OptionPopup>();
+        Time.timeScale = 0;
     }
 
     // 스킵 버튼 클릭 시 호출될 메소드 (현재 비어 있음)
