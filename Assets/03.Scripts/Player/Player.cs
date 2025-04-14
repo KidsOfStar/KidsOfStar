@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
         controller = GetComponent<PlayerController>();
         formControl = GetComponent<PlayerFormController>();
 
-        controller.PlayerSc = this;
         formControl.PlayerSc = this;
     }
 

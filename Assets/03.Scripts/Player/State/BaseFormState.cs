@@ -24,7 +24,7 @@ public class BaseFormState : IFormState
 
     public void OnEnter()
     {
-        context.Controller.CurState.OnExit();
+        context.Controller.CurState?.OnExit();
         context.Renderer.sprite = formData.FormImage;
         context.BoxCollider.size = new Vector2(formData.SizeX, formData.SizeY);
         context.Controller.CurState = this;
@@ -49,7 +49,6 @@ public class BaseFormState : IFormState
     {
         if (moveDir != Vector2.up && moveDir != Vector2.down)
         {
-
             if (context.Controller.TryDetectBox(moveDir))
             {
                 IPusher pusher = context.PlayerSc.FormControl;
