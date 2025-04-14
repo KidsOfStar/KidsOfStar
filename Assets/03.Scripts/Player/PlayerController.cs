@@ -110,26 +110,6 @@ public class PlayerController : MonoBehaviour
         // 상태 패턴 구현 후 수정
         curState.OnJump();
     }
-
-    private void WallRatationSet(Vector2 dir)
-    {
-        Vector3 rot;
-
-        if(dir.x > 0)
-        {
-            rot = new Vector3(0, 0, 90);
-        }
-        else if(dir.x < 0)
-        {
-            rot = new Vector3(0, 0, -90);
-        }
-        else
-        {
-            rot = new Vector3(0, 0, transform.rotation.z);
-        }
-
-        transform.rotation = Quaternion.Euler(rot);
-    }
     
     public bool TryDetectBox(Vector2 dir)
     {

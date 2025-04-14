@@ -38,19 +38,16 @@ public class CatFormState : BaseFormState
                 context.Rigid.AddForce(Vector2.up * wallJumpForce, ForceMode2D.Impulse);
                 wallJumping = true;
                 keepRotation = true;
-                //WallRatationSet(dir);
+                //WallRatationSet(context.);
                 //playerSc.FormControl.FlipControl(dir);
-                //StartCoroutine(WallJump());
+                //Invoke.(WallJump);
             }
         }
     }
 
-    IEnumerator WallJump()
+    void WallJump()
     {
-        yield return new WaitForSeconds(stopInputTime);
-
         wallJumping = false;
-        //StartCoroutine(ReturnRotation());
     }
 
     IEnumerator ReturnRotation()
@@ -59,5 +56,25 @@ public class CatFormState : BaseFormState
 
         keepRotation = false;
         //transform.rotation = Quaternion.Euler(Vector3.zero);
+    }
+
+    private void WallRatationSet(Vector2 dir)
+    {
+        Vector3 rot;
+
+        if (dir.x > 0)
+        {
+            rot = new Vector3(0, 0, 90);
+        }
+        else if (dir.x < 0)
+        {
+            rot = new Vector3(0, 0, -90);
+        }
+        else
+        {
+            //rot = new Vector3(0, 0, transform.rotation.z);
+        }
+
+        //transform.rotation = Quaternion.Euler(rot);
     }
 }

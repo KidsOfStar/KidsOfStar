@@ -95,6 +95,20 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         }
     }
 
+    public Dictionary<string, bool> GetFormLock()
+    {
+        Dictionary<string, bool> activeDic =
+            new Dictionary<string, bool>()
+            {
+                {"Squirrel", factory.GetFormState("Squirrel").FormData.IsActive },
+                {"Dog", factory.GetFormState("Dog").FormData.IsActive },
+                {"Cat", factory.GetFormState("Cat").FormData.IsActive },
+                {"Hide", factory.GetFormState("Hide").FormData.IsActive },
+            };
+
+        return activeDic;
+    }
+
     public float GetWeight()
     {
         return controller.CurState.FormData.Weight;
