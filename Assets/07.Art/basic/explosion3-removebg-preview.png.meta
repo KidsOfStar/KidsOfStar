@@ -139,10 +139,10 @@ TextureImporter:
       name: explosion3-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 121
-        width: 55
-        height: 55
+        x: 1
+        y: 10
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,10 +160,10 @@ TextureImporter:
       name: explosion3-removebg-preview_1
       rect:
         serializedVersion: 2
-        x: 62
-        y: 121
-        width: 55
-        height: 55
+        x: 51
+        y: 10
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +181,10 @@ TextureImporter:
       name: explosion3-removebg-preview_2
       rect:
         serializedVersion: 2
-        x: 122
-        y: 121
-        width: 55
-        height: 55
+        x: 101
+        y: 10
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,10 +202,10 @@ TextureImporter:
       name: explosion3-removebg-preview_3
       rect:
         serializedVersion: 2
-        x: 182
-        y: 121
-        width: 55
-        height: 55
+        x: 151
+        y: 10
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,10 +223,10 @@ TextureImporter:
       name: explosion3-removebg-preview_4
       rect:
         serializedVersion: 2
-        x: 242
-        y: 121
-        width: 55
-        height: 55
+        x: 201
+        y: 10
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,6 +236,27 @@ TextureImporter:
       bones: []
       spriteID: 95f8c4a07ad6bc24f923b1a241b81f77
       internalID: -1273323531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosion3-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 10
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e7ab074905396e459570c8dc72305ff
+      internalID: -409711045
       vertices: []
       indices: 
       edges: []
@@ -256,6 +277,7 @@ TextureImporter:
       explosion3-removebg-preview_2: 1033162395
       explosion3-removebg-preview_3: 109512806
       explosion3-removebg-preview_4: -1273323531
+      explosion3-removebg-preview_5: 2143809634
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

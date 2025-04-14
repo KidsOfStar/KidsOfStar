@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47d640f1e63671c489a4c8b38e6a4d6d
+guid: 5c1b3cb93d2c4a848b4081e20ee66acc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 18
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -94,33 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -139,19 +113,19 @@ TextureImporter:
       name: squirrel_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 5
         y: 64
-        width: 13
+        width: 15
         height: 10
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56b7f98a992761a43a2b7f1e091f5c19
-      internalID: -1187302865
+      spriteID: 97ac5f23855c64941aa35b7b88e917b4
+      internalID: -208958448
       vertices: []
       indices: 
       edges: []
@@ -164,15 +138,15 @@ TextureImporter:
         y: 64
         width: 15
         height: 10
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8419ead003b3f141af4ccb9e0038182
-      internalID: -319783695
+      spriteID: 924d0c43e4a06b749b527fef04175e45
+      internalID: 2076127918
       vertices: []
       indices: 
       edges: []
@@ -181,19 +155,19 @@ TextureImporter:
       name: squirrel_2
       rect:
         serializedVersion: 2
-        x: 54
+        x: 53
         y: 64
-        width: 13
+        width: 15
         height: 10
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 279a2d09ec690884b9e2b77d369b9b3a
-      internalID: 1355661056
+      spriteID: d41ae2444207f7f43a3bacd05adf5414
+      internalID: -1724556057
       vertices: []
       indices: 
       edges: []
@@ -206,15 +180,15 @@ TextureImporter:
         y: 32
         width: 15
         height: 12
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74b5052442125f34a9ef7d12132e876d
-      internalID: -294869852
+      spriteID: df97964f44598854fbc60a275d316e31
+      internalID: -326293669
       vertices: []
       indices: 
       edges: []
@@ -230,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      squirrel_0: -1187302865
-      squirrel_1: -319783695
-      squirrel_2: 1355661056
-      squirrel_3: -294869852
+      squirrel_0: -208958448
+      squirrel_1: 2076127918
+      squirrel_2: -1724556057
+      squirrel_3: -326293669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
