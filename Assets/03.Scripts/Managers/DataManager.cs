@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class DataManager
 {
-    private Dictionary<int, DialogData> dialogDatas = new();
+    private readonly Dictionary<int, DialogData> dialogDatas;
     
     public DataManager()
     {
