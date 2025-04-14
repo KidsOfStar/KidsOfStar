@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
@@ -15,7 +12,7 @@ public class CutSceneTest : MonoBehaviour
     [Header("CutSceneData")]
     [SerializeField] private CutSceneData cutSceneData;
 
-    private UnityEvent showDialogEvent;
+    private readonly UnityEvent showDialogEvent = new();
     private int currentIndex = 0;
 
     private void Start()

@@ -11,5 +11,5 @@ public class ChapterData : ScriptableObject
 public class ChapterProgress
 {
     public ChapterType ChapterType;
-    public int[] Progress;
+    public int MaxProgress;
 }

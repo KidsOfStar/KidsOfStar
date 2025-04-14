@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager
@@ -10,9 +12,14 @@ public class GameManager
     public float SfxVolume { get; private set; }
     public float BgmVolume { get; private set; }
 
-    // Play Data
+    // Stage Data
     private readonly Dictionary<ChapterType, int> trustDict = new();
-    public ChapterType CurrentChapter { get; private set; } // TODO: 챕터별 진행사항?
+    private readonly Dictionary<EndingType, bool> endingDict = new();
+    public ChapterType CurrentChapter { get; private set; }
+    public int ChapterProgress { get; private set; }
+    
+    
+    // Play Data
     public Player Player { get; private set; }
 
     public GameManager()
@@ -22,6 +29,7 @@ public class GameManager
 #elif UNITY_ANDROID || UNITY_IOS
         Application.targetFrameRate = 60;
 #endif
+        InitDictionary();
         LoadVolumeSetting();
     }
 
@@ -42,13 +50,54 @@ public class GameManager
         PlayerPrefs.DeleteKey("BgmVolume");
         PlayerPrefs.DeleteKey("SfxVolume");
     }
+
+    // TODO: 이어하기 라면 로드 데이터에서 가져오기
+    private void InitDictionary()
+    {
+        var count = Enum.GetValues(typeof(ChapterType)).Length;
+        for (int i = 0; i < count; i++)
+        {
+            var chapter = (ChapterType)i;
+            trustDict.TryAdd(chapter, 0);
+        }
+        
+        count = Enum.GetValues(typeof(EndingType)).Length;
+        for (int i = 0; i < count; i++)
+        {
+            var ending = (EndingType)i;
+            endingDict.TryAdd(ending, false);
+        }
+    }
+
+    public int[] GetTrustArray()
+    {
+        var count = Enum.GetValues(typeof(ChapterType)).Length;
+        var trustArr = new int[count];
+        for (int i = 0; i < count; i++)
+        {
+            var chapter = (ChapterType)i;
+            trustArr[i] = trustDict[chapter];
+        }
+        
+        return trustArr;
+    }
+    
+    public bool[] GetEndingArray()
+    {
+        var count = Enum.GetValues(typeof(EndingType)).Length;
+        var endingArr = new bool[count];
+        for (int i = 0; i < count; i++)
+        {
+            var ending = (EndingType)i;
+            endingArr[i] = endingDict[ending];
+        }
+        
+        return endingArr;
+    }
     
     public void ModifyTrust(int value)
     {
-        if (trustDict.ContainsKey(CurrentChapter))
-            trustDict[CurrentChapter] = Mathf.Max(0, trustDict[CurrentChapter] + value);
-        else
-            trustDict.Add(CurrentChapter, Mathf.Max(0, value));
+        trustDict[CurrentChapter] += value;
     }
 
     public void SetCamera(Camera camera)

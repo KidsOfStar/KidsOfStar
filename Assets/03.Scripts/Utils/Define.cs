@@ -1,3 +1,6 @@
+using System.IO;
+using UnityEngine;
+
 public static class Define
 {
     // Path
@@ -9,4 +12,9 @@ public static class Define
 
     // Prefab Key
     public const string AudioSourceKey = "AudioSource";
+
+    public static string GetSavePath(string fileName)
+    {
+        return $"{Application.persistentDataPath}/{fileName}";
+    }
 }

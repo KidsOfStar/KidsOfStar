@@ -1,14 +1,10 @@
 using MainTable;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class ModifyTrustAction : IDialogActionHandler
 {
     public void Execute(DialogData playerData)
     {
-        // TODO
-        // Managers.Instance.GameManager.ModifyTrust(playerData.TrustValue);
+        Managers.Instance.GameManager.ModifyTrust(playerData.TrustValue);
         
         if (playerData.NextIndex.Count <= 0)
         {

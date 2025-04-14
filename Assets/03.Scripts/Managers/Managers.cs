@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Managers : Singleton<Managers>
@@ -48,10 +49,15 @@ public class Managers : Singleton<Managers>
         SoundManager.OnSceneLoaded();
         DialogueManager.OnSceneLoaded();
     }
-    
+
     public void OnSceneUnloaded()
     {
         SoundManager.OnSceneUnloaded();
         DialogueManager.OnSceneUnloaded();
+    }
+    
+    public void CoroutineRunner(IEnumerator coroutine)
+    {
+        StartCoroutine(coroutine);
     }
 }
