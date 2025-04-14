@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public interface IWeightable
 {
@@ -39,23 +38,8 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         stateContext = new PlayerStateContext(playerSc, controller, this, spriteRenderer, rb, boxCollider);
         factory = new PlayerFormStateFactory(stateContext, formData);
-        controller.CurState = factory.GetFormState("Human");
-        controller.CurState.OnEnter();
-        //Init();
-        //curFormData = formDataDictionary["Human"];
+        FormChange("Human");
     }
-
-    //void Init()
-    //{
-    //    // 형태의 총 갯수
-    //    int count = formData.PlayerFromDataList.Count;
-
-    //    // 딕셔너리에 옮겨 넣어준다
-    //    for (int i = 0; i < count; i++)
-    //    {
-    //        formDataDictionary.Add(formData.PlayerFromDataList[i].FormName, formData.PlayerFromDataList[i]);
-    //    }
-    //}
 
     private void Update()
     {
@@ -97,11 +81,11 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         IFormState nextState = factory.GetFormState(formName);
 
         if (nextState == null || !nextState.FormData.IsActive 
-            || !controller.IsGround || !controller.IsControllable) return;
+            || (controller.CurState != null && !controller.IsGround) || !controller.IsControllable) return;
 
-        controller.CurState.OnExit();
+        controller.CurState?.OnExit();
         
-        if(formName == controller.CurState.FormData.FormName)
+        if(formName == controller.CurState?.FormData.FormName)
         {
             factory.GetFormState("Human").OnEnter();
         }
@@ -110,33 +94,6 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             nextState.OnEnter();
         }
     }
-
-    // 스프라이트 렌더러 플립
-    //public void FlipControl(Vector2 dir)
-    //{
-    //    if(dir.x > 0)
-    //    {
-    //        if(curFormData.Direction == DefaultDirection.Right)
-    //        {
-    //            spriteRenderer.flipX = false;
-    //        }
-    //        else
-    //        {
-    //            spriteRenderer.flipX = true;
-    //        }
-    //    }
-    //    else if(dir.x < 0)
-    //    {
-    //        if(curFormData.Direction == DefaultDirection.Right)
-    //        {
-    //            spriteRenderer.flipX = true;
-    //        }
-    //        else
-    //        {
-    //            spriteRenderer.flipX = false;
-    //        }
-    //    }
-    //}
 
     public float GetWeight()
     {
