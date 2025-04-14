@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e997cb8075cdca047962b72a79d5406b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 2
+  uiPosition: 0
   joystickBase: {fileID: 5536652328901900013}
   joystickHandle: {fileID: 1843747467731454382}
   sensitivity: 10

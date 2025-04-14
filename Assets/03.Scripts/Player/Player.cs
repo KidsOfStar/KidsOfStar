@@ -17,7 +17,10 @@ public class Player : MonoBehaviour
 
         controller.PlayerSc = this;
         formControl.PlayerSc = this;
+    }
 
+    private void Start()
+    {
         Managers.Instance.GameManager.SetPlayer(this);
     }
 
