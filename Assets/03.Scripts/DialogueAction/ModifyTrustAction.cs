@@ -1,22 +1,19 @@
 using MainTable;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class ModifyTrustAction : IDialogActionHandler
 {
-    public void Execute(DialogData playerData)
+    public void Execute(DialogData dialogData)
     {
-        // TODO
-        // Managers.Instance.GameManager.ModifyTrust(playerData.TrustValue);
-        
-        if (playerData.NextIndex.Count <= 0)
+        var trustValue = int.Parse(dialogData.Param);
+        Managers.Instance.GameManager.ModifyTrust(trustValue);
+
+        if (dialogData.NextIndex.Count <= 0)
         {
             Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             return;
         }
 
-        var nextIndex = playerData.NextIndex[0];
+        var nextIndex = dialogData.NextIndex[0];
         Managers.Instance.DialogueManager.SetCurrentDialogData(nextIndex);
     }
 }

@@ -2,18 +2,13 @@ using UnityEngine.UI;
 
 public class WarningStartTop : TopBase
 {
-    public Button closeBtn;
     public Button appltBtn;
-    void Start()
+    protected override void Start()
     {
-        closeBtn.onClick.AddListener(OnClickClose);
+        base.Start();
         appltBtn.onClick.AddListener(NextSence);
     }
 
-    //public override void Opened(params object[] param)
-    //{
-    //    ShowTopTitle("경고창");
-    //}
     public override void HideDirect()
     {
         gameObject.SetActive(false);

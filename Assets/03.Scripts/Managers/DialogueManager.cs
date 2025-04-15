@@ -12,7 +12,7 @@ public class DialogueManager : ISceneLifecycleHandler
 
     private DialogData currentDialogData;
     private UITextBubble textBubble;
-    
+
     public Action OnClick { get; set; }
     public Action OnDialogEnd { get; set; }
     private bool isCutScene;
@@ -23,6 +23,8 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.ShowSelect] = new ShowSelectAction();
         dialogActionHandlers[DialogActionType.ModifyTrust] = new ModifyTrustAction();
         dialogActionHandlers[DialogActionType.DataSave] = new DataSaveAction();
+        dialogActionHandlers[DialogActionType.PlayCutScene] = new PlayCutSceneAction();
+        dialogActionHandlers[DialogActionType.LoadScene] = new LoadSceneAction();
     }
 
     public void InitSceneNPcs(NPC[] npcs)
@@ -72,7 +74,7 @@ public class DialogueManager : ISceneLifecycleHandler
 
         var localPos = WorldToCanvasPosition(bubblePos);
         var formattedDialog = dialog.Replace("\\n", "\n");
-        
+
         textBubble.SetActive(true);
         textBubble.SetDialog(formattedDialog, localPos);
     }
@@ -96,13 +98,20 @@ public class DialogueManager : ISceneLifecycleHandler
     private Vector2 WorldToCanvasPosition(Vector3 worldPos)
     {
         var cam = Managers.Instance.GameManager.MainCamera;
+#if UNITY_EDITOR
+        if (Managers.Instance.IsDebugMode && !cam)
+        {
+            cam = Camera.main;
+            Managers.Instance.GameManager.SetCamera(cam);
+        }
+#endif
         var screenPos = cam.WorldToScreenPoint(worldPos);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
                                                                 Managers.Instance.UIManager.CanvasRectTr,
                                                                 screenPos, null,
                                                                 out var localPos
                                                                );
-        
+
         return localPos;
     }
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 // 풀 생성, npc 넘겨주기 등 씬 초기화에 필요한 작업들을 담당
 public class SceneBase : MonoBehaviour
@@ -14,6 +15,9 @@ public class SceneBase : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
     
+    [Header("Events")]
+    [SerializeField] protected UnityEvent onLoadComplete;
+    
     protected virtual void Awake()
     {
         Managers.Instance.GameManager.SetCamera(mainCamera);
@@ -22,15 +26,18 @@ public class SceneBase : MonoBehaviour
         PlayerUI();
     }
 
-    protected virtual void PlayerUI()
+    protected void PlayerUI()
     {
         Managers.Instance.UIManager.Show<PlayerBtn>();
         Managers.Instance.UIManager.Show<UIJoystick>();
-
     }
+    
     protected void SpawnPlayer()
     {
-        GameObject player = Instantiate(playerPrefab, playerSpawnPosition.position, Quaternion.identity);
+        var gameManager = Managers.Instance.GameManager;
+        Vector3 playerPosition = gameManager.IsNewGame ? playerSpawnPosition.position : gameManager.PlayerPosition;
+            
+        GameObject player = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
         Managers.Instance.GameManager.SetPlayer(player.GetComponent<Player>());
     }
 }

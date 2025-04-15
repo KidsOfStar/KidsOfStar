@@ -29,7 +29,6 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     private FormData curFormData;
     public FormData CurFormData { get { return  curFormData; } }
 
-
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();

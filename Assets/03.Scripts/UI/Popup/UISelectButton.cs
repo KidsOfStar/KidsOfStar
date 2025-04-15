@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISelectButton : UIBase
+public class UISelectButton : PopupBase
 {
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI selectionText;

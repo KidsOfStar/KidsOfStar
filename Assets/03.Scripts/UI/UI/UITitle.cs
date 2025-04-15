@@ -22,7 +22,9 @@ public class UITitle : UIBase
     private void OnLoadBtnClick()
     {
         // 로드 Popup 띄우기
-         Managers.Instance.UIManager.Show<SaveLoadPopup>();
+        Managers.Instance.UIManager.Show<LoadPopup>();
+        //Managers.Instance.UIManager.Show<SavePopup>();
+
     }
 
     private void OnOptionBtnClick()
