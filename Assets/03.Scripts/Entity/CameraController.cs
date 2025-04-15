@@ -14,6 +14,10 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         if (!target) return;
+        #if UNITY_EDITOR
+        if (Managers.Instance.IsDebugMode && !target)
+            target = Managers.Instance.GameManager.Player.transform;
+        #endif
 
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed * Time.deltaTime);
