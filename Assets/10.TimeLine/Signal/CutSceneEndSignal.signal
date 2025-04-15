@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff1a2304aca9604190ae23debccef2f, type: 3}
-  m_Name: ChapterData
+  m_Script: {fileID: 11500000, guid: d6fa2d92fc1b3f34da284357edf89c3b, type: 3}
+  m_Name: CutSceneEndSignal
   m_EditorClassIdentifier: 
-  ChapterProgresses:
-  - ChapterType: 0
-    MaxProgress: 4
-  - ChapterType: 1
-    MaxProgress: 5
-  - ChapterType: 2
-    MaxProgress: 4
