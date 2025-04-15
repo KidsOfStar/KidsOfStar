@@ -33,4 +33,14 @@ public static class Extensions
             _                     => throw new ArgumentOutOfRangeException(nameof(chapterType), chapterType, null)
         };
     }
+    
+    public static string GetName(this Difficulty difficulty)
+    {
+        return difficulty switch
+        {
+            Difficulty.Easy => "Easy",
+            Difficulty.Hard => "Hard",
+            _               => throw new ArgumentOutOfRangeException(nameof(difficulty), difficulty, null)
+        };
+    }
 }

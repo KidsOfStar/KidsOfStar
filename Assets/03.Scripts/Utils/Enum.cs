@@ -53,6 +53,12 @@ public enum ChapterType
     Chapter03,
 }
 
+public enum Difficulty
+{
+    Easy,
+    Hard,
+}
+
 public enum EndingType
 {
     // 임시 (나중에 기획자님이 이름 지어주실 예정임)
