@@ -11,10 +11,11 @@ public class Managers : Singleton<Managers>
     public ResourceManager ResourceManager { get; private set; }
     public DataManager DataManager { get; private set; }
     public PoolManager PoolManager { get; private set; }
+    public GameManager GameManager { get; private set; }
     public UIManager UIManager { get; private set; }
     public SoundManager SoundManager { get; private set; }
     public DialogueManager DialogueManager { get; private set; }
-    public GameManager GameManager { get; private set; }
+    public SaveManager SaveManager { get; private set; }
     public CutSceneManager CutSceneManager { get; private set; }
 
     protected override void Awake()
@@ -33,6 +34,7 @@ public class Managers : Singleton<Managers>
 		UIManager = new UIManager();
         SoundManager = new SoundManager();
         DialogueManager = new DialogueManager();
+        SaveManager = new SaveManager();
         CutSceneManager = new CutSceneManager();
 #if UNITY_EDITOR
         if (!IsDebugMode) return;

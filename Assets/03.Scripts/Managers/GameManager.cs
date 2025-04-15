@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager
@@ -11,6 +10,7 @@ public class GameManager
     public Camera MainCamera { get; private set; }
     public float SfxVolume { get; private set; }
     public float BgmVolume { get; private set; }
+    public bool IsNewGame { get; private set; } = true;
 
     // Stage Data
     private readonly Dictionary<ChapterType, int> trustDict = new();
@@ -18,8 +18,8 @@ public class GameManager
     public ChapterType CurrentChapter { get; private set; }
     public int ChapterProgress { get; private set; }
     
-    
     // Play Data
+    public Vector3 PlayerPosition { get; private set; } = Vector3.zero;
     public Player Player { get; private set; }
 
     public GameManager()
@@ -45,13 +45,6 @@ public class GameManager
         SfxVolume = PlayerPrefs.GetFloat("SfxVolume", 0.7f);
     }
 
-    public void DeleteVolumeSetting()
-    {
-        PlayerPrefs.DeleteKey("BgmVolume");
-        PlayerPrefs.DeleteKey("SfxVolume");
-    }
-
-    // TODO: 이어하기 라면 로드 데이터에서 가져오기
     private void InitDictionary()
     {
         var count = Enum.GetValues(typeof(ChapterType)).Length;
@@ -67,6 +60,19 @@ public class GameManager
             var ending = (EndingType)i;
             endingDict.TryAdd(ending, false);
         }
+    }
+
+    public void SetLoadData(SaveData saveData)
+    {
+        IsNewGame = false;
+        CurrentChapter = (ChapterType)saveData.chapter;
+        ChapterProgress = saveData.chapterProgress;
+        PlayerPosition = saveData.playerPosition;
+        
+        for (int i = 0; i < saveData.chapterTrust.Length; i++)
+            trustDict[(ChapterType)i] = saveData.chapterTrust[i];
+        for (int i = 0; i < saveData.endingDatas.Length; i++)
+            endingDict[(EndingType)i] = saveData.endingDatas[i];
     }
 
     public int[] GetTrustArray()

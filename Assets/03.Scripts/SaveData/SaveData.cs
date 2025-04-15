@@ -8,38 +8,35 @@ using UnityEngine.Networking;
 public class SaveData
 {
     // 저장할 때 이름 : 챕터 + 날짜 + 시간
-    
     // 현재 챕터, 현재 챕터 진행도
     // 플레이어 위치
     // 챕터 신뢰도
     // 형태변환 해금 진행도
     // 지금까지 본 엔딩
 
-    private int chapter;
-    private int chapterProgress;
-    private Vector3 playerPosition;
-    private int[] chapterTrust;
-    private bool[] endingDatas;
-
-    public void Save(Action<string> onComplete)
-    {
-        Managers.Instance.CoroutineRunner(FetchInternetTime((result) =>
-        {
-            onComplete?.Invoke(result);
-        }));
-    }
+    public string timeStamp;
+    public int chapter;
+    public int chapterProgress;
+    public Vector3 playerPosition;
+    public int[] chapterTrust;
+    public bool[] endingDatas;
 
     public void InitData()
     {
         var gameManager = Managers.Instance.GameManager;
         chapter = (int)gameManager.CurrentChapter;
         chapterProgress = gameManager.ChapterProgress;
-        playerPosition = gameManager.Player.transform.position;
+        playerPosition = gameManager.PlayerPosition;
         chapterTrust = gameManager.GetTrustArray();
         endingDatas = gameManager.GetEndingArray();
     }
-    
-    private IEnumerator FetchInternetTime(Action<string> onFetched)
+
+    public void LoadData()
+    {
+        Managers.Instance.GameManager.SetLoadData(this);
+    }
+
+    public IEnumerator FetchInternetTime(Action onFetched)
     {
         DateTime internetTime = DateTime.Now;
 
@@ -53,15 +50,8 @@ public class SaveData
         }
 
         var chapterName = ((ChapterType)chapter).GetName();
-        string timestamp = internetTime.ToString("yy-MM-dd HH:mm:ss");
-        string result = $"{chapterName}. {timestamp}";
-        onFetched?.Invoke(result);
+        var result = internetTime.ToString("yy-MM-dd HH:mm:ss");
+        timeStamp = $"{chapterName}. {result}";
+        onFetched?.Invoke();
     }
-}
-
-[Serializable]
-public class EndingData
-{
-    public int endingIndex;
-    public bool isCleared;
 }
