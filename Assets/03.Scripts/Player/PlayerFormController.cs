@@ -16,6 +16,7 @@ public interface IPusher
 public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
 {
     [SerializeField, Tooltip("형태변환 데이터 모음집")] private PlayerFormData formData;
+    private Dictionary<string, FormData> formDataDictionary = new Dictionary<string, FormData>();
 
     private Player playerSc;
     public Player PlayerSc
@@ -25,22 +26,21 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     private PlayerController controller;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
-    private PlayerStateContext stateContext;
-    private PlayerFormStateFactory factory;
+    private FormData curFormData;
+    public FormData CurFormData { get { return  curFormData; } }
 
 
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
+        SetFormData();
     }
 
     void Start()
     {
         controller = playerSc.Controller;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        stateContext = new PlayerStateContext(playerSc, controller, this, spriteRenderer, rb, boxCollider);
-        factory = new PlayerFormStateFactory(stateContext, formData);
         FormChange("Human");
     }
 
@@ -50,23 +50,23 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         // 나중에 지울 것
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (controller.CurState is StoneFormState)
+            if (curFormData.FormName == "Stone")
             {
                 FormChange("Human");
             }
-            else if (controller.CurState is HumanFormState)
+            else if (curFormData.FormName == "Human")
             {
                 FormChange("Squirrel");
             }
-            else if (controller.CurState is SquirrelFormState)
+            else if (curFormData.FormName == "Squirrel")
             {
                 FormChange("Dog");
             }
-            else if (controller.CurState is DogFormState)
+            else if (curFormData.FormName == "Dog")
             {
                 FormChange("Cat");
             }
-            else if (controller.CurState is CatFormState)
+            else if (curFormData.FormName == "Cat")
             {
                 FormChange("Hide");
             }
@@ -77,36 +77,52 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         }
     }
 
+    void SetFormData()
+    {
+        for(int i = 0; i < formData.PlayerFromDataList.Count; i++)
+        {
+            formDataDictionary.Add(formData.PlayerFromDataList[i].FormName, formData.PlayerFromDataList[i]);
+        }
+    }
+
     // 형태변화 함수
     // 플레이어 캐릭터의 여러 속성을 변경해준다
     public void FormChange(string formName)
     {
-        IFormState nextState = factory.GetFormState(formName);
+        FormData nextFormData = formDataDictionary[formName];
 
-        if (nextState == null || !nextState.FormData.IsActive 
-            || (controller.CurState != null && !controller.IsGround) || !controller.IsControllable) return;
-
-        controller.CurState?.OnExit();
+        if (nextFormData == null || !nextFormData.IsActive 
+            || (curFormData != null && !controller.IsGround) || !controller.IsControllable) return;
         
-        if(formName == controller.CurState?.FormData.FormName)
+        if(curFormData == null || formName == curFormData.FormName)
         {
-            factory.GetFormState("Human").OnEnter();
+            curFormData = formDataDictionary["Human"];
         }
         else
         {
-            nextState.OnEnter();
+            curFormData = nextFormData;
         }
+
+        spriteRenderer.sprite = curFormData.FormImage;
+        boxCollider.offset = new Vector2(curFormData.OffsetX, curFormData.OffsetY);
+        boxCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
+        controller.JumpForce = curFormData.JumpForce;
     }
 
-    public void InvokeAfter(float delay, Action action)
+    // 스프라이트 렌더러 플립
+    public void FlipControl(Vector2 dir)
     {
-        StartCoroutine(InvokeCoroutine(delay, action));
-    }
-
-    private IEnumerator InvokeCoroutine(float delay, Action action)
-    {
-        yield return new WaitForSeconds(delay);
-        action?.Invoke();
+        if (dir != Vector2.zero)
+        {
+            if (curFormData.Direction == DefaultDirection.Right)
+            {
+                spriteRenderer.flipX = dir.x < 0;
+            }
+            else
+            {
+                spriteRenderer.flipX = dir.x > 0;
+            }
+        }
     }
 
     public Dictionary<string, bool> GetFormLock()
@@ -114,10 +130,10 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         Dictionary<string, bool> activeDic =
             new Dictionary<string, bool>()
             {
-                {"Squirrel", factory.GetFormState("Squirrel").FormData.IsActive },
-                {"Dog", factory.GetFormState("Dog").FormData.IsActive },
-                {"Cat", factory.GetFormState("Cat").FormData.IsActive },
-                {"Hide", factory.GetFormState("Hide").FormData.IsActive },
+                {"Squirrel", formDataDictionary["Squirrel"].IsActive },
+                {"Dog", formDataDictionary["Dog"].IsActive },
+                {"Cat", formDataDictionary["Cat"].IsActive },
+                {"Hide", formDataDictionary["Hide"].IsActive },
             };
 
         return activeDic;
@@ -125,11 +141,11 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
 
     public float GetWeight()
     {
-        return controller.CurState.FormData.Weight;
+        return curFormData.Weight;
     }
 
     public float GetPushPower()
     {
-        return controller.CurState.FormData.Force;
+        return curFormData.Force;
     }
 }

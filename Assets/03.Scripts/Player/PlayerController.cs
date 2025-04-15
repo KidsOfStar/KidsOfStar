@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,8 +20,10 @@ public class PlayerController : MonoBehaviour
         get { return jumpForce; }
         set { jumpForce = value; }
     }
-    
+
+    private Player player;
     private BoxCollider2D boxCollider;
+    private Rigidbody2D rigid;
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
@@ -42,13 +45,9 @@ public class PlayerController : MonoBehaviour
         get { return isControllable; }
         set { isControllable = value; }
     }
-
-    private IFormState curState;
-    public IFormState CurState
-    {
-        get { return curState; }
-        set { curState = value; }
-    }
+    // 점프키가 눌렸는지를 판단
+    private bool jumpKeyPressed = false;
+    public bool JumpKeyPressed { get { return jumpKeyPressed; } }
 
     [Header("Push")]
     [SerializeField, Tooltip("플레이어 앞 박스를 감지할 거리")]
@@ -65,16 +64,18 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+    }
+
+    public void Init(Player player)
+    {
+        this.player = player;
     }
 
     private void Update()
     {
         GroundCheck();
-        if (curState != null)
-        {
-            curState.OnMove(moveDir, moveSpeed);
-        }
     }
 
     void GroundCheck()
@@ -98,18 +99,61 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Move()
+    {
+        if (moveDir != Vector2.up && moveDir != Vector2.down)
+        {
+            if (TryDetectBox(moveDir))
+            {
+                IPusher pusher = player.FormControl;
+                float pushPower = pusher.GetPushPower();
+                float objWeight = this.objWeight.GetWeight();
+                float pushSpeed = (pushPower / objWeight) * moveSpeed;
+                //미는 속도 = 미는 힘 / 무게 * 이동속도
+                pushSpeed = Mathf.Min(pushSpeed, moveSpeed);
+                // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
+
+                Vector2 velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
+                rigid.velocity = velocity;
+
+                this.objRigid.velocity = velocity;
+            }
+            else
+            {
+                Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
+                rigid.velocity = playervelocity;
+            }
+
+            player.FormControl.FlipControl(moveDir);
+        }
+    }
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if(context.phase == InputActionPhase.Started)
         {
             Jump();
+            jumpKeyPressed = true;
         }
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            Invoke("JumpKeyPressdeOff", 0.1f);
+        }
+    }
+
+    void JumpKeyPressdeOff()
+    {
+        jumpKeyPressed = false;
     }
 
     public void Jump()
     {
-        // 상태 패턴 구현 후 수정
-        curState.OnJump();
+        if (!isControllable) return;
+
+        if (isGround)
+        {
+            rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
     }
 
     private void WallRatationSet(Vector2 dir)
