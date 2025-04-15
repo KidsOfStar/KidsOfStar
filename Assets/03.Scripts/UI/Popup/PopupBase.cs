@@ -14,7 +14,6 @@ public class PopupBase : UIBase
             closeBtn.onClick.AddListener(Close);
         }
     }
-
     public virtual void Close()
     {
         if (resumeTimeOnClose && Time.timeScale == 0)

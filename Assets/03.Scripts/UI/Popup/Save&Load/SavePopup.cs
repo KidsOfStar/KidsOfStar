@@ -1,5 +1,3 @@
-using UnityEditor;
-
 public class SavePopup : BaseSaveLoadPopup
 {
     protected override void Start()
@@ -12,9 +10,5 @@ public class SavePopup : BaseSaveLoadPopup
     {
         var saveTop = Managers.Instance.UIManager.Show<SaveTop>();
         saveTop.SetUp(slotIndex, slot);
-        //Managers.Instance.SaveManager.Save(slotIndex, (saveName) =>
-        //{ 
-        //    slot.UpdateSlotname(slotIndex, saveName);   // 저장 슬롯 업데이트
-        //});
     }
 }
