@@ -11,4 +11,8 @@ public class Chapter01 : SceneBase
         // SceneLoadManager의 완료 상태를 설정
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
     }
+    private void Start()
+    {
+        Managers.Instance.CutSceneManager.PlayCutScene("Intro");
+    }
 }

@@ -1,107 +1,47 @@
 using Cinemachine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 
-public class CutSceneManager : ISceneLifecycleHandler
+public class CutSceneManager
 {
-    private PlayableDirector director;
-    private List<CinemachineVirtualCamera> vCams = new();
+    private CutSceneBase cutSceneBase;
 
-    private Dictionary<string, PlayableAsset> cutsceneTable = new();
-    private Dictionary<string, string> sceneToCutscene = new();
+    [Header("CutSceneData")]
+    [SerializeField] private CutSceneData cutSceneData;
 
-    private HashSet<string> playedCutscenes = new();
+    private readonly UnityEvent showDialogEvent = new();
+    private int currentIndex = 0;
 
-    // Director를 연결해주는 메서드
-    public void SetDirector(PlayableDirector pd)
+    public void SetCutSceneBase(CutSceneBase cutScene)
     {
-        director = pd;
+        this.cutSceneBase = cutScene;
     }
-
-    // 카메라를 설정하는 메서드
-    public void SetVirtualCam(IEnumerable<CinemachineVirtualCamera> cameras)
+    public void PlayCutScene(string cutsceneName)
     {
-        vCams.Clear();
-        vCams.AddRange(cameras);  // 리스트에 여러개의 값을 한번에 추가
-    }
+        string prefabPath = $"CutScenes/{cutsceneName}";
+        var prefab = Resources.Load<GameObject>(prefabPath);
 
-    // 컷씬을 등록해주는 메서드 
-    public void RegisterCutScene(string name, PlayableAsset asset)
-    {
-        cutsceneTable[name] = asset;
-    }
-
-    // 
-    public void MapSceneToCutScene(string sceneName, string cutsceneName)
-    {
-        sceneToCutscene[sceneName] = cutsceneName;
-    }
-
-    public void PlayCutScene(string cutsceneName, Action onEnd = null)
-    {
-        if(director == null)
+        if (prefab == null)
         {
-            EditorLog.Log("Playable Director is not assigned");
-            return;
-        }
-        if(!cutsceneTable.TryGetValue(cutsceneName, out var asset))
-        {
-            EditorLog.Log($"CutScene {cutsceneName} is not assigned");
+            EditorLog.Log($"컷씬 프리팹이 없습니다: {prefabPath}");
             return;
         }
 
-        director.playableAsset = asset;
-        director.Play(asset);
+        var instance = GameObject.Instantiate(prefab);
+        
 
-        if(onEnd != null)
+        // CutSceneBase 찾기 및 등록
+        var baseComp = instance.GetComponentInChildren<CutSceneBase>();
+        if (baseComp != null)
         {
-            director.stopped += HandleOnCutsceneEnd;
+            SetCutSceneBase(baseComp);
         }
 
-        void HandleOnCutsceneEnd(PlayableDirector pd) 
-        {
-            onEnd?.Invoke();
-            director.stopped -= HandleOnCutsceneEnd;
-        }
+        // PlayableDirector 찾기 및 등록
+        var director = baseComp.Director;
+        director.Play();
     }
-
-    private void DeactivateAllvCam()
-    {
-        foreach(var vcam in vCams)
-        {
-            vcam.gameObject.SetActive(false);
-        }
-    }
-
-    public void OnSceneLoaded()
-    {
-        DeactivateAllvCam();
-
-        string sceneName = Managers.Instance.SceneLoadManager.CurrentScene.GetName();
-
-        if (sceneToCutscene.TryGetValue(sceneName, out string cutsceneName))
-        {
-            if (playedCutscenes.Contains(cutsceneName))
-                return;
-        }
-        PlayCutScene(cutsceneName, () =>
-        {
-            playedCutscenes.Add(cutsceneName);
-        });
-    }
-
-    public void OnSceneUnloaded()
-    {
-        DeactivateAllvCam();
-        director = null;
-        vCams.Clear();
-    }
-
-    public bool HasMappedCutScene(string sceneName, out string cutsceneName)
-    {
-        return sceneToCutscene.TryGetValue(sceneName, out cutsceneName);
-    }
-
 }

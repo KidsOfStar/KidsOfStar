@@ -1,38 +1,43 @@
+
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class CutSceneTest : MonoBehaviour
+public class CutSceneBase : MonoBehaviour
 {
     [SerializeField] private PlayableDirector director;
+    public PlayableDirector Director => director;
     [SerializeField] private SignalReceiver signalReceiver;
     [SerializeField] private SignalAsset dialogSignal;
-    
+    [SerializeField] private SignalAsset destroySignal;
+
     [Header("CutSceneData")]
     [SerializeField] private CutSceneData cutSceneData;
 
     private readonly UnityEvent showDialogEvent = new();
+    private readonly UnityEvent destroyEvent = new();
     private int currentIndex = 0;
 
     private void Start()
     {
-        Managers.Instance.DialogueManager.InitCutSceneNPcs(cutSceneData.Npcs);
+        if (cutSceneData.Npcs != null)
+        {
+            Managers.Instance.DialogueManager.InitCutSceneNPcs(cutSceneData.Npcs);
+        }
         Managers.Instance.DialogueManager.OnDialogEnd += ResumeCutScene;
-        
+
         showDialogEvent.AddListener(ShowDialog);
         signalReceiver.AddReaction(dialogSignal, showDialogEvent);
+        destroyEvent.AddListener(DestroyPrefab);
+        signalReceiver.AddReaction(destroySignal, destroyEvent);
     }
 
-    private void Update()
+    public void Play(string cutsceneName, int dialogStartIndex)
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            currentIndex = 0;
-            director.Play();
-        }
+        director.Play();
     }
-    
+
     public void ShowDialog()
     {
         director.Pause();
@@ -40,9 +45,15 @@ public class CutSceneTest : MonoBehaviour
         Managers.Instance.DialogueManager.SetCurrentDialogData(index);
         currentIndex++;
     }
-    
-    private void ResumeCutScene()
+
+    public void ResumeCutScene()
     {
         director.Resume();
+    }
+
+    public void DestroyPrefab()
+    {
+        Destroy(gameObject);
+
     }
 }
