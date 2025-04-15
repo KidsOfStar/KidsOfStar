@@ -335,6 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterType>k__BackingField: 14
   <BubblePos>k__BackingField: {fileID: 4675802074167746736}
+  cutScene: {fileID: 0}
 --- !u!1 &2782138302474631670
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterType>k__BackingField: 4
   <BubblePos>k__BackingField: {fileID: 4158969128571810430}
+  cutScene: {fileID: 0}
 --- !u!1 &6138413751385295496
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +665,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 27f5037ce49c8954795f891db8588c9b, type: 2}
   m_InitialState: 0
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
@@ -953,6 +955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterType>k__BackingField: 3
   <BubblePos>k__BackingField: {fileID: 2450876390655459718}
+  cutScene: {fileID: 0}
 --- !u!1 &6635816817195962398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterType>k__BackingField: 0
   <BubblePos>k__BackingField: {fileID: 4424158420865523704}
+  cutScene: {fileID: 0}
 --- !u!1 &6649039704809000165
 GameObject:
   m_ObjectHideFlags: 0

@@ -60,7 +60,7 @@ namespace MainTable
 		public CharacterType Character;
 		public DialogActionType DialogType;
 		public System.Collections.Generic.List<String> SelectOption;
-		public System.Int32 TrustValue;
+		public System.String Param;
 		public System.Collections.Generic.List<Int32> NextIndex;
 		public System.String DialogValue;
   

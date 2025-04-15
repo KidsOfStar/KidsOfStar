@@ -27,6 +27,7 @@ public enum DialogActionType
     ShowSelect,
     DataSave,
     ModifyTrust,
+    PlayCutScene,
 }
 
 public enum SoundType
@@ -61,9 +62,16 @@ public enum Difficulty
 
 public enum EndingType
 {
-    // 임시 (나중에 기획자님이 이름 지어주실 예정임)
-    Ending01,
-    Ending02,
+    ComfortableLife,
+    WinRecognition,
+    DreamingCat,
+    IntroTheOcean,
+    DifferentButSame,
+}
+
+public enum CutSceneType
+{
+    Intro,
 }
 
 public enum UIPosition
