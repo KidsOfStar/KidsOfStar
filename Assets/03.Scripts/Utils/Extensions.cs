@@ -38,12 +38,12 @@ public static class Extensions
     {
         return endingType switch
         {
-            EndingType.ComfortableLife => "안락한 일상",
-            EndingType.WinRecognition  => "쟁취한 인정",
-            EndingType.DreamingCat     => "낭만 고양이",
-            EndingType.IntroTheOcean   => "드넓은 바다로",
+            EndingType.ComfortableLife  => "안락한 일상",
+            EndingType.WinRecognition   => "쟁취한 인정",
+            EndingType.DreamingCat      => "낭만 고양이",
+            EndingType.IntroTheOcean    => "드넓은 바다로",
             EndingType.DifferentButSame => "같지만 다르게",
-            _                          => throw new ArgumentOutOfRangeException(nameof(endingType), endingType, null)
+            _                           => throw new ArgumentOutOfRangeException(nameof(endingType), endingType, null)
         };
     }
     
@@ -51,8 +51,9 @@ public static class Extensions
     {
         return cutSceneType switch
         {
-            CutSceneType.Intro => "Intro",
-            _                  => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
+            CutSceneType.Intro     => "Intro",
+            CutSceneType.Chapter02 => "Chapter2",
+            _                      => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }
     
