@@ -42,6 +42,7 @@ public class CutSceneManager
 
         // PlayableDirector 찾기 및 등록
         var director = baseComp.Director;
+        //director.playableGraph.GetRootPlayable(0).SetSpeed(0);
         director.Play();
     }
 }

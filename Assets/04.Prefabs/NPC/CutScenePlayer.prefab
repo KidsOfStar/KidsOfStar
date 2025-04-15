@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CharacterType>k__BackingField: 14
-  <BubblePos>k__BackingField: {fileID: 0}
+  <BubblePos>k__BackingField: {fileID: 3060673412638581389}
 --- !u!1 &3399676840483161090
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,8 +40,9 @@ public class CutSceneBase : MonoBehaviour
 
     public void ShowDialog()
     {
-        director.Evaluate();
-        director.Pause();
+        //director.Evaluate();
+        //director.Pause();
+        director.playableGraph.GetRootPlayable(0).SetSpeed(0);
         var index = cutSceneData.DialogIndexes[currentIndex];
         Managers.Instance.DialogueManager.SetCurrentDialogData(index);
         currentIndex++;
@@ -49,6 +50,8 @@ public class CutSceneBase : MonoBehaviour
 
     public void ResumeCutScene()
     {
+        director.playableGraph.GetRootPlayable(0).SetSpeed(1);
+
         director.Resume();
     }
 
