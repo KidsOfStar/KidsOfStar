@@ -22,4 +22,15 @@ public static class Extensions
             _                   => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
         };
     }
+    
+    public static string GetName(this ChapterType chapterType)
+    {
+        return chapterType switch
+        {
+            ChapterType.Chapter01 => "Chapter1",
+            ChapterType.Chapter02 => "Chapter2",
+            ChapterType.Chapter03 => "Chapter3",
+            _                     => throw new ArgumentOutOfRangeException(nameof(chapterType), chapterType, null)
+        };
+    }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChapterProgresses:
   - ChapterType: 0
-    Progress: 00000000000000000000000000000000
+    MaxProgress: 4
   - ChapterType: 1
-    Progress: 
+    MaxProgress: 5
   - ChapterType: 2
-    Progress: 
+    MaxProgress: 4
