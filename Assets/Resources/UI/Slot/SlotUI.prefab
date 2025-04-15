@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3214726338181050051}
   - component: {fileID: 7470243417941218354}
   - component: {fileID: 309364303979518670}
-  - component: {fileID: 107908121970375756}
+  - component: {fileID: 2120836534213323652}
   m_Layer: 5
-  m_Name: SaveLoadSlot
+  m_Name: SlotUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &107908121970375756
+--- !u!114 &2120836534213323652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,11 +159,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2641697737823528580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 741ca127e309fa747b59e5308c4b252c, type: 3}
+  m_Script: {fileID: 11500000, guid: f371f1bd2d0e00f429721083383d849e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadSlootName: {fileID: 4342756467198412029}
-  loadSlootData: {fileID: 9157760618783869642}
+  slotName: {fileID: 4342756467198412029}
 --- !u!1 &4532307082722072877
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +175,7 @@ GameObject:
   - component: {fileID: 1379968372079687956}
   - component: {fileID: 4342756467198412029}
   m_Layer: 5
-  m_Name: LoadSlotName
+  m_Name: SlotName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

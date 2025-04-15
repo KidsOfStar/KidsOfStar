@@ -24,7 +24,7 @@ public class SaveManager
         }));
     }
 
-    public void Load(int index, string timeStamp)
+    public void Load(int index)
     {
         var path = GetSavePath(index);
         if (!File.Exists(path))
