@@ -37,7 +37,7 @@ MonoBehaviour:
     direction: 0
   - formName: Squirrel
     formImage: {fileID: -319783695, guid: 47d640f1e63671c489a4c8b38e6a4d6d, type: 3}
-    jumpForce: 6
+    jumpForce: 8
     offsetX: 0
     offsetY: 0.3
     sizeX: 0.3
