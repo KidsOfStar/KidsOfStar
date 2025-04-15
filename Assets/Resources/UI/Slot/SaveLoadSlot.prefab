@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 309364303979518670}
   - component: {fileID: 107908121970375756}
   m_Layer: 5
-  m_Name: LoadSlot
+  m_Name: SaveLoadSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1379968372079687956
 CanvasRenderer:
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1\uBC88 \uC2AC\uB86F"
+  m_text: "1\uBC88 \uC2AC\uB86F [Easy] Chapter01 25-03-22 14.14.38"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ef8ade7b327847a43b90050c3daadee9, type: 2}
   m_sharedMaterial: {fileID: -5283566785530584950, guid: ef8ade7b327847a43b90050c3daadee9, type: 2}
@@ -315,7 +315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2559479592697586177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 50}
+  m_SizeDelta: {x: 620, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8858526238593101152
 CanvasRenderer:
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chapter1 25-03-224 14.14.38
+  m_text: '[Easy] Chapter01 25-03-22 14.14.38'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ef8ade7b327847a43b90050c3daadee9, type: 2}
   m_sharedMaterial: {fileID: -5283566785530584950, guid: ef8ade7b327847a43b90050c3daadee9, type: 2}
