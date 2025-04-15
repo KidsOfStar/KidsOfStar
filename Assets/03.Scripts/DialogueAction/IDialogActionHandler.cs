@@ -5,21 +5,20 @@ using UnityEngine;
 
 public interface IDialogActionHandler
 {
-    // TODO: PlayerData -> DialogData
-    void Execute(DialogData playerData);
+    void Execute(DialogData dialogData);
 }
 
 public class NoneAction : IDialogActionHandler
 {
-    public void Execute(DialogData playerData)
+    public void Execute(DialogData dialogData)
     {
-        if (playerData.NextIndex.Count <= 0)
+        if (dialogData.NextIndex.Count <= 0)
         {
             Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             return;
         }
 
-        var nextIndex = playerData.NextIndex[0];
+        var nextIndex = dialogData.NextIndex[0];
         Managers.Instance.DialogueManager.SetCurrentDialogData(nextIndex);
     }
 }

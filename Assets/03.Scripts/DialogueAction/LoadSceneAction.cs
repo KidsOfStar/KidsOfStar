@@ -1,16 +1,16 @@
 using MainTable;
 using System;
 
-public class PlayCutSceneAction : IDialogActionHandler
+public class LoadSceneAction : IDialogActionHandler
 {
     public void Execute(DialogData dialogData)
     {
-        if (!Enum.TryParse<CutSceneType>(dialogData.Param, out var cutScene))
+        if (!Enum.TryParse<SceneType>(dialogData.Param, out var sceneType))
         {
             EditorLog.LogError($"PlayCutSceneAction : Invalid cutscene type: {dialogData.Param}");
             return;
         }
 
-        Managers.Instance.CutSceneManager.PlayCutScene(cutScene.GetName());
+        Managers.Instance.SceneLoadManager.LoadScene(sceneType);
     }
 }

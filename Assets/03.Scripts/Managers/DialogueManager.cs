@@ -23,6 +23,8 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.ShowSelect] = new ShowSelectAction();
         dialogActionHandlers[DialogActionType.ModifyTrust] = new ModifyTrustAction();
         dialogActionHandlers[DialogActionType.DataSave] = new DataSaveAction();
+        dialogActionHandlers[DialogActionType.PlayCutScene] = new PlayCutSceneAction();
+        dialogActionHandlers[DialogActionType.LoadScene] = new LoadSceneAction();
     }
 
     public void InitSceneNPcs(NPC[] npcs)

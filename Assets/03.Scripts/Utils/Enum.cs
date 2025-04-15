@@ -18,6 +18,7 @@ public enum CharacterType
     Stone,
     Songsari,
     Dolmengee,
+    People,
 }
 
 [UGS(typeof(DialogActionType))]
@@ -28,6 +29,7 @@ public enum DialogActionType
     DataSave,
     ModifyTrust,
     PlayCutScene,
+    LoadScene,
 }
 
 public enum SoundType
@@ -72,6 +74,7 @@ public enum EndingType
 public enum CutSceneType
 {
     Intro,
+    Chapter02,
 }
 
 public enum UIPosition

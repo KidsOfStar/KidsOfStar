@@ -6,7 +6,7 @@ public class ModifyTrustAction : IDialogActionHandler
     {
         var trustValue = int.Parse(dialogData.Param);
         Managers.Instance.GameManager.ModifyTrust(trustValue);
-        
+
         if (dialogData.NextIndex.Count <= 0)
         {
             Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
