@@ -20,7 +20,7 @@ namespace MainTable
     public partial class CutScene : ITable
     { 
 
-        public delegate void OnLoadedFromGoogleSheets(List<CutScene> loadedList, Dictionary<int, CutScene> loadedDictionary);
+        public delegate void OnLoadedFromGoogleSheets(List<CutScene> loadedList, Dictionary<string, CutScene> loadedDictionary);
 
         static bool isLoaded = false;
         static string spreadSheetID = "1iOK4MZd2CwVNCCvReWXOHTfdxVR3k6oS_cEeJ62SdGw"; // it is file id
@@ -29,7 +29,7 @@ namespace MainTable
 
 /* Your Loaded Data Storage. */
     
-        public static Dictionary<int, CutScene> CutSceneMap = new Dictionary<int, CutScene>();  
+        public static Dictionary<string, CutScene> CutSceneMap = new Dictionary<string, CutScene>();  
         public static List<CutScene> CutSceneList = new List<CutScene>();   
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MainTable
         /// Get CutScene Dictionary, keyType is your sheet A1 field type.
         /// - Auto Load
         /// </summary>
-        public static Dictionary<int, CutScene>  GetDictionary()
+        public static Dictionary<string, CutScene>  GetDictionary()
         {{
            if (isLoaded == false) Load();
            return CutSceneMap;
@@ -56,11 +56,8 @@ namespace MainTable
 
 /* Fields. */
 
-		public System.Int32 index;
-		public System.String strType;
-		public System.Int32 TrustValue;
-		public System.Int32 NextIndex;
-		public System.String strValue;
+		public System.String index;
+		public System.Collections.Generic.List<String> PrefabName;
   
 
 #region fuctions
@@ -87,7 +84,7 @@ namespace MainTable
         }
  
 
-        public static void LoadFromGoogle(System.Action<List<CutScene>, Dictionary<int, CutScene>> onLoaded, bool updateCurrentData = false)
+        public static void LoadFromGoogle(System.Action<List<CutScene>, Dictionary<string, CutScene>> onLoaded, bool updateCurrentData = false)
         {      
                 IHttpProtcol webInstance = null;
     #if UNITY_EDITOR
@@ -115,8 +112,8 @@ namespace MainTable
                
 
 
-    public static (List<CutScene> list, Dictionary<int, CutScene> map) CommonLoad(Dictionary<string, Dictionary<string, List<string>>> jsonObject, bool forceReload){
-            Dictionary<int, CutScene> Map = new Dictionary<int, CutScene>();
+    public static (List<CutScene> list, Dictionary<string, CutScene> map) CommonLoad(Dictionary<string, Dictionary<string, List<string>>> jsonObject, bool forceReload){
+            Dictionary<string, CutScene> Map = new Dictionary<string, CutScene>();
             List<CutScene> List = new List<CutScene>();     
             TypeMap.Init();
             FieldInfo[] fields = typeof(CutScene).GetFields(BindingFlags.Public | BindingFlags.Instance);

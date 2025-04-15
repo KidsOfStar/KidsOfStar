@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5902049473616058379}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,9 +202,6 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 3
   jumpForce: 2
-  wallJumpForce: 7
-  stopInputTime: 0.1
-  keepRotationTime: 0.5
   pushDetectDistance: 0.05
   pushableLayer:
     serializedVersion: 2

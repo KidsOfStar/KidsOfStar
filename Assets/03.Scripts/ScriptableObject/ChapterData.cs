@@ -4,12 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ChapterData", menuName = "ScriptableObject/ChapterData")]
 public class ChapterData : ScriptableObject
 {
-    public ChapterProgress[] ChapterProgresses;
+    public ChapterProgress[] chapterProgresses;
 }
 
 [Serializable]
 public class ChapterProgress
 {
-    public ChapterType ChapterType;
-    public int MaxProgress;
+    public ChapterType chapterType;
+    public int maxProgress;
 }

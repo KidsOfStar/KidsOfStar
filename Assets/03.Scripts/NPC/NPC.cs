@@ -19,7 +19,7 @@ public class NPC : MonoBehaviour
             // Managers.Instance.DialogueManager.SetCurrentDialogData(10016);
             // Managers.Instance.SaveManager.Save(0, null);
 
-            Instantiate(cutScene, Vector3.zero, quaternion.identity);
+            // var test = Instantiate(cutScene, Vector3.zero, quaternion.identity);
         }
     }
 }
