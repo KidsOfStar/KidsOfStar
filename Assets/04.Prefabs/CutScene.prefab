@@ -89,11 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls: []
+    m_Signals: []
+    m_Events: []
 --- !u!1 &1691739560379696337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,7 +1111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7180232120671827811}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.51, y: 14.25, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1139,8 +1136,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   director: {fileID: 8733609572954153926}
+  signalReceiver: {fileID: 3077633339088917799}
   dialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   cutSceneData:
     <CutSceneID>k__BackingField: 0
-    <DialogIndexes>k__BackingField: 
-    <Npcs>k__BackingField: []
+    <DialogIndexes>k__BackingField: e8030000
+    <Npcs>k__BackingField:
+    - {fileID: 3201230890113676187}

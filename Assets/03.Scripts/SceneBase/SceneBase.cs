@@ -22,15 +22,18 @@ public class SceneBase : MonoBehaviour
         PlayerUI();
     }
 
-    protected virtual void PlayerUI()
+    protected void PlayerUI()
     {
         Managers.Instance.UIManager.Show<PlayerBtn>();
         Managers.Instance.UIManager.Show<UIJoystick>();
-
     }
+    
     protected void SpawnPlayer()
     {
-        GameObject player = Instantiate(playerPrefab, playerSpawnPosition.position, Quaternion.identity);
+        var gameManager = Managers.Instance.GameManager;
+        Vector3 playerPosition = gameManager.IsNewGame ? playerSpawnPosition.position : gameManager.PlayerPosition;
+            
+        GameObject player = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
         Managers.Instance.GameManager.SetPlayer(player.GetComponent<Player>());
     }
 }

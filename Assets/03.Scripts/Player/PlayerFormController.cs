@@ -25,7 +25,9 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     private BoxCollider2D boxCollider;
     private PlayerStateContext stateContext;
     private PlayerFormStateFactory factory;
-
+    
+    
+    
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
