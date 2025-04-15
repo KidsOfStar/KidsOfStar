@@ -15,6 +15,7 @@ public class GameManager
     // Stage Data
     private readonly Dictionary<ChapterType, int> trustDict = new();
     private readonly Dictionary<EndingType, bool> endingDict = new();
+    public Difficulty Difficulty { get; private set; }
     public ChapterType CurrentChapter { get; private set; }
     public int ChapterProgress { get; private set; }
     
@@ -65,6 +66,7 @@ public class GameManager
     public void SetLoadData(SaveData saveData)
     {
         IsNewGame = false;
+        Difficulty = (Difficulty)saveData.difficulty;
         CurrentChapter = (ChapterType)saveData.chapter;
         ChapterProgress = saveData.chapterProgress;
         PlayerPosition = saveData.playerPosition;

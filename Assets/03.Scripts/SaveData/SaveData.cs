@@ -14,7 +14,8 @@ public class SaveData
     // 형태변환 해금 진행도
     // 지금까지 본 엔딩
 
-    public string timeStamp;
+    public string saveName;
+    public int difficulty;
     public int chapter;
     public int chapterProgress;
     public Vector3 playerPosition;
@@ -24,6 +25,7 @@ public class SaveData
     public void InitData()
     {
         var gameManager = Managers.Instance.GameManager;
+        difficulty = (int)gameManager.Difficulty;
         chapter = (int)gameManager.CurrentChapter;
         chapterProgress = gameManager.ChapterProgress;
         playerPosition = gameManager.PlayerPosition;
@@ -49,9 +51,10 @@ public class SaveData
                 internetTime = serverTime.ToLocalTime();
         }
 
+        var difficultyName = ((Difficulty)difficulty).GetName();
         var chapterName = ((ChapterType)chapter).GetName();
         var result = internetTime.ToString("yy-MM-dd HH:mm:ss");
-        timeStamp = $"{chapterName}. {result}";
+        saveName = $"[{difficultyName}]{chapterName}. {result}";
         onFetched?.Invoke();
     }
 }

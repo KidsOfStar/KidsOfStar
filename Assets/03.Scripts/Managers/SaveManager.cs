@@ -16,7 +16,7 @@ public class SaveManager
 
         Managers.Instance.CoroutineRunner(data.FetchInternetTime(() =>
         {
-            onComplete?.Invoke(data.timeStamp);
+            onComplete?.Invoke(data.saveName);
             var path = GetSavePath(index);
             var json = JsonUtility.ToJson(data, true);
             File.WriteAllText(path, json);
@@ -24,7 +24,7 @@ public class SaveManager
         }));
     }
 
-    public void Load(int index, string timeStamp)
+    public void Load(int index)
     {
         var path = GetSavePath(index);
         if (!File.Exists(path))
