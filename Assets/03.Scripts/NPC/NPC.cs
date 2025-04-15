@@ -6,7 +6,6 @@ public class NPC : MonoBehaviour
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
     [field: SerializeField] public Transform BubblePos { get; private set; }
 
-    [SerializeField] public GameObject cutScene;
     
     // test
     private void Update()

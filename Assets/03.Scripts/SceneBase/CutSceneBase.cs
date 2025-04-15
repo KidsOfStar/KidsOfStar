@@ -40,6 +40,7 @@ public class CutSceneBase : MonoBehaviour
 
     public void ShowDialog()
     {
+        director.Evaluate();
         director.Pause();
         var index = cutSceneData.DialogIndexes[currentIndex];
         Managers.Instance.DialogueManager.SetCurrentDialogData(index);
