@@ -99,7 +99,8 @@ public class DialogueManager : ISceneLifecycleHandler
 #if UNITY_EDITOR
         if (Managers.Instance.IsDebugMode && !cam)
         {
-            Managers.Instance.GameManager.SetCamera(Camera.main);
+            cam = Camera.main;
+            Managers.Instance.GameManager.SetCamera(cam);
         }
 #endif
         var screenPos = cam.WorldToScreenPoint(worldPos);

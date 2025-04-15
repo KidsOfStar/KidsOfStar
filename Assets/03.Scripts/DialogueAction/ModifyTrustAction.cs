@@ -4,7 +4,7 @@ public class ModifyTrustAction : IDialogActionHandler
 {
     public void Execute(DialogData playerData)
     {
-        Managers.Instance.GameManager.ModifyTrust(playerData.TrustValue);
+       // Managers.Instance.GameManager.ModifyTrust(playerData.Param);
         
         if (playerData.NextIndex.Count <= 0)
         {
