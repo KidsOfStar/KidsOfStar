@@ -778,8 +778,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266de644580561947b6746c6eeb6a5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 0
+  uiPosition: 1
   closeBtn: {fileID: 1685301182429980459}
+  resumeTimeOnClose: 0
 --- !u!1001 &844272739719700597
 PrefabInstance:
   m_ObjectHideFlags: 0

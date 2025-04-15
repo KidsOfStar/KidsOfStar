@@ -3,25 +3,30 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-public class OptionPopup : UIBase
+public class OptionPopup : PopupBase
 {
     [Header("UI Audio")]
     public Slider bgmSlider; // BGM 슬라이더
     public Slider sfxSlider; // SFX 슬라이더
 
-
     [Header("UI Btn")]
-    public Button closeBtn; // 닫기 버튼
     public Button retryBtn; // 재시작 버튼
     public Button endBtn; // 메인 메뉴 버튼
 
     private SoundManager soundManager;
-    void Start()
+
+    protected override void Start()
     {
+        base.Start();
         soundManager = Managers.Instance.SoundManager;
 
         InitSlider();
         ButtonClick();
+    }
+
+    public override void Opened(params object[] param)
+    {
+        Time.timeScale = 0; // 게임 일시 정지
     }
 
     private void InitSlider()
@@ -42,20 +47,20 @@ public class OptionPopup : UIBase
     public void ButtonClick()
     {
         // 버튼 클릭 이벤트 등록
-        closeBtn.onClick.AddListener(OnClickCloseBtn);
+        //closeBtn.onClick.AddListener(OnClickCloseBtn);
         retryBtn.onClick.AddListener(OnClickRetryBtn);
         endBtn.onClick.AddListener(OnExitBtnClick);
     }
 
-    public void OnClickCloseBtn()
-    {
-        if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1; // 게임 재개
-        }
+    //public void OnClickCloseBtn()
+    //{
+    //    if (Time.timeScale == 0)
+    //    {
+    //        Time.timeScale = 1; // 게임 재개
+    //    }
 
-        HideDirect();
-    }
+    //    HideDirect();
+    //}
 
     public void OnClickRetryBtn()
     {

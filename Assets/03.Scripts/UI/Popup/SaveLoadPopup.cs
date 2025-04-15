@@ -1,17 +1,18 @@
 using UnityEngine.UI;
 
-public class SaveLoadPopup : UIBase
+public class SaveLoadPopup : PopupBase
 {
-    public Button closeBtn;
+    //public Button closeBtn;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        closeBtn.onClick.AddListener(OnClickClosebtn);
+        base.Start();
+        //closeBtn.onClick.AddListener(OnClickClosebtn);
     }
 
-    public void OnClickClosebtn()
-    {
-        HideDirect();
-    }
+    //public void OnClickClosebtn()
+    //{
+    //    HideDirect();
+    //}
 }

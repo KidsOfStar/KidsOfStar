@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UISelectionPanel : UIBase
+public class UISelectionPanel : PopupBase
 {
     [SerializeField] private UISelectButton[] selectButtons;
     private DialogData dialogData;
