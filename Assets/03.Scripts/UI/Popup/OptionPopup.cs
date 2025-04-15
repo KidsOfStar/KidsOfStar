@@ -47,20 +47,9 @@ public class OptionPopup : PopupBase
     public void ButtonClick()
     {
         // 버튼 클릭 이벤트 등록
-        //closeBtn.onClick.AddListener(OnClickCloseBtn);
         retryBtn.onClick.AddListener(OnClickRetryBtn);
         endBtn.onClick.AddListener(OnExitBtnClick);
     }
-
-    //public void OnClickCloseBtn()
-    //{
-    //    if (Time.timeScale == 0)
-    //    {
-    //        Time.timeScale = 1; // 게임 재개
-    //    }
-
-    //    HideDirect();
-    //}
 
     public void OnClickRetryBtn()
     {
