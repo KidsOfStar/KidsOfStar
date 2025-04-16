@@ -9,7 +9,6 @@ public class PlayerIdleState : PlayerGroundState
     public override void OnEnter()
     {
         context.Rigid.velocity = Vector2.zero;
-        EditorLog.Log("Idle");
     }
 
     public override void OnExit()
