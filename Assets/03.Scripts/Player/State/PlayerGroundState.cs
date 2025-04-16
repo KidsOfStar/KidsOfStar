@@ -8,6 +8,11 @@ public class PlayerGroundState : PlayerStateBase
     {
     }
 
+    public override void OnEnter()
+    {
+        context.CanCling = true;
+    }
+
     public override void OnUpdate()
     {
         if(context.Controller.JumpKeyPressed)

@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -45,9 +44,16 @@ public class PlayerController : MonoBehaviour
         get { return isControllable; }
         set { isControllable = value; }
     }
-    // 점프키가 눌렸는지를 판단
+    // 일반 점프에서 점프키가 눌렸는지를 판단
     private bool jumpKeyPressed = false;
     public bool JumpKeyPressed { get { return jumpKeyPressed; } }
+    // 고양이 벽점프를 위해 키가 눌렸는지를 판단
+    private bool wallJumpKeyDown = false;
+    public bool WallJumpKeyDown
+    {
+        get { return wallJumpKeyDown; }
+        set { wallJumpKeyDown = value; }
+    }
 
     [Header("Push")]
     [SerializeField, Tooltip("플레이어 앞 박스를 감지할 거리")]
@@ -137,12 +143,20 @@ public class PlayerController : MonoBehaviour
                 Jump();
                 jumpKeyPressed = true;
             }
+            if(!isGround && !wallJumpKeyDown)
+            {
+                wallJumpKeyDown = true;
+            }
         }
         else if(context.phase == InputActionPhase.Canceled)
         {
             if (jumpKeyPressed)
             {
                 Invoke("JumpKeyPressdeOff", 0.1f);
+            }
+            if(wallJumpKeyDown)
+            {
+                wallJumpKeyDown = false;
             }
         }
     }
