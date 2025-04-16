@@ -1,6 +1,8 @@
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEditor;
+#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
+#endif
 using UnityEngine;
 
 //"Menu배너에 쓰일 이름 / 하위 배너이름 / 씬이름 / 단축키
@@ -35,5 +37,4 @@ public class SceneChanger : Editor
     }
 
 }
-
 
