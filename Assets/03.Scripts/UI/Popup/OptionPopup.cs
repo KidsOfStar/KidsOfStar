@@ -30,11 +30,6 @@ public class OptionPopup : PopupBase
         }
     }
 
-    public override void Opened(params object[] param)
-    {
-        Time.timeScale = 0; // 게임 일시 정지
-    }
-
     private void InitSlider()
     {
        
@@ -67,7 +62,7 @@ public class OptionPopup : PopupBase
     private void OnExitBtnClick()
     {
         Managers.Instance.UIManager.Show<WarningEndTop>(); // 종료 경고창 띄우기
-        OnClose();
+        HideDirect();
     }
 
 }

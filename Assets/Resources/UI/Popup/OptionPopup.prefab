@@ -2113,7 +2113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPosition: 1
   closeBtn: {fileID: 8878396939862047633}
-  resumeTimeOnClose: 1
+  checkTimeStop: 1
+  isFirst: 1
   bgmSlider: {fileID: 2592237279192602301}
   sfxSlider: {fileID: 1014170755849305765}
   retryBtn: {fileID: 2385762698543356146}

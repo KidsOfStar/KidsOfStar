@@ -1,8 +1,8 @@
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
-public class WarningEndTop : TopBase
+public class WarningEndTop : PopupBase
 {
     public Button appltBtn;
 
@@ -27,14 +27,12 @@ public class WarningEndTop : TopBase
         Application.Quit(); // 빌드된 게임에서 종료
 #elif UNITY_WEBGL
         Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title);
-        OnClose();
+        HideDirect();
 #endif
     }
-    public override void HideDirect()
-    {
-        gameObject.SetActive(false);
-    }
-
-
+    //public override void HideDirect()
+    //{
+    //    gameObject.SetActive(false);
+    //}
 
 }

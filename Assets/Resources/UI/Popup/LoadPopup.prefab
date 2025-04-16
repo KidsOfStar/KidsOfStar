@@ -779,7 +779,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPosition: 1
   closeBtn: {fileID: 1685301182429980459}
-  resumeTimeOnClose: 0
+  checkTimeStop: 1
+  isFirst: 1
   content: {fileID: 1151782790616010991}
   slotUI: {fileID: 2120836534213323652, guid: c859fefe7afb9244f94ee76f58a4d9de, type: 3}
   isSaveMode: 0

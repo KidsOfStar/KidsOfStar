@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-public class WarningStartTop : TopBase
+public class WarningStartTop : PopupBase
 {
     public Button appltBtn;
     protected override void Start()

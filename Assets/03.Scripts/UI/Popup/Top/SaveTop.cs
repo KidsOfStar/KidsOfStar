@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-public class SaveTop : TopBase
+public class SaveTop : PopupBase
 {
     private int slotIndex { get; set; }
     public Button checkButton;
@@ -26,12 +26,11 @@ public class SaveTop : TopBase
         });
     }
 
-    public override void OnCheck()
+    public void OnCheck()
     {
         // 씬 불러오기
         Save();
-
-        OnClose();
+        HideDirect();
     }
 
 }

@@ -8,7 +8,7 @@ public static class Define
     public const string UIPath = "UI/";
     public const string PrefabPath = "Prefabs/";
     public const string PopupPath = "UI/Popup/";
-    public const string TopPath = "UI/Top/";
+    public const string TopPath = "UI/Popup/Top/";
 
     // Prefab Key
     public const string AudioSourceKey = "AudioSource";

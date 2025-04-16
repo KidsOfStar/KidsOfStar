@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-public class LoadTop : TopBase
+public class LoadTop : PopupBase
 {
     private int slotIndex {  get; set; }
     public Button checkButton;
@@ -24,7 +24,7 @@ public class LoadTop : TopBase
         EditorLog.Log(Managers.Instance.GameManager.Difficulty.ToString());
     }
 
-    public override void OnCheck()
+    public void OnCheck()
     {
         // 씬 불러오기
         Load();

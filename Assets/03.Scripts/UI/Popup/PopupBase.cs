@@ -5,23 +5,34 @@ public class PopupBase : UIBase
 {
     [SerializeField] protected Button closeBtn;
     [Tooltip("닫을 때 Time.timeScale = 1로 복구할지 여부")]
-    [SerializeField] protected bool resumeTimeOnClose = false;
+    public bool checkTimeStop = false;
 
+    public bool isFirst = false;
+
+    public override void Opened(params object[] param)
+    {
+        if(checkTimeStop) 
+            Time.timeScale = 0; // 게임 일시 정지
+        // 특정 bool를 이용해서 앞에서 보여지게 하기
+        if(isFirst)
+            transform.SetAsLastSibling();
+
+    }
     protected virtual void Start()
     {
         if(closeBtn != null)
         {
-            closeBtn.onClick.AddListener(OnClose);
+            closeBtn.onClick.AddListener(HideDirect);
         }
     }
-    public virtual void OnClose()
+    public override void HideDirect()
     {
-        EditorLog.Log($"timeScale + {resumeTimeOnClose}");
-        if (resumeTimeOnClose && Time.timeScale == 0)
+        base.HideDirect();
+        if (checkTimeStop)
         {
             Time.timeScale = 1; // 게임 재개
         }
-        HideDirect();
     }
+
 
 }
