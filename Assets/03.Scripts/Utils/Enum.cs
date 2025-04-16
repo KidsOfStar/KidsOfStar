@@ -92,3 +92,8 @@ public enum ObstacleType
     LargeSeaweed,
     Stone
 }
+public enum ReferenceMode //레터박스 화면비율 선정 Mode
+{ 
+    DesignedAspectRatio, 
+    OrginalResolution 
+};

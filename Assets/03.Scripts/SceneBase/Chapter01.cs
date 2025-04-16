@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 public class Chapter01 : SceneBase
@@ -7,11 +8,10 @@ public class Chapter01 : SceneBase
     {
         base.Awake();
 
-        // SceneLoadManager의 완료 상태를 설정
-        // Managers.Instance.GameManager.
-        SpawnPlayer();
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
         onLoadComplete?.Invoke();
+        
+        SpawnPlayer();
         Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName());
     }
 }

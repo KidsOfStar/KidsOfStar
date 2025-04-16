@@ -2824,6 +2824,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4633986022023411239, guid: 51d1969a9e1867a4ab57b32e0d43d747, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5065356158429596782, guid: 51d1969a9e1867a4ab57b32e0d43d747, type: 3}
       propertyPath: m_Name
       value: Maorum

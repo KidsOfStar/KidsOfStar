@@ -8,5 +8,10 @@ public class InputTest : MonoBehaviour
         {
             Managers.Instance.DialogueManager.OnClick?.Invoke();
         }
+        
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title);
+        }
     }
 }
