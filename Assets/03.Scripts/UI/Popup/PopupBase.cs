@@ -11,12 +11,12 @@ public class PopupBase : UIBase
     {
         if(closeBtn != null)
         {
-            closeBtn.onClick.AddListener(Close);
+            closeBtn.onClick.AddListener(OnClose);
         }
     }
-
-    public virtual void Close()
+    public virtual void OnClose()
     {
+        EditorLog.Log($"timeScale + {resumeTimeOnClose}");
         if (resumeTimeOnClose && Time.timeScale == 0)
         {
             Time.timeScale = 1; // 게임 재개

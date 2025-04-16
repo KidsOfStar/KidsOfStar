@@ -22,6 +22,12 @@ public class OptionPopup : PopupBase
 
         InitSlider();
         ButtonClick();
+        // Title Scene에서 다시하기 및 게임 종료 안 나오게
+        if (Managers.Instance.SceneLoadManager.CurrentScene == SceneType.Title)
+        {
+            retryBtn.gameObject.SetActive(false);
+            endBtn.gameObject.SetActive(false);
+        }
     }
 
     public override void Opened(params object[] param)
@@ -60,12 +66,8 @@ public class OptionPopup : PopupBase
 
     private void OnExitBtnClick()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // 에디터에서 실행 중지
-#else
-        // 게임 종료
-        Application.Quit(); // 빌드된 게임에서 종료
-#endif
+        Managers.Instance.UIManager.Show<WarningEndTop>(); // 종료 경고창 띄우기
+        OnClose();
     }
 
 }
