@@ -10,7 +10,7 @@
     "EnableHierarchyLines": true,
     "EnableHierarchyButtons": false,
     "EnableMajorShortcuts": true,
-    "DisableHierarchyDesignerDuringPlayMode": true,
+    "DisableHierarchyDesignerDuringPlayMode": false,
     "ExcludeFolderProperties": true,
     "ExcludeTransformForGameObjectComponentIcons": true,
     "ExcludeCanvasRendererForGameObjectComponentIcons": true,
