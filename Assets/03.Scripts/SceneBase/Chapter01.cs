@@ -7,9 +7,11 @@ public class Chapter01 : SceneBase
     {
         base.Awake();
         
-        // SpawnPlayer();
         // SceneLoadManager의 완료 상태를 설정
+        // Managers.Instance.GameManager.
+        SpawnPlayer();
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
+        onLoadComplete?.Invoke();
     }
     private void Start()
     {

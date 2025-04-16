@@ -2,16 +2,14 @@ using UnityEngine.UI;
 
 public class WarningEndTop : TopBase
 {
-    public Button closeBtn;
     public Button appltBtn;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         appltBtn.onClick.AddListener(OnExitBtnClick);
-        closeBtn.onClick.AddListener(OnClickClose);
     }
-
     private void OnExitBtnClick()
     {
 #if UNITY_EDITOR

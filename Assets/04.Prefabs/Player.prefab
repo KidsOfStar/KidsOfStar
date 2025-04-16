@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 5569511125589340821}
   - component: {fileID: 5167650260352110354}
   - component: {fileID: 5902049473616058379}
+  - component: {fileID: -3724325905359686638}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +75,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 194787036661805367}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1e5ebd6a9f91e704d8565b5c850a3bbe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -202,9 +203,6 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 3
   jumpForce: 2
-  wallJumpForce: 7
-  stopInputTime: 0.1
-  keepRotationTime: 0.5
   pushDetectDistance: 0.05
   pushableLayer:
     serializedVersion: 2
@@ -222,6 +220,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   formData: {fileID: 11400000, guid: 87c0bd50f419f2f43b9b9c2114c893c6, type: 2}
+--- !u!114 &-3724325905359686638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194787036661805367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc13bdc571dd4d49be2b61f559b34ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2176210955420354949
 GameObject:
   m_ObjectHideFlags: 0

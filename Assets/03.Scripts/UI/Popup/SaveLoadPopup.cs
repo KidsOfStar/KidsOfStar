@@ -1,17 +1,63 @@
+using System;
+using System.IO;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveLoadPopup : UIBase
+public class SaveLoadPopup : PopupBase
 {
-    public Button closeBtn;
+    public Transform content;       //슬롯들이 붙을 부모 오브젝트
+    public SlotUI slotUI;           // 프리맵 연결하기
+    public bool isSaveMode = true;  // 저장/불러오기 모드 전환
+    public int maxSlotCount = 10;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        closeBtn.onClick.AddListener(OnClickClosebtn);
+        base.Start();
+        CreateSlotUI();
     }
 
-    public void OnClickClosebtn()
+    private void CreateSlotUI()
     {
-        HideDirect();
+        for (int i = 0; i < maxSlotCount; i++)
+        {
+            var slot = Instantiate(slotUI, content); // 해당 위치에 프리팹 생성
+            int slotIndex = i;
+
+            string savename = GetSaveName(slotIndex);
+
+            slot.SetUp(slotIndex, savename, () =>
+            {
+                if (isSaveMode) SaveSlot(slotIndex, slot);
+                else LoadSlot(slotIndex);
+            });
+
+        }
+    }
+
+    private void SaveSlot(int slotIndex, SlotUI slot)
+    {
+        Managers.Instance.SaveManager.Save(slotIndex, (saveName) => 
+        {
+            slot.UpdateSlotname(slotIndex, saveName);
+        });
+    }
+
+    private void LoadSlot(int slotIndex)
+    {
+        Managers.Instance.SaveManager.Load(slotIndex);
+    }
+
+    private string GetSaveName(int slotIndex)
+    {
+        Debug.Log(Application.persistentDataPath);
+        string path = Application.persistentDataPath + $"/SaveData{slotIndex}.json";
+
+        if (!File.Exists(path)) return "empty slot";
+
+        string json = File.ReadAllText(path);
+        var data = JsonUtility.FromJson<SaveData>(json);
+        return data.saveName;
     }
 }

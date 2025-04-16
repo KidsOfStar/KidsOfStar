@@ -112,6 +112,7 @@ public class GameManager
     {
         MainCamera = camera;
     }
+    
     public void SetPlayer(Player player)
     {
         Player = player;
