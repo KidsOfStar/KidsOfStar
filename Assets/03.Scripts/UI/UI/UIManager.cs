@@ -4,10 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : ISceneLifecycleHandler
 {
-    public RectTransform CanvasRectTr { get; private set; } 
+    public RectTransform CanvasRectTr { get; private set; }
     private List<Transform> parents;
-    private Dictionary<string, UIBase> uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
-    private Dictionary<string, List<UIBase>> multiListUIList = new Dictionary<string, List<UIBase>>(); // 여러 개의 UI를 관리하기 위한 리스트
+
+    private Dictionary<string, UIBase>
+        uiList = new Dictionary<string, UIBase>(); // UI 리스트를 Dictionary로 변경하여 이름으로 접근 가능하게 함
+
+    private Dictionary<string, List<UIBase>>
+        multiListUIList = new Dictionary<string, List<UIBase>>(); // 여러 개의 UI를 관리하기 위한 리스트
 
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정
@@ -16,7 +20,7 @@ public class UIManager : ISceneLifecycleHandler
     public void SetParents(List<Transform> parents)
     {
         this.parents = parents;
-        uiList.Clear();    // 기존 UI 리스트 초기화 (중복 방지 및 초기화 목적)
+        uiList.Clear(); // 기존 UI 리스트 초기화 (중복 방지 및 초기화 목적)
     }
 
     /// <summary>
@@ -31,7 +35,7 @@ public class UIManager : ISceneLifecycleHandler
         var uiDictionary = uiList.TryGetValue(uiName, out var ui);
 
         // 없으면 Resource에서 로드하여 생성
-        if(!uiDictionary)
+        if (!uiDictionary)
         {
             // ResourceManager를 통해 UI 프리팹 로드
             var prefab = Managers.Instance.ResourceManager.Load<T>(GetPath(uiName), false);
@@ -43,9 +47,9 @@ public class UIManager : ISceneLifecycleHandler
             uiList.Add(uiName, ui); // 생성된 UI를 Dictionary에 추가
         }
 
-        ui.SetActive(true); 
-        ui.Opened(param);   // UI가 열릴 때 호출되는 함수
-        return (T)ui;       // UIBase로 캐스팅하여 반환
+        ui.SetActive(true);
+        ui.Opened(param); // UI가 열릴 때 호출되는 함수
+        return (T)ui;     // UIBase로 캐스팅하여 반환
     }
 
     private string GetPath(string name)
@@ -61,7 +65,7 @@ public class UIManager : ISceneLifecycleHandler
         }
         else if (name.Contains("Popup"))
         {
-            return Define.PopupPath + name ;
+            return Define.PopupPath + name;
         }
         else if (name.Contains("Top"))
         {
@@ -85,7 +89,6 @@ public class UIManager : ISceneLifecycleHandler
         {
             ui.closed?.Invoke(param);
             ui.gameObject.SetActive(false);
-
         }
     }
 
@@ -142,18 +145,20 @@ public class UIManager : ISceneLifecycleHandler
         }
 
         // 활성화 된 씬에 배치
-        if (!Managers.Instance.IsDebugMode)
+#if UNITY_EDITOR
+        if (Managers.Instance.IsDebugMode)
         {
-            var activeScene = SceneManager.GetSceneByName(currentScene.GetName());
-            SceneManager.MoveGameObjectToScene(canvasInstance.gameObject, activeScene);
+            SetParents(parentList);
+            return;
         }
+#endif
         
+        var activeScene = SceneManager.GetSceneByName(currentScene.GetName());
+        SceneManager.MoveGameObjectToScene(canvasInstance.gameObject, activeScene);
+
         // 생성된 parentList를 SetParents()에 전달하여 부모 목록을 설정
         SetParents(parentList);
     }
 
-    public void OnSceneUnloaded()
-    {
-        
-    }
+    public void OnSceneUnloaded() { }
 }
