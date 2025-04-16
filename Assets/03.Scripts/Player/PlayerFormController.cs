@@ -40,7 +40,15 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     {
         controller = playerSc.Controller;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        FormChange("Human");
+
+        if (formDataDictionary["Stone"].IsActive)
+        {
+            FormChange("Stone");
+        }
+        else
+        {
+            FormChange("Human");
+        }
     }
 
     private void Update()
@@ -124,6 +132,10 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         }
     }
 
+    /// <summary>
+    /// 돌과 사람을 제외한 모든 형태의 해금 상태를 반환
+    /// </summary>
+    /// <returns></returns>
     public Dictionary<string, bool> GetFormLock()
     {
         Dictionary<string, bool> activeDic =
@@ -136,6 +148,18 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             };
 
         return activeDic;
+    }
+
+    // 형태의 해금 상태를 변경
+    public void SetFormActive(string formName)
+    {
+        formDataDictionary[formName].IsActive = !formDataDictionary[formName].IsActive;
+    }
+
+    // 현재 형태의 이름을 반환
+    public string ReturnCurFormName()
+    {
+        return curFormData.FormName;
     }
 
     public float GetWeight()
