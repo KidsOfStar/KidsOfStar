@@ -34,6 +34,7 @@ public enum DialogActionType
 
 public enum SoundType
 {
+    UiButton,
     
 }
 
