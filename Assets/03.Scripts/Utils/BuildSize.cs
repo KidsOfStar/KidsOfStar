@@ -9,6 +9,12 @@ public class BuildSize : MonoBehaviour
         int width = (int)(height * (9f / 16f));
 
         Screen.SetResolution(width, height, false);
+
+#elif UNITY_ANDROID
+        int height = 1080;
+        int width = (int)(height * (9f / 16f));
+
+        Screen.SetResolution(width, height, false);
 #endif
     }
 }

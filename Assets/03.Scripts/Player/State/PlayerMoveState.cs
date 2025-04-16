@@ -8,12 +8,6 @@ public class PlayerMoveState : PlayerGroundState
     {
     }
 
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        EditorLog.Log("Move");
-    }
-
     public override void OnUpdate()
     {
         base.OnUpdate();
