@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Leaf : MonoBehaviour
@@ -61,13 +60,15 @@ public class Leaf : MonoBehaviour
 
             Vector3 pos = Vector3.Lerp(start, end, t);
             pos.y += Mathf.Sin(t * Mathf.PI) * jumpHeight;
-            target.transform.position = pos;
-
-            RaycastHit2D hit = Physics2D.Raycast(target.transform.position, Vector2.down, 0.5f, obstacleMask);
-            if (hit.collider != null)
+            // target.transform.position = pos;
+            // RaycastHit2D hit = Physics2D.Raycast(target.transform.position, Vector2.down, 0.5f, obstacleMask);
+            if (rb != null)
             {
-                collDuringJump = true;
-                break;
+                rb.MovePosition(pos);
+            }
+            else
+            {
+                target.transform.position = pos;
             }
 
             elapsed += Time.deltaTime;
@@ -86,16 +87,27 @@ public class Leaf : MonoBehaviour
 
             while (Vector2.Distance(target.transform.position, fallTarget) > 0.05f)
             {
-                target.transform.position = Vector2.MoveTowards(
-                    target.transform.position,
-                    fallTarget,
-                    moveSpeed * Time.deltaTime);
+                //Test
+                //target.transform.position = Vector2.MoveTowards(
+                //    target.transform.position,
+                //    fallTarget,
+                //    moveSpeed * Time.deltaTime);
+                Vector2 newPos = Vector2.MoveTowards(target.transform.position, fallTarget, moveSpeed * Time.deltaTime);
+                if (rb != null)
+                    rb.MovePosition(newPos);
+                else
+                    target.transform.position = newPos;
+
                 yield return null;
             }
         }
         else
         {
-            target.transform.position = dropPosition;
+            if (rb != null)
+                rb.MovePosition(dropPosition);
+            else
+                target.transform.position = dropPosition;
+            //target.transform.position = dropPosition;
         }
 
         if (rb != null)
