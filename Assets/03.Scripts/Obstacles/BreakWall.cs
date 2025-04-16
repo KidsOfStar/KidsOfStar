@@ -13,9 +13,9 @@ public class BreakWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out PlayerController controller))
+        if (collision.gameObject.TryGetComponent(out PlayerFormController formController))
         {
-            if (controller.CurState.FormData.FormName == "Dog")
+            if (formController.CurFormData.FormName == "Dog")
             {
                 Destroy(gameObject);
             }
