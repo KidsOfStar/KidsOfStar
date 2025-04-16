@@ -7,6 +7,7 @@ public class PlayerStateMachine : MonoBehaviour
     private Player player;
     public Player Player { set {  player = value; } }
     private IPlayerState curState;
+    public IPlayerState CurState { get { return curState; } }
     private PlayerContextData contextData;
     private PlayerStateFactory factory;
     public PlayerStateFactory Factory {  get { return factory; } }
@@ -31,7 +32,7 @@ public class PlayerStateMachine : MonoBehaviour
         curState?.OnEnter();
     }
 
-    public void InvokeAfter(float delay, Action action)
+    public void ReplaceCoroutine(float delay, Action action)
     {
         StartCoroutine(InvokeCoroutine(delay, action));
     }
@@ -41,4 +42,6 @@ public class PlayerStateMachine : MonoBehaviour
         yield return new WaitForSeconds(delay);
         action?.Invoke();
     }
+
+    
 }

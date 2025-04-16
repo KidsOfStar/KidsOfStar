@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 1490074497321904486}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00002193451, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1945400244779211219
 Transform:
   m_ObjectHideFlags: 0
@@ -1302,7 +1302,7 @@ Transform:
   m_GameObject: {fileID: 6262909339024652295}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.410544, y: -4.029215, z: -0.0053777136}
+  m_LocalPosition: {x: -500, y: -370, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1330,7 +1330,6 @@ MonoBehaviour:
   dialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   destroySignal: {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
   cutSceneData:
-    <CutSceneID>k__BackingField: 0
     <DialogIndexes>k__BackingField: d0070000d3070000d4070000
     <Npcs>k__BackingField:
     - {fileID: 2388579115187767104}

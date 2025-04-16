@@ -12,6 +12,6 @@ public class Chapter01 : SceneBase
         onLoadComplete?.Invoke();
         
         SpawnPlayer();
-        Managers.Instance.CutSceneManager.PlayCutScene("Intro");
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName());
     }
 }

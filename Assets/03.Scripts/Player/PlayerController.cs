@@ -132,12 +132,18 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started)
         {
-            Jump();
-            jumpKeyPressed = true;
+            if (!jumpKeyPressed && isGround)
+            {
+                Jump();
+                jumpKeyPressed = true;
+            }
         }
         else if(context.phase == InputActionPhase.Canceled)
         {
-            Invoke("JumpKeyPressdeOff", 0.1f);
+            if (jumpKeyPressed)
+            {
+                Invoke("JumpKeyPressdeOff", 0.1f);
+            }
         }
     }
 
@@ -150,30 +156,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isControllable) return;
 
-        if (isGround)
+        if (isGround && !jumpKeyPressed)
         {
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-    }
-
-    private void WallRatationSet(Vector2 dir)
-    {
-        Vector3 rot;
-
-        if (dir.x > 0)
-        {
-            rot = new Vector3(0, 0, 90);
-        }
-        else if (dir.x < 0)
-        {
-            rot = new Vector3(0, 0, -90);
-        }
-        else
-        {
-            //rot = new Vector3(0, 0, transform.rotation.z);
-        }
-
-        //transform.rotation = Quaternion.Euler(rot);
     }
 
     public bool TryDetectBox(Vector2 dir)
