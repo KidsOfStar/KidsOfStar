@@ -11,11 +11,12 @@ public class PlayerMoveState : PlayerGroundState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        context.Controller.Move();
         
         if(context.Controller.MoveDir == Vector2.zero)
         {
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
         }
+
+        context.Controller.Move();
     }
 }

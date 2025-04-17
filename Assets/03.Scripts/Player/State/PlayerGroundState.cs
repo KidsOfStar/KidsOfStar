@@ -8,13 +8,15 @@ public class PlayerGroundState : PlayerStateBase
     {
     }
 
-    public override void OnEnter()
+    public override void OnExit()
     {
         context.CanCling = true;
     }
 
     public override void OnUpdate()
     {
+        base.OnUpdate();
+
         if(context.Controller.JumpKeyPressed)
         {
             // 점프 상태로 전환
