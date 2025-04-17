@@ -57,7 +57,7 @@ public class LetterBoxer : MonoBehaviour
         Camera[] allCameras = FindObjectsOfType<Camera>();
         foreach (Camera camera in allCameras)
         {             
-            if (camera.depth == -100)
+            if (camera.depth == -10)
             {
                 EditorLog.LogError("Found " + camera.name + " with a depth of -100. Will cause letter boxing issues. Please increase it's depth.");
             }

@@ -50,17 +50,12 @@ public class CutSceneBase : MonoBehaviour
         }
     }
 
-    public void Play(string cutsceneName, int dialogStartIndex)
-    {
-        director.Play();
-
-    }
-
     public void ShowDialog()
     {
         //director.Evaluate();
         //director.Pause();
         director.playableGraph.GetRootPlayable(0).SetSpeed(0);
+
         var index = cutSceneData.DialogIndexes[currentIndex];
         Managers.Instance.DialogueManager.SetCurrentDialogData(index);
         currentIndex++;
@@ -76,7 +71,6 @@ public class CutSceneBase : MonoBehaviour
     public void DestroyPrefab()
     {
         Destroy(gameObject);
-
     }
    
 }
