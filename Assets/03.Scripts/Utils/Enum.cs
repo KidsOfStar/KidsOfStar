@@ -76,6 +76,7 @@ public enum CutSceneType
 {
     Intro,
     Chapter02,
+    Chapter02_Test,
 }
 
 public enum UIPosition

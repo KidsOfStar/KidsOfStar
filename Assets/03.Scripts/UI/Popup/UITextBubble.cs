@@ -18,7 +18,7 @@ public class UITextBubble : PopupBase
     public void SetDialog(string dialog, Vector3 pos)
     {
         StartDialogCoroutine(dialog);
-        rectTr.localPosition = pos;
+        rectTr.position = pos;
     }
 
     private void StartDialogCoroutine(string dialog)

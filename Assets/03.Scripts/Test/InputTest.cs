@@ -9,9 +9,14 @@ public class InputTest : MonoBehaviour
             Managers.Instance.DialogueManager.OnClick?.Invoke();
         }
         
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title);
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName());
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Managers.Instance.DialogueManager.SetCurrentDialogData(10006);
         }
     }
 }

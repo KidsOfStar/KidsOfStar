@@ -4,7 +4,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour, IDialogSpeaker
 {
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
-    [field: SerializeField] public Transform BubblePos { get; private set; }
+    [field: SerializeField] public Transform BubbleTr { get; private set; }
 
     // 자유상호작용의 대화를 들고 있어야함
     // 인덱스로 현재 챕터의 대사만 들고 온다.
@@ -17,7 +17,7 @@ public class NPC : MonoBehaviour, IDialogSpeaker
 
     public Vector3 GetBubblePosition()
     {
-        return BubblePos.position;
+        return BubbleTr.position;
     }
     
     // test

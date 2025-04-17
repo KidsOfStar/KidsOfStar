@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CharacterType>k__BackingField: 0
-  <BubblePos>k__BackingField: {fileID: 7916832026485942163}
+  <BubbleTr>k__BackingField: {fileID: 7916832026485942163}
 --- !u!61 &1824104150915378572
 BoxCollider2D:
   m_ObjectHideFlags: 0

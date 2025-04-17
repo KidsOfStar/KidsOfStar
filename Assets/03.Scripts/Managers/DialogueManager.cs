@@ -77,15 +77,16 @@ public class DialogueManager : ISceneLifecycleHandler
     {
         var npc = isCutScene ? cutSceneSpeakers[character] : sceneSpeakers[character];
         Vector3 bubblePos = npc.GetBubblePosition();
+        Debug.Log("worldPos"+npc.GetBubblePosition());
 
         var localPos = WorldToCanvasPosition(bubblePos);
+        Debug.Log("bubblePos"+localPos);
         var formattedDialog = dialog.Replace("\\n", "\n");
 
         textBubble.SetActive(true);
         textBubble.SetDialog(formattedDialog, localPos);
     }
 
-    // 한 라인이 끝났는지?
     public void OnDialogLineComplete()
     {
         if (dialogQueue.Count > 0)
@@ -111,14 +112,14 @@ public class DialogueManager : ISceneLifecycleHandler
             Managers.Instance.GameManager.SetCamera(cam);
         }
 #endif
-        var screenPos = cam.WorldToScreenPoint(worldPos);
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                                                                Managers.Instance.UIManager.CanvasRectTr,
-                                                                screenPos, null,
-                                                                out var localPos
-                                                               );
+        var screenPos = RectTransformUtility.WorldToScreenPoint(cam, worldPos);
+        // RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        //                                                         Managers.Instance.UIManager.CanvasRectTr,
+        //                                                         screenPos, null,
+        //                                                         out var localPos
+        //                                                        );
 
-        return localPos;
+        return screenPos;
     }
 
     public void OnSceneLoaded()
