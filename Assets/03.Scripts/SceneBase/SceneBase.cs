@@ -10,7 +10,7 @@ public class SceneBase : MonoBehaviour
     [SerializeField] private Transform playerSpawnPosition;
     
     [Header("NPCs")]
-    [SerializeField] private NPC[] npcs;
+    [SerializeField] private NPC[] speakers;
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
@@ -18,11 +18,12 @@ public class SceneBase : MonoBehaviour
     [Header("Events")]
     [SerializeField] protected UnityEvent onLoadComplete;
     
+    // TODO: 각 씬 별로 플레이어가 자유상호작용 때 말하는 부분이 있다면 플레이어도 스폰 후 speaker로 등록해야함
     protected virtual void Awake()
     {
         Managers.Instance.GameManager.SetCamera(mainCamera);
         Managers.Instance.OnSceneLoaded();
-        Managers.Instance.DialogueManager.InitSceneNPcs(npcs);
+        Managers.Instance.DialogueManager.InitSceneNPcs(speakers);
         PlayerUI();
     }
 

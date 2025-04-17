@@ -58,11 +58,8 @@ namespace MainTable
 
 		public System.Int32 Index;
 		public CharacterType Character;
-		public DialogActionType DialogType;
-		public System.Collections.Generic.List<String> SelectOption;
-		public System.Collections.Generic.List<Int32> TrustValue;
-		public System.Collections.Generic.List<Int32> NextIndex;
-		public System.String DialogValue;
+		public System.Int32 DialogIndex;
+		public System.Int32 Progress;
   
 
 #region fuctions

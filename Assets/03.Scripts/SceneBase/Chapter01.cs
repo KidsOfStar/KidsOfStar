@@ -9,9 +9,9 @@ public class Chapter01 : SceneBase
         base.Awake();
 
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
+        SpawnPlayer();
         onLoadComplete?.Invoke();
         
-        SpawnPlayer();
         Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName());
     }
 }

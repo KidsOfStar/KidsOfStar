@@ -1,11 +1,24 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, IDialogSpeaker
 {
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
     [field: SerializeField] public Transform BubblePos { get; private set; }
 
+    // 자유상호작용의 대화를 들고 있어야함
+    // 인덱스로 현재 챕터의 대사만 들고 온다.
+    // 프로그레스에 따라 맞는 인덱스의 대사를 출력한다.
+
+    public CharacterType GetCharacterType()
+    {
+        return CharacterType;
+    }
+
+    public Vector3 GetBubblePosition()
+    {
+        return BubblePos.position;
+    }
     
     // test
     private void Update()
