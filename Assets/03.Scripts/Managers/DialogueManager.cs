@@ -29,6 +29,7 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public void InitSceneNPcs(NPC[] npcs)
     {
+        // 대사를 말할 수 있는 기능을 인터페이스로 빼야겠는데.
         foreach (var npc in npcs)
         {
             sceneNpcDict[npc.CharacterType] = npc;
