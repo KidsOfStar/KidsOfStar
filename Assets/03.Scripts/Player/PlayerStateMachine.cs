@@ -8,7 +8,7 @@ public class PlayerStateMachine : MonoBehaviour
     public Player Player { set {  player = value; } }
     private IPlayerState curState;
     public IPlayerState CurState { get { return curState; } }
-    private PlayerContextData contextData;
+    [SerializeField] private PlayerContextData contextData;
     private PlayerStateFactory factory;
     public PlayerStateFactory Factory {  get { return factory; } }
 

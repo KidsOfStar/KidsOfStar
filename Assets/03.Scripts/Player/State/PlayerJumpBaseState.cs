@@ -39,7 +39,7 @@ public class PlayerJumpBaseState : PlayerStateBase
             0f, dir, 0.1f, context.Controller.GroundLayer);
 
         RaycastHit2D checkHit = Physics2D.Raycast(context.Controller.transform.position, dir,
-            context.BoxCollider.bounds.size.x + 0.1f, context.Controller.GroundLayer);
+            context.BoxCollider.bounds.size.x + 0.5f, context.Controller.GroundLayer);
 
         if (hit.collider != null && checkHit.collider != null)
         {

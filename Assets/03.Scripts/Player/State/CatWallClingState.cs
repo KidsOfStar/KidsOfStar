@@ -35,7 +35,7 @@ public class CatWallClingState : PlayerStateBase
             rot = new Vector3(0, 0, -90);
         }
 
-        context.Controller.transform.rotation = Quaternion.Euler(rot);
+        context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(rot);
     }
 
     public override void OnUpdate()
@@ -98,7 +98,7 @@ public class CatWallClingState : PlayerStateBase
     public override void OnExit()
     {
         context.Rigid.gravityScale = defaultGravityScale;
-        context.Controller.transform.rotation = Quaternion.Euler(Vector3.zero);
+        context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.zero);
         clingTimer = 0;
     }
 }

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[System.Serializable]
 public class PlayerContextData
 {
     public Player PlayerSc { get; private set; }
