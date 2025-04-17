@@ -15,14 +15,19 @@ public class CutSceneManager
     private readonly UnityEvent showDialogEvent = new();
     private int currentIndex = 0;
 
+    private LetterBoxer letterBoxer;
+    public LetterBoxer LetterBoxer { get { return letterBoxer; } }
+
     public void SetCutSceneBase(CutSceneBase cutScene)
     {
         this.cutSceneBase = cutScene;
     }
     public void PlayCutScene(string cutsceneName)
     {
+        //letterBoxer = Managers.Instance.GameManager.MainCamera.GetComponent<LetterBoxer>();
         string prefabPath = $"CutScenes/{cutsceneName}";
         var prefab = Resources.Load<GameObject>(prefabPath);
+        //letterBoxer.PerformSizing();
 
         if (prefab == null)
         {

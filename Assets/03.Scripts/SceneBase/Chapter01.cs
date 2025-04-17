@@ -12,7 +12,7 @@ public class Chapter01 : SceneBase
         SpawnPlayer();
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
 
-        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName());
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Chpater02Test.GetName());
     }
 }
 

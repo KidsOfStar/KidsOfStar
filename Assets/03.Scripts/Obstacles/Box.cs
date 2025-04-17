@@ -19,7 +19,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.gravityScale = 1f;
-        rb.mass = boxWeight;
+        rb.mass = 10;
     }
 
     public float GetWeight()
@@ -51,24 +51,15 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
             rb.MovePosition(pos);
 
-            // 바닥 감지
-            RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(0.6f, 0.3f), 0f, Vector2.down, 0.1f, groundMask);
-            if (hit.collider != null)
-            {
-                Debug.Log("[Box] 점프 중 바닥 감지 → 즉시 착지");
-                break;
-            }
-
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         // 바닥 착지 지점 계산
-        Vector3 fallTarget = transform.position;
-        RaycastHit2D groundHit = Physics2D.BoxCast(fallTarget, new Vector2(0.6f, 0.3f), 0f, Vector2.down, 2f, groundMask);
-        if (groundHit.collider != null)
-            fallTarget = new Vector3(transform.position.x, groundHit.point.y, transform.position.z);
+        Vector3 fallTarget = dropPosition;
+        fallTarget.y += col.bounds.extents.y;
 
+        // 부드러운 낙하
         while (Vector2.Distance(transform.position, fallTarget) > 0.05f)
         {
             Vector2 newPos = Vector2.MoveTowards(transform.position, fallTarget, moveSpeed * Time.deltaTime);
@@ -76,10 +67,11 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
             yield return null;
         }
 
-        rb.gravityScale = 1f;
+        // 딱 고정
+        rb.MovePosition(fallTarget);
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
-        rb.drag = 4f;
+        rb.gravityScale = 1f;
         col.enabled = true;
 
         yield return new WaitForSeconds(0.3f);

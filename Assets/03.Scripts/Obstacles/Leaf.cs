@@ -21,7 +21,7 @@ public class Leaf : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isUsed) return;
-        EditorLog.Log($"[Leaf] 충돌 감지됨: {collision.collider.name}");
+        EditorLog.Log($"Leaf 충돌 감지됨: {collision.collider.name}");
 
         if ((collision.collider.CompareTag("Player") || collision.collider.CompareTag("Box")) && CheckBoundary(collision.transform))
         {
