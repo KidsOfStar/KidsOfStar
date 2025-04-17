@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     private Transform target = null;
     private const float SmoothSpeed = 5f;
-    [SerializeField] public Vector3 offset;
+    [SerializeField] public Vector3 offset = new(0, 2f, -10f);
 
     public void SetTarget()
     {
