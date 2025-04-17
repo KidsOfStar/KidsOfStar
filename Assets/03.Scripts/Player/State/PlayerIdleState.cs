@@ -8,6 +8,7 @@ public class PlayerIdleState : PlayerGroundState
 
     public override void OnEnter()
     {
+        base.OnEnter();
         context.Rigid.velocity = Vector2.zero;
     }
 

@@ -5,7 +5,9 @@ public enum PlayerStateType
 {
     Idle,
     Move,
-    Jump
+    Jump,
+    WallCling,
+    WallJump
 }
 
 public class PlayerStateFactory : MonoBehaviour
@@ -18,7 +20,9 @@ public class PlayerStateFactory : MonoBehaviour
         {
             { PlayerStateType.Idle, new PlayerIdleState(context, this) },
             { PlayerStateType.Move, new PlayerMoveState(context, this) },
-            { PlayerStateType.Jump, new PlayerJumpState(context, this) }
+            { PlayerStateType.Jump, new PlayerJumpState(context, this) },
+            { PlayerStateType.WallCling, new CatWallClingState(context, this) },
+            { PlayerStateType.WallJump, new CatWallJumpState(context, this) },
         };
     }
 

@@ -9,6 +9,8 @@ public class PlayerContextData
     public SpriteRenderer Renderer { get; private set; }
     public Rigidbody2D Rigid { get; private set; }
     public BoxCollider2D BoxCollider { get; private set; }
+    
+    public bool CanCling { get; set; }
 
     public PlayerContextData(Player player, PlayerController con, PlayerFormController formCon,
         PlayerStateMachine machine, SpriteRenderer sr, Rigidbody2D rb, BoxCollider2D box)

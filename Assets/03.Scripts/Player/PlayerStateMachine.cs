@@ -32,7 +32,7 @@ public class PlayerStateMachine : MonoBehaviour
         curState?.OnEnter();
     }
 
-    public void ReplaceCoroutine(float delay, Action action)
+    public void ReplaceStartCoroutine(float delay, Action action)
     {
         StartCoroutine(InvokeCoroutine(delay, action));
     }
@@ -42,6 +42,4 @@ public class PlayerStateMachine : MonoBehaviour
         yield return new WaitForSeconds(delay);
         action?.Invoke();
     }
-
-    
 }
