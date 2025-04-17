@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Purchasing;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +30,10 @@ public class PlayerBtn : UIBase
     public GameObject catSkill;
     public GameObject dogSkill;
     public GameObject squirrelSkill;
+
+    [Header("UI Panel")] // 패널
+    public GameObject skillPanel; // 스킬 패널
+    public GameObject functionPanel; // 기능 패널
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
 
@@ -149,6 +152,12 @@ public class PlayerBtn : UIBase
             ShowSkillBG(squirrelBG);
         }
     }
+    // 정지 버튼 클릭 시 게임 일시정지
+    private void OnOptionBtnClick()
+    {
+        Managers.Instance.UIManager.Show<OptionPopup>();
+        Time.timeScale = 0;
+    }
 
     // UI 깜빡임 효과 코루틴
     private IEnumerator BlinkEffect(GameObject obj, float duration)
@@ -163,14 +172,7 @@ public class PlayerBtn : UIBase
     {
         StartCoroutine(BlinkEffect(obj, duration));
     }
-
-    // 정지 버튼 클릭 시 게임 일시정지
-    private void OnOptionBtnClick()
-    {
-        Managers.Instance.UIManager.Show<OptionPopup>();
-        Time.timeScale = 0;
-    }
-
+    
     // 스킵 버튼 클릭 시 호출될 메소드 (현재 비어 있음)
     public void OnSkip()
     {
@@ -204,5 +206,12 @@ public class PlayerBtn : UIBase
         {
             bg.SetActive(bg == skillBG);
         }
+    }
+
+    public void CutSceneSkip()
+    {
+        skillPanel.SetActive(false); // 스킬 패널 비활성화
+        functionPanel.SetActive(false); // 기능 패널 비활성화
+        stopBtn.gameObject.SetActive(true); // 정지 버튼 비활성화
     }
 }
