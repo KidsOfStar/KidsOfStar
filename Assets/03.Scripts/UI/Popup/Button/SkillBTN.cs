@@ -38,8 +38,33 @@ public class SkillBTN : UIBase
         catBtn.onClick.AddListener(OnCat);
         dogBtn.onClick.AddListener(OnDog);
         squirrelBtn.onClick.AddListener(OnSquirrel);
+        interactionBtn.onClick.AddListener(OnInteraction);
+
+        skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
+        interactionBtn.gameObject.SetActive(false); // 상호작용 버튼 비활성화
     }
 
+    private void Update()
+    {
+        if (Managers.Instance.GameManager.Player != null)
+        {
+            IsGruoud(); // 플레이어가 땅에 있는지 확인
+        }
+    }
+
+    // 플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
+    private void IsGruoud()
+    {
+        //플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
+        if (Managers.Instance.GameManager.Player.Controller.IsGround)
+        {
+            ToggleSkillUI(true);  // 땅에 닿았으면 스킬 UI 활성화
+        }
+        else
+        {
+            ToggleSkillUI(false); // 공중에 있으면 스킬 UI 비활성화
+        }
+    }
 
     public void OnJump()
     {
@@ -115,6 +140,17 @@ public class SkillBTN : UIBase
         }
     }
 
+    // 상호작용 버튼 클릭 시 대화 시작
+    public void OnInteraction()
+    {
+        // 대화 시작
+        Managers.Instance.DialogueManager.OnClick?.Invoke();
+    }
+    public void ShowInteractionButton(bool isActive)
+    {
+        interactionBtn.gameObject.SetActive(isActive);
+    }
+
     // UI 깜빡임 효과 코루틴
     private IEnumerator BlinkEffect(GameObject obj, float duration)
     {
@@ -136,7 +172,6 @@ public class SkillBTN : UIBase
         dogSkill.SetActive(isActive);
         squirrelSkill.SetActive(isActive);
     }
-
     private void ShowSkillBG(GameObject skillBG)
     {
         foreach (var bg in skillBGs)
