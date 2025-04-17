@@ -31,6 +31,10 @@ public class PlayerBtn : UIBase
     public GameObject dogSkill;
     public GameObject squirrelSkill;
 
+    [Header("UI Panel")] // 패널
+    public GameObject skillPanel; // 스킬 패널
+    public GameObject functionPanel; // 기능 패널
+
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
 
     private void Start()
@@ -54,7 +58,15 @@ public class PlayerBtn : UIBase
 
     private void Update()
     {
-        // 플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
+        if(Managers.Instance.GameManager.Player != null)
+        {
+            IsGruoud(); // 플레이어가 땅에 있는지 확인
+        }
+    }
+    // 플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
+    private void IsGruoud()
+    {
+        //플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
         if (Managers.Instance.GameManager.Player.Controller.IsGround)
         {
             ToggleSkillUI(true);  // 땅에 닿았으면 스킬 UI 활성화
@@ -64,6 +76,7 @@ public class PlayerBtn : UIBase
             ToggleSkillUI(false); // 공중에 있으면 스킬 UI 비활성화
         }
     }
+
 
     // 점프 버튼 클릭 시 호출
     public void OnJump()
@@ -139,6 +152,12 @@ public class PlayerBtn : UIBase
             ShowSkillBG(squirrelBG);
         }
     }
+    // 정지 버튼 클릭 시 게임 일시정지
+    private void OnOptionBtnClick()
+    {
+        Managers.Instance.UIManager.Show<OptionPopup>();
+        Time.timeScale = 0;
+    }
 
     // UI 깜빡임 효과 코루틴
     private IEnumerator BlinkEffect(GameObject obj, float duration)
@@ -153,14 +172,7 @@ public class PlayerBtn : UIBase
     {
         StartCoroutine(BlinkEffect(obj, duration));
     }
-
-    // 정지 버튼 클릭 시 게임 일시정지
-    private void OnOptionBtnClick()
-    {
-        Managers.Instance.UIManager.Show<OptionPopup>();
-        Time.timeScale = 0;
-    }
-
+    
     // 스킵 버튼 클릭 시 호출될 메소드 (현재 비어 있음)
     public void OnSkip()
     {
@@ -194,5 +206,12 @@ public class PlayerBtn : UIBase
         {
             bg.SetActive(bg == skillBG);
         }
+    }
+
+    public void CutSceneSkip()
+    {
+        skillPanel.SetActive(false); // 스킬 패널 비활성화
+        functionPanel.SetActive(false); // 기능 패널 비활성화
+        stopBtn.gameObject.SetActive(true); // 정지 버튼 비활성화
     }
 }

@@ -59,7 +59,7 @@ MonoBehaviour:
     direction: 1
   - formName: Cat
     formImage: {fileID: -75012031, guid: be2052563e1f1934a8f0ea4869c3fcf0, type: 3}
-    jumpForce: 5
+    jumpForce: 6
     offsetX: 0
     offsetY: 0.33
     sizeX: 0.72
