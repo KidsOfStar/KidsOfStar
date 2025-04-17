@@ -256,16 +256,14 @@ PlayableDirector:
     value: {fileID: 2057509606}
   - key: {fileID: -2487615914813013059, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
     value: {fileID: 2057509610}
-  - key: {fileID: -6885030492333346574, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
-    value: {fileID: 2057509610}
   - key: {fileID: 7622657764077768585, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
     value: {fileID: 180473573}
   - key: {fileID: -3599002616108974523, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
     value: {fileID: 1180388079}
   - key: {fileID: -5180841498589793043, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
     value: {fileID: 1180388083}
-  - key: {fileID: -7762096699406398169, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
-    value: {fileID: 1180388083}
+  - key: {fileID: -6305235959517321967, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &589905909
@@ -514,7 +512,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: -2091731992, guid: d06ffee833dc42d4cadc78e2351edaf8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -670,15 +668,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad92e70bffb5f549b28d41a4f24274a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  director: {fileID: 0}
-  signalReceiver: {fileID: 0}
+  director: {fileID: 257286453}
+  signalReceiver: {fileID: 180473573}
   dialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   destroySignal: {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
   cutSceneData:
     <DialogIndexes>k__BackingField: 0000000000000000
     <Npcs>k__BackingField:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 2057509608}
+    - {fileID: 1180388081}
 --- !u!4 &1370571459
 Transform:
   m_ObjectHideFlags: 0
@@ -695,7 +693,6 @@ Transform:
   - {fileID: 1299482047}
   - {fileID: 257286452}
   - {fileID: 1411978814}
-  - {fileID: 1902609094}
   - {fileID: 180473572}
   - {fileID: 2070025988}
   m_Father: {fileID: 0}
@@ -879,7 +876,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1008,37 +1005,6 @@ MonoBehaviour:
   height: 1080
   onAwake: 1
   onUpdate: 1
---- !u!1 &1902609093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1902609094}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1902609094
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902609093}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1370571459}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2057509606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1033,7 @@ Transform:
   m_GameObject: {fileID: 2057509606}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.2, y: -1.5, z: 0}
+  m_LocalPosition: {x: -8.2, y: -2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1128,7 +1094,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_Sprite: {fileID: -227884630, guid: fad3058e0ad4e824282d904c170deb4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
