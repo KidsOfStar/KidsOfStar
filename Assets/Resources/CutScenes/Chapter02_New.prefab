@@ -2859,6 +2859,7 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - 6abe94b5e9d45e64ca64a73042bda86f: {fileID: 3287203880056779798}
+    - 4e6520eecb54f604a877c9faf9b359c4: {fileID: 3287203880056779798}
 --- !u!1 &5748026551603664897
 GameObject:
   m_ObjectHideFlags: 0

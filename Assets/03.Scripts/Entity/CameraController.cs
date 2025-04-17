@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] public Vector3 offset = new(0, 2f, -10f);
     private Transform target = null;
     private const float SmoothSpeed = 5f;
-    [SerializeField] public Vector3 offset = new(0, 2f, -10f);
+    private CutSceneManager cutSceneManager;
 
     public void SetTarget()
     {
+        cutSceneManager = Managers.Instance.CutSceneManager;
         target = Managers.Instance.GameManager.Player.transform;
     }
 
@@ -20,7 +22,7 @@ public class CameraController : MonoBehaviour
         }
 #endif
 
-        if (!target) return;
+        if (!target || cutSceneManager.IsCutScenePlaying) return;
         Vector3 desiredPosition = target.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed * Time.deltaTime);
         transform.position = smoothedPosition;

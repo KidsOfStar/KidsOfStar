@@ -43,7 +43,7 @@ public class DialogueManager : ISceneLifecycleHandler
             cutSceneSpeakers[npc.GetCharacterType()] = npc;
         }
     }
-    
+
     public void SetPlayerSpeaker(IDialogSpeaker player)
     {
         sceneSpeakers[CharacterType.Dolmengee] = player;
@@ -77,10 +77,8 @@ public class DialogueManager : ISceneLifecycleHandler
     {
         var npc = isCutScene ? cutSceneSpeakers[character] : sceneSpeakers[character];
         Vector3 bubblePos = npc.GetBubblePosition();
-        Debug.Log("worldPos"+npc.GetBubblePosition());
 
         var localPos = WorldToCanvasPosition(bubblePos);
-        Debug.Log("bubblePos"+localPos);
         var formattedDialog = dialog.Replace("\\n", "\n");
 
         textBubble.SetActive(true);
@@ -112,13 +110,7 @@ public class DialogueManager : ISceneLifecycleHandler
             Managers.Instance.GameManager.SetCamera(cam);
         }
 #endif
-        var screenPos = RectTransformUtility.WorldToScreenPoint(cam, worldPos);
-        // RectTransformUtility.ScreenPointToLocalPointInRectangle(
-        //                                                         Managers.Instance.UIManager.CanvasRectTr,
-        //                                                         screenPos, null,
-        //                                                         out var localPos
-        //                                                        );
-
+        var screenPos = cam.WorldToScreenPoint(worldPos);
         return screenPos;
     }
 

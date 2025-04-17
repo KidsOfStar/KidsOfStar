@@ -1,6 +1,7 @@
 using Cinemachine;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
@@ -12,11 +13,13 @@ public class CutSceneManager
 
     [Header("CutSceneData")]
     private CutSceneData cutSceneData;
-
-
+    public bool IsCutScenePlaying { get; private set; } = false;
+    public Action OnCutSceneEnd { get; set; }
+    
     public void SetCutSceneBase(CutSceneBase cutScene)
     {
         this.cutSceneBase = cutScene;
+        OnCutSceneEnd += () => IsCutScenePlaying = false;
     }
     
     public void PlayCutScene(string cutsceneName)
@@ -44,5 +47,6 @@ public class CutSceneManager
         var director = baseComp.Director;
         //director.playableGraph.GetRootPlayable(0).SetSpeed(0);
         director.Play();
+        IsCutScenePlaying = true;
     }
 }

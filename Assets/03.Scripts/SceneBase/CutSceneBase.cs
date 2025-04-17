@@ -76,5 +76,6 @@ public class CutSceneBase : MonoBehaviour
     public void DestroyPrefab()
     {
         Destroy(gameObject);
+        Managers.Instance.CutSceneManager.OnCutSceneEnd?.Invoke();
     }
 }

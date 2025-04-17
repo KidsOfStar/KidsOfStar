@@ -11,7 +11,7 @@ public class InputTest : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName());
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Chapter02_Test.GetName());
         }
         
         if (Input.GetKeyDown(KeyCode.E))
