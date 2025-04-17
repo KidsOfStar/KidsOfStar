@@ -33,10 +33,14 @@ public class Leaf : MonoBehaviour
         isUsed = true;
 
         var playerCtrl = target.GetComponent<PlayerController>();
-        if (playerCtrl != null) playerCtrl.IsControllable = false;
+        if (playerCtrl != null)
+        {
+            playerCtrl.IsControllable = false;
+        }
 
         var rb = target.GetComponent<Rigidbody2D>();
         float originalGravity = 1f;
+
         if (rb != null)
         {
             originalGravity = rb.gravityScale;
@@ -87,16 +91,15 @@ public class Leaf : MonoBehaviour
 
             while (Vector2.Distance(target.transform.position, fallTarget) > 0.05f)
             {
-                //Test
-                //target.transform.position = Vector2.MoveTowards(
-                //    target.transform.position,
-                //    fallTarget,
-                //    moveSpeed * Time.deltaTime);
                 Vector2 newPos = Vector2.MoveTowards(target.transform.position, fallTarget, moveSpeed * Time.deltaTime);
                 if (rb != null)
+                {
                     rb.MovePosition(newPos);
+                }
                 else
+                {
                     target.transform.position = newPos;
+                }
 
                 yield return null;
             }
@@ -104,10 +107,13 @@ public class Leaf : MonoBehaviour
         else
         {
             if (rb != null)
+            {
                 rb.MovePosition(dropPosition);
+            }
             else
+            {
                 target.transform.position = dropPosition;
-            //target.transform.position = dropPosition;
+            }
         }
 
         if (rb != null)

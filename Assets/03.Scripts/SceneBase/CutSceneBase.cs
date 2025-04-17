@@ -76,7 +76,5 @@ public class CutSceneBase : MonoBehaviour
     public void DestroyPrefab()
     {
         Destroy(gameObject);
-
     }
-   
 }
