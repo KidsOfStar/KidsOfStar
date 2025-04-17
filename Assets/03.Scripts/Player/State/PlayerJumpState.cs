@@ -9,13 +9,5 @@ public class PlayerJumpState : PlayerJumpBaseState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if(!context.Controller.IsGround)
-        {
-            if(context.FormController.CurFormData.FormName == "Cat" && context.Controller.MoveDir.x != 0
-                && context.CanCling)
-            {
-                WallTouchCheck();
-            }
-        }
     }
 }

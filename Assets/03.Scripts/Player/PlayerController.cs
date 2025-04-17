@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Player player;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigid;
+    private SpriteRenderer spriteRenderer;
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
@@ -62,16 +63,15 @@ public class PlayerController : MonoBehaviour
     private LayerMask pushableLayer;
 
     private IWeightable objWeight = null; 
-    public IWeightable ObjWeight { get { return objWeight; } }
     // Ray로 감지한 물체의 무게
     private Rigidbody2D objRigid = null;
-    public Rigidbody2D ObjRigid { get { return objRigid; } }
     // Ray로 감지한 물체의 rb
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void Init(Player player)
@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
 
     void GroundCheck()
     {
+        Vector2 boxSize = new Vector2(boxCollider.bounds.size.x * 0.9f, boxCollider.bounds.size.y);
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down,
             0.02f, groundLayer);
         isGround = hit.collider != null ? true : false;
@@ -196,5 +197,19 @@ public class PlayerController : MonoBehaviour
         objWeight = null;
         objRigid = null;
         return false;
+    }
+
+    // sprite 이미지에 맞춰서 콜라이더 생성
+    public void SetCollider()
+    {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        Bounds bounds = spriteRenderer.bounds;
+
+        // bounds는 world size이므로, 로컬 좌표로 환산 필요
+        Vector2 size = transform.InverseTransformVector(bounds.size);
+        Vector2 offset = transform.InverseTransformPoint(bounds.size);
+
+        boxCollider.size = size;
+        boxCollider.offset = offset;
     }
 }
