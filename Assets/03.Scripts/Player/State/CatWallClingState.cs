@@ -79,7 +79,7 @@ public class CatWallClingState : PlayerStateBase
     {
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
         RaycastHit2D hit = Physics2D.Raycast(context.Controller.transform.position, dir,
-            context.BoxCollider.bounds.size.x, context.Controller.GroundLayer);
+            context.BoxCollider.bounds.size.x * 0.7f, context.Controller.GroundLayer);
 
         if (hit.collider != null)
         {

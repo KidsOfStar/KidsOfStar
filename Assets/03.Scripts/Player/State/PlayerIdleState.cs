@@ -12,11 +12,6 @@ public class PlayerIdleState : PlayerGroundState
         context.Rigid.velocity = Vector2.zero;
     }
 
-    public override void OnExit()
-    {
-        
-    }
-
     public override void OnUpdate()
     {
         base.OnUpdate();
