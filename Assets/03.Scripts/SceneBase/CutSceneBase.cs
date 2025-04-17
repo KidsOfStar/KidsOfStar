@@ -18,8 +18,6 @@ public class CutSceneBase : MonoBehaviour
     private readonly UnityEvent destroyEvent = new();
     private int currentIndex = 0;
 
-    private Camera mainCamera;
-    private LetterBoxer letterBoxer;
     private void Start()
     {
         if (cutSceneData.Npcs != null)
@@ -33,27 +31,6 @@ public class CutSceneBase : MonoBehaviour
         destroyEvent.AddListener(DestroyPrefab);
         signalReceiver.AddReaction(destroySignal, destroyEvent);
 
-        mainCamera = Camera.main;
-
-        if (mainCamera != null)
-        {
-            letterBoxer = mainCamera.GetComponent<LetterBoxer>();
-            if (letterBoxer == null)
-            {
-                letterBoxer = mainCamera.gameObject.AddComponent<LetterBoxer>();
-                letterBoxer.x = 16;
-                letterBoxer.y = 9;
-                letterBoxer.onUpdate = false;
-            }
-            letterBoxer.enabled = true;
-            letterBoxer.PerformSizing(); 
-        }
-    }
-
-    public void Play(string cutsceneName, int dialogStartIndex)
-    {
-        director.Play();
-
     }
 
     public void ShowDialog()
@@ -61,6 +38,7 @@ public class CutSceneBase : MonoBehaviour
         //director.Evaluate();
         //director.Pause();
         director.playableGraph.GetRootPlayable(0).SetSpeed(0);
+
         var index = cutSceneData.DialogIndexes[currentIndex];
         Managers.Instance.DialogueManager.SetCurrentDialogData(index);
         currentIndex++;
@@ -75,6 +53,7 @@ public class CutSceneBase : MonoBehaviour
 
     public void DestroyPrefab()
     {
+        //Managers.Instance.CutSceneManager.LetterBoxer.DisableLetterBox();
         Destroy(gameObject);
         Managers.Instance.CutSceneManager.OnCutSceneEnd?.Invoke();
     }
