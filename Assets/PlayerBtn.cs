@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Purchasing;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,16 +55,25 @@ public class PlayerBtn : UIBase
 
     private void Update()
     {
-        // 플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
-        // if (Managers.Instance.GameManager.Player.Controller.IsGround)
-        // {
-        //     ToggleSkillUI(true);  // 땅에 닿았으면 스킬 UI 활성화
-        // }
-        // else
-        // {
-        //     ToggleSkillUI(false); // 공중에 있으면 스킬 UI 비활성화
-        // }
+        if(Managers.Instance.GameManager.Player != null)
+        {
+            IsGruoud(); // 플레이어가 땅에 있는지 확인
+        }
     }
+    // 플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
+    private void IsGruoud()
+    {
+        //플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
+        if (Managers.Instance.GameManager.Player.Controller.IsGround)
+        {
+            ToggleSkillUI(true);  // 땅에 닿았으면 스킬 UI 활성화
+        }
+        else
+        {
+            ToggleSkillUI(false); // 공중에 있으면 스킬 UI 비활성화
+        }
+    }
+
 
     // 점프 버튼 클릭 시 호출
     public void OnJump()
