@@ -7,18 +7,18 @@ using UnityEngine.Playables;
 
 public class CutSceneManager
 {
+    private readonly UnityEvent showDialogEvent = new();
     private CutSceneBase cutSceneBase;
 
     [Header("CutSceneData")]
-    [SerializeField] private CutSceneData cutSceneData;
+    private CutSceneData cutSceneData;
 
-    private readonly UnityEvent showDialogEvent = new();
-    private int currentIndex = 0;
 
     public void SetCutSceneBase(CutSceneBase cutScene)
     {
         this.cutSceneBase = cutScene;
     }
+    
     public void PlayCutScene(string cutsceneName)
     {
         string prefabPath = $"CutScenes/{cutsceneName}";

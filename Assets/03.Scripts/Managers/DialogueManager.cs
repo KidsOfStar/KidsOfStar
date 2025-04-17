@@ -6,8 +6,8 @@ using UnityEngine;
 public class DialogueManager : ISceneLifecycleHandler
 {
     private readonly Dictionary<DialogActionType, IDialogActionHandler> dialogActionHandlers = new();
-    private readonly Dictionary<CharacterType, NPC> sceneNpcDict = new();
-    private readonly Dictionary<CharacterType, NPC> cutSceneNpcDict = new();
+    private readonly Dictionary<CharacterType, IDialogSpeaker> sceneSpeakers = new();
+    private readonly Dictionary<CharacterType, IDialogSpeaker> cutSceneSpeakers = new();
     private readonly Queue<string> dialogQueue = new();
 
     private DialogData currentDialogData;
@@ -27,21 +27,26 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.LoadScene] = new LoadSceneAction();
     }
 
-    public void InitSceneNPcs(NPC[] npcs)
+    public void InitSceneNPcs(NPC[] speakers)
     {
         // 대사를 말할 수 있는 기능을 인터페이스로 빼야겠는데.
-        foreach (var npc in npcs)
+        foreach (var npc in speakers)
         {
-            sceneNpcDict[npc.CharacterType] = npc;
+            sceneSpeakers[npc.GetCharacterType()] = npc;
         }
     }
 
-    public void InitCutSceneNPcs(NPC[] npcs)
+    public void InitCutSceneNPcs(NPC[] speakers)
     {
-        foreach (var npc in npcs)
+        foreach (var npc in speakers)
         {
-            cutSceneNpcDict[npc.CharacterType] = npc;
+            cutSceneSpeakers[npc.GetCharacterType()] = npc;
         }
+    }
+    
+    public void SetPlayerSpeaker(IDialogSpeaker player)
+    {
+        sceneSpeakers[CharacterType.Dolmengee] = player;
     }
 
     // 현재 출력 할 대사 데이터를 초기화
@@ -70,8 +75,8 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public void ShowDialog(string dialog, CharacterType character)
     {
-        var npc = isCutScene ? cutSceneNpcDict[character] : sceneNpcDict[character];
-        Vector3 bubblePos = npc.BubblePos.position;
+        var npc = isCutScene ? cutSceneSpeakers[character] : sceneSpeakers[character];
+        Vector3 bubblePos = npc.GetBubblePosition();
 
         var localPos = WorldToCanvasPosition(bubblePos);
         var formattedDialog = dialog.Replace("\\n", "\n");
@@ -124,7 +129,7 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public void OnSceneUnloaded()
     {
-        sceneNpcDict.Clear();
-        cutSceneNpcDict.Clear();
+        sceneSpeakers.Clear();
+        cutSceneSpeakers.Clear();
     }
 }

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 13
   <BubblePos>k__BackingField: {fileID: 2789230713152190276}
 --- !u!1 &8430072378436195781
 GameObject:
