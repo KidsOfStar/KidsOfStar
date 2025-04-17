@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CatWallClingState : PlayerStateBase
 {
-    float defaultGravityScale;  // 기본 중력 크기
     float clingTimer = 0;
     float limit = 1f;
 
@@ -15,10 +14,9 @@ public class CatWallClingState : PlayerStateBase
     public override void OnEnter()
     {
         context.Rigid.velocity = Vector2.zero;
-        defaultGravityScale = context.Rigid.gravityScale;
-        context.Rigid.gravityScale = 0f;
         WallRatationSet();
         context.CanCling = false;
+        clingTimer = 0;
     }
 
     private void WallRatationSet()
@@ -36,6 +34,7 @@ public class CatWallClingState : PlayerStateBase
         }
 
         context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(rot);
+        context.Controller.SetCollider();
     }
 
     public override void OnUpdate()
@@ -63,10 +62,6 @@ public class CatWallClingState : PlayerStateBase
             if (context.Controller.MoveDir == Vector2.zero)
             {
                 context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
-            }
-            else
-            {
-                context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Move));
             }
 
             return;
@@ -97,8 +92,7 @@ public class CatWallClingState : PlayerStateBase
 
     public override void OnExit()
     {
-        context.Rigid.gravityScale = defaultGravityScale;
         context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.zero);
-        clingTimer = 0;
+        context.Controller.SetCollider();
     }
 }
