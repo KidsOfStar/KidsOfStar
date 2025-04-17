@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
 
         // bounds는 world size이므로, 로컬 좌표로 환산 필요
         Vector2 size = transform.InverseTransformVector(bounds.size);
-        Vector2 offset = transform.InverseTransformPoint(bounds.size);
+        Vector2 offset = transform.InverseTransformPoint(bounds.center);
 
         boxCollider.size = size;
         boxCollider.offset = offset;
