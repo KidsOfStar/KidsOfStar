@@ -4,28 +4,26 @@ using UnityEngine;
 
 
 public class LetterBoxer : MonoBehaviour
-{    
+{
     //화면비율의 기준을 선택하되, X:Y비율 / widht:height 해상도 기준으로 선택가능
-    
+
 
     public Color matteColor = new Color(0, 0, 0, 1);
-    public ReferenceMode referenceMode; 
-    public float x=16;
-    public float y=9;  
+    public ReferenceMode referenceMode;
+    public float x = 16;
+    public float y = 9;
     public float width = 1920;
     public float height = 1080;
     public bool onAwake = true;
-    public bool onUpdate = true;
+    public bool onUpdate = false;
 
     private Camera cam;
     private Camera letterBoxerCamera;
 
     public void Awake()
     {
-        // store reference to the camera
         cam = GetComponent<Camera>();
 
-        // add the letterboxing camera
         AddLetterBoxingCamera();
 
         // Awake일때 자동으로 크기를 맞출지 여부를 확인
@@ -56,27 +54,27 @@ public class LetterBoxer : MonoBehaviour
     {
         Camera[] allCameras = FindObjectsOfType<Camera>();
         foreach (Camera camera in allCameras)
-        {             
-            if (camera.depth == -100)
+        {
+            if (camera.depth == -10)
             {
                 EditorLog.LogError("Found " + camera.name + " with a depth of -100. Will cause letter boxing issues. Please increase it's depth.");
             }
         }
 
-        // 빈 Obj에 Camera 컴포넌트를 추가하여  검정 여백을 그려줄 로직
+        //빈 Obj에 Camera 컴포넌트를 추가하여  검정 여백을 그려줄 로직
         letterBoxerCamera = new GameObject().AddComponent<Camera>();
         letterBoxerCamera.backgroundColor = matteColor;
         //아무것도 렌더링하지 않음.
         letterBoxerCamera.cullingMask = 0;
         //가장 먼저 그려서 가장 뒤에 배경이 되도록
         letterBoxerCamera.depth = -100;
-        // 최적화를 하기위한 설정
+        //최적화를 하기위한 설정
         letterBoxerCamera.farClipPlane = 1;
         letterBoxerCamera.useOcclusionCulling = false;
         letterBoxerCamera.allowHDR = false;
         letterBoxerCamera.allowMSAA = false;
         //선택한 색으로 배경을 칠하는 로직
-        letterBoxerCamera.clearFlags = CameraClearFlags.Color;       
+        letterBoxerCamera.clearFlags = CameraClearFlags.Color;
     }
 
     public void PerformSizing()
@@ -117,4 +115,13 @@ public class LetterBoxer : MonoBehaviour
             cam.rect = rect;
         }
     }
+    public void EnableLetterBox()
+    {
+        PerformSizing();
+    }
+    public void DisableLetterBox()
+    {
+        cam.rect = new Rect(0f, 0f, 1f, 1f);
+    }
+
 }
