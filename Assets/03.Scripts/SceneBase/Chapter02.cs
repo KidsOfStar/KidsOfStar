@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Chapter02 : MonoBehaviour
 {
+
     private void Start()
     {
-        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Chapter02.ToString());
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Chapter02.GetName());
     }
 }

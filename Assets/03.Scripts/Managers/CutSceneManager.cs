@@ -14,6 +14,9 @@ public class CutSceneManager
     private CutSceneData cutSceneData;
 
 
+    private LetterBoxer letterBoxer;
+    public LetterBoxer LetterBoxer { get { return letterBoxer; } }
+
     public void SetCutSceneBase(CutSceneBase cutScene)
     {
         this.cutSceneBase = cutScene;
@@ -21,8 +24,10 @@ public class CutSceneManager
     
     public void PlayCutScene(string cutsceneName)
     {
+        //letterBoxer = Managers.Instance.GameManager.MainCamera.GetComponent<LetterBoxer>();
         string prefabPath = $"CutScenes/{cutsceneName}";
         var prefab = Resources.Load<GameObject>(prefabPath);
+        //letterBoxer.PerformSizing();
 
         if (prefab == null)
         {
