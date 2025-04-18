@@ -199,7 +199,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    // sprite 이미지에 맞춰서 콜라이더 생성
+    //sprite 이미지에 맞춰서 콜라이더 생성
     public void SetCollider()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
 
         // bounds는 world size이므로, 로컬 좌표로 환산 필요
         Vector2 size = transform.InverseTransformVector(bounds.size);
-        Vector2 offset = transform.InverseTransformVector(bounds.size);
+        Vector2 offset = transform.InverseTransformPoint(bounds.center);
 
         boxCollider.size = size;
         boxCollider.offset = offset;

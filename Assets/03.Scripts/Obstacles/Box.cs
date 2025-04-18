@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ public interface ILeafJumpable
 {
     void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float moveSpeed, float jumpHeight);
 }
-
 public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 {
     public float boxWeight = 2f;
@@ -33,7 +31,6 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     {
         StartCoroutine(LeafJumpRoutine(dropPosition, groundMask, moveSpeed, jumpHeight));
     }
-
     private IEnumerator LeafJumpRoutine(Vector3 dropPosition, LayerMask groundMask, float moveSpeed, float jumpHeight)
     {
         rb.gravityScale = 0f;
@@ -80,18 +77,19 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         yield return new WaitForSeconds(0.3f);
         rb.drag = 0f;
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+            EditorLog.Log(rb.constraints);
         }
     }
-
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player"))
+        {
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 }
