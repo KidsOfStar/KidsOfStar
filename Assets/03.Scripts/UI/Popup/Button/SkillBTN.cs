@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +28,7 @@ public class SkillBTN : UIBase
     public GameObject squirrelSkill;
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
-
+    public Action OnInteractBtnClick { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -143,7 +143,7 @@ public class SkillBTN : UIBase
     // 상호작용 버튼 클릭 시 대화 시작
     public void OnInteraction()
     {
-        // 대화 시작
+        OnInteractBtnClick?.Invoke();
         Managers.Instance.DialogueManager.OnClick?.Invoke();
     }
     public void ShowInteractionButton(bool isActive)

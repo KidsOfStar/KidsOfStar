@@ -19,6 +19,8 @@ public enum CharacterType
     Songsari,
     Dolmengee,
     People,
+    Hanul,
+    Women,
 }
 
 [UGS(typeof(DialogActionType))]

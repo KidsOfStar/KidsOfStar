@@ -8,6 +8,11 @@ public class CutSceneManager
     public LetterBoxer LetterBoxer { get; private set; }
     
     private const string CutScenePath = "CutScenes/";
+
+    public CutSceneManager()
+    {
+        OnCutSceneEnd += () => IsCutScenePlaying = false;
+    }
     
     public void PlayCutScene(string cutsceneName)
     {

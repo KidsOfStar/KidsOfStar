@@ -27,7 +27,7 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.LoadScene] = new LoadSceneAction();
     }
 
-    public void InitSceneNPcs(NPC[] speakers)
+    public void InitSceneNPcs(Npc[] speakers)
     {
         // 대사를 말할 수 있는 기능을 인터페이스로 빼야겠는데.
         foreach (var npc in speakers)
@@ -36,7 +36,7 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
-    public void InitCutSceneNPcs(NPC[] speakers)
+    public void InitCutSceneNPcs(Npc[] speakers)
     {
         foreach (var npc in speakers)
         {

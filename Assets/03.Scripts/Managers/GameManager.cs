@@ -23,6 +23,8 @@ public class GameManager
     public Vector3 PlayerPosition { get; private set; } = Vector3.zero;
     public Player Player { get; private set; }
 
+    public Action OnProgressUpdated { get; set; }
+
     public GameManager()
     {
 #if UNITY_WEBGL
@@ -101,6 +103,20 @@ public class GameManager
         }
         
         return endingArr;
+    }
+    
+    public void SetChapter(ChapterType chapter)
+    {
+        CurrentChapter = chapter;
+    }
+
+    public void UpdateProgress()
+    {
+        ChapterProgress++;
+        if (ChapterProgress >= Managers.Instance.DataManager.GetMaxProgress(CurrentChapter))
+            return;
+        
+        OnProgressUpdated?.Invoke();
     }
     
     public void ModifyTrust(int value)

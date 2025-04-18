@@ -18,7 +18,7 @@ public static class Extensions
         {
             SceneType.Title     => "TitleScene",
             SceneType.Loading   => "LoadingScene",
-            SceneType.Chapter01 => "Chapter_01",
+            SceneType.Chapter01 => "Chapter_1",
             _                   => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
         };
     }

@@ -10,7 +10,7 @@ public class PlayerBtn : UIBase
     public Button skipBtn;
 
     [Header("UI Panel")] // 패널
-    public GameObject skillPanel; // 스킬 패널
+    public SkillBTN skillPanel; // 스킬 패널
     public GameObject functionPanel; // 기능 패널
     public GameObject joystick; // 조이스틱
 
