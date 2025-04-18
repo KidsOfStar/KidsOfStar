@@ -126,12 +126,12 @@ TextureImporter:
       name: barkNoLine_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 65
+        x: 2
+        y: 68
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +147,12 @@ TextureImporter:
       name: barkNoLine_1
       rect:
         serializedVersion: 2
-        x: 25
-        y: 65
+        x: 24
+        y: 68
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: barkNoLine_2
       rect:
         serializedVersion: 2
-        x: 45
-        y: 65
+        x: 46
+        y: 68
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: barkNoLine_3
       rect:
         serializedVersion: 2
-        x: 65
-        y: 65
+        x: 68
+        y: 68
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: barkNoLine_4
       rect:
         serializedVersion: 2
-        x: 5
-        y: 45
+        x: 2
+        y: 46
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: barkNoLine_5
       rect:
         serializedVersion: 2
-        x: 25
-        y: 45
+        x: 24
+        y: 46
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: barkNoLine_6
       rect:
         serializedVersion: 2
-        x: 45
-        y: 45
+        x: 46
+        y: 46
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,12 +273,12 @@ TextureImporter:
       name: barkNoLine_7
       rect:
         serializedVersion: 2
-        x: 65
-        y: 45
+        x: 68
+        y: 46
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,12 +294,12 @@ TextureImporter:
       name: barkNoLine_8
       rect:
         serializedVersion: 2
-        x: 5
-        y: 25
+        x: 2
+        y: 24
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -315,12 +315,12 @@ TextureImporter:
       name: barkNoLine_9
       rect:
         serializedVersion: 2
-        x: 25
-        y: 25
+        x: 24
+        y: 24
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -336,12 +336,12 @@ TextureImporter:
       name: barkNoLine_10
       rect:
         serializedVersion: 2
-        x: 45
-        y: 25
+        x: 46
+        y: 24
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,12 +357,12 @@ TextureImporter:
       name: barkNoLine_11
       rect:
         serializedVersion: 2
-        x: 65
-        y: 25
+        x: 68
+        y: 24
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -378,12 +378,12 @@ TextureImporter:
       name: barkNoLine_12
       rect:
         serializedVersion: 2
-        x: 5
-        y: 5
+        x: 2
+        y: 2
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,12 +399,12 @@ TextureImporter:
       name: barkNoLine_13
       rect:
         serializedVersion: 2
-        x: 25
-        y: 5
+        x: 24
+        y: 2
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -420,12 +420,12 @@ TextureImporter:
       name: barkNoLine_14
       rect:
         serializedVersion: 2
-        x: 45
-        y: 5
+        x: 46
+        y: 2
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,12 +441,12 @@ TextureImporter:
       name: barkNoLine_15
       rect:
         serializedVersion: 2
-        x: 65
-        y: 5
+        x: 68
+        y: 2
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -454,6 +454,27 @@ TextureImporter:
       bones: []
       spriteID: 3da4d373028c74343ad3c90889cfd61d
       internalID: -2032563728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2f7a8305b146a54085a22e2381f06c0
+      internalID: -749138465
       vertices: []
       indices: 
       edges: []
@@ -469,6 +490,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      BG: -749138465
       barkNoLine_0: -630551556
       barkNoLine_1: 25193328
       barkNoLine_10: 707235688
