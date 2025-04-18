@@ -24,14 +24,19 @@ public class DataManager
         }
     }
     
-    public DialogData GetDialogData(int index)
+    public Dictionary<int, NPCData> GetNpcDataDict()
     {
-        if (dialogDatas.TryGetValue(index, out var data))
+        return npcDatas;
+    }
+    
+    public NPCData GetNpcData(int index)
+    {
+        if (npcDatas.TryGetValue(index, out var data))
             return data;
             
         else
         {
-            EditorLog.LogError($"DataManager : Not found DialogData with index: {index}");
+            EditorLog.LogError($"DataManager : Not found NPCData with index: {index}");
             return null;
         }
     }

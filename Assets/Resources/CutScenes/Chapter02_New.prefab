@@ -2590,8 +2590,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Events:
-    m_Signals: []
-    m_Events: []
+    m_Signals:
+    - {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
+    - {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7177606617873818073}
+          m_TargetAssemblyTypeName: CutSceneBase, Assembly-CSharp
+          m_MethodName: ShowDialog
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7177606617873818073}
+          m_TargetAssemblyTypeName: CutSceneBase, Assembly-CSharp
+          m_MethodName: DestroyPrefab
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4336098889742766419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,7 +2648,7 @@ Transform:
   m_GameObject: {fileID: 4336098889742766419}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2641,7 +2671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad92e70bffb5f549b28d41a4f24274a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  director: {fileID: 2470561671946638976}
+  <Director>k__BackingField: {fileID: 2470561671946638976}
+  sceneType: 0
   signalReceiver: {fileID: 4913881575791422500}
   dialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   destroySignal: {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}

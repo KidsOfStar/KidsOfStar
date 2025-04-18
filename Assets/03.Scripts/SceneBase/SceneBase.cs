@@ -24,21 +24,27 @@ public class SceneBase : MonoBehaviour
         Managers.Instance.GameManager.SetCamera(mainCamera);
         Managers.Instance.OnSceneLoaded();
         Managers.Instance.DialogueManager.InitSceneNPcs(speakers);
-        PlayerUI();
-    }
-
-    protected void PlayerUI()
-    {
-        Managers.Instance.UIManager.Show<PlayerBtn>();
-        Managers.Instance.UIManager.Show<UIJoystick>();
+        
+        
+        // 씬에 미리 배치된 오브젝트들의 초기화
+        /// Camera의 SetTarget은 플레이어를 타겟으로 하기 때문에 반드시 플레이어 스폰 후에 호출해야함
+        onLoadComplete?.Invoke();
+        
+        ShowRequiredUI();
     }
     
-    protected void SpawnPlayer()
+    private void SpawnPlayer()
     {
         var gameManager = Managers.Instance.GameManager;
         Vector3 playerPosition = gameManager.IsNewGame ? playerSpawnPosition.position : gameManager.PlayerPosition;
             
         GameObject player = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
         Managers.Instance.GameManager.SetPlayer(player.GetComponent<Player>());
+    }
+    
+    private void ShowRequiredUI()
+    {
+        Managers.Instance.UIManager.Show<PlayerBtn>();
+        Managers.Instance.UIManager.Show<UIJoystick>();
     }
 }
