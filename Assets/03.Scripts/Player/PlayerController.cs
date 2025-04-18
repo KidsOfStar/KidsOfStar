@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    // sprite 이미지에 맞춰서 콜라이더 생성
+    //sprite 이미지에 맞춰서 콜라이더 생성
     public void SetCollider()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();

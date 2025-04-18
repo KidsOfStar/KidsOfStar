@@ -11,8 +11,7 @@ public class Player : MonoBehaviour
     private PlayerStateMachine stateMachine;
     public PlayerStateMachine StateMachine { get { return stateMachine; } }
 
-    public PlayerBtn playerBtn; // PlayerBtn 참조
-
+    public SkillBTN skillBTN; 
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
@@ -35,14 +34,14 @@ public class Player : MonoBehaviour
 
         if (other.CompareTag("Interactable"))
         {
-            playerBtn.ShowInteractionButton(true);
+            skillBTN.ShowInteractionButton(true);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Interactable"))
         {
-            playerBtn.ShowInteractionButton(false);
+            skillBTN.ShowInteractionButton(false);
         }
     }
 }
