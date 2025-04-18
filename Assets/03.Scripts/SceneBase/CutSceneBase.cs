@@ -30,7 +30,6 @@ public class CutSceneBase : MonoBehaviour
         signalReceiver.AddReaction(dialogSignal, showDialogEvent);
         destroyEvent.AddListener(DestroyPrefab);
         signalReceiver.AddReaction(destroySignal, destroyEvent);
-
     }
 
     public void ShowDialog()
