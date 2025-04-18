@@ -19,7 +19,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.gravityScale = 1f;
-        rb.mass = 10;
+        rb.mass = boxWeight;
     }
 
     public float GetWeight()
@@ -76,5 +76,20 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         yield return new WaitForSeconds(0.3f);
         rb.drag = 0f;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+            EditorLog.Log(rb.constraints);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 }
