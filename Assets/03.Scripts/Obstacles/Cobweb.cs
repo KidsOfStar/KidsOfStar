@@ -13,7 +13,6 @@ public class Cobweb : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        EditorLog.Log("OnTriggerEnter2D");
         if (other.CompareTag("Player") && other.gameObject.TryGetComponent(out PlayerController playerController))
         {
             // 플레이어의 속도를 0으로 설정
@@ -28,7 +27,6 @@ public class Cobweb : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        EditorLog.Log("OnTriggerStay2D");
         if (other.CompareTag("Player") && other.TryGetComponent(out PlayerController playerController))
         {
             // 만약 변신 등의 이유로 점프력이 다시 설정되었다면,
@@ -44,7 +42,6 @@ public class Cobweb : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        EditorLog.Log("OnTriggerExit2D");
         if (other.CompareTag("Player") && other.gameObject.TryGetComponent(out PlayerController playerController))
         {
             // 플레이어의 속도를 0으로 설정
