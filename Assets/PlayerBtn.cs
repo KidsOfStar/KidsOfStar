@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 // 플레이어 관련 UI를 제어하는 클래스
@@ -11,6 +12,7 @@ public class PlayerBtn : UIBase
     [Header("UI Panel")] // 패널
     public GameObject skillPanel; // 스킬 패널
     public GameObject functionPanel; // 기능 패널
+    public GameObject joystick; // 조이스틱
 
 
     private void Start()
@@ -36,8 +38,10 @@ public class PlayerBtn : UIBase
     public void CutSceneSkip()
     {
         skillPanel.SetActive(false); // 스킬 패널 비활성화
+        joystick.SetActive(false); // 조이스틱 비활성화
         functionPanel.SetActive(false); // 기능 패널 비활성화
-        stopBtn.gameObject.SetActive(true); // 정지 버튼 비활성화
+        stopBtn.gameObject.SetActive(false); // 정지 버튼 비활성화
+        skipBtn.gameObject.SetActive(true); // 스킵 버튼 활성화
     }
 
 }
