@@ -1306,7 +1306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3758743126609428637
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1461,23 +1461,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPosition: 0
-  jumpBtn: {fileID: 7155010882925744425}
-  hideBtn: {fileID: 1834921302595479333}
-  catBtn: {fileID: 2354016603576260073}
-  dogBtn: {fileID: 6097720729191618519}
-  squirrelBtn: {fileID: 8164623754403122930}
   stopBtn: {fileID: 6899352835546882842}
   skipBtn: {fileID: 5506947748116757338}
-  interactionBtn: {fileID: 4534340144739830969}
-  jumpBG: {fileID: 3136695050458097799}
-  hideBG: {fileID: 8087316214355392163}
-  catBG: {fileID: 8556681821104062620}
-  dogBG: {fileID: 5871563461903106033}
-  squirrelBG: {fileID: 8974544695567939549}
-  hideSkill: {fileID: 4604291537379460170}
-  catSkill: {fileID: 8052357830758210174}
-  dogSkill: {fileID: 3148351029134567705}
-  squirrelSkill: {fileID: 622275190652990827}
   skillPanel: {fileID: 2848191205224378295}
   functionPanel: {fileID: 6121230869568183876}
 --- !u!1 &6424630432682532004

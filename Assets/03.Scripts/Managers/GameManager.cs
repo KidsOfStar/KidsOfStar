@@ -34,10 +34,10 @@ public class GameManager
         LoadVolumeSetting();
     }
 
-    public void SaveVolumeSetting()
+    public void SaveVolumeSetting(float bgm, float sfx)
     {
-        PlayerPrefs.SetFloat("BgmVolume", BgmVolume);
-        PlayerPrefs.SetFloat("SfxVolume", SfxVolume);
+        PlayerPrefs.SetFloat("BgmVolume", bgm);
+        PlayerPrefs.SetFloat("SfxVolume", sfx);
     }
 
     public void LoadVolumeSetting()
@@ -58,7 +58,7 @@ public class GameManager
         count = Enum.GetValues(typeof(EndingType)).Length;
         for (int i = 0; i < count; i++)
         {
-            var ending = (EndingType)i;
+            var ending = (EndingType)i;;
             endingDict.TryAdd(ending, false);
         }
     }

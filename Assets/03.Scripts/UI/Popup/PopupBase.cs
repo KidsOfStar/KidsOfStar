@@ -20,9 +20,10 @@ public class PopupBase : UIBase
     }
     protected virtual void Start()
     {
-        if(closeBtn != null)
+        if (closeBtn != null)
         {
             closeBtn.onClick.AddListener(HideDirect);
+            
         }
     }
     public override void HideDirect()
@@ -33,6 +34,4 @@ public class PopupBase : UIBase
             Time.timeScale = 1; // 게임 재개
         }
     }
-
-
 }

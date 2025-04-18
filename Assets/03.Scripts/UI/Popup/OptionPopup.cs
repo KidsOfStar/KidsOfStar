@@ -32,14 +32,11 @@ public class OptionPopup : PopupBase
 
     private void InitSlider()
     {
-       
-        bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.7f); // 기본값 0.7
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.8f); // 기본값 0.8
 
-        //Managers.Instance.GameManager.SetBgmVolume(bgmSlider.value);
-        //Managers.Instance.GameManager.SetSfxVolume(sfxSlider.value);
-
-        //// 슬라이더 초기화
+        bgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.7f); // 기본값 0.7
+        sfxSlider.value = PlayerPrefs.GetFloat("SfxVolume", 0.7f); // 기본값 0.7
+        EditorLog.Log($"BGM Volume : {bgmSlider.value}");
+        // 슬라이더 초기화
         bgmSlider.onValueChanged.AddListener(soundManager.SetBgmVolume);
         sfxSlider.onValueChanged.AddListener(soundManager.SetSfxVolume);
     }
@@ -64,5 +61,9 @@ public class OptionPopup : PopupBase
         Managers.Instance.UIManager.Show<WarningEndTop>(); // 종료 경고창 띄우기
         HideDirect();
     }
-
+    public override void HideDirect()
+    {
+        base.HideDirect();
+        Managers.Instance.GameManager.SaveVolumeSetting(bgmSlider.value, sfxSlider.value);
+    }
 }

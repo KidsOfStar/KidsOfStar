@@ -39,4 +39,5 @@ public class PlayerBtn : UIBase
         functionPanel.SetActive(false); // 기능 패널 비활성화
         stopBtn.gameObject.SetActive(true); // 정지 버튼 비활성화
     }
+
 }
