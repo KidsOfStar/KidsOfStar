@@ -487,17 +487,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdef7d2fed4f63b4dbc1c0b6c4806c87, type: 3}
---- !u!114 &513830215 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5569511125589340821, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
-  m_PrefabInstance: {fileID: 353063633}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17c4d9ab675d2a74ca4309233e943efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1035822223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +994,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cobwebCollider: {fileID: 1878040072}
-  player: {fileID: 513830215}
+  slowDownFacto: 10
+  originalJumpForce: 0
 --- !u!1001 &2450370091088745694
 PrefabInstance:
   m_ObjectHideFlags: 0

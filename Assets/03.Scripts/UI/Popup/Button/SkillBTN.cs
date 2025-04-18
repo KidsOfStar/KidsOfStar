@@ -144,7 +144,7 @@ public class SkillBTN : UIBase
     public void OnInteraction()
     {
         // 대화 시작
-        Managers.Instance.DialogueManager.OnClick?.Invoke();
+        //Managers.Instance.DialogueManager.OnClick?.Invoke(); 삭제
     }
     public void ShowInteractionButton(bool isActive)
     {
