@@ -49,7 +49,11 @@ public enum SceneType
 {
     Title,
     Loading,
-    Chapter01,
+    Chapter1,
+    Chapter1Puzzle,
+    Chapter2,
+    Chapter202,
+    Chapter3,
 }
 
 public enum ChapterType

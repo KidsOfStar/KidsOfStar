@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector2 minPosition;
     [SerializeField] private Vector2 maxPosition;
     
-    [Header("Light")]
+    [Header("Light")] // 씬에 배치 할 라이트 오브젝트 : 컷씬 재생 중에는 비활성화
     [SerializeField] private GameObject lightObject;
     
     private Transform target = null;
@@ -17,9 +17,11 @@ public class CameraController : MonoBehaviour
     public void Init()
     {
         cutSceneManager = Managers.Instance.CutSceneManager;
+        target = Managers.Instance.GameManager.Player.transform;
+        
+        if (!lightObject) return;
         cutSceneManager.OnCutSceneStart += () => lightObject.SetActive(false);
         cutSceneManager.OnCutSceneEnd += () => lightObject.SetActive(true);
-        target = Managers.Instance.GameManager.Player.transform;
     }
 
     private void FixedUpdate()

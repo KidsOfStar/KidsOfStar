@@ -73,7 +73,7 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
-    public void ShowDialog(string dialog, CharacterType character)
+    private void ShowDialog(string dialog, CharacterType character)
     {
         var npc = isCutScene ? cutSceneSpeakers[character] : sceneSpeakers[character];
         Vector3 bubblePos = npc.GetBubblePosition();

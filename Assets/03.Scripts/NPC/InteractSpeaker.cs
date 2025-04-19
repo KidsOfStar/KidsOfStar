@@ -29,11 +29,11 @@ public abstract class InteractSpeaker : MonoBehaviour
         skillPanel.OnInteractBtnClick -= OnInteract;
         
         // 대사 출력
-        var key = Managers.Instance.GameManager.ChapterProgress + 1;
+        var key = Managers.Instance.GameManager.ChapterProgress;
         var dialogIndex = DialogByProgress[key];
         Managers.Instance.DialogueManager.SetCurrentDialogData(dialogIndex);
         
-        // 대화가 끝나면 다시 이벤트에 등록
+        // 다시 상호작용 할 수 있도록 대화가 끝나면 다시 이벤트에 등록
         Managers.Instance.DialogueManager.OnDialogEnd += AddListenerOnInteract;
     }
 

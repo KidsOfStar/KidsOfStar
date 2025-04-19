@@ -17,12 +17,13 @@ public class GameManager
     private readonly Dictionary<EndingType, bool> endingDict = new();
     public Difficulty Difficulty { get; private set; }
     public ChapterType CurrentChapter { get; private set; }
-    public int ChapterProgress { get; private set; }
+    public int ChapterProgress { get; private set; } = 1;
     
     // Play Data
     public Vector3 PlayerPosition { get; private set; } = Vector3.zero;
     public Player Player { get; private set; }
 
+    // Events
     public Action OnProgressUpdated { get; set; }
 
     public GameManager()

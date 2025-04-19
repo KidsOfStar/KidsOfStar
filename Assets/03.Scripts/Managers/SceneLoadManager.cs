@@ -10,25 +10,30 @@ public class SceneLoadManager : MonoBehaviour
     private const float fakeMaxDuration = 4f;
     public SceneType CurrentScene { get; private set; } = SceneType.Title;
     public bool IsSceneLoadComplete { get; set; }
-    
+
     public void LoadScene(SceneType loadScene)
     {
         StartCoroutine(LoadSceneCoroutine(loadScene));
     }
-    
+
     // 씬을 로드하는 코루틴
     private IEnumerator LoadSceneCoroutine(SceneType loadScene)
     {
+#if UNITY_EDITOR
+        if (Managers.Instance.LoadTestScene)
+            loadScene = Managers.Instance.TestScene;
+#endif
+
         IsSceneLoadComplete = false;
         Managers.Instance.OnSceneUnloaded();
-        
+
         // 로딩 씬을 먼저 로드
         yield return SceneManager.LoadSceneAsync(SceneType.Loading.GetName(), LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneType.Loading.GetName()));
-        
+
         yield return null;
         SceneManager.UnloadSceneAsync(CurrentScene.GetName());
-        
+
         // 씬 로드 시작
         AsyncOperation operation = SceneManager.LoadSceneAsync(loadScene.GetName(), LoadSceneMode.Additive);
         if (operation == null)
@@ -36,6 +41,7 @@ public class SceneLoadManager : MonoBehaviour
             EditorLog.LogError("SceneLoader.LoadSceneAsync: operation is null");
             yield break;
         }
+
         operation.allowSceneActivation = false;
 
         // 최소 로딩 시간을 보장하기 위해 가짜 로딩 시간을 설정
@@ -61,13 +67,13 @@ public class SceneLoadManager : MonoBehaviour
         // 실제 씬 전환 완료 이후 초기화 및 로딩 시간 병렬 대기
         while (!IsSceneLoadComplete)
             yield return null;
-        
+
         yield return new WaitForSeconds(0.1f);
         SceneManager.UnloadSceneAsync(SceneType.Loading.GetName());
     }
 
     public void DebugMode()
     {
-        CurrentScene = SceneType.Chapter01;
+        CurrentScene = SceneType.Chapter1;
     }
 }

@@ -1,4 +1,4 @@
-public class Chapter01 : SceneBase
+public class Chapter01Base : SceneBase
 {
     protected override void InitSceneExtra()
     {
