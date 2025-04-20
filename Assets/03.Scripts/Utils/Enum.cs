@@ -19,6 +19,8 @@ public enum CharacterType
     Songsari,
     Dolmengee,
     People,
+    Hanul,
+    Women,
 }
 
 [UGS(typeof(DialogActionType))]
@@ -47,7 +49,11 @@ public enum SceneType
 {
     Title,
     Loading,
-    Chapter01,
+    Chapter1,
+    Chapter1Puzzle,
+    Chapter2,
+    Chapter202,
+    Chapter3,
 }
 
 public enum ChapterType
@@ -76,6 +82,7 @@ public enum CutSceneType
 {
     Intro,
     Chapter02,
+    Chapter02_Test,
 }
 
 public enum UIPosition

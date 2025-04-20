@@ -6,6 +6,8 @@ public class Managers : Singleton<Managers>
     [field: SerializeField] public SceneLoadManager SceneLoadManager { get; private set; }
 #if UNITY_EDITOR
     [field: SerializeField] public bool IsDebugMode { get; private set; }
+    [field: SerializeField] public bool LoadTestScene { get; private set; } = false;
+    [field: SerializeField] public SceneType TestScene { get; private set; } = SceneType.Chapter1;
 #endif
 
     public ResourceManager ResourceManager { get; private set; }

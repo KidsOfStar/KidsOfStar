@@ -16,10 +16,14 @@ public static class Extensions
     {
         return sceneType switch
         {
-            SceneType.Title     => "TitleScene",
-            SceneType.Loading   => "LoadingScene",
-            SceneType.Chapter01 => "Chapter_01",
-            _                   => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
+            SceneType.Title          => "TitleScene",
+            SceneType.Loading        => "LoadingScene",
+            SceneType.Chapter1       => "Chapter_1",
+            SceneType.Chapter1Puzzle => "Chapter_103",
+            SceneType.Chapter2       => "Chapter_2",
+            SceneType.Chapter202     => "Chapter_202",
+            SceneType.Chapter3       => "Chapter_3",
+            _                        => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
         };
     }
     
@@ -52,7 +56,8 @@ public static class Extensions
         return cutSceneType switch
         {
             CutSceneType.Intro     => "Intro",
-            CutSceneType.Chapter02 => "Chapter2",
+            CutSceneType.Chapter02 => "Chapter02",
+            CutSceneType.Chapter02_Test => "Chapter02_New",
             _                      => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }

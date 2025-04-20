@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 public class CutSceneBase : MonoBehaviour
 {
-    [SerializeField] private PlayableDirector director;
-    public PlayableDirector Director => director;
+    [field: SerializeField] public PlayableDirector Director { get; private set; }
+    [field: SerializeField] private SceneType sceneType;
     [SerializeField] private SignalReceiver signalReceiver;
     [SerializeField] private SignalAsset dialogSignal;
     [SerializeField] private SignalAsset destroySignal;
@@ -14,46 +13,48 @@ public class CutSceneBase : MonoBehaviour
     [Header("CutSceneData")]
     [SerializeField] private CutSceneData cutSceneData;
 
-    private readonly UnityEvent showDialogEvent = new();
-    private readonly UnityEvent destroyEvent = new();
-    private int currentIndex = 0;
+    private int currentIndex;
 
-    private void Start()
+    public void Init()
     {
         if (cutSceneData.Npcs != null)
         {
             Managers.Instance.DialogueManager.InitCutSceneNPcs(cutSceneData.Npcs);
         }
+        
         Managers.Instance.DialogueManager.OnDialogEnd += ResumeCutScene;
+    }
 
-        showDialogEvent.AddListener(ShowDialog);
-        signalReceiver.AddReaction(dialogSignal, showDialogEvent);
-        destroyEvent.AddListener(DestroyPrefab);
-        signalReceiver.AddReaction(destroySignal, destroyEvent);
-
+    public void Play()
+    {
+        Director.Play();
     }
 
     public void ShowDialog()
     {
         //director.Evaluate();
         //director.Pause();
-        director.playableGraph.GetRootPlayable(0).SetSpeed(0);
+        Director.playableGraph.GetRootPlayable(0).SetSpeed(0);
 
         var index = cutSceneData.DialogIndexes[currentIndex];
         Managers.Instance.DialogueManager.SetCurrentDialogData(index);
         currentIndex++;
     }
 
-    public void ResumeCutScene()
+    private void ResumeCutScene()
     {
-        director.playableGraph.GetRootPlayable(0).SetSpeed(1);
-
-        director.Resume();
+        Director.playableGraph.GetRootPlayable(0).SetSpeed(1);
+        Director.Resume();
     }
 
     public void DestroyPrefab()
     {
         //Managers.Instance.CutSceneManager.LetterBoxer.DisableLetterBox();
+        Managers.Instance.DialogueManager.OnDialogEnd -= ResumeCutScene;
+        Managers.Instance.CutSceneManager.OnCutSceneEnd?.Invoke();
+        if (sceneType != SceneType.Title)
+            Managers.Instance.SceneLoadManager.LoadScene(sceneType);
+        
         Destroy(gameObject);
     }
 }

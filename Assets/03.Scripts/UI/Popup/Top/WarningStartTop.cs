@@ -21,6 +21,6 @@ public class WarningStartTop : PopupBase
 
     public void NextSence()
     {
-        Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter01);
+        Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter1);
     }
 }

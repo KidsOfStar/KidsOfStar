@@ -6,30 +6,40 @@ using UnityEngine.UI;
 
 public class UITextBubble : PopupBase
 {
+    [Header("Text Bubble")]
     [SerializeField] private RectTransform rectTr;
     [SerializeField] private Image bubbleImage;
     [SerializeField] private TextMeshProUGUI dialogText;
+    [SerializeField] private float clickIgnoreTime = 0.1f;
 
     private readonly StringBuilder dialogSb = new();
     private readonly WaitForSeconds textWaitTime = new(0.1f);
     private Coroutine dialogCoroutine;
+    
     private bool isTyping = false;
+    private float dialogStartTime;
 
     public void SetDialog(string dialog, Vector3 pos)
     {
         StartDialogCoroutine(dialog);
-        rectTr.localPosition = pos;
+        rectTr.position = pos;
+        dialogStartTime = Time.time;
     }
 
     private void StartDialogCoroutine(string dialog)
     {
         if (dialogCoroutine != null)
+        {
             StopCoroutine(dialogCoroutine);
+            dialogCoroutine = null;
+        }
+        
+        dialogText.text = string.Empty;
+        dialogSb.Clear();
         
         dialogCoroutine = StartCoroutine(ShowDialog(dialog));
     }
     
-    // TODO: 텍스트 설정 생기면 연결
     private IEnumerator ShowDialog(string dialog)
     {
         isTyping = true;
@@ -55,6 +65,9 @@ public class UITextBubble : PopupBase
     
     private void SkipTyping()
     {
+        if (Time.time - dialogStartTime < clickIgnoreTime)
+            return;
+        
         if (isTyping)
             isTyping = false;
         else
@@ -65,6 +78,7 @@ public class UITextBubble : PopupBase
 
     private void OnEnable()
     {
+        dialogStartTime = 0f;
         Managers.Instance.DialogueManager.OnClick += SkipTyping;
     }
 

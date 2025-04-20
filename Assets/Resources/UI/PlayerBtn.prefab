@@ -1492,7 +1492,7 @@ MonoBehaviour:
   uiPosition: 0
   stopBtn: {fileID: 6899352835546882842}
   skipBtn: {fileID: 5506947748116757338}
-  skillPanel: {fileID: 2848191205224378295}
+  skillPanel: {fileID: 5899448696036790164}
   functionPanel: {fileID: 6121230869568183876}
   joystick: {fileID: 3843351717722338959, guid: df69f07e9a1b30c42a4349bac60dc106, type: 3}
 --- !u!1 &6424630432682532004
