@@ -89,8 +89,7 @@ public enum EndingType
 public enum CutSceneType
 {
     Intro,
-    Chapter02,
-    Chapter02_Test,
+    Chapter2,
 }
 
 public enum UIPosition
