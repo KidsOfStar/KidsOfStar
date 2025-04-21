@@ -2,7 +2,21 @@ using System;
 
 public static class Extensions
 {
-    public static string GetName(this SoundType soundType)
+    public static string GetName(this BgmSoundType bgm)
+    {
+        return bgm switch
+        {
+            BgmSoundType.Maorum         => "Maorum",
+            BgmSoundType.MaorumChase    => "MaorumChase",
+            BgmSoundType.InForest       => "InForest",
+            BgmSoundType.InForestPuzzle => "InForestPuzzle",
+            BgmSoundType.WithDogs       => "WithDogs",
+            BgmSoundType.WithDogsRun    => "WithDogs_Run",
+            _                           => throw new ArgumentOutOfRangeException(nameof(bgm), bgm, null)
+        };
+    }
+
+    public static string GetName(this SfxSoundType sfx)
     {
         return string.Empty;
     }

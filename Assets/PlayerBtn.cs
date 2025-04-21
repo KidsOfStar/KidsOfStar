@@ -43,5 +43,4 @@ public class PlayerBtn : UIBase
         stopBtn.gameObject.SetActive(false); // 정지 버튼 비활성화
         skipBtn.gameObject.SetActive(true); // 스킵 버튼 활성화
     }
-
 }

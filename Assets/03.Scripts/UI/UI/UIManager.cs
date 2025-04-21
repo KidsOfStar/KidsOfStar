@@ -61,19 +61,19 @@ public class UIManager : ISceneLifecycleHandler
         /// </summary>
         if (name.Contains("Canvas"))
         {
-            return Define.UIPath + name;
+            return Define.uiPath + name;
         }
         else if (name.Contains("Popup"))
         {
-            return Define.PopupPath + name;
+            return Define.popupPath + name;
         }
         else if (name.Contains("Top"))
         {
-            return Define.TopPath + name;
+            return Define.topPath + name;
         }
         else
         {
-            return Define.UIPath + name;
+            return Define.uiPath + name;
         }
     }
 

@@ -1,5 +1,7 @@
 using GoogleSheet.Core.Type;
 
+#region Dialogue
+
 [UGS(typeof(CharacterType))]
 public enum CharacterType
 {
@@ -34,16 +36,31 @@ public enum DialogActionType
     LoadScene,
 }
 
-public enum SoundType
+#endregion
+
+#region Sound
+
+public enum BgmSoundType
 {
-    UiButton,
-    
+    Maorum,
+    MaorumChase,
+    InForest,
+    InForestPuzzle,
+    WithDogs,
+    WithDogsRun,
+}
+
+public enum SfxSoundType
+{
 }
 
 public enum FootstepType
 {
-    
 }
+
+#endregion
+
+#region Stage
 
 public enum SceneType
 {
@@ -69,6 +86,10 @@ public enum Difficulty
     Hard,
 }
 
+#endregion
+
+#region CutScene
+
 public enum EndingType
 {
     // 기본 엔딩
@@ -77,7 +98,7 @@ public enum EndingType
     Obedience,
     Adaptation,
     Mistake,
-    
+
     // 중요 엔딩
     ComfortableLife,
     WinRecognition,
@@ -92,11 +113,15 @@ public enum CutSceneType
     Chapter2,
 }
 
+#endregion
+
+#region Setting
+
 public enum UIPosition
 {
-    UI,     // 기본 씬 UI
-    Popup,  // 팝업 창
-    Top,    // 에러 창 
+    UI,    // 기본 씬 UI
+    Popup, // 팝업 창
+    Top,   // 에러 창 
 }
 
 public enum ObstacleType
@@ -106,8 +131,11 @@ public enum ObstacleType
     LargeSeaweed,
     Stone
 }
+
 public enum ReferenceMode //레터박스 화면비율 선정 Mode
-{ 
-    DesignedAspectRatio, 
-    OrginalResolution 
+{
+    DesignedAspectRatio,
+    OrginalResolution
 };
+
+#endregion
