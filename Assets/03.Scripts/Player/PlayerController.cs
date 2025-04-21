@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
         get { return jumpForce; }
         set { jumpForce = value; }
     }
+    [SerializeField, Tooltip("조이스틱")] private UIJoystick joyStick;
 
     private Player player;
     private BoxCollider2D boxCollider;
@@ -78,6 +79,14 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        UIManager uiManager = Managers.Instance?.UIManager;
+        if (uiManager == null) return;
+
+        joyStick = uiManager.Get<UIJoystick>();
+    }
+
     public void Init(Player player)
     {
         this.player = player;
@@ -86,6 +95,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GroundCheck();
+        Vector2 joystickInput = joyStick != null ? joyStick.Direction : Vector2.zero;
+
+        if(joystickInput != Vector2.zero)
+        {
+            moveDir = joystickInput;
+        }
     }
 
     void GroundCheck()
@@ -147,17 +162,15 @@ public class PlayerController : MonoBehaviour
         }
         else if(context.phase == InputActionPhase.Canceled)
         {
-            if (player.FormControl.CurFormData.FormName == "Cat" && !isGround)
-            {
-                SetWallJumpKeyDown();
-            }
+            SetWallJumpKeyDown();
         }
     }
 
     // 점프 버튼에 이 함수도 추가해주세요
     public void SetWallJumpKeyDown()
     {
-        if(!jumpKeyPressed && !wallJumpKeyDown)
+        if(!jumpKeyPressed && !wallJumpKeyDown
+            && player.FormControl.CurFormData.FormName == "Cat" && !isGround)
         {
             wallJumpKeyDown = true;
             return;
