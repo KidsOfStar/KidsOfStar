@@ -17,6 +17,7 @@ public class CatWallClingState : PlayerStateBase
         WallRatationSet();
         context.CanCling = false;
         clingTimer = 0;
+        context.CanClingTimer = 0f;
     }
 
     private void WallRatationSet()
@@ -42,35 +43,24 @@ public class CatWallClingState : PlayerStateBase
 
         context.Controller.Move();
         context.Rigid.velocity = new Vector2(context.Rigid.velocity.x, 0);
-
-        if(context.Controller.WallJumpKeyDown)
-        {
-            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.WallJump));
-        }
+        clingTimer += Time.deltaTime;
 
         if(clingTimer >= limit)
         {
-            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Jump));
+            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
             return;
-        }
-        else
-        {
-            clingTimer += Time.deltaTime;
         }
 
         if(context.Controller.IsGround)
         {
-            if (context.Controller.MoveDir == Vector2.zero)
-            {
-                context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
-            }
+            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
 
             return;
         }
 
         if(context.Controller.MoveDir.x == 0 || !WallTouchCheck())
         {
-            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Jump));
+            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
             return;
         }
     }
@@ -78,8 +68,8 @@ public class CatWallClingState : PlayerStateBase
     bool WallTouchCheck()
     {
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
-        RaycastHit2D hit = Physics2D.Raycast(context.Controller.transform.position, dir,
-            context.BoxCollider.bounds.size.x * 0.7f, context.Controller.GroundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(context.BoxCollider.bounds.center, dir,
+            context.BoxCollider.bounds.size.x, context.Controller.GroundLayer);
 
         if (hit.collider != null)
         {

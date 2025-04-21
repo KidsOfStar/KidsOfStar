@@ -16,11 +16,5 @@ public class PlayerGroundState : PlayerStateBase
     public override void OnUpdate()
     {
         base.OnUpdate();
-
-        if(context.Controller.JumpKeyPressed)
-        {
-            // 점프 상태로 전환
-            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Jump));
-        }
     }
 }

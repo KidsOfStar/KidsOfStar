@@ -25,10 +25,10 @@ public class PlayerStateBase : IPlayerState
 
     public virtual void OnUpdate()
     {
+        context.CanClingTimer += Time.deltaTime;
+
         if (context.Controller.IsGround)
         {
-            if (!context.Controller.JumpKeyPressed)
-            {
                 if (context.Controller.MoveDir == Vector2.zero)
                 {
                     context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
@@ -37,7 +37,6 @@ public class PlayerStateBase : IPlayerState
                 {
                     context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Move));
                 }
-            }
         }
         else
         {
@@ -53,12 +52,18 @@ public class PlayerStateBase : IPlayerState
     {
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
 
-        RaycastHit2D checkHit = Physics2D.Raycast(context.Controller.transform.position, dir,
+        RaycastHit2D checkHit = Physics2D.Raycast(context.BoxCollider.bounds.center, dir,
             context.BoxCollider.bounds.size.x * 0.7f, context.Controller.GroundLayer);
+        Debug.DrawRay(context.BoxCollider.bounds.center, dir * (context.BoxCollider.bounds.size.x * 0.7f),
+            Color.red, 1f);
 
         if (checkHit.collider != null)
         {
-            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.WallCling));
+            if (context.CanClingTimer >= context.Controller.CatClingTimer)
+            {
+                EditorLog.Log(checkHit.collider.gameObject.name);
+                context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.WallCling));
+            }
         }
     }
 }

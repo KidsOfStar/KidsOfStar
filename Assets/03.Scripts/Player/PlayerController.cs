@@ -20,11 +20,16 @@ public class PlayerController : MonoBehaviour
         set { jumpForce = value; }
     }
 
+    [Space, Header("고양이")]
+    [SerializeField, Tooltip("벽 점프력")] private float wallJumpForce = 5f;
+    public float WallJumpForce { get { return wallJumpForce; } }
+    [SerializeField, Tooltip("벽에 붙었다가 떨어졌을 때 다시 붙을 수 있게 되기까지의 쿨타임")] private float catClingTimer = 1f;
+    public float CatClingTimer { get { return catClingTimer; } }
+
     private Player player;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
-    private UIJoystick joyStick;
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
@@ -46,20 +51,6 @@ public class PlayerController : MonoBehaviour
         get { return isControllable; }
         set { isControllable = value; }
     }
-    // 일반 점프에서 점프키가 눌렸는지를 판단
-    private bool jumpKeyPressed = false;
-    public bool JumpKeyPressed
-    {
-        get { return jumpKeyPressed; }
-        set { jumpKeyPressed = value; }
-    }
-    // 고양이 벽점프를 위해 키가 눌렸는지를 판단
-    private bool wallJumpKeyDown = false;
-    public bool WallJumpKeyDown
-    {
-        get { return wallJumpKeyDown; }
-        set { wallJumpKeyDown = value; }
-    }
 
     [Header("Push")]
     [SerializeField, Tooltip("플레이어 앞 박스를 감지할 거리")]
@@ -77,14 +68,6 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
-        UIManager uiManager = Managers.Instance?.UIManager;
-        if (uiManager == null) return;
-
-        joyStick = uiManager.Get<UIJoystick>();
     }
 
     public void Init(Player player)
@@ -124,10 +107,6 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             Jump();
-        }
-        else if (context.phase == InputActionPhase.Canceled)
-        {
-            SetWallJumpKeyDown();
         }
     }
 
@@ -181,31 +160,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 점프 버튼에 이 함수도 추가해주세요
-    public void SetWallJumpKeyDown()
-    {
-        if (!jumpKeyPressed && !wallJumpKeyDown
-            && player.FormControl.CurFormData.FormName == "Cat" && !isGround)
-        {
-            wallJumpKeyDown = true;
-            return;
-        }
-    }
-
-    void JumpKeyPressedOff()
-    {
-        jumpKeyPressed = false;
-    }
-
     public void Jump()
     {
         if (!isControllable) return;
 
-        if (isGround && !jumpKeyPressed)
+        if (isGround)
         {
-            jumpKeyPressed = true;
-            rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            Invoke("JumpKeyPressedOff", 0.1f);
+            player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.Jump));
+        }
+        else if(!player.StateMachine.ContextData.CanCling)
+        {
+            player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.WallJump));
         }
     }
 

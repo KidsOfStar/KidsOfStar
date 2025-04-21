@@ -6,12 +6,6 @@ public class PlayerIdleState : PlayerGroundState
 {
     public PlayerIdleState(PlayerContextData data, PlayerStateFactory factory) : base(data, factory) { }
 
-    public override void OnEnter()
-    {
-        base.OnEnter();
-        context.Rigid.velocity = Vector2.zero;
-    }
-
     public override void OnUpdate()
     {
         base.OnUpdate();
