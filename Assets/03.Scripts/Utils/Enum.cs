@@ -71,6 +71,14 @@ public enum Difficulty
 
 public enum EndingType
 {
+    // 기본 엔딩
+    Absorb,
+    Stable,
+    Obedience,
+    Adaptation,
+    Mistake,
+    
+    // 중요 엔딩
     ComfortableLife,
     WinRecognition,
     DreamingCat,
