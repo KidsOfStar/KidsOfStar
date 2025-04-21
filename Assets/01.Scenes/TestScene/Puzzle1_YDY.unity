@@ -1153,7 +1153,7 @@ MonoBehaviour:
   - {fileID: 1181017488, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
   - {fileID: -2032563728, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
   timerTxt: {fileID: 105632648}
-  failPopup: {fileID: 0}
+  failPopup: {fileID: 7828699463414798864}
   easyMode: 0
   gridWidth: 4
   timeLimit: 90
@@ -3407,12 +3407,12 @@ MonoBehaviour:
   - {fileID: 1181017488, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
   - {fileID: -2032563728, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
   timerTxt: {fileID: 1505551911}
-  failPopup: {fileID: 0}
+  failPopup: {fileID: 7828699463414798864}
   easyMode: 0
   gridWidth: 4
   timeLimit: 180
-  easyObject: {fileID: 0}
-  hardObject: {fileID: 0}
+  easyObject: {fileID: 541021952}
+  hardObject: {fileID: 2197435705876028750}
 --- !u!114 &1669711420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3746,7 +3746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -749138465, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
+  m_Sprite: {fileID: 654785929, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
