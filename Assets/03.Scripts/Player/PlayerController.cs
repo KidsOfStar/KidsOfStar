@@ -19,12 +19,12 @@ public class PlayerController : MonoBehaviour
         get { return jumpForce; }
         set { jumpForce = value; }
     }
-    [SerializeField, Tooltip("조이스틱")] private UIJoystick joyStick;
 
     private Player player;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
+    private UIJoystick joyStick;
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
@@ -125,6 +125,39 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            Jump();
+        }
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            SetWallJumpKeyDown();
+        }
+    }
+
+    public void OnFormChange(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        switch(context.control.name)
+        {
+            case "1":
+                player.FormControl.FormChange("Squirrel");
+                break;
+            case "2":
+                player.FormControl.FormChange("Dog");
+                break;
+            case "3":
+                player.FormControl.FormChange("Cat");
+                break;
+            case "4":
+                player.FormControl.FormChange("Hide");
+                break;
+        }
+    }
+
     public void Move()
     {
         if (moveDir != Vector2.up && moveDir != Vector2.down)
@@ -151,18 +184,6 @@ public class PlayerController : MonoBehaviour
             }
 
             player.FormControl.FlipControl(moveDir);
-        }
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if(context.phase == InputActionPhase.Started)
-        {
-            Jump();
-        }
-        else if(context.phase == InputActionPhase.Canceled)
-        {
-            SetWallJumpKeyDown();
         }
     }
 
