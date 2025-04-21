@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
+    private UIJoystick joyStick;
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
@@ -78,6 +79,14 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        UIManager uiManager = Managers.Instance?.UIManager;
+        if (uiManager == null) return;
+
+        joyStick = uiManager.Get<UIJoystick>();
+    }
+
     public void Init(Player player)
     {
         this.player = player;
@@ -86,6 +95,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GroundCheck();
+        Vector2 joystickInput = joyStick != null ? joyStick.Direction : Vector2.zero;
+
+        if(joystickInput != Vector2.zero)
+        {
+            moveDir = joystickInput;
+        }
     }
 
     void GroundCheck()
@@ -107,6 +122,39 @@ public class PlayerController : MonoBehaviour
         else if(context.phase == InputActionPhase.Canceled)
         {
             moveDir = Vector2.zero;
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            Jump();
+        }
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            SetWallJumpKeyDown();
+        }
+    }
+
+    public void OnFormChange(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        switch(context.control.name)
+        {
+            case "1":
+                player.FormControl.FormChange("Squirrel");
+                break;
+            case "2":
+                player.FormControl.FormChange("Dog");
+                break;
+            case "3":
+                player.FormControl.FormChange("Cat");
+                break;
+            case "4":
+                player.FormControl.FormChange("Hide");
+                break;
         }
     }
 
@@ -139,25 +187,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if(context.phase == InputActionPhase.Started)
-        {
-            Jump();
-        }
-        else if(context.phase == InputActionPhase.Canceled)
-        {
-            if (player.FormControl.CurFormData.FormName == "Cat" && !isGround)
-            {
-                SetWallJumpKeyDown();
-            }
-        }
-    }
-
     // 점프 버튼에 이 함수도 추가해주세요
     public void SetWallJumpKeyDown()
     {
-        if(!jumpKeyPressed && !wallJumpKeyDown)
+        if(!jumpKeyPressed && !wallJumpKeyDown
+            && player.FormControl.CurFormData.FormName == "Cat" && !isGround)
         {
             wallJumpKeyDown = true;
             return;

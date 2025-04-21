@@ -90,6 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPosition: 1
+  closeBtn: {fileID: 0}
+  checkTimeStop: 0
+  isFirst: 0
   selectButtons:
   - {fileID: 1450839224606244662}
   - {fileID: 8156343106369579941}
@@ -675,7 +678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8956686067156266254
@@ -813,6 +816,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPosition: 1
+  closeBtn: {fileID: 0}
+  checkTimeStop: 0
+  isFirst: 0
   button: {fileID: 6263839423825603683}
   selectionText: {fileID: 8328205723244882654}
 --- !u!1 &5489599119083013951
@@ -992,6 +998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPosition: 1
+  closeBtn: {fileID: 0}
+  checkTimeStop: 0
+  isFirst: 0
   button: {fileID: 2699216194577309998}
   selectionText: {fileID: 3255569047070611}
 --- !u!1 &5557790585124413143
@@ -1306,6 +1315,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPosition: 1
+  closeBtn: {fileID: 0}
+  checkTimeStop: 0
+  isFirst: 0
   button: {fileID: 3569168014013889755}
   selectionText: {fileID: 1510431394649569894}
 --- !u!1 &6531801685496307425
@@ -1485,6 +1497,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPosition: 1
+  closeBtn: {fileID: 0}
+  checkTimeStop: 0
+  isFirst: 0
   button: {fileID: 3746691996441426160}
   selectionText: {fileID: 1621567148199788109}
 --- !u!1 &7394880866809488806
@@ -1664,5 +1679,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPosition: 1
+  closeBtn: {fileID: 0}
+  checkTimeStop: 0
+  isFirst: 0
   button: {fileID: 1136199531742725047}
   selectionText: {fileID: 3078928650774054154}

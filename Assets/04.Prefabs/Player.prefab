@@ -168,6 +168,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5e7175b1-1315-4609-a310-01e8f98eb85a
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5167650260352110354}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnFormChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3a9e17d5-90db-480e-97cc-d1c48d6577ab
+    m_ActionName: Player/FromChange[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
@@ -185,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c4d9ab675d2a74ca4309233e943efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBtn: {fileID: 0}
+  skillBTN: {fileID: 0}
 --- !u!114 &5167650260352110354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +219,7 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 3
   jumpForce: 2
+  joyStick: {fileID: 0}
   pushDetectDistance: 0.05
   pushableLayer:
     serializedVersion: 2
