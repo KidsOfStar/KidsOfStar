@@ -1038,7 +1038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &541021953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1134,6 +1134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   piecePrefab: {fileID: 438276036279181801, guid: 455eb5035b83a4240a12a0a2ac60aa42, type: 3}
   puzzleParent: {fileID: 556165131}
+  puzzlePopup: {fileID: 0}
   correctSprites:
   - {fileID: -630551556, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
   - {fileID: 25193328, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
@@ -2740,6 +2741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347009d8edfd80d41942c4694008f771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 1
   upButton: {fileID: 1193440543}
   downButton: {fileID: 486562728}
   leftButton: {fileID: 1469094816}
@@ -3445,6 +3447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   piecePrefab: {fileID: 438276036279181801, guid: 455eb5035b83a4240a12a0a2ac60aa42, type: 3}
   puzzleParent: {fileID: 1669711417}
+  puzzlePopup: {fileID: 0}
   correctSprites:
   - {fileID: -630551556, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
   - {fileID: 25193328, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
@@ -3701,6 +3704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347009d8edfd80d41942c4694008f771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 0
   upButton: {fileID: 1193440543}
   downButton: {fileID: 486562728}
   leftButton: {fileID: 1469094816}
@@ -4146,6 +4150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347009d8edfd80d41942c4694008f771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 0
   upButton: {fileID: 1193440543}
   downButton: {fileID: 486562728}
   leftButton: {fileID: 1469094816}
