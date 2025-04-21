@@ -34,6 +34,9 @@ public class PuzzleSystem : MonoBehaviour
     private bool isRunning = false;
     private int selectedIndex = 0;
 
+
+
+    //UI매니저 통해서 Show()를 통해서 팝업
     private void Start()
     {
         easyMode = Managers.Instance.GameManager.Difficulty == Difficulty.Easy;
@@ -148,6 +151,9 @@ public class PuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         failPopup.SetActive(true);
-        // gameObject.SetActive(false);
+    }
+    public void OnExit()
+    {
+        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
     }
 }
