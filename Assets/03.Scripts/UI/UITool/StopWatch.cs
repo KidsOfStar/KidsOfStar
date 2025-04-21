@@ -35,13 +35,13 @@ public class StopWatch : UIBase
         timeText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", minutes, seconds, milliseconds); // 텍스트 업데이트
     }
 
-    public void StartStopwatch()
+    public void OnStartWatch()
     {
         // 스탑워치 시동
         isTiming = true; // 타이밍 시작
     }
 
-    public void StopStopwatch()
+    public void OnStopWatch()
     {
         // 스탑워치 시간 정지
         isTiming = false; // 타이밍 종료
