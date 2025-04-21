@@ -12,6 +12,10 @@ public class Obstacle : MonoBehaviour
     public float scrollSpeed = 7f;
     public void InitObstacle(Vector3 spawnPosition, ObstacleType chosenType)
     {
+        if(chosenType == ObstacleType.Stone)
+        {
+            fixedPosY = -3f;
+        }
         if (chosenType == ObstacleType.MediumSeaweed)
         {
             fixedPosY += mediumYOffset;
