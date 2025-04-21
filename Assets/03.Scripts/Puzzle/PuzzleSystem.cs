@@ -148,7 +148,6 @@ public class PuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         failPopup.SetActive(true);
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
     }
-
 }
