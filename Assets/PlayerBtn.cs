@@ -15,10 +15,13 @@ public class PlayerBtn : UIBase
     public GameObject joystick; // 조이스틱
 
 
-    private void Start()
+    void Start()
     {
+        //OnCutSceneSkip();
         stopBtn.onClick.AddListener(OnOptionBtnClick);
         skipBtn.onClick.AddListener(OnSkip);
+        Managers.Instance.CutSceneManager.OnCutSceneStart += OnCutSceneSkip;
+        Managers.Instance.CutSceneManager.OnCutSceneEnd += OffCutSceneSkip;
     }
     
     // 정지 버튼 클릭 시 게임 일시정지
@@ -35,13 +38,25 @@ public class PlayerBtn : UIBase
         // 씬 스킵 처리
     }
 
-    public void CutSceneSkip()
+    public void OnCutSceneSkip()
     {
         skillPanel.SetActive(false); // 스킬 패널 비활성화
         joystick.SetActive(false); // 조이스틱 비활성화
         functionPanel.SetActive(false); // 기능 패널 비활성화
         stopBtn.gameObject.SetActive(false); // 정지 버튼 비활성화
-        skipBtn.gameObject.SetActive(true); // 스킵 버튼 활성화
-    }
+        //skipBtn.gameObject.SetActive(true); // 스킵 버튼 활성화
+        skipBtn.gameObject.SetActive(false); // 기능 구현 안 되어서 비활성화
 
+
+    }
+    public void OffCutSceneSkip()
+    {
+        skillPanel.SetActive(true); // 스킬 패널 비활성화
+        joystick.SetActive(true); // 조이스틱 비활성화
+        functionPanel.SetActive(true); // 기능 패널 비활성화
+        stopBtn.gameObject.SetActive(true); // 정지 버튼 비활성화
+        //skipBtn.gameObject.SetActive(false); // 스킵 버튼 활성화
+        skipBtn.gameObject.SetActive(true); // 기능 구현 안 되어서 비활성화
+
+    }
 }

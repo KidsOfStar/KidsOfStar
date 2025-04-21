@@ -48,11 +48,11 @@ MonoBehaviour:
     direction: 0
   - formName: Dog
     formImage: {fileID: -372320300, guid: 4395c9b503ecf9d48a3476ceb874cc16, type: 3}
-    jumpForce: 5
+    jumpForce: 7
     offsetX: 0
     offsetY: 0.38
-    sizeX: 1.125
-    sizeY: 0.75
+    sizeX: 1
+    sizeY: 0.8
     force: 1.8
     weight: 3
     IsActive: 1
