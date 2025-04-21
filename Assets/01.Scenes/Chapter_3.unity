@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitty
       objectReference: {fileID: 0}
+    - target: {fileID: 131770996470614999, guid: 32548173b8a44eb408d70dcab64dae91, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6137354515438208174, guid: 32548173b8a44eb408d70dcab64dae91, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -936,6 +940,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hanyung2
       objectReference: {fileID: 0}
+    - target: {fileID: 7830701120311079455, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9213793166455485543, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
       propertyPath: m_LocalPosition.x
       value: -58.82982
@@ -1007,7 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopWatch: {fileID: 0}
-  uiCountDown: {fileID: 0}
+  countDownPopup: {fileID: 0}
 --- !u!1001 &444538095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1129,6 +1137,10 @@ PrefabInstance:
     - target: {fileID: 7443810690714922142, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
       propertyPath: m_Name
       value: Semyung (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443810690714922142, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15820,6 +15832,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jigim (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2136488510606508772, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2610808479252549695, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 214.15
@@ -16136,6 +16152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Semyung
       objectReference: {fileID: 0}
+    - target: {fileID: 7443810690714922142, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16161,6 +16181,10 @@ PrefabInstance:
     - target: {fileID: 2136488510606508772, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
       propertyPath: m_Name
       value: Jigim (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136488510606508772, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2610808479252549695, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16473,6 +16497,10 @@ PrefabInstance:
     - target: {fileID: 7443810690714922142, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
       propertyPath: m_Name
       value: Semyung (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443810690714922142, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17449,6 +17477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hanyung3
       objectReference: {fileID: 0}
+    - target: {fileID: 7830701120311079455, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9213793166455485543, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
       propertyPath: m_LocalPosition.x
       value: 207
@@ -17654,6 +17686,10 @@ PrefabInstance:
     - target: {fileID: 2136488510606508772, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
       propertyPath: m_Name
       value: Jigim
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136488510606508772, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2610808479252549695, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17945,6 +17981,10 @@ PrefabInstance:
     - target: {fileID: 7830701120311079455, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
       propertyPath: m_Name
       value: Hanyung
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830701120311079455, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9213793166455485543, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
       propertyPath: m_LocalPosition.x

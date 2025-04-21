@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private PlayerStateMachine stateMachine;
     public PlayerStateMachine StateMachine { get { return stateMachine; } }
 
-    public SkillBTN skillBTN; 
+    //public SkillBTN skillBTN; 
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         stateMachine.Player = this;
 
         controller.Init(this);
+
     }
 
     private void Start()
@@ -29,19 +30,19 @@ public class Player : MonoBehaviour
         Managers.Instance.GameManager.SetPlayer(this);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
 
-        if (other.CompareTag("Interactable"))
-        {
-            skillBTN.ShowInteractionButton(true);
-        }
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Interactable"))
-        {
-            skillBTN.ShowInteractionButton(false);
-        }
-    }
+    //    if (other.CompareTag("Interactable"))
+    //    {
+    //        skillBTN.ShowInteractionButton(true);
+    //    }
+    //}
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Interactable"))
+    //    {
+    //        skillBTN.ShowInteractionButton(false);
+    //    }
+    //}
 }
