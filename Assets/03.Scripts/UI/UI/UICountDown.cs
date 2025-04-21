@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class CountDownPopup : MonoBehaviour
+public class UICountDown : PopupBase
 {
     public int countDownTime = 5; // 카운트 다운 시간 (초)
     public TextMeshProUGUI countdownText;
