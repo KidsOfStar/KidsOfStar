@@ -28,4 +28,11 @@ public class CatWallJumpState : PlayerJumpBaseState
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Jump));
         }
     }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        context.CanCling = true;
+        context.Controller.WallJumpKeyDown = false;
+    }
 }

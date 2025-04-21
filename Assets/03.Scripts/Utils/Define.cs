@@ -7,6 +7,7 @@ public static class Define
     public const string SoundPath = "Sound/";
     public const string UIPath = "UI/";
     public const string PrefabPath = "Prefabs/";
+    public const string DataPath = "Data/";
     public const string PopupPath = "UI/Popup/";
     public const string TopPath = "UI/Popup/Top/";
 

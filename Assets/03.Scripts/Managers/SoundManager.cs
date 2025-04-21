@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class SoundManager : ISceneLifecycleHandler
 {
-    private Transform sourceParent;
-    private AudioSource bgmSource;
-    private AudioSource sfxSource;
-    private AudioSource footstepSource;
+    private readonly Transform sourceParent;
+    private readonly AudioSource bgmSource;
+    private readonly AudioSource sfxSource;
+    private readonly AudioSource footstepSource;
 
     public SoundManager()
     {

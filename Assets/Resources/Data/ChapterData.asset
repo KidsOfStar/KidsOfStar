@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff1a2304aca9604190ae23debccef2f, type: 3}
   m_Name: ChapterData
   m_EditorClassIdentifier: 
-  ChapterProgresses:
-  - ChapterType: 0
-    MaxProgress: 4
-  - ChapterType: 1
-    MaxProgress: 5
-  - ChapterType: 2
-    MaxProgress: 4
+  chapterProgresses:
+  - chapterType: 0
+    maxProgress: 4
+  - chapterType: 1
+    maxProgress: 5
+  - chapterType: 2
+    maxProgress: 4

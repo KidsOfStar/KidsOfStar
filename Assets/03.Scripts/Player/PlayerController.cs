@@ -47,7 +47,11 @@ public class PlayerController : MonoBehaviour
     }
     // 일반 점프에서 점프키가 눌렸는지를 판단
     private bool jumpKeyPressed = false;
-    public bool JumpKeyPressed { get { return jumpKeyPressed; } }
+    public bool JumpKeyPressed 
+    { 
+        get { return jumpKeyPressed; }
+        set { jumpKeyPressed = value; }
+    }
     // 고양이 벽점프를 위해 키가 눌렸는지를 판단
     private bool wallJumpKeyDown = false;
     public bool WallJumpKeyDown
@@ -86,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
     void GroundCheck()
     {
-        Vector2 boxSize = new Vector2(boxCollider.bounds.size.x * 0.9f, boxCollider.bounds.size.y);
+        Vector2 boxSize = new Vector2(boxCollider.bounds.size.x * 0.7f, boxCollider.bounds.size.y);
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down,
             0.02f, groundLayer);
         isGround = hit.collider != null ? true : false;
@@ -139,30 +143,28 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started)
         {
-            if (!jumpKeyPressed && isGround)
-            {
-                Jump();
-                jumpKeyPressed = true;
-            }
-            if(!isGround && !wallJumpKeyDown)
-            {
-                wallJumpKeyDown = true;
-            }
+            Jump();
         }
         else if(context.phase == InputActionPhase.Canceled)
         {
-            if (jumpKeyPressed)
+            if (player.FormControl.CurFormData.FormName == "Cat" && !isGround)
             {
-                Invoke("JumpKeyPressdeOff", 0.1f);
-            }
-            if(wallJumpKeyDown)
-            {
-                wallJumpKeyDown = false;
+                SetWallJumpKeyDown();
             }
         }
     }
 
-    void JumpKeyPressdeOff()
+    // 점프 버튼에 이 함수도 추가해주세요
+    public void SetWallJumpKeyDown()
+    {
+        if(!jumpKeyPressed && !wallJumpKeyDown)
+        {
+            wallJumpKeyDown = true;
+            return;
+        }
+    }
+
+    void JumpKeyPressedOff()
     {
         jumpKeyPressed = false;
     }
@@ -173,7 +175,9 @@ public class PlayerController : MonoBehaviour
 
         if (isGround && !jumpKeyPressed)
         {
+            jumpKeyPressed = true;
             rigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            Invoke("JumpKeyPressedOff", 0.1f);
         }
     }
 
