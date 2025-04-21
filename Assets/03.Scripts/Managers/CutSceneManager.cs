@@ -1,53 +1,38 @@
-using Cinemachine;
 using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Playables;
 
 public class CutSceneManager
 {
-    private readonly UnityEvent showDialogEvent = new();
-    private CutSceneBase cutSceneBase;
+    public bool IsCutScenePlaying { get; private set; } = false;
+    public Action OnCutSceneStart { get; set; }
+    public Action OnCutSceneEnd { get; set; }
+    public LetterBoxer LetterBoxer { get; private set; }
+    
+    private const string CutScenePath = "CutScenes/";
 
-    [Header("CutSceneData")]
-    private CutSceneData cutSceneData;
-
-
-    private LetterBoxer letterBoxer;
-    public LetterBoxer LetterBoxer { get { return letterBoxer; } }
-
-    public void SetCutSceneBase(CutSceneBase cutScene)
+    public CutSceneManager()
     {
-        this.cutSceneBase = cutScene;
+        OnCutSceneEnd += () => IsCutScenePlaying = false;
     }
     
     public void PlayCutScene(string cutsceneName)
     {
         //letterBoxer = Managers.Instance.GameManager.MainCamera.GetComponent<LetterBoxer>();
-        string prefabPath = $"CutScenes/{cutsceneName}";
-        var prefab = Resources.Load<GameObject>(prefabPath);
+        string prefabPath = $"{CutScenePath}{cutsceneName}";
+        var cutSceneBase = Managers.Instance.ResourceManager.Instantiate<CutSceneBase>(prefabPath);
         //letterBoxer.PerformSizing();
 
-        if (prefab == null)
+        if (!cutSceneBase)
         {
             EditorLog.Log($"컷씬 프리팹이 없습니다: {prefabPath}");
             return;
         }
 
-        var instance = GameObject.Instantiate(prefab);
-        
-
-        // CutSceneBase 찾기 및 등록
-        var baseComp = instance.GetComponentInChildren<CutSceneBase>();
-        if (baseComp != null)
-        {
-            SetCutSceneBase(baseComp);
-        }
+        cutSceneBase.Init();
+        cutSceneBase.Play();
 
         // PlayableDirector 찾기 및 등록
-        var director = baseComp.Director;
-        //director.playableGraph.GetRootPlayable(0).SetSpeed(0);
-        director.Play();
+        // baseComp.Play
+        OnCutSceneStart?.Invoke();
+        IsCutScenePlaying = true;
     }
 }

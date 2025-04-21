@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 7
-  <BubblePos>k__BackingField: {fileID: 169102530955154047}
+  <CharacterType>k__BackingField: 5
+  <BubbleTr>k__BackingField: {fileID: 169102530955154047}
 --- !u!61 &922630999483516513
 BoxCollider2D:
   m_ObjectHideFlags: 0

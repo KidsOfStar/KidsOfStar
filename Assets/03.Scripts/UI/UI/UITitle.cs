@@ -50,7 +50,7 @@ public class UITitle : UIBase
     private void NextScene()
     {
         // 다음 씬으로 이동
-        Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter01);
+        Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter1);
         //Managers.Instance.cutSceneManager.MapSceneToCutScene("Chapter01", "Intro");
     }
 }

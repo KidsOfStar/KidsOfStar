@@ -13,9 +13,4 @@ public class PlayerJumpBaseState : PlayerStateBase
         context.Controller.Move();
         base.OnUpdate();
     }
-
-    public override void OnExit()
-    {
-        context.CanCling = true;
-    }
 }

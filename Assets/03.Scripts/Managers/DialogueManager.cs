@@ -27,7 +27,7 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.LoadScene] = new LoadSceneAction();
     }
 
-    public void InitSceneNPcs(NPC[] speakers)
+    public void InitSceneNPcs(Npc[] speakers)
     {
         // 대사를 말할 수 있는 기능을 인터페이스로 빼야겠는데.
         foreach (var npc in speakers)
@@ -36,14 +36,14 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
-    public void InitCutSceneNPcs(NPC[] speakers)
+    public void InitCutSceneNPcs(Npc[] speakers)
     {
         foreach (var npc in speakers)
         {
             cutSceneSpeakers[npc.GetCharacterType()] = npc;
         }
     }
-    
+
     public void SetPlayerSpeaker(IDialogSpeaker player)
     {
         sceneSpeakers[CharacterType.Dolmengee] = player;
@@ -73,7 +73,7 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
-    public void ShowDialog(string dialog, CharacterType character)
+    private void ShowDialog(string dialog, CharacterType character)
     {
         var npc = isCutScene ? cutSceneSpeakers[character] : sceneSpeakers[character];
         Vector3 bubblePos = npc.GetBubblePosition();
@@ -85,7 +85,6 @@ public class DialogueManager : ISceneLifecycleHandler
         textBubble.SetDialog(formattedDialog, localPos);
     }
 
-    // 한 라인이 끝났는지?
     public void OnDialogLineComplete()
     {
         if (dialogQueue.Count > 0)
@@ -112,13 +111,7 @@ public class DialogueManager : ISceneLifecycleHandler
         }
 #endif
         var screenPos = cam.WorldToScreenPoint(worldPos);
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                                                                Managers.Instance.UIManager.CanvasRectTr,
-                                                                screenPos, null,
-                                                                out var localPos
-                                                               );
-
-        return localPos;
+        return screenPos;
     }
 
     public void OnSceneLoaded()
