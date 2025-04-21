@@ -14,6 +14,7 @@ public class DialogueManager : ISceneLifecycleHandler
     private UITextBubble textBubble;
 
     public Action OnClick { get; set; }
+    public Action OnDialogStart { get; set; }
     public Action OnDialogEnd { get; set; }
     private bool isCutScene;
 
@@ -81,6 +82,7 @@ public class DialogueManager : ISceneLifecycleHandler
         var localPos = WorldToCanvasPosition(bubblePos);
         var formattedDialog = dialog.Replace("\\n", "\n");
 
+        OnDialogStart?.Invoke();
         textBubble.SetActive(true);
         textBubble.SetDialog(formattedDialog, localPos);
     }

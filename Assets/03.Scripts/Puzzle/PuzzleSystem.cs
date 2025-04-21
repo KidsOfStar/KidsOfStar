@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleSystem : MonoBehaviour
 {
@@ -18,9 +19,16 @@ public class PuzzleSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerTxt;
     [SerializeField] private GameObject failPopup;
 
+    [Header("Easy Mode")]
+    [SerializeField] private bool easyMode;
+
     [Header("Setting")]
     [SerializeField] private int gridWidth = 4;
-    [SerializeField] private float timeLimit = 60f;
+    [SerializeField] private float timeLimit;
+
+    [Header("Mode Visuals")]
+    [SerializeField] private GameObject easyObject;
+    [SerializeField] private GameObject hardObject;
 
     private float currentTime;
     private bool isRunning = false;
@@ -28,6 +36,12 @@ public class PuzzleSystem : MonoBehaviour
 
     private void Start()
     {
+        easyMode = Managers.Instance.GameManager.Difficulty == Difficulty.Easy;
+
+        if (easyObject != null) easyObject.SetActive(easyMode);
+        if (hardObject != null) hardObject.SetActive(!easyMode);
+
+
         GeneratePuzzle();
         StartPuzzle();
     }
@@ -47,10 +61,9 @@ public class PuzzleSystem : MonoBehaviour
             GameObject pieceGO = Instantiate(piecePrefab, puzzleParent);
             PuzzlePiece piece = pieceGO.GetComponent<PuzzlePiece>();
             piece.SetSprite(correctSprites[i]);
-            piece.Initialize(this, 0); // 정답각도는 0
+            piece.Initialize(this, 0); // 정답이미지의 회전값설정 = 0
             pieces.Add(piece);
         }
-
         HighlightSelectedPiece();
     }
 
@@ -73,7 +86,6 @@ public class PuzzleSystem : MonoBehaviour
 
         foreach (var piece in pieces)
         {
-         
             piece.RandomizeRotation();        
         }
     }
@@ -136,6 +148,6 @@ public class PuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         failPopup.SetActive(true);
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
     }
 }
