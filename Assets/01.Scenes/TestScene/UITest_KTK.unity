@@ -540,7 +540,7 @@ PrefabInstance:
     - target: {fileID: 5569511125589340821, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
       propertyPath: skillBTN
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1659170250}
     - target: {fileID: 5569511125589340821, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
       propertyPath: playerBtn
       value: 
@@ -1036,6 +1036,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2669236432190124055, guid: 436a3d19ef009e94995d6cac236147ff, type: 3}
   m_PrefabInstance: {fileID: 1659170248}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1659170250 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5899448696036790164, guid: 436a3d19ef009e94995d6cac236147ff, type: 3}
+  m_PrefabInstance: {fileID: 1659170248}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585c6b37de6b2434aaba627edfc13310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1976846109 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 596530786858229365, guid: 036c87718df96bd42be122181138f1d9, type: 3}

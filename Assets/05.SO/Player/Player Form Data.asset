@@ -51,7 +51,7 @@ MonoBehaviour:
     jumpForce: 7
     offsetX: 0
     offsetY: 0.38
-    sizeX: 1
+    sizeX: 0.9
     sizeY: 0.8
     force: 1.8
     weight: 3
