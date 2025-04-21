@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "JoystickMove",
+                    "type": "Button",
+                    "id": "6b26ea97-3b8d-42eb-baa3-76bc2fb89ff5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -165,6 +174,17 @@
                     "action": "FromChange",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "172e0748-e880-40a0-bb73-950f6699f1cb",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "PC;TouchScreen",
+                    "action": "JoystickMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -188,6 +208,11 @@
                     "devicePath": "<Gamepad>",
                     "isOptional": true,
                     "isOR": false
+                },
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
                 }
             ]
         },
@@ -197,6 +222,17 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "TouchScreen",
+            "bindingGroup": "TouchScreen",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
                     "isOptional": false,
                     "isOR": false
                 }
