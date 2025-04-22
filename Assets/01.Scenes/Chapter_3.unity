@@ -16150,9 +16150,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionDatas:
+  - progress: 1
+    isActive: 1
+    position: {x: 173.15, y: -17.2, z: 0}
   - progress: 2
     isActive: 1
-    position: {x: -69, y: -10.2, z: 0}
+    position: {x: 224.15, y: -10.2, z: 0}
   - progress: 3
     isActive: 1
     position: {x: 224.15, y: -10.2, z: 0}
@@ -17786,9 +17789,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionDatas:
+  - progress: 1
+    isActive: 1
+    position: {x: 173.15, y: -7.2, z: 0}
   - progress: 2
     isActive: 1
-    position: {x: -74.87, y: -7.2, z: 0}
+    position: {x: 214.15, y: -7.2, z: 0}
   - progress: 3
     isActive: 1
     position: {x: 214.15, y: -7.2, z: 0}
@@ -18124,11 +18130,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionDatas:
-  - progress: 2
+  - progress: 1
     isActive: 1
     position: {x: -59, y: -10.2, z: 0}
+  - progress: 2
+    isActive: 0
+    position: {x: 207, y: -8.2, z: 0}
   - progress: 3
-    isActive: 1
+    isActive: 0
     position: {x: 207, y: -8.2, z: 0}
 --- !u!1001 &2086047818
 PrefabInstance:
