@@ -13,6 +13,7 @@ public class DialogueManager : ISceneLifecycleHandler
     private DialogData currentDialogData;
     private UITextBubble textBubble;
 
+    public CustomDialogMethod CustomDialogMethod { get; private set; }
     public Action OnClick { get; set; }
     public Action OnDialogStart { get; set; }
     public Action OnDialogEnd { get; set; }
@@ -21,12 +22,14 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public DialogueManager()
     {
+        CustomDialogMethod = new CustomDialogMethod();
         dialogActionHandlers[DialogActionType.None] = new NoneAction();
         dialogActionHandlers[DialogActionType.ShowSelect] = new ShowSelectAction();
         dialogActionHandlers[DialogActionType.ModifyTrust] = new ModifyTrustAction();
         dialogActionHandlers[DialogActionType.DataSave] = new DataSaveAction();
         dialogActionHandlers[DialogActionType.PlayCutScene] = new PlayCutSceneAction();
         dialogActionHandlers[DialogActionType.LoadScene] = new LoadSceneAction();
+        dialogActionHandlers[DialogActionType.ExecuteCustom] = new ExecuteCustomAction();
     }
 
     public void InitSceneNPcs(Npc[] speakers)

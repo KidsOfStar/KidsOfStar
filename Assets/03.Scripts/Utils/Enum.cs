@@ -34,6 +34,13 @@ public enum DialogActionType
     ModifyTrust,
     PlayCutScene,
     LoadScene,
+    UpdateProgress,
+    ExecuteCustom,
+}
+
+public enum DialogCustomMethodType
+{
+    ChangeHumanForm,
 }
 
 #endregion
