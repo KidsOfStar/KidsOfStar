@@ -34,6 +34,7 @@ public abstract class InteractSpeaker : MonoBehaviour
         Managers.Instance.DialogueManager.SetCurrentDialogData(dialogIndex);
         
         // 다시 상호작용 할 수 있도록 대화가 끝나면 다시 이벤트에 등록
+        Managers.Instance.DialogueManager.OnDialogEnd -= AddListenerOnInteract;
         Managers.Instance.DialogueManager.OnDialogEnd += AddListenerOnInteract;
     }
 

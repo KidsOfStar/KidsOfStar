@@ -24,9 +24,12 @@ public class PuzzleTrigger : MonoBehaviour
             // 그 외 형태는 무시
             return;
         }
-
-
-        puzzlePopup.SetActive(true);
-        puzzlePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        
+        //puzzlePopup.SetActive(true);
+        //puzzlePopup.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Managers.Instance.UIManager.Show<TreePuzzlePopup>();
     }
 }

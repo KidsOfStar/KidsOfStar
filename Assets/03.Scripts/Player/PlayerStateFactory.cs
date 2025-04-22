@@ -10,7 +10,7 @@ public enum PlayerStateType
     WallJump
 }
 
-public class PlayerStateFactory : MonoBehaviour
+public class PlayerStateFactory
 {
     private Dictionary<PlayerStateType, IPlayerState> stateDictionary;
     

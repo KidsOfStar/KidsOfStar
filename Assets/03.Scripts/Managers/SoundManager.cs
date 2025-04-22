@@ -13,7 +13,7 @@ public class SoundManager : ISceneLifecycleHandler
         sourceParent = new GameObject("AudioSource").transform;
         sourceParent.SetParent(Managers.Instance.transform);
         GameObject audioSource =
-            Managers.Instance.ResourceManager.Load<GameObject>($"{Define.PrefabPath}{Define.AudioSourceKey}");
+            Managers.Instance.ResourceManager.Load<GameObject>($"{Define.prefabPath}{Define.audioSourceKey}");
         GameManager gameManager = Managers.Instance.GameManager;
 
         bgmSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
@@ -70,22 +70,21 @@ public class SoundManager : ISceneLifecycleHandler
         sourceParent.SetParent(Managers.Instance.transform);
     }
 
-    private AudioClip GetAudioClip(string key)
+    private AudioClip GetAudioClip(string key, bool isBgm)
     {
-        AudioClip audioClip = Managers.Instance.ResourceManager.Load<AudioClip>($"{Define.SoundPath}{key}");
-        if (!audioClip)
-        {
-            EditorLog.LogError($"SoundManager : {key} is not found.");
-            return null;
-        }
+        string path = isBgm ? Define.bgmPath : Define.sfxPath;        
+        AudioClip audioClip = Managers.Instance.ResourceManager.Load<AudioClip>($"{path}{key}");
 
-        return audioClip;
+        if (audioClip) return audioClip;
+
+        EditorLog.LogError($"SoundManager : {key} is not found.");
+        return null;
     }
 
     // BGM 재생(Loop)
-    public void PlayBgm(SoundType sound)
+    public void PlayBgm(BgmSoundType sound)
     {
-        AudioClip clip = GetAudioClip(sound.GetName());
+        AudioClip clip = GetAudioClip(sound.GetName(), true);
         bgmSource.clip = clip;
         bgmSource.Play();
     }
@@ -98,16 +97,16 @@ public class SoundManager : ISceneLifecycleHandler
     }
 
     // 효과음 재생
-    public void PlaySfx(SoundType sound)
+    public void PlaySfx(SfxSoundType sound)
     {
-        AudioClip clip = GetAudioClip(sound.GetName());
+        AudioClip clip = GetAudioClip(sound.GetName(), false);
         sfxSource.PlayOneShot(clip);
     }
 
     // 발소리 재생
     public void PlayFootstep(FootstepType sound)
     {
-        AudioClip clip = GetAudioClip(sound.GetName());
+        AudioClip clip = GetAudioClip(sound.GetName(), false);
         footstepSource.PlayOneShot(clip);
     }
 
@@ -123,9 +122,9 @@ public class SoundManager : ISceneLifecycleHandler
     }
 
     // 효과음 재생하고 재생 시간만큼 대기
-    public IEnumerator PlaySfxWithDelay(SoundType sound)
+    public IEnumerator PlaySfxWithDelay(SfxSoundType sound)
     {
-        AudioClip clip = GetAudioClip(sound.GetName());
+        AudioClip clip = GetAudioClip(sound.GetName(), false);
         sfxSource.PlayOneShot(clip);
         yield return new WaitForSeconds(clip.length); //사운드 종료되기 전 씬이 넘어가는 것을 방지
     }

@@ -12,7 +12,7 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.OnUpdate();
         
-        if(context.Controller.MoveDir == Vector2.zero)
+        if(context.Controller.IsGround && context.Controller.MoveDir == Vector2.zero)
         {
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
         }

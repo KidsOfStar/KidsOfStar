@@ -9,13 +9,14 @@ public class PlayerStateMachine : MonoBehaviour
     private IPlayerState curState;
     public IPlayerState CurState { get { return curState; } }
     [SerializeField] private PlayerContextData contextData;
+    public PlayerContextData ContextData { get { return contextData; } }
     private PlayerStateFactory factory;
     public PlayerStateFactory Factory {  get { return factory; } }
 
     private void Start()
     {
         contextData = new PlayerContextData(player, player.Controller, player.FormControl, this,
-            GetComponent<SpriteRenderer>(), GetComponent<Rigidbody2D>(), GetComponent<BoxCollider2D>());
+            GetComponentInChildren<SpriteRenderer>(), GetComponent<Rigidbody2D>(), GetComponent<BoxCollider2D>());
         factory = new PlayerStateFactory(contextData);
         ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
     }
