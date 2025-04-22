@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class InteractSpeaker : MonoBehaviour
 {
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
-    private Dictionary<int, int> DialogByProgress { get; set; } = new();
+    private readonly Dictionary<int, int> DialogByProgress = new();
 
     private void Start()
     {
@@ -15,9 +15,9 @@ public abstract class InteractSpeaker : MonoBehaviour
 
         for (int i = startRange; i < endRange; i++)
         {
-            if (!dict.TryGetValue(i, out var npcData)) break; 
+            if (!dict.TryGetValue(i, out var npcData)) break;
             if (npcData.Character != CharacterType) continue;
-            
+
             DialogByProgress.Add(npcData.Progress, npcData.DialogIndex);
         }
     }
@@ -27,15 +27,25 @@ public abstract class InteractSpeaker : MonoBehaviour
         // 상호작용 버튼 이벤트에 해제
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         skillPanel.OnInteractBtnClick -= OnInteract;
-        
+
         // 대사 출력
-        var key = Managers.Instance.GameManager.ChapterProgress;
-        var dialogIndex = DialogByProgress[key];
-        Managers.Instance.DialogueManager.SetCurrentDialogData(dialogIndex);
-        
+        ShowDialog();
+
         // 다시 상호작용 할 수 있도록 대화가 끝나면 다시 이벤트에 등록
         Managers.Instance.DialogueManager.OnDialogEnd -= AddListenerOnInteract;
         Managers.Instance.DialogueManager.OnDialogEnd += AddListenerOnInteract;
+    }
+
+    private void ShowDialog()
+    {
+        var key = Managers.Instance.GameManager.ChapterProgress;
+        if (!DialogByProgress.TryGetValue(key, out int dialogIndex))
+        {
+            Debug.LogWarning($"No dialog found for progress {key}");
+            return;
+        }
+
+        Managers.Instance.DialogueManager.SetCurrentDialogData(dialogIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -58,7 +68,7 @@ public abstract class InteractSpeaker : MonoBehaviour
         skillPanel.OnInteractBtnClick -= OnInteract;
         Managers.Instance.DialogueManager.OnDialogEnd -= AddListenerOnInteract;
     }
-    
+
     private void AddListenerOnInteract()
     {
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;

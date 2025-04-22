@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - Box
   - Interactable
+  - Loopable
   layers:
   - Default
   - TransparentFX

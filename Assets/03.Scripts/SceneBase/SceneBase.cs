@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 // 풀 생성, npc 넘겨주기 등 씬 초기화에 필요한 작업들을 담당
 // 씬에는 반드시 SceneBase를 상속받은 베이스가 있어야 함
@@ -8,6 +7,8 @@ public abstract class SceneBase : MonoBehaviour
 {
     [Header("Chapter")]
     [SerializeField] private ChapterType currentChapter;
+    [SerializeField] private bool isFirstTime = true;
+    [SerializeField] private string introText;        // TODO: first Time은 어떻게 설정하지?
     
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
@@ -40,8 +41,8 @@ public abstract class SceneBase : MonoBehaviour
         // 필수 UI 표시
         ShowRequiredUI();
         
-        // 씬에 따라 추가적인 초기화 작업 수행
-        InitSceneExtra();
+        // 씬 인트로 UI 재생 - 씬 재생 시간에 따라 콜백으로 InitSceneExtra()를 호출
+        PlayChapterIntro();
     }
 
     private void InitManagers()
@@ -83,6 +84,19 @@ public abstract class SceneBase : MonoBehaviour
     public void UpdateProgress()
     {
         Managers.Instance.GameManager.UpdateProgress();
+    }
+
+    private void PlayChapterIntro()
+    {
+        // 첫 진입이 아니라면 인트로를 재생하지 않음
+        if (!isFirstTime)
+        {
+            InitSceneExtra();
+            return;
+        }
+        
+        var intro = Managers.Instance.UIManager.Show<UIChapterIntro>();
+        StartCoroutine(intro.IntroCoroutine(isFirstTime, introText, InitSceneExtra));
     }
     
     protected abstract void InitSceneExtra();
