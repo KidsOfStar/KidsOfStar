@@ -8,6 +8,14 @@ public class PuzzleTrigger : MonoBehaviour
     [SerializeField] private string[] allowedFormsNames;
 
     private bool triggered = false;
+    private SkillBTN skillBTN;
+
+    private void Start()
+    {
+        skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+
+        skillBTN.OnInteractBtnClick = TryStartPuzzle;
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,16 +25,26 @@ public class PuzzleTrigger : MonoBehaviour
         string currentForm = formControl.ReturnCurFormName();
 
         // 허용되지 않은 형태일 경우
+        if (currentForm == "Squirrel")
+        {
+            // 다람쥐면 경고창 띄움
+            Managers.Instance.UIManager.Show<WarningPopup>();
+            skillBTN.ShowInteractionButton(false);
+            return;
+        }
         if (allowedFormsNames.Contains(currentForm))
         {
-            if (currentForm == "Squirrel")
-            {
-                // 다람쥐면 경고창 띄움
-                Managers.Instance.UIManager.Show<WarningPopup>();
-                return;
-            }
-            triggered = true;
-            var popup = Managers.Instance.UIManager.Show<TreePuzzlePopup>();
+            skillBTN.ShowInteractionButton(true); // 상호작용 버튼 표시
         }
     }
+
+    private void TryStartPuzzle()
+    {
+        if (triggered) return;
+
+        triggered = true;
+        Managers.Instance.UIManager.Show<TreePuzzlePopup>();
+        skillBTN.ShowInteractionButton(false); // 한 번만 작동하게끔 비활성화
+    }
+
 }
