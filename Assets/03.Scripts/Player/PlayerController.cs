@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isControllable) return;
 
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started)
         {
             moveDir = context.ReadValue<Vector2>();
         }

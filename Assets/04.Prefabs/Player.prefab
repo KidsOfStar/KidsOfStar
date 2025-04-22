@@ -220,7 +220,7 @@ MonoBehaviour:
   moveSpeed: 3
   jumpForce: 2
   wallJumpForce: 5
-  catClingTimer: 1
+  catClingTimer: 1.2
   pushDetectDistance: 0.05
   pushableLayer:
     serializedVersion: 2
