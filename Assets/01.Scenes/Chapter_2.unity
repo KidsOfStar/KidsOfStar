@@ -6718,6 +6718,17 @@ MonoBehaviour:
   - progress: 5
     isActive: 1
     position: {x: 9.1, y: -21.55, z: 0}
+--- !u!114 &1293732214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4777981336440180038, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+  m_PrefabInstance: {fileID: 1293732211}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293732212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1362782037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7365,6 +7376,17 @@ MonoBehaviour:
   - progress: 2
     isActive: 1
     position: {x: 7.6, y: -21.55, z: 0}
+--- !u!114 &1676625989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6304304139406372110, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+  m_PrefabInstance: {fileID: 1676625986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676625987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1696426960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7475,14 +7497,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 1
+  isFirstTime: 1
+  introText: 
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerSpawnPosition: {fileID: 1440882714}
   speakers:
   - {fileID: 55014523}
   - {fileID: 967236570}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1293732214}
+  - {fileID: 1676625989}
   mainCamera: {fileID: 2020590303}
 --- !u!1001 &1893283791
 PrefabInstance:

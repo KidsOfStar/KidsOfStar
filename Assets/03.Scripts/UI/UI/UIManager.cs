@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : ISceneLifecycleHandler
 {
+    //public SkillBTN skillBTN { get; private set; } // 스킬 버튼 UI
+
     public RectTransform CanvasRectTr { get; private set; }
     private List<Transform> parents;
 
