@@ -17,7 +17,6 @@ public class CustomDialogMethod
         Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
         
         // TODO: 플레이어 강제로 사람 폼으로 변경
-        
         Managers.Instance.GameManager.UpdateProgress();
     }
     
