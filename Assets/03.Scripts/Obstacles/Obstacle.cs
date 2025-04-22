@@ -30,7 +30,7 @@ public class Obstacle : MonoBehaviour
     }
     private void Update()
     {
-        transform.position += Vector3.left * scrollSpeed * Time.deltaTime;
+        transform.position += Vector3.left * (scrollSpeed * Time.deltaTime);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

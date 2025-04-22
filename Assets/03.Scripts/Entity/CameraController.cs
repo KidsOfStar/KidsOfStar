@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [Header("Camera Settings")]
+    [SerializeField] private bool followTarget = true;
     [SerializeField] private Vector3 offset = new(0, 2f, -10f);
     [SerializeField] private Vector2 minPosition;
     [SerializeField] private Vector2 maxPosition;
@@ -26,6 +28,9 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!followTarget)
+            return;
+        
 #if UNITY_EDITOR
         if (Managers.Instance.IsDebugMode && !target)
         {
@@ -39,5 +44,11 @@ public class CameraController : MonoBehaviour
         smoothedPosition.x = Mathf.Clamp(smoothedPosition.x, minPosition.x, maxPosition.x);
         smoothedPosition.y = Mathf.Clamp(smoothedPosition.y, minPosition.y, maxPosition.y);
         transform.position = smoothedPosition;
+    }
+
+    private void OnDestroy()
+    {
+        cutSceneManager.OnCutSceneStart -= () => lightObject.SetActive(false);
+        cutSceneManager.OnCutSceneEnd -= () => lightObject.SetActive(true);
     }
 }

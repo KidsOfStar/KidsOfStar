@@ -16,7 +16,7 @@ public class DataManager
 
     public void LoadChapterProgressData()
     {
-        var data = Managers.Instance.ResourceManager.Load<ChapterData>(Define.DataPath + "ChapterData", true);
+        var data = Managers.Instance.ResourceManager.Load<ChapterData>(Define.dataPath + "ChapterData", true);
         if (data == null)
         {
             EditorLog.LogError("DataManager : ChapterData is null");

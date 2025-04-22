@@ -1,7 +1,4 @@
 using MainTable;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public interface IDialogActionHandler
 {
@@ -15,6 +12,7 @@ public class NoneAction : IDialogActionHandler
         if (dialogData.NextIndex.Count <= 0)
         {
             Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
+            Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
             return;
         }
 
