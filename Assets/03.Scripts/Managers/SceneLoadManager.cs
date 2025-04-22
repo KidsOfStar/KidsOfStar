@@ -9,6 +9,7 @@ public class SceneLoadManager : MonoBehaviour
     private const float fakeMinDuration = 3f;
     private const float fakeMaxDuration = 4f;
     public SceneType CurrentScene { get; private set; } = SceneType.Title;
+    public SceneType NextSceneToLoad { get; private set; } = SceneType.Title;
     public bool IsSceneLoadComplete { get; set; }
 
     public void LoadScene(SceneType loadScene)
@@ -28,6 +29,7 @@ public class SceneLoadManager : MonoBehaviour
         Managers.Instance.OnSceneUnloaded();
 
         // 로딩 씬을 먼저 로드
+        NextSceneToLoad = loadScene;
         yield return SceneManager.LoadSceneAsync(SceneType.Loading.GetName(), LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneType.Loading.GetName()));
 

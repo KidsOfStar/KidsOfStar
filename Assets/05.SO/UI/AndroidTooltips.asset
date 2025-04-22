@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3fac71ef61bc01479153a8946b9e0e7, type: 3}
-  m_Name: LoadingData
+  m_Name: AndroidTooltips
   m_EditorClassIdentifier: 
   Backgrounds:
   - {fileID: 21300000, guid: 167a727e90d9d4649ab0929692ef6a5a, type: 3}
@@ -21,8 +21,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bb55cb7fe827e454abf9ec08fb091b1d, type: 3}
   - {fileID: 21300000, guid: ff898de3183047248b761c52b87e79c6, type: 3}
   Tooltips:
-  - "\uD61C\uC9C0\uB2D8\uB124 \uACE0\uC591\uC774\uB294 \uC218\uB2E4\uC7C1\uC774\uB2E4."
-  - "\uD604\uC544\uB2D8\uC740 \uC544\uBAAC\uB4DC\uB97C \uC2EB\uC5B4\uD55C\uB2E4."
-  - "\uD0DC\uACB8\uB2D8\uC740 \uAC10\uC131\uC801\uC778 F\uB2E4."
-  - "\uB3D9\uC601\uB2D8\uC740 3\uAC1C\uC6D4\uCC28\uC778\uB370 \uC2A4\uD0E0\uB2E4\uB4DC
-    \uBC18\uC774\uB2E4."
+  - sceneType: 2
+    tooltips:
+    - "\uD654\uBA74 \uC88C\uD558\uB2E8 \uC870\uC774\uC2A4\uD2F1\uC73C\uB85C \uC774\uB3D9\uD560
+      \uC218 \uC788\uC2B5\uB2C8\uB2E4. "
+    - "\uC810\uD504 \uD0A4 \uC704 \uC0C1\uD638\uC791\uC6A9\uD0A4\uB294 \uC0C1\uD638\uC791\uC6A9\uC774
+      \uAC00\uB2A5\uD560 \uB54C\uB9CC \uBCF4\uC785\uB2C8\uB2E4."
+  - sceneType: 3
+    tooltips: []
+  - sceneType: 4
+    tooltips: []

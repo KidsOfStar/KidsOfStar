@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2359100709543576604}
   - component: {fileID: 333170139785034893}
   - component: {fileID: 6809330575651992227}
-  - component: {fileID: 4527470433145691676}
+  - component: {fileID: 8592698031356412630}
   m_Layer: 0
   m_Name: Obstacle Despawner
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3765776067551766427}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.019999, y: 0.049999952, z: 0}
+  m_LocalPosition: {x: -23.1, y: 1.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4527470433145691676
+--- !u!114 &8592698031356412630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,11 +115,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3765776067551766427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3a5b6109f78e243b0fbc49f3327302, type: 3}
+  m_Script: {fileID: 11500000, guid: 8256e8121d444754a8672d7877dd443d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilemapWidth: 26
   obstaclesSpawner: {fileID: 5952377060798919337}
-  obstacleLastPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &6347151878847138798
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6347151878847138798}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.67899, y: -3.329706, z: 0.010587871}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -273,3 +273,4 @@ MonoBehaviour:
   - {fileID: 1010678122097542033, guid: 2c76a71f3adb9da4da7402dcf71692ba, type: 3}
   - {fileID: 3359183725930798873, guid: e32b0c52ff8eb1b43b51f7c2efb932a6, type: 3}
   waveObstacleCount: 8
+  indexes: 292700002a2700002b270000

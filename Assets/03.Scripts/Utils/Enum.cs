@@ -34,6 +34,13 @@ public enum DialogActionType
     ModifyTrust,
     PlayCutScene,
     LoadScene,
+    UpdateProgress,
+    ExecuteCustom,
+}
+
+public enum DialogCustomMethodType
+{
+    ChangeHumanForm,
 }
 
 #endregion
@@ -110,7 +117,7 @@ public enum EndingType
 public enum CutSceneType
 {
     Intro,
-    Chapter2,
+    Rescued,
 }
 
 #endregion

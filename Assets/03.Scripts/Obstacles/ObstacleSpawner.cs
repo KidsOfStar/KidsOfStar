@@ -106,7 +106,7 @@ public class ObstaclesSpawner : MonoBehaviour
 
         GameObject obj = Managers.Instance.PoolManager.Spawn(poolKey, Vector3.zero, Quaternion.identity);
         Obstacle obstacle = obj.GetComponent<Obstacle>();
-        if (obstacle != null)
+        if (obstacle)
         {
             Vector3 spawnPos = GetSpawnPosition();
             obstacle.InitObstacle(spawnPos, chosenType);

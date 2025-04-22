@@ -4,19 +4,25 @@ using UnityEngine;
 public class TestGame : MonoBehaviour
 {
     public StopWatch stopWatch;
-    public UICountDown uiCountDown;
+    public CountDownPopup countDownPopup;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartTest();
+        countDownPopup = Managers.Instance.UIManager.Show<CountDownPopup>();
+        Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
+        stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
+        Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
     }
 
     public void StartTest()
     {
         // 시작할 때
-        uiCountDown.CountDownStart(); // 카운트다운 시작
+        Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
+        countDownPopup.CountDownStart(); // 카운트다운 시작
+
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
+        Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
     }
 
     private IEnumerator StartGame(float delay)
@@ -32,16 +38,22 @@ public class TestGame : MonoBehaviour
         stopWatch.CheckTargetTime(); // 목표 시간 체크
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        // 상호작용 버튼 이벤트에 해제
-        if (!collision.CompareTag("Player"))
-        {
-            StopTest();
-            return;
-        }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    // 상호작용 버튼 이벤트에 등록
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        StartTest(); // 테스트 시작
+    //    }
+    //}
 
-
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    // 상호작용 버튼 이벤트에 해제
+    //    if (!collision.CompareTag("Player"))
+    //    {
+    //        StopTest();
+    //    }
+    //}
 }
 

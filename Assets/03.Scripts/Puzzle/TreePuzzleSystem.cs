@@ -1,11 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PuzzleSystem : MonoBehaviour
+public class TreePuzzleSystem : MonoBehaviour
 {
     [Header("Prefab & Layout")]
     [SerializeField] private GameObject piecePrefab;
@@ -13,44 +10,35 @@ public class PuzzleSystem : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private List<Sprite> correctSprites;
-    private List<PuzzlePiece> pieces = new List<PuzzlePiece>();
+    private List<TreePuzzlePiece> pieces = new List<TreePuzzlePiece>();
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerTxt;
     [SerializeField] private GameObject failPopup;
-
-    [Header("Easy Mode")]
-    [SerializeField] private bool easyMode;
+    [SerializeField] private GameObject easyModeOutline;
 
     [Header("Setting")]
     [SerializeField] private int gridWidth = 4;
-    [SerializeField] private float timeLimit;
-
-    [Header("Mode Visuals")]
-    [SerializeField] private GameObject easyObject;
-    [SerializeField] private GameObject hardObject;
+    private float timeLimit = 60f;
+    public bool isEasyMode;
 
     private float currentTime;
     private bool isRunning = false;
     private int selectedIndex = 0;
 
-
-
-    //UI매니저 통해서 Show()를 통해서 팝업
-    private void Start()
+    public void InitPuzzle()
     {
-        easyMode = Managers.Instance.GameManager.Difficulty == Difficulty.Easy;
+        isEasyMode = Managers.Instance.GameManager.Difficulty == Difficulty.Easy; //여기서 난이도 설정
+        timeLimit = isEasyMode ? 180f : 90f;
 
-        if (easyObject != null) easyObject.SetActive(easyMode);
-        if (hardObject != null) hardObject.SetActive(!easyMode);
-
-
-        GeneratePuzzle();
-        StartPuzzle();
+        if (easyModeOutline != null)
+            easyModeOutline.SetActive(isEasyMode);
     }
 
-    void GeneratePuzzle()
+    public void GeneratePuzzle()
     {
+        InitPuzzle();
+
         // 기존 조각 제거
         foreach (Transform child in puzzleParent)
         {
@@ -62,9 +50,9 @@ public class PuzzleSystem : MonoBehaviour
         for (int i = 0; i < correctSprites.Count; i++)
         {
             GameObject pieceGO = Instantiate(piecePrefab, puzzleParent);
-            PuzzlePiece piece = pieceGO.GetComponent<PuzzlePiece>();
+            TreePuzzlePiece piece = pieceGO.GetComponent<TreePuzzlePiece>();
             piece.SetSprite(correctSprites[i]);
-            piece.Initialize(this, 0); // 정답이미지의 회전값설정 = 0
+            piece.Initialize(this, 0); // 정답각도는 0
             pieces.Add(piece);
         }
         HighlightSelectedPiece();
@@ -89,7 +77,7 @@ public class PuzzleSystem : MonoBehaviour
 
         foreach (var piece in pieces)
         {
-            piece.RandomizeRotation();        
+            piece.RandomizeRotation();
         }
     }
 
@@ -130,6 +118,7 @@ public class PuzzleSystem : MonoBehaviour
             pieces[i].SetHighlight(i == selectedIndex);
         }
     }
+
     public void CheckPuzzle()
     {
         foreach (var piece in pieces)
@@ -139,19 +128,29 @@ public class PuzzleSystem : MonoBehaviour
         }
         CompletePuzzle();
     }
+
     private void CompletePuzzle()
     {
         isRunning = false;
         EditorLog.Log("퍼즐 성공!");
         gameObject.SetActive(false);
-        // LoadScene을 통해서 다른 씬으로 진입이 가능하도록
+
+        //Managers.Instance.GameManager.puzzleClearCount++;
+
+        //if (Managers.Instance.GameManager.puzzleClearCount >= 2)
+        //{
+        //    // 마지막 퍼즐 클리어 시 씬 전환
+        //    Managers.Instance.LoadSceneManager.LoadScene("NextSceneName");
+        //}
     }
 
     private void FailPuzzle()
     {
         isRunning = false;
         failPopup.SetActive(true);
+        gameObject.SetActive(false);
     }
+
     public void OnExit()
     {
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
