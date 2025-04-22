@@ -23,7 +23,6 @@ public class TestGame : MonoBehaviour
 
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
-
     }
 
     private IEnumerator StartGame(float delay)
