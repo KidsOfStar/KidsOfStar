@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class ObstacleDespawner : MonoBehaviour
 {
-    public Transform[] tilemaps;
+    public float tilemapWidth;
     public ObstaclesSpawner obstaclesSpawner;
-    public float scrollSpeed = 7f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,7 +19,9 @@ public class ObstacleDespawner : MonoBehaviour
 
         if (collision.CompareTag("Loopable"))
         {
-            // 타일맵을 루프
+            var tilemap = collision.transform.parent;
+            float newX = tilemap.position.x + tilemapWidth * 2f; // 현재 기준에서 오른쪽으로 정확히 한 사이클 이동
+            tilemap.position = new Vector3(newX, tilemap.position.y, tilemap.position.z);
         }
     }
 }
