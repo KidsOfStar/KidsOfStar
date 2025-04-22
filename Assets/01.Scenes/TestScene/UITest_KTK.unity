@@ -366,6 +366,10 @@ PrefabInstance:
       value: Jigim
       objectReference: {fileID: 0}
     - target: {fileID: 2136488510606508772, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136488510606508772, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
