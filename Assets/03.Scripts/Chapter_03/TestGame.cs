@@ -15,6 +15,8 @@ public class TestGame : MonoBehaviour
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
     }
 
+    
+
     public void StartTest()
     {
         // 시작할 때
