@@ -220,16 +220,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionDatas:
-  - progress: 0
+  - progress: 2
     isActive: 1
     position: {x: 5, y: -21.7, z: 0}
-  - progress: 0
+  - progress: 3
     isActive: 1
     position: {x: -6, y: -3.1, z: 0}
-  - progress: 0
+  - progress: 4
     isActive: 1
     position: {x: 5.35, y: 30.9, z: 0}
-  - progress: 0
+  - progress: 5
     isActive: 1
     position: {x: 8.4, y: 35.85, z: 0}
 --- !u!1001 &153235127
@@ -1034,7 +1034,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionDatas:
-  - progress: 0
+  - progress: 3
+    isActive: 1
+    position: {x: -2.3, y: -21.4, z: 0}
+  - progress: 5
     isActive: 1
     position: {x: -2.3, y: -21.4, z: 0}
 --- !u!114 &967236570 stripped
@@ -6712,20 +6715,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionDatas:
-  - progress: 0
+  - progress: 5
     isActive: 1
     position: {x: 9.1, y: -21.55, z: 0}
---- !u!114 &1293732215 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6810400142363021923, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
-  m_PrefabInstance: {fileID: 1293732211}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293732212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1362782037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7370,7 +7362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionDatas:
-  - progress: 0
+  - progress: 2
     isActive: 1
     position: {x: 7.6, y: -21.55, z: 0}
 --- !u!1001 &1696426960
@@ -7488,9 +7480,9 @@ MonoBehaviour:
   speakers:
   - {fileID: 55014523}
   - {fileID: 967236570}
-  - {fileID: 1293732215}
-  - {fileID: 1293732215}
-  - {fileID: 1293732215}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   mainCamera: {fileID: 2020590303}
 --- !u!1001 &1893283791
 PrefabInstance:
@@ -7792,6 +7784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8fd46f427e57c4590c285787a14624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followTarget: 1
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: -6.5, y: -18.8}
   maxPosition: {x: 36.3, y: 68.5}

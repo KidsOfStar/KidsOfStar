@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PuzzleTrigger : MonoBehaviour
+public class TreePuzzleTrigger : MonoBehaviour
 {
     [SerializeField] private string[] allowedFormsNames;
 
@@ -28,7 +28,7 @@ public class PuzzleTrigger : MonoBehaviour
         if (currentForm == "Squirrel")
         {
             // 다람쥐면 경고창 띄움
-            Managers.Instance.UIManager.Show<WarningPopup>();
+            Managers.Instance.UIManager.Show<TreeWarningPopup>();
             skillBTN.ShowInteractionButton(false);
             return;
         }

@@ -10,7 +10,7 @@ public class TreePuzzlePopup : PopupBase
     [SerializeField] private Button rotateButton;
     [SerializeField] private Button exitButton;
 
-    [SerializeField] private PuzzleSystem currentPuzzle;
+    [SerializeField] private TreePuzzleSystem currentPuzzle;
 
     private void Awake()
     {
