@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : ScrollObject
 {
     private float mediumYOffset = 0.1f;
     private float largeYOffset = 0.2f;
     private float fixedPosY = -2.7f;
 
-    public float scrollSpeed = 7f;
     public void InitObstacle(Vector3 spawnPosition, ObstacleType chosenType)
     {
         if(chosenType == ObstacleType.Stone)
@@ -28,10 +27,7 @@ public class Obstacle : MonoBehaviour
         transform.position = pos;
         // SetupAnimation();  
     }
-    private void Update()
-    {
-        transform.position += Vector3.left * (scrollSpeed * Time.deltaTime);
-    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))

@@ -60,7 +60,7 @@ public class UILoading : MonoBehaviour
 
         if (tooltips == null || tooltips.Length == 0)
         {
-            EditorLog.LogError("No tooltips found for the current scene.");
+            EditorLog.LogWarning("No tooltips found for the current scene.");
             yield break;
         }
 
