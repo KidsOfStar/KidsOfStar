@@ -10,7 +10,7 @@ public class TreePuzzleSystem : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private List<Sprite> correctSprites;
-    private List<TreePuzzlePiece> pieces = new List<TreePuzzlePiece>();
+    private List<TreePuzzlePiece> pieces = new ();
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerTxt;
@@ -19,9 +19,10 @@ public class TreePuzzleSystem : MonoBehaviour
 
     [Header("Setting")]
     [SerializeField] private int gridWidth = 4;
-    private float timeLimit = 60f;
     public bool isEasyMode;
 
+    private TreePuzzleTrigger puzzleTrigger;
+    private float timeLimit = 60f;
     private float currentTime;
     private bool isRunning = false;
     private int selectedIndex = 0;
@@ -135,13 +136,17 @@ public class TreePuzzleSystem : MonoBehaviour
         EditorLog.Log("퍼즐 성공!");
         gameObject.SetActive(false);
 
-        //Managers.Instance.GameManager.puzzleClearCount++;
+        string id = puzzleTrigger.PuzzleId;
+        if (!Managers.Instance.GameManager.IsPuzzleCleared(id))
+        {
+            Managers.Instance.GameManager.AddPuzzleCleared(id);
+        }
 
-        //if (Managers.Instance.GameManager.puzzleClearCount >= 2)
-        //{
-        //    // 마지막 퍼즐 클리어 시 씬 전환
-        //    Managers.Instance.LoadSceneManager.LoadScene("NextSceneName");
-        //}
+        if (Managers.Instance.GameManager.GetPuzzleClearCount() >= 2)
+        {
+            //플레이하고자 하는 컷씬의 이름으로 로드
+            //Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType..GetName());  
+        }
     }
 
     private void FailPuzzle()
