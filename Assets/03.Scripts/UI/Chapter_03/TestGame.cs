@@ -38,22 +38,22 @@ public class TestGame : MonoBehaviour
         stopWatch.CheckTargetTime(); // 목표 시간 체크
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // 상호작용 버튼 이벤트에 등록
-        if (collision.CompareTag("Player"))
-        {
-            StartTest(); // 테스트 시작
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    // 상호작용 버튼 이벤트에 등록
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        StartTest(); // 테스트 시작
+    //    }
+    //}
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        // 상호작용 버튼 이벤트에 해제
-        if (!collision.CompareTag("Player"))
-        {
-            StopTest();
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    // 상호작용 버튼 이벤트에 해제
+    //    if (!collision.CompareTag("Player"))
+    //    {
+    //        StopTest();
+    //    }
+    //}
 }
 
