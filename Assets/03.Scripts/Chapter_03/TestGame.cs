@@ -24,7 +24,6 @@ public class TestGame : MonoBehaviour
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
-
     }
     public void StartTest()
     {
@@ -38,9 +37,6 @@ public class TestGame : MonoBehaviour
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
 
-        playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
-
-
     }
 
     private IEnumerator StartGame(float delay)
@@ -48,6 +44,8 @@ public class TestGame : MonoBehaviour
         yield return new WaitForSeconds(delay); // 카운트다운 대기
         stopWatch.OnStartWatch(); // 스탑워치 시작
         stopWatch.StartTime(); // 스탑워치 시간 시작
+        playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
+
     }
     public void StopTest()
     {
