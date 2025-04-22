@@ -5,26 +5,37 @@ public class TestGame : MonoBehaviour
 {
     public StopWatch stopWatch;
     public CountDownPopup countDownPopup;
+    public PlayerController playerController;
 
+    public float playerSpeed; // 플레이어 속도
+    public bool isTestStart = false; // 테스트 시작 여부
     // Start is called before the first frame update
     void Start()
     {
+        playerController = Managers.Instance.GameManager.Player.Controller;
+        playerSpeed = playerController.MoveSpeed; // 플레이어 속도 초기화
+
         countDownPopup = Managers.Instance.UIManager.Show<CountDownPopup>();
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
+
     }
-
-    
-
     public void StartTest()
     {
         // 시작할 때
+        // 플레이어 속도 0으로 하여 정지
+        playerController.MoveSpeed = 0; // 플레이어 속도 0으로 설정
+
         Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
         countDownPopup.CountDownStart(); // 카운트다운 시작
 
+        // 플레이어 상태 초기화
+        playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
+
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
+
     }
 
     private IEnumerator StartGame(float delay)
@@ -38,10 +49,12 @@ public class TestGame : MonoBehaviour
         // 종료할 때
         stopWatch.OnStopWatch(); // 스탑워치 정지
         stopWatch.CheckTargetTime(); // 목표 시간 체크
+        playerController.MoveSpeed = playerSpeed / 1.5f; // 플레이어 속도 초기화 (1.5배 감소)
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
+    //    isTestStart = true; // 테스트 시작 여부 true로 설정
     //    // 상호작용 버튼 이벤트에 등록
     //    if (collision.CompareTag("Player"))
     //    {
@@ -51,6 +64,7 @@ public class TestGame : MonoBehaviour
 
     //private void OnTriggerExit2D(Collider2D collision)
     //{
+    //    isTestStart = true; // 테스트 시작 여부 true로 설정
     //    // 상호작용 버튼 이벤트에 해제
     //    if (!collision.CompareTag("Player"))
     //    {
