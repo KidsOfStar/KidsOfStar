@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PuzzleSystem : MonoBehaviour
+public class TreePuzzleSystem : MonoBehaviour
 {
     [Header("Prefab & Layout")]
     [SerializeField] private GameObject piecePrefab;
@@ -10,7 +10,7 @@ public class PuzzleSystem : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] private List<Sprite> correctSprites;
-    private List<PuzzlePiece> pieces = new List<PuzzlePiece>();
+    private List<TreePuzzlePiece> pieces = new List<TreePuzzlePiece>();
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerTxt;
@@ -50,7 +50,7 @@ public class PuzzleSystem : MonoBehaviour
         for (int i = 0; i < correctSprites.Count; i++)
         {
             GameObject pieceGO = Instantiate(piecePrefab, puzzleParent);
-            PuzzlePiece piece = pieceGO.GetComponent<PuzzlePiece>();
+            TreePuzzlePiece piece = pieceGO.GetComponent<TreePuzzlePiece>();
             piece.SetSprite(correctSprites[i]);
             piece.Initialize(this, 0); // 정답각도는 0
             pieces.Add(piece);

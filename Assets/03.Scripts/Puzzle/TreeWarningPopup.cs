@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WarningPopup : PopupBase
+public class TreeWarningPopup : PopupBase
 {
     [SerializeField] private TextMeshProUGUI messageText;
 
@@ -12,6 +12,4 @@ public class WarningPopup : PopupBase
 
         messageText.text = "세심하게 만져야 한다. 다른 방법이 없을까?";
     }
-
-
 }

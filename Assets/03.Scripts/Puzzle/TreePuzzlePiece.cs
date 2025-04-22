@@ -3,9 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PuzzlePiece : MonoBehaviour
+public class TreePuzzlePiece : MonoBehaviour
 {
-    private PuzzleSystem manager;
+    private TreePuzzleSystem manager;
     
     [SerializeField] private Image pieceImage; // UI용 조각 이미지
 
@@ -17,9 +17,9 @@ public class PuzzlePiece : MonoBehaviour
     {
       outLine = pieceImage.GetComponent<Outline>();                                    
     }
-    public void Initialize(PuzzleSystem manaeger, int correctionRotation)
+    public void Initialize(TreePuzzleSystem systemManager, int correctionRotation)
     {
-        this.manager = manaeger;
+        this.manager = systemManager;
         this.correctRotation = correctionRotation;
     }
 
