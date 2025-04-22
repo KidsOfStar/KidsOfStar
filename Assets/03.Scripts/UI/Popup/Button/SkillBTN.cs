@@ -14,12 +14,12 @@ public class SkillBTN : UIBase
     public Button squirrelBtn;
     public Button interactionBtn;
 
-    [Header("UI Object")] // 각 스킬에 대한 배경 오브젝트
-    public GameObject jumpBG;
-    public GameObject hideBG;
-    public GameObject catBG;
-    public GameObject dogBG;
-    public GameObject squirrelBG;
+    //[Header("UI Object")] // 각 스킬에 대한 배경 오브젝트
+    //public GameObject jumpBG;
+    //public GameObject hideBG;
+    //public GameObject catBG;
+    //public GameObject dogBG;
+    //public GameObject squirrelBG;
 
     [Header("UI HideSkill")] // 스킬 UI 오브젝트들 (버튼 아래 표시용)
     public GameObject hideSkill;
@@ -27,8 +27,10 @@ public class SkillBTN : UIBase
     public GameObject dogSkill;
     public GameObject squirrelSkill;
 
-    private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
+    //private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
     public Action OnInteractBtnClick { get; set; }
+
+    public SkillUnlock skillUnlock; // 스킬 잠금 해제 UI
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +42,10 @@ public class SkillBTN : UIBase
         squirrelBtn.onClick.AddListener(OnSquirrel);
         interactionBtn.onClick.AddListener(OnInteraction);
 
-        skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
+        //skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
         interactionBtn.gameObject.SetActive(false); // 상호작용 버튼 비활성화
+
+        skillUnlock = GetComponent<SkillUnlock>();
     }
 
     private void Update()
@@ -69,7 +73,7 @@ public class SkillBTN : UIBase
     public void OnJump()
     {
         ToggleSkillUI(false); // 점프 시 스킬 UI 숨기기
-        OnBlink(jumpBG, 0.1f); // 배경 깜빡임 효과
+        OnBlink(skillUnlock.jumpBG, 0.1f); // 배경 깜빡임 효과
 
         // 공중일 경우 점프 불가
         if (!Managers.Instance.GameManager.Player.Controller.IsGround)
@@ -85,13 +89,13 @@ public class SkillBTN : UIBase
         Managers.Instance.GameManager.Player.FormControl.FormChange("Hide");
 
         // 현재 배경이 켜져 있으면 끄고, 아니면 보여주기
-        if (hideBG.activeSelf)
+        if (skillUnlock.hideBG.activeSelf)
         {
-            hideBG.SetActive(false);
+            skillUnlock.hideBG.SetActive(false);
         }
         else
         {
-            ShowSkillBG(hideBG);
+            skillUnlock.ShowSkillBG(skillUnlock.hideBG);
         }
     }
 
@@ -100,13 +104,13 @@ public class SkillBTN : UIBase
     {
         Managers.Instance.GameManager.Player.FormControl.FormChange("Cat");
 
-        if (catBG.activeSelf)
+        if (skillUnlock.catBG.activeSelf)
         {
-            catBG.SetActive(false);
+            skillUnlock.catBG.SetActive(false);
         }
         else
         {
-            ShowSkillBG(catBG);
+            skillUnlock.ShowSkillBG(skillUnlock.catBG);
         }
     }
 
@@ -115,13 +119,13 @@ public class SkillBTN : UIBase
     {
         Managers.Instance.GameManager.Player.FormControl.FormChange("Dog");
 
-        if (dogBG.activeSelf)
+        if (skillUnlock.dogBG.activeSelf)
         {
-            dogBG.SetActive(false);
+            skillUnlock.dogBG.SetActive(false);
         }
         else
         {
-            ShowSkillBG(dogBG);
+            skillUnlock.ShowSkillBG(skillUnlock.dogBG);
         }
     }
 
@@ -130,13 +134,13 @@ public class SkillBTN : UIBase
     {
         Managers.Instance.GameManager.Player.FormControl.FormChange("Squirrel");
 
-        if (squirrelBG.activeSelf)
+        if (skillUnlock.squirrelBG.activeSelf)
         {
-            squirrelBG.SetActive(false);
+            skillUnlock.squirrelBG.SetActive(false);
         }
         else
         {
-            ShowSkillBG(squirrelBG);
+            skillUnlock.ShowSkillBG(skillUnlock.squirrelBG);
         }
     }
 
@@ -172,12 +176,4 @@ public class SkillBTN : UIBase
         dogSkill.SetActive(isActive);
         squirrelSkill.SetActive(isActive);
     }
-    private void ShowSkillBG(GameObject skillBG)
-    {
-        foreach (var bg in skillBGs)
-        {
-            bg.SetActive(bg == skillBG);
-        }
-    }
-
 }
