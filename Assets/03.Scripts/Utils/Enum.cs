@@ -117,7 +117,7 @@ public enum EndingType
 public enum CutSceneType
 {
     Intro,
-    Chapter2,
+    Rescued,
 }
 
 #endregion

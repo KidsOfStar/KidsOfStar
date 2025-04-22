@@ -9,16 +9,32 @@ public class TreePuzzlePopup : PopupBase
     [SerializeField] private Button rightButton;
     [SerializeField] private Button rotateButton;
     [SerializeField] private Button exitButton;
-    [SerializeField] private PuzzleSystem puzzleSystem;
+
+    [SerializeField] private TreePuzzleSystem currentPuzzle;
 
     private void Awake()
     {
-        upButton.onClick.AddListener(() => puzzleSystem.MoveSelection("Up"));
-        downButton.onClick.AddListener(() => puzzleSystem.MoveSelection("Down"));
-        leftButton.onClick.AddListener(() => puzzleSystem.MoveSelection("Left"));
-        rightButton.onClick.AddListener(() => puzzleSystem.MoveSelection("Right"));
-        rotateButton.onClick.AddListener(puzzleSystem.RotateSelectedPiece);
-        exitButton.onClick.AddListener((puzzleSystem.OnExit));
-    }
+        upButton.onClick.RemoveAllListeners();
+        downButton.onClick.RemoveAllListeners();
+        leftButton.onClick.RemoveAllListeners();
+        rightButton.onClick.RemoveAllListeners();
+        rotateButton.onClick.RemoveAllListeners();
+        exitButton.onClick.RemoveAllListeners();
 
+        upButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Up"));
+        downButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Down"));
+        leftButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Left"));
+        rightButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Right"));
+        rotateButton.onClick.AddListener(() => currentPuzzle.RotateSelectedPiece());
+        exitButton.onClick.AddListener(() => currentPuzzle.OnExit());
+    }
+    public override void Opened(params object[] param)
+    {
+        EditorLog.Log("실행");
+        base.Opened(param);
+
+        currentPuzzle.GeneratePuzzle();
+        currentPuzzle.StartPuzzle();
+
+    }
 }

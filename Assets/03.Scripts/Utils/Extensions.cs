@@ -75,7 +75,7 @@ public static class Extensions
         return cutSceneType switch
         {
             CutSceneType.Intro     => "Intro",
-            CutSceneType.Chapter2 => "Chapter2",
+            CutSceneType.Rescued   => "Rescued",
             _                      => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }

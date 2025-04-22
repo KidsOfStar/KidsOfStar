@@ -25,8 +25,6 @@ public class SceneEventTrigger : MonoBehaviour
 
     private void CheckCurrentDialog(int index)
     {
-        EditorLog.Log(index);
-        
         if (finishedDialog.ContainsKey(index))
             finishedDialog[index] = true;
         

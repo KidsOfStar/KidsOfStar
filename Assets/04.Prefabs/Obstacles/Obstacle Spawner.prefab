@@ -115,11 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3765776067551766427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3a5b6109f78e243b0fbc49f3327302, type: 3}
+  m_Script: {fileID: 11500000, guid: 8551c5856042f5c4187c901e6ea67f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclesSpawner: {fileID: 5952377060798919337}
-  obstacleLastPosition: {x: 0, y: 0, z: 0}
+  scrollSpeed: 7
 --- !u!1 &6347151878847138798
 GameObject:
   m_ObjectHideFlags: 0

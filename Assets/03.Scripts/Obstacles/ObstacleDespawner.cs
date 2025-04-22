@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleDespawner : MonoBehaviour
 {
+    public Transform[] tilemaps;
     public ObstaclesSpawner obstaclesSpawner;
-    public Vector3 obstacleLastPosition = Vector3.zero;
+    public float scrollSpeed = 7f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +16,11 @@ public class ObstacleDespawner : MonoBehaviour
             {
                 obstaclesSpawner.OnObstacleDespawned();
             }
+        }
+
+        if (collision.CompareTag("Loopable"))
+        {
+            // 타일맵을 루프
         }
     }
 }

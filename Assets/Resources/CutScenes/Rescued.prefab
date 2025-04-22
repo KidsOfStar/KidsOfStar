@@ -2677,7 +2677,7 @@ GameObject:
   - component: {fileID: 3650021064164754834}
   - component: {fileID: 7177606617873818073}
   m_Layer: 0
-  m_Name: Chapter2
+  m_Name: Rescued
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

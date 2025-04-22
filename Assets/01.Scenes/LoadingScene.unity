@@ -285,9 +285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83c2fb2b5e403d4cb035f6bf6dbcda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingData: {fileID: 11400000, guid: f4de3f553647d37458615f8cffeebf8b, type: 2}
+  androidData: {fileID: 11400000, guid: 7cd7a6d0cff27794394e9b827a998808, type: 2}
+  webGLData: {fileID: 11400000, guid: f4de3f553647d37458615f8cffeebf8b, type: 2}
   backgroundImage: {fileID: 1731305012}
   tooltipText: {fileID: 1228192953}
+  tooltips: []
 --- !u!1 &1228192951
 GameObject:
   m_ObjectHideFlags: 0
