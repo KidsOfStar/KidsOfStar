@@ -9,9 +9,14 @@ public class TestGame : MonoBehaviour
 
     public float playerSpeed; // 플레이어 속도
     public bool isTestStart = false; // 테스트 시작 여부
+
+    private SkillBTN skillBTN; // 스킬 버튼 UI
+
     // Start is called before the first frame update
     void Start()
     {
+        skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI 가져오기
+
         playerController = Managers.Instance.GameManager.Player.Controller;
         playerSpeed = playerController.MoveSpeed; // 플레이어 속도 초기화
 
@@ -30,11 +35,11 @@ public class TestGame : MonoBehaviour
         Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
         countDownPopup.CountDownStart(); // 카운트다운 시작
 
-        // 플레이어 상태 초기화
-        playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
-
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
+
+        playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
+
 
     }
 
@@ -52,24 +57,19 @@ public class TestGame : MonoBehaviour
         playerController.MoveSpeed = playerSpeed / 1.5f; // 플레이어 속도 초기화 (1.5배 감소)
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    isTestStart = true; // 테스트 시작 여부 true로 설정
-    //    // 상호작용 버튼 이벤트에 등록
-    //    if (collision.CompareTag("Player"))
-    //    {
-    //        StartTest(); // 테스트 시작
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    isTestStart = true; // 테스트 시작 여부 true로 설정
-    //    // 상호작용 버튼 이벤트에 해제
-    //    if (!collision.CompareTag("Player"))
-    //    {
-    //        StopTest();
-    //    }
-    //}
+            skillBTN.ShowInteractionButton(true); // 상호작용 버튼 표시
+            if (skillBTN.interactionBtn.gameObject.activeSelf)
+            {
+                skillBTN.interactionBtn.onClick.AddListener(() => StartTest()); // 상호작용 버튼 클릭 시 테스트 시작
+            }
+        }
+    }
+
+
 }
 
