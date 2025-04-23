@@ -18,10 +18,19 @@ public class SkillUnlock : MonoBehaviour
     public GameObject squirrelIcon;
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
+    private Dictionary<int, (GameObject bg, GameObject icon)> skillChapter; // 스킬 배경과 아이콘을 매핑하는 딕셔너리
 
     void Start()
     {
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
+
+        skillChapter = new Dictionary<int, (GameObject bg, GameObject icon)>
+        {
+            { 1, (hideBG, hideIcon) },
+            { 2, (catBG, catIcon) },
+            { 3, (dogBG, dogIcon) },
+            { 4, (squirrelBG, squirrelIcon) }
+        };
     }
 
     public void ShowSkillBG(GameObject skillBG)
@@ -32,4 +41,17 @@ public class SkillUnlock : MonoBehaviour
         }
     }
 
+    // 각 챕터마다 스킬 잠금 해제
+    public void UnlockSkill(int chapter)
+    {
+       if(skillChapter.TryGetValue(chapter, out var skill))
+        {
+            skill.bg.SetActive(false); // 스킬 배경 활성화
+            skill.icon.SetActive(true); // 스킬 아이콘 활성화
+        }
+        else
+        {
+            Debug.LogWarning($"Chapter {chapter} not found in skillChapter dictionary.");
+        }
+    }
 }
