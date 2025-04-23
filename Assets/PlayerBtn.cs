@@ -48,6 +48,7 @@ public class PlayerBtn : UIBase
         //skipBtn.gameObject.SetActive(true); // 스킵 버튼 활성화
         skipBtn.gameObject.SetActive(false); // 기능 구현 안 되어서 비활성화
     }
+    
     public void OffCutSceneSkip()
     {
         skillPanel.SetActive(true); // 스킬 패널 비활성화

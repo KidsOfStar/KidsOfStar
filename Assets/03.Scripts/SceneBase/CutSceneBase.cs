@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -23,8 +24,26 @@ public class CutSceneBase : MonoBehaviour
         {
             Managers.Instance.DialogueManager.InitCutSceneNPcs(cutSceneData.Npcs);
         }
-        
+
+        SwapCameraInTimeline();
         Managers.Instance.DialogueManager.OnDialogEnd += ResumeCutScene;
+    }
+
+    public void SwapCameraInTimeline()
+    {
+        var timeline = Director.playableAsset as TimelineAsset;
+        if (!timeline)
+        {
+            Debug.LogError("CutSceneBase : TimelineAsset is null");
+            return;
+        }
+
+        var brain = Managers.Instance.GameManager.MainCamera.GetComponent<CinemachineBrain>();
+        foreach (var track in timeline.GetOutputTracks())
+        {
+            if (track is CinemachineTrack cinemachineTrack)
+                Director.SetGenericBinding(cinemachineTrack, brain);
+        }
     }
 
     public void Play()

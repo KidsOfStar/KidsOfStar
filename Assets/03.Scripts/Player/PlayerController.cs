@@ -65,15 +65,12 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     private bool isLeafJumping = false;
 
-    public SkillBTN skillBtn;   // 스킬 UI 업데이트 
-
     public void Init(Player player)
     {
         this.player = player;
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
     }
 
     private void Update()
@@ -114,6 +111,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     public void OnFormChange(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         switch (context.control.name)
         {
             case "1":
