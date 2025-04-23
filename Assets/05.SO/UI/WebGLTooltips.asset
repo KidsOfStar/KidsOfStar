@@ -22,6 +22,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ff898de3183047248b761c52b87e79c6, type: 3}
   Tooltips:
   - sceneType: 2
-    tooltips: []
+    tooltips:
+    - "WASD\uB85C \uC774\uB3D9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. "
   - sceneType: 3
-    tooltips: []
+    tooltips:
+    - "Space\uB85C \uC810\uD504\uD574 \uD68C\uD53C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. "
+    - "\uC810\uD504\uD574 \uC7A5\uC560\uBB3C\uC744 \uD68C\uD53C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."

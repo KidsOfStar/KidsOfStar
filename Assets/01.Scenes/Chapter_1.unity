@@ -2094,8 +2094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 0
-  introText: "\uCC55\uD130 1 \uC778\uD2B8\uB85C \uB300\uC0AC\uAC00 \uB4E4\uC5B4\uAC08
-    \uC790\uB9AC\uC785\uB2C8\uB2E4."
+  isFirstTime: 1
+  introText: "\uC138\uC0C1\uC774 \uC774\uB807\uAC8C \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerSpawnPosition: {fileID: 1652826008}
   speakers:
