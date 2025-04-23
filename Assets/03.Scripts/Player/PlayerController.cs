@@ -66,22 +66,14 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     private bool isLeafJumping = false;
 
     public SkillBTN skillBtn;   // 스킬 UI 업데이트 
-    private void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-    }
-
-    void Start()
-    {
-        skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-    }
 
     public void Init(Player player)
     {
         this.player = player;
+        rigid = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
     }
 
     private void Update()
@@ -189,19 +181,23 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     public bool TryDetectBox(Vector2 dir)
     {
         float xOffset = boxCollider.bounds.extents.x + 0.01f;
-        Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0);
+        Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0.1f);
         Vector2 direction = Vector2.right * Mathf.Sign(dir.x);
 
         // Debug.DrawRay(origin, direction * pushDetectDistance, Color.red, 1f);
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, pushDetectDistance, pushableLayer);
-        if (hit.collider != null && hit.collider.TryGetComponent<IWeightable>(out var weight))
-        // IWeightable이 붙은 컴포넌트인지 확인하고, 맞으면 True반환과 무게를 반환        
+
+        if (hit.collider != null)
         {
-            objWeight = weight;
-            objRigid = hit.collider.attachedRigidbody;
-            // Collider가 붙어있는 Rigidbody2D를 가져오고
-            return true;
+            if (hit.collider != null && hit.collider.TryGetComponent<IWeightable>(out var weight))
+            // IWeightable이 붙은 컴포넌트인지 확인하고, 맞으면 True반환과 무게를 반환        
+            {
+                objWeight = weight;
+                objRigid = hit.collider.attachedRigidbody;
+                // Collider가 붙어있는 Rigidbody2D를 가져오고
+                return true;
+            }
         }
         objWeight = null;
         objRigid = null;

@@ -24,26 +24,14 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     private FormData curFormData;
     public FormData CurFormData { get { return  curFormData; } }
 
-    private void Awake()
+    public void Init(Player player, string formName)
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         SetFormData();
-    }
-
-    void Start()
-    {
         controller = playerSc.Controller;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-        if (formDataDictionary["Stone"].IsActive)
-        {
-            FormChange("Stone");
-        }
-        else
-        {
-            FormChange("Human");
-        }
+        FormChange(formName);
     }
 
     private void Update()
