@@ -61,6 +61,7 @@ public abstract class SceneBase : MonoBehaviour
             
         GameObject playerObj = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
         Player player = playerObj.GetComponent<Player>();
+        player.Init(playerStartForm);
         
         Managers.Instance.GameManager.SetPlayer(player);
         Managers.Instance.DialogueManager.SetPlayerSpeaker(player);

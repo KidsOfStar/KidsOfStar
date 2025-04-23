@@ -22,6 +22,8 @@ public class Player : MonoBehaviour, IDialogSpeaker
         controller.Init(this);
         formControl.Init(this, formName);
         stateMachine.Init(this);
+
+        formControl.FormChange(formName == "" ? "Human" : formName);
     }
 
     public CharacterType GetCharacterType()

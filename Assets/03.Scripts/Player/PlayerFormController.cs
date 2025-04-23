@@ -14,10 +14,6 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     private Dictionary<string, FormData> formDataDictionary = new Dictionary<string, FormData>();
 
     private Player playerSc;
-    public Player PlayerSc
-    {
-        set { playerSc = value; }
-    }
     private PlayerController controller;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
@@ -29,9 +25,8 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         SetFormData();
-        controller = playerSc.Controller;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        FormChange(formName);
+        playerSc = player;
+        controller = player.Controller;
     }
 
     private void Update()
@@ -81,8 +76,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     {
         FormData nextFormData = formDataDictionary[formName];
 
-        if (nextFormData == null || !nextFormData.IsActive 
-            || (curFormData != null && !controller.IsGround) || !controller.IsControllable) return;
+        if (nextFormData == null || !nextFormData.IsActive || !controller.IsControllable) return;
         
         if(curFormData == null || formName == curFormData.FormName)
         {
