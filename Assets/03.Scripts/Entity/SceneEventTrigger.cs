@@ -8,7 +8,6 @@ public class SceneEventTrigger : MonoBehaviour
     [field: SerializeField] private int[] requiredDialogs;
     private Dictionary<int, bool> finishedDialog = new();
     private bool canTrigger = false;
-    private bool isDialogFinished = false;
 
     public void Init()
     {

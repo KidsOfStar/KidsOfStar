@@ -58,7 +58,8 @@ namespace MainTable
 
 		public System.Int32 Index;
 		public CharacterType Character;
-		public DialogActionType DialogType;
+		public DialogActionType FirstAction;
+		public DialogActionType SecondAction;
 		public System.Collections.Generic.List<String> SelectOption;
 		public System.String Param;
 		public System.Collections.Generic.List<Int32> NextIndex;
