@@ -26,7 +26,6 @@ public class SkillUnlock : MonoBehaviour
     {
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
-
         // 챕터와 BG/Icon 매핑
         skillMap = new Dictionary<int, (GameObject, GameObject)>
         {
@@ -57,5 +56,4 @@ public class SkillUnlock : MonoBehaviour
             Debug.LogWarning($"No skill assigned to chapter {chapter}");
         }
     }
-
 }
