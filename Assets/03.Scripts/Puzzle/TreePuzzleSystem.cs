@@ -1,45 +1,53 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TreePuzzleSystem : MonoBehaviour
 {
+    [Header("Background & Hint")]
+    [SerializeField] private Image backgroundImage;    // SO.backgroundSprite 할당용
+    [SerializeField] private GameObject easyModeOutline; // Easy 모드일 때만 켤 테두리
+
     [Header("Prefab & Layout")]
     [SerializeField] private GameObject piecePrefab;
     [SerializeField] private Transform puzzleParent;
 
-    [Header("Data")]
-    [SerializeField] private List<Sprite> correctSprites;
-    private List<TreePuzzlePiece> pieces = new ();
-
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerTxt;
     [SerializeField] private GameObject failPopup;
-    [SerializeField] private GameObject easyModeOutline;
+    [SerializeField] private GameObject ClearPopup;
 
-    [Header("Setting")]
-    [SerializeField] private int gridWidth = 4;
-    public bool isEasyMode;
+    private List<Sprite> correctSprites;
+    private int gridWidth;
+    private float timeLimit;
 
-    private TreePuzzleTrigger puzzleTrigger;
-    private float timeLimit = 60f;
     private float currentTime;
-    private bool isRunning = false;
-    private int selectedIndex = 0;
+    private bool isRunning;
+    private int selectedIndex;
+    private List<TreePuzzlePiece> pieces = new();
 
-    public void InitPuzzle()
+    private int puzzleIndex;
+    private HashSet<int> clearPuzzlenum = new();
+    [SerializeField] private int totalPuzzleCount = 2;
+
+    public void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
     {
-        isEasyMode = Managers.Instance.GameManager.Difficulty == Difficulty.Easy; //여기서 난이도 설정
-        timeLimit = isEasyMode ? 180f : 90f;
+        puzzleIndex = puzzleClearIndex;
+        correctSprites = new List<Sprite>(data.pieceSprites);
+        gridWidth = data.gridWidth;
+        bool isEasy = Managers.Instance.GameManager.Difficulty == Difficulty.Easy;
+        timeLimit = isEasy ? data.easyTimeLimit : data.hardTimeLimit;
+
+        if (backgroundImage != null)
+            backgroundImage.sprite = data.backgroundSprite;
 
         if (easyModeOutline != null)
-            easyModeOutline.SetActive(isEasyMode);
+            easyModeOutline.SetActive(isEasy);
     }
 
     public void GeneratePuzzle()
     {
-        InitPuzzle();
-
         // 기존 조각 제거
         foreach (Transform child in puzzleParent)
         {
@@ -133,20 +141,24 @@ public class TreePuzzleSystem : MonoBehaviour
     private void CompletePuzzle()
     {
         isRunning = false;
+        ClearPopup.SetActive(true);
+        
         EditorLog.Log("퍼즐 성공!");
-        gameObject.SetActive(false);
-
-        string id = puzzleTrigger.PuzzleId;
-        if (!Managers.Instance.GameManager.IsPuzzleCleared(id))
+        if (!clearPuzzlenum.Contains(puzzleIndex))
         {
-            Managers.Instance.GameManager.AddPuzzleCleared(id);
+            clearPuzzlenum.Add(puzzleIndex);
         }
 
-        if (Managers.Instance.GameManager.GetPuzzleClearCount() >= 2)
+        if (clearPuzzlenum.Count >= totalPuzzleCount)
         {
-            //플레이하고자 하는 컷씬의 이름으로 로드
-            //Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType..GetName());  
+            EditorLog.Log("모든 퍼즐 클리어! 추가 로직 실행");
+            // Managers.Instance.CutSceneManager.PlayCutScene(...);
         }
+        else
+        {
+            EditorLog.Log($"{puzzleIndex} 첫 클리어");
+        }
+        //플레이하고자 하는 컷씬의 이름으로 로드
     }
 
     private void FailPuzzle()

@@ -8,15 +8,12 @@ public class TreePuzzleTrigger : MonoBehaviour
     [SerializeField] private string[] allowedFormsNames;
     private bool triggered = false;
     private SkillBTN skillBTN;
-
-    [SerializeField] private string puzzleId;
-    public string PuzzleId => puzzleId;
+    [SerializeField] private TreePuzzleData puzzleData;
+    [SerializeField] private int sequenceIndex;
 
     private void Start()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-
-        skillBTN.OnInteractBtnClick = TryStartPuzzle;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -34,10 +31,18 @@ public class TreePuzzleTrigger : MonoBehaviour
             skillBTN.ShowInteractionButton(false);
             return;
         }
-        if (allowedFormsNames.Contains(currentForm))
-        {
-            skillBTN.ShowInteractionButton(true); // 상호작용 버튼 표시
-        }
+
+        skillBTN.ShowInteractionButton(true); // 상호작용 버튼 표시
+        skillBTN.OnInteractBtnClick += TryStartPuzzle;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (triggered) return;
+
+        // 영역 벗어나면 버튼 숨기기 + 콜백 해제
+        skillBTN.ShowInteractionButton(false);
+        skillBTN.OnInteractBtnClick -= TryStartPuzzle;
     }
 
     private void TryStartPuzzle()
@@ -45,7 +50,7 @@ public class TreePuzzleTrigger : MonoBehaviour
         if (triggered) return;
 
         triggered = true;
-        Managers.Instance.UIManager.Show<TreePuzzlePopup>();
+        Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData,sequenceIndex);
         skillBTN.ShowInteractionButton(false); // 한 번만 작동하게끔 비활성화
     }
 
