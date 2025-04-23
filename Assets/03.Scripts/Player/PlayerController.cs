@@ -63,22 +63,14 @@ public class PlayerController : MonoBehaviour
     // Ray로 감지한 물체의 rb
 
     public SkillBTN skillBtn;   // 스킬 UI 업데이트 
-    private void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-    }
-
-    void Start()
-    {
-        skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-    }
 
     public void Init(Player player)
     {
         this.player = player;
+        rigid = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
     }
 
     private void Update()
