@@ -141,11 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5854934560848815961, guid: d29fc2a13468020458e9e0ae707d65bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.55
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5854934560848815961, guid: d29fc2a13468020458e9e0ae707d65bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.73
+      value: -21.7
       objectReference: {fileID: 0}
     - target: {fileID: 5854934560848815961, guid: d29fc2a13468020458e9e0ae707d65bf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -222,13 +222,13 @@ MonoBehaviour:
   positionDatas:
   - progress: 2
     isActive: 1
-    position: {x: 5, y: -21.7, z: 0}
+    position: {x: -6, y: -3.1, z: 0}
   - progress: 3
     isActive: 1
-    position: {x: -6, y: -3.1, z: 0}
+    position: {x: 5.35, y: 30.9, z: 0}
   - progress: 4
     isActive: 1
-    position: {x: 5.35, y: 30.9, z: 0}
+    position: {x: 8.4, y: 35.85, z: 0}
   - progress: 5
     isActive: 1
     position: {x: 8.4, y: 35.85, z: 0}
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionDatas:
-  - progress: 3
+  - progress: 2
     isActive: 1
     position: {x: -2.3, y: -21.4, z: 0}
   - progress: 5
@@ -7501,6 +7501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 1
+  isFirstTime: 1
+  introText: 
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerSpawnPosition: {fileID: 1440882714}
   speakers:
