@@ -1,10 +1,15 @@
 using System.Collections;
 using UnityEngine;
+public interface IWeightable
+{
+    float GetWeight();
+}
 
 public interface ILeafJumpable
 {
     void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float moveSpeed, float jumpHeight);
 }
+
 public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 {
     public float boxWeight = 2f;
