@@ -78,7 +78,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
 
         if (nextFormData == null || !nextFormData.IsActive || !controller.IsControllable) return;
         
-        if(curFormData == null || formName == curFormData.FormName)
+        if(formName == curFormData.FormName)
         {
             curFormData = formDataDictionary["Human"];
         }
