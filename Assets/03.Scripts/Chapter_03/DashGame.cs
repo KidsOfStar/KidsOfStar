@@ -8,14 +8,14 @@ public class DashGame : MonoBehaviour
     public PlayerController playerController;
 
     public float playerSpeed; // 플레이어 속도
-    public bool isTestStart = false; // 테스트 시작 여부
+    public bool isGameStarted = false;
+    public bool isGameEnded = false;
 
     private SkillBTN skillBTN; // 스킬 버튼 UI
 
     // Start is called before the first frame update
     void Start()
     {
-        
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI 가져오기
 
         playerController = Managers.Instance.GameManager.Player.Controller;
@@ -26,9 +26,11 @@ public class DashGame : MonoBehaviour
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
     }
-    public void StartTest()
+    public void StartGame()
     {
-        // 시작할 때
+        if(isGameStarted) return; // 이미 게임이 시작된 경우 종료
+        isGameStarted = true; // 게임 시작 상태로 변경
+
         // 플레이어 속도 0으로 하여 정지
         playerController.MoveSpeed = 0; // 플레이어 속도 0으로 설정
 
@@ -50,6 +52,9 @@ public class DashGame : MonoBehaviour
     }
     public void EndGame()
     {
+        if (isGameEnded || !isGameStarted) return;
+
+        isGameEnded = true; // 게임 종료 상태로 변경
         // 종료할 때
         stopWatch.OnStopWatch(); // 스탑워치 정지
         stopWatch.CheckTargetTime(); // 목표 시간 체크
