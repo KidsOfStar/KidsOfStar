@@ -19,9 +19,22 @@ public class SkillUnlock : MonoBehaviour
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
 
+    private Dictionary<int, (GameObject bg, GameObject icon)> skillMap;
+
+
     void Start()
     {
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
+
+
+        // 챕터와 BG/Icon 매핑
+        skillMap = new Dictionary<int, (GameObject, GameObject)>
+        {
+            { 1, (hideBG, hideIcon) },
+            { 2, (catBG, catIcon) },
+            { 3, (dogBG, dogIcon) },
+            { 4, (squirrelBG, squirrelIcon) }
+        };
     }
 
     public void ShowSkillBG(GameObject skillBG)
@@ -29,6 +42,19 @@ public class SkillUnlock : MonoBehaviour
         foreach (var bg in skillBGs)
         {
             bg.SetActive(bg == skillBG);
+        }
+    }
+
+    public void UnlockSkill(int chapter)
+    {
+        if (skillMap.TryGetValue(chapter, out var skillPair))
+        {
+            skillPair.bg.SetActive(false);
+            skillPair.icon.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning($"No skill assigned to chapter {chapter}");
         }
     }
 
