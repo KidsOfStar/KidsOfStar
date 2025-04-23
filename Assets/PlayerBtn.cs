@@ -14,13 +14,12 @@ public class PlayerBtn : UIBase
     public GameObject functionPanel; // 기능 패널
     public GameObject joystick; 
 
-
-
     void Start()
     {
         joystick = transform.parent.Find("UIJoystick").gameObject;
         stopBtn.onClick.AddListener(OnOptionBtnClick);
         skipBtn.onClick.AddListener(OnSkip);
+
         Managers.Instance.CutSceneManager.OnCutSceneStart += OnCutSceneSkip;
         Managers.Instance.CutSceneManager.OnCutSceneEnd += OffCutSceneSkip;
     }
