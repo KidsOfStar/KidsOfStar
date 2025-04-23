@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2964283768891200295
 Transform:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 7
   <BubbleTr>k__BackingField: {fileID: 8486397340754864470}
 --- !u!95 &2792901343900831706
 Animator:
@@ -353,7 +353,7 @@ Animator:
   m_GameObject: {fileID: 577892630072048301}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 981975aabcfcd84488c2e93168c90532, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -739,7 +739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3673169574701776081
 Transform:
   m_ObjectHideFlags: 0
@@ -779,7 +779,7 @@ MonoBehaviour:
   dialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   destroySignal: {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
   cutSceneData:
-    <DialogIndexes>k__BackingField: ee07000000000000
+    <DialogIndexes>k__BackingField: ee070000f3070000f4070000
     <Npcs>k__BackingField: []
 --- !u!1 &2330445348849527984
 GameObject:
@@ -2743,7 +2743,171 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1897566334000830965}
+    m_ColliderPaths:
+    - - X: 200000000
+        Y: 373500000
+      - X: 200000000
+        Y: 376249984
+      - X: 130000000
+        Y: 376249984
+      - X: 130000000
+        Y: 374749984
+      - X: 135250000
+        Y: 373500000
+      - X: 139250000
+        Y: 373250016
+      - X: 197000000
+        Y: 373250016
+    - - X: 120000000
+        Y: 353500000
+      - X: 120000000
+        Y: 356249984
+      - X: 60000000
+        Y: 356249984
+      - X: 60000000
+        Y: 354749984
+      - X: 65250000
+        Y: 353500000
+      - X: 69250000
+        Y: 353250016
+      - X: 117000000
+        Y: 353250016
+    - - X: 50000000
+        Y: 333500000
+      - X: 50000000
+        Y: 336249984
+      - X: 20000000
+        Y: 336249984
+      - X: 20000000
+        Y: 334749984
+      - X: 25250000
+        Y: 333500000
+      - X: 29250000
+        Y: 333250016
+      - X: 47000000
+        Y: 333250016
+    - - X: 80000000
+        Y: 303500000
+      - X: 80000000
+        Y: 306249984
+      - X: 50000000
+        Y: 306249984
+      - X: 50000000
+        Y: 304750016
+      - X: 55250000
+        Y: 303500000
+      - X: 59250000
+        Y: 303250016
+      - X: 77000000
+        Y: 303250016
+    - - X: 120000000
+        Y: 293500000
+      - X: 120000000
+        Y: 296249984
+      - X: 90000000
+        Y: 296249984
+      - X: 90000000
+        Y: 294750016
+      - X: 95250000
+        Y: 293500000
+      - X: 99250000
+        Y: 293250016
+      - X: 117000000
+        Y: 293250016
+    - - X: 150000000
+        Y: 273500000
+      - X: 150000000
+        Y: 276249984
+      - X: 120000000
+        Y: 276249984
+      - X: 120000000
+        Y: 274750016
+      - X: 125250000
+        Y: 273500000
+      - X: 129250000
+        Y: 273250016
+      - X: 147000000
+        Y: 273250016
+    - - X: 100000000
+        Y: -116500000
+      - X: 100000000
+        Y: -113750000
+      - X: 60000000
+        Y: -113750000
+      - X: 60000000
+        Y: -115250000
+      - X: 65250000
+        Y: -116500000
+      - X: 69250000
+        Y: -116750000
+      - X: 97000000
+        Y: -116750000
+    - - X: 120000000
+        Y: -136500000
+      - X: 120000000
+        Y: -133750000
+      - X: 90000000
+        Y: -133750000
+      - X: 90000000
+        Y: -135250000
+      - X: 95250000
+        Y: -136500000
+      - X: 99250000
+        Y: -136750000
+      - X: 117000000
+        Y: -136750000
+    - - X: 170000000
+        Y: -156500000
+      - X: 170000000
+        Y: -153750000
+      - X: 120000000
+        Y: -153750000
+      - X: 120000000
+        Y: -155250000
+      - X: 125250000
+        Y: -156500000
+      - X: 129250000
+        Y: -156750000
+      - X: 167000000
+        Y: -156750000
+    - - X: 170000000
+        Y: -196500000
+      - X: 170000000
+        Y: -193750000
+      - X: 140000000
+        Y: -193750000
+      - X: 140000000
+        Y: -195250000
+      - X: 145250000
+        Y: -196500000
+      - X: 149250000
+        Y: -196750000
+      - X: 167000000
+        Y: -196750000
+    - - X: 140000000
+        Y: -216500000
+      - X: 140000000
+        Y: -213750000
+      - X: 100000000
+        Y: -213750000
+      - X: 100000000
+        Y: -215250000
+      - X: 105250000
+        Y: -216500000
+      - X: 109250000
+        Y: -216750000
+      - X: 137000000
+        Y: -216750000
+    - - X: 460000000
+        Y: -220000000
+      - X: -160000000
+        Y: -220000000
+      - X: -160000000
+        Y: -240000000
+      - X: 460000000
+        Y: -240000000
   m_CompositePaths:
     m_Paths:
     - - {x: 19.699999, y: 37.325}
@@ -2931,7 +3095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 3
   <BubbleTr>k__BackingField: {fileID: 6140398273291889461}
 --- !u!61 &3599962349398269813
 BoxCollider2D:
@@ -3143,7 +3307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 4
   <BubbleTr>k__BackingField: {fileID: 6714611192507213848}
 --- !u!61 &6744696554954793389
 BoxCollider2D:
@@ -3406,14 +3570,16 @@ PlayableDirector:
     value: {fileID: 8863695346970130112}
   - key: {fileID: -8151214374608801483, guid: ccf77f062c787f846bd322167471ba67, type: 2}
     value: {fileID: 2792901343900831706}
-  - key: {fileID: -3592890879492366527, guid: ccf77f062c787f846bd322167471ba67, type: 2}
-    value: {fileID: 0}
   - key: {fileID: 1454662981961338552, guid: ccf77f062c787f846bd322167471ba67, type: 2}
     value: {fileID: 6263171696255757002}
   - key: {fileID: -6498201736089893125, guid: ccf77f062c787f846bd322167471ba67, type: 2}
     value: {fileID: 6333474211250769285}
   - key: {fileID: 5615119766206429741, guid: ccf77f062c787f846bd322167471ba67, type: 2}
     value: {fileID: 4504319838682519247}
+  - key: {fileID: 6874224012015239437, guid: ccf77f062c787f846bd322167471ba67, type: 2}
+    value: {fileID: 8863695346970130112}
+  - key: {fileID: 3866720226887622860, guid: ccf77f062c787f846bd322167471ba67, type: 2}
+    value: {fileID: 2792901343900831706}
   m_ExposedReferences:
     m_References:
     - b32fe611aade5454887d9724615b0860: {fileID: 0}
@@ -3804,7 +3970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 5
   <BubbleTr>k__BackingField: {fileID: 6089357331306290076}
 --- !u!61 &3549699131297190481
 BoxCollider2D:
@@ -3861,7 +4027,7 @@ Animator:
   m_GameObject: {fileID: 6974262349786536498}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c5be91a9dd6ed97459348064b8149acf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

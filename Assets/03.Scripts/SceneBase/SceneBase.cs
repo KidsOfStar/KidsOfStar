@@ -63,6 +63,7 @@ public abstract class SceneBase : MonoBehaviour
         Player player = playerObj.GetComponent<Player>();
         
         Managers.Instance.GameManager.SetPlayer(player);
+        Managers.Instance.DialogueManager.SetPlayerSpeaker(player);
     }
 
     private void InitCameraController()
