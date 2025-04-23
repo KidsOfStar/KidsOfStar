@@ -6,9 +6,11 @@ using UnityEngine;
 public class TreePuzzleTrigger : MonoBehaviour
 {
     [SerializeField] private string[] allowedFormsNames;
-
     private bool triggered = false;
     private SkillBTN skillBTN;
+
+    [SerializeField] private string puzzleId;
+    public string PuzzleId => puzzleId;
 
     private void Start()
     {

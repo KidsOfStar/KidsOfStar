@@ -28,6 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void ChangeState(IPlayerState nextState)
     {
+        if (curState == nextState) return;
         curState?.OnExit();
         curState = nextState;
         curState?.OnEnter();
