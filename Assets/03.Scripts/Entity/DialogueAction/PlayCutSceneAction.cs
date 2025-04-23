@@ -3,10 +3,13 @@ using System;
 
 public class PlayCutSceneAction : IDialogActionHandler
 {
-    public void Execute(DialogData dialogData)
+    public void Execute(DialogData dialogData, bool isFirst)
     {
-        Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
-        Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+        if (!isFirst)
+        {
+            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
+            Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+        }
         
         if (!Enum.TryParse<CutSceneType>(dialogData.Param, out var cutScene))
         {

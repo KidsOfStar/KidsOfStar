@@ -35,7 +35,7 @@ public enum DialogActionType
     PlayCutScene,
     LoadScene,
     UpdateProgress,
-    ExecuteCustom,
+    ChangeForm,
 }
 
 public enum DialogCustomMethodType

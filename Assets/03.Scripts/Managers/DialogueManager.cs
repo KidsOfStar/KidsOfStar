@@ -13,7 +13,6 @@ public class DialogueManager : ISceneLifecycleHandler
     private DialogData currentDialogData;
     private UITextBubble textBubble;
 
-    public CustomDialogMethod CustomDialogMethod { get; private set; }
     public Action OnClick { get; set; }
     public Action OnDialogStart { get; set; }
     public Action OnDialogEnd { get; set; }
@@ -22,14 +21,14 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public DialogueManager()
     {
-        CustomDialogMethod = new CustomDialogMethod();
         dialogActionHandlers[DialogActionType.None] = new NoneAction();
         dialogActionHandlers[DialogActionType.ShowSelect] = new ShowSelectAction();
         dialogActionHandlers[DialogActionType.ModifyTrust] = new ModifyTrustAction();
         dialogActionHandlers[DialogActionType.DataSave] = new DataSaveAction();
         dialogActionHandlers[DialogActionType.PlayCutScene] = new PlayCutSceneAction();
         dialogActionHandlers[DialogActionType.LoadScene] = new LoadSceneAction();
-        dialogActionHandlers[DialogActionType.ExecuteCustom] = new ExecuteCustomAction();
+        dialogActionHandlers[DialogActionType.UpdateProgress] = new UpdateProgressAction();
+        dialogActionHandlers[DialogActionType.ChangeForm] = new ChangeFormAction();
     }
 
     public void InitSceneNPcs(Npc[] speakers)
@@ -102,7 +101,9 @@ public class DialogueManager : ISceneLifecycleHandler
             textBubble.HideDirect();
 
             // 타입에 따라 다이얼로그 액션 실행
-            dialogActionHandlers[currentDialogData.DialogType].Execute(currentDialogData);
+            dialogActionHandlers[currentDialogData.FirstAction].Execute(currentDialogData, true);
+            dialogActionHandlers[currentDialogData.SecondAction].Execute(currentDialogData, false);
+            
         }
     }
 
