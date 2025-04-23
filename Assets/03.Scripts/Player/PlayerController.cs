@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ILeafJumpable
 {
     [Header("공통")]
     [SerializeField] private LayerMask groundLayer;
@@ -61,6 +62,8 @@ public class PlayerController : MonoBehaviour
     // Ray로 감지한 물체의 무게
     private Rigidbody2D objRigid = null;
     // Ray로 감지한 물체의 rb
+
+    private bool isLeafJumping = false;
 
     public SkillBTN skillBtn;   // 스킬 UI 업데이트 
     private void Awake()
@@ -218,4 +221,43 @@ public class PlayerController : MonoBehaviour
         boxCollider.size = size;
         boxCollider.offset = offset;
     }
+
+    //플레이어 나뭇잎 점프
+    public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float moveSpeed, float jumpHeight)
+    {
+        if (isLeafJumping) return;
+        StartCoroutine(LeafJumpRoutine(dropPosition, moveSpeed, jumpHeight));
+    }
+
+    private IEnumerator LeafJumpRoutine(Vector3 target, float moveSpeed, float jumpHeight)
+    {
+        isLeafJumping = true;
+        var originalGravity = rigid.gravityScale;
+        rigid.gravityScale = 0f; 
+        rigid.velocity = Vector2.zero;
+
+        Vector3 startPos = transform.position;
+        float distance = Vector3.Distance(startPos, target);
+        float duration = distance / moveSpeed;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            // x축·z축 선형 보간, y축은 사인 곡선
+            Vector3 linearPos = Vector3.Lerp(startPos, target, t);
+            float heightOffset = Mathf.Sin(t * Mathf.PI) * jumpHeight;
+            transform.position = linearPos + Vector3.up * heightOffset;
+
+            yield return null;
+        }
+
+        // 최종 위치 보정
+        transform.position = target;
+        rigid.gravityScale = originalGravity;
+        isLeafJumping = false;
+    }
+
 }
