@@ -1513,7 +1513,7 @@ MonoBehaviour:
   skipBtn: {fileID: 5506947748116757338}
   skillPanel: {fileID: 5899448696036790164}
   functionPanel: {fileID: 6121230869568183876}
-  joystick: {fileID: 3843351717722338959, guid: df69f07e9a1b30c42a4349bac60dc106, type: 3}
+  joystick: {fileID: 0}
 --- !u!1 &6215674118948965843
 GameObject:
   m_ObjectHideFlags: 0
