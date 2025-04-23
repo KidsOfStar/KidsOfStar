@@ -142,4 +142,10 @@ public class GameManager
     {
         Player = player;
     }
+
+    public void TriggerEnding(EndingType endingType)
+    {
+        endingDict[endingType] = true;
+        Managers.Instance.UIManager.Show<UIEnding>(endingType); 
+    }
 }
