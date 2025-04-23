@@ -11,6 +11,7 @@ public class Chapter01PuzzleBase : SceneBase
     protected override void InitSceneExtra(Action playIntroCallback)
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.MaorumChase);
+        LockPlayerMove();
         PlayChaseAnim();
         spawner.StartSpawn();
     }
@@ -19,5 +20,11 @@ public class Chapter01PuzzleBase : SceneBase
     {
         maorum.speed = 1.5f;
         maorum.SetBool(walkHash, true);
+    }
+
+    private void LockPlayerMove()
+    {
+        var player = Managers.Instance.GameManager.Player;
+        player.Controller.MoveSpeed = 0;
     }
 }

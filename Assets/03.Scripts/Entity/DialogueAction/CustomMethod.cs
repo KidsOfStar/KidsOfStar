@@ -10,13 +10,13 @@ public class CustomDialogMethod
         methodMap.Add(DialogCustomMethodType.ChangeHumanForm, ChangeHumanForm);
     }
     
-    public void ChangeHumanForm()
+    private void ChangeHumanForm()
     {
         // 대화 종료 콜백
         Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
         
-        // TODO: 플레이어 강제로 사람 폼으로 변경
+        Managers.Instance.GameManager.Player.FormControl.FormChange("Human");
         Managers.Instance.GameManager.UpdateProgress();
     }
     
