@@ -495,7 +495,7 @@ MonoBehaviour:
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: 0, y: 0}
   maxPosition: {x: 0, y: 0}
-  lightObject: {fileID: 0}
+  lightObject: {fileID: 820259258}
 --- !u!1 &616716676
 GameObject:
   m_ObjectHideFlags: 8
@@ -3128,6 +3128,7 @@ MonoBehaviour:
   isFirstTime: 0
   introText: 
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
+  playerStartForm: 
   playerSpawnPosition: {fileID: 191726442}
   speakers:
   - {fileID: 1289202279}
