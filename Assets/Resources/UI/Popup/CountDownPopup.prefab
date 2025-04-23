@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1298008697523293126}
-  - component: {fileID: 3253453113824256333}
+  - component: {fileID: 8867430207243051708}
   m_Layer: 5
   m_Name: CountDownPopup
   m_TagString: Untagged
@@ -171,7 +171,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 786}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3253453113824256333
+--- !u!114 &8867430207243051708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

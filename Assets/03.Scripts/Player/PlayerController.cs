@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -63,11 +62,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D objRigid = null;
     // Ray로 감지한 물체의 rb
 
+    public SkillBTN skillBtn;   // 스킬 UI 업데이트 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+    }
+
+    void Start()
+    {
+        skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
     }
 
     public void Init(Player player)
@@ -92,7 +98,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isControllable) return;
 
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started)
         {
             moveDir = context.ReadValue<Vector2>();
         }
@@ -113,20 +119,23 @@ public class PlayerController : MonoBehaviour
     public void OnFormChange(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-
         switch (context.control.name)
         {
             case "1":
-                player.FormControl.FormChange("Squirrel");
+                //player.FormControl.FormChange("Squirrel");
+                skillBtn.OnSquirrel();
                 break;
             case "2":
-                player.FormControl.FormChange("Dog");
+                //player.FormControl.FormChange("Dog");
+                skillBtn.OnDog();
                 break;
             case "3":
-                player.FormControl.FormChange("Cat");
+                //player.FormControl.FormChange("Cat");
+                skillBtn.OnCat();
                 break;
             case "4":
-                player.FormControl.FormChange("Hide");
+                //player.FormControl.FormChange("Hide");
+                skillBtn.OnHide();
                 break;
         }
     }
