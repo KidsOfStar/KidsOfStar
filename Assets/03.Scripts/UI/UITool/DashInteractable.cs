@@ -37,7 +37,6 @@ public class DashInteractable : MonoBehaviour
             skillBTN.OnInteractBtnClick -= OnPlayerInteract;
         }
     }
-
     private void OnPlayerInteract()
     {
         if (interactionType == EInteractionType.StartGame && !dashGame.isGameStarted)
