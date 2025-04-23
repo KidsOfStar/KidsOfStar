@@ -13,6 +13,7 @@ public class UIManager : ISceneLifecycleHandler
     private Dictionary<string, List<UIBase>>
         multiListUIList = new Dictionary<string, List<UIBase>>(); // 여러 개의 UI를 관리하기 위한 리스트
 
+
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정
     /// 보통 Canvas 하위에 Background, UI, Popup 같은 위치들이 있음

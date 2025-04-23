@@ -6,23 +6,35 @@ using UnityEngine.UI;
 public class UILoading : MonoBehaviour
 {
     [Header("Loading Data")]
-    [SerializeField] private LoadingData loadingData;
+    [SerializeField] private LoadingData androidData;
+
+    [SerializeField] private LoadingData webGLData;
+    private LoadingData currentLoadingData;
 
     [Header("Loading UI")]
     [SerializeField] private Image backgroundImage;
 
     [SerializeField] private TextMeshProUGUI tooltipText;
+    [SerializeField] private string[] tooltips;
 
     private readonly WaitForSeconds tooltipWaitTime = new(2f);
-    private int currentTooltipIndex = -1;
+    private int currentTooltipIndex;
 
     private void Start()
     {
-        if (loadingData == null)
+        if (androidData == null || webGLData == null)
         {
             EditorLog.LogError("LoadingData is not assigned in the inspector.");
             return;
         }
+
+#if UNITY_EDITOR
+        currentLoadingData = androidData;
+#elif UNITY_ANDROID
+        currentLoadingData = androidData;
+#elif UNITY_WEBGL
+        currentLoadingData = webGLData;
+#endif
 
         SetRandomBackground();
         StartCoroutine(TooltipCoroutine());
@@ -30,35 +42,51 @@ public class UILoading : MonoBehaviour
 
     private IEnumerator TooltipCoroutine()
     {
-        if (loadingData.Tooltips.Length == 0)
+        if (currentLoadingData.Tooltips.Length == 0)
         {
             EditorLog.LogError("No tooltips found in LoadingData.");
             yield break;
         }
 
+        for (int i = 0; i < currentLoadingData.Tooltips.Length; i++)
+        {
+            var tooltipData = currentLoadingData.Tooltips[i];
+            var nextScene = Managers.Instance.SceneLoadManager.NextSceneToLoad;
+            if (tooltipData.sceneType != nextScene) continue;
+
+            tooltips = tooltipData.tooltips;
+            break;
+        }
+
+        if (tooltips == null || tooltips.Length == 0)
+        {
+            EditorLog.LogWarning("No tooltips found for the current scene.");
+            yield break;
+        }
+
         while (true)
         {
-            int randomIndex;
-            do
-                randomIndex = Random.Range(0, loadingData.Tooltips.Length);
-            while (randomIndex == currentTooltipIndex);
-            
-            currentTooltipIndex = randomIndex;
-            tooltipText.text = loadingData.Tooltips[randomIndex];
+            if (currentTooltipIndex >= tooltips.Length)
+            {
+                currentTooltipIndex = 0;
+            }
+
+            tooltipText.text = tooltips[currentTooltipIndex];
+            currentTooltipIndex++;
             yield return tooltipWaitTime;
         }
     }
 
     private void SetRandomBackground()
     {
-        if (loadingData.Backgrounds.Length == 0)
+        if (currentLoadingData.Backgrounds.Length == 0)
         {
             EditorLog.LogError("No background images found in LoadingData.");
             return;
         }
 
-        int randomIndex = Random.Range(0, loadingData.Backgrounds.Length);
-        backgroundImage.sprite = loadingData.Backgrounds[randomIndex];
+        int randomIndex = Random.Range(0, currentLoadingData.Backgrounds.Length);
+        backgroundImage.sprite = currentLoadingData.Backgrounds[randomIndex];
     }
 
     private void OnDestroy()

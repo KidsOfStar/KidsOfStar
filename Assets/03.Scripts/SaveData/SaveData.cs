@@ -21,6 +21,7 @@ public class SaveData
     public Vector3 playerPosition;
     public int[] chapterTrust;
     public bool[] endingDatas;
+    public List<string> unlockedPlayerForm;
 
     public void InitData()
     {
@@ -31,11 +32,22 @@ public class SaveData
         playerPosition = gameManager.PlayerPosition;
         chapterTrust = gameManager.GetTrustArray();
         endingDatas = gameManager.GetEndingArray();
+        SaveUnlockedPlayerForm();
     }
 
     public void LoadData()
     {
         Managers.Instance.GameManager.SetLoadData(this);
+    }
+
+    private void SaveUnlockedPlayerForm()
+    {
+        var formsDict = Managers.Instance.GameManager.UnlockedForms;
+        foreach (var form in formsDict)
+        {
+            // 해금 된 형태만 저장
+            unlockedPlayerForm.Add(form);
+        }
     }
 
     public IEnumerator FetchInternetTime(Action onFetched)

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleDespawner : MonoBehaviour
 {
+    public float tilemapWidth;
     public ObstaclesSpawner obstaclesSpawner;
-    public Vector3 obstacleLastPosition = Vector3.zero;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +15,13 @@ public class ObstacleDespawner : MonoBehaviour
             {
                 obstaclesSpawner.OnObstacleDespawned();
             }
+        }
+
+        if (collision.CompareTag("Loopable"))
+        {
+            var tilemap = collision.transform.parent;
+            float newX = tilemap.position.x + tilemapWidth * 2f; // 현재 기준에서 오른쪽으로 정확히 한 사이클 이동
+            tilemap.position = new Vector3(newX, tilemap.position.y, tilemap.position.z);
         }
     }
 }

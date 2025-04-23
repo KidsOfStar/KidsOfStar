@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LoadingData", menuName = "ScriptableObject/LoadingData")]
@@ -7,5 +8,12 @@ public class LoadingData : ScriptableObject
     public Sprite[] Backgrounds;
     
     [Header("Tooltips")]
-    public string[] Tooltips;
+    public Tooltip[] Tooltips;
+}
+
+[Serializable]
+public struct Tooltip
+{
+    public SceneType sceneType;
+    public string[] tooltips;
 }

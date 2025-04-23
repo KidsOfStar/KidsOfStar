@@ -17,7 +17,6 @@ public class CatWallClingState : PlayerStateBase
         WallRatationSet();
         context.CanCling = false;
         clingTimer = 0;
-        context.CanClingTimer = 0f;
     }
 
     private void WallRatationSet()
@@ -40,7 +39,7 @@ public class CatWallClingState : PlayerStateBase
 
     public override void OnUpdate()
     {
-
+        base.OnUpdate();
         context.Controller.Move();
         context.Rigid.velocity = new Vector2(context.Rigid.velocity.x, 0);
         clingTimer += Time.deltaTime;
@@ -54,7 +53,6 @@ public class CatWallClingState : PlayerStateBase
         if(context.Controller.IsGround)
         {
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
-
             return;
         }
 
@@ -69,7 +67,9 @@ public class CatWallClingState : PlayerStateBase
     {
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
         RaycastHit2D hit = Physics2D.Raycast(context.BoxCollider.bounds.center, dir,
-            context.BoxCollider.bounds.size.x, context.Controller.GroundLayer);
+            context.BoxCollider.bounds.size.x * 1.5f, context.Controller.GroundLayer);
+        Debug.DrawRay(context.BoxCollider.bounds.center, dir * context.BoxCollider.bounds.size.x * 1.5f,
+            Color.green, 1f);
 
         if (hit.collider != null)
         {

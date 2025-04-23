@@ -22,6 +22,7 @@ public class GameManager
     // Play Data
     public Vector3 PlayerPosition { get; private set; } = Vector3.zero;
     public Player Player { get; private set; }
+    public List<string> UnlockedForms { get; private set; } = new();
 
     // Events
     public Action OnProgressUpdated { get; set; }
@@ -78,6 +79,13 @@ public class GameManager
             trustDict[(ChapterType)i] = saveData.chapterTrust[i];
         for (int i = 0; i < saveData.endingDatas.Length; i++)
             endingDict[(EndingType)i] = saveData.endingDatas[i];
+
+        for (int i = 0; i < saveData.unlockedPlayerForm.Count; i++)
+        {
+            var form = saveData.unlockedPlayerForm[i];
+            if (!UnlockedForms.Contains(form))
+                UnlockedForms.Add(form);
+        }
     }
 
     public int[] GetTrustArray()
