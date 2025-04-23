@@ -14,11 +14,6 @@ public class PlayerBtn : UIBase
     public GameObject functionPanel; // 기능 패널
     public UIJoystick joystick;
 
-    //private void OnEnable()
-    //{
-    //    Managers.Instance.CutSceneManager.OnCutSceneStart += OnCutSceneSkip;
-    //    Managers.Instance.CutSceneManager.OnCutSceneEnd += OffCutSceneSkip;
-    //}
     public void Init()
     {
         joystick = transform.parent.GetComponentInChildren<UIJoystick>();
@@ -30,7 +25,6 @@ public class PlayerBtn : UIBase
         Managers.Instance.CutSceneManager.OnCutSceneEnd += OffCutSceneSkip;
     }
 
-
     // 정지 버튼 클릭 시 게임 일시정지
     private void OnOptionBtnClick()
     {
@@ -38,7 +32,6 @@ public class PlayerBtn : UIBase
         Time.timeScale = 0;
     }
 
-    
     // 스킵 버튼 클릭 시 호출될 메소드 (현재 비어 있음)
     public void OnSkip()
     {

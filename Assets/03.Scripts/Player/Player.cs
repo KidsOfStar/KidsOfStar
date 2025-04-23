@@ -13,22 +13,15 @@ public class Player : MonoBehaviour, IDialogSpeaker
 
     [SerializeField, Tooltip("말풍선 위치")] private Transform bubblePosition;
 
-    private void Awake()
+    public void Init(string formName)
     {
         controller = GetComponent<PlayerController>();
         formControl = GetComponent<PlayerFormController>();
         stateMachine = GetComponent<PlayerStateMachine>();
 
-        formControl.PlayerSc = this;
-        stateMachine.Player = this;
-
         controller.Init(this);
-
-    }
-
-    private void Start()
-    {
-        Managers.Instance.GameManager.SetPlayer(this);
+        formControl.Init(this, formName);
+        stateMachine.Init(this);
     }
 
     public CharacterType GetCharacterType()
