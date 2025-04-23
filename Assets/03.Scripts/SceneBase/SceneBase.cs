@@ -44,6 +44,9 @@ public abstract class SceneBase : MonoBehaviour
 
         // 씬 고유 초기화 작업
         InitSceneExtra(PlayChapterIntro);
+
+        // 챕터 UI 비활성
+
     }
 
     private void InitManagers()
@@ -72,8 +75,8 @@ public abstract class SceneBase : MonoBehaviour
     
     private void ShowRequiredUI()
     {
-        Managers.Instance.UIManager.Show<PlayerBtn>();
         Managers.Instance.UIManager.Show<UIJoystick>();
+        Managers.Instance.UIManager.Show<PlayerBtn>().Init();
     }
 
     private void InitSceneBase()
