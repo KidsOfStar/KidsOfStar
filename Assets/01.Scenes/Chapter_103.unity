@@ -353,6 +353,7 @@ GameObject:
   - component: {fileID: 587337540}
   - component: {fileID: 587337543}
   - component: {fileID: 587337544}
+  - component: {fileID: 587337545}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -496,6 +497,40 @@ MonoBehaviour:
   minPosition: {x: 0, y: 0}
   maxPosition: {x: 0, y: 0}
   lightObject: {fileID: 820259258}
+--- !u!114 &587337545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587337539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &616716676
 GameObject:
   m_ObjectHideFlags: 8
@@ -2958,6 +2993,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5952377060798919337, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
+      propertyPath: isTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6347151878847138798, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
       propertyPath: m_Name
       value: Obstacle Spawner

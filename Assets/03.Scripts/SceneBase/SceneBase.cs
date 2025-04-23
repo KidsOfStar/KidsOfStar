@@ -8,38 +8,44 @@ public abstract class SceneBase : MonoBehaviour
 {
     [Header("Chapter")]
     [SerializeField] private ChapterType currentChapter;
+
     [SerializeField] private bool isFirstTime = true;
-    [SerializeField] private string introText;        // TODO: first Time은 어떻게 설정하지?
-    
+    [SerializeField] private string introText; // TODO: first Time은 어떻게 설정하지?
+
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
+
     [SerializeField] private string playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
-    
+
     [Header("NPCs")]
     [SerializeField] private Npc[] speakers;
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
-    
+
     // TODO: 각 씬 별로 플레이어가 자유상호작용 때 말하는 부분이 있다면 플레이어도 스폰 후 speaker로 등록해야함
     private void Awake()
     {
         // 매니저들 초기화
         InitManagers();
-        
+
         // 로딩중인 씬 매니저에게 씬이 활성화 되었음을 알림
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
 
+#if UNITY_EDITOR
+        Managers.Instance.LoadTestScene = false;
+#endif
+
         // 게임 매니저에 현재 챕터를 설정
         InitSceneBase();
-        
+
         // 씬이 로드된 후에 플레이어를 스폰
         SpawnPlayer();
 
         // 플레이어 스폰 후 카메라 컨트롤러의 타겟 설정
         InitCameraController();
-        
+
         // 필수 UI 표시
         ShowRequiredUI();
 
@@ -53,28 +59,28 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.OnSceneLoaded();
         Managers.Instance.DialogueManager.InitSceneNPcs(speakers);
     }
-    
+
     private void SpawnPlayer()
     {
         var gameManager = Managers.Instance.GameManager;
         Vector3 playerPosition = gameManager.IsNewGame ? playerSpawnPosition.position : gameManager.PlayerPosition;
-            
+
         GameObject playerObj = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
         Player player = playerObj.GetComponent<Player>();
         player.Init(playerStartForm);
-        
+
         Managers.Instance.GameManager.SetPlayer(player);
         Managers.Instance.DialogueManager.SetPlayerSpeaker(player);
     }
 
     private void InitCameraController()
     {
-        if(mainCamera.TryGetComponent(out CameraController cameraController))
+        if (mainCamera.TryGetComponent(out CameraController cameraController))
             cameraController.Init();
         else
             Debug.LogError("SceneBase : CameraController not found on the main camera.");
     }
-    
+
     private void ShowRequiredUI()
     {
         Managers.Instance.UIManager.Show<UIJoystick>();
