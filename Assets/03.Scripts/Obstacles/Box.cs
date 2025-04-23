@@ -64,13 +64,13 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         Vector3 fallTarget = dropPosition;
         fallTarget.y += col.bounds.extents.y;
 
-        // 부드러운 낙하
-        while (Vector2.Distance(transform.position, fallTarget) > 0.05f)
-        {
-            Vector2 newPos = Vector2.MoveTowards(transform.position, fallTarget, moveSpeed * Time.deltaTime);
-            rb.MovePosition(newPos);
-            yield return null;
-        }
+        //// 부드러운 낙하
+        //while (Vector2.Distance(transform.position, fallTarget) > 0.05f)
+        //{
+        //    Vector2 newPos = Vector2.MoveTowards(transform.position, fallTarget, moveSpeed * Time.deltaTime);
+        //    rb.MovePosition(newPos);
+        //    yield return null;
+        //}
 
         // 딱 고정
         rb.MovePosition(fallTarget);

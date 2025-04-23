@@ -8,8 +8,13 @@ public class ObstaclesSpawner : MonoBehaviour
     public float spawnXOffset = 10f;
     private float fixedPosY = -2.7f;
 
-    public float minSpacing = 2f;
-    public float maxSpacing = 5f;
+    [Tooltip("장애물 사이의 기본 고정 x 간격")]
+    public float baseSpacing = 4f;
+    [Tooltip("장애물 간 추가 랜덤 간격 최소값")]
+    public float extraMin = 1f;
+    [Tooltip("장애물 간 추가 랜덤 간격 최대값")]
+    public float extraMax = 3f;
+
 
     private float stoneProbability = 0.3f;
     private float smallSeaweedProbability = 0.2f;
@@ -94,8 +99,8 @@ public class ObstaclesSpawner : MonoBehaviour
 
     private Vector3 GetSpawnPosition()
     {
-        float spawnX = Random.Range(minSpacing, maxSpacing);
-        lastSpawnX += spawnX;
+        float spacing = baseSpacing+Random.Range(extraMin, extraMax);
+        lastSpawnX += spacing;
         return new Vector3(lastSpawnX, fixedPosY, 0f);
     }
 

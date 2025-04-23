@@ -192,8 +192,23 @@ public class TreePuzzleSystem : MonoBehaviour
         }
     }
 
+    public void StopPuzzle()
+    {
+        isRunning = false;
+
+        if (failPopup != null)
+            failPopup.SetActive(false);
+        if (ClearPopup != null)
+            ClearPopup.SetActive(false);
+
+        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
+            trig.ResetTrigger();
+    }
+
+
     public void OnExit()
     {
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
+        Managers.Instance.GameManager.Player.Controller.IsControllable = true;
     }
 }

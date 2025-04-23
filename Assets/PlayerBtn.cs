@@ -24,14 +24,14 @@ public class PlayerBtn : UIBase
         Managers.Instance.CutSceneManager.OnCutSceneStart += OnCutSceneSkip;
         Managers.Instance.CutSceneManager.OnCutSceneEnd += OffCutSceneSkip;
     }
-    
+
     // 정지 버튼 클릭 시 게임 일시정지
     private void OnOptionBtnClick()
     {
         Managers.Instance.UIManager.Show<OptionPopup>();
         Time.timeScale = 0;
     }
-    
+
     // 스킵 버튼 클릭 시 호출될 메소드 (현재 비어 있음)
     public void OnSkip()
     {

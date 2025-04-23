@@ -13,8 +13,9 @@ public class PlayerStateMachine : MonoBehaviour
     private PlayerStateFactory factory;
     public PlayerStateFactory Factory {  get { return factory; } }
 
-    private void Start()
+    public void Init(Player player)
     {
+        this.player = player;
         contextData = new PlayerContextData(player, player.Controller, player.FormControl, this,
             GetComponentInChildren<SpriteRenderer>(), GetComponent<Rigidbody2D>(), GetComponent<BoxCollider2D>());
         factory = new PlayerStateFactory(contextData);
@@ -23,6 +24,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Update()
     {
+        if (!player.Controller.IsControllable) return;
+
         curState?.OnUpdate();
     }
 
