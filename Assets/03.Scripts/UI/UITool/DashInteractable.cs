@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractableHandler : MonoBehaviour
+public class DashInteractable : MonoBehaviour
 {
     private bool playerInRange = false;
     public SkillBTN skillBTN;
