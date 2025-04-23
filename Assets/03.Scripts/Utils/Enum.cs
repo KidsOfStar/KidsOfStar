@@ -118,6 +118,7 @@ public enum CutSceneType
 {
     Intro,
     Rescued,
+    LeavingForest,
 }
 
 #endregion
