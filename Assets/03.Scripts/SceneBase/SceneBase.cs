@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // 풀 생성, npc 넘겨주기 등 씬 초기화에 필요한 작업들을 담당
@@ -40,9 +41,9 @@ public abstract class SceneBase : MonoBehaviour
         
         // 필수 UI 표시
         ShowRequiredUI();
-        
-        // 씬 인트로 UI 재생 - 씬 재생 시간에 따라 콜백으로 InitSceneExtra()를 호출
-        PlayChapterIntro();
+
+        // 씬 고유 초기화 작업
+        InitSceneExtra(PlayChapterIntro);
     }
 
     private void InitManagers()
@@ -88,16 +89,11 @@ public abstract class SceneBase : MonoBehaviour
 
     private void PlayChapterIntro()
     {
-        // 첫 진입이 아니라면 인트로를 재생하지 않음
-        if (!isFirstTime)
-        {
-            InitSceneExtra();
-            return;
-        }
-        
         var intro = Managers.Instance.UIManager.Show<UIChapterIntro>();
-        StartCoroutine(intro.IntroCoroutine(isFirstTime, introText, InitSceneExtra));
+        StartCoroutine(intro.IntroCoroutine(isFirstTime, introText));
     }
-    
-    protected abstract void InitSceneExtra();
+
+    // playIntroCallback은 씬 진입 시 보여줄 인트로 UI 재생의 콜백
+    // 컷씬 재생이 필요한 경우에는 이 콜백을 사용하여 컷씬 재생 후 인트로를 플레이
+    protected abstract void InitSceneExtra(Action playIntroCallback);
 }

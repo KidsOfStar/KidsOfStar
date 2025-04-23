@@ -2,21 +2,54 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIChapterIntro : UIBase
 {
+    [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI introText;
-    private readonly WaitForSeconds showTime = new(1.5f);
+    private const float fadeTime = 2f;
+    private const float fadeOutTime = 3f;
+    private readonly Color fadeOutColor = new(0, 0, 0, 0);
+    private readonly WaitForSeconds showTime = new(2f);
 
-    public IEnumerator IntroCoroutine(bool isFirst, string text, Action completeCallback)
+    public IEnumerator IntroCoroutine(bool isFirst, string text)
     {
-        if (isFirst)
+        if (!isFirst)
         {
-            introText.text = text;
-            yield return showTime;
+            HideDirect();
+            yield break;
         }
 
+        Managers.Instance.GameManager.Player.Controller.IsControllable = false;
+        introText.text = text;
+        
+        // 배경 페이드 인
+        yield return Fade(fadeOutColor, Color.black, fadeTime, c => backgroundImage.color = c);
+
+        // 텍스트 페이드 인
+        yield return Fade(fadeOutColor, Color.white, fadeTime, c => introText.color = c);
+
+        // 배경+텍스트 페이드 아웃
+        StartCoroutine(Fade(Color.white, fadeOutColor, fadeOutTime, c => introText.color = c));
+        yield return Fade(Color.black, fadeOutColor, fadeOutTime, c => backgroundImage.color = c);
+
+        yield return showTime;
         HideDirect();
-        completeCallback?.Invoke();
+        Managers.Instance.GameManager.Player.Controller.IsControllable = true;
+    }
+    
+    private IEnumerator Fade(Color from, Color to, float duration, Action<Color> applyColor)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            applyColor(Color.Lerp(from, to, t));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        applyColor(to);
     }
 }

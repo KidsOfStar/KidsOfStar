@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Chapter01PuzzleBase : SceneBase
@@ -7,7 +8,7 @@ public class Chapter01PuzzleBase : SceneBase
     [SerializeField] private Animator maorum;
     private readonly int walkHash = Animator.StringToHash("IsWalk");
     
-    protected override void InitSceneExtra()
+    protected override void InitSceneExtra(Action playIntroCallback)
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.MaorumChase);
         PlayChaseAnim();

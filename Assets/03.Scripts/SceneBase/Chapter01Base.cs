@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // 챕터 1 특이사항
@@ -11,10 +12,10 @@ public class Chapter01Base : SceneBase
     [Header("Chapter 1")]
     [SerializeField] private SceneEventTrigger sceneEventTrigger;
     
-    protected override void InitSceneExtra()
+    protected override void InitSceneExtra(Action callback)
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Maorum);
-        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName());
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName(), callback);
         sceneEventTrigger.Init();
     }
 }

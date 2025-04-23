@@ -14,7 +14,7 @@ public class CutSceneManager
         OnCutSceneEnd += () => IsCutScenePlaying = false;
     }
     
-    public void PlayCutScene(string cutsceneName)
+    public void PlayCutScene(string cutsceneName, Action localEndCallback = null)
     {
         //letterBoxer = Managers.Instance.GameManager.MainCamera.GetComponent<LetterBoxer>();
         string prefabPath = $"{CutScenePath}{cutsceneName}";
@@ -26,7 +26,8 @@ public class CutSceneManager
             EditorLog.Log($"컷씬 프리팹이 없습니다: {prefabPath}");
             return;
         }
-
+        
+        if (localEndCallback != null) cutSceneBase.OnCutSceneCompleted += localEndCallback;
         cutSceneBase.Init();
         cutSceneBase.Play();
 

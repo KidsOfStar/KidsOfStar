@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -13,6 +14,7 @@ public class CutSceneBase : MonoBehaviour
     [Header("CutSceneData")]
     [SerializeField] private CutSceneData cutSceneData;
 
+    public Action OnCutSceneCompleted { get; set; }
     private int currentIndex;
 
     public void Init()
@@ -52,6 +54,7 @@ public class CutSceneBase : MonoBehaviour
         //Managers.Instance.CutSceneManager.LetterBoxer.DisableLetterBox();
         Managers.Instance.DialogueManager.OnDialogEnd -= ResumeCutScene;
         Managers.Instance.CutSceneManager.OnCutSceneEnd?.Invoke();
+        OnCutSceneCompleted?.Invoke();
         if (sceneType != SceneType.Title)
             Managers.Instance.SceneLoadManager.LoadScene(sceneType);
         
