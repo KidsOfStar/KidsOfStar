@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : ISceneLifecycleHandler
 {
-    //public SkillBTN skillBTN { get; private set; } // 스킬 버튼 UI
-
     public RectTransform CanvasRectTr { get; private set; }
     private List<Transform> parents;
 
@@ -14,6 +12,7 @@ public class UIManager : ISceneLifecycleHandler
 
     private Dictionary<string, List<UIBase>>
         multiListUIList = new Dictionary<string, List<UIBase>>(); // 여러 개의 UI를 관리하기 위한 리스트
+
 
     /// <summary>
     /// UI를 생성할 부모 오브젝트 리스트를 설정

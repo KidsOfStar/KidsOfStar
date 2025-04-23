@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,20 +13,12 @@ public class SkillBTN : UIBase
     public Button squirrelBtn;
     public Button interactionBtn;
 
-    //[Header("UI Object")] // 각 스킬에 대한 배경 오브젝트
-    //public GameObject jumpBG;
-    //public GameObject hideBG;
-    //public GameObject catBG;
-    //public GameObject dogBG;
-    //public GameObject squirrelBG;
-
     [Header("UI HideSkill")] // 스킬 UI 오브젝트들 (버튼 아래 표시용)
     public GameObject hideSkill;
     public GameObject catSkill;
     public GameObject dogSkill;
     public GameObject squirrelSkill;
 
-    //private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
     public Action OnInteractBtnClick { get; set; }
 
     public SkillUnlock skillUnlock; // 스킬 잠금 해제 UI
