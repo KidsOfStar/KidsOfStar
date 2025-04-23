@@ -509,6 +509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1690406773297585950}
   - component: {fileID: 5899448696036790164}
+  - component: {fileID: 3323209220057939813}
   m_Layer: 5
   m_Name: SkillPanel
   m_TagString: Untagged
@@ -560,15 +561,33 @@ MonoBehaviour:
   dogBtn: {fileID: 4990948980439386631}
   squirrelBtn: {fileID: 406960592813520867}
   interactionBtn: {fileID: 4534340144739830969}
+  hideSkill: {fileID: 4604291537379460170}
+  catSkill: {fileID: 8808935347445503199}
+  dogSkill: {fileID: 1412143690921252697}
+  squirrelSkill: {fileID: 5436181514956999596}
+  skillUnlock: {fileID: 3323209220057939813}
+--- !u!114 &3323209220057939813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2848191205224378295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b46daa5ffc52634aa9b0dbf5ae8a35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   jumpBG: {fileID: 3136695050458097799}
   hideBG: {fileID: 8087316214355392163}
   catBG: {fileID: 5617019631535026550}
   dogBG: {fileID: 6215674118948965843}
   squirrelBG: {fileID: 2318535294044132726}
-  hideSkill: {fileID: 4604291537379460170}
-  catSkill: {fileID: 8808935347445503199}
-  dogSkill: {fileID: 1412143690921252697}
-  squirrelSkill: {fileID: 5436181514956999596}
+  jumpIcon: {fileID: 6424630432682532004}
+  hideIcon: {fileID: 626585900353918743}
+  catIcon: {fileID: 3723223021479957014}
+  dogIcon: {fileID: 8868338845069512845}
+  squirrelIcon: {fileID: 6403488439220151566}
 --- !u!1 &3136695050458097799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,7 +1676,7 @@ GameObject:
   - component: {fileID: 5077561127498492775}
   - component: {fileID: 5578430057021158534}
   m_Layer: 5
-  m_Name: arrow
+  m_Name: JumpIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

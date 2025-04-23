@@ -27,6 +27,8 @@ public class GameManager
     // Events
     public Action OnProgressUpdated { get; set; }
 
+    // Puzzle
+    private HashSet<string> clearedPuzzles = new();
     public GameManager()
     {
 #if UNITY_WEBGL
@@ -141,5 +143,22 @@ public class GameManager
     public void SetPlayer(Player player)
     {
         Player = player;
+    }
+    public bool IsPuzzleCleared(string puzzleId)
+    {
+        return clearedPuzzles.Contains(puzzleId);
+    }
+
+    public void AddPuzzleCleared(string puzzleId)
+    {
+        if (!clearedPuzzles.Contains(puzzleId))
+        {
+            clearedPuzzles.Add(puzzleId);
+        }
+    }
+
+    public int GetPuzzleClearCount()
+    {
+        return clearedPuzzles.Count;
     }
 }
