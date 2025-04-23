@@ -6252,7 +6252,6 @@ GameObject:
   m_Component:
   - component: {fileID: 822920499}
   - component: {fileID: 822920498}
-  - component: {fileID: 822920500}
   m_Layer: 0
   m_Name: Chapter_03 Base
   m_TagString: Untagged
@@ -6274,7 +6273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentChapter: 2
   isFirstTime: 1
-  introText: 
+  introText: "\uC774\uAC83 \uBD10, \uB2E4\uB4E4 \uBB34\uC12D\uC796\uC544."
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerStartForm: 
   playerSpawnPosition: {fileID: 646849047}
@@ -6283,6 +6282,7 @@ MonoBehaviour:
   - {fileID: 1999632609}
   - {fileID: 1370181845}
   mainCamera: {fileID: 2020590303}
+  dashGame: {fileID: 1033782733}
 --- !u!4 &822920499
 Transform:
   m_ObjectHideFlags: 0
@@ -6298,24 +6298,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &822920500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822920497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeaacff0ae78fdb49bf769efa3df1beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopWatch: {fileID: 0}
-  countDownPopup: {fileID: 0}
-  playerController: {fileID: 0}
-  playerSpeed: 0
-  isGameStarted: 0
-  isGameEnded: 0
 --- !u!1001 &833606656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6645,6 +6627,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 81414901755484293, guid: 5a48ffb24624f0843984e2f0e85a6d99, type: 3}
   m_PrefabInstance: {fileID: 981362443}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1033782732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1033782734}
+  - component: {fileID: 1033782733}
+  m_Layer: 0
+  m_Name: InteractDashGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1033782733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033782732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeaacff0ae78fdb49bf769efa3df1beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopWatch: {fileID: 0}
+  countDownPopup: {fileID: 0}
+  playerController: {fileID: 0}
+  playerSpeed: 0
+  isGameStarted: 0
+  isGameEnded: 0
+--- !u!4 &1033782734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033782732}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.9511564, y: -19.474333, z: -0.06604765}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1051336758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24377,6 +24409,7 @@ SceneRoots:
   - {fileID: 69601822}
   - {fileID: 1090495849}
   - {fileID: 822920499}
+  - {fileID: 1033782734}
   - {fileID: 1544957263}
   - {fileID: 646849047}
   - {fileID: 21910065}

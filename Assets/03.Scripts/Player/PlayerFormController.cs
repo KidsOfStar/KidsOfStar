@@ -13,7 +13,6 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     [SerializeField, Tooltip("형태변환 데이터 모음집")] private PlayerFormData formData;
     private Dictionary<string, FormData> formDataDictionary = new Dictionary<string, FormData>();
 
-    private Player playerSc;
     private PlayerController controller;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
@@ -25,7 +24,6 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         SetFormData();
-        playerSc = player;
         controller = player.Controller;
     }
 
