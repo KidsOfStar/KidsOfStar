@@ -1,6 +1,6 @@
 using MainTable;
 
-public class UpdateProgressAction : IDialogActionHandler
+public class ChangeFormAction : IDialogActionHandler
 {
     public void Execute(DialogData dialogData, bool isFirst)
     {
@@ -9,7 +9,8 @@ public class UpdateProgressAction : IDialogActionHandler
             Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
         }
-        
-        Managers.Instance.GameManager.UpdateProgress();
+
+        var player = Managers.Instance.GameManager.Player;
+        player.FormControl.FormChange(dialogData.Param);
     }
 }

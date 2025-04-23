@@ -10,6 +10,7 @@ public class TreePuzzleTrigger : MonoBehaviour
     private SkillBTN skillBTN;
     [SerializeField] private TreePuzzleData puzzleData;
     [SerializeField] private int sequenceIndex;
+    public int SequenceIndex => sequenceIndex;
 
     private void Start()
     {
@@ -52,6 +53,11 @@ public class TreePuzzleTrigger : MonoBehaviour
         triggered = true;
         Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData,sequenceIndex);
         skillBTN.ShowInteractionButton(false); // 한 번만 작동하게끔 비활성화
+    }
+
+    public void ResetTrigger()
+    {
+        triggered = false;
     }
 
 }

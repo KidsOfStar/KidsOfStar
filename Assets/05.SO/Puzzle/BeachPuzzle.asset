@@ -32,5 +32,5 @@ MonoBehaviour:
   - {fileID: -1327601462, guid: 78a994e42f62559439ddd1f5604aa101, type: 3}
   - {fileID: 1166770122, guid: 78a994e42f62559439ddd1f5604aa101, type: 3}
   gridWidth: 4
-  easyTimeLimit: 180
+  easyTimeLimit: 90
   hardTimeLimit: 90

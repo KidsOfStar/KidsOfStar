@@ -25,12 +25,8 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
-
-        //StartGame();
-
     }
-
-    public void StartGame()
+    public void StartTest()
     {
         // 시작할 때
         // 플레이어 속도 0으로 하여 정지

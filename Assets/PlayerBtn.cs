@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,5 +56,11 @@ public class PlayerBtn : UIBase
         stopBtn.gameObject.SetActive(true); // 정지 버튼 비활성화
         //skipBtn.gameObject.SetActive(false); // 스킵 버튼 활성화
         skipBtn.gameObject.SetActive(false); // 기능 구현 안 되어서 비활성화
+    }
+
+    private void OnDestroy()
+    {
+        Managers.Instance.CutSceneManager.OnCutSceneStart -= OnCutSceneSkip;
+        Managers.Instance.CutSceneManager.OnCutSceneEnd -= OffCutSceneSkip;
     }
 }

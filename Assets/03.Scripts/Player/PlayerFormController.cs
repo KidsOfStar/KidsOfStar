@@ -3,11 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IWeightable
-{
-    float GetWeight();
-}
-
 public interface IPusher
 {
     float GetPushPower();

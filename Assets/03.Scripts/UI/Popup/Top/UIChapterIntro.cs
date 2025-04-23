@@ -9,7 +9,7 @@ public class UIChapterIntro : UIBase
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI introText;
     private const float fadeTime = 2f;
-    private const float fadeOutTime = 3f;
+    private const float fadeOutTime = 2f;
     private readonly Color fadeOutColor = new(0, 0, 0, 0);
     private readonly WaitForSeconds showTime = new(2f);
 
@@ -25,7 +25,7 @@ public class UIChapterIntro : UIBase
         introText.text = text;
         
         // 배경 페이드 인
-        yield return Fade(fadeOutColor, Color.black, fadeTime, c => backgroundImage.color = c);
+        // yield return Fade(fadeOutColor, Color.black, fadeTime, c => backgroundImage.color = c);
 
         // 텍스트 페이드 인
         yield return Fade(fadeOutColor, Color.white, fadeTime, c => introText.color = c);
