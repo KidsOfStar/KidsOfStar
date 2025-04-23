@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class InteractSpeaker : MonoBehaviour
 {
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
-    private readonly Dictionary<int, int> DialogByProgress = new();
+    private readonly Dictionary<int, int> dialogByProgress = new();
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public abstract class InteractSpeaker : MonoBehaviour
             if (!dict.TryGetValue(i, out var npcData)) break;
             if (npcData.Character != CharacterType) continue;
 
-            DialogByProgress.Add(npcData.Progress, npcData.DialogIndex);
+            dialogByProgress.Add(npcData.Progress, npcData.DialogIndex);
         }
     }
 
@@ -28,18 +28,18 @@ public abstract class InteractSpeaker : MonoBehaviour
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         skillPanel.OnInteractBtnClick -= OnInteract;
 
+        // 대사 종료 이벤트에 등록
+        Managers.Instance.DialogueManager.OnDialogEnd -= HideInteractionButton; 
+        Managers.Instance.DialogueManager.OnDialogEnd += HideInteractionButton;
+        
         // 대사 출력
         ShowDialog();
-
-        // 다시 상호작용 할 수 있도록 대화가 끝나면 다시 이벤트에 등록
-        Managers.Instance.DialogueManager.OnDialogEnd -= AddListenerOnInteract;
-        Managers.Instance.DialogueManager.OnDialogEnd += AddListenerOnInteract;
     }
 
     private void ShowDialog()
     {
         var key = Managers.Instance.GameManager.ChapterProgress;
-        if (!DialogByProgress.TryGetValue(key, out int dialogIndex))
+        if (!dialogByProgress.TryGetValue(key, out int dialogIndex))
         {
             Debug.LogWarning($"No dialog found for progress {key}");
             return;
@@ -54,6 +54,7 @@ public abstract class InteractSpeaker : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+        skillPanel.OnInteractBtnClick -= OnInteract;
         skillPanel.OnInteractBtnClick += OnInteract;
         skillPanel.ShowInteractionButton(true);
     }
@@ -66,12 +67,12 @@ public abstract class InteractSpeaker : MonoBehaviour
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         skillPanel.ShowInteractionButton(false);
         skillPanel.OnInteractBtnClick -= OnInteract;
-        Managers.Instance.DialogueManager.OnDialogEnd -= AddListenerOnInteract;
+        Managers.Instance.DialogueManager.OnDialogEnd -= HideInteractionButton;
     }
 
-    private void AddListenerOnInteract()
+    private void HideInteractionButton()
     {
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-        skillPanel.OnInteractBtnClick += OnInteract;
+        skillPanel.ShowInteractionButton(false);
     }
 }

@@ -2097,6 +2097,7 @@ MonoBehaviour:
   isFirstTime: 1
   introText: "\uC138\uC0C1\uC774 \uC774\uB807\uAC8C \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
+  playerStartForm: Stone
   playerSpawnPosition: {fileID: 1652826008}
   speakers:
   - {fileID: 1830153060}
@@ -2209,7 +2210,7 @@ Transform:
   m_GameObject: {fileID: 1652826007}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.8, y: -2.2, z: 0}
+  m_LocalPosition: {x: -7.8, y: 0.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

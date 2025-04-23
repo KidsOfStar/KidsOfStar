@@ -37,6 +37,7 @@ public class SkillBTN : UIBase
 
         skillUnlock = GetComponent<SkillUnlock>();
     }
+
     private void Update()
     {
         if (Managers.Instance.GameManager.Player != null)

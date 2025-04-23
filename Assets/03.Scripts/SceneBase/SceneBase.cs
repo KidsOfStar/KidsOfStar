@@ -13,6 +13,7 @@ public abstract class SceneBase : MonoBehaviour
     
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
+    [SerializeField] private string playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
     
     [Header("NPCs")]
@@ -44,9 +45,6 @@ public abstract class SceneBase : MonoBehaviour
 
         // 씬 고유 초기화 작업
         InitSceneExtra(PlayChapterIntro);
-
-        // 챕터 UI 비활성
-
     }
 
     private void InitManagers()
@@ -61,8 +59,10 @@ public abstract class SceneBase : MonoBehaviour
         var gameManager = Managers.Instance.GameManager;
         Vector3 playerPosition = gameManager.IsNewGame ? playerSpawnPosition.position : gameManager.PlayerPosition;
             
-        GameObject player = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
-        Managers.Instance.GameManager.SetPlayer(player.GetComponent<Player>());
+        GameObject playerObj = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
+        Player player = playerObj.GetComponent<Player>();
+        
+        Managers.Instance.GameManager.SetPlayer(player);
     }
 
     private void InitCameraController()

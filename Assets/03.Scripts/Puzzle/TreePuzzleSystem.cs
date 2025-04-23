@@ -31,6 +31,16 @@ public class TreePuzzleSystem : MonoBehaviour
     private HashSet<int> clearPuzzlenum = new();
     [SerializeField] private int totalPuzzleCount = 2;
 
+    private Dictionary<int, TreePuzzleTrigger> triggerMap;
+    private void Awake()
+    {
+        triggerMap = new Dictionary<int, TreePuzzleTrigger>();
+        foreach (var trig in FindObjectsOfType<TreePuzzleTrigger>())
+        {
+            triggerMap[trig.SequenceIndex] = trig;
+        }
+    }
+
     public void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
     {
         if (ClearPopup != null)
@@ -175,7 +185,11 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         failPopup.SetActive(true);
-        gameObject.SetActive(false);
+
+        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
+        {
+            trig.ResetTrigger();
+        }
     }
 
     public void OnExit()

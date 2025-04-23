@@ -22,8 +22,8 @@ public class CameraController : MonoBehaviour
         target = Managers.Instance.GameManager.Player.transform;
         
         if (!lightObject) return;
-        cutSceneManager.OnCutSceneStart += () => lightObject.SetActive(false);
-        cutSceneManager.OnCutSceneEnd += () => lightObject.SetActive(true);
+        cutSceneManager.OnCutSceneStart += InactivateLight;
+        cutSceneManager.OnCutSceneEnd += ActiveLight;
     }
 
     private void FixedUpdate()
@@ -45,10 +45,22 @@ public class CameraController : MonoBehaviour
         smoothedPosition.y = Mathf.Clamp(smoothedPosition.y, minPosition.y, maxPosition.y);
         transform.position = smoothedPosition;
     }
+    
+    private void ActiveLight()
+    {
+        if (!lightObject) return;
+        lightObject.SetActive(true);
+    }
+    
+    private void InactivateLight()
+    {
+        if (!lightObject) return;
+        lightObject.SetActive(false);
+    }
 
     private void OnDestroy()
     {
-        cutSceneManager.OnCutSceneStart -= () => lightObject.SetActive(false);
-        cutSceneManager.OnCutSceneEnd -= () => lightObject.SetActive(true);
+        cutSceneManager.OnCutSceneStart -= InactivateLight;
+        cutSceneManager.OnCutSceneEnd -= ActiveLight;
     }
 }
