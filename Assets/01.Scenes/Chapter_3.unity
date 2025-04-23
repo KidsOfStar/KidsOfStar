@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29e45899a269bd4d88fe67736363e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionType: 1
   skillBTN: {fileID: 0}
 --- !u!58 &109314571
 CircleCollider2D:
@@ -411,7 +412,7 @@ Transform:
   m_GameObject: {fileID: 109314569}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6, y: 1.7371594, z: 0}
+  m_LocalPosition: {x: -35.880005, y: 1.7371594, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6302,7 +6303,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822920497}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeaacff0ae78fdb49bf769efa3df1beb, type: 3}
   m_Name: 
@@ -6462,7 +6463,7 @@ Transform:
   m_GameObject: {fileID: 864388081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.85, y: 1.7371594, z: 0}
+  m_LocalPosition: {x: -41.33, y: 1.7371594, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6515,6 +6516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29e45899a269bd4d88fe67736363e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionType: 0
   skillBTN: {fileID: 0}
 --- !u!1 &922353292 stripped
 GameObject:
