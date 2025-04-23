@@ -33,7 +33,6 @@ public class SkillBTN : UIBase
         squirrelBtn.onClick.AddListener(OnSquirrel);
         interactionBtn.onClick.AddListener(OnInteraction);
 
-        //skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
         interactionBtn.gameObject.SetActive(false); // 상호작용 버튼 비활성화
 
         skillUnlock = GetComponent<SkillUnlock>();
