@@ -22,7 +22,8 @@ public class SkillBTN : UIBase
     public Action OnInteractBtnClick { get; set; }
 
     public SkillUnlock skillUnlock; // 스킬 잠금 해제 UI
-
+    private bool isSkillActive = false; // 스킬 UI 활성화 여부
+    private float skillCooldown = 0.5f; // 스킬 쿨타임
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +76,10 @@ public class SkillBTN : UIBase
     // 숨기기 스킬 버튼 클릭 시 호출
     public void OnHide()
     {
+        if (isSkillActive) return;
+
+        isSkillActive = true; // 스킬 활성화 상태로 변경
+
         Managers.Instance.GameManager.Player.FormControl.FormChange("Hide");
 
         // 현재 배경이 켜져 있으면 끄고, 아니면 보여주기
@@ -86,11 +91,17 @@ public class SkillBTN : UIBase
         {
             skillUnlock.ShowSkillBG(skillUnlock.hideBG);
         }
+        StartCoroutine(ResetSkillCooldown(skillCooldown));
+
     }
 
     // 고양이 스킬 버튼 클릭 시 호출
     public void OnCat()
     {
+        if (isSkillActive) return;
+
+        isSkillActive = true; // 스킬 활성화 상태로 변경
+
         Managers.Instance.GameManager.Player.FormControl.FormChange("Cat");
 
         if (skillUnlock.catBG.activeSelf)
@@ -101,11 +112,16 @@ public class SkillBTN : UIBase
         {
             skillUnlock.ShowSkillBG(skillUnlock.catBG);
         }
+        StartCoroutine(ResetSkillCooldown(skillCooldown));
     }
 
     // 개 스킬 버튼 클릭 시 호출
     public void OnDog()
     {
+        if (isSkillActive) return;
+
+        isSkillActive = true; // 스킬 활성화 상태로 변경.
+
         Managers.Instance.GameManager.Player.FormControl.FormChange("Dog");
 
         if (skillUnlock.dogBG.activeSelf)
@@ -116,11 +132,17 @@ public class SkillBTN : UIBase
         {
             skillUnlock.ShowSkillBG(skillUnlock.dogBG);
         }
+
+        StartCoroutine(ResetSkillCooldown(skillCooldown));
     }
 
     // 다람쥐 스킬 버튼 클릭 시 호출
     public void OnSquirrel()
     {
+        if (isSkillActive) return;
+
+        isSkillActive = true; // 스킬 활성화 상태로 변경
+
         Managers.Instance.GameManager.Player.FormControl.FormChange("Squirrel");
 
         if (skillUnlock.squirrelBG.activeSelf)
@@ -131,6 +153,8 @@ public class SkillBTN : UIBase
         {
             skillUnlock.ShowSkillBG(skillUnlock.squirrelBG);
         }
+        StartCoroutine(ResetSkillCooldown(skillCooldown));
+
     }
 
     // 상호작용 버튼 클릭 시 대화 시작
@@ -164,5 +188,11 @@ public class SkillBTN : UIBase
         catSkill.SetActive(isActive);
         dogSkill.SetActive(isActive);
         squirrelSkill.SetActive(isActive);
+    }
+
+    private IEnumerator ResetSkillCooldown(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isSkillActive = false;
     }
 }
