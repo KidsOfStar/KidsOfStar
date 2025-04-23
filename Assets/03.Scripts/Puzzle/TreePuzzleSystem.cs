@@ -33,6 +33,15 @@ public class TreePuzzleSystem : MonoBehaviour
 
     public void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
     {
+        if (ClearPopup != null)
+        {
+            ClearPopup.SetActive(false);
+        }
+        if (failPopup != null)
+        {
+            failPopup.SetActive(false);
+        }
+
         puzzleIndex = puzzleClearIndex;
         correctSprites = new List<Sprite>(data.pieceSprites);
         gridWidth = data.gridWidth;
@@ -44,6 +53,7 @@ public class TreePuzzleSystem : MonoBehaviour
 
         if (easyModeOutline != null)
             easyModeOutline.SetActive(isEasy);
+
     }
 
     public void GeneratePuzzle()
