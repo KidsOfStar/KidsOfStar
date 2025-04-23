@@ -9,6 +9,7 @@ public class TreePuzzlePopup : PopupBase
     [SerializeField] private Button rightButton;
     [SerializeField] private Button rotateButton;
     [SerializeField] private Button[] exitButtons;
+    [SerializeField] private Button cancelButton;
 
     [SerializeField] private TreePuzzleSystem currentPuzzle;
 
@@ -25,7 +26,9 @@ public class TreePuzzlePopup : PopupBase
         leftButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Left"));
         rightButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Right"));
         rotateButton.onClick.AddListener(() => currentPuzzle.RotateSelectedPiece());
+        cancelButton.onClick.AddListener(() => OnCancelButtonClicked());
 
+        // 팝업 닫기 버튼
         foreach (var btn in exitButtons)
         {
             btn.onClick.RemoveAllListeners();
@@ -46,8 +49,16 @@ public class TreePuzzlePopup : PopupBase
 
         int index = (int)param[1];
 
+        Managers.Instance.GameManager.Player.Controller.IsControllable = false;
         currentPuzzle.SetupPuzzle(data, index);
         currentPuzzle.GeneratePuzzle();
         currentPuzzle.StartPuzzle();
+    }
+
+    private void OnCancelButtonClicked()
+    {
+        currentPuzzle.StopPuzzle();
+        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
+        Managers.Instance.GameManager.Player.Controller.IsControllable = true;
     }
 }
