@@ -42,7 +42,6 @@ public class DashGame : MonoBehaviour
 
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
-
     }
 
     private IEnumerator StartGame(float delay)
@@ -71,6 +70,8 @@ public class DashGame : MonoBehaviour
         {
             // 목표 시간에 도달했을 때의 처리
             Debug.Log("목표 시간에 도달했습니다!");
+
+            // 컷신 처리하기
         }
     }
 
