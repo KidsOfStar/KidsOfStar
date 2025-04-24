@@ -13,8 +13,7 @@ public class DashGame : MonoBehaviour
     public bool isGameEnded = false;
     //public float targetTime; // 목표 시간
 
-    public List<float> targetTimeList;
-
+    public List<float> targetTimeList;  // 목표 시간 리스트
 
     private SkillBTN skillBTN; // 스킬 버튼 UI
 
@@ -28,13 +27,14 @@ public class DashGame : MonoBehaviour
 
         countDownPopup = Managers.Instance.UIManager.Show<CountDownPopup>();
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
+
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
     }
 
     public void StartGame()
     {
-        if(isGameStarted) return; // 이미 게임이 시작된 경우 종료
+        if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
         isGameStarted = true; // 게임 시작 상태로 변경
 
         // 플레이어 속도 0으로 하여 정지
@@ -53,73 +53,48 @@ public class DashGame : MonoBehaviour
         stopWatch.OnStartWatch(); // 스탑워치 시작
         stopWatch.StartTime(); // 스탑워치 시간 시작
         playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
-
     }
+
     public void EndGame(ENpcType npcType)
     {
         if (isGameEnded || !isGameStarted) return;
 
-        isGameEnded = true; // 게임 종료 상태로 변경
+        isGameEnded = true;
 
-        // 종료할 때
-        stopWatch.OnStopWatch(); // 스탑워치 정지
-        //IsNearTargerTime(targetTime); // 목표 시간에 가까운지 확인
-        playerController.MoveSpeed = playerSpeed; // 플레이어 속도 초기화 (1.5배 감소)
+        stopWatch.OnStopWatch();
+        playerController.MoveSpeed = playerSpeed;
 
-        InteractWithNPC(npcType); // NPC와 상호작용  
+        float clearTime = stopWatch.recodeTime;
+        Debug.Log($"게임 종료! 기록된 시간: {clearTime}");
+
+        ShowDialogueResult(clearTime, npcType); // 대사 출력
     }
 
-    public void IsNearTargerTime(float targetTime)
+    private void ShowDialogueResult(float clearTime, ENpcType npcType)
     {
-        // 목표 시간에 가까운지 확인하는 로직
-        if (stopWatch.timeStrat <= targetTime)
+        //// 어떤 시간 구간에 해당하는지 판단하여 popup으로 전달
+        //Managers.Instance.UIManager.Show<DashGameResultPopup>(clearTime, npcType);
+
+        // 1분 30초 미만일 때 대사 테이블에서 출력하기
+        if (stopWatch.recodeTime < 90f)
         {
-            // 목표 시간에 도달했을 때의 처리
-            Debug.Log("목표 시간에 도달했습니다!");
-
-            // 컷신 처리하기
+            // 1분 30초 미만일 때 대사 출력
+            Managers.Instance.UIManager.Show<DashGameResultPopup>(90f, npcType);
         }
-
-
-        foreach(float target in targetTimeList)
+        // 2분 30초 미만일 때 대사 테이블에서 출력하기   
+        else if (stopWatch.recodeTime < 150f)
         {
-            if (stopWatch.timeStrat <= target)
-            {
-               
-            }
+            // 2분 30초 미만일 때 대사 출력
+            Managers.Instance.UIManager.Show<DashGameResultPopup>(150f, npcType);
+
         }
-
-        //// 1분 30초 미만일 때 대사 테이블에서 출력하기
-        //if (stopWatch.timeStrat < 90f)
-        //{
-        //    // 1분 30초 미만일 때 대사 출력
-        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(90f);
-        //}
-        //// 2분 30초 미만일 때 대사 테이블에서 출력하기   
-        //else if(stopWatch.timeStrat < 150f)
-        //{
-        //    // 2분 30초 미만일 때 대사 출력
-        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(150f);
-
-        //}
-        //// 3분 30초 이상일 때 대사 테이블에서 출력하기
-        //else if (stopWatch.timeStrat <= 210f)
-        //{
-        //    // 2분 30초 미만일 때 대사 출력
-        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(210f);
-        //}
+        // 3분 30초 이상일 때 대사 테이블에서 출력하기
+        else if (stopWatch.recodeTime <= 210f)
+        {
+            // 2분 30초 미만일 때 대사 출력
+            Managers.Instance.UIManager.Show<DashGameResultPopup>(210f, npcType);
+        }
     }
-
-    public void InteractWithNPC(ENpcType npcType)
-    {
-        float clearTime = stopWatch.timeStrat; // 스탑워치 시간 가져오기
-
-        Debug.Log($"NPC {npcType}와 상호작용, 기록된 시간: {clearTime}");
-
-        // 결과 대사 출력
-        Managers.Instance.UIManager.Show<DashGameResultPopup>(clearTime, npcType);
-    }
-
-
 }
+
 
