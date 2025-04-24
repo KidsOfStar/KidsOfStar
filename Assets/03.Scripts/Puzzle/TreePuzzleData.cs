@@ -9,6 +9,6 @@ public class TreePuzzleData : ScriptableObject
     public Sprite backgroundSprite;     
     public List<Sprite> pieceSprites;   
     public int gridWidth = 4;
-    public float easyTimeLimit = 10f;
+    public float easyTimeLimit = 90f;
     public float hardTimeLimit = 90f;
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class ObstaclesSpawner : MonoBehaviour
 {
     [Header("Settings")]
-    public float spawnXOffset = 10f;
+   [Tooltip("카메라 우측 떨어진 스폰 X값 위치")] public float spawnXOffset = 10f;
+    //고정된 Y값
     private float fixedPosY = -2.7f;
 
     [Tooltip("장애물 사이의 기본 고정 x 간격")]
@@ -15,24 +16,30 @@ public class ObstaclesSpawner : MonoBehaviour
     [Tooltip("장애물 간 추가 랜덤 간격 최대값")]
     public float extraMax = 3f;
 
-
+    // 장애물 생성 확률
     private float stoneProbability = 0.3f;
     private float smallSeaweedProbability = 0.2f;
     private float mediumSeaweedProbability = 0.35f;
 
+    [Tooltip("장애물 목록 Pool 생성용")]
     public List<GameObject> obstaclePrefabs;
+    // 마지막 장애물 스폰 X값
     private float lastSpawnX;
 
     [Header("Wave")]
-    public int waveObstacleCount = 8; //Wave에 생성할 장애물의 갯수
-    private int currentWaveRemaining; //Wave에서 소멸되지 않은 장애물의 갯수 
-    private int currentWave = 1;      // 현재 Wave
+    [Tooltip("Wave에 생성할 장애물의 개수")]
+    public int waveObstacleCount = 8;
+    //Wave에서 남아있는 장애물의 갯수
+    private int currentWaveRemaining;
+    // 현재 Wave
+    private int currentWave = 1;     
 
     [Header("Dialogue Index")]
     [SerializeField] private int[] indexes;
     private int currentIndex;
     private readonly WaitForSeconds dialogEndTime = new(4f);
 
+    //장애물을 Pool에서 스폰
     public void StartSpawn()
     {
         foreach (GameObject prefab in obstaclePrefabs)
@@ -43,12 +50,15 @@ public class ObstaclesSpawner : MonoBehaviour
         SpawnWave();
     }
 
+    // 웨이브에 따른 장애물 스폰
     private void SpawnWave()
     {
+        // 카메라의 우측 화면을 기준으로 좌표 계산
         var mainCam = Managers.Instance.GameManager.MainCamera;
         float screenRight = mainCam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
         lastSpawnX = screenRight + spawnXOffset;
 
+        // 남은 장애물의 수 초기화
         currentWaveRemaining = waveObstacleCount;
 
         for (int i = 0; i < waveObstacleCount; i++)
@@ -57,6 +67,7 @@ public class ObstaclesSpawner : MonoBehaviour
         }
     }
 
+    // Poolkey 매핑
     private string GetPoolKey(ObstacleType type)
     {
         switch (type)
@@ -74,6 +85,7 @@ public class ObstaclesSpawner : MonoBehaviour
         }
     }
 
+    // 장애물 종류를 결정
     private ObstacleType ChooseRandomTypeSpawner()
     {
         float rand = Random.value;
@@ -97,6 +109,7 @@ public class ObstaclesSpawner : MonoBehaviour
         }
     }
 
+    // 스폰 위치 계산
     private Vector3 GetSpawnPosition()
     {
         float spacing = baseSpacing+Random.Range(extraMin, extraMax);
@@ -104,6 +117,7 @@ public class ObstaclesSpawner : MonoBehaviour
         return new Vector3(lastSpawnX, fixedPosY, 0f);
     }
 
+    // 실제 장애물 스폰
     private void SpawnNextObstacle()
     {
         ObstacleType chosenType = ChooseRandomTypeSpawner();
@@ -118,6 +132,7 @@ public class ObstaclesSpawner : MonoBehaviour
         }
     }
 
+    // 실제 장애물 디스폰
     public void OnObstacleDespawned()
     {
         currentWaveRemaining--;

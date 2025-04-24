@@ -18,19 +18,27 @@ public class TreePuzzleSystem : MonoBehaviour
     [SerializeField] private GameObject failPopup;
     [SerializeField] private GameObject ClearPopup;
 
+    // 정답 Sprite 목록
     private List<Sprite> correctSprites;
+    // 퍼즐 배열 가로의 개수
     private int gridWidth;
+    // 모드별 제한 시간
     private float timeLimit;
 
     private float currentTime;
+    // 작동중인지 체크
     private bool isRunning;
+    // 현재 선택된 퍼즐 조각의 Index
     private int selectedIndex;
+    // 생성된 모든 퍼즐 조각목록
     private List<TreePuzzlePiece> pieces = new();
-
+    // 퍼즐 고유ID
     private int puzzleIndex;
+    // 성공 완료된 퍼즐 ID의 집합
     private HashSet<int> clearPuzzlenum = new();
+    // 에디터에서 전체 퍼즐의 개수
     [SerializeField] private int totalPuzzleCount = 2;
-
+    // Trigger형태를 저장한 딕셔너리
     private Dictionary<int, TreePuzzleTrigger> triggerMap;
     private void Awake()
     {
@@ -41,6 +49,7 @@ public class TreePuzzleSystem : MonoBehaviour
         }
     }
 
+    // 퍼즐 준비
     public void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
     {
         if (ClearPopup != null)
@@ -66,6 +75,7 @@ public class TreePuzzleSystem : MonoBehaviour
 
     }
 
+    // 퍼즐 
     public void GeneratePuzzle()
     {
         // 기존 조각 제거
@@ -99,6 +109,8 @@ public class TreePuzzleSystem : MonoBehaviour
             FailPuzzle();
         }
     }
+
+    // 퍼즐 시작
     public void StartPuzzle()
     {
         currentTime = timeLimit;
@@ -110,6 +122,7 @@ public class TreePuzzleSystem : MonoBehaviour
         }
     }
 
+    // 퍼즐선택방향키(1차원 리스트 활용)
     public void MoveSelection(string direction)
     {
         switch (direction)
@@ -135,11 +148,13 @@ public class TreePuzzleSystem : MonoBehaviour
         HighlightSelectedPiece();
     }
 
+    // 선택한 퍼즐 90도 회전
     public void RotateSelectedPiece()
     {
         pieces[selectedIndex].RotateRight();
     }
 
+    // 선택한 퍼즐 아웃라인표시
     private void HighlightSelectedPiece()
     {
         for (int i = 0; i < pieces.Count; i++)
@@ -148,6 +163,7 @@ public class TreePuzzleSystem : MonoBehaviour
         }
     }
 
+    // 조각 체크
     public void CheckPuzzle()
     {
         foreach (var piece in pieces)
@@ -158,17 +174,22 @@ public class TreePuzzleSystem : MonoBehaviour
         CompletePuzzle();
     }
 
+    //퍼즐 Clear시
     private void CompletePuzzle()
     {
         isRunning = false;
         ClearPopup.SetActive(true);
-        
+
         EditorLog.Log("퍼즐 성공!");
         if (!clearPuzzlenum.Contains(puzzleIndex))
         {
             clearPuzzlenum.Add(puzzleIndex);
-        }
 
+            if (clearPuzzlenum.Count == 1)
+            {
+                //플레이하고자 하는 컷씬의 이름으로 로드
+            }
+        }
         if (clearPuzzlenum.Count >= totalPuzzleCount)
         {
             EditorLog.Log("모든 퍼즐 클리어! 추가 로직 실행");
@@ -178,9 +199,9 @@ public class TreePuzzleSystem : MonoBehaviour
         {
             EditorLog.Log($"{puzzleIndex} 첫 클리어");
         }
-        //플레이하고자 하는 컷씬의 이름으로 로드
     }
 
+    // 퍼즐 실패시
     private void FailPuzzle()
     {
         isRunning = false;
@@ -191,7 +212,8 @@ public class TreePuzzleSystem : MonoBehaviour
             trig.ResetTrigger();
         }
     }
-
+    
+    //퍼즐 취소시
     public void StopPuzzle()
     {
         isRunning = false;
@@ -205,7 +227,7 @@ public class TreePuzzleSystem : MonoBehaviour
             trig.ResetTrigger();
     }
 
-
+    // UI닫기
     public void OnExit()
     {
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
