@@ -1,9 +1,9 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIEnding : UIBase
@@ -26,6 +26,11 @@ public class UIEnding : UIBase
     private Dictionary<EndingType, Sprite> endingSpriteDict;
     private bool canClick = false;
 
+    private readonly Color transparent = new Color(0, 0, 0, 0);
+    private const float fadeTime = 2f;
+    private const float showDelay = 3f;
+
+
     private void Awake()
     {
         // Dictionary 초기화
@@ -38,8 +43,11 @@ public class UIEnding : UIBase
             }
         }
         continueButton.onClick.RemoveAllListeners();
-        continueButton.onClick.AddListener(() => Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title));
+        continueButton.onClick.AddListener(() => StartCoroutine(OnContinue()));
         continueButton.interactable = false; // 처음엔 비활성화
+
+        endingImage.color = transparent;
+        clickToContinueText.gameObject.SetActive(false);
     }
 
     public override void Opened(params object[] param)
@@ -59,22 +67,30 @@ public class UIEnding : UIBase
         }
 
         endingImage.sprite = sprite;
-        clickToContinueText.gameObject.SetActive(false);
-        continueButton.interactable = false;
-
         StartCoroutine(PlayEndingFlow());
     }
 
     private IEnumerator PlayEndingFlow()
     {
-        yield return new WaitForSeconds(3f);
+        yield return Fade(transparent, Color.black, fadeTime, c => endingImage.color = c);
 
+        yield return new WaitForSeconds(showDelay);
+
+        canClick = true;
         clickToContinueText.gameObject.SetActive(true);
         StartCoroutine(BlinkText());
-
         continueButton.interactable = true; // 버튼 활성화
     }
 
+    private IEnumerator OnContinue()
+    {
+        canClick = false;
+        clickToContinueText.gameObject.SetActive(false);
+
+        yield return Fade(Color.black, transparent, fadeTime, c => endingImage.color = c);
+
+        Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title);
+    }
     private IEnumerator BlinkText()
     {
         while (canClick)
@@ -85,4 +101,18 @@ public class UIEnding : UIBase
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+    private IEnumerator Fade(Color from, Color to, float duration, Action<Color> applyColor)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            applyColor(Color.Lerp(from, to, t));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        applyColor(to);
+    }
+
 }
