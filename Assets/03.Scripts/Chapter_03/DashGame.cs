@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DashGame : MonoBehaviour
@@ -10,7 +11,9 @@ public class DashGame : MonoBehaviour
     public float playerSpeed; // 플레이어 속도
     public bool isGameStarted = false;
     public bool isGameEnded = false;
-    public float targetTime; // 목표 시간
+    //public float targetTime; // 목표 시간
+
+    public List<float> targetTimeList;
 
 
     private SkillBTN skillBTN; // 스킬 버튼 UI
@@ -77,26 +80,34 @@ public class DashGame : MonoBehaviour
             // 컷신 처리하기
         }
 
-        // 1분 30초 미만일 때 대사 테이블에서 출력하기
-        if (stopWatch.timeStrat < 90f)
-        {
-            // 1분 30초 미만일 때 대사 출력
-            Managers.Instance.UIManager.Show<DashGameResultPopup>(90f);
-        }
-        // 2분 30초 미만일 때 대사 테이블에서 출력하기   
-        else if(stopWatch.timeStrat < 150f)
-        {
-            // 2분 30초 미만일 때 대사 출력
-            Managers.Instance.UIManager.Show<DashGameResultPopup>(150f);
 
-        }
-        // 3분 30초 이상일 때 대사 테이블에서 출력하기
-        else if (stopWatch.timeStrat <= 210f)
+        foreach(float target in targetTimeList)
         {
-            // 2분 30초 미만일 때 대사 출력
-            Managers.Instance.UIManager.Show<DashGameResultPopup>(210f);
-
+            if (stopWatch.timeStrat <= target)
+            {
+               
+            }
         }
+
+        //// 1분 30초 미만일 때 대사 테이블에서 출력하기
+        //if (stopWatch.timeStrat < 90f)
+        //{
+        //    // 1분 30초 미만일 때 대사 출력
+        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(90f);
+        //}
+        //// 2분 30초 미만일 때 대사 테이블에서 출력하기   
+        //else if(stopWatch.timeStrat < 150f)
+        //{
+        //    // 2분 30초 미만일 때 대사 출력
+        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(150f);
+
+        //}
+        //// 3분 30초 이상일 때 대사 테이블에서 출력하기
+        //else if (stopWatch.timeStrat <= 210f)
+        //{
+        //    // 2분 30초 미만일 때 대사 출력
+        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(210f);
+        //}
     }
 
     public void InteractWithNPC(ENpcType npcType)
