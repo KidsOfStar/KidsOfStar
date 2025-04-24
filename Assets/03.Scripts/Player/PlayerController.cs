@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -71,6 +72,11 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        
+        Managers.Instance.CutSceneManager.OnCutSceneStart += LockPlayer;
+        Managers.Instance.DialogueManager.OnDialogStart += LockPlayer;
+        Managers.Instance.CutSceneManager.OnCutSceneEnd += UnlockPlayer;
+        Managers.Instance.DialogueManager.OnDialogEnd += UnlockPlayer;
     }
 
     private void Update()
@@ -253,5 +259,23 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         rigid.gravityScale = originalGravity;
         isLeafJumping = false;
     }
+    
+    private void LockPlayer()
+    {
+        isControllable = false;
+    }
+    
+    private void UnlockPlayer()
+    {
+        isControllable = true;
+    }
 
+    private void OnDestroy()
+    {
+        Managers.Instance.CutSceneManager.OnCutSceneStart -= LockPlayer;
+        Managers.Instance.CutSceneManager.OnCutSceneEnd -= UnlockPlayer;
+        
+        Managers.Instance.DialogueManager.OnDialogStart -= LockPlayer;
+        Managers.Instance.DialogueManager.OnDialogEnd -= UnlockPlayer;
+    }
 }

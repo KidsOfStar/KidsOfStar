@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class ObstaclesSpawner : MonoBehaviour
 {
+#if UNITY_EDITOR
+    [Header("Debug")]
+    [SerializeField] private bool isTest = false;
+#endif
+    
     [Header("Settings")]
     public float spawnXOffset = 10f;
+
     private float fixedPosY = -2.7f;
 
     [Tooltip("장애물 사이의 기본 고정 x 간격")]
     public float baseSpacing = 4f;
+
     [Tooltip("장애물 간 추가 랜덤 간격 최소값")]
     public float extraMin = 1f;
+
     [Tooltip("장애물 간 추가 랜덤 간격 최대값")]
     public float extraMax = 3f;
-
 
     private float stoneProbability = 0.3f;
     private float smallSeaweedProbability = 0.2f;
@@ -25,16 +32,26 @@ public class ObstaclesSpawner : MonoBehaviour
 
     [Header("Wave")]
     public int waveObstacleCount = 8; //Wave에 생성할 장애물의 갯수
+
     private int currentWaveRemaining; //Wave에서 소멸되지 않은 장애물의 갯수 
     private int currentWave = 1;      // 현재 Wave
 
     [Header("Dialogue Index")]
     [SerializeField] private int[] indexes;
+
     private int currentIndex;
     private readonly WaitForSeconds dialogEndTime = new(4f);
 
     public void StartSpawn()
     {
+#if UNITY_EDITOR
+        if (isTest)
+        {
+            currentWave = 3;
+            currentWaveRemaining = waveObstacleCount - 1;
+        }
+#endif
+
         foreach (GameObject prefab in obstaclePrefabs)
         {
             Managers.Instance.PoolManager.CreatePool(prefab, 10);
@@ -99,7 +116,7 @@ public class ObstaclesSpawner : MonoBehaviour
 
     private Vector3 GetSpawnPosition()
     {
-        float spacing = baseSpacing+Random.Range(extraMin, extraMax);
+        float spacing = baseSpacing + Random.Range(extraMin, extraMax);
         lastSpawnX += spacing;
         return new Vector3(lastSpawnX, fixedPosY, 0f);
     }
@@ -128,16 +145,20 @@ public class ObstaclesSpawner : MonoBehaviour
         if (currentWave >= 3)
         {
             Managers.Instance.DialogueManager.OnDialogEnd -= SpawnWave;
-            Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter2);
+            Managers.Instance.SoundManager.StopBgm();
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Rescued.GetName(), () =>
+            {
+                Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter2);
+            });
         }
         else
         {
             currentWave++;
-                
+
             // 대사 끝났음 이벤트에 스폰 웨이브 구독
             Managers.Instance.DialogueManager.OnDialogEnd -= SpawnWave;
             Managers.Instance.DialogueManager.OnDialogEnd += SpawnWave;
-                
+
             // 대사 출력
             Managers.Instance.DialogueManager.SetCurrentDialogData(indexes[currentIndex]);
             currentIndex++;
