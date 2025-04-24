@@ -11,6 +11,9 @@ public class ChangeFormAction : IDialogActionHandler
         }
 
         var player = Managers.Instance.GameManager.Player;
+        EditorLog.Log("ChangeFormAction : " + dialogData.Param);
+        
+        // if (player.FormControl.)
         player.FormControl.FormChange(dialogData.Param);
     }
 }
