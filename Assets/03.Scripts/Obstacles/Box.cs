@@ -75,8 +75,6 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         yield return new WaitForSeconds(0.3f);
         rb.drag = 0f;
-        // Test
-        //rb.drag = 0f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

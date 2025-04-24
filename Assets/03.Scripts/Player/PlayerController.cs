@@ -244,14 +244,20 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
 
-            // x축·z축 선형 보간, y축은 사인 곡선
             Vector3 linearPos = Vector3.Lerp(startPos, target, t);
             float heightOffset = Mathf.Sin(t * Mathf.PI) * jumpHeight;
             transform.position = linearPos + Vector3.up * heightOffset;
 
             yield return null;
         }
+
+        // 최종 위치 보정
+        transform.position = target;
+        rigid.gravityScale = originalGravity;
+        isLeafJumping = false;
     }
+
+    
     private void LockPlayer()
     {
         isControllable = false;
