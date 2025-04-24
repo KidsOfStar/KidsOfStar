@@ -241,6 +241,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         transform.position = target;
         rigid.gravityScale = originalGravity;
         isLeafJumping = false;
+        yield return new WaitForSeconds(0.3f);
     }
     
     private void LockPlayer()
