@@ -25,6 +25,15 @@ public class UISelectionPanel : PopupBase
     {
         var nextIndex = dialogData.NextIndex[index];
         HideDirect();
+        if (nextIndex < 0)
+        {
+            // 데이터 매니저에서 특수인덱스 가져오기
+            var specifiedAction = Managers.Instance.DataManager.GetSpecifiedActionData(nextIndex);
+            // 다이얼로그 매니저에서 특수인덱스 실행하기
+            CustomActions.PlayEnding(specifiedAction.Param);
+            return;
+        }
+        
         Managers.Instance.DialogueManager.SetCurrentDialogData(nextIndex);
     }
 

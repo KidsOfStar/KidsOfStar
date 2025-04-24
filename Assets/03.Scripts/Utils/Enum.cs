@@ -36,6 +36,7 @@ public enum DialogActionType
     LoadScene,
     UpdateProgress,
     ChangeForm,
+    GoToEnding,
 }
 
 public enum DialogCustomMethodType
