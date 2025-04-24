@@ -195,7 +195,7 @@ public class TreePuzzleSystem : MonoBehaviour
         if (clearPuzzlenum.Count >= totalPuzzleCount)
         {
             EditorLog.Log("모든 퍼즐 클리어! 추가 로직 실행");
-            // Managers.Instance.CutSceneManager.PlayCutScene(...);
+            // Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.);
         }
         else
         {
