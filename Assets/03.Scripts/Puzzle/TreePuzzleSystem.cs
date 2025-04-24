@@ -196,6 +196,7 @@ public class TreePuzzleSystem : MonoBehaviour
         {
             EditorLog.Log("모든 퍼즐 클리어! 추가 로직 실행");
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest.GetName());
+            Managers.Instance.GameManager.UpdateProgress();
         }
         else
         {
