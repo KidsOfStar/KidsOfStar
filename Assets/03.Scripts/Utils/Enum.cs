@@ -44,7 +44,8 @@ public enum CustomActionType
 {
     GoToEnding,
     MoveTo,
-    
+    PlayCutScene,
+    Return,
 }
 
 public enum DialogCustomMethodType

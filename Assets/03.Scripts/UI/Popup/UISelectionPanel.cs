@@ -1,6 +1,4 @@
 using MainTable;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UISelectionPanel : PopupBase
@@ -30,7 +28,7 @@ public class UISelectionPanel : PopupBase
             // 데이터 매니저에서 특수인덱스 가져오기
             var specifiedAction = Managers.Instance.DataManager.GetSpecifiedActionData(nextIndex);
             // 다이얼로그 매니저에서 특수인덱스 실행하기
-            CustomActions.PlayEnding(specifiedAction.Param);
+            CustomActions.ExecuteAction(specifiedAction);
             return;
         }
         
