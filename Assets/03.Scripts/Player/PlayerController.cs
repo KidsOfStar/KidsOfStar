@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
+    private Animator anim;
+    public Animator Anim { get { return anim; } }
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
@@ -72,6 +74,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
         
         Managers.Instance.CutSceneManager.OnCutSceneStart += LockPlayer;
         Managers.Instance.DialogueManager.OnDialogStart += LockPlayer;

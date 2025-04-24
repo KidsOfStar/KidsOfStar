@@ -64,6 +64,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         boxCollider.offset = new Vector2(curFormData.OffsetX, curFormData.OffsetY);
         boxCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
         controller.JumpForce = curFormData.JumpForce;
+        controller.Anim.runtimeAnimatorController = curFormData.FormAnim;
     }
 
     // 스프라이트 렌더러 플립

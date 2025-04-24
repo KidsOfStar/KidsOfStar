@@ -226,7 +226,6 @@ MonoBehaviour:
   pushableLayer:
     serializedVersion: 2
     m_Bits: 128
-  skillBtn: {fileID: 8232105481073712066, guid: f75a27c255255e641ba87073da30a18c, type: 3}
 --- !u!114 &5902049473616058379
 MonoBehaviour:
   m_ObjectHideFlags: 0

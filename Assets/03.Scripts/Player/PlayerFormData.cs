@@ -16,10 +16,9 @@ public class FormData
     public string FormName { get { return formName; } }
     [SerializeField, Tooltip("형태의 스프라이트")] private Sprite formImage;
     public Sprite FormImage { get { return formImage; } }
-    // 애니메이터 컨트롤러
-    // 애니메이션 추가하기 전까지는 비활성화
-    //[SerializeField] AnimatorController animCon;
-    //public AnimatorController AnimCon { get { return animCon; } }
+    // 애니메이터 오버라이드 컨트롤러
+    [SerializeField, Tooltip("애니메이션 클립 교체용")] private AnimatorOverrideController formAnim;
+    public AnimatorOverrideController FormAnim { get { return formAnim; } }
     [SerializeField, Tooltip("형태의 점프력")] private float jumpForce;
     public float JumpForce { get { return jumpForce; } }
 
