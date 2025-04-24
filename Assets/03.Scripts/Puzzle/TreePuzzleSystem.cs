@@ -76,7 +76,7 @@ public class TreePuzzleSystem : MonoBehaviour
 
     }
 
-    // 퍼즐 
+    // 퍼즐 조각 생성
     public void GeneratePuzzle()
     {
         // 기존 조각 제거
@@ -188,14 +188,14 @@ public class TreePuzzleSystem : MonoBehaviour
 
             if (clearPuzzlenum.Count == 1)
             {
-                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest.GetName());
+                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom.GetName());
                 Managers.Instance.GameManager.UpdateProgress();
             }
         }
         if (clearPuzzlenum.Count >= totalPuzzleCount)
         {
             EditorLog.Log("모든 퍼즐 클리어! 추가 로직 실행");
-            // Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.);
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest.GetName());
         }
         else
         {

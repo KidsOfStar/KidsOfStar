@@ -20,8 +20,9 @@ public enum CharacterType
     Stone,
     Songsari,
     Dolmengee,
-    People,
-    Hanul,
+    People1,
+    People2,
+    People3,
     Women,
 }
 
@@ -44,7 +45,8 @@ public enum CustomActionType
 {
     GoToEnding,
     MoveTo,
-    
+    PlayCutScene,
+    Return,
 }
 
 public enum DialogCustomMethodType
@@ -161,5 +163,12 @@ public enum ReferenceMode //레터박스 화면비율 선정 Mode
     DesignedAspectRatio,
     OrginalResolution
 };
+
+public enum WarningType
+{
+    None,
+    Squirrel,
+    BoxMissing,
+}
 
 #endregion

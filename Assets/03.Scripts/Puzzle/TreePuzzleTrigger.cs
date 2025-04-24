@@ -26,17 +26,37 @@ public class TreePuzzleTrigger : MonoBehaviour
 
             // 다람쥐 형태 검사
             var formControl = Managers.Instance.GameManager.Player.FormControl;
-            // 허용되지 않은 형태일 경우
-            if (formControl.ReturnCurFormName() == "Squirrel")
+            bool isSquirrel = formControl.ReturnCurFormName() == "Squirrel";
+
+            if (isSquirrel && !hasBox)
             {
-                Managers.Instance.UIManager.Show<TreeWarningPopup>();
+                // 다람쥐 & 상자 없음 → 두 문구를 순차적으로
+                Managers.Instance.UIManager.Show<TreeWarningPopup>(
+                    WarningType.Squirrel,
+                    WarningType.BoxMissing
+                );
                 return;
             }
-        }
+            else if (isSquirrel)
+            {
+                // 다람쥐지만 상자는 들고 있는 경우 → 한 문구만
+                Managers.Instance.UIManager.Show<TreeWarningPopup>(
+                    WarningType.Squirrel
+                );
+                return;
+            }
 
+            if (!hasBox)
+            {
+                // 다람쥐가 아니지만, 상자가 없는 경우
+                Managers.Instance.UIManager.Show<TreeWarningPopup>(
+                    WarningType.BoxMissing
+                );
+            }
+        }
         else if(collision.CompareTag("Box"))
         {
-            hasBox = false;
+            hasBox = true ;
         }
         else
         {
