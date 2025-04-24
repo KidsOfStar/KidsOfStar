@@ -20,8 +20,9 @@ public enum CharacterType
     Stone,
     Songsari,
     Dolmengee,
-    People,
-    Hanul,
+    People1,
+    People2,
+    People3,
     Women,
 }
 
@@ -44,7 +45,8 @@ public enum CustomActionType
 {
     GoToEnding,
     MoveTo,
-    
+    PlayCutScene,
+    Return,
 }
 
 public enum DialogCustomMethodType

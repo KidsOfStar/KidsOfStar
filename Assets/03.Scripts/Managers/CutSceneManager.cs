@@ -7,11 +7,16 @@ public class CutSceneManager
     public Action OnCutSceneEnd { get; set; }
     public LetterBoxer LetterBoxer { get; private set; }
     
+    private CutSceneBase currentCutScene;
     private const string CutScenePath = "CutScenes/";
 
     public CutSceneManager()
     {
-        OnCutSceneEnd += () => IsCutScenePlaying = false;
+        OnCutSceneEnd += () =>
+        {
+            IsCutScenePlaying = false;
+            currentCutScene = null;
+        };
     }
     
     public void PlayCutScene(string cutsceneName, Action localEndCallback = null)
