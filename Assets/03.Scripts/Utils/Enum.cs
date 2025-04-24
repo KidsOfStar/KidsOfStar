@@ -39,6 +39,13 @@ public enum DialogActionType
     GoToEnding,
 }
 
+[UGS(typeof(DialogActionType))]
+public enum CustomActionType
+{
+    GoToEnding,
+    MoveTo,
+}
+
 public enum DialogCustomMethodType
 {
     ChangeHumanForm,
