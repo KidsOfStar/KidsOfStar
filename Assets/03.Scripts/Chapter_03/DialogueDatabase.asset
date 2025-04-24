@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: DashDialogueData
+  m_Name: DialogueDatabase
   m_EditorClassIdentifier: Assembly-CSharp::DashDialogueDatabase
   entries:
   - timeThreshold: 90
@@ -31,7 +31,7 @@ MonoBehaviour:
     - "\uD558\uC9C0\uB9CC, \uADF8 \uBAA8\uC2B5\uC740 \uBB50\uC9C0?"
     - "\uC57D\uD55C \uBAA8\uC591\uC740 \uC0DD\uC874\uC5D0 \uB3C4\uC6C0\uC774 \uB418\uC9C0
       \uC54A\uC544."
-    - "\uC720\uB150\uD558\uB3C4\uB85D."
+    - "\uC720\uB150\uD558\uB3C4\uB85D. "
     semyungDialogues:
     - "\uC5ED\uC2DC \uB098\uC640\uB294 \uB2E4\uB974\uB124..."
     - "\uC544, \uC544\uB2C8\uC57C."
