@@ -8,19 +8,10 @@ public class Chapter03Base : SceneBase
 {
     [Header("Chapter 3")]
     [SerializeField] private DashGame dashGame;
-    public SkillUnlock skillUnlock;
-    public SkillBTN skillBTN;
 
     protected override void InitSceneExtra(Action playIntroCallback)
     {
-        skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-
-        skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
-
-        skillUnlock.UnlockSkill(2); // 강아지 스킬 잠금 해제
-        //skillBTN.OnDog();
+        // 강아지 스킬 잠금 해제
+        Managers.Instance.UIManager.SkillUnlock.UnlockSkill(2);
     }
-
-
-
 }
