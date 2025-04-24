@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisableInStart: 0
   positionDatas:
   - progress: 2
     isActive: 1
@@ -1128,6 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisableInStart: 0
   positionDatas:
   - progress: 2
     isActive: 1
@@ -6843,6 +6845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisableInStart: 0
   positionDatas:
   - progress: 5
     isActive: 1
@@ -7540,6 +7543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisableInStart: 0
   positionDatas:
   - progress: 2
     isActive: 1
@@ -7674,7 +7678,7 @@ MonoBehaviour:
   introText: "\uCC55\uD130 2\uB294 \uADF8\uB0E5 \uC801\uB2F9\uD788 \uD50C\uB808\uC774
     \uD558\uBA74 \uB3FC"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
-  playerStartForm: 
+  playerStartForm: Squirrel
   playerSpawnPosition: {fileID: 1440882714}
   speakers:
   - {fileID: 55014523}

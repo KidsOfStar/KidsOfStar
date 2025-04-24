@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2951293744553392757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -566,6 +566,7 @@ MonoBehaviour:
   dogSkill: {fileID: 1412143690921252697}
   squirrelSkill: {fileID: 5436181514956999596}
   skillUnlock: {fileID: 3323209220057939813}
+  isSkillAdd: 0
 --- !u!114 &3323209220057939813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,7 +681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4369441069452269166
 RectTransform:
   m_ObjectHideFlags: 0
