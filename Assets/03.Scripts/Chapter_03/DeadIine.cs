@@ -9,8 +9,8 @@ public class DeadIine : MonoBehaviour
             Player player = collision.GetComponent<Player>();
             if (player != null)
             {
-                // 플레이어가 떨어졌을 때 타이틀 씬으로 이동
-                Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title);
+                player.gameObject.SetActive(false);
+                Managers.Instance.GameManager.TriggerEnding(EndingType.Mistake);
             }
         }
     }
