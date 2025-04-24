@@ -75,14 +75,21 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         FormData nextFormData = formDataDictionary[formName];
 
         if (nextFormData == null || !nextFormData.IsActive || !controller.IsControllable) return;
-        
-        if(formName == curFormData.FormName)
+
+        if (curFormData == null)
         {
-            curFormData = formDataDictionary["Human"];
+            curFormData = nextFormData;
         }
         else
         {
-            curFormData = nextFormData;
+            if (formName == curFormData.FormName)
+            {
+                curFormData = formDataDictionary["Human"];
+            }
+            else
+            {
+                curFormData = nextFormData;
+            }
         }
 
         spriteRenderer.sprite = curFormData.FormImage;

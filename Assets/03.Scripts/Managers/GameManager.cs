@@ -143,6 +143,8 @@ public class GameManager
         Player = player;
     }
 
+
+    //사용법: Managers.Instance.GameManager.TriggerEnding(EndingType. 엔딩이름)
     public void TriggerEnding(EndingType endingType)
     {
         endingDict[endingType] = true;
