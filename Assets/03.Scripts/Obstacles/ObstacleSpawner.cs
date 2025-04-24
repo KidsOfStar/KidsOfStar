@@ -10,10 +10,9 @@ public class ObstaclesSpawner : MonoBehaviour
 #endif
     
     [Header("Settings")]
-   [Tooltip("카메라 우측 떨어진 스폰 X값 위치")] public float spawnXOffset = 10f;
-    //고정된 Y값
+    [Tooltip("카메라 우측 떨어진 스폰 X값 위치")] 
     public float spawnXOffset = 10f;
-
+    //고정된 Y값
     private float fixedPosY = -2.7f;
 
     [Tooltip("장애물 사이의 기본 고정 x 간격")]
@@ -43,10 +42,6 @@ public class ObstaclesSpawner : MonoBehaviour
     private int currentWaveRemaining;
     // 현재 Wave
     private int currentWave = 1;     
-    public int waveObstacleCount = 8; //Wave에 생성할 장애물의 갯수
-
-    private int currentWaveRemaining; //Wave에서 소멸되지 않은 장애물의 갯수 
-    private int currentWave = 1;      // 현재 Wave
 
     [Header("Dialogue Index")]
     [SerializeField] private int[] indexes;
