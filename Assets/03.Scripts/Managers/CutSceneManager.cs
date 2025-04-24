@@ -41,4 +41,17 @@ public class CutSceneManager
         OnCutSceneStart?.Invoke();
         IsCutScenePlaying = true;
     }
+
+    public bool IsPlayingCutScene()
+    {
+        return currentCutScene != null;
+    }
+    
+    public void DestroyCurrentCutScene()
+    {
+        if (!currentCutScene)
+            EditorLog.LogError("현재 재생중인 컷씬이 없습니다.");
+
+        currentCutScene.DestroyPrefab(true);
+    }
 }
