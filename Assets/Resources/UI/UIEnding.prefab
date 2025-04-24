@@ -113,7 +113,7 @@ MonoBehaviour:
   - type: 3
     sprite: {fileID: 21300000, guid: e81c3cdc7045c4b4db39d9cc03b69e63, type: 3}
   - type: 4
-    sprite: {fileID: 21300000, guid: b5373cbb698281d4ebcd36d05632ff45, type: 3}
+    sprite: {fileID: 21300000, guid: 6bed0f3deb64d5f45b86f43f1664c9e9, type: 3}
 --- !u!1 &6699855726331284796
 GameObject:
   m_ObjectHideFlags: 0
