@@ -81,7 +81,7 @@ public class SkillBTN : UIBase
     /// <summary>
     /// 개 스킬 버튼 클릭 시 호출
     /// </summary>
-/*    public void OnDog()
+    /*    public void OnDog()
     {
 
         UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);

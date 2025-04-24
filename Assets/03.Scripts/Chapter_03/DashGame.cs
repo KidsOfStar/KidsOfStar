@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DashGame : MonoBehaviour
@@ -10,7 +11,9 @@ public class DashGame : MonoBehaviour
     public float playerSpeed; // 플레이어 속도
     public bool isGameStarted = false;
     public bool isGameEnded = false;
-    public float targetTime; // 목표 시간
+    //public float targetTime; // 목표 시간
+
+    public List<float> targetTimeList;
 
 
     private SkillBTN skillBTN; // 스킬 버튼 UI
@@ -52,15 +55,18 @@ public class DashGame : MonoBehaviour
         playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
 
     }
-    public void EndGame()
+    public void EndGame(ENpcType npcType)
     {
         if (isGameEnded || !isGameStarted) return;
 
         isGameEnded = true; // 게임 종료 상태로 변경
+
         // 종료할 때
         stopWatch.OnStopWatch(); // 스탑워치 정지
-        IsNearTargerTime(targetTime); // 목표 시간에 가까운지 확인
+        //IsNearTargerTime(targetTime); // 목표 시간에 가까운지 확인
         playerController.MoveSpeed = playerSpeed; // 플레이어 속도 초기화 (1.5배 감소)
+
+        InteractWithNPC(npcType); // NPC와 상호작용  
     }
 
     public void IsNearTargerTime(float targetTime)
@@ -75,25 +81,45 @@ public class DashGame : MonoBehaviour
         }
 
 
-        // 1분 30초 미만일 때 대사 테이블에서 출력하기
-        if (stopWatch.timeStrat < 90f)
+        foreach(float target in targetTimeList)
         {
-            // 1분 30초 미만일 때 대사 출력
-        }
-        // 2분 30초 미만일 때 대사 테이블에서 출력하기   
-        else if(stopWatch.timeStrat < 150f)
-        {
-            // 2분 30초 미만일 때 대사 출력
-        }
-        // 3분 30초 이상일 때 대사 테이블에서 출력하기
-        else if (stopWatch.timeStrat <= 210f)
-        {
-            // 2분 30초 미만일 때 대사 출력
+            if (stopWatch.timeStrat <= target)
+            {
+               
+            }
         }
 
+        //// 1분 30초 미만일 때 대사 테이블에서 출력하기
+        //if (stopWatch.timeStrat < 90f)
+        //{
+        //    // 1분 30초 미만일 때 대사 출력
+        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(90f);
+        //}
+        //// 2분 30초 미만일 때 대사 테이블에서 출력하기   
+        //else if(stopWatch.timeStrat < 150f)
+        //{
+        //    // 2분 30초 미만일 때 대사 출력
+        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(150f);
 
-
+        //}
+        //// 3분 30초 이상일 때 대사 테이블에서 출력하기
+        //else if (stopWatch.timeStrat <= 210f)
+        //{
+        //    // 2분 30초 미만일 때 대사 출력
+        //    Managers.Instance.UIManager.Show<DashGameResultPopup>(210f);
+        //}
     }
+
+    public void InteractWithNPC(ENpcType npcType)
+    {
+        float clearTime = stopWatch.timeStrat; // 스탑워치 시간 가져오기
+
+        Debug.Log($"NPC {npcType}와 상호작용, 기록된 시간: {clearTime}");
+
+        // 결과 대사 출력
+        Managers.Instance.UIManager.Show<DashGameResultPopup>(clearTime, npcType);
+    }
+
 
 }
 
