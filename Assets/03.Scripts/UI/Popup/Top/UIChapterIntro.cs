@@ -10,8 +10,7 @@ public class UIChapterIntro : UIBase
     [SerializeField] private TextMeshProUGUI introText;
     private const float fadeTime = 2f;
     private const float fadeOutTime = 2f;
-    private readonly Color fadeOutColor = new(0, 0, 0, 0);
-    private readonly WaitForSeconds showTime = new(2f);
+    private readonly Color fadeOutColor = new(0, 0, 0, 0f);
 
     public IEnumerator IntroCoroutine(bool isFirst, string text)
     {
@@ -34,7 +33,6 @@ public class UIChapterIntro : UIBase
         StartCoroutine(Fade(Color.white, fadeOutColor, fadeOutTime, c => introText.color = c));
         yield return Fade(Color.black, fadeOutColor, fadeOutTime, c => backgroundImage.color = c);
 
-        yield return showTime;
         HideDirect();
         Managers.Instance.GameManager.Player.Controller.IsControllable = true;
     }
