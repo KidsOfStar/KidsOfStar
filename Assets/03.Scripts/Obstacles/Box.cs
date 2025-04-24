@@ -38,6 +38,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     }
     private IEnumerator LeafJumpRoutine(Vector3 dropPosition, LayerMask groundMask, float moveSpeed, float jumpHeight)
     {
+        // 물리상태 비활성화
         rb.gravityScale = 0f;
         rb.velocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -45,33 +46,21 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         Vector3 start = transform.position;
         Vector3 end = dropPosition;
-        float duration = 0.7f;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            float t = elapsed / duration;
-            Vector3 pos = Vector3.Lerp(start, end, t);
-            pos.y += Mathf.Sin(t * Mathf.PI) * jumpHeight;
-
-            rb.MovePosition(pos);
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
 
         // 바닥 착지 지점 계산
         Vector3 fallTarget = dropPosition;
         fallTarget.y += col.bounds.extents.y;
-
         rb.MovePosition(fallTarget);
+
+        // 물리상태 초기화
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
         rb.gravityScale = 1f;
         col.enabled = true;
 
         yield return new WaitForSeconds(0.3f);
-        rb.drag = 0f;
+        // Test
+        //rb.drag = 0f;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

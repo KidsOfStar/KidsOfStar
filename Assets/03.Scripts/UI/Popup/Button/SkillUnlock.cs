@@ -21,7 +21,6 @@ public class SkillUnlock : MonoBehaviour
 
     private Dictionary<int, (GameObject bg, GameObject icon)> skillMap;
 
-
     void Start()
     {
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };

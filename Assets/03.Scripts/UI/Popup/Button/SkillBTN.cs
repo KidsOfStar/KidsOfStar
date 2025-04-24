@@ -24,6 +24,7 @@ public class SkillBTN : UIBase
     public SkillUnlock skillUnlock; // 스킬 잠금 해제 UI
     private bool isSkillActive = false; // 스킬 UI 활성화 여부
     private float skillCooldown = 0.5f; // 스킬 쿨타임
+    public bool isSkillAdd = false; // 스킬 활성화 여부
     // Start is called before the first frame update
     void Start()
     {
@@ -74,88 +75,49 @@ public class SkillBTN : UIBase
         Managers.Instance.GameManager.Player.Controller.Jump();
     }
 
-    // 숨기기 스킬 버튼 클릭 시 호출
-    public void OnHide()
+    public void OnHide() => UseSkill("Hide", skillUnlock.hideIcon, skillUnlock.hideBG);
+    public void OnCat() => UseSkill("Cat", skillUnlock.catIcon, skillUnlock.catBG);
+
+    /// <summary>
+    /// 개 스킬 버튼 클릭 시 호출
+    /// </summary>
+/*    public void OnDog()
     {
+
+        UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);
+    }*/
+    public void OnDog() => UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);
+    public void OnSquirrel() => UseSkill("Squirrel", skillUnlock.squirrelIcon, skillUnlock.squirrelBG);
+    public void UseSkill(string formName, GameObject icon, GameObject bg)
+    {
+        // 스킬이 이미 활성화된 상태라면 중복 실행을 방지하고 메서드 종료
         if (isSkillActive) return;
 
-        isSkillActive = true; // 스킬 활성화 상태로 변경
-
-        Managers.Instance.GameManager.Player.FormControl.FormChange("Hide");
-
-        // 현재 배경이 켜져 있으면 끄고, 아니면 보여주기
-        if (skillUnlock.hideBG.activeSelf)
+        // 스킬 아이콘이 없을 경우, 스킬 비활성화
+        // skillUnlock.SquirrelIcon이 현재 활성화된 상태와 isSkillAdd 상태가 같다면 스킬을 사용할 수 없음
+        if (icon.activeSelf == isSkillAdd)
         {
-            skillUnlock.hideBG.SetActive(false);
+            // 스킬 아이콘을 비활성화하고 스킬 실행을 중단 (해금되지 않음)
+            icon.SetActive(false);
+            return;
+        }
+
+        icon.SetActive(true);
+
+        // 스킬 활성화 상태로 변경
+        isSkillActive = true;
+
+        Managers.Instance.GameManager.Player.FormControl.FormChange(formName);
+
+        if (bg.activeSelf)
+        {
+            bg.SetActive(false);
         }
         else
         {
-            skillUnlock.ShowSkillBG(skillUnlock.hideBG);
+            skillUnlock.ShowSkillBG(bg);
         }
         StartCoroutine(ResetSkillCooldown(skillCooldown));
-
-    }
-
-    // 고양이 스킬 버튼 클릭 시 호출
-    public void OnCat()
-    {
-        if (isSkillActive) return;
-
-        isSkillActive = true; // 스킬 활성화 상태로 변경
-
-        Managers.Instance.GameManager.Player.FormControl.FormChange("Cat");
-
-        if (skillUnlock.catBG.activeSelf)
-        {
-            skillUnlock.catBG.SetActive(false);
-        }
-        else
-        {
-            skillUnlock.ShowSkillBG(skillUnlock.catBG);
-        }
-        StartCoroutine(ResetSkillCooldown(skillCooldown));
-    }
-
-    // 개 스킬 버튼 클릭 시 호출
-    public void OnDog()
-    {
-        if (isSkillActive) return;
-
-        isSkillActive = true; // 스킬 활성화 상태로 변경.
-
-        Managers.Instance.GameManager.Player.FormControl.FormChange("Dog");
-
-        if (skillUnlock.dogBG.activeSelf)
-        {
-            skillUnlock.dogBG.SetActive(false);
-        }
-        else
-        {
-            skillUnlock.ShowSkillBG(skillUnlock.dogBG);
-        }
-
-        StartCoroutine(ResetSkillCooldown(skillCooldown));
-    }
-
-    // 다람쥐 스킬 버튼 클릭 시 호출
-    public void OnSquirrel()
-    {
-        if (isSkillActive) return;
-
-        isSkillActive = true; // 스킬 활성화 상태로 변경
-
-        Managers.Instance.GameManager.Player.FormControl.FormChange("Squirrel");
-
-        if (skillUnlock.squirrelBG.activeSelf)
-        {
-            skillUnlock.squirrelBG.SetActive(false);
-        }
-        else
-        {
-            skillUnlock.ShowSkillBG(skillUnlock.squirrelBG);
-        }
-        StartCoroutine(ResetSkillCooldown(skillCooldown));
-
     }
 
     // 상호작용 버튼 클릭 시 대화 시작
