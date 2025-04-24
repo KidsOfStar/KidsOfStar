@@ -39,6 +39,14 @@ public enum DialogActionType
     GoToEnding,
 }
 
+[UGS(typeof(DialogActionType))]
+public enum CustomActionType
+{
+    GoToEnding,
+    MoveTo,
+    
+}
+
 public enum DialogCustomMethodType
 {
     ChangeHumanForm,
@@ -120,6 +128,7 @@ public enum CutSceneType
     Intro,
     Rescued,
     LeavingForest,
+    DaunRoom,
 }
 
 #endregion

@@ -46,10 +46,25 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         Vector3 start = transform.position;
         Vector3 end = dropPosition;
+        float duration = 0.7f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            Vector3 pos = Vector3.Lerp(start, end, t);
+            pos.y += Mathf.Sin(t * Mathf.PI) * jumpHeight;
+
+            rb.MovePosition(pos);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
 
         // 바닥 착지 지점 계산
         Vector3 fallTarget = dropPosition;
         fallTarget.y += col.bounds.extents.y;
+
         rb.MovePosition(fallTarget);
 
         // 물리상태 초기화
@@ -59,9 +74,9 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         col.enabled = true;
 
         yield return new WaitForSeconds(0.3f);
-        // Test
-        //rb.drag = 0f;
+        rb.drag = 0f;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))

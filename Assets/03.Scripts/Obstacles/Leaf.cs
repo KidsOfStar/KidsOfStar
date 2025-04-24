@@ -43,7 +43,7 @@ public class Leaf : MonoBehaviour
     private void DropLeaf()
     {
         leafRb.gravityScale = 1f;
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 1f);
     }
 
     public void ResetLeaf(Vector2 originalPosition) //추후 사용할 예정인건지

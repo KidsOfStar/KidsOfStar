@@ -57,7 +57,7 @@ namespace MainTable
 /* Fields. */
 
 		public System.Int32 Index;
-		public DialogActionType Action;
+		public CustomActionType Action;
 		public System.String Param;
   
 
