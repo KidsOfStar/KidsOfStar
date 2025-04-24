@@ -6275,7 +6275,7 @@ MonoBehaviour:
   isFirstTime: 1
   introText: "\uC774\uAC83 \uBD10, \uB2E4\uB4E4 \uBB34\uC12D\uC796\uC544."
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
-  playerStartForm: 
+  playerStartForm: Dog
   playerSpawnPosition: {fileID: 646849047}
   speakers:
   - {fileID: 2044657736}
@@ -6283,6 +6283,8 @@ MonoBehaviour:
   - {fileID: 1370181845}
   mainCamera: {fileID: 2020590303}
   dashGame: {fileID: 1033782733}
+  skillUnlock: {fileID: 0}
+  skillBTN: {fileID: 0}
 --- !u!4 &822920499
 Transform:
   m_ObjectHideFlags: 0
@@ -24177,9 +24179,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7830701120311079455, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2044657737}
-    - targetCorrespondingSourceObject: {fileID: 7830701120311079455, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2044657738}
   m_SourcePrefab: {fileID: 100100000, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
 --- !u!4 &2044657734 stripped
 Transform:
@@ -24225,19 +24224,6 @@ MonoBehaviour:
   - progress: 3
     isActive: 1
     position: {x: 207, y: -8.2, z: 0}
---- !u!114 &2044657738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044657735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d58e1cbefcded149aebf933d68995fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillUnlock: {fileID: 0}
 --- !u!1001 &2086047818
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,17 +21,17 @@ public class SkillUnlock : MonoBehaviour
 
     private Dictionary<int, (GameObject bg, GameObject icon)> skillMap;
 
-    void Start()
+    void Awake()
     {
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
         // 챕터와 BG/Icon 매핑
         skillMap = new Dictionary<int, (GameObject, GameObject)>
         {
-            { 1, (hideBG, hideIcon) },
-            { 2, (catBG, catIcon) },
-            { 3, (dogBG, dogIcon) },
-            { 4, (squirrelBG, squirrelIcon) }
+            { 1, (squirrelBG, squirrelIcon) },
+            { 2, (dogBG, dogIcon) },
+            { 3, (catBG, catIcon) },
+            { 4, (hideBG, hideIcon) },
         };
     }
 
@@ -47,7 +47,7 @@ public class SkillUnlock : MonoBehaviour
     {
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {
-            skillPair.bg.SetActive(false);
+            skillPair.bg.SetActive(true);
             skillPair.icon.SetActive(true);
         }
         else
