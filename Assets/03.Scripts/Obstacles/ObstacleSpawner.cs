@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ObstaclesSpawner : MonoBehaviour
 {
@@ -48,6 +50,7 @@ public class ObstaclesSpawner : MonoBehaviour
 
     private int currentIndex;
     private readonly WaitForSeconds dialogEndTime = new(4f);
+    private bool isGameOver = false;
 
     //장애물을 Pool에서 스폰
     public void StartSpawn()
@@ -138,6 +141,8 @@ public class ObstaclesSpawner : MonoBehaviour
     // 실제 장애물 스폰
     private void SpawnNextObstacle()
     {
+        if (isGameOver) return;
+        
         ObstacleType chosenType = ChooseRandomTypeSpawner();
         string poolKey = GetPoolKey(chosenType);
 
@@ -153,6 +158,8 @@ public class ObstaclesSpawner : MonoBehaviour
     // 실제 장애물 디스폰
     public void OnObstacleDespawned()
     {
+        if (isGameOver) return;
+        
         currentWaveRemaining--;
 
         // 한 웨이브가 끝났다면
@@ -188,5 +195,17 @@ public class ObstaclesSpawner : MonoBehaviour
         yield return dialogEndTime;
 
         Managers.Instance.DialogueManager.OnClick?.Invoke();
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        StopAllCoroutines();
+        Managers.Instance.DialogueManager.OnDialogEnd -= SpawnWave;
+    }
+
+    private void OnDestroy()
+    {
+        Managers.Instance.DialogueManager.OnDialogEnd -= SpawnWave;
     }
 }
