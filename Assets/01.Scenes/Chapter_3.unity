@@ -6275,7 +6275,7 @@ MonoBehaviour:
   isFirstTime: 1
   introText: "\uC774\uAC83 \uBD10, \uB2E4\uB4E4 \uBB34\uC12D\uC796\uC544."
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
-  playerStartForm: 
+  playerStartForm: Dog
   playerSpawnPosition: {fileID: 646849047}
   speakers:
   - {fileID: 2044657736}
@@ -6283,6 +6283,8 @@ MonoBehaviour:
   - {fileID: 1370181845}
   mainCamera: {fileID: 2020590303}
   dashGame: {fileID: 1033782733}
+  skillUnlock: {fileID: 0}
+  skillBTN: {fileID: 0}
 --- !u!4 &822920499
 Transform:
   m_ObjectHideFlags: 0
@@ -22229,6 +22231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisableInStart: 0
   positionDatas:
   - progress: 1
     isActive: 1
@@ -23868,6 +23871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisableInStart: 0
   positionDatas:
   - progress: 1
     isActive: 1
@@ -24209,6 +24213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisableInStart: 0
   positionDatas:
   - progress: 1
     isActive: 1

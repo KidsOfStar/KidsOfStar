@@ -29,6 +29,9 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.LoadScene] = new LoadSceneAction();
         dialogActionHandlers[DialogActionType.UpdateProgress] = new UpdateProgressAction();
         dialogActionHandlers[DialogActionType.ChangeForm] = new ChangeFormAction();
+        dialogActionHandlers[DialogActionType.GoToEnding] = new GoToEndingAction();
+        
+        CustomActions.Init();
     }
 
     public void InitSceneNPcs(Npc[] speakers)
@@ -106,7 +109,7 @@ public class DialogueManager : ISceneLifecycleHandler
             
         }
     }
-
+    
     private Vector2 WorldToCanvasPosition(Vector3 worldPos)
     {
         var cam = Managers.Instance.GameManager.MainCamera;
