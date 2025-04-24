@@ -5,12 +5,14 @@ public class DataManager
 {
     private readonly Dictionary<int, DialogData> dialogDatas;
     private readonly Dictionary<int, NPCData> npcDatas;
+    private readonly Dictionary<int, SpecifiedAction> specifiedActionDatas;
     private readonly Dictionary<ChapterType, int> maxProgressDict = new();
     
     public DataManager()
     {
         dialogDatas = DialogData.GetDictionary();
         npcDatas = NPCData.GetDictionary();
+        specifiedActionDatas = SpecifiedAction.GetDictionary();
         LoadChapterProgressData();
     }
 
@@ -41,6 +43,18 @@ public class DataManager
         else
         {
             EditorLog.LogError($"DataManager : Not found PlayerData with index: {index}");
+            return null;
+        }
+    }
+    
+    public SpecifiedAction GetSpecifiedActionData(int index)
+    {
+        if (specifiedActionDatas.TryGetValue(index, out var data))
+            return data;
+            
+        else
+        {
+            EditorLog.LogError($"DataManager : Not found SpecifiedActionData with index: {index}");
             return null;
         }
     }

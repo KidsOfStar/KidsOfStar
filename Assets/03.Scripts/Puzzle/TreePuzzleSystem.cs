@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -187,7 +188,8 @@ public class TreePuzzleSystem : MonoBehaviour
 
             if (clearPuzzlenum.Count == 1)
             {
-                //플레이하고자 하는 컷씬의 이름으로 로드
+                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest.GetName());
+                Managers.Instance.GameManager.UpdateProgress();
             }
         }
         if (clearPuzzlenum.Count >= totalPuzzleCount)
