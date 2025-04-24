@@ -169,6 +169,7 @@ MonoBehaviour:
   endingImage: {fileID: 3792613369458416904}
   clickToContinueText: {fileID: 8965059999061753853}
   continueButton: {fileID: 4591176588893552112}
+  backgroundPanel: {fileID: 3792613369458416904}
   endingSpriteList:
   - type: 5
     sprite: {fileID: 21300000, guid: 7f19c69d167e80c459af7b429196ac69, type: 3}

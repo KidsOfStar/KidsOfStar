@@ -485,6 +485,8 @@ MonoBehaviour:
   checkTimeStop: 0
   isFirst: 1
   messageText: {fileID: 3098224410218913259}
+  boxWarningText: {fileID: 3098224410218913259}
+  confirmButton: {fileID: 6945467555830300086}
 --- !u!1 &8174369250066053125
 GameObject:
   m_ObjectHideFlags: 0
