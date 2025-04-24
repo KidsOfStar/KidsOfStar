@@ -26,7 +26,7 @@ MonoBehaviour:
     direction: 0
   - formName: Human
     formImage: {fileID: 1727844007, guid: d06ffee833dc42d4cadc78e2351edaf8, type: 3}
-    jumpForce: 3
+    jumpForce: 5
     offsetX: 0
     offsetY: 0.7
     sizeX: 0.6
