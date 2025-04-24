@@ -1,10 +1,5 @@
 using UnityEngine;
 
-public enum EInteractionType
-{
-    StartGame,
-    EndGame
-}
 
 public class DashInteractable : MonoBehaviour
 {

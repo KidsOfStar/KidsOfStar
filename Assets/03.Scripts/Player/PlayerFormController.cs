@@ -27,39 +27,6 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         controller = player.Controller;
     }
 
-    private void Update()
-    {
-        // 테스트용 입력
-        // 나중에 지울 것
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (curFormData.FormName == "Stone")
-            {
-                FormChange("Human");
-            }
-            else if (curFormData.FormName == "Human")
-            {
-                FormChange("Squirrel");
-            }
-            else if (curFormData.FormName == "Squirrel")
-            {
-                FormChange("Dog");
-            }
-            else if (curFormData.FormName == "Dog")
-            {
-                FormChange("Cat");
-            }
-            else if (curFormData.FormName == "Cat")
-            {
-                FormChange("Hide");
-            }
-            else
-            {
-                FormChange("Stone");
-            }
-        }
-    }
-
     void SetFormData()
     {
         for(int i = 0; i < formData.PlayerFromDataList.Count; i++)
@@ -73,8 +40,9 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     public void FormChange(string formName)
     {
         FormData nextFormData = formDataDictionary[formName];
-
-        if (nextFormData == null || !nextFormData.IsActive || !controller.IsControllable) return;
+        
+        if (nextFormData == null || !nextFormData.IsActive || !controller.IsControllable 
+            || (curFormData != null && !controller.IsGround)) return;
 
         if (curFormData == null)
         {

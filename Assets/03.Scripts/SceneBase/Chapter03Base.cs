@@ -15,6 +15,9 @@ public class Chapter03Base : SceneBase
         var skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
         skillUnlock.UnlockSkill(2); // 강아지 스킬 잠금 해제
         //skillBTN.OnDog();
+		
+		// 강아지 스킬 잠금 해제
+        Managers.Instance.UIManager.SkillUnlock.UnlockSkill(2);
     }
 
     private void Game()
@@ -31,6 +34,4 @@ public class Chapter03Base : SceneBase
             dashGame.gameObject.SetActive(true);
 
         }
-    }
-
 }

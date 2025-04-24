@@ -27,7 +27,6 @@ public class StopWatch : UIBase
     {
         if(!isTiming) return; // 타이밍이 아닐 경우 종료
         timeStrat += Time.deltaTime; // 시간 증가
-        //timeStrat = Mathf.Clamp(timeStrat, 0, targetTime); // 시간 제한
         int minutes = (int)(timeStrat / 60); // 분 계산
         int seconds = (int)(timeStrat % 60); // 초 계산
         int milliseconds = (int)((timeStrat - (int)timeStrat) * 100); // 밀리초 계산
@@ -53,18 +52,18 @@ public class StopWatch : UIBase
         timeText.text = "00:00:00"; // UI 텍스트 초기화
     }
 
-    public void CheckTargetTime()
-    {
-        // 도착했는데 목표 시간보다 늦을 경우 다시하기
-        if (timeStrat >= targetTime)
-        {
-            ResetTime(); // 시간 초기화 메소드 호출
-        }
-        // 목표 시간에 빨리 들어왔을 경우
-        else if(timeStrat <= targetTime)
-        {
-            timeStrat = 0; // 시간 초기화
-            timeText.text = "00:00:00"; // UI 텍스트 초기화
-        }
-    }
+    //public void CheckTargetTime()
+    //{
+    //    // 도착했는데 목표 시간보다 늦을 경우 다시하기
+    //    if (timeStrat >= targetTime)
+    //    {
+    //        ResetTime(); // 시간 초기화 메소드 호출
+    //    }
+    //    // 목표 시간에 빨리 들어왔을 경우
+    //    else if(timeStrat <= targetTime)
+    //    {
+    //        timeStrat = 0; // 시간 초기화
+    //        timeText.text = "00:00:00"; // UI 텍스트 초기화
+    //    }
+    //}
 }
