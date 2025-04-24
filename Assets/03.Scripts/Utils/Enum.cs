@@ -102,6 +102,12 @@ public enum Difficulty
     Hard,
 }
 
+public enum EInteractionType
+{
+    StartGame,
+    EndGame
+}
+
 #endregion
 
 #region CutScene
