@@ -77,6 +77,7 @@ public static class Extensions
             CutSceneType.Intro         => "Intro",
             CutSceneType.Rescued       => "Rescued",
             CutSceneType.LeavingForest => "LeavingForest",
+            CutSceneType.DaunRoom      => "DounRoom",
             _                          => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }

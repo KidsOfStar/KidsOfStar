@@ -10,7 +10,6 @@ public class UpdateProgressAction : IDialogActionHandler
             Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
         }
         
-        EditorLog.Log("UpdateProgressAction");
         Managers.Instance.GameManager.UpdateProgress();
     }
 }

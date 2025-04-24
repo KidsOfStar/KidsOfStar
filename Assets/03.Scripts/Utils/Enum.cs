@@ -44,6 +44,7 @@ public enum CustomActionType
 {
     GoToEnding,
     MoveTo,
+    
 }
 
 public enum DialogCustomMethodType
@@ -127,6 +128,7 @@ public enum CutSceneType
     Intro,
     Rescued,
     LeavingForest,
+    DaunRoom,
 }
 
 #endregion
