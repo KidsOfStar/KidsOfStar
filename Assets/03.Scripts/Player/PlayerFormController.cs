@@ -118,7 +118,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     /// 돌과 사람을 제외한 모든 형태의 해금 상태를 반환
     /// </summary>
     /// <returns></returns>
-    public Dictionary<string, bool> GetFormLock()
+    public Dictionary<string, bool> GetAllFormLock()
     {
         Dictionary<string, bool> activeDic =
             new Dictionary<string, bool>()
@@ -130,6 +130,13 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             };
 
         return activeDic;
+    }
+
+    // 형태의 해금 상태를 반환
+    public bool GetFormLock(string formName)
+    {
+        bool active = formDataDictionary[formName].IsActive;
+        return active;
     }
 
     // 형태의 해금 상태를 변경

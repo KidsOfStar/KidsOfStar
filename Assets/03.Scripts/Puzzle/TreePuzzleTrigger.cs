@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class TreePuzzleTrigger : MonoBehaviour
 {
-    [SerializeField] private string[] allowedFormsNames;
     private bool triggered = false;
+    private bool hasPlayer = false;
+    private bool hasBox = false;
+
     private SkillBTN skillBTN;
     [SerializeField] private TreePuzzleData puzzleData;
     [SerializeField] private int sequenceIndex;
@@ -21,29 +20,60 @@ public class TreePuzzleTrigger : MonoBehaviour
     {
         if (triggered) return;
 
-        var formControl = Managers.Instance.GameManager.Player.FormControl;
-        string currentForm = formControl.ReturnCurFormName();
-
-        // 허용되지 않은 형태일 경우
-        if (currentForm == "Squirrel")
+        if (collision.CompareTag("Player"))
         {
-            // 다람쥐면 경고창 띄움
-            Managers.Instance.UIManager.Show<TreeWarningPopup>();
-            skillBTN.ShowInteractionButton(false);
+            hasPlayer = true;
+
+            // 다람쥐 형태 검사
+            var formControl = Managers.Instance.GameManager.Player.FormControl;
+            // 허용되지 않은 형태일 경우
+            if (formControl.ReturnCurFormName() == "Squirrel")
+            {
+                Managers.Instance.UIManager.Show<TreeWarningPopup>();
+                return;
+            }
+        }
+
+        else if(collision.CompareTag("Box"))
+        {
+            hasBox = false;
+        }
+        else
+        {
             return;
         }
 
-        skillBTN.ShowInteractionButton(true); // 상호작용 버튼 표시
-        skillBTN.OnInteractBtnClick += TryStartPuzzle;
+        TryEnableInteraction();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (triggered) return;
 
-        // 영역 벗어나면 버튼 숨기기 + 콜백 해제
+        if (collision.CompareTag("Player"))
+        {
+            hasPlayer = false;
+        }
+        else if (collision.CompareTag("Box"))
+        {
+            hasBox = false;
+        }
+        else
+        {
+            return;
+        }
+
         skillBTN.ShowInteractionButton(false);
         skillBTN.OnInteractBtnClick -= TryStartPuzzle;
+    }
+
+    private void TryEnableInteraction()
+    {
+        if (hasPlayer && hasBox)
+        {
+            skillBTN.ShowInteractionButton(true);
+            skillBTN.OnInteractBtnClick += TryStartPuzzle;
+        }
     }
 
     private void TryStartPuzzle()
@@ -51,13 +81,21 @@ public class TreePuzzleTrigger : MonoBehaviour
         if (triggered) return;
 
         triggered = true;
+
+        skillBTN.ShowInteractionButton(false);
+        skillBTN.OnInteractBtnClick -= TryStartPuzzle;
+
         Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData,sequenceIndex);
-        skillBTN.ShowInteractionButton(false); // 한 번만 작동하게끔 비활성화
     }
 
     public void ResetTrigger()
     {
         triggered = false;
+        hasPlayer = false;
+        hasBox = false;
+
+        skillBTN.ShowInteractionButton(false);
+        skillBTN.OnInteractBtnClick -= TryStartPuzzle;
     }
 
 }
