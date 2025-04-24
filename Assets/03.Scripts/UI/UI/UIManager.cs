@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : ISceneLifecycleHandler
 {
-    SkillBTN skillBTN; // 스킬 버튼 UI
-    SkillUnlock skillUnlock; // 스킬 잠금 해제 UI
+    public SkillBTN SkillBTN { get; set; }
+    public SkillUnlock SkillUnlock { get; set; }
 
 
     public RectTransform CanvasRectTr { get; private set; }

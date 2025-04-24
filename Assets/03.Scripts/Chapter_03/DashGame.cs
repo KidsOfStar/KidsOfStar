@@ -10,7 +10,7 @@ public class DashGame : MonoBehaviour
     public float playerSpeed; // 플레이어 속도
     public bool isGameStarted = false;
     public bool isGameEnded = false;
-    public float targetTime; // 목표 시간 1분 40초
+    public float targetTime; // 목표 시간
 
 
     private SkillBTN skillBTN; // 스킬 버튼 UI
@@ -42,7 +42,6 @@ public class DashGame : MonoBehaviour
 
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
-
     }
 
     private IEnumerator StartGame(float delay)
@@ -71,7 +70,29 @@ public class DashGame : MonoBehaviour
         {
             // 목표 시간에 도달했을 때의 처리
             Debug.Log("목표 시간에 도달했습니다!");
+
+            // 컷신 처리하기
         }
+
+
+        // 1분 30초 미만일 때 대사 테이블에서 출력하기
+        if (stopWatch.timeStrat < 90f)
+        {
+            // 1분 30초 미만일 때 대사 출력
+        }
+        // 2분 30초 미만일 때 대사 테이블에서 출력하기   
+        else if(stopWatch.timeStrat < 150f)
+        {
+            // 2분 30초 미만일 때 대사 출력
+        }
+        // 3분 30초 이상일 때 대사 테이블에서 출력하기
+        else if (stopWatch.timeStrat <= 210f)
+        {
+            // 2분 30초 미만일 때 대사 출력
+        }
+
+
+
     }
 
 }
