@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class ProgressNpcPlacer : MonoBehaviour
 {
+    [SerializeField] private bool isDisableInStart;
     [SerializeField] private NpcPositionData[] positionDatas;
     
     // 게임매니저에 있는 이벤트에 등록
     private void Start()
     {
         Managers.Instance.GameManager.OnProgressUpdated += MoveNpcToPosition;
+        
+        if (isDisableInStart) gameObject.SetActive(false);
     }
     
     private void MoveNpcToPosition()
