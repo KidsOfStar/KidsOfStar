@@ -17,6 +17,6 @@ public class Chapter02Base : SceneBase
     }
     private void Start()
     {
-        
+        Managers.Instance.GameManager.TriggerEnding(EndingType.Absorb);
     }
 }

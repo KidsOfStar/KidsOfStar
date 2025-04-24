@@ -26,7 +26,8 @@ public class UIEnding : UIBase
     private Dictionary<EndingType, Sprite> endingSpriteDict;
     private bool canClick = false;
 
-    private readonly Color transparent = new Color(0, 0, 0, 0);
+    private readonly Color transparentWhite = new Color(1f, 1f, 1f, 0f);
+    private readonly Color opaqueWhite = new Color(1f, 1f, 1f, 1f);
     private const float fadeTime = 2f;
     private const float showDelay = 3f;
 
@@ -46,7 +47,7 @@ public class UIEnding : UIBase
         continueButton.onClick.AddListener(() => StartCoroutine(OnContinue()));
         continueButton.interactable = false; // 처음엔 비활성화
 
-        endingImage.color = transparent;
+        endingImage.color = transparentWhite;
         clickToContinueText.gameObject.SetActive(false);
     }
 
@@ -72,10 +73,12 @@ public class UIEnding : UIBase
 
     private IEnumerator PlayEndingFlow()
     {
-        yield return Fade(transparent, Color.black, fadeTime, c => endingImage.color = c);
-
-        yield return new WaitForSeconds(showDelay);
-
+        yield return Fade(
+         from: transparentWhite,
+         to: opaqueWhite,
+         duration: fadeTime,
+         applyColor: c => endingImage.color = c
+     );
         canClick = true;
         clickToContinueText.gameObject.SetActive(true);
         StartCoroutine(BlinkText());
@@ -84,10 +87,13 @@ public class UIEnding : UIBase
 
     private IEnumerator OnContinue()
     {
-        canClick = false;
-        clickToContinueText.gameObject.SetActive(false);
+        yield return Fade(
+        from: opaqueWhite,
+        to: transparentWhite,
+        duration: fadeTime,
+        applyColor: c => endingImage.color = c
+    );
 
-        yield return Fade(Color.black, transparent, fadeTime, c => endingImage.color = c);
 
         Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title);
     }
