@@ -4531,7 +4531,7 @@ MonoBehaviour:
   positionDatas:
   - progress: 3
     isActive: 1
-    position: {x: 47, y: -2.19, z: 0}
+    position: {x: 48.5, y: -2.19, z: 0}
 --- !u!61 &1824104152342824687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4575,7 +4575,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.38}
+  m_Size: {x: 2, y: 1.38}
   m_EdgeRadius: 0
 --- !u!61 &1883447967300855757
 BoxCollider2D:
@@ -4620,7 +4620,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!61 &2124796027088042911
 BoxCollider2D:
@@ -4665,7 +4665,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 0.775}
+  m_Size: {x: 2, y: 0.775}
   m_EdgeRadius: 0
 --- !u!114 &2412888711101645567
 MonoBehaviour:
@@ -4816,7 +4816,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 0.8}
+  m_Size: {x: 2, y: 0.8}
   m_EdgeRadius: 0
 --- !u!4 &3649268118179912920
 Transform:
@@ -4876,7 +4876,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &3798677716247372858
 Transform:
@@ -5434,7 +5434,7 @@ MonoBehaviour:
   positionDatas:
   - progress: 3
     isActive: 1
-    position: {x: 32.5, y: -2.7, z: 0}
+    position: {x: 31.5, y: -2.7, z: 0}
 --- !u!1 &6984021594029669977
 GameObject:
   m_ObjectHideFlags: 0
