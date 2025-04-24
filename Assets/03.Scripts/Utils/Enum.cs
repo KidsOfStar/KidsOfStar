@@ -138,7 +138,9 @@ public enum CutSceneType
     LeavingForest,
     DaunRoom,
     JigimOrder,
-    
+    FieldNormalLife,
+    SemyungGoOut,
+    RescueKitten,
 }
 
 #endregion
