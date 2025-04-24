@@ -635,11 +635,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.y
-      value: 5
+      value: 4.85
       objectReference: {fileID: 0}
     - target: {fileID: 7271787369035241401, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: m_LocalPosition.x
@@ -771,11 +771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2759841982836350755, guid: b589dd3089f9dfe4e894f3c93147525e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: -6.96
       objectReference: {fileID: 0}
     - target: {fileID: 2759841982836350755, guid: b589dd3089f9dfe4e894f3c93147525e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9000006
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 2759841982836350755, guid: b589dd3089f9dfe4e894f3c93147525e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7142,12 +7142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18bf7cc9091a0c4fb84a3ffc031a72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowedFormsNames:
-  - Human
-  - Squirrel
-  - Dog
-  - Cat
-  - Hide
   puzzleData: {fileID: 11400000, guid: edc478d643bdb114cad935b95c8748a6, type: 2}
   sequenceIndex: 0
 --- !u!61 &1575658467
@@ -7257,12 +7251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18bf7cc9091a0c4fb84a3ffc031a72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowedFormsNames:
-  - Human
-  - Squirrel
-  - Dog
-  - Cat
-  - Hide
   puzzleData: {fileID: 11400000, guid: 5a61ba438c50a08468318dea14f7e3c5, type: 2}
   sequenceIndex: 1
 --- !u!4 &1595185368 stripped
