@@ -58,6 +58,7 @@ namespace MainTable
 
 		public System.Int32 Index;
 		public DialogActionType Action;
+		public System.String Param;
   
 
 #region fuctions
