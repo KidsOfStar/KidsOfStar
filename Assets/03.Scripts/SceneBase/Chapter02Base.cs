@@ -17,4 +17,8 @@ public class Chapter02Base : SceneBase
 
         skillUnlock.UnlockSkill(1); // 강아지 스킬 잠금 해제
     }
+    private void Start()
+    {
+        
+    }
 }
