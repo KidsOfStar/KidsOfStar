@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 7
   <BubbleTr>k__BackingField: {fileID: 8486397340754864470}
 --- !u!95 &2792901343900831706
 Animator:
@@ -2891,7 +2891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 3
   <BubbleTr>k__BackingField: {fileID: 6140398273291889461}
 --- !u!95 &4504319838682519247
 Animator:
@@ -3057,7 +3057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 4
   <BubbleTr>k__BackingField: {fileID: 6714611192507213848}
 --- !u!95 &639683847405754657
 Animator:
@@ -3602,7 +3602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 5
   <BubbleTr>k__BackingField: {fileID: 6089357331306290076}
 --- !u!95 &8863695346970130112
 Animator:
