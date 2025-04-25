@@ -62,7 +62,6 @@ public class CutSceneBase : MonoBehaviour
     public void DestroyPrefab(bool instantDestroy = false)
     {
         //Managers.Instance.CutSceneManager.LetterBoxer.DisableLetterBox();
-
         Managers.Instance.DialogueManager.OnDialogEnd -= ResumeCutScene;
         Managers.Instance.CutSceneManager.OnCutSceneEnd?.Invoke();
         OnCutSceneCompleted?.Invoke();

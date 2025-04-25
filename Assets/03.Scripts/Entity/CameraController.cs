@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     [Header("Light")] // 씬에 배치 할 라이트 오브젝트 : 컷씬 재생 중에는 비활성화
     [SerializeField] private GameObject lightObject;
     
-    private Transform target = null;
+    [SerializeField] private Transform target = null;
     private const float SmoothSpeed = 5f;
     private CutSceneManager cutSceneManager;
 
