@@ -1,7 +1,12 @@
 using System;
+using UnityEngine;
 
 public class CutSceneManager
 {
+    public Transform PlayerTransform { get; private set; }
+    public Transform PlayerSpawnPos { get; private set; }
+    public string CurrentCutSceneName { get; private set; }
+
     public bool IsCutScenePlaying { get; private set; } = false;
     public Action OnCutSceneStart { get; set; }
     public Action OnCutSceneEnd { get; set; }
@@ -21,6 +26,7 @@ public class CutSceneManager
     
     public void PlayCutScene(string cutsceneName, Action localEndCallback = null)
     {
+        CurrentCutSceneName = cutsceneName;
         // letterBoxer = Managers.Instance.GameManager.MainCamera.GetComponent<LetterBoxer>();
         string prefabPath = $"{CutScenePath}{cutsceneName}";
         var cutSceneBase = Managers.Instance.ResourceManager.Instantiate<CutSceneBase>(prefabPath);
@@ -58,5 +64,10 @@ public class CutSceneManager
             EditorLog.LogError("현재 재생중인 컷씬이 없습니다.");
 
         currentCutScene.DestroyPrefab(true);
+    }
+    public void SetPlayerReferences(Transform player, Transform spawnPos)
+    {
+        PlayerTransform = player;
+        PlayerSpawnPos = spawnPos;
     }
 }
