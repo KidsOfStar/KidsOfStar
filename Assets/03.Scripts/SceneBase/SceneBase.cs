@@ -24,6 +24,8 @@ public abstract class SceneBase : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
 
+    private Action onCutSceneEndHandler;
+
     // TODO: 각 씬 별로 플레이어가 자유상호작용 때 말하는 부분이 있다면 플레이어도 스폰 후 speaker로 등록해야함
     private void Awake()
     {
@@ -88,12 +90,13 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.GameManager.SetPlayer(player);
         Managers.Instance.DialogueManager.SetPlayerSpeaker(player);
 
-        Managers.Instance.CutSceneManager.SetPlayerReferences(playerObj.transform, playerSpawnPosition);
-        Managers.Instance.CutSceneManager.OnCutSceneEnd += () =>
+        onCutSceneEndHandler += () =>
         {
             playerObj.transform.position = playerSpawnPosition.position;
             playerObj.transform.rotation = playerSpawnPosition.rotation;
         };
+        Managers.Instance.CutSceneManager.SetPlayerReferences(playerObj.transform, playerSpawnPosition);
+        Managers.Instance.CutSceneManager.OnCutSceneEnd += onCutSceneEndHandler;
     }
 
     private void InitCameraController()
@@ -143,4 +146,15 @@ public abstract class SceneBase : MonoBehaviour
     // playIntroCallback은 씬 진입 시 보여줄 인트로 UI 재생의 콜백
     // 컷씬 재생이 필요한 경우에는 이 콜백을 사용하여 컷씬 재생 후 인트로를 플레이
     protected abstract void InitSceneExtra(Action playIntroCallback);
+
+    private void OnDestroy()
+    {
+        // 씬이 파괴될 때 반드시 구독 해제
+        if (onCutSceneEndHandler != null)
+        {
+            Managers.Instance.CutSceneManager.OnCutSceneEnd -= onCutSceneEndHandler;
+            onCutSceneEndHandler = null;
+        }
+    }
 }
+
