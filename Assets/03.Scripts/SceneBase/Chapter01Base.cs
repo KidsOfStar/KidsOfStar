@@ -16,7 +16,6 @@ public class Chapter01Base : SceneBase
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Maorum);
         Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName(), callback);
-        //Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom.GetName());
         sceneEventTrigger.Init();
     }
 }

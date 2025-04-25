@@ -1,12 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class SceneEventTrigger : MonoBehaviour
 {
-    [field: SerializeField] public UnityEvent OnTriggerEnterEvent { get; private set; }
-    [field: SerializeField] private int[] requiredDialogs;
-    private Dictionary<int, bool> finishedDialog = new();
+    [Header("Trigger Event"), Tooltip("특정 오브젝트의 Trigger에 반응합니다.")]
+    [SerializeField] private int[] requiredDialogs;
+    [SerializeField] private UnityEvent onTriggerEnterEvent;
+
+    [Header("Specified Dialog Event"), Tooltip("특정 대화가 끝나면 반응합니다.")]
+    [SerializeField] private int specifiedDialogIndex;
+    [SerializeField] private UnityEvent onSpecifiedDialogEnd;
+    private Action<int> onSpecifiedDialogCheck;
+    
+    private readonly Dictionary<int, bool> finishedDialog = new();
     private bool canTrigger = false;
 
     public void Init()
@@ -20,6 +28,7 @@ public class SceneEventTrigger : MonoBehaviour
         
         // 콜백에 등록
         Managers.Instance.DialogueManager.OnSceneDialogEnd += CheckCurrentDialog;
+        onSpecifiedDialogCheck += CheckSpecifiedDialog;
     }
 
     private void CheckCurrentDialog(int index)
@@ -27,6 +36,7 @@ public class SceneEventTrigger : MonoBehaviour
         if (finishedDialog.ContainsKey(index))
             finishedDialog[index] = true;
         
+        onSpecifiedDialogCheck?.Invoke(index);
         CheckRequiredDialogFinished();
     }
 
@@ -39,13 +49,19 @@ public class SceneEventTrigger : MonoBehaviour
         // 모두 봤다면 Trigger 가능
         canTrigger = true;
     }
+
+    private void CheckSpecifiedDialog(int index)
+    {
+        if (index == specifiedDialogIndex)
+            onSpecifiedDialogEnd?.Invoke();
+    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!canTrigger) return;
         if (!other.CompareTag("Player")) return;
 
-        OnTriggerEnterEvent?.Invoke();
+        onTriggerEnterEvent?.Invoke();
         canTrigger = false;
     }
 

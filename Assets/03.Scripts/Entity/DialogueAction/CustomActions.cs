@@ -1,3 +1,4 @@
+using MainTable;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,12 @@ public static class CustomActions
     {
         actionDict[CustomActionType.GoToEnding] = PlayEnding;
         actionDict[CustomActionType.MoveTo] = PlayerMoveTo;
+        
+    }
+    
+    public static void ExecuteAction(SpecifiedAction actionData)
+    {
+        actionDict[actionData.Action].Invoke(actionData.Param);
     }
     
     public static void PlayEnding(string param)
@@ -40,5 +47,18 @@ public static class CustomActions
         
         var player = Managers.Instance.GameManager.Player;
         player.transform.position = new Vector3(x, y, player.transform.position.z);
+    }
+    
+    public static void PlayCutScene(string param)
+    {
+        if (!Enum.TryParse<CutSceneType>(param, out var cutSceneType))
+        {
+            EditorLog.LogError($"PlayCutSceneAction : Invalid cutscene type: {param}");
+            return;
+        }
+        
+        // 현재 재생중인 컷씬이 있다면 파괴
+        // 
+        Managers.Instance.CutSceneManager.PlayCutScene(cutSceneType.GetName());
     }
 }
