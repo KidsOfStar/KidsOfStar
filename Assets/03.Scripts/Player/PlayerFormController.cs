@@ -11,20 +11,25 @@ public interface IPusher
 public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
 {
     [SerializeField, Tooltip("형태변환 데이터 모음집")] private PlayerFormData formData;
+    [SerializeField, Tooltip("이펙트 재생용 오브젝트")] private GameObject formChangeEffectObj;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private Dictionary<string, FormData> formDataDictionary = new Dictionary<string, FormData>();
 
     private PlayerController controller;
-    private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
     private FormData curFormData;
     public FormData CurFormData { get { return  curFormData; } }
 
+    // 변신 이펙트 재생 시간
+    private float fxDuration;
+
     public void Init(Player player, string formName)
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         SetFormData();
         controller = player.Controller;
+        Animator fxAnim = formChangeEffectObj.GetComponent<Animator>();
+        fxDuration = fxAnim.runtimeAnimatorController.animationClips[0].length;
     }
 
     void SetFormData()
@@ -60,10 +65,29 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             }
         }
 
+        StartCoroutine(FormChangeSequence());
+    }
+
+    // 변신 이펙트 재생
+    private IEnumerator FormChangeSequence()
+    {
+        controller.LockPlayer();
+        spriteRenderer.enabled = false;
+
+        formChangeEffectObj.SetActive(true);
+        // 애니메이션 재생 상태 확보를 위한 한 프레임 대기
+        yield return null;
+        // 이펙트 재생 시간만큼 대기
+        yield return new WaitForSeconds(fxDuration);
+
+        formChangeEffectObj.SetActive(false);
+        controller.IsControllable = true;
         spriteRenderer.sprite = curFormData.FormImage;
         boxCollider.offset = new Vector2(curFormData.OffsetX, curFormData.OffsetY);
         boxCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
         controller.JumpForce = curFormData.JumpForce;
+        controller.Anim.runtimeAnimatorController = curFormData.FormAnim;
+        spriteRenderer.enabled = true;
     }
 
     // 스프라이트 렌더러 플립

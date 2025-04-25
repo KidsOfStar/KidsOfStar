@@ -43,7 +43,6 @@ public class PlayerBtn : UIBase
 
     public void OnCutSceneSkip()
     {
-        EditorLog.Log("컷씬 시작");
         skillPanel.SetActive(false); // 스킬 패널 비활성화
         joystick.SetActive(false); // 조이스틱 비활성화
         functionPanel.SetActive(false); // 기능 패널 비활성화

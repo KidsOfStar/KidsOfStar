@@ -44,7 +44,9 @@ public class DashGameResultPopup : PopupBase
         }
         else
         {
+            EditorLog.Log("대사 끝");
             Managers.Instance.UIManager.Hide<DashGameResultPopup>();
+            //Managers.Instance.GameManager.UpdateProgress(); // 챕터 진행도 +1
         }
     }
 
