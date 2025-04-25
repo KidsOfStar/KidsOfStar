@@ -128,10 +128,10 @@ MonoBehaviour:
   uiPosition: 1
   closeBtn: {fileID: 0}
   checkTimeStop: 0
-  isFirst: 0
+  isFirst: 1
   jigimText: {fileID: 1791521020144626146}
   semyungText: {fileID: 8644757983035438794}
-  dialogueDatabase: {fileID: 11400000, guid: 50e38e8491c5ea447b22d7aaac010b04, type: 2}
+  dialogueDatabase: {fileID: 11400000, guid: f9f7006d804fbbc49a1139de2b0fa9d4, type: 2}
 --- !u!1 &4665791101553058456
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,8 +361,8 @@ MonoBehaviour:
   m_Padding:
     m_Left: 30
     m_Right: 30
-    m_Top: 30
-    m_Bottom: 30
+    m_Top: 50
+    m_Bottom: 50
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1

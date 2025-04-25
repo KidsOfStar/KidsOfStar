@@ -94,7 +94,7 @@ public class DashGame : MonoBehaviour
             // 2분 30초 미만일 때 대사 출력
             Managers.Instance.UIManager.Show<DashGameResultPopup>(210f, npcType);
         }
+
+
     }
 }
-
-

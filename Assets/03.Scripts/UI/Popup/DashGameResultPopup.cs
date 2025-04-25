@@ -22,9 +22,12 @@ public class DashGameResultPopup : PopupBase
     private List<string> currentDialogLines;
     private ENpcType currentNpcType;
 
+    
     public override void Opened(params object[] param)
     {
         base.Opened(param);
+
+        SkillBTN skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
         if (param.Length < 2 || !(param[0] is float clearTime) || !(param[1] is ENpcType npcType))
         {
@@ -33,7 +36,6 @@ public class DashGameResultPopup : PopupBase
         }
 
         Debug.Log($"[Opened] 시간: {clearTime}, NPC: {npcType}");
-
 
         currentNpcType = npcType;
         currentDialogLines = dialogueDatabase.GetDialogueByNpc(clearTime, npcType);

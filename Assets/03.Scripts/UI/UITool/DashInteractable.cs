@@ -3,19 +3,18 @@ using UnityEngine;
 
 public class DashInteractable : MonoBehaviour
 {
-
     public EInteractionType interactionType; // 상호작용 타입
 
     public ENpcType npcType; // Jigim 또는 Semyung을 에디터에서 지정
 
-    public SkillBTN skillBTN;
+    SkillBTN skillBTN;
     private DashGame dashGame;
 
     // Start is called before the first frame update
     void Start()
     {
-        skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         dashGame = FindObjectOfType<DashGame>();
+        skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,23 +34,23 @@ public class DashInteractable : MonoBehaviour
             skillBTN.OnInteractBtnClick -= OnPlayerInteract;
         }
     }
+
     private void OnPlayerInteract()
     {
         if (interactionType == EInteractionType.StartGame && !dashGame.isGameStarted)
         {
             dashGame.StartGame();
             this.enabled = false; // 스크립트 비활성화
-
-
+            skillBTN.ShowInteractionButton(false);
         }
         else if (interactionType == EInteractionType.EndGame && !dashGame.isGameEnded)
         {
             dashGame.EndGame(npcType); // NPC 정보를 함께 전달
-            this.enabled = false;
+            //this.enabled = false;
         }
 
         // 한 번만 작동하게 하고 싶다면 버튼 비활성화
-        skillBTN.ShowInteractionButton(false);
+        //skillBTN.ShowInteractionButton(false);
         skillBTN.OnInteractBtnClick -= OnPlayerInteract;
     }
 }

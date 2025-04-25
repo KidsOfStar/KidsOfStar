@@ -10,7 +10,7 @@ public class DialogueEntry
 }
 
 // ScriptableObject로 여러 시간 구간의 대사를 포함
-[CreateAssetMenu(fileName = "DialogueDatabase", menuName = "ScriptableObjects/DialogueDatabase")]
+[CreateAssetMenu(fileName = "DialogueDatabase", menuName = "ScriptableObject/DialogueDatabase")]
 public class DashDialogueDatabase : ScriptableObject
 {
     public List<DialogueEntry> entries;
