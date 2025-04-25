@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,7 +34,6 @@ public class UIEnding : UIBase
     private const float fadeTime = 2f;
     private const float showDelay = 3f;
 
-
     private void OnEnable()
     {
         // Dictionary 초기화
@@ -58,7 +56,6 @@ public class UIEnding : UIBase
         clickToContinueText.gameObject.SetActive(false);
     }
     
-
     public override void Opened(params object[] param)
     {
         base.Opened(param);
@@ -144,5 +141,4 @@ public class UIEnding : UIBase
         }
         applyColor(to);
     }
-
 }
