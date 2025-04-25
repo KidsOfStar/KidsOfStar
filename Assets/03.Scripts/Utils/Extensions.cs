@@ -74,11 +74,15 @@ public static class Extensions
     {
         return cutSceneType switch
         {
-            CutSceneType.Intro         => "Intro",
-            CutSceneType.Rescued       => "Rescued",
-            CutSceneType.LeavingForest => "LeavingForest",
-            CutSceneType.DaunRoom      => "DounRoom",
-            _                          => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
+            CutSceneType.Intro           => "Intro",
+            CutSceneType.Rescued         => "Rescued",
+            CutSceneType.LeavingForest   => "LeavingForest",
+            CutSceneType.DaunRoom        => "DounRoom",
+            CutSceneType.JigimOrder      => "JigimOrder",
+            CutSceneType.FieldNormalLife => "FieldNormalLife",
+            CutSceneType.SemyungGoOut    => "SemyungGoOut",
+            CutSceneType.RescueKitten    => "RescueKitten",
+            _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }
     

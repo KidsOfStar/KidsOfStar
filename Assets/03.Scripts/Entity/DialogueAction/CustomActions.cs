@@ -11,7 +11,8 @@ public static class CustomActions
     {
         actionDict[CustomActionType.GoToEnding] = PlayEnding;
         actionDict[CustomActionType.MoveTo] = PlayerMoveTo;
-        
+        actionDict[CustomActionType.PlayCutScene] = PlayCutScene;
+        actionDict[CustomActionType.Return] = DoNothing;
     }
     
     public static void ExecuteAction(SpecifiedAction actionData)
@@ -19,7 +20,8 @@ public static class CustomActions
         actionDict[actionData.Action].Invoke(actionData.Param);
     }
     
-    public static void PlayEnding(string param)
+    // 컷씬과 자유상호작용 모두 쓰일 수 있음
+    private static void PlayEnding(string param)
     {
         if (!Enum.TryParse<EndingType>(param, out var endingType))
         {
@@ -27,10 +29,16 @@ public static class CustomActions
             return;
         }
         
+        if (Managers.Instance.CutSceneManager.IsCutScenePlaying)
+            Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
+        
+        Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
+        Managers.Instance.DialogueManager.OnSceneDialogEnd?.Invoke(0);
         Managers.Instance.GameManager.TriggerEnding(endingType);
     }
 
-    public static void PlayerMoveTo(string param)
+    // 자유상호작용에만 쓰임
+    private static void PlayerMoveTo(string param)
     {
         var split = param.Split(',');
         if (split.Length != 2)
@@ -45,11 +53,14 @@ public static class CustomActions
             return;
         }
         
+        Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
+        Managers.Instance.DialogueManager.OnSceneDialogEnd?.Invoke(0);
         var player = Managers.Instance.GameManager.Player;
         player.transform.position = new Vector3(x, y, player.transform.position.z);
     }
     
-    public static void PlayCutScene(string param)
+    // 컷씬에만 쓰임
+    private static void PlayCutScene(string param)
     {
         if (!Enum.TryParse<CutSceneType>(param, out var cutSceneType))
         {
@@ -57,8 +68,17 @@ public static class CustomActions
             return;
         }
         
-        // 현재 재생중인 컷씬이 있다면 파괴
-        // 
+        if (Managers.Instance.CutSceneManager.IsCutScenePlaying)
+        {
+            Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
+        }
+        
         Managers.Instance.CutSceneManager.PlayCutScene(cutSceneType.GetName());
+    }
+    
+    private static void DoNothing(string param)
+    {
+        Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
+        Managers.Instance.DialogueManager.OnSceneDialogEnd?.Invoke(0);
     }
 }

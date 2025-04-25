@@ -122,9 +122,16 @@ public class GameManager
     public void UpdateProgress()
     {
         ChapterProgress++;
-        if (ChapterProgress >= Managers.Instance.DataManager.GetMaxProgress(CurrentChapter))
+        EditorLog.Log(ChapterProgress);
+        if (ChapterProgress > Managers.Instance.DataManager.GetMaxProgress(CurrentChapter))
             return;
         
+        OnProgressUpdated?.Invoke();
+    }
+
+    public void ResetProgress()
+    {
+        ChapterProgress = 1;
         OnProgressUpdated?.Invoke();
     }
     
