@@ -7618,8 +7618,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a319ccff1181a46a5ec83923c078a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  spawnPoint: {fileID: 1440882714}
+  player: {fileID: 1440882714}
+  spawnPoints:
+  - {fileID: 1440882714}
+  - {fileID: 1440882714}
   currentCutSceneNames:
   - DounRoom
   - LeavingForest

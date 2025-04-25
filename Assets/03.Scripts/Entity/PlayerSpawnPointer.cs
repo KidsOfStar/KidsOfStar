@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class PlayerSpawnPointer : MonoBehaviour
 {
-    [Header("Assign in Inspector")]
+    [Header("Inspector에 할당해야 할 것")]
     [Tooltip("컷씬이 끝난 뒤 이동시킬 플레이어 Transform")]
     [SerializeField] private Transform player;
-
     [Tooltip("컷씬 종료 후 플레이어를 보낼 위치 Transform")]
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private List<Transform> spawnPoints;
 
     [Tooltip("컷신 종류")]
     [SerializeField] private List<string> currentCutSceneNames;
 
-    private void OnEnable()
+    private void Start()
     {
+        player = Managers.Instance.CutSceneManager.PlayerTransform;
         Managers.Instance.CutSceneManager.OnCutSceneEnd += HandleCutSceneEnd;
     }
 
@@ -27,15 +27,15 @@ public class PlayerSpawnPointer : MonoBehaviour
     {
         // 현재 재생된 컷씬 타입이 우리가 지정한 타입이 아니면 무시
         string current = Managers.Instance.CutSceneManager.CurrentCutSceneName;
-        if (currentCutSceneNames == null || !currentCutSceneNames.Contains(current))
-            return;
+        int idx = currentCutSceneNames.IndexOf(current);
+        if (idx < 0) return;
 
-        // 안전하게 Null 체크 후 이동
-        if (player == null || spawnPoint == null)
-            return;
+        if (spawnPoints == null || idx >= spawnPoints.Count) return;
 
-        player.position = spawnPoint.position;
-        player.rotation = spawnPoint.rotation;
+        Transform targetPoint = spawnPoints[idx];
+
+        player.position = targetPoint.position;
+        player.rotation = targetPoint.rotation;
 
         // 한 번만 처리하고 싶다면 여기서 해제
         Managers.Instance.CutSceneManager.OnCutSceneEnd -= HandleCutSceneEnd;

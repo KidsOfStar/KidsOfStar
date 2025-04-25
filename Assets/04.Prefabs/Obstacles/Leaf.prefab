@@ -148,9 +148,11 @@ MonoBehaviour:
   dropPosition: {x: 1.5, y: 1.5, z: 0}
   moveSpeed: 3
   jumpHeight: 4
+  respawnDelay: 5
+  fallDuration: 1
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
 --- !u!50 &3869207410009331865
 Rigidbody2D:
   serializedVersion: 4
