@@ -29,6 +29,7 @@ public class ProgressNpcPlacer : MonoBehaviour
             }
         }
     }
+
     private void OnDestroy()
     {
         Managers.Instance.GameManager.OnProgressUpdated -= MoveNpcToPosition;
