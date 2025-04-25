@@ -1468,6 +1468,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7271787369035241401, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
   m_PrefabInstance: {fileID: 1172307651}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1184762847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1184762848}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1184762848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184762847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.307, y: -1.408, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1188590578
 GameObject:
   m_ObjectHideFlags: 0
@@ -7618,8 +7649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a319ccff1181a46a5ec83923c078a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  spawnPoint: {fileID: 1440882714}
+  player: {fileID: 1440882714}
+  spawnPoint: {fileID: 1184762848}
   currentCutSceneNames:
   - DounRoom
   - LeavingForest
@@ -12467,3 +12498,4 @@ SceneRoots:
   - {fileID: 1550185416}
   - {fileID: 376672858}
   - {fileID: 266765988}
+  - {fileID: 1184762848}
