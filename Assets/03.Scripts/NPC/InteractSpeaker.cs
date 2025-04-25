@@ -21,7 +21,7 @@ public abstract class InteractSpeaker : MonoBehaviour
             dialogByProgress.Add(npcData.Progress, npcData.DialogIndex);
         }
 
-        InitRequiredDialog();
+        //InitRequiredDialog();
         
         // 게임매니저의 업데이트 프로그레스 이벤트에 현재 프로그레스에 맞는 필수대사가 있다면 느낌표를 띄우는 함수 등록
         // 다이얼로그 매니저의 특정 대사 End 이벤트에 느낌표를 제거하는 함수 등록
