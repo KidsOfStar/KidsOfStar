@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class Chapter02Base : SceneBase
 {
@@ -13,6 +12,5 @@ public class Chapter02Base : SceneBase
 
         skillUnlock.UnlockSkill(1); // 강아지 스킬 잠금 해제
         Managers.Instance.UIManager.SkillUnlock.UnlockSkill(1); // 다람쥐 스킬 잠금 해제
-
     }
 }

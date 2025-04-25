@@ -8,9 +8,9 @@ public abstract class SceneBase : MonoBehaviour
 {
     [Header("Chapter")]
     [SerializeField] private ChapterType currentChapter;
-
+    [SerializeField] private bool existRequiredDialog = true;
     [SerializeField] private bool isFirstTime = true;
-    [SerializeField] private string introText; // TODO: first Time은 어떻게 설정하지?
+    [SerializeField, TextArea] private string introText; // TODO: first Time은 어떻게 설정하지?
 
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
@@ -32,6 +32,8 @@ public abstract class SceneBase : MonoBehaviour
         // 매니저들 초기화
         InitManagers();
 
+        CreatePool();
+        
         // 로딩중인 씬 매니저에게 씬이 활성화 되었음을 알림
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
 
@@ -53,6 +55,9 @@ public abstract class SceneBase : MonoBehaviour
 
         // 씬 고유 초기화 작업
         InitSceneExtra(PlayChapterIntro);
+        
+        // NPC 초기화
+        InitNpc();
     }
 
     private void InitManagers()
@@ -60,7 +65,17 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.GameManager.SetCamera(mainCamera);
         Managers.Instance.OnSceneLoaded();
         Managers.Instance.DialogueManager.InitSceneNPcs(speakers);
-        Managers.Instance.GameManager.ResetProgress();
+    }
+
+    private void CreatePool()
+    {
+        // 필수 대화 아이콘 풀 생성
+        if (existRequiredDialog)
+        {
+            var path = Define.dataPath + Define.requiredIconKey;
+            var prefab = Managers.Instance.ResourceManager.Load<GameObject>(path);
+            Managers.Instance.PoolManager.CreatePool(prefab, 10);
+        }
     }
 
     private void SpawnPlayer()
@@ -101,6 +116,11 @@ public abstract class SceneBase : MonoBehaviour
     private void InitSceneBase()
     {
         Managers.Instance.GameManager.SetChapter(currentChapter);
+        Managers.Instance.GameManager.ResetProgress();
+        
+        // TODO: 이어하기가 있기 때문에 뉴 게임인지 검사해서 진행도 이벤트 호출
+        // TODO: 뉴 게임이라면? 챕터 첫 진입이라면? -> ResetProgress
+        // TODO: 이어하기라면? 게임매니저 데이터의 진행도를 가져와서 OnUpdateProgress?.Invoke() 
     }
 
     // 씬 내에서 TriggerEnter로 진행도를 업데이트할 때 사용
@@ -113,6 +133,14 @@ public abstract class SceneBase : MonoBehaviour
     {
         var intro = Managers.Instance.UIManager.Show<UIChapterIntro>();
         StartCoroutine(intro.IntroCoroutine(isFirstTime, introText));
+    }
+
+    private void InitNpc()
+    {
+        foreach (var speaker in speakers)
+        {
+            speaker.Init();
+        }
     }
 
     // playIntroCallback은 씬 진입 시 보여줄 인트로 UI 재생의 콜백

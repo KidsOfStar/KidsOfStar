@@ -153,6 +153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 928272736}
+  - {fileID: 2126795735}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &200471206
@@ -422,7 +423,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 242815942}
-  - {fileID: 2126795735}
   - {fileID: 2104499962}
   m_Father: {fileID: 2020590304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3161,6 +3161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 0
+  existRequiredDialog: 0
   isFirstTime: 1
   introText: "\uC138\uC0C1\uC774 \uC774\uB807\uAC8C \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
@@ -4153,6 +4154,7 @@ MonoBehaviour:
   minPosition: {x: -6, y: 0}
   maxPosition: {x: 52, y: 10}
   lightObject: {fileID: 583897470}
+  target: {fileID: 0}
 --- !u!114 &2020590307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4312,11 +4314,11 @@ Transform:
   m_GameObject: {fileID: 2126795734}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7297792, y: -1.3218409, z: 10}
+  m_LocalPosition: {x: 3.6697793, y: -1.3218409, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 583897471}
+  m_Father: {fileID: 75489993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2126795736
 MonoBehaviour:

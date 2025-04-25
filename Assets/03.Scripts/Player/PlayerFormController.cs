@@ -40,8 +40,8 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         }
     }
 
-    // 형태변화 함수
-    // 플레이어 캐릭터의 여러 속성을 변경해준다
+    // 게임 플레이용 형태 변화
+    // 형태 변화가 가능한 상태인지를 판별
     public void FormChange(string formName)
     {
         FormData nextFormData = formDataDictionary[formName];
@@ -68,7 +68,26 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         StartCoroutine(FormChangeSequence());
     }
 
-    // 변신 이펙트 재생
+    // 컷씬용 형태 변화
+    public void CutSceneFormChange(string formName)
+    {
+        FormData nextFormData = formDataDictionary[formName];
+
+        if(nextFormData == null)
+        {
+            EditorLog.Log("존재하지 않는 형태 변화 시도");
+            return;
+        }
+
+        curFormData = nextFormData;
+        spriteRenderer.sprite = curFormData.FormImage;
+        boxCollider.offset = new Vector2(curFormData.OffsetX, curFormData.OffsetY);
+        boxCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
+        controller.JumpForce = curFormData.JumpForce;
+        controller.Anim.runtimeAnimatorController = curFormData.FormAnim;
+    }
+
+    // 형태 변화 이펙터&실제 형태 변화 작업
     private IEnumerator FormChangeSequence()
     {
         controller.LockPlayer();
