@@ -58,6 +58,7 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.GameManager.SetCamera(mainCamera);
         Managers.Instance.OnSceneLoaded();
         Managers.Instance.DialogueManager.InitSceneNPcs(speakers);
+        //Managers.Instance.GameManager.
     }
 
     private void SpawnPlayer()
