@@ -21,6 +21,8 @@ public class CutSceneManager
     
     public void PlayCutScene(string cutsceneName, Action localEndCallback = null)
     {
+        EditorLog.Log($"Play {cutsceneName}");
+        
         // letterBoxer = Managers.Instance.GameManager.MainCamera.GetComponent<LetterBoxer>();
         string prefabPath = $"{CutScenePath}{cutsceneName}";
         var cutSceneBase = Managers.Instance.ResourceManager.Instantiate<CutSceneBase>(prefabPath);
