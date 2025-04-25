@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerSpawnPointer : MonoBehaviour
 {
-    [Header("Inspector에 할당해야 할 것.")]
+    [Header("Inspector에 할당해야 할 것")]
     [Tooltip("컷씬이 끝난 뒤 이동시킬 플레이어 Transform")]
     [SerializeField] private Transform player;
     [Tooltip("컷씬 종료 후 플레이어를 보낼 위치 Transform")]
