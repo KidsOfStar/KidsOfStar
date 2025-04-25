@@ -179,7 +179,7 @@ public enum NPCType
 {
     None,
     Jigim,
-    Semyung
+    Semyung,
 }
 
 #endregion
