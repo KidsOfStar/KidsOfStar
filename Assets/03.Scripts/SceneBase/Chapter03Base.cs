@@ -13,26 +13,28 @@ public class Chapter03Base : SceneBase
     {
         var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
-        skillUnlock.UnlockSkill(2); // 강아지 스킬 잠금 해제
-        //skillBTN.OnDog();
 
         // 강아지 스킬 잠금 해제
+        Managers.Instance.UIManager.SkillUnlock.UnlockSkill(1);
         Managers.Instance.UIManager.SkillUnlock.UnlockSkill(2);
+
     }
 
-    private void Game()
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            DashGame(); // DashGame 시작
+        }
+    }
+
+    private void DashGame()
     {
         // 챕터 진행도 2일 때
         if (Managers.Instance.GameManager.ChapterProgress == 2)
         {
-            // DashGame 보이기
-            dashGame.gameObject.SetActive(true);
-        }
-        else
-        {
-            // DashGame 종료
-            dashGame.gameObject.SetActive(true);
-
+            // DashGame 시작
+            dashGame.StartGame();
         }
     }
 }

@@ -47,7 +47,7 @@ public class SkillUnlock : MonoBehaviour
     {
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {
-            skillPair.bg.SetActive(true);
+            skillPair.bg.SetActive(false);
             skillPair.icon.SetActive(true);
         }
         else

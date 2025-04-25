@@ -13,12 +13,14 @@ public class DashGame : MonoBehaviour
     public bool isGameStarted = false;
     //public float targetTime; // 목표 시간
 
-    public List<float> targetTimeList;  // 목표 시간 리스트
-
     private SkillBTN skillBTN; // 스킬 버튼 UI
 
     // Start is called before the first frame update
     void Start()
+    {
+        SetTing();
+    }
+    public void SetTing()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI 가져오기
 
@@ -34,6 +36,8 @@ public class DashGame : MonoBehaviour
 
     public void StartGame()
     {
+        SetTing();
+
         if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
         isGameStarted = true; // 게임 시작 상태로 변경
 
@@ -69,24 +73,21 @@ public class DashGame : MonoBehaviour
 
     private void ShowDialogueResult(float clearTime, NPCType npcType)
     {
-        if (Managers.Instance.UIManager.Get<DashGameResultPopup>())
+        Managers.Instance.UIManager.Get<DashGameResultPopup>();
+ 
+        if (stopWatch.recodeTime < 90f)
         {
-            Managers.Instance.UIManager.Get<DashGameResultPopup>().OnClickDialogue();
+            Managers.Instance.UIManager.Show<DashGameResultPopup>(1f, npcType).OnClickDialogue();
+        }
+        else if (stopWatch.recodeTime < 210f)
+        {
+            Managers.Instance.UIManager.Show<DashGameResultPopup>(2f, npcType).OnClickDialogue();
         }
         else
         {
-            if (stopWatch.recodeTime < 90f)
-            {
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(0f, npcType).OnClickDialogue();
-            }
-            else if (stopWatch.recodeTime < 210f)
-            {
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(1f, npcType).OnClickDialogue();
-            }
-            else
-            {
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(2f, npcType).OnClickDialogue();
-            }
+            Managers.Instance.UIManager.Show<DashGameResultPopup>(3f, npcType).OnClickDialogue();
         }
+
+
     }
 }
