@@ -17,6 +17,7 @@ public static class Define
     public const string audioSourceKey = "AudioSource";
     
     // Scene Base
-    public const string requiredIndex = "RequiredIndex";
+    public const float orthoSize = 5f;
+    public const string requiredIndex = "RequiredIndexData";
     public const string requiredIconKey = "ExclamationMark";
 }

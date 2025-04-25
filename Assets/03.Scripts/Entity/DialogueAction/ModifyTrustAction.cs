@@ -12,8 +12,8 @@ public class ModifyTrustAction : IDialogActionHandler
         
         if (dialogData.NextIndex.Count <= 0)
         {
-            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             return;
         }
 

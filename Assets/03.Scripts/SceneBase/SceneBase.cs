@@ -39,6 +39,9 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.LoadTestScene = false;
 #endif
 
+        // NPC 초기화_UpdateProgress 이벤트에 등록하기 위해 게임매니저보다 먼저 호출
+        InitNpc();
+        
         // 게임 매니저에 현재 챕터를 설정
         InitSceneBase();
 
@@ -53,9 +56,6 @@ public abstract class SceneBase : MonoBehaviour
 
         // 씬 고유 초기화 작업
         InitSceneExtra(PlayChapterIntro);
-        
-        // NPC 초기화
-        InitNpc();
     }
 
     private void InitManagers()
@@ -70,7 +70,7 @@ public abstract class SceneBase : MonoBehaviour
         // 필수 대화 아이콘 풀 생성
         if (existRequiredDialog)
         {
-            var path = Define.dataPath + Define.requiredIconKey;
+            const string path = Define.uiPath + Define.requiredIconKey;
             var prefab = Managers.Instance.ResourceManager.Load<GameObject>(path);
             Managers.Instance.PoolManager.CreatePool(prefab, 10);
         }
