@@ -8,6 +8,12 @@ public class PlayerMoveState : PlayerGroundState
     {
     }
 
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        context.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, true);
+    }
+
     public override void OnUpdate()
     {
         base.OnUpdate();
