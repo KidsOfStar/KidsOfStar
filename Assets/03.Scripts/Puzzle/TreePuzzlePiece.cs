@@ -21,6 +21,7 @@ public class TreePuzzlePiece : MonoBehaviour
     {
         this.manager = systemManager;
         this.correctRotation = correctionRotation;
+        currentRotation = 0;
     }
 
     public void RotateRight()

@@ -79,6 +79,7 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 조각 생성
     public void GeneratePuzzle()
     {
+        selectedIndex = 0;
         // 기존 조각 제거
         foreach (Transform child in puzzleParent)
         {
