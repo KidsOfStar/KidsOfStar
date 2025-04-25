@@ -97,7 +97,7 @@ MonoBehaviour:
         - m_Target: {fileID: 5275350742599227190}
           m_TargetAssemblyTypeName: CutSceneBase, Assembly-CSharp
           m_MethodName: DestroyPrefab
-          m_Mode: 1
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -453,7 +453,7 @@ Animator:
   m_GameObject: {fileID: 6554404448470440085}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c22e3d25b0e638e4c8e578f62139ed34, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

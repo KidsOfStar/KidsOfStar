@@ -104,7 +104,7 @@ public enum Difficulty
     Hard,
 }
 
-public enum EInteractionType
+public enum InteractionType
 {
     StartGame,
     EndGame
@@ -137,6 +137,10 @@ public enum CutSceneType
     Rescued,
     LeavingForest,
     DaunRoom,
+    JigimOrder,
+    FieldNormalLife,
+    SemyungGoOut,
+    RescueKitten,
 }
 
 #endregion
@@ -169,6 +173,13 @@ public enum WarningType
     None,
     Squirrel,
     BoxMissing,
+}
+
+public enum NPCType
+{
+    None,
+    Jigim,
+    Semyung
 }
 
 #endregion

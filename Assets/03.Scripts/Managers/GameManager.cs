@@ -128,6 +128,12 @@ public class GameManager
         
         OnProgressUpdated?.Invoke();
     }
+
+    public void ResetProgress()
+    {
+        ChapterProgress = 1;
+        OnProgressUpdated?.Invoke();
+    }
     
     public void ModifyTrust(int value)
     {

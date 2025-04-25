@@ -5,7 +5,7 @@ public class CutSceneManager
     public bool IsCutScenePlaying { get; private set; } = false;
     public Action OnCutSceneStart { get; set; }
     public Action OnCutSceneEnd { get; set; }
-    public LetterBoxer LetterBoxer { get; private set; }
+    // public LetterBoxer LetterBoxer { get; private set; }
     
     private CutSceneBase currentCutScene;
     private const string CutScenePath = "CutScenes/";
@@ -21,24 +21,42 @@ public class CutSceneManager
     
     public void PlayCutScene(string cutsceneName, Action localEndCallback = null)
     {
-        //letterBoxer = Managers.Instance.GameManager.MainCamera.GetComponent<LetterBoxer>();
+        // letterBoxer = Managers.Instance.GameManager.MainCamera.GetComponent<LetterBoxer>();
         string prefabPath = $"{CutScenePath}{cutsceneName}";
         var cutSceneBase = Managers.Instance.ResourceManager.Instantiate<CutSceneBase>(prefabPath);
-        //letterBoxer.PerformSizing();
-
+        
         if (!cutSceneBase)
         {
             EditorLog.Log($"컷씬 프리팹이 없습니다: {prefabPath}");
             return;
         }
         
+        // letterBoxer.PerformSizing();
+        OnCutSceneStart?.Invoke();
+        var fadeoutUI = Managers.Instance.UIManager.Show<UIFadeOut>();
+        fadeoutUI.StartFadeOut(Play);
+        
         if (localEndCallback != null) cutSceneBase.OnCutSceneCompleted += localEndCallback;
         cutSceneBase.Init();
-        cutSceneBase.Play();
+        
+        return;
+        void Play()
+        {
+            cutSceneBase.Play();
+            IsCutScenePlaying = true;
+        }
+    }
 
-        // PlayableDirector 찾기 및 등록
-        // baseComp.Play
-        OnCutSceneStart?.Invoke();
-        IsCutScenePlaying = true;
+    public bool IsPlayingCutScene()
+    {
+        return currentCutScene != null;
+    }
+    
+    public void DestroyCurrentCutScene()
+    {
+        if (!currentCutScene)
+            EditorLog.LogError("현재 재생중인 컷씬이 없습니다.");
+
+        currentCutScene.DestroyPrefab(true);
     }
 }

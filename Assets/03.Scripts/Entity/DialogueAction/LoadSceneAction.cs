@@ -13,7 +13,7 @@ public class LoadSceneAction : IDialogActionHandler
         
         if (!Enum.TryParse<SceneType>(dialogData.Param, out var sceneType))
         {
-            EditorLog.LogError($"LoadCutSceneAction : Invalid load scene type: {dialogData.Param}");
+            EditorLog.LogError($"LoadSceneAction : Invalid load scene type: {dialogData.Param}");
             return;
         }
 
