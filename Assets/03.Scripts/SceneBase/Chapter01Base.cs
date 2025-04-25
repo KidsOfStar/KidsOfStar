@@ -15,7 +15,8 @@ public class Chapter01Base : SceneBase
     protected override void InitSceneExtra(Action callback)
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Maorum);
-        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName(), callback);
+        // Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName(), callback);
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.RescueKitten.GetName());
         sceneEventTrigger.Init();
     }
 }
