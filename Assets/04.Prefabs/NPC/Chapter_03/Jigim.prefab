@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 91066525109865195}
   - component: {fileID: 6304304139406372110}
   - component: {fileID: 922630999483516513}
+  - component: {fileID: 626918617068514483}
+  - component: {fileID: 371193513007530146}
   m_Layer: 0
   m_Name: Jigim
   m_TagString: Untagged
@@ -99,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 5
+  <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 169102530955154047}
 --- !u!61 &922630999483516513
 BoxCollider2D:
@@ -146,6 +148,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &626918617068514483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136488510606508772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisableInStart: 0
+  positionDatas:
+  - progress: 1
+    isActive: 1
+    position: {x: 220, y: -10.2, z: 0}
+  - progress: 2
+    isActive: 1
+    position: {x: 256, y: -7.2, z: 0}
+  - progress: 3
+    isActive: 1
+    position: {x: 256, y: -7.2, z: 0}
+--- !u!114 &371193513007530146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136488510606508772}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29e45899a269bd4d88fe67736363e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionType: 1
+  npcType: 0
 --- !u!1 &5341901771851105292
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 8235231656129912004}
   - component: {fileID: 833540010264013367}
   - component: {fileID: 2337561243448905126}
+  - component: {fileID: 540261376932756791}
+  - component: {fileID: 8946976018855662040}
   m_Layer: 0
   m_Name: Semyung
   m_TagString: Untagged
@@ -130,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 6
+  <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 4329963205596034945}
 --- !u!61 &2337561243448905126
 BoxCollider2D:
@@ -177,3 +179,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &540261376932756791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443810690714922142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisableInStart: 0
+  positionDatas:
+  - progress: 1
+    isActive: 1
+    position: {x: 220, y: -17.2, z: 0}
+  - progress: 2
+    isActive: 1
+    position: {x: 260, y: -10.2, z: 0}
+  - progress: 3
+    isActive: 1
+    position: {x: 260, y: -10.2, z: 0}
+--- !u!114 &8946976018855662040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443810690714922142}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29e45899a269bd4d88fe67736363e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionType: 1
+  npcType: 0

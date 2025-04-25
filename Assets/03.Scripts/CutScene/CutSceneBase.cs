@@ -74,6 +74,7 @@ public class CutSceneBase : MonoBehaviour
         }
 
         if (TryGetComponent(out SceneLoadable sceneLoadable)) sceneLoadable.LoadScene();
+        if (TryGetComponent(out ProgressUpgradable progressUpgradable )) progressUpgradable.UpgradeProgress();
         Destroy(gameObject);
     }
 }
