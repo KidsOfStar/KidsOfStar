@@ -22,14 +22,13 @@ public class DashGameResultPopup : PopupBase
 
         SkillBTN skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
-        if (param.Length < 2 || !(param[0] is float clearTime) || !(param[1] is NPCType npcType))
+        if (param.Length < 2 || !(param[0] is float index) || !(param[1] is NPCType npcType))
         {
-            Debug.LogError("Invalid parameters passed to DashGameResultPopup.");
             return; 
         }
 
         currentNpcType = npcType;
-        currentDialogLines = dialogueDatabase.GetDialogueByNpc(clearTime, npcType);
+        currentDialogLines = dialogueDatabase.GetDialogueByNpc(index, npcType);
 
         currentLineIndex = 0;
 
@@ -58,7 +57,6 @@ public class DashGameResultPopup : PopupBase
         }
 
         string line = currentDialogLines[currentLineIndex];
-        Debug.Log($"[대사 출력] {line}");
 
         if (currentNpcType == NPCType.Jigim)
         {

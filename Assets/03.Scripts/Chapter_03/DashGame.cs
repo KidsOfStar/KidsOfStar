@@ -57,26 +57,18 @@ public class DashGame : MonoBehaviour
 
     public void EndGame(NPCType npcType)
     {
-        //if (isGameEnded || !isGameStarted) return;
         if (!isGameStarted) return;
 
         stopWatch.OnStopWatch();
         playerController.MoveSpeed = playerSpeed;
 
         float clearTime = stopWatch.recodeTime;
-        Debug.Log($"게임 종료! 기록된 시간: {clearTime}");
 
         ShowDialogueResult(clearTime, npcType); // 대사 출력
     }
 
     private void ShowDialogueResult(float clearTime, NPCType npcType)
     {
-        //// 어떤 시간 구간에 해당하는지 판단하여 popup으로 전달
-        //Managers.Instance.UIManager.Show<DashGameResultPopup>(clearTime, npcType);
-
-        // 두번 사용하는 거 불편
-        // 1분 30초 미만일 때 대사 테이블에서 출력하기
-
         if (Managers.Instance.UIManager.Get<DashGameResultPopup>())
         {
             Managers.Instance.UIManager.Get<DashGameResultPopup>().OnClickDialogue();
@@ -84,21 +76,16 @@ public class DashGame : MonoBehaviour
         else
         {
             if (stopWatch.recodeTime < 90f)
-            { 
-                // 1분 30초 미만일 때 대사 출력
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(90f, npcType).OnClickDialogue();
-            }
-            // 2분 30초 미만일 때 대사 테이블에서 출력하기   
-            else if (stopWatch.recodeTime < 150f)
             {
-                // 2분 30초 미만일 때 대사 출력
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(150f, npcType).OnClickDialogue();
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(0f, npcType).OnClickDialogue();
             }
-            // 3분 30초 이상일 때 대사 테이블에서 출력하기
-            else if (stopWatch.recodeTime <= 210f)
+            else if (stopWatch.recodeTime < 210f)
             {
-                // 3분 30초 이상일 때 대사 출력
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(210f, npcType).OnClickDialogue();
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(1f, npcType).OnClickDialogue();
+            }
+            else
+            {
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(2f, npcType).OnClickDialogue();
             }
         }
     }

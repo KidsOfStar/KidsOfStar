@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueEntry
 {
-    public float timeThreshold; // 기준 시간 (초 단위: 90, 150, 210)
+    public float dialoguesIndex; // 기준 시간 (초 단위: 90, 150, 210)
     public List<string> jigimDialogues;   // 지김 대사 (문단별)
     public List<string> semyungDialogues; // 세명 대사 (문단별)
 }
@@ -30,7 +30,7 @@ public class DashDialogueData : ScriptableObject
     {
         foreach (var entry in entries)
         {
-            if (time < entry.timeThreshold)
+            if (time < entry.dialoguesIndex)
                 return entry;
         }
         return entries[entries.Count - 1]; // 가장 마지막 구간 반환
