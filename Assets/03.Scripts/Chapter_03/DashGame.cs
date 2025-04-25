@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 
 public class DashGame : MonoBehaviour
@@ -10,7 +11,6 @@ public class DashGame : MonoBehaviour
 
     public float playerSpeed; // 플레이어 속도
     public bool isGameStarted = false;
-    public bool isGameEnded = false;
     //public float targetTime; // 목표 시간
 
     public List<float> targetTimeList;  // 목표 시간 리스트
@@ -55,11 +55,10 @@ public class DashGame : MonoBehaviour
         playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
     }
 
-    public void EndGame(ENpcType npcType)
+    public void EndGame(NPCType npcType)
     {
-        if (isGameEnded || !isGameStarted) return;
-
-        isGameEnded = true;
+        //if (isGameEnded || !isGameStarted) return;
+        if (!isGameStarted) return;
 
         stopWatch.OnStopWatch();
         playerController.MoveSpeed = playerSpeed;
@@ -70,31 +69,37 @@ public class DashGame : MonoBehaviour
         ShowDialogueResult(clearTime, npcType); // 대사 출력
     }
 
-    private void ShowDialogueResult(float clearTime, ENpcType npcType)
+    private void ShowDialogueResult(float clearTime, NPCType npcType)
     {
         //// 어떤 시간 구간에 해당하는지 판단하여 popup으로 전달
         //Managers.Instance.UIManager.Show<DashGameResultPopup>(clearTime, npcType);
 
+        // 두번 사용하는 거 불편
         // 1분 30초 미만일 때 대사 테이블에서 출력하기
-        if (stopWatch.recodeTime < 90f)
-        {
-            // 1분 30초 미만일 때 대사 출력
-            Managers.Instance.UIManager.Show<DashGameResultPopup>(90f, npcType);
-        }
-        // 2분 30초 미만일 때 대사 테이블에서 출력하기   
-        else if (stopWatch.recodeTime < 150f)
-        {
-            // 2분 30초 미만일 때 대사 출력
-            Managers.Instance.UIManager.Show<DashGameResultPopup>(150f, npcType);
 
-        }
-        // 3분 30초 이상일 때 대사 테이블에서 출력하기
-        else if (stopWatch.recodeTime <= 210f)
+        if (Managers.Instance.UIManager.Get<DashGameResultPopup>())
         {
-            // 2분 30초 미만일 때 대사 출력
-            Managers.Instance.UIManager.Show<DashGameResultPopup>(210f, npcType);
+            Managers.Instance.UIManager.Get<DashGameResultPopup>().OnClickDialogue();
         }
-
-
+        else
+        {
+            if (stopWatch.recodeTime < 90f)
+            { 
+                // 1분 30초 미만일 때 대사 출력
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(90f, npcType).OnClickDialogue();
+            }
+            // 2분 30초 미만일 때 대사 테이블에서 출력하기   
+            else if (stopWatch.recodeTime < 150f)
+            {
+                // 2분 30초 미만일 때 대사 출력
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(150f, npcType).OnClickDialogue();
+            }
+            // 3분 30초 이상일 때 대사 테이블에서 출력하기
+            else if (stopWatch.recodeTime <= 210f)
+            {
+                // 3분 30초 이상일 때 대사 출력
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(210f, npcType).OnClickDialogue();
+            }
+        }
     }
 }

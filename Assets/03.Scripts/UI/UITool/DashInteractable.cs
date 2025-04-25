@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class DashInteractable : MonoBehaviour
 {
-    public EInteractionType interactionType; // 상호작용 타입
+    public InteractionType interactionType; // 상호작용 타입
 
-    public ENpcType npcType; // Jigim 또는 Semyung을 에디터에서 지정
+    public NPCType npcType; // Jigim 또는 Semyung을 에디터에서 지정
 
     SkillBTN skillBTN;
     private DashGame dashGame;
@@ -37,20 +37,15 @@ public class DashInteractable : MonoBehaviour
 
     private void OnPlayerInteract()
     {
-        if (interactionType == EInteractionType.StartGame && !dashGame.isGameStarted)
+        if (interactionType == InteractionType.StartGame && !dashGame.isGameStarted)
         {
             dashGame.StartGame();
             this.enabled = false; // 스크립트 비활성화
             skillBTN.ShowInteractionButton(false);
         }
-        else if (interactionType == EInteractionType.EndGame && !dashGame.isGameEnded)
+        else if (interactionType == InteractionType.EndGame)
         {
             dashGame.EndGame(npcType); // NPC 정보를 함께 전달
-            //this.enabled = false;
         }
-
-        // 한 번만 작동하게 하고 싶다면 버튼 비활성화
-        //skillBTN.ShowInteractionButton(false);
-        skillBTN.OnInteractBtnClick -= OnPlayerInteract;
     }
 }

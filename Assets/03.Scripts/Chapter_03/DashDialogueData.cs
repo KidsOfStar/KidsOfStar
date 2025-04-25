@@ -10,18 +10,18 @@ public class DialogueEntry
 }
 
 // ScriptableObject로 여러 시간 구간의 대사를 포함
-[CreateAssetMenu(fileName = "DialogueDatabase", menuName = "ScriptableObject/DialogueDatabase")]
-public class DashDialogueDatabase : ScriptableObject
+[CreateAssetMenu(fileName = "DialogueData", menuName = "ScriptableObject/DialogueData")]
+public class DashDialogueData : ScriptableObject
 {
     public List<DialogueEntry> entries;
 
-    public List<string> GetDialogueByNpc(float clearTime, ENpcType npcType)
+    public List<string> GetDialogueByNpc(float clearTime, NPCType npcType)
     {
         DialogueEntry selected = GetDialogueEntry(clearTime);
         return npcType switch
         {
-            ENpcType.Jigim => selected.jigimDialogues,
-            ENpcType.Semyung => selected.semyungDialogues,
+            NPCType.Jigim => selected.jigimDialogues,
+            NPCType.Semyung => selected.semyungDialogues,
             _ => new List<string>()
         };
     }

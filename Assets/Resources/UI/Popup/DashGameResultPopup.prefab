@@ -131,7 +131,7 @@ MonoBehaviour:
   isFirst: 1
   jigimText: {fileID: 1791521020144626146}
   semyungText: {fileID: 8644757983035438794}
-  dialogueDatabase: {fileID: 11400000, guid: f9f7006d804fbbc49a1139de2b0fa9d4, type: 2}
+  dialogueDatabase: {fileID: 11400000, guid: f6f6cfcf17f5b4b4288469a7c1170fc0, type: 2}
 --- !u!1 &4665791101553058456
 GameObject:
   m_ObjectHideFlags: 0
