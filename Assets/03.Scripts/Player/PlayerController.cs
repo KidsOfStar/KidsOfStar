@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     [Header("공통")]
     [SerializeField] private LayerMask groundLayer;
     public LayerMask GroundLayer { get { return groundLayer; } }
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator anim;
+    public Animator Anim { get { return anim; } }
     [SerializeField, Tooltip("플레이어 캐릭터 이동 속도")] private float moveSpeed;
     public float MoveSpeed
     {
@@ -30,7 +33,6 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     private Player player;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigid;
-    private SpriteRenderer spriteRenderer;
 
     // 플레이어 이동 방향
     private Vector2 moveDir = Vector2.zero;
@@ -71,7 +73,6 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         this.player = player;
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         
         Managers.Instance.CutSceneManager.OnCutSceneStart += LockPlayer;
         Managers.Instance.DialogueManager.OnDialogStart += LockPlayer;
@@ -90,6 +91,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down,
             0.02f, groundLayer);
         isGround = hit.collider != null ? true : false;
+        anim.SetBool(PlayerAnimHash.AnimGround, isGround);
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -116,7 +118,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     public void OnFormChange(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed || !isGround || !isControllable) return;
         var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         switch (context.control.name)
         {
@@ -258,9 +260,10 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     }
 
     
-    private void LockPlayer()
+    public void LockPlayer()
     {
         isControllable = false;
+        rigid.velocity = Vector2.zero;
     }
     
     private void UnlockPlayer()

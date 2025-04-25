@@ -6,6 +6,12 @@ public class PlayerIdleState : PlayerGroundState
 {
     public PlayerIdleState(PlayerContextData data, PlayerStateFactory factory) : base(data, factory) { }
 
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        context.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, false);
+    }
+
     public override void OnUpdate()
     {
         base.OnUpdate();

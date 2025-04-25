@@ -8,6 +8,7 @@ public class PlayerJumpState : PlayerJumpBaseState
 
     public override void OnEnter()
     {
+        context.Controller.Anim.SetTrigger(PlayerAnimHash.AnimJump);
         context.Rigid.AddForce(Vector2.up * context.Controller.JumpForce, ForceMode2D.Impulse);
     }
 
