@@ -72,6 +72,13 @@ public abstract class SceneBase : MonoBehaviour
 
         Managers.Instance.GameManager.SetPlayer(player);
         Managers.Instance.DialogueManager.SetPlayerSpeaker(player);
+
+        Managers.Instance.CutSceneManager.SetPlayerReferences(playerObj.transform, playerSpawnPosition);
+        Managers.Instance.CutSceneManager.OnCutSceneEnd += () =>
+        {
+            playerObj.transform.position = playerSpawnPosition.position;
+            playerObj.transform.rotation = playerSpawnPosition.rotation;
+        };
     }
 
     private void InitCameraController()
