@@ -75,4 +75,12 @@ public abstract class InteractSpeaker : MonoBehaviour
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         skillPanel.ShowInteractionButton(false);
     }
+    
+    // TODO: 느낌표 마크 풀 생성
+    
+    // Data 읽어와서 가지고 있기 / 프로그레스 이벤트 Invoke
+    
+    // 특정 대사 인덱스 - 프로그레스 조합
+    
+    // 해당 인덱스의 대사가 출력됐다면? -> 느낌표 삭제
 }

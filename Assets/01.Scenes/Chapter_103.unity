@@ -497,6 +497,7 @@ MonoBehaviour:
   minPosition: {x: 0, y: 0}
   maxPosition: {x: 0, y: 0}
   lightObject: {fileID: 820259258}
+  target: {fileID: 0}
 --- !u!114 &587337545
 MonoBehaviour:
   m_ObjectHideFlags: 0

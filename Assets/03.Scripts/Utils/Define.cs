@@ -15,4 +15,9 @@ public static class Define
 
     // Prefab Key
     public const string audioSourceKey = "AudioSource";
+    
+    // Scene Base
+    public const string chapter1RequiredIndex = "Chapter1_RequiredIndex";
+    public const string chapter2RequiredIndex = "Chapter2_RequiredIndex";
+    public const string chapter3RequiredIndex = "Chapter3_RequiredIndex";
 }
