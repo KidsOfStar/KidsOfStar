@@ -5,7 +5,8 @@ public class StopWatch : UIBase
 {
     [Header("StopWatch")] // 스탑워치
     public float timeStrat; // 시작 시간
-    public float targetTime; // 목표 시간   
+    public float targetTime; // 목표 시간
+    public float recodeTime; // 저장된 시간
 
     private bool isTiming = false; // 타이밍 여부
 
@@ -40,10 +41,12 @@ public class StopWatch : UIBase
         isTiming = true; // 타이밍 시작
     }
 
-    public void OnStopWatch()
+    public float OnStopWatch()
     {
         // 스탑워치 시간 정지
         isTiming = false; // 타이밍 종료
+        recodeTime = timeStrat; // 저장된 시간
+        return recodeTime; // 저장된 시간 반환
     }
 
     public void ResetTime() // 시간 초기화 메소드

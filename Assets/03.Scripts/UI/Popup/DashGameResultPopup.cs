@@ -2,21 +2,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public enum ENpcType
-{
-    None,
-    Jigim,
-    Semyung
-}
-
-[System.Serializable]
-public class DialogueGroup
-{
-    public float TimeThreshold; // 기준 시간 (예: 90f, 150f, 210f)
-    public List<string> dialogJigim; // NPC 1의 대사 리스트
-    public List<string> dialogSemyung; // NPC 2의 대사 리스트
-}
-
 public class DashGameResultPopup : PopupBase
 {
     [Header("Dialogue UI")]
@@ -24,42 +9,65 @@ public class DashGameResultPopup : PopupBase
     [SerializeField] private TextMeshProUGUI semyungText;
 
     [Header("Dialogue Data")]
-    [SerializeField] private List<DialogueGroup> dialogueGroups;
+    [SerializeField] private DashDialogueData dialogueDatabase;
 
-    private DialogueGroup currentGroup;
+    private int currentLineIndex = 0;
+    private List<string> currentDialogLines;
+    private NPCType currentNpcType;
 
+    
     public override void Opened(params object[] param)
     {
         base.Opened(param);
 
-        if (param.Length < 2 || !(param[0] is float clearTime) || !(param[1] is ENpcType npcType)) return;
+        SkillBTN skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
-        currentGroup = GetDialogueGroupByTime(clearTime);
-
-        // NPC 타입에 따라 해당 텍스트만 출력
-        switch (npcType)
+        if (param.Length < 2 || !(param[0] is float index) || !(param[1] is NPCType npcType))
         {
-            case ENpcType.Jigim:
-                jigimText.text = string.Join("\n", currentGroup.dialogJigim);
-                semyungText.text = string.Empty; // 비우기
-                break;
-            case ENpcType.Semyung:
-                jigimText.text = string.Empty;
-                semyungText.text = string.Join("\n", currentGroup.dialogSemyung);
-                break;
+            return; 
+        }
+
+        currentNpcType = npcType;
+        currentDialogLines = dialogueDatabase.GetDialogueByNpc(index, npcType);
+
+        currentLineIndex = 0;
+
+    }
+
+    public void OnClickDialogue()
+    {
+        if (currentDialogLines == null) return;
+
+        if (currentLineIndex < currentDialogLines.Count)
+        {
+            ShowCurrentLine();
+        }
+        else
+        {
+            Managers.Instance.UIManager.Hide<DashGameResultPopup>();
         }
     }
 
-
-    private DialogueGroup GetDialogueGroupByTime(float time)
+    private void ShowCurrentLine()
     {
-        foreach (var group in dialogueGroups)
+        if (currentDialogLines == null || currentLineIndex >= currentDialogLines.Count)
         {
-            if (time < group.TimeThreshold)
-                return group;
+            Debug.LogWarning("ShowCurrentLine: 대사 없음 혹은 인덱스 초과");
+            return;
         }
-        return dialogueGroups[dialogueGroups.Count - 1];
+
+        string line = currentDialogLines[currentLineIndex];
+
+        if (currentNpcType == NPCType.Jigim)
+        {
+            jigimText.text = line;
+            semyungText.text = string.Empty;
+        }
+        else if (currentNpcType == NPCType.Semyung)
+        {
+            jigimText.text = string.Empty;
+            semyungText.text = line;
+        }
+        currentLineIndex++;
     }
 }
-
-

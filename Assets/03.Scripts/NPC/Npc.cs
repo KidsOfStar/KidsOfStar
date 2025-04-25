@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class Npc : InteractSpeaker, IDialogSpeaker
 {
     [field: SerializeField] public Transform BubbleTr { get; private set; }
