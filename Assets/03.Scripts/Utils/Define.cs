@@ -15,4 +15,9 @@ public static class Define
 
     // Prefab Key
     public const string audioSourceKey = "AudioSource";
+    
+    // Scene Base
+    public const float orthoSize = 5f;
+    public const string requiredIndex = "RequiredIndexData";
+    public const string requiredIconKey = "ExclamationMark";
 }

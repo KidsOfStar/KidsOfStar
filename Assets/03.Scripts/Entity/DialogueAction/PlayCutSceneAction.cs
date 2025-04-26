@@ -7,8 +7,8 @@ public class PlayCutSceneAction : IDialogActionHandler
     {
         if (!isFirst)
         {
-            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         }
         
         if (!Enum.TryParse<CutSceneType>(dialogData.Param, out var cutScene))

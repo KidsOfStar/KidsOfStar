@@ -497,6 +497,7 @@ MonoBehaviour:
   minPosition: {x: 0, y: 0}
   maxPosition: {x: 0, y: 0}
   lightObject: {fileID: 820259258}
+  target: {fileID: 0}
 --- !u!114 &587337545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3088,6 +3089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 0
+  existRequiredDialog: 0
   isFirstTime: 0
   introText: 
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
@@ -3205,6 +3207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 7916832025224859127}
+  dontInit: 1
 --- !u!212 &4633986023284743235
 SpriteRenderer:
   m_ObjectHideFlags: 0

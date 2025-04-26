@@ -6245,6 +6245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 2
+  existRequiredDialog: 0
   isFirstTime: 1
   introText: "\uC774\uAC83 \uBD10, \uB2E4\uB4E4 \uBB34\uC12D\uC796\uC544."
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
@@ -23785,6 +23786,7 @@ MonoBehaviour:
   minPosition: {x: -38, y: -5}
   maxPosition: {x: 333, y: 5}
   lightObject: {fileID: 0}
+  target: {fileID: 0}
 --- !u!114 &2020590307
 MonoBehaviour:
   m_ObjectHideFlags: 0

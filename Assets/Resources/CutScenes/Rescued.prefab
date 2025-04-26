@@ -2694,6 +2694,7 @@ GameObject:
   - component: {fileID: 7177606617873818073}
   - component: {fileID: 5344782168203898879}
   - component: {fileID: 6612782614018030183}
+  - component: {fileID: 7380230989693784354}
   m_Layer: 0
   m_Name: Rescued
   m_TagString: Untagged
@@ -2770,6 +2771,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <bgmSoundType>k__BackingField: 2
   <playBgmSignal>k__BackingField: {fileID: 11400000, guid: b89bdacf10816754d83f49b7f9d1d962, type: 2}
+--- !u!114 &7380230989693784354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4336098889742766419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd44269260663b459601ae854110866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SceneType>k__BackingField: 4
 --- !u!1 &4538203414686143099
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,21 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class InteractSpeaker : MonoBehaviour
 {
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
+    [field: SerializeField] public Transform BubbleTr { get; private set; }
+    [SerializeField] private bool dontInit = false;
+    
     private readonly Dictionary<int, int> dialogByProgress = new();
+    private readonly Dictionary<int, int> requiredDialogByProgress = new();
 
-    private void Start()
+    public void Init()
     {
+        if (dontInit) return;
+        
         var dict = Managers.Instance.DataManager.GetNpcDataDict();
         var startRange = ((int)Managers.Instance.GameManager.CurrentChapter + 1) * 100;
         var endRange = startRange + 100;
@@ -19,6 +26,54 @@ public abstract class InteractSpeaker : MonoBehaviour
             if (npcData.Character != CharacterType) continue;
 
             dialogByProgress.Add(npcData.Progress, npcData.DialogIndex);
+        }
+
+        InitRequiredDialog();
+        Managers.Instance.GameManager.OnProgressUpdated += CheckExistRequiredDialog;
+        Managers.Instance.DialogueManager.OnSceneDialogEnd += DespawnExclamationIcon;
+    }
+    
+    private void InitRequiredDialog()
+    {
+        // 필수 대사 인덱스
+        var data = Managers.Instance.ResourceManager.Load<RequiredIndexData>(Define.dataPath + Define.requiredIndex);
+        var indexes = data.requiredIndexList;
+
+        for (int i = 0; i < indexes.Length; i++)
+        {
+            var indexData = indexes[i];
+            
+            // 자신의 캐릭터 타입과 맞다면 딕셔너리에 저장
+            if (indexData.characterType == CharacterType)
+                requiredDialogByProgress[indexData.progress] = indexData.index;
+        }
+    }
+    
+    // 프로그레스가 업데이트 되는 이벤트에 등록
+    private void CheckExistRequiredDialog()
+    {
+        var currentProgress = Managers.Instance.GameManager.ChapterProgress;
+        foreach (var pair in requiredDialogByProgress)
+        {
+            if (pair.Key != currentProgress) continue;
+
+            // 느낌표 띄우기
+            var exclamationIcon = Managers.Instance.PoolManager.Spawn(Define.requiredIconKey, BubbleTr);
+            exclamationIcon.transform.localPosition = Vector3.zero;
+        }
+    }
+    
+    private void DespawnExclamationIcon(int index)
+    {
+        foreach (var value in requiredDialogByProgress.Values)
+        {
+            if (index != value) continue;
+
+            var exclamationIcon = BubbleTr.GetChild(0).gameObject;
+            if (!exclamationIcon)
+                EditorLog.LogError("No exclamation icon found");
+            
+            Managers.Instance.PoolManager.Despawn(exclamationIcon);
         }
     }
 
@@ -74,5 +129,11 @@ public abstract class InteractSpeaker : MonoBehaviour
     {
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         skillPanel.ShowInteractionButton(false);
+    }
+
+    private void OnDestroy()
+    {
+        Managers.Instance.GameManager.OnProgressUpdated -= CheckExistRequiredDialog;
+        Managers.Instance.DialogueManager.OnSceneDialogEnd -= DespawnExclamationIcon;
     }
 }
