@@ -128,7 +128,7 @@ MonoBehaviour:
   uiPosition: 1
   closeBtn: {fileID: 0}
   checkTimeStop: 0
-  isFirst: 1
+  isFirst: 0
   jigimText: {fileID: 1791521020144626146}
   semyungText: {fileID: 8644757983035438794}
   dialogueDatabase: {fileID: 11400000, guid: f6f6cfcf17f5b4b4288469a7c1170fc0, type: 2}

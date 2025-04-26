@@ -18,6 +18,8 @@ public class DashGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var UITextBubble = Managers.Instance.UIManager.Get<UITextBubble>(); // UI 텍스트 버블 가져오기
+        UITextBubble.SetActive(false); // UI 텍스트 버블 비활성화
         SetTing();
     }
     public void SetTing()
@@ -36,7 +38,7 @@ public class DashGame : MonoBehaviour
 
     public void StartGame()
     {
-        SetTing();
+        //SetTing();
 
         if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
         isGameStarted = true; // 게임 시작 상태로 변경
@@ -59,7 +61,7 @@ public class DashGame : MonoBehaviour
         playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
     }
 
-    public void EndGame(NPCType npcType)
+    public void EndGame(CharacterType npcType)
     {
         if (!isGameStarted) return;
 
@@ -71,12 +73,14 @@ public class DashGame : MonoBehaviour
         ShowDialogueResult(clearTime, npcType); // 대사 출력
     }
 
-    private void ShowDialogueResult(float clearTime, NPCType npcType)
+
+    private void ShowDialogueResult(float clearTime, CharacterType npcType)
     {
         // 이미 DashGameResultPopup이 열려 있다면, 다음 대사 출력 시도
         if (Managers.Instance.UIManager.Get<DashGameResultPopup>())
         {
             Managers.Instance.UIManager.Get<DashGameResultPopup>().OnClickDialogue();
+             
         }
         else
         {

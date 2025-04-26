@@ -1,14 +1,12 @@
 using UnityEngine;
 
-
 public class DashInteractable : MonoBehaviour
 {
     public InteractionType interactionType; // 상호작용 타입
+    public CharacterType npcType; // Jigim 또는 Semyung을 에디터에서 지정
+    public int dialogIndex; // 대사 인덱스
 
-    public NPCType npcType; // Jigim 또는 Semyung을 에디터에서 지정
-
-    SkillBTN skillBTN;
-    Npc npc;
+    private SkillBTN skillBTN;
     private DashGame dashGame;
 
     // Start is called before the first frame update
@@ -16,7 +14,15 @@ public class DashInteractable : MonoBehaviour
     {
         dashGame = FindObjectOfType<DashGame>();
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI
-        npc = GetComponent<Npc>(); // Npc 컴포넌트 가져오기
+
+        // 대사 완료 이벤트 등록
+        Managers.Instance.DialogueManager.OnSceneDialogEnd += CheckDialogueCompletion;
+    }
+
+    private void OnDestroy()
+    {
+        // 이벤트 해제
+        Managers.Instance.DialogueManager.OnSceneDialogEnd -= CheckDialogueCompletion;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -25,7 +31,6 @@ public class DashInteractable : MonoBehaviour
         {
             skillBTN.ShowInteractionButton(true); // 버튼 표시
             skillBTN.OnInteractBtnClick += OnPlayerInteract;
-            npc.enabled = false; // NPC 활성화
         }
     }
 
@@ -35,21 +40,23 @@ public class DashInteractable : MonoBehaviour
         {
             skillBTN.ShowInteractionButton(false); // 버튼 숨김
             skillBTN.OnInteractBtnClick -= OnPlayerInteract;
-            npc.enabled = true; // NPC 활성화
         }
     }
 
     private void OnPlayerInteract()
     {
-        if (interactionType == InteractionType.StartGame && !dashGame.isGameStarted)
-        {
-            dashGame.StartGame();
-            this.enabled = false; // 스크립트 비활성화
-            skillBTN.ShowInteractionButton(false);
-        }
-        else if (interactionType == InteractionType.EndGame)
+        if (interactionType == InteractionType.EndGame)
         {
             dashGame.EndGame(npcType); // NPC 정보를 함께 전달
+        }
+    }
+
+    private void CheckDialogueCompletion(int completedDialogIndex)
+    {
+        if (completedDialogIndex == 30007)
+        {
+            Debug.Log("30007번 대사가 완료되었습니다.");
+            dashGame.StartGame();
         }
     }
 }

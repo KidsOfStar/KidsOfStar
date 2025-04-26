@@ -19,21 +19,9 @@ public class Chapter03Base : SceneBase
         Managers.Instance.UIManager.SkillUnlock.UnlockSkill(2);
 
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            DashGame(); // DashGame 시작
-        }
-    }
 
-    private void DashGame()
-    {
-        // 챕터 진행도 2일 때
-        if (Managers.Instance.GameManager.ChapterProgress == 2)
-        {
-            // DashGame 시작
-            dashGame.StartGame();
-        }
-    }
+
+
+
+    
 }
