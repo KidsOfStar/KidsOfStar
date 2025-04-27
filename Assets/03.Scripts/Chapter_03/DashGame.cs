@@ -51,6 +51,7 @@ public class DashGame : MonoBehaviour
 
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
+
     }
 
     private IEnumerator StartGame(float delay)
@@ -73,14 +74,12 @@ public class DashGame : MonoBehaviour
         ShowDialogueResult(clearTime, npcType); // 대사 출력
     }
 
-
     private void ShowDialogueResult(float clearTime, CharacterType npcType)
     {
         // 이미 DashGameResultPopup이 열려 있다면, 다음 대사 출력 시도
         if (Managers.Instance.UIManager.Get<DashGameResultPopup>())
         {
             Managers.Instance.UIManager.Get<DashGameResultPopup>().OnClickDialogue();
-             
         }
         else
         {
@@ -104,5 +103,4 @@ public class DashGame : MonoBehaviour
             }
         }
     }
-
 }

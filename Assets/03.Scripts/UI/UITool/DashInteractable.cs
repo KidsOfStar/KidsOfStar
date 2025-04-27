@@ -53,10 +53,28 @@ public class DashInteractable : MonoBehaviour
 
     private void CheckDialogueCompletion(int completedDialogIndex)
     {
+        if (completedDialogIndex == 30006)
+        {
+            PlayerTeleport(); // 플레이어 위치 변경
+        }
         if (completedDialogIndex == 30007)
         {
             Debug.Log("30007번 대사가 완료되었습니다.");
             dashGame.StartGame();
+        }
+    }
+
+    private void PlayerTeleport()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            player.transform.position = new Vector3(-7f, 1.4f, 0); // 예시 위치
+            Debug.Log("플레이어 위치 변경됨: " + player.transform.position);
+        }
+        else
+        {
+            Debug.LogWarning("Player not found!");
         }
     }
 }
