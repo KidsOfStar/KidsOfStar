@@ -4155,8 +4155,6 @@ MonoBehaviour:
   minPosition: {x: -6, y: 0}
   maxPosition: {x: 52, y: 10}
   lightObject: {fileID: 583897470}
-  dialogCam: {fileID: 0}
-  dialogCamOffset: {x: 0, y: 1, z: -10}
 --- !u!114 &2020590307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4776,6 +4774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 13
   <BubbleTr>k__BackingField: {fileID: 4731163804286623348}
   dontInit: 0
@@ -4823,6 +4822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 5161490115281776879}
   dontInit: 0
@@ -4838,6 +4838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 12
   <BubbleTr>k__BackingField: {fileID: 6036357869328170377}
   dontInit: 0
@@ -5067,6 +5068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 7916832024658480368}
   dontInit: 0
@@ -5339,6 +5341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 1
   <BubbleTr>k__BackingField: {fileID: 5994124775759160081}
   dontInit: 0
@@ -5442,6 +5445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 3649268118179912920}
   dontInit: 0
@@ -5487,6 +5491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 2
   <BubbleTr>k__BackingField: {fileID: 7979787482917237394}
   dontInit: 0

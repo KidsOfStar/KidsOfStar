@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class InteractSpeaker : MonoBehaviour
 {
+    [field: SerializeField] public ChapterType ChapterType { get; private set; }
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
     [field: SerializeField] public Transform BubbleTr { get; private set; }
     [SerializeField] private bool dontInit = false;
@@ -15,6 +16,7 @@ public abstract class InteractSpeaker : MonoBehaviour
     public void Init()
     {
         if (dontInit) return;
+        EditorLog.Log(Managers.Instance.GameManager.CurrentChapter.ToString());
         
         var dict = Managers.Instance.DataManager.GetNpcDataDict();
         var startRange = ((int)Managers.Instance.GameManager.CurrentChapter + 1) * 100;
@@ -35,13 +37,12 @@ public abstract class InteractSpeaker : MonoBehaviour
     
     private void InitRequiredDialog()
     {
-        // 필수 대사 인덱스
-        var data = Managers.Instance.ResourceManager.Load<RequiredIndexData>(Define.dataPath + Define.requiredIndex);
-        var indexes = data.requiredIndexList;
+        // 필수 대사 인덱스 리스트를 읽어옴
+        var indexList = Managers.Instance.DataManager.GetRequiredIndex(ChapterType);
 
-        for (int i = 0; i < indexes.Length; i++)
+        for (int i = 0; i < indexList.Length; i++)
         {
-            var indexData = indexes[i];
+            var indexData = indexList[i];
             
             // 자신의 캐릭터 타입과 맞다면 딕셔너리에 저장
             if (indexData.characterType == CharacterType)
