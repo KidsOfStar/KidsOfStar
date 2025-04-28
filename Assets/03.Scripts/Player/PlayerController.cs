@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -63,13 +64,12 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     private IWeightable objWeight = null;
     // Ray로 감지한 물체의 무게
+
     private Rigidbody2D objRigid = null;
     // Ray로 감지한 물체의 rb
 
-    private bool isLeafJumping = false;
-
-    [Tooltip("Inspector에서 설정할 벡터")]
-    public float jumpPower = 2f;
+    [Tooltip("Inspector에서 설정할 나뭇잎 힘")]
+    public float leafJumpPower;
 
     public void Init(Player player)
     {
@@ -161,8 +161,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
                 Vector2 velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
                 rigid.velocity = velocity;
-
-                // this.objRigid.velocity = velocity;
             }
             else
             {
@@ -190,13 +188,14 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public float GetWeight() => Managers.Instance.GameManager.Player.FormControl.GetWeight();
 
-    public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float jumpPower)
+    public void StartLeafJump(Vector2 dropPosition,float jumpPower)
     {
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 1f;
 
-        Vector3 impulseMode = new Vector3(dropPosition.x,dropPosition.y*jumpPower,0);
-        rigid.AddForce(impulseMode, ForceMode2D.Impulse);
+        Vector2 dir = (dropPosition - rigid.position).normalized;
+        Vector2 impulse = dir * jumpPower * rigid.mass;
+        rigid.AddForce(impulse, ForceMode2D.Impulse);
     }
 
     public bool TryDetectBox(Vector2 dir)
