@@ -106,7 +106,6 @@ public class DialogueManager : ISceneLifecycleHandler
             // 타입에 따라 다이얼로그 액션 실행
             dialogActionHandlers[currentDialogData.FirstAction].Execute(currentDialogData, true);
             dialogActionHandlers[currentDialogData.SecondAction].Execute(currentDialogData, false);
-            
         }
     }
     

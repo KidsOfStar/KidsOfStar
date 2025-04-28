@@ -175,11 +175,4 @@ public enum WarningType
     BoxMissing,
 }
 
-public enum NPCType
-{
-    None,
-    Jigim,
-    Semyung
-}
-
 #endregion
