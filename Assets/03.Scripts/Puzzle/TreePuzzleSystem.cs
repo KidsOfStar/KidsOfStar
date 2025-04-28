@@ -189,7 +189,6 @@ public class TreePuzzleSystem : MonoBehaviour
             clearPuzzlenum.Add(puzzleIndex);
 
         }
-        
         clearExitBtn.onClick.RemoveAllListeners();
         clearExitBtn.onClick.AddListener(OnClearButtonClicked);
     }
@@ -229,10 +228,12 @@ public class TreePuzzleSystem : MonoBehaviour
         if (clearPuzzlenum.Count == 1)
         {
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom.GetName());
+            Managers.Instance.GameManager.UpdateProgress();
         }
         else if (clearPuzzlenum.Count >= totalPuzzleCount)
         {
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest.GetName());
+            Managers.Instance.GameManager.UpdateProgress();
         }
     }
 
