@@ -38,10 +38,13 @@ MonoBehaviour:
     index: 30006
   - characterType: 5
     progress: 2
-    index: 30008
+    index: 3002
   - characterType: 7
     progress: 2
-    index: 30009
+    index: 30007
+  - characterType: 6
+    progress: 2
+    index: 3002
   - characterType: 7
     progress: 3
     index: 3011

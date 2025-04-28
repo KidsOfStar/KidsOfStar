@@ -1109,9 +1109,9 @@ MonoBehaviour:
   DialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   <DialogIndexes>k__BackingField: c30b0000
   <Npcs>k__BackingField:
-  - {fileID: 5076024389518064871}
-  - {fileID: 1172355429974859558}
-  - {fileID: 3653727235635183062}
+  - {fileID: 3828183594692579430}
+  - {fileID: 8162275872325056344}
+  - {fileID: 4485148857339246238}
 --- !u!1 &3691578378030173408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1121,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6465277572617338612}
-  - component: {fileID: 5260468932887630355}
   - component: {fileID: 263904100664745406}
   - component: {fileID: 5777699363801726121}
   m_Layer: 0
@@ -1147,20 +1146,6 @@ Transform:
   - {fileID: 7147674151765117118}
   m_Father: {fileID: 2471654708722391237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5260468932887630355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3691578378030173408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 14
-  <BubbleTr>k__BackingField: {fileID: 7147674151765117118}
 --- !u!95 &263904100664745406
 Animator:
   serializedVersion: 5
@@ -1276,7 +1261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6354279027503469355}
   - component: {fileID: 322354595316159828}
-  - component: {fileID: 5076024389518064871}
+  - component: {fileID: 3828183594692579430}
   m_Layer: 0
   m_Name: Jigim
   m_TagString: Untagged
@@ -1352,7 +1337,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5076024389518064871
+--- !u!114 &3828183594692579430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1361,11 +1346,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5283963746196124274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 5
-  <BubbleTr>k__BackingField: {fileID: 8783772142441068454}
+  characterType: 5
+  bubblePosition: {fileID: 8783772142441068454}
 --- !u!1 &5731053891934929450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6635086358497431278}
   - component: {fileID: 369213510475272352}
-  - component: {fileID: 3653727235635183062}
+  - component: {fileID: 4485148857339246238}
   m_Layer: 0
   m_Name: Semyung
   m_TagString: Untagged
@@ -1452,7 +1437,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3653727235635183062
+--- !u!114 &4485148857339246238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1461,11 +1446,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5731053891934929450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 6
-  <BubbleTr>k__BackingField: {fileID: 2099771548810930086}
+  characterType: 6
+  bubblePosition: {fileID: 2099771548810930086}
 --- !u!1 &6173279979189729719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3438581716561891148}
   - component: {fileID: 2793753076413917685}
-  - component: {fileID: 1172355429974859558}
+  - component: {fileID: 8162275872325056344}
   m_Layer: 0
   m_Name: Hanyung
   m_TagString: Untagged
@@ -1765,7 +1750,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1172355429974859558
+--- !u!114 &8162275872325056344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1774,11 +1759,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7125468702778557177}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 7
-  <BubbleTr>k__BackingField: {fileID: 7059557276298492166}
+  characterType: 7
+  bubblePosition: {fileID: 7059557276298492166}
 --- !u!1 &8223707632554381906
 GameObject:
   m_ObjectHideFlags: 0

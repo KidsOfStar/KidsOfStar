@@ -6,7 +6,7 @@ public class DialogPlayer : MonoBehaviour
 {
     [field: SerializeField] private SignalAsset DialogSignal;
     [field: SerializeField] public int[] DialogIndexes { get; private set; }
-    [field: SerializeField] public Npc[] Npcs { get; private set; }
+    [field: SerializeField] public CutSceneNpc[] Npcs { get; private set; }
     public int CurrentIndex { get; private set; } = 0;
 
     public void ShowDialog(PlayableDirector director)

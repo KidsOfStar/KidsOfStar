@@ -69,9 +69,9 @@ MonoBehaviour:
   DialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   <DialogIndexes>k__BackingField: ba0b0000
   <Npcs>k__BackingField:
-  - {fileID: 2573707022882722956}
-  - {fileID: 6155548921558510048}
-  - {fileID: 4008910765357268648}
+  - {fileID: 4451490121164874670}
+  - {fileID: 8925795810135389171}
+  - {fileID: 1437420044768546857}
 --- !u!1 &242743601226920268
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,9 +181,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8093539394696172673}
-  - component: {fileID: 6584761531481769715}
   - component: {fileID: 5668676793720320010}
   - component: {fileID: 6461082413103948448}
+  - component: {fileID: 3816842242256329996}
   m_Layer: 0
   m_Name: CutScenePlayer
   m_TagString: Untagged
@@ -207,20 +207,6 @@ Transform:
   - {fileID: 8778235205942944593}
   m_Father: {fileID: 682994869462284318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6584761531481769715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075728148847197322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 14
-  <BubbleTr>k__BackingField: {fileID: 8778235205942944593}
 --- !u!95 &5668676793720320010
 Animator:
   serializedVersion: 5
@@ -294,6 +280,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3816842242256329996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075728148847197322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterType: 14
+  bubblePosition: {fileID: 8778235205942944593}
 --- !u!1 &2369781399313991093
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5623539919414970106}
   - component: {fileID: 6457563769137570197}
-  - component: {fileID: 6155548921558510048}
+  - component: {fileID: 8925795810135389171}
   m_Layer: 0
   m_Name: Hanyung
   m_TagString: Untagged
@@ -415,7 +415,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6155548921558510048
+--- !u!114 &8925795810135389171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -424,11 +424,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2373021480586173341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 7
-  <BubbleTr>k__BackingField: {fileID: 4566892460324763098}
+  characterType: 7
+  bubblePosition: {fileID: 4566892460324763098}
 --- !u!1 &2941206453493163757
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8451757794580270096}
   - component: {fileID: 8319962394608160186}
-  - component: {fileID: 2573707022882722956}
+  - component: {fileID: 4451490121164874670}
   m_Layer: 0
   m_Name: Jigim
   m_TagString: Untagged
@@ -515,7 +515,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2573707022882722956
+--- !u!114 &4451490121164874670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -524,11 +524,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2941206453493163757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 5
-  <BubbleTr>k__BackingField: {fileID: 4173064840689215961}
+  characterType: 5
+  bubblePosition: {fileID: 4173064840689215961}
 --- !u!1 &3560270343902437844
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6848116821522261033}
   - component: {fileID: 6568563006296321105}
-  - component: {fileID: 4008910765357268648}
+  - component: {fileID: 1437420044768546857}
   m_Layer: 0
   m_Name: Semyung
   m_TagString: Untagged
@@ -827,7 +827,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4008910765357268648
+--- !u!114 &1437420044768546857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -836,11 +836,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5781095816159813242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 6
-  <BubbleTr>k__BackingField: {fileID: 4677090567568508188}
+  characterType: 6
+  bubblePosition: {fileID: 4677090567568508188}
 --- !u!1 &6028237660640593588
 GameObject:
   m_ObjectHideFlags: 0
