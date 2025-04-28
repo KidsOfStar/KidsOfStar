@@ -18,6 +18,7 @@ public class TreePuzzleSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerTxt;
     [SerializeField] private GameObject failPopup;
     [SerializeField] private GameObject ClearPopup;
+    [SerializeField] private Button clearExitBtn;
 
     // 정답 Sprite 목록
     private List<Sprite> correctSprites;
@@ -187,22 +188,10 @@ public class TreePuzzleSystem : MonoBehaviour
         {
             clearPuzzlenum.Add(puzzleIndex);
 
-            if (clearPuzzlenum.Count == 1)
-            {
-                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom.GetName());
-                Managers.Instance.GameManager.UpdateProgress();
-            }
         }
-        if (clearPuzzlenum.Count >= totalPuzzleCount)
-        {
-            EditorLog.Log("모든 퍼즐 클리어! 추가 로직 실행");
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest.GetName());
-            Managers.Instance.GameManager.UpdateProgress();
-        }
-        else
-        {
-            EditorLog.Log($"{puzzleIndex} 첫 클리어");
-        }
+        
+        clearExitBtn.onClick.RemoveAllListeners();
+        clearExitBtn.onClick.AddListener(OnClearButtonClicked);
     }
 
     // 퍼즐 실패시
@@ -229,6 +218,22 @@ public class TreePuzzleSystem : MonoBehaviour
 
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))
             trig.ResetTrigger();
+    }
+
+    public void OnClearButtonClicked()
+    {
+        // 팝업 닫고 플레이어 제어 복구
+        OnExit();
+
+        // clearPuzzlenum.Count 에 따라 컷신 분기 재생
+        if (clearPuzzlenum.Count == 1)
+        {
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom.GetName());
+        }
+        else if (clearPuzzlenum.Count >= totalPuzzleCount)
+        {
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest.GetName());
+        }
     }
 
     // UI닫기
