@@ -61,10 +61,9 @@ public class DashGameResultPopup : PopupBase
             EditorLog.Log("대사 끝");
             Managers.Instance.UIManager.Hide<DashGameResultPopup>();
             Managers.Instance.GameManager.UpdateProgress(); // 대사 끝나면 진행도 업데이트
-
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife.GetName()); // 컷씬 재생
-
-            OnDisableAllTextBubbles();
+            Debug.Log($"컷씬 재생: {CutSceneType.FieldNormalLife.GetName()}");
+            //DisableAllTextBubbles();
         }
     }
 
@@ -97,9 +96,11 @@ public class DashGameResultPopup : PopupBase
 
         foreach (var bubble in bubbles)
         {
+            bubble.ClearTextBubble();
             bubble.gameObject.SetActive(false); // 모든 버블 끄기
         }
     }
+
 
     private void OnDisableAllTextBubbles()
     {

@@ -76,6 +76,14 @@ public class UITextBubble : PopupBase
         }
     }
 
+    public void ClearTextBubble()
+    {
+        dialogSb.Clear();
+        dialogText.text = string.Empty;
+        dialogCoroutine = null;
+        isTyping = false;
+    }
+
     private void OnEnable()
     {
         dialogStartTime = 0f;
