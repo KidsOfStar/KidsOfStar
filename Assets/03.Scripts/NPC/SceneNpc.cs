@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Npc : InteractSpeaker, IDialogSpeaker
+public class SceneNpc : InteractSpeaker, IDialogSpeaker
 {
     public CharacterType GetCharacterType()
     {

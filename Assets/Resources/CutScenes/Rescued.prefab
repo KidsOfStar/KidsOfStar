@@ -1491,7 +1491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8606834603210068532}
-  - component: {fileID: 1629983736846192410}
+  - component: {fileID: 5051622755351910862}
   m_Layer: 0
   m_Name: Dongdo
   m_TagString: Untagged
@@ -1515,7 +1515,7 @@ Transform:
   - {fileID: 5292789161521332996}
   m_Father: {fileID: 7542195409304151142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1629983736846192410
+--- !u!114 &5051622755351910862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1524,13 +1524,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1738998496022077835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
-  <CharacterType>k__BackingField: 4
-  <BubbleTr>k__BackingField: {fileID: 5292789161521332996}
-  dontInit: 0
+  characterType: 4
+  bubblePosition: {fileID: 5292789161521332996}
 --- !u!1 &1802657372591530411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,9 +1748,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7534806951731711648}
-  - component: {fileID: 2801222658280303236}
   - component: {fileID: 7744838914352188404}
   - component: {fileID: 3826496099007474496}
+  - component: {fileID: 697901136552414436}
   m_Layer: 0
   m_Name: Maorum
   m_TagString: Untagged
@@ -1776,22 +1774,6 @@ Transform:
   - {fileID: 4610883918351012586}
   m_Father: {fileID: 7542195409304151142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2801222658280303236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2719126470719893450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
-  <CharacterType>k__BackingField: 0
-  <BubbleTr>k__BackingField: {fileID: 4610883918351012586}
-  dontInit: 0
 --- !u!212 &7744838914352188404
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1865,6 +1847,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &697901136552414436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2719126470719893450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterType: 0
+  bubblePosition: {fileID: 4610883918351012586}
 --- !u!1 &3003211180421663724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,9 +2476,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6912484234039143370}
-  - component: {fileID: 5117655964964052540}
   - component: {fileID: 9045620471653343716}
   - component: {fileID: 4760241395942409879}
+  - component: {fileID: 8483223691128729151}
   m_Layer: 0
   m_Name: CutScenePlayer
   m_TagString: Untagged
@@ -2506,22 +2502,6 @@ Transform:
   - {fileID: 3492624788632458843}
   m_Father: {fileID: 7542195409304151142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5117655964964052540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3629908430397540769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
-  <CharacterType>k__BackingField: 14
-  <BubbleTr>k__BackingField: {fileID: 3492624788632458843}
-  dontInit: 0
 --- !u!212 &9045620471653343716
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2595,6 +2575,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8483223691128729151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3629908430397540769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterType: 14
+  bubblePosition: {fileID: 3492624788632458843}
 --- !u!1 &4334560553898583999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,10 +2753,10 @@ MonoBehaviour:
   DialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   <DialogIndexes>k__BackingField: e8030000d0070000d1070000d4070000d5070000
   <Npcs>k__BackingField:
-  - {fileID: 2801222658280303236}
-  - {fileID: 6093466154912502029}
-  - {fileID: 5117655964964052540}
-  - {fileID: 1629983736846192410}
+  - {fileID: 697901136552414436}
+  - {fileID: 7191340977522221822}
+  - {fileID: 8483223691128729151}
+  - {fileID: 5051622755351910862}
 --- !u!114 &6612782614018030183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,9 +2793,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4957628152495774264}
-  - component: {fileID: 6093466154912502029}
   - component: {fileID: 4776354416472980002}
   - component: {fileID: 5603172055872582464}
+  - component: {fileID: 7191340977522221822}
   m_Layer: 0
   m_Name: Doun
   m_TagString: Untagged
@@ -2825,22 +2819,6 @@ Transform:
   - {fileID: 7025580927250066429}
   m_Father: {fileID: 7542195409304151142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6093466154912502029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4538203414686143099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
-  <CharacterType>k__BackingField: 3
-  <BubbleTr>k__BackingField: {fileID: 7025580927250066429}
-  dontInit: 0
 --- !u!212 &4776354416472980002
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2914,6 +2892,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7191340977522221822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4538203414686143099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterType: 3
+  bubblePosition: {fileID: 7025580927250066429}
 --- !u!1 &5127731293347165205
 GameObject:
   m_ObjectHideFlags: 0

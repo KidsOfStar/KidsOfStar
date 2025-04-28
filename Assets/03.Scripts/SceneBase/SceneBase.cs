@@ -19,7 +19,7 @@ public abstract class SceneBase : MonoBehaviour
     [SerializeField] private Transform playerSpawnPosition;
 
     [Header("NPCs")]
-    [SerializeField] private Npc[] speakers;
+    [SerializeField] private SceneNpc[] speakers;
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
