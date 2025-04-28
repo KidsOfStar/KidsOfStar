@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 public interface IWeightable
 {
@@ -26,13 +27,15 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         return boxWeight;
     }
 
-    public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float jumpPower)
+    public void StartLeafJump(Vector2 dropPosition, float jumpPower)
     {
         // 물리 초기화
         rb.velocity = Vector2.zero;
         rb.gravityScale = 1f;
 
-        Vector3 impulseMode = new Vector3(dropPosition.x, dropPosition.y, 0);
-        rb.AddForce(impulseMode, ForceMode2D.Impulse);
+        Vector2 dir = (dropPosition - rb.position).normalized;
+        Vector2 impulse = dir * jumpPower * rb.mass;
+
+        rb.AddForce(impulse, ForceMode2D.Impulse);
     }
 }

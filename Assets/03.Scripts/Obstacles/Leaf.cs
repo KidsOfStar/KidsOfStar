@@ -3,13 +3,13 @@ using UnityEngine;
 
 public interface ILeafJumpable
 {
-    void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float jumpPower);
+    void StartLeafJump(Vector2 targetPosition, float duration);
 }
-public class Leaf : MonoBehaviour, ILeafJumpable
+public class Leaf : MonoBehaviour
 {
     [Header("Jump Settings")]
     [Tooltip("목표 이동 지점")] public Vector3 dropPosition;
-    [Tooltip("Jump의 Power")] public float jumpPower;
+    [Tooltip("Jump의 Power")] public float jumpPower = 5;
 
     [Header("Respawn Settings")]
     [Tooltip("Leaf가 떨어지고 다시 스폰되기 전까지 대기할 시간 (초)")]
@@ -41,7 +41,7 @@ public class Leaf : MonoBehaviour, ILeafJumpable
         {
             if (collision.collider.TryGetComponent<ILeafJumpable>(out var jumpable))
             {
-                jumpable.StartLeafJump(dropPosition, obstacleMask, jumpPower);
+                jumpable.StartLeafJump(dropPosition,jumpPower);
                 isUsed = true;
                 StartCoroutine(DropAndRespawn());
             }
@@ -83,10 +83,5 @@ public class Leaf : MonoBehaviour, ILeafJumpable
         sr.enabled = true;
         col.enabled = true;
         rb.gravityScale = 0f;
-    }
-
-    public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float jumpPower)
-    {
-        throw new System.NotImplementedException();
     }
 }
