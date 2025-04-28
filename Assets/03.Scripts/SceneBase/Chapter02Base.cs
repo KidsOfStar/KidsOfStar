@@ -9,7 +9,7 @@ public class Chapter02Base : SceneBase
 
         var skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
 
-        skillUnlock.UnlockSkill(1); // 강아지 스킬 잠금 해제
-        Managers.Instance.UIManager.SkillUnlock.UnlockSkill(1); // 다람쥐 스킬 잠금 해제
+        skillUnlock.UnlockSkill("Squirrel"); // 강아지 스킬 잠금 해제
+        //skillUnlock
     }
 }

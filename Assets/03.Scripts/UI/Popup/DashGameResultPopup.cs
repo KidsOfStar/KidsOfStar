@@ -63,6 +63,8 @@ public class DashGameResultPopup : PopupBase
             Managers.Instance.GameManager.UpdateProgress(); // 대사 끝나면 진행도 업데이트
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife.GetName()); // 컷씬 재생
             Debug.Log($"컷씬 재생: {CutSceneType.FieldNormalLife.GetName()}");
+            DisableAllTextBubbles();
+
         }
     }
 
