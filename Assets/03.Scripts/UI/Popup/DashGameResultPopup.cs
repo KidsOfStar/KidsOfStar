@@ -19,8 +19,9 @@ public class DashGameResultPopup : PopupBase
     public override void Opened(params object[] param)
     {
         base.Opened(param);
-
         SkillBTN skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+
+        DisableAllTextBubbles();
 
         if (param.Length < 2 || !(param[0] is float index) || !(param[1] is CharacterType npcType))
         {
@@ -29,6 +30,7 @@ public class DashGameResultPopup : PopupBase
 
         currentNpcType = npcType;
         currentDialogLines = dialogueDatabase.GetDialogueByNpc(index, npcType);
+
 
         if (currentDialogLines == null || currentDialogLines.Count == 0)
         {
@@ -58,6 +60,11 @@ public class DashGameResultPopup : PopupBase
         {
             EditorLog.Log("대사 끝");
             Managers.Instance.UIManager.Hide<DashGameResultPopup>();
+            Managers.Instance.GameManager.UpdateProgress(); // 대사 끝나면 진행도 업데이트
+
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife.GetName()); // 컷씬 재생
+
+            OnDisableAllTextBubbles();
         }
     }
 
@@ -82,5 +89,25 @@ public class DashGameResultPopup : PopupBase
             semyungText.text = line;
         }
         currentLineIndex++;
+    }
+
+    private void DisableAllTextBubbles()
+    {
+        UITextBubble[] bubbles = FindObjectsOfType<UITextBubble>(true); // (true) 비활성화 된 것도 찾기
+
+        foreach (var bubble in bubbles)
+        {
+            bubble.gameObject.SetActive(false); // 모든 버블 끄기
+        }
+    }
+
+    private void OnDisableAllTextBubbles()
+    {
+        UITextBubble[] bubbles = FindObjectsOfType<UITextBubble>(true); // (true) 비활성화 된 것도 찾기
+
+        foreach (var bubble in bubbles)
+        {
+            bubble.gameObject.SetActive(true); // 모든 버블 켜기
+        }
     }
 }

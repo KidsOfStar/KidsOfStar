@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DashInteractable : MonoBehaviour
 {
     public InteractionType interactionType; // 상호작용 타입
     public CharacterType npcType; // Jigim 또는 Semyung을 에디터에서 지정
-    public int dialogIndex; // 대사 인덱스
+    //public int dialogIndex; // 대사 인덱스
 
     private SkillBTN skillBTN;
     private DashGame dashGame;

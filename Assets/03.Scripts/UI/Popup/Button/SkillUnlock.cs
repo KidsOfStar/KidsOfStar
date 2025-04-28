@@ -61,7 +61,7 @@ public class SkillUnlock : MonoBehaviour
     {
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {
-            skillPair.bg.SetActive(false);
+            skillPair.bg.SetActive(true);
             skillPair.icon.SetActive(true);
 
             unlockedSkills.Add(chapter); // 스킬 잠금 해제
