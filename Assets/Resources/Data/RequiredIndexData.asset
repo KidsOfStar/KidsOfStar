@@ -12,13 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8428d3bb93c6344c907616e4b57f723, type: 3}
   m_Name: RequiredIndexData
   m_EditorClassIdentifier: 
-  requiredIndexList:
+  chapter1List:
   - characterType: 0
     progress: 1
-    index: 10004
+    index: 10000
   - characterType: 0
     progress: 2
-    index: 10006
+    index: 10005
   - characterType: 0
     progress: 3
-    index: 10024
+    index: 10021
+  chapter2List:
+  - characterType: 3
+    progress: 1
+    index: 20002
+  - characterType: 4
+    progress: 3
+    index: 20011
+  - characterType: 7
+    progress: 5
+    index: 20027
+  chapter3List:
+  - characterType: 7
+    progress: 1
+    index: 30006
+  - characterType: 5
+    progress: 2
+    index: 30008
+  - characterType: 7
+    progress: 2
+    index: 30009
+  - characterType: 7
+    progress: 3
+    index: 3011
+  - characterType: 7
+    progress: 4
+    index: 3028

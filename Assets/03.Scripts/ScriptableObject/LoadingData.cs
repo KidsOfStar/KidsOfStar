@@ -15,5 +15,5 @@ public class LoadingData : ScriptableObject
 public struct Tooltip
 {
     public SceneType sceneType;
-    public string[] tooltips;
+    [TextArea(3, 10)] public string[] tooltips;
 }

@@ -176,11 +176,4 @@ public enum WarningType
     BoxFalling,
 }
 
-public enum NPCType
-{
-    None,
-    Jigim,
-    Semyung
-}
-
 #endregion

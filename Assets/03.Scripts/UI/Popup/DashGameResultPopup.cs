@@ -13,16 +13,17 @@ public class DashGameResultPopup : PopupBase
 
     private int currentLineIndex = 0;
     private List<string> currentDialogLines;
-    private NPCType currentNpcType;
+    private CharacterType currentNpcType;
 
     
     public override void Opened(params object[] param)
     {
         base.Opened(param);
-
         SkillBTN skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
-        if (param.Length < 2 || !(param[0] is float index) || !(param[1] is NPCType npcType))
+        DisableAllTextBubbles();
+
+        if (param.Length < 2 || !(param[0] is float index) || !(param[1] is CharacterType npcType))
         {
             return; 
         }
@@ -30,8 +31,21 @@ public class DashGameResultPopup : PopupBase
         currentNpcType = npcType;
         currentDialogLines = dialogueDatabase.GetDialogueByNpc(index, npcType);
 
-        currentLineIndex = 0;
 
+        if (currentDialogLines == null || currentDialogLines.Count == 0)
+        {
+            Debug.LogWarning($"No dialogues found for NPC: {npcType}, Index: {index}");
+        }
+        else
+        {
+            Debug.Log($"Loaded {currentDialogLines.Count} dialogues for NPC: {npcType}, Index: {index}");
+            for (int i = 0; i < currentDialogLines.Count; i++)
+            {
+                Debug.Log($"Dialogue {i + 1}: {currentDialogLines[i]}");
+            }
+        }
+
+        currentLineIndex = 0;
     }
 
     public void OnClickDialogue()
@@ -46,7 +60,11 @@ public class DashGameResultPopup : PopupBase
         {
             EditorLog.Log("대사 끝");
             Managers.Instance.UIManager.Hide<DashGameResultPopup>();
-            //Managers.Instance.GameManager.UpdateProgress(); // 챕터 진행도 +1
+            Managers.Instance.GameManager.UpdateProgress(); // 대사 끝나면 진행도 업데이트
+
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife.GetName()); // 컷씬 재생
+
+            OnDisableAllTextBubbles();
         }
     }
 
@@ -60,16 +78,36 @@ public class DashGameResultPopup : PopupBase
 
         string line = currentDialogLines[currentLineIndex];
 
-        if (currentNpcType == NPCType.Jigim)
+        if (currentNpcType == CharacterType.Jigim)
         {
             jigimText.text = line;
             semyungText.text = string.Empty;
         }
-        else if (currentNpcType == NPCType.Semyung)
+        else if (currentNpcType == CharacterType.Semyung)
         {
             jigimText.text = string.Empty;
             semyungText.text = line;
         }
         currentLineIndex++;
+    }
+
+    private void DisableAllTextBubbles()
+    {
+        UITextBubble[] bubbles = FindObjectsOfType<UITextBubble>(true); // (true) 비활성화 된 것도 찾기
+
+        foreach (var bubble in bubbles)
+        {
+            bubble.gameObject.SetActive(false); // 모든 버블 끄기
+        }
+    }
+
+    private void OnDisableAllTextBubbles()
+    {
+        UITextBubble[] bubbles = FindObjectsOfType<UITextBubble>(true); // (true) 비활성화 된 것도 찾기
+
+        foreach (var bubble in bubbles)
+        {
+            bubble.gameObject.SetActive(true); // 모든 버블 켜기
+        }
     }
 }

@@ -16,7 +16,7 @@ public class DialogueManager : ISceneLifecycleHandler
     public Action OnClick { get; set; }
     public Action OnDialogStart { get; set; }
     public Action OnDialogEnd { get; set; }
-    public Action<int> OnSceneDialogEnd { get; set; }
+    public Action<int> OnDialogStepEnd { get; set; }
     private bool isCutScene;
 
     public DialogueManager()
@@ -30,7 +30,7 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.UpdateProgress] = new UpdateProgressAction();
         dialogActionHandlers[DialogActionType.ChangeForm] = new ChangeFormAction();
         dialogActionHandlers[DialogActionType.GoToEnding] = new GoToEndingAction();
-        
+
         CustomActions.Init();
     }
 
@@ -74,10 +74,12 @@ public class DialogueManager : ISceneLifecycleHandler
         foreach (var dialog in dialogs)
             dialogQueue.Enqueue(dialog);
 
+        OnDialogStart?.Invoke();
         if (dialogQueue.Count > 0)
         {
             ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
+        else OnDialogEnd?.Invoke();
     }
 
     private void ShowDialog(string dialog, CharacterType character)
@@ -88,7 +90,6 @@ public class DialogueManager : ISceneLifecycleHandler
         var localPos = WorldToCanvasPosition(bubblePos);
         var formattedDialog = dialog.Replace("\\n", "\n");
 
-        OnDialogStart?.Invoke();
         textBubble.SetActive(true);
         textBubble.SetDialog(formattedDialog, localPos);
     }
@@ -106,10 +107,9 @@ public class DialogueManager : ISceneLifecycleHandler
             // 타입에 따라 다이얼로그 액션 실행
             dialogActionHandlers[currentDialogData.FirstAction].Execute(currentDialogData, true);
             dialogActionHandlers[currentDialogData.SecondAction].Execute(currentDialogData, false);
-            
         }
     }
-    
+
     private Vector2 WorldToCanvasPosition(Vector3 worldPos)
     {
         var cam = Managers.Instance.GameManager.MainCamera;
@@ -124,11 +124,11 @@ public class DialogueManager : ISceneLifecycleHandler
         return screenPos;
     }
 
-    public void InvokeSceneDialogEnd()
+    public void InvokeOnDialogStepEnd()
     {
-        OnSceneDialogEnd?.Invoke(currentDialogData.Index);
+        OnDialogStepEnd?.Invoke(currentDialogData.Index);
     }
-    
+
     public void OnSceneLoaded()
     {
         textBubble = Managers.Instance.UIManager.Show<UITextBubble>();

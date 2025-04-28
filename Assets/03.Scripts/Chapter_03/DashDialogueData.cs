@@ -15,13 +15,13 @@ public class DashDialogueData : ScriptableObject
 {
     public List<DialogueEntry> entries;
 
-    public List<string> GetDialogueByNpc(float clearTime, NPCType npcType)
+    public List<string> GetDialogueByNpc(float clearTime, CharacterType npcType)
     {
         DialogueEntry selected = GetDialogueEntry(clearTime);
         return npcType switch
         {
-            NPCType.Jigim => selected.jigimDialogues,
-            NPCType.Semyung => selected.semyungDialogues,
+            CharacterType.Jigim => selected.jigimDialogues,
+            CharacterType.Semyung => selected.semyungDialogues,
             _ => new List<string>()
         };
     }
@@ -30,9 +30,14 @@ public class DashDialogueData : ScriptableObject
     {
         foreach (var entry in entries)
         {
+            Debug.Log($"Checking entry with dialoguesIndex: {entry.dialoguesIndex}");
             if (time < entry.dialoguesIndex)
+            {
+                Debug.Log($"Selected entry with dialoguesIndex: {entry.dialoguesIndex}");
                 return entry;
+            }
         }
+        Debug.Log("Returning the last entry as default.");
         return entries[entries.Count - 1]; // 가장 마지막 구간 반환
     }
 }
