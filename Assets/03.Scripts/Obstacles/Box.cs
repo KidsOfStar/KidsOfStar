@@ -32,7 +32,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         rb.velocity = Vector2.zero;
         rb.gravityScale = 1f;
 
-        Vector3 impulseMode = new Vector3(dropPosition.x, dropPosition.y, 0);
-        rb.AddForce(impulseMode, ForceMode2D.Impulse);
+        float power = rb.mass;
+        rb.AddForce(dropPosition* power, ForceMode2D.Impulse);
     }
 }

@@ -173,6 +173,7 @@ public enum WarningType
     None,
     Squirrel,
     BoxMissing,
+    BoxFalling,
 }
 
 public enum NPCType

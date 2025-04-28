@@ -9,7 +9,7 @@ public class Leaf : MonoBehaviour, ILeafJumpable
 {
     [Header("Jump Settings")]
     [Tooltip("목표 이동 지점")] public Vector3 dropPosition;
-    [Tooltip("Jump의 Power")] public float jumpPower;
+    [Tooltip("Jump의 Power")] public float jumpPower = 5;
 
     [Header("Respawn Settings")]
     [Tooltip("Leaf가 떨어지고 다시 스폰되기 전까지 대기할 시간 (초)")]
@@ -41,7 +41,10 @@ public class Leaf : MonoBehaviour, ILeafJumpable
         {
             if (collision.collider.TryGetComponent<ILeafJumpable>(out var jumpable))
             {
-                jumpable.StartLeafJump(dropPosition, obstacleMask, jumpPower);
+                Rigidbody2D objRb2D = collision.gameObject.GetComponent<Rigidbody2D>();
+                float power = objRb2D.mass;
+                EditorLog.Log(power);
+                jumpable.StartLeafJump(dropPosition * power, obstacleMask, jumpPower);
                 isUsed = true;
                 StartCoroutine(DropAndRespawn());
             }
@@ -87,6 +90,6 @@ public class Leaf : MonoBehaviour, ILeafJumpable
 
     public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float jumpPower)
     {
-        throw new System.NotImplementedException();
+        rb.AddForce(dropPosition, ForceMode2D.Impulse);
     }
 }
