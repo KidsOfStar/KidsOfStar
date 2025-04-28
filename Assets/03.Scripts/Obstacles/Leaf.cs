@@ -4,7 +4,7 @@ using UnityEngine;
 public class Leaf : MonoBehaviour
 {
     [Header("Jump Settings")]
-    public Vector3 dropPosition;
+    [Tooltip("목표 이동 지점")] public Vector3 dropPosition;
     public float moveSpeed = 3f;
     public float jumpHeight = 10f;
 
@@ -22,14 +22,12 @@ public class Leaf : MonoBehaviour
     private SpriteRenderer sr;
     private Collider2D leafCollider;
     private Vector2 originalPosition;
-    private Quaternion originalRotation;
     void Start()
     {
         leafRb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         leafCollider = GetComponent<Collider2D>();
         originalPosition = transform.position;
-        originalRotation = transform.rotation;
         leafRb.gravityScale = 0f;
     }
 
@@ -49,6 +47,7 @@ public class Leaf : MonoBehaviour
         }
     }
 
+    // 전체면적이 닿았는지 경계 검사(0.3f만큼의 수직 허용 오차)
     private bool CheckBoundary(Transform target)
     {
         float verticalTolerance = 0.3f;

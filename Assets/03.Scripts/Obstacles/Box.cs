@@ -63,6 +63,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         // 바닥 착지 지점 계산
         Vector3 fallTarget = dropPosition;
+        // 관성처럼 튀어오르는 것을 방지하고자 col의 절반만큼 위로 설정
         fallTarget.y += col.bounds.extents.y;
 
         rb.MovePosition(fallTarget);
