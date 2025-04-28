@@ -72,6 +72,9 @@ public class DashGame : MonoBehaviour
         float clearTime = stopWatch.recodeTime;
 
         ShowDialogueResult(clearTime, npcType); // 대사 출력
+
+        Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
+
     }
 
     private void ShowDialogueResult(float clearTime, CharacterType npcType)
