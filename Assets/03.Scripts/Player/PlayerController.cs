@@ -91,10 +91,18 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     void GroundCheck()
     {
-        Vector2 boxSize = new Vector2(boxCollider.bounds.size.x * 0.7f, boxCollider.bounds.size.y);
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down,
             0.02f, groundLayer);
-        isGround = hit.collider != null ? true : false;
+        
+        if(hit.collider != null && hit.normal.y > 0.7f)
+        {
+            isGround = true;
+        }
+        else
+        {
+            isGround = false;
+        }
+
         anim.SetBool(PlayerAnimHash.AnimGround, isGround);
     }
 
