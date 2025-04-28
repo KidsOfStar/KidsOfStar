@@ -6,17 +6,23 @@ public class DataManager
     private readonly Dictionary<int, DialogData> dialogDatas;
     private readonly Dictionary<int, NPCData> npcDatas;
     private readonly Dictionary<int, SpecifiedAction> specifiedActionDatas;
+    
     private readonly Dictionary<ChapterType, int> maxProgressDict = new();
+    private Dictionary<ChapterType, RequiredIndex[]> requiredIndexDict;
     
     public DataManager()
     {
+        // UGS
         dialogDatas = DialogData.GetDictionary();
         npcDatas = NPCData.GetDictionary();
         specifiedActionDatas = SpecifiedAction.GetDictionary();
+        
+        // SO
         LoadChapterProgressData();
+        LoadRequiredIndexData();
     }
 
-    public void LoadChapterProgressData()
+    private void LoadChapterProgressData()
     {
         var data = Managers.Instance.ResourceManager.Load<ChapterData>(Define.dataPath + "ChapterData", true);
         if (data == null)
@@ -32,6 +38,32 @@ public class DataManager
             {
                 maxProgressDict[chapterProgress.chapterType] = chapterProgress.maxProgress;
             }
+        }
+    }
+    
+    private void LoadRequiredIndexData()
+    {
+        // 필수 대사 인덱스
+        var data = Managers.Instance.ResourceManager.Load<RequiredIndexData>(Define.dataPath + Define.requiredIndex);
+        if (data == null)
+        {
+            EditorLog.LogError("DataManager : RequiredIndexData is null");
+            return;
+        }
+        
+        data.Init();
+        requiredIndexDict = data.requiredIndexDict;
+    }
+    
+    public RequiredIndex[] GetRequiredIndex(ChapterType chapterType)
+    {
+        if (requiredIndexDict.TryGetValue(chapterType, out var requiredIndexes))
+            return requiredIndexes;
+            
+        else
+        {
+            EditorLog.LogError($"DataManager : Not found RequiredIndex with chapterType: {chapterType}");
+            return null;
         }
     }
     

@@ -40,12 +40,12 @@ public abstract class SceneBase : MonoBehaviour
 #if UNITY_EDITOR
         Managers.Instance.LoadTestScene = false;
 #endif
-
-        // NPC 초기화_UpdateProgress 이벤트에 등록하기 위해 게임매니저보다 먼저 호출
-        InitNpc();
         
         // 게임 매니저에 현재 챕터를 설정
         InitSceneBase();
+        
+        // NPC 초기화_UpdateProgress 이벤트에 등록하기 위해 게임매니저보다 먼저 호출
+        InitNpc();
 
         // 씬이 로드된 후에 플레이어를 스폰
         SpawnPlayer();
