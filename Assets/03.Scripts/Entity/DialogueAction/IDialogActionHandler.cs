@@ -17,8 +17,8 @@ public class NoneAction : IDialogActionHandler
         // NextIndex가 없으면 대화 종료
         if (dialogData.NextIndex.Count <= 0)
         {
-            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             return;
         }
 

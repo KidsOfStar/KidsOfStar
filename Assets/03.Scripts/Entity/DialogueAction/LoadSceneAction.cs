@@ -7,8 +7,8 @@ public class LoadSceneAction : IDialogActionHandler
     {
         if (!isFirst)
         {
-            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         }
         
         if (!Enum.TryParse<SceneType>(dialogData.Param, out var sceneType))

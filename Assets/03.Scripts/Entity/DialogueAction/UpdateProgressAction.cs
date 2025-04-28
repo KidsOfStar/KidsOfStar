@@ -6,8 +6,8 @@ public class UpdateProgressAction : IDialogActionHandler
     {
         if (!isFirst)
         {
-            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         }
         
         Managers.Instance.GameManager.UpdateProgress();

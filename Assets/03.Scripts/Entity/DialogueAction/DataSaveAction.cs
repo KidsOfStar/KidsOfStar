@@ -6,8 +6,8 @@ public class DataSaveAction : IDialogActionHandler
     {
         if (!isFirst)
         {
-            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
             Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+            Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         }
         
         // TODO: Save UI 띄우기

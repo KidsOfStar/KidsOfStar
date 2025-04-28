@@ -3207,6 +3207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 7916832025224859127}
+  dontInit: 1
 --- !u!212 &4633986023284743235
 SpriteRenderer:
   m_ObjectHideFlags: 0

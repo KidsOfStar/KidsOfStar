@@ -1,14 +1,21 @@
+using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class InteractSpeaker : MonoBehaviour
 {
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
+    [field: SerializeField] public Transform BubbleTr { get; private set; }
+    [SerializeField] private bool dontInit = false;
+    
     private readonly Dictionary<int, int> dialogByProgress = new();
     private readonly Dictionary<int, int> requiredDialogByProgress = new();
 
     public void Init()
     {
+        if (dontInit) return;
+        
         var dict = Managers.Instance.DataManager.GetNpcDataDict();
         var startRange = ((int)Managers.Instance.GameManager.CurrentChapter + 1) * 100;
         var endRange = startRange + 100;
@@ -21,10 +28,9 @@ public abstract class InteractSpeaker : MonoBehaviour
             dialogByProgress.Add(npcData.Progress, npcData.DialogIndex);
         }
 
-        //InitRequiredDialog();
-        
-        // 게임매니저의 업데이트 프로그레스 이벤트에 현재 프로그레스에 맞는 필수대사가 있다면 느낌표를 띄우는 함수 등록
-        // 다이얼로그 매니저의 특정 대사 End 이벤트에 느낌표를 제거하는 함수 등록
+        InitRequiredDialog();
+        Managers.Instance.GameManager.OnProgressUpdated += CheckExistRequiredDialog;
+        Managers.Instance.DialogueManager.OnSceneDialogEnd += DespawnExclamationIcon;
     }
     
     private void InitRequiredDialog()
@@ -43,24 +49,33 @@ public abstract class InteractSpeaker : MonoBehaviour
         }
     }
     
-    // 현재 프로그레스에 맞는 인덱스가 있다면? -> 느낌표 띄우기
-    // 해당 인덱스의 대사가 출력됐다면? -> 느낌표 삭제
-    private bool ExistRequiredDialog(int progress)
+    // 프로그레스가 업데이트 되는 이벤트에 등록
+    private void CheckExistRequiredDialog()
     {
         var currentProgress = Managers.Instance.GameManager.ChapterProgress;
         foreach (var pair in requiredDialogByProgress)
         {
-            
-        }
-        
-        if (currentProgress == progress)
-        {
-            return true;
-        }
+            if (pair.Key != currentProgress) continue;
 
-        return false;
+            // 느낌표 띄우기
+            var exclamationIcon = Managers.Instance.PoolManager.Spawn(Define.requiredIconKey, BubbleTr);
+            exclamationIcon.transform.localPosition = Vector3.zero;
+        }
     }
     
+    private void DespawnExclamationIcon(int index)
+    {
+        foreach (var value in requiredDialogByProgress.Values)
+        {
+            if (index != value) continue;
+
+            var exclamationIcon = BubbleTr.GetChild(0).gameObject;
+            if (!exclamationIcon)
+                EditorLog.LogError("No exclamation icon found");
+            
+            Managers.Instance.PoolManager.Despawn(exclamationIcon);
+        }
+    }
 
     private void OnInteract()
     {
@@ -115,6 +130,10 @@ public abstract class InteractSpeaker : MonoBehaviour
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         skillPanel.ShowInteractionButton(false);
     }
-    
-    
+
+    private void OnDestroy()
+    {
+        Managers.Instance.GameManager.OnProgressUpdated -= CheckExistRequiredDialog;
+        Managers.Instance.DialogueManager.OnSceneDialogEnd -= DespawnExclamationIcon;
+    }
 }
