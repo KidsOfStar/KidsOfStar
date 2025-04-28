@@ -270,6 +270,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     
     private void UnlockPlayer()
     {
+        EditorLog.Log("UnlockPlayer");
         isControllable = true;
     }
 
