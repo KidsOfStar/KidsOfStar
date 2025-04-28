@@ -37,7 +37,7 @@ public class DashInteractable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && Managers.Instance.GameManager.ChapterProgress == 2)
+        if (other.CompareTag("Player"))
         {
             skillBTN.ShowInteractionButton(false); // 버튼 숨김
             skillBTN.OnInteractBtnClick -= OnPlayerInteract;

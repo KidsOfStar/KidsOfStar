@@ -273,7 +273,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 0d6007355733a4b4e8f99b1af3951c20, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -2270,9 +2270,9 @@ MonoBehaviour:
   DialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   <DialogIndexes>k__BackingField: d40b0000df0b0000e00b0000
   <Npcs>k__BackingField:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8189879931880204014}
+  - {fileID: 7739186223790055085}
+  - {fileID: 7269649057054164905}
 --- !u!1 &3893531358326976676
 GameObject:
   m_ObjectHideFlags: 0

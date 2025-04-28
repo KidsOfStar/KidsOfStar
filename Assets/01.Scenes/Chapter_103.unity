@@ -492,12 +492,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8fd46f427e57c4590c285787a14624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
   followTarget: 0
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: 0, y: 0}
   maxPosition: {x: 0, y: 0}
   lightObject: {fileID: 820259258}
-  target: {fileID: 0}
 --- !u!114 &587337545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2920,7 +2920,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5952377060798919337, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
       propertyPath: isTest
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6347151878847138798, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
       propertyPath: m_Name
@@ -3205,6 +3205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 7916832025224859127}
   dontInit: 1

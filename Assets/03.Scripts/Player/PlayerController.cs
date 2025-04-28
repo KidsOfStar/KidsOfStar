@@ -263,14 +263,12 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     
     public void LockPlayer()
     {
-        EditorLog.Log("LockPlayer");
         isControllable = false;
         rigid.velocity = Vector2.zero;
     }
     
     private void UnlockPlayer()
     {
-        EditorLog.Log("UnlockPlayer");
         isControllable = true;
     }
 
