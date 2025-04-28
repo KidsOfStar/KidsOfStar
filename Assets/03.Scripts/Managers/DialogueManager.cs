@@ -60,6 +60,7 @@ public class DialogueManager : ISceneLifecycleHandler
     public void SetCurrentDialogData(int index)
     {
         currentDialogData = Managers.Instance.DataManager.GetPlayerData(index);
+        dialogQueue.Clear();
         if (currentDialogData == null)
         {
             EditorLog.LogError($"DialogueManager : Not found PlayerData with index: {index}");
@@ -77,6 +78,7 @@ public class DialogueManager : ISceneLifecycleHandler
         OnDialogStart?.Invoke();
         if (dialogQueue.Count > 0)
         {
+            Debug.Log(currentDialogData.Index);
             ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
         else OnDialogEnd?.Invoke();
