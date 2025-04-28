@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,7 +46,9 @@ public class UITitle : UIBase
         //Managers.Instance.UIManager.Show<WarningStartTop>();
 
         // 아닐 경우 게임 시작
-        NextScene();
+        //NextScene();
+
+        StartCoroutine(LoadSceneCoroutine("Chapter01"));
     }
 
     private void NextScene()
@@ -52,5 +56,12 @@ public class UITitle : UIBase
         // 다음 씬으로 이동
         Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter1);
         //Managers.Instance.cutSceneManager.MapSceneToCutScene("Chapter01", "Intro");
+    }
+
+    IEnumerator LoadSceneCoroutine(string sceneName)
+    {
+        // 씬 로드 코루틴
+        yield return new WaitUntil(() => Managers.Instance.SceneLoadManager.IsSceneLoadComplete);
+        Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter1);
     }
 }
