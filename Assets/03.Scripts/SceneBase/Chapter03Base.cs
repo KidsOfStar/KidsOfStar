@@ -15,17 +15,14 @@ public class Chapter03Base : SceneBase
         //var skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
         var skillUnlock = skillBtn.skillUnlock;
 
-
         skillUnlock.SetUnlockedSkills(Managers.Instance.GameManager.SavedUnlockedSkills);
         skillUnlock.ApplyUnlockedSkills();
 
         // 강아지 스킬 잠금 해제
-        //Managers.Instance.UIManager.SkillUnlock.UnlockSkill(1);
-        Managers.Instance.UIManager.SkillUnlock.UnlockSkill(2);
+        skillUnlock.UnlockSkill(2); // 다람쥐 스킬 잠금 해제
+        skillUnlock.ShowSkillBG(skillUnlock.dogBG); // 강아지 스킬 BG 활성화
 
         Managers.Instance.GameManager.SavedUnlockedSkills = skillUnlock.GetUnlockedSkills();
-
-        playIntroCallback?.Invoke();
 
     }
 }

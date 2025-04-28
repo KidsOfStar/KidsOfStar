@@ -24453,7 +24453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   followTarget: 1
-  offset: {x: 0, y: 2, z: -10}
+  offset: {x: 0, y: 4, z: -10}
   minPosition: {x: -38, y: -5}
   maxPosition: {x: 333, y: 5}
   lightObject: {fileID: 0}

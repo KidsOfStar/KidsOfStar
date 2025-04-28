@@ -8,9 +8,14 @@ public class Chapter02Base : SceneBase
         playIntroCallback?.Invoke();
 
         var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-        var skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
+        var skillUnlock = skillBtn.skillUnlock;
 
-        skillUnlock.UnlockSkill(1); // 강아지 스킬 잠금 해제
-        Managers.Instance.UIManager.SkillUnlock.UnlockSkill(1); // 다람쥐 스킬 잠금 해제
+        skillUnlock.SetUnlockedSkills(Managers.Instance.GameManager.SavedUnlockedSkills);
+        skillUnlock.ApplyUnlockedSkills();
+
+        skillUnlock.UnlockSkill(1); // 다람쥐 스킬 잠금 해제
+        skillUnlock.ShowSkillBG(skillUnlock.squirrelBG); // 다람쥐 스킬 BG 활성화
+
+        Managers.Instance.GameManager.SavedUnlockedSkills = skillUnlock.GetUnlockedSkills();
     }
 }
