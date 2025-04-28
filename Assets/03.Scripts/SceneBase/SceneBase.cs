@@ -15,11 +15,11 @@ public abstract class SceneBase : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
 
-    [SerializeField] private string playerStartForm;
+    [SerializeField] protected string playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
 
     [Header("NPCs")]
-    [SerializeField] private Npc[] speakers;
+    [SerializeField] private SceneNpc[] speakers;
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;

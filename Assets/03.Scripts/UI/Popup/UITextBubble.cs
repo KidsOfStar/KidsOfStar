@@ -75,7 +75,7 @@ public class UITextBubble : PopupBase
             Managers.Instance.DialogueManager.OnDialogLineComplete();
         }
     }
-
+    
     private void OnEnable()
     {
         dialogStartTime = 0f;

@@ -261,7 +261,7 @@ MonoBehaviour:
   DialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   <DialogIndexes>k__BackingField: e10b0000e20b0000
   <Npcs>k__BackingField:
-  - {fileID: 2237714202078642593}
+  - {fileID: 6347174059808076196}
 --- !u!1 &4488295933923545439
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,8 +561,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1664849415108663493}
   - component: {fileID: 7251596445248672327}
-  - component: {fileID: 2237714202078642593}
   - component: {fileID: 660473188474358229}
+  - component: {fileID: 6347174059808076196}
   m_Layer: 0
   m_Name: Ea
   m_TagString: Untagged
@@ -638,20 +638,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2237714202078642593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6353051503912906205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 8
-  <BubbleTr>k__BackingField: {fileID: 3742955262206469104}
 --- !u!95 &660473188474358229
 Animator:
   serializedVersion: 5
@@ -673,6 +659,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6347174059808076196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6353051503912906205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterType: 8
+  bubblePosition: {fileID: 3742955262206469104}
 --- !u!1 &6462284760170655806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2016,8 +2016,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 14
   <BubbleTr>k__BackingField: {fileID: 7157573051886509531}
+  dontInit: 0
 --- !u!95 &2113964477204210490
 Animator:
   serializedVersion: 5
