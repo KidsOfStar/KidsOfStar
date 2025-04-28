@@ -1,6 +1,7 @@
 using MainTable;
 using System;
 
+// NextIndex 존재 불가능
 public class PlayCutSceneAction : IDialogActionHandler
 {
     public void Execute(DialogData dialogData, bool isFirst)

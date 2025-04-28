@@ -10,6 +10,7 @@ public class TreePuzzlePiece : MonoBehaviour
     [SerializeField] private Image pieceImage; // UI용 조각 이미지
 
     [SerializeField] private int correctRotation; // 0, 90, 180, 270
+
     private int currentRotation;
     private Outline outLine;
 

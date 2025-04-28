@@ -30,7 +30,7 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.UpdateProgress] = new UpdateProgressAction();
         dialogActionHandlers[DialogActionType.ChangeForm] = new ChangeFormAction();
         dialogActionHandlers[DialogActionType.GoToEnding] = new GoToEndingAction();
-        
+
         CustomActions.Init();
     }
 
@@ -74,10 +74,12 @@ public class DialogueManager : ISceneLifecycleHandler
         foreach (var dialog in dialogs)
             dialogQueue.Enqueue(dialog);
 
+        OnDialogStart?.Invoke();
         if (dialogQueue.Count > 0)
         {
             ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
+        else OnDialogEnd?.Invoke();
     }
 
     private void ShowDialog(string dialog, CharacterType character)
@@ -88,7 +90,6 @@ public class DialogueManager : ISceneLifecycleHandler
         var localPos = WorldToCanvasPosition(bubblePos);
         var formattedDialog = dialog.Replace("\\n", "\n");
 
-        OnDialogStart?.Invoke();
         textBubble.SetActive(true);
         textBubble.SetDialog(formattedDialog, localPos);
     }
@@ -108,7 +109,7 @@ public class DialogueManager : ISceneLifecycleHandler
             dialogActionHandlers[currentDialogData.SecondAction].Execute(currentDialogData, false);
         }
     }
-    
+
     private Vector2 WorldToCanvasPosition(Vector3 worldPos)
     {
         var cam = Managers.Instance.GameManager.MainCamera;
@@ -127,7 +128,7 @@ public class DialogueManager : ISceneLifecycleHandler
     {
         OnDialogStepEnd?.Invoke(currentDialogData.Index);
     }
-    
+
     public void OnSceneLoaded()
     {
         textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
