@@ -18,8 +18,8 @@ public class Chapter03Base : SceneBase
         // 
         // // 강아지 스킬 잠금 해제
         //Managers.Instance.UIManager.SkillUnlock.UnlockSkill(1);
-        
-        Managers.Instance.UIManager.SkillUnlock.UnlockSkill("Dog");
+        skillUnlock.UnlockSkill("Squirrel"); // 강아지 스킬 잠금 해제
+        skillUnlock.UnlockSkill("Dog"); // 강아지 스킬 잠금 해제
         Managers.Instance.UIManager.SkillUnlock.ShowSkillBG(skillUnlock.dogBG); // 강아지 스킬 BG 활성화
 
         //Managers.Instance.GameManager.SavedUnlockedSkills = skillUnlock.GetUnlockedSkills();
