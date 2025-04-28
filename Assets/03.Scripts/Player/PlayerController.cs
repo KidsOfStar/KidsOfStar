@@ -52,6 +52,13 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         get { return isControllable; }
         set { isControllable = value; }
     }
+    // 추격 모드면 ture, 평소에는 false
+    private bool isChaseMode = false;
+    public bool IsChaseMode
+    {
+        get { return isChaseMode; }
+        set { isChaseMode = value; }
+    }
 
     [Header("Push")]
     [SerializeField, Tooltip("플레이어 앞 박스를 감지할 거리")]

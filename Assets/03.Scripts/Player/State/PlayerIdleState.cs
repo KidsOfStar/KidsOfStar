@@ -9,7 +9,11 @@ public class PlayerIdleState : PlayerGroundState
     public override void OnEnter()
     {
         base.OnEnter();
-        context.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, false);
+
+        if (!context.Controller.IsChaseMode)
+        {
+            context.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, false);
+        }
     }
 
     public override void OnUpdate()

@@ -141,7 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6996682792082733235}
   - component: {fileID: 7722014791956810126}
-  - component: {fileID: 8681576837392936958}
+  - component: {fileID: 7739186223790055085}
   m_Layer: 0
   m_Name: Hanyung
   m_TagString: Untagged
@@ -217,7 +217,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8681576837392936958
+--- !u!114 &7739186223790055085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,11 +226,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185271623082208218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 7
-  <BubbleTr>k__BackingField: {fileID: 2238588815885218793}
+  characterType: 7
+  bubblePosition: {fileID: 2238588815885218793}
 --- !u!1 &1601573037520263267
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8918098903762730205}
   - component: {fileID: 4579589722930584156}
-  - component: {fileID: 4355038623309251274}
+  - component: {fileID: 8189879931880204014}
   m_Layer: 0
   m_Name: Jigim
   m_TagString: Untagged
@@ -382,7 +382,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4355038623309251274
+--- !u!114 &8189879931880204014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,11 +391,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745477797688616430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 5
-  <BubbleTr>k__BackingField: {fileID: 590008161071349909}
+  characterType: 5
+  bubblePosition: {fileID: 590008161071349909}
 --- !u!1 &1874204968057087510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,9 +2270,9 @@ MonoBehaviour:
   DialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
   <DialogIndexes>k__BackingField: d40b0000df0b0000e00b0000
   <Npcs>k__BackingField:
-  - {fileID: 4355038623309251274}
-  - {fileID: 8681576837392936958}
-  - {fileID: 7417113815774282860}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3893531358326976676
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,9 +2428,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3482153526227696310}
-  - component: {fileID: 7417113815774282860}
   - component: {fileID: 8062752653113432273}
   - component: {fileID: 5285177756996368713}
+  - component: {fileID: 7269649057054164905}
   m_Layer: 0
   m_Name: CutScenePlayer
   m_TagString: Untagged
@@ -2454,20 +2454,6 @@ Transform:
   - {fileID: 3634703667100410508}
   m_Father: {fileID: 3948104847767625043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7417113815774282860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5305237548506859582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 14
-  <BubbleTr>k__BackingField: {fileID: 3634703667100410508}
 --- !u!95 &8062752653113432273
 Animator:
   serializedVersion: 5
@@ -2541,6 +2527,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7269649057054164905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305237548506859582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterType: 14
+  bubblePosition: {fileID: 3634703667100410508}
 --- !u!1 &5377124712999531192
 GameObject:
   m_ObjectHideFlags: 0

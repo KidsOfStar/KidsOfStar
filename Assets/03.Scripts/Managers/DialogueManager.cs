@@ -34,7 +34,7 @@ public class DialogueManager : ISceneLifecycleHandler
         CustomActions.Init();
     }
 
-    public void InitSceneNPcs(Npc[] speakers)
+    public void InitSceneNPcs(SceneNpc[] speakers)
     {
         // 대사를 말할 수 있는 기능을 인터페이스로 빼야겠는데.
         foreach (var npc in speakers)
@@ -43,7 +43,7 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
-    public void InitCutSceneNPcs(Npc[] speakers)
+    public void InitCutSceneNPcs(CutSceneNpc[] speakers)
     {
         foreach (var npc in speakers)
         {
@@ -60,6 +60,7 @@ public class DialogueManager : ISceneLifecycleHandler
     public void SetCurrentDialogData(int index)
     {
         currentDialogData = Managers.Instance.DataManager.GetPlayerData(index);
+        dialogQueue.Clear();
         if (currentDialogData == null)
         {
             EditorLog.LogError($"DialogueManager : Not found PlayerData with index: {index}");
@@ -77,6 +78,7 @@ public class DialogueManager : ISceneLifecycleHandler
         OnDialogStart?.Invoke();
         if (dialogQueue.Count > 0)
         {
+            Debug.Log(currentDialogData.Index);
             ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
         else OnDialogEnd?.Invoke();

@@ -63,8 +63,6 @@ public class DashGameResultPopup : PopupBase
             Managers.Instance.GameManager.UpdateProgress(); // 대사 끝나면 진행도 업데이트
 
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife.GetName()); // 컷씬 재생
-
-            OnDisableAllTextBubbles();
         }
     }
 
@@ -98,16 +96,6 @@ public class DashGameResultPopup : PopupBase
         foreach (var bubble in bubbles)
         {
             bubble.gameObject.SetActive(false); // 모든 버블 끄기
-        }
-    }
-
-    private void OnDisableAllTextBubbles()
-    {
-        UITextBubble[] bubbles = FindObjectsOfType<UITextBubble>(true); // (true) 비활성화 된 것도 찾기
-
-        foreach (var bubble in bubbles)
-        {
-            bubble.gameObject.SetActive(true); // 모든 버블 켜기
         }
     }
 }
