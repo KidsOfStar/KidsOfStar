@@ -16,7 +16,6 @@ public class PopupBase : UIBase
         // 특정 bool를 이용해서 앞에서 보여지게 하기
         if(isFirst)
             transform.SetAsLastSibling();
-
     }
     protected virtual void Start()
     {

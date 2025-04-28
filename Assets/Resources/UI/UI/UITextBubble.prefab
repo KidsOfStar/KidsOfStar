@@ -306,7 +306,7 @@ MonoBehaviour:
   uiPosition: 0
   closeBtn: {fileID: 0}
   checkTimeStop: 0
-  isFirst: 0
+  isFirst: 1
   rectTr: {fileID: 3436097123158878521}
   bubbleImage: {fileID: 5897721332910284101}
   dialogText: {fileID: 2447118732737719922}

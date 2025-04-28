@@ -98,5 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tr: {fileID: 2420570300000738554}
-  amplitude: 0.25
+  amplitude: 0.15
   speed: 1

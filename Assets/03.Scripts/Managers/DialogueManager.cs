@@ -16,7 +16,7 @@ public class DialogueManager : ISceneLifecycleHandler
     public Action OnClick { get; set; }
     public Action OnDialogStart { get; set; }
     public Action OnDialogEnd { get; set; }
-    public Action<int> OnSceneDialogEnd { get; set; }
+    public Action<int> OnDialogStepEnd { get; set; }
     private bool isCutScene;
 
     public DialogueManager()
@@ -106,7 +106,6 @@ public class DialogueManager : ISceneLifecycleHandler
             // 타입에 따라 다이얼로그 액션 실행
             dialogActionHandlers[currentDialogData.FirstAction].Execute(currentDialogData, true);
             dialogActionHandlers[currentDialogData.SecondAction].Execute(currentDialogData, false);
-            
         }
     }
     
@@ -124,9 +123,9 @@ public class DialogueManager : ISceneLifecycleHandler
         return screenPos;
     }
 
-    public void InvokeSceneDialogEnd()
+    public void InvokeOnDialogStepEnd()
     {
-        OnSceneDialogEnd?.Invoke(currentDialogData.Index);
+        OnDialogStepEnd?.Invoke(currentDialogData.Index);
     }
     
     public void OnSceneLoaded()

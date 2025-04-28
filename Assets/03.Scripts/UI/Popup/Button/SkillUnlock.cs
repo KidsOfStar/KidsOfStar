@@ -21,6 +21,9 @@ public class SkillUnlock : MonoBehaviour
 
     private Dictionary<int, (GameObject bg, GameObject icon)> skillMap;
 
+    // 스킬 잠금 해제 상태를 저장하는 HashSet
+    private HashSet<int> unlockedSkills = new HashSet<int>();
+
     void Awake()
     {
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
@@ -42,17 +45,39 @@ public class SkillUnlock : MonoBehaviour
             bg.SetActive(bg == skillBG);
         }
     }
+    public void ApplyUnlockedSkills()
+    {
+        foreach (var chapter in unlockedSkills)
+        {
+            if (skillMap.TryGetValue(chapter, out var skillPair))
+            {
+                skillPair.bg.SetActive(false);
+                skillPair.icon.SetActive(true);
+            }
+        }
+    }
 
     public void UnlockSkill(int chapter)
     {
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {
-            skillPair.bg.SetActive(false);
+            skillPair.bg.SetActive(true);
             skillPair.icon.SetActive(true);
+
+            unlockedSkills.Add(chapter); // 스킬 잠금 해제
         }
         else
         {
             Debug.LogWarning($"No skill assigned to chapter {chapter}");
         }
+    }
+
+    public void SetUnlockedSkills(HashSet<int> saveSkills)
+    {
+        unlockedSkills = saveSkills;
+    }
+    public HashSet<int> GetUnlockedSkills()
+    {
+        return unlockedSkills;
     }
 }

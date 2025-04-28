@@ -33,7 +33,7 @@ public static class CustomActions
             Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
         
         Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
-        Managers.Instance.DialogueManager.OnSceneDialogEnd?.Invoke(0);
+        Managers.Instance.DialogueManager.OnDialogStepEnd?.Invoke(0);
         Managers.Instance.GameManager.TriggerEnding(endingType);
     }
 
@@ -54,7 +54,7 @@ public static class CustomActions
         }
         
         Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
-        Managers.Instance.DialogueManager.OnSceneDialogEnd?.Invoke(0);
+        Managers.Instance.DialogueManager.OnDialogStepEnd?.Invoke(0);
         var player = Managers.Instance.GameManager.Player;
         player.transform.position = new Vector3(x, y, player.transform.position.z);
     }
@@ -79,6 +79,6 @@ public static class CustomActions
     private static void DoNothing(string param)
     {
         Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
-        Managers.Instance.DialogueManager.OnSceneDialogEnd?.Invoke(0);
+        Managers.Instance.DialogueManager.OnDialogStepEnd?.Invoke(0);
     }
 }

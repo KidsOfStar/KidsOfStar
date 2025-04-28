@@ -1527,8 +1527,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 4
   <BubbleTr>k__BackingField: {fileID: 5292789161521332996}
+  dontInit: 0
 --- !u!1 &1802657372591530411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,8 +1788,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 0
   <BubbleTr>k__BackingField: {fileID: 4610883918351012586}
+  dontInit: 0
 --- !u!212 &7744838914352188404
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2514,8 +2518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 14
   <BubbleTr>k__BackingField: {fileID: 3492624788632458843}
+  dontInit: 0
 --- !u!212 &9045620471653343716
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2831,8 +2837,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 0
   <CharacterType>k__BackingField: 3
   <BubbleTr>k__BackingField: {fileID: 7025580927250066429}
+  dontInit: 0
 --- !u!212 &4776354416472980002
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3312,7 +3320,7 @@ Transform:
   m_GameObject: {fileID: 9210384428313403639}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.4, z: 0}
+  m_LocalPosition: {x: 0, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

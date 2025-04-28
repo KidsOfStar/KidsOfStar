@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 5
   <BubbleTr>k__BackingField: {fileID: 169102530955154047}
 --- !u!61 &922630999483516513
 BoxCollider2D:
@@ -146,7 +146,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 0.8}
+  m_Size: {x: 2, y: 0.8}
   m_EdgeRadius: 0
 --- !u!114 &626918617068514483
 MonoBehaviour:
@@ -164,13 +164,13 @@ MonoBehaviour:
   positionDatas:
   - progress: 1
     isActive: 1
-    position: {x: 220, y: -10.2, z: 0}
+    position: {x: -25.3, y: 4.4, z: 0}
   - progress: 2
     isActive: 1
-    position: {x: 256, y: -7.2, z: 0}
+    position: {x: 270, y: 1.4, z: 0}
   - progress: 3
     isActive: 1
-    position: {x: 256, y: -7.2, z: 0}
+    position: {x: 305, y: 4.4, z: 0}
 --- !u!114 &371193513007530146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,13 +178,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136488510606508772}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29e45899a269bd4d88fe67736363e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionType: 1
-  npcType: 0
+  npcType: 5
+  dialogIndex: 0
 --- !u!1 &5341901771851105292
 GameObject:
   m_ObjectHideFlags: 0

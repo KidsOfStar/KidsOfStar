@@ -1,13 +1,14 @@
 using MainTable;
 using System;
 
+// NExt
 public class LoadSceneAction : IDialogActionHandler
 {
     public void Execute(DialogData dialogData, bool isFirst)
     {
         if (!isFirst)
         {
-            Managers.Instance.DialogueManager.InvokeSceneDialogEnd();
+            Managers.Instance.DialogueManager.InvokeOnDialogStepEnd();
             Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         }
         

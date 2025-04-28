@@ -27,7 +27,7 @@ public class SceneEventTrigger : MonoBehaviour
         }
         
         // 콜백에 등록
-        Managers.Instance.DialogueManager.OnSceneDialogEnd += CheckCurrentDialog;
+        Managers.Instance.DialogueManager.OnDialogStepEnd += CheckCurrentDialog;
         onSpecifiedDialogCheck += CheckSpecifiedDialog;
     }
 
@@ -67,6 +67,6 @@ public class SceneEventTrigger : MonoBehaviour
 
     private void OnDestroy()
     {
-        Managers.Instance.DialogueManager.OnSceneDialogEnd -= CheckCurrentDialog;
+        Managers.Instance.DialogueManager.OnDialogStepEnd -= CheckCurrentDialog;
     }
 }
