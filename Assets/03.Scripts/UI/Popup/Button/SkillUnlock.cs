@@ -68,7 +68,7 @@ public class SkillUnlock : MonoBehaviour
 
             unlockedSkills.Add(chapter); // 스킬 잠금 해제 저장
 
-            Managers.Instance.GameManager.SavedUnlockedSkills = GetUnlockedSkills(); // 저장된 스킬 목록 업데이트
+            //Managers.Instance.GameManager.SavedUnlockedSkills = GetUnlockedSkills(); // 저장된 스킬 목록 업데이트
         }
         else
         {
