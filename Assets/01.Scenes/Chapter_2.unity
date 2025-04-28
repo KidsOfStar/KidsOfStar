@@ -8208,7 +8208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 1
-  existRequiredDialog: 0
+  existRequiredDialog: 1
   isFirstTime: 1
   introText: "\uC544\uBB34\uB9AC \uC0C1\uB0E5\uD574\uB3C4 \uAE34\uC7A5\uC744 \uB193\uC744
     \uC21C \uC5C6\uC5B4."
@@ -11426,12 +11426,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8fd46f427e57c4590c285787a14624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 2020590303}
   followTarget: 1
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: -6.5, y: -18.8}
   maxPosition: {x: 36.3, y: 68.5}
   lightObject: {fileID: 242815940}
-  target: {fileID: 0}
 --- !u!114 &2020590307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12170,8 +12170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 7
   <BubbleTr>k__BackingField: {fileID: 8242681263990795716}
+  dontInit: 0
 --- !u!1 &5341901770301393998
 GameObject:
   m_ObjectHideFlags: 0
@@ -12215,8 +12217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 4
   <BubbleTr>k__BackingField: {fileID: 5354587787032112847}
+  dontInit: 0
 --- !u!114 &5717506542985252047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12229,8 +12233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 3
   <BubbleTr>k__BackingField: {fileID: 780283672889064114}
+  dontInit: 0
 --- !u!4 &5854934560836047651
 Transform:
   m_ObjectHideFlags: 0
@@ -12259,8 +12265,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 5
   <BubbleTr>k__BackingField: {fileID: 169102531553450557}
+  dontInit: 0
 --- !u!1 &6346053016738130980
 GameObject:
   m_ObjectHideFlags: 0

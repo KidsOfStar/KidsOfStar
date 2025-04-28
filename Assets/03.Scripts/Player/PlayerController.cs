@@ -73,7 +73,8 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         this.player = player;
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        
+
+        EditorLog.Log("매니저 이벤트에 lockPlayer 등록");
         Managers.Instance.CutSceneManager.OnCutSceneStart += LockPlayer;
         Managers.Instance.DialogueManager.OnDialogStart += LockPlayer;
         Managers.Instance.CutSceneManager.OnCutSceneEnd += UnlockPlayer;
@@ -96,8 +97,6 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if (!isControllable) return;
-
         if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started)
         {
             moveDir = context.ReadValue<Vector2>();
@@ -143,6 +142,8 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     public void Move()
     {
+        if (!isControllable) return;
+
         if (moveDir != Vector2.up && moveDir != Vector2.down)
         {
             if (TryDetectBox(moveDir))
@@ -262,6 +263,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     
     public void LockPlayer()
     {
+        EditorLog.Log("LockPlayer");
         isControllable = false;
         rigid.velocity = Vector2.zero;
     }

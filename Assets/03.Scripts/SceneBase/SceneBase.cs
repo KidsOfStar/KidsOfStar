@@ -43,9 +43,6 @@ public abstract class SceneBase : MonoBehaviour
         
         // 게임 매니저에 현재 챕터를 설정
         InitSceneBase();
-        
-        // NPC 초기화_UpdateProgress 이벤트에 등록하기 위해 게임매니저보다 먼저 호출
-        InitNpc();
 
         // 씬이 로드된 후에 플레이어를 스폰
         SpawnPlayer();
@@ -116,6 +113,11 @@ public abstract class SceneBase : MonoBehaviour
     private void InitSceneBase()
     {
         Managers.Instance.GameManager.SetChapter(currentChapter);
+        
+        // 챕터 변경 후 Npc 초기화
+        InitNpc();
+        
+        // 이후 진행도 리셋을 통해 이벤트 호출
         Managers.Instance.GameManager.ResetProgress();
         
         // TODO: 이어하기가 있기 때문에 뉴 게임인지 검사해서 진행도 이벤트 호출
