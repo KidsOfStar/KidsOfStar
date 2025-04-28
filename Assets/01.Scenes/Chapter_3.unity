@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  spawnPoint: {fileID: 45350828}
+  spawnPoints: []
   currentCutSceneNames:
   - FieldNormalLife
   - SemyungGoOut
@@ -400,7 +400,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8560045579365707418, guid: 32548173b8a44eb408d70dcab64dae91, type: 3}
+      propertyPath: <ChapterType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560045579365707418, guid: 32548173b8a44eb408d70dcab64dae91, type: 3}
+      propertyPath: <CharacterType>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8560045579365707418, guid: 32548173b8a44eb408d70dcab64dae91, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6246,7 +6255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 2
-  existRequiredDialog: 0
+  existRequiredDialog: 1
   isFirstTime: 1
   introText: "\uC774\uAC83 \uBD10, \uB2E4\uB4E4 \uBB34\uC12D\uC796\uC544."
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
@@ -22117,6 +22126,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2109303362}
     m_Modifications:
+    - target: {fileID: 833540010264013367, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
+      propertyPath: <ChapterType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 833540010264013367, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
+      propertyPath: <CharacterType>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2689098336217944140, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21
@@ -23537,6 +23554,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6304304139406372110, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: <ChapterType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304304139406372110, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: <CharacterType>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23710,12 +23735,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8fd46f427e57c4590c285787a14624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
   followTarget: 1
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: -38, y: -5}
   maxPosition: {x: 333, y: 5}
   lightObject: {fileID: 0}
-  target: {fileID: 0}
 --- !u!114 &2020590307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23828,6 +23853,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2109303362}
     m_Modifications:
+    - target: {fileID: 4777981336440180038, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: <ChapterType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777981336440180038, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: <CharacterType>k__BackingField
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7830701120311079455, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
       propertyPath: m_Name
       value: Hanyung

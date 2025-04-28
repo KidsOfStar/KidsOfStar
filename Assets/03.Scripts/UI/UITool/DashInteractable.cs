@@ -17,13 +17,13 @@ public class DashInteractable : MonoBehaviour
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI
 
         // 대사 완료 이벤트 등록
-        Managers.Instance.DialogueManager.OnSceneDialogEnd += CheckDialogueCompletion;
+        Managers.Instance.DialogueManager.OnDialogStepEnd += CheckDialogueCompletion;
     }
 
     private void OnDestroy()
     {
         // 이벤트 해제
-        Managers.Instance.DialogueManager.OnSceneDialogEnd -= CheckDialogueCompletion;
+        Managers.Instance.DialogueManager.OnDialogStepEnd -= CheckDialogueCompletion;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -1,7 +1,7 @@
 using MainTable;
 using System;
 
-// NExt
+// NextIndex 존재 불가능
 public class LoadSceneAction : IDialogActionHandler
 {
     public void Execute(DialogData dialogData, bool isFirst)
