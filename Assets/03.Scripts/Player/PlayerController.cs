@@ -96,8 +96,6 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if (!isControllable) return;
-
         if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started)
         {
             moveDir = context.ReadValue<Vector2>();
@@ -143,6 +141,8 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     public void Move()
     {
+        if (!isControllable) return;
+
         if (moveDir != Vector2.up && moveDir != Vector2.down)
         {
             if (TryDetectBox(moveDir))
