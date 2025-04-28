@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -71,6 +68,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     [Tooltip("Inspector에서 설정할 나뭇잎 힘")]
     public float leafJumpPower;
 
+    private bool isLeafJumping = false;
     public void Init(Player player)
     {
         this.player = player;
@@ -155,6 +153,15 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     {
         if (!isControllable) return;
 
+        if (isLeafJumping)
+        {
+
+            Vector2 walkSpeed = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
+            rigid.velocity = walkSpeed;
+            player.FormControl.FlipControl(moveDir);
+            return;
+        }
+
         if (moveDir != Vector2.up && moveDir != Vector2.down)
         {
             if (TryDetectBox(moveDir))
@@ -167,13 +174,11 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
                 pushSpeed = Mathf.Min(pushSpeed, moveSpeed);
                 // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
 
-                Vector2 velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
-                rigid.velocity = velocity;
+                rigid.velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
             }
             else
             {
-                Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
-                rigid.velocity = playervelocity;
+                rigid.velocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
             }
 
             player.FormControl.FlipControl(moveDir);
@@ -198,6 +203,8 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public void StartLeafJump(Vector2 dropPosition,float jumpPower)
     {
+        isLeafJumping = true;
+
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 1f;
 
