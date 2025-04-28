@@ -12700,7 +12700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 7
   <BubbleTr>k__BackingField: {fileID: 8242681263990795716}
   dontInit: 0
@@ -12747,7 +12747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 4
   <BubbleTr>k__BackingField: {fileID: 5354587787032112847}
   dontInit: 0
@@ -12763,7 +12763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 3
   <BubbleTr>k__BackingField: {fileID: 780283672889064114}
   dontInit: 0
@@ -12795,7 +12795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 5
   <BubbleTr>k__BackingField: {fileID: 169102531553450557}
   dontInit: 0
