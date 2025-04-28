@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, ILeafJumpable
+public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 {
     [Header("공통")]
     [SerializeField] private LayerMask groundLayer;
@@ -54,6 +52,13 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         get { return isControllable; }
         set { isControllable = value; }
     }
+    // 추격 모드면 ture, 평소에는 false
+    private bool isChaseMode = false;
+    public bool IsChaseMode
+    {
+        get { return isChaseMode; }
+        set { isChaseMode = value; }
+    }
 
     [Header("Push")]
     [SerializeField, Tooltip("플레이어 앞 박스를 감지할 거리")]
@@ -63,11 +68,14 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     private IWeightable objWeight = null;
     // Ray로 감지한 물체의 무게
+
     private Rigidbody2D objRigid = null;
     // Ray로 감지한 물체의 rb
 
+    [Tooltip("Inspector에서 설정할 나뭇잎 힘")]
+    public float leafJumpPower;
+    private float basePushPower;
     private bool isLeafJumping = false;
-
     public void Init(Player player)
     {
         this.player = player;
@@ -88,10 +96,19 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     void GroundCheck()
     {
-        Vector2 boxSize = new Vector2(boxCollider.bounds.size.x * 0.7f, boxCollider.bounds.size.y);
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down,
             0.02f, groundLayer);
-        isGround = hit.collider != null ? true : false;
+        
+        if(hit.collider != null && hit.normal.y > 0.7f)
+        {
+            isGround = true;
+            isLeafJumping = false;
+        }
+        else
+        {
+            isGround = false;
+        }
+
         anim.SetBool(PlayerAnimHash.AnimGround, isGround);
     }
 
@@ -144,27 +161,23 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     {
         if (!isControllable) return;
 
-        if (moveDir != Vector2.up && moveDir != Vector2.down)
+        if (moveDir != Vector2.up && moveDir != Vector2.down && !isLeafJumping)
         {
             if (TryDetectBox(moveDir))
             {
                 IPusher pusher = player.FormControl;
                 float pushPower = pusher.GetPushPower();
                 float objWeight = this.objWeight.GetWeight();
-                float pushSpeed = (pushPower / objWeight) * moveSpeed;
+                basePushPower = (pushPower / objWeight) * moveSpeed;
                 //미는 속도 = 미는 힘 / 무게 * 이동속도
-                pushSpeed = Mathf.Min(pushSpeed, moveSpeed);
+                basePushPower = Mathf.Min(basePushPower, moveSpeed);
                 // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
 
-                Vector2 velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
-                rigid.velocity = velocity;
-
-                this.objRigid.velocity = velocity;
+                rigid.velocity = new Vector2(moveDir.x * basePushPower, rigid.velocity.y);
             }
             else
             {
-                Vector2 playervelocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
-                rigid.velocity = playervelocity;
+                rigid.velocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
             }
 
             player.FormControl.FlipControl(moveDir);
@@ -173,6 +186,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
 
     public void Jump()
     {
+        isLeafJumping = true;
         if (!isControllable) return;
 
         if (isGround)
@@ -183,6 +197,25 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         {
             player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.WallJump));
         }
+    }
+
+    public float GetWeight()
+    {
+        return isLeafJumping
+            ? 0f
+            : Managers.Instance.GameManager.Player.FormControl.GetWeight();
+    }
+
+    public void StartLeafJump(Vector2 dropPosition,float jumpPower)
+    {
+        isLeafJumping = true;
+
+        rigid.velocity = Vector2.zero;
+        rigid.gravityScale = 1f;
+
+        Vector2 dir = (dropPosition - rigid.position).normalized;
+        Vector2 impulse = dir * jumpPower * rigid.mass;
+        rigid.AddForce(impulse, ForceMode2D.Impulse);
     }
 
     public bool TryDetectBox(Vector2 dir)
@@ -223,44 +256,6 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         boxCollider.offset = offset;
     }
 
-    //플레이어 나뭇잎 점프
-    public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float moveSpeed, float jumpHeight)
-    {
-        if (isLeafJumping) return;
-        StartCoroutine(LeafJumpRoutine(dropPosition, moveSpeed, jumpHeight));
-    }
-
-    private IEnumerator LeafJumpRoutine(Vector3 target, float moveSpeed, float jumpHeight)
-    {
-        isLeafJumping = true;
-        var originalGravity = rigid.gravityScale;
-        rigid.gravityScale = 0f;
-        rigid.velocity = Vector2.zero;
-
-        Vector3 startPos = transform.position;
-        float distance = Vector3.Distance(startPos, target);
-        float duration = distance / moveSpeed;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
-
-            Vector3 linearPos = Vector3.Lerp(startPos, target, t);
-            float heightOffset = Mathf.Sin(t * Mathf.PI) * jumpHeight;
-            transform.position = linearPos + Vector3.up * heightOffset;
-
-            yield return null;
-        }
-
-        // 최종 위치 보정
-        transform.position = target;
-        rigid.gravityScale = originalGravity;
-        isLeafJumping = false;
-    }
-
-    
     public void LockPlayer()
     {
         isControllable = false;
@@ -280,4 +275,5 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         Managers.Instance.DialogueManager.OnDialogStart -= LockPlayer;
         Managers.Instance.DialogueManager.OnDialogEnd -= UnlockPlayer;
     }
+
 }

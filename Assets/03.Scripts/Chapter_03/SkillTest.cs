@@ -14,7 +14,7 @@ public class SkillTest : MonoBehaviour
 
     public void SkillView()
     {
-        skillUnlock.UnlockSkill(3);
+        skillUnlock.UnlockSkill("Dog");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
