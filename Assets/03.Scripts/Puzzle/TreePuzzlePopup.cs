@@ -35,6 +35,7 @@ public class TreePuzzlePopup : PopupBase
             btn.onClick.AddListener(() => currentPuzzle.OnExit());
         }
     }
+
     public override void Opened(params object[] param)
     {
         EditorLog.Log("실행");

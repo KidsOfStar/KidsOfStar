@@ -1,12 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class Leaf : MonoBehaviour
+public interface ILeafJumpable
+{
+    void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float jumpPower);
+}
+public class Leaf : MonoBehaviour, ILeafJumpable
 {
     [Header("Jump Settings")]
-    public Vector3 dropPosition;
-    public float moveSpeed = 3f;
-    public float jumpHeight = 10f;
+    [Tooltip("목표 이동 지점")] public Vector3 dropPosition;
+    [Tooltip("Jump의 Power")] public float jumpPower;
 
     [Header("Respawn Settings")]
     [Tooltip("Leaf가 떨어지고 다시 스폰되기 전까지 대기할 시간 (초)")]
@@ -18,19 +21,17 @@ public class Leaf : MonoBehaviour
     public LayerMask obstacleMask;
 
     private bool isUsed = false;
-    private Rigidbody2D leafRb;
+    private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private Collider2D leafCollider;
-    private Vector2 originalPosition;
-    private Quaternion originalRotation;
+    private Collider2D col;
+    private Vector3 originalPosition;
     void Start()
     {
-        leafRb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        leafCollider = GetComponent<Collider2D>();
+        col = GetComponent<Collider2D>();
         originalPosition = transform.position;
-        originalRotation = transform.rotation;
-        leafRb.gravityScale = 0f;
+        rb.gravityScale = 0f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -38,17 +39,16 @@ public class Leaf : MonoBehaviour
         if (isUsed) return;
         if ((collision.collider.CompareTag("Player") || collision.collider.CompareTag("Box")) && CheckBoundary(collision.transform))
         {
-            if (collision.gameObject.TryGetComponent<ILeafJumpable>(out var jumpable))
+            if (collision.collider.TryGetComponent<ILeafJumpable>(out var jumpable))
             {
-                // 점프 트리거 호출
-                jumpable.StartLeafJump(dropPosition, obstacleMask, moveSpeed, jumpHeight);
+                jumpable.StartLeafJump(dropPosition, obstacleMask, jumpPower);
                 isUsed = true;
-                // 떨어지고 재생성 코루틴 시작
                 StartCoroutine(DropAndRespawn());
             }
         }
     }
 
+    // 전체면적이 닿았는지 경계 검사(0.3f만큼의 수직 허용 오차)
     private bool CheckBoundary(Transform target)
     {
         float verticalTolerance = 0.3f;
@@ -58,16 +58,16 @@ public class Leaf : MonoBehaviour
     private IEnumerator DropAndRespawn()
     {
         // 중력 활성화하여 떨어지게 함
-        leafRb.gravityScale = 1f;
+        rb.gravityScale = 1f;
 
         // 사라지기 전까지 대기
         yield return new WaitForSeconds(fallDuration);
 
         // 비활성화 대신 렌더러와 콜라이더만 끄기
-        leafRb.gravityScale = 0f;
-        leafRb.velocity = Vector2.zero;
+        rb.gravityScale = 0f;
+        rb.velocity = Vector2.zero;
         sr.enabled = false;
-        leafCollider.enabled = false;
+        col.enabled = false;
 
         yield return new WaitForSeconds(respawnDelay);
 
@@ -81,7 +81,12 @@ public class Leaf : MonoBehaviour
         transform.position = originalPosition;
         transform.rotation = Quaternion.identity;
         sr.enabled = true;
-        leafCollider.enabled = true;
-        leafRb.gravityScale = 0f;
+        col.enabled = true;
+        rb.gravityScale = 0f;
+    }
+
+    public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float jumpPower)
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, ILeafJumpable
+public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 {
     [Header("공통")]
     [SerializeField] private LayerMask groundLayer;
@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
     // Ray로 감지한 물체의 rb
 
     private bool isLeafJumping = false;
+
+    [Tooltip("Inspector에서 설정할 x,y Impulse")]
+    public float jumpPower;
 
     public void Init(Player player)
     {
@@ -159,7 +162,7 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
                 Vector2 velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
                 rigid.velocity = velocity;
 
-                this.objRigid.velocity = velocity;
+                // this.objRigid.velocity = velocity;
             }
             else
             {
@@ -183,6 +186,16 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         {
             player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.WallJump));
         }
+    }
+
+    public float GetWeight() => Managers.Instance.GameManager.Player.FormControl.GetWeight();
+
+    public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float jumpPower)
+    {
+        rigid.velocity = Vector2.zero;
+        rigid.gravityScale = 1f;
+        Vector3 impulseMode = new Vector3(0,dropPosition.y*jumpPower,0);
+        rigid.AddForce(impulseMode, ForceMode2D.Impulse);
     }
 
     public bool TryDetectBox(Vector2 dir)
@@ -223,44 +236,6 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         boxCollider.offset = offset;
     }
 
-    //플레이어 나뭇잎 점프
-    public void StartLeafJump(Vector3 dropPosition, LayerMask groundMask, float moveSpeed, float jumpHeight)
-    {
-        if (isLeafJumping) return;
-        StartCoroutine(LeafJumpRoutine(dropPosition, moveSpeed, jumpHeight));
-    }
-
-    private IEnumerator LeafJumpRoutine(Vector3 target, float moveSpeed, float jumpHeight)
-    {
-        isLeafJumping = true;
-        var originalGravity = rigid.gravityScale;
-        rigid.gravityScale = 0f;
-        rigid.velocity = Vector2.zero;
-
-        Vector3 startPos = transform.position;
-        float distance = Vector3.Distance(startPos, target);
-        float duration = distance / moveSpeed;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
-
-            Vector3 linearPos = Vector3.Lerp(startPos, target, t);
-            float heightOffset = Mathf.Sin(t * Mathf.PI) * jumpHeight;
-            transform.position = linearPos + Vector3.up * heightOffset;
-
-            yield return null;
-        }
-
-        // 최종 위치 보정
-        transform.position = target;
-        rigid.gravityScale = originalGravity;
-        isLeafJumping = false;
-    }
-
-    
     public void LockPlayer()
     {
         EditorLog.Log("LockPlayer");
@@ -281,4 +256,5 @@ public class PlayerController : MonoBehaviour, ILeafJumpable
         Managers.Instance.DialogueManager.OnDialogStart -= LockPlayer;
         Managers.Instance.DialogueManager.OnDialogEnd -= UnlockPlayer;
     }
+
 }
