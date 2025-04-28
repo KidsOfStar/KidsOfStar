@@ -837,7 +837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3190030763552158611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1929,7 +1929,6 @@ MonoBehaviour:
   rotateButton: {fileID: 6275800492944001682}
   exitButtons:
   - {fileID: 6923411244121163530}
-  - {fileID: 7600216689894062134}
   cancelButton: {fileID: 3944482044574856992}
   currentPuzzle: {fileID: 3806181142826928271}
 --- !u!114 &3806181142826928271
@@ -1951,6 +1950,7 @@ MonoBehaviour:
   timerTxt: {fileID: 8785609037610468846}
   failPopup: {fileID: 2026435826680448377}
   ClearPopup: {fileID: 5681204311568398627}
+  clearExitBtn: {fileID: 7600216689894062134}
   totalPuzzleCount: 2
 --- !u!1 &4117751994135162169
 GameObject:
@@ -2386,7 +2386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6490885654372157319
 RectTransform:
   m_ObjectHideFlags: 0

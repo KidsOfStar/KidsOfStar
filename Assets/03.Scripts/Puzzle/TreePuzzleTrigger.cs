@@ -11,9 +11,23 @@ public class TreePuzzleTrigger : MonoBehaviour
     [SerializeField] private int sequenceIndex;
     public int SequenceIndex => sequenceIndex;
 
+    [SerializeField] private SpriteRenderer exclamationRenderer;
+
     private void Start()
     {
+        exclamationRenderer.enabled = true;
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+    }
+
+    // 게임 클리어시 비활성화
+    public void DisableExclamation()
+    {
+        if (exclamationRenderer == null)
+        {
+            EditorLog.Log($"[{name}]이 null");
+            return;
+        }
+        exclamationRenderer.enabled = false;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
