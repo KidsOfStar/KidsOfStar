@@ -7,7 +7,6 @@ public class Chapter02Base : SceneBase
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
         playIntroCallback?.Invoke();
 
-        var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
 
         skillUnlock.UnlockSkill(1); // 강아지 스킬 잠금 해제

@@ -24,8 +24,7 @@ public class GameManager
 
     // Events
     public Action OnProgressUpdated { get; set; }
-
-    public HashSet<int> SavedUnlockedSkills = new HashSet<int>();
+    public Action<string> OnUnlockedForms { get; set; }
 
     public GameManager()
     {
@@ -133,6 +132,15 @@ public class GameManager
     {
         ChapterProgress = 1;
         OnProgressUpdated?.Invoke();
+    }
+    
+    // 폼이 해금 될 때 호출 할 함수
+    public void UnlockForm(string formName)
+    {
+        if (UnlockedForms.Contains(formName)) return;
+
+        UnlockedForms.Add(formName);
+        OnUnlockedForms?.Invoke(formName);
     }
     
     public void ModifyTrust(int value)

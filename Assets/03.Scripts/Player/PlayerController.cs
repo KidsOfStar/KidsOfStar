@@ -68,8 +68,8 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     private bool isLeafJumping = false;
 
-    [Tooltip("Inspector에서 설정할 x,y Impulse")]
-    public float jumpPower;
+    [Tooltip("Inspector에서 설정할 벡터")]
+    public float jumpPower = 2f;
 
     public void Init(Player player)
     {
@@ -202,7 +202,8 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     {
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 1f;
-        Vector3 impulseMode = new Vector3(0,dropPosition.y*jumpPower,0);
+
+        Vector3 impulseMode = new Vector3(dropPosition.x,dropPosition.y*jumpPower,0);
         rigid.AddForce(impulseMode, ForceMode2D.Impulse);
     }
 
@@ -253,6 +254,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     
     private void UnlockPlayer()
     {
+        EditorLog.Log("UnlockPlayer");
         isControllable = true;
     }
 
