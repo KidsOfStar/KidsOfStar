@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -187,7 +188,6 @@ public class TreePuzzleSystem : MonoBehaviour
         if (!clearPuzzlenum.Contains(puzzleIndex))
         {
             clearPuzzlenum.Add(puzzleIndex);
-
         }
         clearExitBtn.onClick.RemoveAllListeners();
         clearExitBtn.onClick.AddListener(OnClearButtonClicked);
@@ -221,6 +221,11 @@ public class TreePuzzleSystem : MonoBehaviour
 
     public void OnClearButtonClicked()
     {
+        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
+        {
+            trig.DisableExclamation();
+        }
+
         // 팝업 닫고 플레이어 제어 복구
         OnExit();
 
