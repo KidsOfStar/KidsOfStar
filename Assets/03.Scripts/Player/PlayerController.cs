@@ -245,6 +245,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     
     private void UnlockPlayer()
     {
+        EditorLog.Log("UnlockPlayer");
         isControllable = true;
     }
 

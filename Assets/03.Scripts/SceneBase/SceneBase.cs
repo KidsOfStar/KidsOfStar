@@ -101,7 +101,7 @@ public abstract class SceneBase : MonoBehaviour
         if (mainCamera.TryGetComponent(out CameraController cameraController))
             cameraController.Init();
         else
-            Debug.LogError("SceneBase : CameraController not found on the main camera.");
+            EditorLog.LogError("SceneBase : CameraController not found on the main camera.");
     }
 
     private void ShowRequiredUI()
