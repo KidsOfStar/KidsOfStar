@@ -16,7 +16,6 @@ public abstract class InteractSpeaker : MonoBehaviour
     public void Init()
     {
         if (dontInit) return;
-        EditorLog.Log(Managers.Instance.GameManager.CurrentChapter.ToString());
         
         var dict = Managers.Instance.DataManager.GetNpcDataDict();
         var startRange = ((int)Managers.Instance.GameManager.CurrentChapter + 1) * 100;
@@ -32,7 +31,7 @@ public abstract class InteractSpeaker : MonoBehaviour
 
         InitRequiredDialog();
         Managers.Instance.GameManager.OnProgressUpdated += CheckExistRequiredDialog;
-        Managers.Instance.DialogueManager.OnSceneDialogEnd += DespawnExclamationIcon;
+        Managers.Instance.DialogueManager.OnDialogStepEnd += DespawnExclamationIcon;
     }
     
     private void InitRequiredDialog()
@@ -135,6 +134,6 @@ public abstract class InteractSpeaker : MonoBehaviour
     private void OnDestroy()
     {
         Managers.Instance.GameManager.OnProgressUpdated -= CheckExistRequiredDialog;
-        Managers.Instance.DialogueManager.OnSceneDialogEnd -= DespawnExclamationIcon;
+        Managers.Instance.DialogueManager.OnDialogStepEnd -= DespawnExclamationIcon;
     }
 }

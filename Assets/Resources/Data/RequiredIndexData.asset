@@ -22,5 +22,11 @@ MonoBehaviour:
   - characterType: 0
     progress: 3
     index: 10024
-  chapter2List: []
+  chapter2List:
+  - characterType: 3
+    progress: 1
+    index: 20002
+  - characterType: 3
+    progress: 1
+    index: 20002
   chapter3List: []
