@@ -17,11 +17,15 @@ public class Chapter03Base : SceneBase
         // skillUnlock.ApplyUnlockedSkills();
         // 
         // // 강아지 스킬 잠금 해제
-        // //Managers.Instance.UIManager.SkillUnlock.UnlockSkill(1);
-        // Managers.Instance.UIManager.SkillUnlock.UnlockSkill(2);
-        // 
-        // Managers.Instance.GameManager.SavedUnlockedSkills = skillUnlock.GetUnlockedSkills();
+        //Managers.Instance.UIManager.SkillUnlock.UnlockSkill(1);
+        
+        Managers.Instance.UIManager.SkillUnlock.UnlockSkill("Dog");
+        Managers.Instance.UIManager.SkillUnlock.ShowSkillBG(skillUnlock.dogBG); // 강아지 스킬 BG 활성화
 
-        playIntroCallback?.Invoke();
+        //Managers.Instance.GameManager.SavedUnlockedSkills = skillUnlock.GetUnlockedSkills();
+
+        // 
+
+
     }
 }

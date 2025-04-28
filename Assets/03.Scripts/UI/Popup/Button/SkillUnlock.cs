@@ -18,21 +18,22 @@ public class SkillUnlock : MonoBehaviour
     public GameObject squirrelIcon;
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
-    private Dictionary<int, (GameObject bg, GameObject icon)> skillMap; // 챕터별 스킬 BG/Icon 매핑
+    private Dictionary<string, (GameObject bg, GameObject icon)> skillMap; // 챕터별 스킬 BG/Icon 매핑
+    private List<string> unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
 
-    private HashSet<int> unlockedSkills = new HashSet<int>(); // 스킬 잠금 해제 상태 저장
+    //private HashSet<int> unlockedSkills = new HashSet<int>(); // 스킬 잠금 해제 상태 저장
 
     void Awake()
     {
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
         // 챕터 번호와 배경/아이콘 오브젝트 매핑
-        skillMap = new Dictionary<int, (GameObject, GameObject)>
+        skillMap = new Dictionary<string, (GameObject, GameObject)>
         {
-            { 1, (squirrelBG, squirrelIcon) },
-            { 2, (dogBG, dogIcon) },
-            { 3, (catBG, catIcon) },
-            { 4, (hideBG, hideIcon) },
+            { "Squirrel", (squirrelBG, squirrelIcon) },
+            { "Dog", (dogBG, dogIcon) },
+            { "Cat", (catBG, catIcon) },
+            { "Hide", (hideBG, hideIcon) },
         };
     }
 
@@ -59,7 +60,7 @@ public class SkillUnlock : MonoBehaviour
     }
 
     // 특정 챕터의 스킬을 잠금 해제하고 바로 UI에 반영
-    public void UnlockSkill(int chapter)
+    public void UnlockSkill(string chapter)
     {
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {
@@ -77,13 +78,13 @@ public class SkillUnlock : MonoBehaviour
     }
 
     // 저장된 잠금 해제 스킬 정보를 세팅
-    public void SetUnlockedSkills(HashSet<int> saveSkills)
+    public void SetUnlockedSkills(List<string> saveSkills)
     {
         unlockedSkills = saveSkills;
     }
 
     // 현재 잠금 해제된 스킬 목록 반환
-    public HashSet<int> GetUnlockedSkills()
+    public List<string> GetUnlockedSkills()
     {
         return unlockedSkills;
     }
