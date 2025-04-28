@@ -25,6 +25,8 @@ public class GameManager
     // Events
     public Action OnProgressUpdated { get; set; }
 
+    public HashSet<int> SavedUnlockedSkills = new HashSet<int>();
+
     public GameManager()
     {
 #if UNITY_WEBGL
