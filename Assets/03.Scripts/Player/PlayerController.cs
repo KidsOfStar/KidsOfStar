@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     [Tooltip("Inspector에서 설정할 나뭇잎 힘")]
     public float leafJumpPower;
-
+    private float basePushPower;
     private bool isLeafJumping = false;
     public void Init(Player player)
     {
@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         if(hit.collider != null && hit.normal.y > 0.7f)
         {
             isGround = true;
+            isLeafJumping = false;
         }
         else
         {
@@ -160,28 +161,19 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     {
         if (!isControllable) return;
 
-        if (isLeafJumping)
-        {
-
-            Vector2 walkSpeed = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
-            rigid.velocity = walkSpeed;
-            player.FormControl.FlipControl(moveDir);
-            return;
-        }
-
-        if (moveDir != Vector2.up && moveDir != Vector2.down)
+        if (moveDir != Vector2.up && moveDir != Vector2.down && !isLeafJumping)
         {
             if (TryDetectBox(moveDir))
             {
                 IPusher pusher = player.FormControl;
                 float pushPower = pusher.GetPushPower();
                 float objWeight = this.objWeight.GetWeight();
-                float pushSpeed = (pushPower / objWeight) * moveSpeed;
+                basePushPower = (pushPower / objWeight) * moveSpeed;
                 //미는 속도 = 미는 힘 / 무게 * 이동속도
-                pushSpeed = Mathf.Min(pushSpeed, moveSpeed);
+                basePushPower = Mathf.Min(basePushPower, moveSpeed);
                 // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
 
-                rigid.velocity = new Vector2(moveDir.x * pushSpeed, rigid.velocity.y);
+                rigid.velocity = new Vector2(moveDir.x * basePushPower, rigid.velocity.y);
             }
             else
             {
@@ -194,6 +186,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public void Jump()
     {
+        isLeafJumping = true;
         if (!isControllable) return;
 
         if (isGround)
@@ -206,7 +199,12 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         }
     }
 
-    public float GetWeight() => Managers.Instance.GameManager.Player.FormControl.GetWeight();
+    public float GetWeight()
+    {
+        return isLeafJumping
+            ? 0f
+            : Managers.Instance.GameManager.Player.FormControl.GetWeight();
+    }
 
     public void StartLeafJump(Vector2 dropPosition,float jumpPower)
     {

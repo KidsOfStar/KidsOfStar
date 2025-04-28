@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.x
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.y
@@ -8706,7 +8706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 1
-  existRequiredDialog: 0
+  existRequiredDialog: 1
   isFirstTime: 1
   introText: "\uC544\uBB34\uB9AC \uC0C1\uB0E5\uD574\uB3C4 \uAE34\uC7A5\uC744 \uB193\uC744
     \uC21C \uC5C6\uC5B4."
