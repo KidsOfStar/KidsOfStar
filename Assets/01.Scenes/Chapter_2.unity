@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.x
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.y
@@ -8706,7 +8706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentChapter: 1
-  existRequiredDialog: 0
+  existRequiredDialog: 1
   isFirstTime: 1
   introText: "\uC544\uBB34\uB9AC \uC0C1\uB0E5\uD574\uB3C4 \uAE34\uC7A5\uC744 \uB193\uC744
     \uC21C \uC5C6\uC5B4."
@@ -12700,7 +12700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 7
   <BubbleTr>k__BackingField: {fileID: 8242681263990795716}
   dontInit: 0
@@ -12747,7 +12747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 4
   <BubbleTr>k__BackingField: {fileID: 5354587787032112847}
   dontInit: 0
@@ -12763,7 +12763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 3
   <BubbleTr>k__BackingField: {fileID: 780283672889064114}
   dontInit: 0
@@ -12795,7 +12795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27779ff76d7bc2740bb974bebd7e0a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChapterType>k__BackingField: 0
+  <ChapterType>k__BackingField: 1
   <CharacterType>k__BackingField: 5
   <BubbleTr>k__BackingField: {fileID: 169102531553450557}
   dontInit: 0
