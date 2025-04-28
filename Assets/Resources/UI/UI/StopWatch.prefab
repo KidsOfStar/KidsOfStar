@@ -186,4 +186,5 @@ MonoBehaviour:
   uiPosition: 0
   timeStrat: 0
   targetTime: 1000
+  recodeTime: 0
   timeText: {fileID: 5772655713989967406}
