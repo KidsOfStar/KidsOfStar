@@ -25,8 +25,6 @@ public class GameManager
     // Events
     public Action OnProgressUpdated { get; set; }
 
-    public HashSet<int> SavedUnlockedSkills = new HashSet<int>();
-
     public GameManager()
     {
 #if UNITY_WEBGL
@@ -133,6 +131,12 @@ public class GameManager
     {
         ChapterProgress = 1;
         OnProgressUpdated?.Invoke();
+    }
+    
+    public void UnlockForm(string formName)
+    {
+        if (!UnlockedForms.Contains(formName))
+            UnlockedForms.Add(formName);
     }
     
     public void ModifyTrust(int value)
