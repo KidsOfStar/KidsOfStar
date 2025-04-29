@@ -25,6 +25,7 @@ public class SkillUnlock : MonoBehaviour
 
     void Awake()
     {
+        unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
         // 챕터 번호와 배경/아이콘 오브젝트 매핑

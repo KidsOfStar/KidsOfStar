@@ -26,6 +26,10 @@ public abstract class SceneBase : MonoBehaviour
 
     private Action onCutSceneEndHandler;
 
+    [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
+    [Header("Player Position")]
+
+    [SerializeField] private PlayerSpawnPointer spawnPointer;
     // TODO: 각 씬 별로 플레이어가 자유상호작용 때 말하는 부분이 있다면 플레이어도 스폰 후 speaker로 등록해야함
     private void Awake()
     {
@@ -55,6 +59,12 @@ public abstract class SceneBase : MonoBehaviour
 
         // 씬 고유 초기화 작업
         InitSceneExtra(PlayChapterIntro);
+
+        // 컷신 플레이어 위치 정보 설정
+        if (spawnPointer != null)
+        {
+            spawnPointer.Init();
+        }
     }
 
     private void InitManagers()
@@ -71,7 +81,7 @@ public abstract class SceneBase : MonoBehaviour
         {
             const string path = Define.uiPath + Define.requiredIconKey;
             var prefab = Managers.Instance.ResourceManager.Load<GameObject>(path);
-            Managers.Instance.PoolManager.CreatePool(prefab, 10);
+            Managers.Instance.PoolManager.CreatePool(prefab, 5);
         }
     }
 

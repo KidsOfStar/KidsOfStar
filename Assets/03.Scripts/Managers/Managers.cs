@@ -58,6 +58,7 @@ public class Managers : Singleton<Managers>
     {
         SoundManager.OnSceneUnloaded();
         DialogueManager.OnSceneUnloaded();
+        PoolManager.OnSceneUnloaded();
     }
     
     public void CoroutineRunner(IEnumerator coroutine)
