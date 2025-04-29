@@ -7,11 +7,13 @@ public interface IWeightable
 public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 {
     public float boxWeight = 2f;
-    [Tooltip("Leaf에서 전달받을 점프 Power")]
-    public float jumpPower;
+
+    [Tooltip("Player 레이어와의 충돌을 무시할 시간")]
+    public float ignoreDuration = 0.5f;
 
     private Rigidbody2D rb;
-    private Collider2D col;
+    private int boxLayer;
+    private int playerLayer;
 
     void Awake()
     {
@@ -20,6 +22,8 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.gravityScale = 1f;
         rb.mass = boxWeight;
+        boxLayer = gameObject.layer;
+        playerLayer = LayerMask.NameToLayer("Player");
     }
 
     public float GetWeight()
@@ -29,14 +33,23 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
     public void StartLeafJump(Vector2 dropPosition, float jumpPower)
     {
+        StartCoroutine(TemporaryIgnorePlayer(ignoreDuration));
+
         // 물리 초기화
         rb.velocity = Vector2.zero;
         rb.gravityScale = 1f;
         
-        Vector2 dir = (dropPosition - rb.position).normalized;
-        Vector2 impulse = dir * jumpPower * rb.mass;
+        Vector2 impulse = dropPosition * jumpPower * rb.mass;
 
         rb.AddForce(impulse, ForceMode2D.Impulse);
     }
 
+    private IEnumerator TemporaryIgnorePlayer(float duration)
+    {
+        Physics2D.IgnoreLayerCollision(boxLayer, playerLayer, true);
+
+        yield return new WaitForSeconds(duration);
+
+        Physics2D.IgnoreLayerCollision(boxLayer, playerLayer, false);
+    }
 }

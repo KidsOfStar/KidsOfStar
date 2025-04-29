@@ -4726,7 +4726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ChapterType>k__BackingField: 0
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 13
   <BubbleTr>k__BackingField: {fileID: 4731163804286623348}
   dontInit: 0
 --- !u!4 &2538945192747803497
@@ -4790,7 +4790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ChapterType>k__BackingField: 0
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 12
   <BubbleTr>k__BackingField: {fileID: 6036357869328170377}
   dontInit: 0
 --- !u!1 &3025518569245402243
@@ -5293,7 +5293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ChapterType>k__BackingField: 0
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 1
   <BubbleTr>k__BackingField: {fileID: 5994124775759160081}
   dontInit: 0
 --- !u!4 &5161490115281776879
@@ -5443,7 +5443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ChapterType>k__BackingField: 0
-  <CharacterType>k__BackingField: 0
+  <CharacterType>k__BackingField: 2
   <BubbleTr>k__BackingField: {fileID: 7979787482917237394}
   dontInit: 0
 --- !u!4 &6839652959669267956

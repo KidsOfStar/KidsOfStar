@@ -212,8 +212,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 1f;
 
-        Vector2 dir = (dropPosition - rigid.position).normalized;
-        Vector2 impulse = dir * jumpPower * rigid.mass;
+        Vector2 impulse = dropPosition * jumpPower * rigid.mass;
         rigid.AddForce(impulse, ForceMode2D.Impulse);
     }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5167650260352110354}
   - component: {fileID: 5902049473616058379}
   - component: {fileID: -3724325905359686638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4281912889531031480}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BubblePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 7925898426785252926}
   - component: {fileID: 6516006115421022136}
   - component: {fileID: 9191272023835942332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1439460015175065968}
   - component: {fileID: 484791340047475949}
   - component: {fileID: 6685981635745960410}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FormChangeEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
