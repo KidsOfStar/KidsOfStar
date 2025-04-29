@@ -13,6 +13,7 @@ public class CutSceneBase : MonoBehaviour
     public Action OnCutSceneCompleted { get; set; }
     private int currentIndex;
 
+    // 컷씬 초기화는 컷씬을 생성한 CutSceneManager에서 호출
     public void Init()
     {
         if (TryGetComponent(out DialogPlayer dialogPlayer))
@@ -24,6 +25,7 @@ public class CutSceneBase : MonoBehaviour
         Managers.Instance.DialogueManager.OnDialogEnd += ResumeCutScene;
     }
 
+    // 메인카메라를 시네머신 브레인에 바인딩
     private void SetCinemachineBrain()
     {
         var timeline = Director.playableAsset as TimelineAsset;
@@ -61,7 +63,6 @@ public class CutSceneBase : MonoBehaviour
 
     public void DestroyPrefab(bool instantDestroy = false)
     {
-        //Managers.Instance.CutSceneManager.LetterBoxer.DisableLetterBox();
         Managers.Instance.DialogueManager.OnDialogEnd -= ResumeCutScene;
         Managers.Instance.CutSceneManager.OnCutSceneEnd?.Invoke();
         OnCutSceneCompleted?.Invoke();

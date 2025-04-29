@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     
     private Transform target = null;
     private CutSceneManager cutSceneManager;
-    private const float SmoothSpeed = 5f;
+    private const float SmoothSpeed = 8f;
 
     public void Init()
     {

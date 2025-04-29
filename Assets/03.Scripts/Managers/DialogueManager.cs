@@ -34,15 +34,16 @@ public class DialogueManager : ISceneLifecycleHandler
         CustomActions.Init();
     }
 
+    // 말풍선 위치를 위해 씬에 배치된 npc들을 딕셔너리에 추가
     public void InitSceneNPcs(SceneNpc[] speakers)
     {
-        // 대사를 말할 수 있는 기능을 인터페이스로 빼야겠는데.
         foreach (var npc in speakers)
         {
             sceneSpeakers[npc.GetCharacterType()] = npc;
         }
     }
 
+    // 말풍선 위치를 위해 컷씬에 배치된 npc들을 딕셔너리에 추가
     public void InitCutSceneNPcs(CutSceneNpc[] speakers)
     {
         foreach (var npc in speakers)
@@ -51,6 +52,7 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
+    // 플레이어는 씬마다 새로 생성하기 때문에 플레이어 생성 후 호출 할 함수
     public void SetPlayerSpeaker(IDialogSpeaker player)
     {
         sceneSpeakers[CharacterType.Dolmengee] = player;
@@ -75,14 +77,19 @@ public class DialogueManager : ISceneLifecycleHandler
         foreach (var dialog in dialogs)
             dialogQueue.Enqueue(dialog);
 
+        // 대사 출력 시작 이벤트 호출
         OnDialogStart?.Invoke();
+
+        // 큐의 Count가 0이 될 때까지 대사를 출력
         if (dialogQueue.Count > 0)
         {
             ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
+        // 더 이상 출력 할 대사가 없다면 대사 출력 종료 이벤트 호출
         else OnDialogEnd?.Invoke();
     }
 
+    // 대사를 라인별로 나눠서 TextBubble UI에 전달하여 출력
     private void ShowDialog(string dialog, CharacterType character)
     {
         var npc = isCutScene ? cutSceneSpeakers[character] : sceneSpeakers[character];
@@ -111,6 +118,7 @@ public class DialogueManager : ISceneLifecycleHandler
         }
     }
 
+    // 말풍선 위치를 잡기 위해 월드 좌표를 스크린 좌표로 변환
     private Vector2 WorldToCanvasPosition(Vector3 worldPos)
     {
         var cam = Managers.Instance.GameManager.MainCamera;
