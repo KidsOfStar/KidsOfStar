@@ -15,10 +15,17 @@ public class DashGameResultPopup : PopupBase
     private List<string> currentDialogLines;
     private CharacterType currentNpcType;
 
-    
+    [SerializeField] private RectTransform popupTransform; // 프리팹 루트 RectTransform
+    [SerializeField] private Vector3 worldOffset;
+
+    private Camera mainCamera;
+    private Transform NpcTransform;
+
     public override void Opened(params object[] param)
     {
         base.Opened(param);
+        mainCamera = Camera.main;
+
         SkillBTN skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
         DisableAllTextBubbles();
@@ -46,6 +53,8 @@ public class DashGameResultPopup : PopupBase
 
         currentLineIndex = 0;
     }
+
+
 
     public void OnClickDialogue()
     {
