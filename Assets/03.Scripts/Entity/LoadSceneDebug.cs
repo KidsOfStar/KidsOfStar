@@ -28,12 +28,12 @@ public class LoadSceneDebug : MonoBehaviour
         buttonStyle.fixedHeight = buttonHeight;
     }
 
-    private void OnGUI()
+    private void OnGUI()        
     {
         float startX = Screen.width - buttonWidth - 10f;
-        float startY = Screen.height / 2f;
+        float startY = Screen.height / 3f;
 
-        Rect buttonRect = new Rect(startX, startY, buttonWidth, buttonHeight);
+        Rect buttonRect = new(startX, startY, buttonWidth, buttonHeight);
         if (GUI.Button(buttonRect, "Chapter 01", buttonStyle))
         {
             Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter1);
