@@ -129,6 +129,7 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐선택방향키(1차원 리스트 활용)
     public void MoveSelection(string direction)
     {
+        if (!isRunning) return;
         switch (direction)
         {
             case "Up":
@@ -155,6 +156,7 @@ public class TreePuzzleSystem : MonoBehaviour
     // 선택한 퍼즐 90도 회전
     public void RotateSelectedPiece()
     {
+        if (!isRunning) return;
         pieces[selectedIndex].RotateRight();
     }
 
