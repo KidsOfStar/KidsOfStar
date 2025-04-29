@@ -13,6 +13,7 @@ public class TreeWarningPopup : PopupBase
 
     // WarningType의 값을 순서대로 저장
     private WarningType[] warningQueue;
+
     // 현재 화면에 표시되고 있는 warningQueue내의 인덱스
     private int queueIndex;
 
@@ -61,7 +62,7 @@ public class TreeWarningPopup : PopupBase
                 break;
 
             case WarningType.BoxFalling:
-                boxFallingText.text = "중요한 상자를 떨어뜨렸다. 다시 게임을 플레이해보자!";
+                boxFallingText.text = "상자가 떨어졌다. 다시 시도해보자.";
                 boxFallingText.gameObject.SetActive(true);
                 retryButton.gameObject.SetActive(true);
                 retryButton.onClick.AddListener(objIndicator.ResetPosition);

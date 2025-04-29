@@ -179,7 +179,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
             {
                 rigid.velocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
             }
-
             player.FormControl.FlipControl(moveDir);
         }
     }
