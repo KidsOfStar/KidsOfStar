@@ -21,7 +21,7 @@ public class DashGame : MonoBehaviour
     {
         EditorLog.Log($"{Managers.Instance.GameManager.Player.Controller.IsControllable}");
     }
-    public void SetTing()
+    public void Setting()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI 가져오기
 

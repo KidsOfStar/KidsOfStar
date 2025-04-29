@@ -261,13 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a319ccff1181a46a5ec83923c078a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  spawnPoints:
-  - {fileID: 1767689932}
-  - {fileID: 719116564}
-  currentCutSceneNames:
-  - FieldNormalLife
-  - SemyungGoOut
+  spawnPointsRoot: {fileID: 0}
 --- !u!4 &45350828
 Transform:
   m_ObjectHideFlags: 0

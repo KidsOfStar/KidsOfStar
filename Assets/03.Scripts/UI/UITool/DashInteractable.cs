@@ -11,7 +11,7 @@ public class DashInteractable : MonoBehaviour
     private DashGame dashGame;
 
     // Start is called before the first frame update
-    void Init()
+    public void Init()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI
         dashGame = FindObjectOfType<DashGame>();

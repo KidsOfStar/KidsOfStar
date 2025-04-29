@@ -1,15 +1,16 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Chapter03Base : SceneBase
 {
-    private DashGame dashGame;
-    private DashInteractable dashInteractable;
+    [SerializeField] private DashGame dashGame;
+    private DashInteractable[] dashInteractable;
     protected override void InitSceneExtra(Action playIntroCallback)
     {
-        dashGame = FindObjectOfType<DashGame>();
-        dashInteractable = FindObjectOfType<DashInteractable>();
+        for(int i = 0; i < speakers.Length; i++)
+        {
+            dashInteractable[i] = speakers[i].GetComponent<DashInteractable>();
+        }
 
         Init();
         SkillForm();
@@ -18,7 +19,11 @@ public class Chapter03Base : SceneBase
 
     private void Init()
     {
-
+        dashGame.Setting();
+        for(int i = 0; i < dashInteractable.Length; i++)
+        {
+            dashInteractable[i].Init();
+        }
     }
 
     private void SkillForm()
