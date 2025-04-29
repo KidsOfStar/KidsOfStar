@@ -30,10 +30,8 @@ public class DashDialogueData : ScriptableObject
     {
         foreach (var entry in entries)
         {
-            Debug.Log($"Checking entry with dialoguesIndex: {entry.dialoguesIndex}");
             if (time < entry.dialoguesIndex)
             {
-                Debug.Log($"Selected entry with dialoguesIndex: {entry.dialoguesIndex}");
                 return entry;
             }
         }

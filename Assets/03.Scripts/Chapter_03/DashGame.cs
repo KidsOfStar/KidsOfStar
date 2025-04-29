@@ -13,6 +13,7 @@ public class DashGame : MonoBehaviour
 
     private SkillBTN skillBTN; // 스킬 버튼 UI
     [SerializeField] private GameObject TestGameBlock;
+
     public void Setting()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI 가져오기
@@ -29,24 +30,17 @@ public class DashGame : MonoBehaviour
 
     public void StartGame()
     {
-        //SetTing();
-
         if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
         isGameStarted = true; // 게임 시작 상태로 변경
 
         // 플레이어 속도 0으로 하여 정지
         playerController.MoveSpeed = 0; // 플레이어 속도 0으로 설정
-        //Managers.Instance.GameManager.Player.Controller.IsControllable = false; // 플레이어 조작 불가
-        //EditorLog.Log($"{Managers.Instance.GameManager.Player.Controller.IsControllable}");
-
 
         Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
         countDownPopup.CountDownStart(); // 카운트다운 시작
 
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
-        //Managers.Instance.GameManager.Player.Controller.IsControllable = true; // 플레이어 조작 가능 상태로 변경
-
     }
 
 
@@ -63,7 +57,7 @@ public class DashGame : MonoBehaviour
         if (!isGameStarted) return;
 
         stopWatch.OnStopWatch();
-        playerController.MoveSpeed = playerSpeed;
+        playerController.MoveSpeed = 0; // 플레이어 속도 0으로 설정
 
         float clearTime = stopWatch.recodeTime;
 
@@ -73,7 +67,6 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
 
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
-
     }
 
     private void ShowDialogueResult(float clearTime, CharacterType npcType)

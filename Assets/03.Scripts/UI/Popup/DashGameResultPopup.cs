@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -15,16 +16,9 @@ public class DashGameResultPopup : PopupBase
     private List<string> currentDialogLines;
     private CharacterType currentNpcType;
 
-    [SerializeField] private RectTransform popupTransform; // 프리팹 루트 RectTransform
-    [SerializeField] private Vector3 worldOffset;
-
-    private Camera mainCamera;
-    private Transform NpcTransform;
-
     public override void Opened(params object[] param)
     {
         base.Opened(param);
-        mainCamera = Camera.main;
 
         SkillBTN skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
@@ -32,29 +26,24 @@ public class DashGameResultPopup : PopupBase
 
         if (param.Length < 2 || !(param[0] is float index) || !(param[1] is CharacterType npcType))
         {
-            return; 
+            return;
         }
 
         currentNpcType = npcType;
         currentDialogLines = dialogueDatabase.GetDialogueByNpc(index, npcType);
 
-        if (currentDialogLines == null || currentDialogLines.Count == 0)
+
+        // NPC 위치 가져오기
+        Transform npcTransform = GetNpcTransform(npcType);
+        if (npcTransform != null)
         {
-            Debug.LogWarning($"No dialogues found for NPC: {npcType}, Index: {index}");
-        }
-        else
-        {
-            Debug.Log($"Loaded {currentDialogLines.Count} dialogues for NPC: {npcType}, Index: {index}");
-            for (int i = 0; i < currentDialogLines.Count; i++)
-            {
-                Debug.Log($"Dialogue {i + 1}: {currentDialogLines[i]}");
-            }
+            Canvas canvas = GetComponentInParent<Canvas>();
+            Vector2 uiPosition = WorldToCanvasPosition(canvas, npcTransform.position);
+            GetComponent<RectTransform>().anchoredPosition = uiPosition;
         }
 
         currentLineIndex = 0;
     }
-
-
 
     public void OnClickDialogue()
     {
@@ -66,12 +55,8 @@ public class DashGameResultPopup : PopupBase
         }
         else
         {
-            EditorLog.Log("대사 끝");
             Managers.Instance.UIManager.Hide<DashGameResultPopup>();
-
-            EditorLog.Log("Play CutScene");
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife.GetName()); // 컷씬 재생
-            Debug.Log($"PlayCutScene");
             Managers.Instance.DialogueManager.OnDialogEnd -= OnClickDialogue; // 대사 완료 이벤트 해제
         }
     }
@@ -80,7 +65,6 @@ public class DashGameResultPopup : PopupBase
     {
         if (currentDialogLines == null || currentLineIndex >= currentDialogLines.Count)
         {
-            Debug.LogWarning("ShowCurrentLine: 대사 없음 혹은 인덱스 초과");
             return;
         }
 
@@ -107,5 +91,18 @@ public class DashGameResultPopup : PopupBase
         {
             bubble.gameObject.SetActive(false); // 모든 버블 끄기
         }
+    }
+
+    public Transform GetNpcTransform(CharacterType npcType)
+    {
+        var npc = FindObjectsOfType<SceneNpc>().FirstOrDefault(n => n.GetCharacterType() == npcType);
+        return npc != null ? npc.transform : null;
+    }
+
+    private Vector2 WorldToCanvasPosition(Canvas canvas, Vector3 worldPosition)
+    {
+        Vector2 viewportPosition = Camera.main.WorldToViewportPoint(worldPosition);
+        Vector2 canvasSize = canvas.GetComponent<RectTransform>().sizeDelta;
+        return new Vector2((viewportPosition.x - 0.5f) * canvasSize.x, (viewportPosition.y - 0.4f) * canvasSize.y);
     }
 }

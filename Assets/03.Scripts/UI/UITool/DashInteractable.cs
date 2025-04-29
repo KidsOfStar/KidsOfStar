@@ -4,12 +4,10 @@ public class DashInteractable : MonoBehaviour
 {
     public InteractionType interactionType; // 상호작용 타입
     public CharacterType npcType; // Jigim 또는 Semyung을 에디터에서 지정
-    //public int dialogIndex; // 대사 인덱스
 
     private SkillBTN skillBTN;
     private DashGame dashGame;
 
-    // Start is called before the first frame update
     public void Init()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI
@@ -74,7 +72,7 @@ public class DashInteractable : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            player.transform.position = new Vector3(-7f, 1.4f, 0); // 예시 위치
+            player.transform.position = new Vector3(-7f, 1f, 0); // 예시 위치
         }
     }
 }
