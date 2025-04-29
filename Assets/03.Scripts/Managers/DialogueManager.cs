@@ -78,7 +78,6 @@ public class DialogueManager : ISceneLifecycleHandler
         OnDialogStart?.Invoke();
         if (dialogQueue.Count > 0)
         {
-            Debug.Log(currentDialogData.Index);
             ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
         else OnDialogEnd?.Invoke();

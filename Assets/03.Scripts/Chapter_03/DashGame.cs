@@ -18,8 +18,6 @@ public class DashGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //var UITextBubble = Managers.Instance.UIManager.Get<UITextBubble>(); // UI 텍스트 버블 가져오기
-        //UITextBubble.SetActive(false); // UI 텍스트 버블 비활성화
         SetTing();
     }
     public void SetTing()
@@ -74,6 +72,7 @@ public class DashGame : MonoBehaviour
         ShowDialogueResult(clearTime, npcType); // 대사 출력
 
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
+        Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
 
     }
 

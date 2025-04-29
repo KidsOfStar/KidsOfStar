@@ -31,7 +31,6 @@ public class DashGameResultPopup : PopupBase
         currentNpcType = npcType;
         currentDialogLines = dialogueDatabase.GetDialogueByNpc(index, npcType);
 
-
         if (currentDialogLines == null || currentDialogLines.Count == 0)
         {
             Debug.LogWarning($"No dialogues found for NPC: {npcType}, Index: {index}");
@@ -60,9 +59,11 @@ public class DashGameResultPopup : PopupBase
         {
             EditorLog.Log("대사 끝");
             Managers.Instance.UIManager.Hide<DashGameResultPopup>();
-            Managers.Instance.GameManager.UpdateProgress(); // 대사 끝나면 진행도 업데이트
 
+            EditorLog.Log("Play CutScene");
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife.GetName()); // 컷씬 재생
+            Debug.Log($"PlayCutScene");
+            Managers.Instance.DialogueManager.OnDialogEnd -= OnClickDialogue; // 대사 완료 이벤트 해제
         }
     }
 

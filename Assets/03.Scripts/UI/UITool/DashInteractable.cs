@@ -33,15 +33,19 @@ public class DashInteractable : MonoBehaviour
             skillBTN.ShowInteractionButton(true); // 버튼 표시
             skillBTN.OnInteractBtnClick += OnPlayerInteract;
         }
+        else skillBTN.OnInteractBtnClick -= OnPlayerInteract;
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && Managers.Instance.GameManager.ChapterProgress == 2)
+        if (other.CompareTag("Player"))
         {
             skillBTN.ShowInteractionButton(false); // 버튼 숨김
             skillBTN.OnInteractBtnClick -= OnPlayerInteract;
         }
+        else return;
+
     }
 
     private void OnPlayerInteract()
