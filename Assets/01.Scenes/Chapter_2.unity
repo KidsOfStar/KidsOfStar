@@ -8060,7 +8060,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1440882714}
-  - component: {fileID: 1440882715}
   m_Layer: 0
   m_Name: PlayerSpawnPos
   m_TagString: Untagged
@@ -8083,19 +8082,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1440882715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440882713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a319ccff1181a46a5ec83923c078a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPointsRoot: {fileID: 1925362553}
 --- !u!4 &1478535745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3273424459126957439, guid: feaf0e457d4b06b428097aa4c73ffa15, type: 3}
@@ -8744,6 +8730,7 @@ MonoBehaviour:
   - {fileID: 4777981335147529269}
   - {fileID: 6304304141040100684}
   mainCamera: {fileID: 2020590303}
+  spawnPointer: {fileID: 1925362554}
 --- !u!1001 &1893283791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8831,6 +8818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1925362553}
+  - component: {fileID: 1925362554}
   m_Layer: 0
   m_Name: PlayerSpawnPointer
   m_TagString: Untagged
@@ -8854,6 +8842,19 @@ Transform:
   - {fileID: 311537051}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1925362554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925362552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a319ccff1181a46a5ec83923c078a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPointsRoot: {fileID: 1925362553}
 --- !u!1 &1945924724
 GameObject:
   m_ObjectHideFlags: 0
