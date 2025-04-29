@@ -6456,7 +6456,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   playerSpeed: 0
   isGameStarted: 0
-  TestGameBlock: {fileID: 0}
+  TestGameBlock: {fileID: 186699818}
 --- !u!4 &1033782734
 Transform:
   m_ObjectHideFlags: 0

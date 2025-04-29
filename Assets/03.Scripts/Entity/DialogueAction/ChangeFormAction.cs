@@ -13,9 +13,7 @@ public class ChangeFormAction : IDialogActionHandler
 
         var player = Managers.Instance.GameManager.Player;
         if (!player.FormControl.GetFormLock(dialogData.Param))
-        {
             player.FormControl.SetFormActive(dialogData.Param);
-        }
 
         player.FormControl.FormChange(dialogData.Param);
     }

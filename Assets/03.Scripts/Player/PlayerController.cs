@@ -273,5 +273,4 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         Managers.Instance.DialogueManager.OnDialogStart -= LockPlayer;
         Managers.Instance.DialogueManager.OnDialogEnd -= UnlockPlayer;
     }
-
 }

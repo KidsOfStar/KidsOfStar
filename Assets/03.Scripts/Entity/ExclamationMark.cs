@@ -6,6 +6,7 @@ public class ExclamationMark : MonoBehaviour
     [SerializeField] private Transform tr;
     [SerializeField] private float amplitude = 0.15f;
     [SerializeField] private float speed = .0f;
+    private WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
 
     private void OnEnable()
     {
@@ -14,6 +15,8 @@ public class ExclamationMark : MonoBehaviour
 
     private IEnumerator ExclamationMarkRoutine()
     {
+        yield return waitForSeconds;
+        
         Vector3 startPos = tr.localPosition;
         float timer = 0f;
 
