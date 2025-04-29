@@ -14,7 +14,7 @@ public class ObstaclesSpawner : MonoBehaviour
     [Tooltip("카메라 우측 떨어진 스폰 X값 위치")] 
     public float spawnXOffset = 10f;
     //고정된 Y값
-    private float fixedPosY = -2.7f;
+    private float fixedPosY = -2.75f;
 
     [Tooltip("장애물 사이의 기본 고정 x 간격")]
     public float baseSpacing = 4f;

@@ -4,13 +4,13 @@ public class Obstacle : ScrollObject
 {
     private float mediumYOffset = 0.1f;
     private float largeYOffset = 0.2f;
-    private float fixedPosY = -2.7f;
+    private float fixedPosY = -2.75f;
 
     public void InitObstacle(Vector3 spawnPosition, ObstacleType chosenType)
     {
         if(chosenType == ObstacleType.Stone)
         {
-            fixedPosY = -3f;
+            fixedPosY = -3.05f;
         }
         if (chosenType == ObstacleType.MediumSeaweed)
         {
