@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillTest : MonoBehaviour
@@ -23,7 +21,7 @@ public class SkillTest : MonoBehaviour
         {
             //skillUnlock.ShowSkillBG(skillUnlock.catBG);
             SkillView();
-            Debug.Log("스킬 해금");
+            EditorLog.Log("스킬 해금");
         }
     }
 }
