@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
             : Managers.Instance.GameManager.Player.FormControl.GetWeight();
     }
 
-    public void StartLeafJump(Vector2 dropPosition,float jumpPower)
+    public void StartLeafJump(Vector2 leafPos, Vector2 dropPosition,float jumpPower)
     {
         isLeafJumping = true;
 
@@ -274,5 +274,4 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         Managers.Instance.DialogueManager.OnDialogStart -= LockPlayer;
         Managers.Instance.DialogueManager.OnDialogEnd -= UnlockPlayer;
     }
-
 }
