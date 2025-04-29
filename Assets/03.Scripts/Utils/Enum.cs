@@ -135,11 +135,12 @@ public enum CutSceneType
 {
     Intro,
     Rescued,
-    LeavingForest,
     DaunRoom,
-    JigimOrder,
+    LeavingForest,
+    DogFormChange,
     FieldNormalLife,
     SemyungGoOut,
+    JigimOrder,
     RescueKitten,
 }
 

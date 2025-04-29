@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 2235973585884829455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -225,13 +225,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.1333334, y: 2.1333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -319,6 +319,10 @@ PlayableDirector:
     value: {fileID: 5328812997008829228}
   - key: {fileID: -7029897329011630200, guid: 1ff2b2927ca406545937683cd8d259dc, type: 2}
     value: {fileID: 385212677446240556}
+  - key: {fileID: 1665613195261769064, guid: 1ff2b2927ca406545937683cd8d259dc, type: 2}
+    value: {fileID: 2235973585884829455}
+  - key: {fileID: -5785537558482822440, guid: 1ff2b2927ca406545937683cd8d259dc, type: 2}
+    value: {fileID: 297444518606899699}
   m_ExposedReferences:
     m_References:
     - 9242050c56a9bc045be96e958bd449e6: {fileID: 3061099496717631187}
@@ -369,7 +373,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -973,7 +977,7 @@ Transform:
   m_GameObject: {fileID: 7047915730985582274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.07, z: 0}
+  m_LocalPosition: {x: -11.41, y: -2.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1065,7 +1069,7 @@ GameObject:
   - component: {fileID: 3345719928569300506}
   - component: {fileID: 5668679501224371915}
   m_Layer: 0
-  m_Name: DogChangeForm
+  m_Name: DogFormChange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,7 +1084,7 @@ Transform:
   m_GameObject: {fileID: 7239127504030760159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1182,7 +1186,7 @@ Transform:
   m_GameObject: {fileID: 7762483063659305543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.59, z: 0}
+  m_LocalPosition: {x: -11.41, y: -1.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1286,6 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8096569891755715044}
   - component: {fileID: 3283822351923198557}
+  - component: {fileID: 297444518606899699}
   m_Layer: 0
   m_Name: Fade
   m_TagString: Untagged
@@ -1348,7 +1353,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 1a61a7c665cd1bc4aa96787d13ec6376, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
@@ -1360,6 +1365,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &297444518606899699
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8224379488392356506}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8795936592067729381
 GameObject:
   m_ObjectHideFlags: 0

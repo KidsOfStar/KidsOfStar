@@ -82,6 +82,7 @@ public static class Extensions
             CutSceneType.FieldNormalLife => "FieldNormalLife",
             CutSceneType.SemyungGoOut    => "SemyungGoOut",
             CutSceneType.RescueKitten    => "RescueKitten",
+            CutSceneType.DogFormChange   => "DogFormChange",
             _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }

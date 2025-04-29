@@ -8,10 +8,11 @@ public class Chapter03Base : SceneBase
 
     protected override void InitSceneExtra(Action playIntroCallback)
     {
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogs);
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DogFormChange.GetName(), playIntroCallback);
+        
         var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-        //var skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
         var skillUnlock = skillBtn.skillUnlock;
-
 
         // skillUnlock.SetUnlockedSkills(Managers.Instance.GameManager.SavedUnlockedSkills);
         // skillUnlock.ApplyUnlockedSkills();
@@ -23,9 +24,5 @@ public class Chapter03Base : SceneBase
         Managers.Instance.UIManager.SkillUnlock.ShowSkillBG(skillUnlock.dogBG); // 강아지 스킬 BG 활성화
 
         //Managers.Instance.GameManager.SavedUnlockedSkills = skillUnlock.GetUnlockedSkills();
-
-        // 
-
-
     }
 }

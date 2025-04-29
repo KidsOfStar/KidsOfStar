@@ -19,12 +19,13 @@ public class SkillUnlock : MonoBehaviour
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
     private Dictionary<string, (GameObject bg, GameObject icon)> skillMap; // 챕터별 스킬 BG/Icon 매핑
-    private List<string> unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
+    private List<string> unlockedSkills;
 
     //private HashSet<int> unlockedSkills = new HashSet<int>(); // 스킬 잠금 해제 상태 저장
 
     void Awake()
     {
+        unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
         // 챕터 번호와 배경/아이콘 오브젝트 매핑
