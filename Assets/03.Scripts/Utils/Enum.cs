@@ -68,6 +68,15 @@ public enum BgmSoundType
     WithDogsRun,
 }
 
+public enum AmbienceSoundType
+{
+    UnderWater,
+    ForestBird,
+    Wind,
+    City,
+    Aquarium,
+}
+
 public enum SfxSoundType
 {
 }

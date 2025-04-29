@@ -5,6 +5,7 @@ public class SoundManager : ISceneLifecycleHandler
 {
     private readonly Transform sourceParent;
     private readonly AudioSource bgmSource;
+    private readonly AudioSource ambienceSource;
     private readonly AudioSource sfxSource;
     private readonly AudioSource footstepSource;
 
@@ -20,6 +21,11 @@ public class SoundManager : ISceneLifecycleHandler
         bgmSource.name = "BGM";
         bgmSource.loop = true;
         bgmSource.volume = gameManager.BgmVolume;
+        
+        ambienceSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
+        ambienceSource.name = "Ambience";
+        ambienceSource.loop = true;
+        ambienceSource.volume = gameManager.BgmVolume == 0 ? 0 : Mathf.Max(0.01f, gameManager.BgmVolume - 0.1f);
 
         sfxSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         sfxSource.name = "SFX";
@@ -31,7 +37,7 @@ public class SoundManager : ISceneLifecycleHandler
         footstepSource.loop = false;
         footstepSource.volume = gameManager.SfxVolume;
     }
-
+    
     private void AttachAudioToCamera()
     {
         var currentScene = Managers.Instance.SceneLoadManager.CurrentScene;
@@ -70,23 +76,35 @@ public class SoundManager : ISceneLifecycleHandler
         sourceParent.SetParent(Managers.Instance.transform);
     }
 
-    private AudioClip GetAudioClip(string key, bool isBgm)
-    {
-        string path = isBgm ? Define.bgmPath : Define.sfxPath;        
-        AudioClip audioClip = Managers.Instance.ResourceManager.Load<AudioClip>($"{path}{key}");
-
-        if (audioClip) return audioClip;
-
-        EditorLog.LogError($"SoundManager : {key} is not found.");
-        return null;
-    }
-
     // BGM 재생(Loop)
     public void PlayBgm(BgmSoundType sound)
     {
-        AudioClip clip = GetAudioClip(sound.GetName(), true);
-        bgmSource.clip = clip;
+        var resourceManager = Managers.Instance.ResourceManager;
+        AudioClip audioClip = resourceManager.Load<AudioClip>($"{Define.bgmPath}{sound.GetName()}");
+
+        if (!audioClip)
+        {
+            EditorLog.LogError($"SoundManager : {sound.GetName()} is not found.");
+            return;
+        }
+
+        bgmSource.clip = audioClip;
         bgmSource.Play();
+    }
+    
+    public void PlayAmbience(AmbienceSoundType sound)
+    {
+        var resourceManager = Managers.Instance.ResourceManager;
+        AudioClip audioClip = resourceManager.Load<AudioClip>($"{Define.ambiencePath}{sound.GetName()}");
+
+        if (!audioClip)
+        {
+            EditorLog.LogError($"SoundManager : {sound.GetName()} is not found.");
+            return;
+        }
+        
+        ambienceSource.clip = audioClip;
+        ambienceSource.Play();
     }
 
     // BGM 정지
@@ -99,20 +117,37 @@ public class SoundManager : ISceneLifecycleHandler
     // 효과음 재생
     public void PlaySfx(SfxSoundType sound)
     {
-        AudioClip clip = GetAudioClip(sound.GetName(), false);
-        sfxSource.PlayOneShot(clip);
+        var resourceManager = Managers.Instance.ResourceManager;
+        AudioClip audioClip = resourceManager.Load<AudioClip>($"{Define.sfxPath}{sound.GetName()}");
+
+        if (!audioClip)
+        {
+            EditorLog.LogError($"SoundManager : {sound.GetName()} is not found.");
+            return;
+        }
+        
+        sfxSource.PlayOneShot(audioClip);
     }
 
     // 발소리 재생
     public void PlayFootstep(FootstepType sound)
     {
-        AudioClip clip = GetAudioClip(sound.GetName(), false);
-        footstepSource.PlayOneShot(clip);
+        var resourceManager = Managers.Instance.ResourceManager;
+        AudioClip audioClip = resourceManager.Load<AudioClip>($"{Define.sfxPath}{sound.GetName()}");
+
+        if (!audioClip)
+        {
+            EditorLog.LogError($"SoundManager : {sound.GetName()} is not found.");
+            return;
+        }
+        
+        footstepSource.PlayOneShot(audioClip);
     }
 
     public void SetBgmVolume(float volume)
     {
         bgmSource.volume = volume;
+        ambienceSource.volume = volume == 0 ? 0 : Mathf.Max(0.01f, volume - 0.1f);
     }
 
     public void SetSfxVolume(float volume)
@@ -124,9 +159,17 @@ public class SoundManager : ISceneLifecycleHandler
     // 효과음 재생하고 재생 시간만큼 대기
     public IEnumerator PlaySfxWithDelay(SfxSoundType sound)
     {
-        AudioClip clip = GetAudioClip(sound.GetName(), false);
-        sfxSource.PlayOneShot(clip);
-        yield return new WaitForSeconds(clip.length); //사운드 종료되기 전 씬이 넘어가는 것을 방지
+        var resourceManager = Managers.Instance.ResourceManager;
+        AudioClip audioClip = resourceManager.Load<AudioClip>($"{Define.sfxPath}{sound.GetName()}");
+
+        if (!audioClip)
+        {
+            EditorLog.LogError($"SoundManager : {sound.GetName()} is not found.");
+            yield break;
+        }
+        
+        sfxSource.PlayOneShot(audioClip);
+        yield return new WaitForSeconds(audioClip.length); //사운드 종료되기 전 씬이 넘어가는 것을 방지
     }
 
     public void OnSceneLoaded()
