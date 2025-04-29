@@ -54,14 +54,14 @@ public class CatWallClingState : PlayerStateBase
             return;
         }
 
-        if(context.Controller.MoveDir.x == 0 || !WallTouchCheck())
+        if(context.Controller.MoveDir.x == 0 || !IsWallTouchCheck())
         {
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
             return;
         }
     }
 
-    bool WallTouchCheck()
+    bool IsWallTouchCheck()
     {
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
         RaycastHit2D hit = Physics2D.Raycast(context.BoxCollider.bounds.center, dir,
