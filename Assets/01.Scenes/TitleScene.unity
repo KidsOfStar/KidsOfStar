@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnChapterMove: {fileID: 580514086}
-  targetChapter: 0
+  targetChapter: 6
 --- !u!1 &1685197246
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,11 +776,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 301014797448863357, guid: cdef7d2fed4f63b4dbc1c0b6c4806c87, type: 3}
       propertyPath: <TestScene>k__BackingField
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 301014797448863357, guid: cdef7d2fed4f63b4dbc1c0b6c4806c87, type: 3}
       propertyPath: <LoadTestScene>k__BackingField
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4740022187713168800, guid: cdef7d2fed4f63b4dbc1c0b6c4806c87, type: 3}
       propertyPath: m_Name

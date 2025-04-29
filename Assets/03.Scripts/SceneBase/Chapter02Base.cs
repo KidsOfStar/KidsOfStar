@@ -18,7 +18,7 @@ public class Chapter02Base : SceneBase
 
         Managers.Instance.GameManager.UnlockForm("Squirrel");
         skillUnlock.UnlockSkill("Squirrel");
-        //skillUnlock.ShowSkillBG(skillUnlock.squirrelBG); // 'Squirrel' 스킬 BG 활성화
+        skillUnlock.ShowSkillBG(skillUnlock.squirrelBG); // 'Squirrel' 스킬 BG 활성화
 
     }
 }

@@ -4,14 +4,9 @@ using UnityEngine;
 public class Chapter03Base : SceneBase
 {
     [SerializeField] private DashGame dashGame;
-    private DashInteractable[] dashInteractable;
+    [SerializeField] private DashInteractable[] dashInteractable;
     protected override void InitSceneExtra(Action playIntroCallback)
     {
-        for(int i = 0; i < speakers.Length; i++)
-        {
-            dashInteractable[i] = speakers[i].GetComponent<DashInteractable>();
-        }
-
         Init();
         SkillForm();
 
@@ -20,6 +15,7 @@ public class Chapter03Base : SceneBase
     private void Init()
     {
         dashGame.Setting();
+
         for(int i = 0; i < dashInteractable.Length; i++)
         {
             dashInteractable[i].Init();
@@ -36,6 +32,6 @@ public class Chapter03Base : SceneBase
 
         // SkillUnlock이 'Dog' 스킬을 UI에 반영하도록 호출
         skillUnlock.UnlockSkill("Dog");
-        //skillUnlock.ShowSkillBG(skillUnlock.dogBG); // 'Dog' 스킬 BG 활성화
+        skillUnlock.ShowSkillBG(skillUnlock.dogBG); // 'Dog' 스킬 BG 활성화
     }
 }

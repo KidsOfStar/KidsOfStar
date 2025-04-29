@@ -19,7 +19,7 @@ public class SkillUnlock : MonoBehaviour
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
     private Dictionary<string, (GameObject bg, GameObject icon)> skillMap; // 챕터별 스킬 BG/Icon 매핑
-    //private List<string> unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
+    private List<string> unlockedSkills;
 
     //private HashSet<int> unlockedSkills = new HashSet<int>(); // 스킬 잠금 해제 상태 저장
 
@@ -74,8 +74,18 @@ public class SkillUnlock : MonoBehaviour
         {
             if (skillMap.TryGetValue(chapter, out var skillPair))
             {
+                skillPair.bg.SetActive(false);
+                skillPair.icon.SetActive(true);
+            }
+            // 현재 나의 폼일 때 BG를 활성화
+            if (chapter == Managers.Instance.GameManager.Player.FormControl.CurFormData.FormName)
+            {
                 skillPair.bg.SetActive(true);
                 skillPair.icon.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning($"No skill assigned to chapter {chapter}");
             }
         }
     }
