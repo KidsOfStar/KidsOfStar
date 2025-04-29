@@ -21,7 +21,7 @@ public class Chapter03Base : SceneBase
 
         for(int i = 0; i < dashInteractable.Length; i++)
         {
-            dashInteractable[i].Init();
+            dashInteractable[i].Init(dashGame);
         }
     }
 
