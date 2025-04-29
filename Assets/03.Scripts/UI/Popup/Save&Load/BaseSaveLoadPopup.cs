@@ -38,7 +38,7 @@ public class BaseSaveLoadPopup : PopupBase
 
     private string GetSaveName(int slotIndex)
     {
-        Debug.Log(Application.persistentDataPath);
+        EditorLog.Log(Application.persistentDataPath);
         string path = Application.persistentDataPath + $"/SaveData{slotIndex}.json";
 
         if (!File.Exists(path)) return "비어 있음";
