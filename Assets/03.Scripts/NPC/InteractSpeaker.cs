@@ -19,12 +19,6 @@ public abstract class InteractSpeaker : MonoBehaviour
         var startRange = ((int)Managers.Instance.GameManager.CurrentChapter + 1) * 100;
         var endRange = startRange + 100;
 
-        if (CharacterType == CharacterType.Hanyung)
-        {
-            EditorLog.Log($"Start {startRange}");
-            EditorLog.Log($"End {endRange}");
-        }
-        
         for (int i = startRange; i < endRange; i++)
         {
             if (!dict.TryGetValue(i, out var npcData)) continue;
