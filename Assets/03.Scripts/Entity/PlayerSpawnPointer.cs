@@ -14,7 +14,8 @@ public class PlayerSpawnPointer : MonoBehaviour
 
     private void Start()
     {
-        player = Managers.Instance.CutSceneManager.PlayerTransform;
+        //player = Managers.Instance.CutSceneManager.PlayerTransform;
+        player = Managers.Instance.GameManager.Player.transform;
         Managers.Instance.CutSceneManager.OnCutSceneEnd += HandleCutSceneEnd;
     }
 
