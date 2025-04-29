@@ -71,7 +71,7 @@ public abstract class SceneBase : MonoBehaviour
         {
             const string path = Define.uiPath + Define.requiredIconKey;
             var prefab = Managers.Instance.ResourceManager.Load<GameObject>(path);
-            Managers.Instance.PoolManager.CreatePool(prefab, 10);
+            Managers.Instance.PoolManager.CreatePool(prefab, 5);
         }
     }
 

@@ -2915,7 +2915,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 27
+        time: 25
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2924,7 +2924,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 29
+        time: 27
         value: 1
         inSlope: 0
         outSlope: 0
@@ -2963,7 +2963,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 29
+    m_StopTime: 27
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -3029,7 +3029,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 27
+        time: 25
         value: 0
         inSlope: 0
         outSlope: 0
@@ -3038,7 +3038,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 29
+        time: 27
         value: 1
         inSlope: 0
         outSlope: 0
@@ -3703,7 +3703,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 14.666667
+        time: 16.516666
         value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -3712,7 +3712,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 16.5
+        time: 18.35
         value: {x: -9, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -3749,7 +3749,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 16.5
+    m_StopTime: 18.35
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -3779,7 +3779,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 14.666667
+        time: 16.516666
         value: 0
         inSlope: 0
         outSlope: 0
@@ -3788,7 +3788,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 16.5
+        time: 18.35
         value: -9
         inSlope: 0
         outSlope: 0
@@ -3818,7 +3818,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 14.666667
+        time: 16.516666
         value: 0
         inSlope: 0
         outSlope: 0
@@ -3827,7 +3827,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 16.5
+        time: 18.35
         value: 0
         inSlope: 0
         outSlope: 0
@@ -3857,7 +3857,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 14.666667
+        time: 16.516666
         value: 0
         inSlope: 0
         outSlope: 0
@@ -3866,7 +3866,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 16.5
+        time: 18.35
         value: 0
         inSlope: 0
         outSlope: 0
@@ -3898,7 +3898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 29
+  m_Time: 27
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
@@ -4390,7 +4390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 25
+  m_Time: 24
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
