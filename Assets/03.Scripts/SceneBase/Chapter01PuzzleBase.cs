@@ -25,6 +25,7 @@ public class Chapter01PuzzleBase : SceneBase
     private void LockPlayerMove()
     {
         var player = Managers.Instance.GameManager.Player;
+        player.Controller.IsChaseMode = true;
         player.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, true);
         player.Controller.MoveSpeed = 0;
     }

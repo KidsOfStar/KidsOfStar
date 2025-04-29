@@ -19,12 +19,13 @@ public class SkillUnlock : MonoBehaviour
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
     private Dictionary<string, (GameObject bg, GameObject icon)> skillMap; // 챕터별 스킬 BG/Icon 매핑
-    private List<string> unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
+    private List<string> unlockedSkills;
 
     //private HashSet<int> unlockedSkills = new HashSet<int>(); // 스킬 잠금 해제 상태 저장
 
     void Awake()
     {
+        unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
         // 챕터 번호와 배경/아이콘 오브젝트 매핑
@@ -35,6 +36,24 @@ public class SkillUnlock : MonoBehaviour
             { "Cat", (catBG, catIcon) },
             { "Hide", (hideBG, hideIcon) },
         };
+    }
+    private void Start()
+    {
+        ApplyUnlockedSkills();
+    }
+
+    private void OnEnable()
+    {
+        // 이벤트 등록
+        if (Managers.Instance.GameManager != null)
+           Managers.Instance.GameManager.OnUnlockedForms += UnlockSkill;
+    }
+
+    private void OnDisable()
+    {
+        // 이벤트 해제
+        if (Managers.Instance.GameManager != null)
+            Managers.Instance.GameManager.OnUnlockedForms -= UnlockSkill;
     }
 
     // 선택한 스킬 BG만 활성화하고, 나머지는 비활성화
@@ -49,12 +68,24 @@ public class SkillUnlock : MonoBehaviour
     // 저장된 잠금 해제 스킬들을 UI에 반영
     public void ApplyUnlockedSkills()
     {
+        var unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
+
         foreach (var chapter in unlockedSkills)
         {
             if (skillMap.TryGetValue(chapter, out var skillPair))
             {
                 skillPair.bg.SetActive(false);
                 skillPair.icon.SetActive(true);
+            }
+            // 현재 나의 폼일 때 BG를 활성화
+            if (chapter == Managers.Instance.GameManager.Player.FormControl.CurFormData.FormName)
+            {
+                skillPair.bg.SetActive(true);
+                skillPair.icon.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning($"No skill assigned to chapter {chapter}");
             }
         }
     }
@@ -66,26 +97,10 @@ public class SkillUnlock : MonoBehaviour
         {
             skillPair.bg.SetActive(false);
             skillPair.icon.SetActive(true);
-
-            unlockedSkills.Add(chapter); // 스킬 잠금 해제 저장
-
-            //Managers.Instance.GameManager.SavedUnlockedSkills = GetUnlockedSkills(); // 저장된 스킬 목록 업데이트
         }
         else
         {
             Debug.LogWarning($"No skill assigned to chapter {chapter}");
         }
-    }
-
-    // 저장된 잠금 해제 스킬 정보를 세팅
-    public void SetUnlockedSkills(List<string> saveSkills)
-    {
-        unlockedSkills = saveSkills;
-    }
-
-    // 현재 잠금 해제된 스킬 목록 반환
-    public List<string> GetUnlockedSkills()
-    {
-        return unlockedSkills;
     }
 }

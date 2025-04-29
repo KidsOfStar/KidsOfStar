@@ -8,12 +8,17 @@ public class Chapter02Base : SceneBase
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
         playIntroCallback?.Invoke();
 
-        //Managers.Instance.GameManager.UnlockedForms("Squirrel"); // 다람쥐 스킬 잠금 해제    
+        SkillForm();
 
-        var skillUnlock = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel.skillUnlock;
+    }
+    private void SkillForm()
+    {
+        var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+        var skillUnlock = skillBtn.skillUnlock;
 
-        skillUnlock.UnlockSkill("Squirrel"); // 강아지 스킬 잠금 해제
-        skillUnlock.ShowSkillBG(skillUnlock.squirrelBG); // 다람쥐 스킬 BG 활성화
-        //skillUnlock
+        Managers.Instance.GameManager.UnlockForm("Squirrel");
+        skillUnlock.UnlockSkill("Squirrel");
+        skillUnlock.ShowSkillBG(skillUnlock.squirrelBG); // 'Squirrel' 스킬 BG 활성화
+
     }
 }

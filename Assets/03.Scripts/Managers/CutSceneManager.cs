@@ -38,20 +38,13 @@ public class CutSceneManager
         }
         
         // letterBoxer.PerformSizing();
-        var fadeoutUI = Managers.Instance.UIManager.Show<UIFadeOut>();
-        fadeoutUI.StartFadeOut(Play);
         currentCutScene = cutSceneBase;
+        IsCutScenePlaying = true;
+        cutSceneBase.Play();
         OnCutSceneStart?.Invoke();
         
         if (localEndCallback != null) cutSceneBase.OnCutSceneCompleted += localEndCallback;
         cutSceneBase.Init();
-        
-        return;
-        void Play()
-        {
-            cutSceneBase.Play();
-            IsCutScenePlaying = true;
-        }
     }
 
     public bool IsPlayingCutScene()

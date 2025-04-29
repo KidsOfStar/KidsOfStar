@@ -14,11 +14,12 @@ public class DashGame : MonoBehaviour
     private SkillBTN skillBTN; // 스킬 버튼 UI
 
     // Start is called before the first frame update
-    void Start()
+
+    private void Update()
     {
-        SetTing();
+        EditorLog.Log($"{Managers.Instance.GameManager.Player.Controller.IsControllable}");
     }
-    public void SetTing()
+    public void Setting()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI 가져오기
 
@@ -41,14 +42,19 @@ public class DashGame : MonoBehaviour
 
         // 플레이어 속도 0으로 하여 정지
         playerController.MoveSpeed = 0; // 플레이어 속도 0으로 설정
+        //Managers.Instance.GameManager.Player.Controller.IsControllable = false; // 플레이어 조작 불가
+        //EditorLog.Log($"{Managers.Instance.GameManager.Player.Controller.IsControllable}");
+
 
         Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
         countDownPopup.CountDownStart(); // 카운트다운 시작
 
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
+        //Managers.Instance.GameManager.Player.Controller.IsControllable = true; // 플레이어 조작 가능 상태로 변경
 
     }
+
 
     private IEnumerator StartGame(float delay)
     {
