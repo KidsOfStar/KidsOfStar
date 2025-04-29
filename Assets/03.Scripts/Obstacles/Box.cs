@@ -29,8 +29,6 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
     public void StartLeafJump(Vector2 dropPosition, float jumpPower)
     {
-        StartCoroutine(TemporaryTrigger(0.5f));
-
         // 물리 초기화
         rb.velocity = Vector2.zero;
         rb.gravityScale = 1f;
@@ -41,10 +39,4 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         rb.AddForce(impulse, ForceMode2D.Impulse);
     }
 
-    private IEnumerator TemporaryTrigger(float duration)
-    {
-        col.isTrigger = true;
-        yield return new WaitForSeconds(duration);
-        col.isTrigger = false;
-    }
 }
