@@ -2920,7 +2920,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5952377060798919337, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
       propertyPath: isTest
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6347151878847138798, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
       propertyPath: m_Name
@@ -3098,6 +3098,7 @@ MonoBehaviour:
   speakers:
   - {fileID: 4071668484214120451}
   mainCamera: {fileID: 587337541}
+  spawnPointer: {fileID: 0}
   spawner: {fileID: 1508430361}
   maorum: {fileID: 1289202278}
 --- !u!4 &1739438610
