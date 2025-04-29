@@ -22800,7 +22800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 540261376932756791, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
       propertyPath: positionDatas.Array.data[3].isActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 540261376932756791, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
       propertyPath: positionDatas.Array.data[3].progress
