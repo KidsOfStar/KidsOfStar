@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class Chapter03Base : SceneBase
 {
+    private DashGame dashGame;
+    private DashInteractable dashInteractable;
     protected override void InitSceneExtra(Action playIntroCallback)
     {
+        dashGame = FindObjectOfType<DashGame>();
+        dashInteractable = FindObjectOfType<DashInteractable>();
+
+        Init();
         SkillForm();
+
+    }
+
+    private void Init()
+    {
+
     }
 
     private void SkillForm()

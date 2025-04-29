@@ -16,10 +16,7 @@ public class DashGame : MonoBehaviour
     private SkillBTN skillBTN; // 스킬 버튼 UI
 
     // Start is called before the first frame update
-    void Start()
-    {
-        SetTing();
-    }
+
     private void Update()
     {
         EditorLog.Log($"{Managers.Instance.GameManager.Player.Controller.IsControllable}");
