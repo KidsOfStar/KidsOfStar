@@ -28,11 +28,6 @@ public class PlayerSpawnPointer : MonoBehaviour
             {
                 if (!map.ContainsKey(type))
                     map[type] = child;
-                else
-            }
-            else
-            {
-                // 맞지 않는 이름은 그냥 넘어가거나, 경고 출력
             }
         }
     }
