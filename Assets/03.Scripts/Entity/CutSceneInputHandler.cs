@@ -23,6 +23,12 @@ public class CutSceneInputHandler : MonoBehaviour
             Managers.Instance.DialogueManager.OnClick?.Invoke();
         }
 
+        #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
+        }
+        #endif
     }
 
     private void IsTalk()

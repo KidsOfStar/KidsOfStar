@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 8702045837015036711}
   - component: {fileID: 7154404376638155365}
   - component: {fileID: 2172136454749985264}
+  - component: {fileID: 7433834992226412835}
   m_Layer: 0
   m_Name: RescueKitten
   m_TagString: Untagged
@@ -365,6 +366,19 @@ MonoBehaviour:
   <DialogIndexes>k__BackingField: e10b0000e20b0000
   <Npcs>k__BackingField:
   - {fileID: 6347174059808076196}
+--- !u!114 &7433834992226412835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527314947625213310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd44269260663b459601ae854110866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SceneType>k__BackingField: 0
 --- !u!1 &4488295933923545439
 GameObject:
   m_ObjectHideFlags: 0
