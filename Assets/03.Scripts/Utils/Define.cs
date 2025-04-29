@@ -2,6 +2,7 @@ public static class Define
 {
     // Path
     public const string bgmPath = "Sound/Bgm/";
+    public const string ambiencePath = "Sound/Ambience/";
     public const string sfxPath = "Sound/Sfx/";
     
     public const string uiPath = "UI/UI/";
