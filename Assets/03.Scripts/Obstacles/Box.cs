@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 public interface IWeightable
 {
@@ -10,6 +11,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     public float jumpPower;
 
     private Rigidbody2D rb;
+    private Collider2D col;
 
     void Awake()
     {
@@ -27,13 +29,22 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
     public void StartLeafJump(Vector2 dropPosition, float jumpPower)
     {
+        StartCoroutine(TemporaryTrigger(0.5f));
+
         // 물리 초기화
         rb.velocity = Vector2.zero;
         rb.gravityScale = 1f;
-
+        
         Vector2 dir = (dropPosition - rb.position).normalized;
         Vector2 impulse = dir * jumpPower * rb.mass;
 
         rb.AddForce(impulse, ForceMode2D.Impulse);
+    }
+
+    private IEnumerator TemporaryTrigger(float duration)
+    {
+        col.isTrigger = true;
+        yield return new WaitForSeconds(duration);
+        col.isTrigger = false;
     }
 }

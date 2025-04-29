@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DashInteractable : MonoBehaviour
@@ -64,7 +63,7 @@ public class DashInteractable : MonoBehaviour
         }
         if (completedDialogIndex == 30007)
         {
-            Debug.Log("30007번 대사가 완료되었습니다.");
+            EditorLog.Log("30007번 대사가 완료되었습니다.");
             dashGame.StartGame();
         }
     }
@@ -75,11 +74,6 @@ public class DashInteractable : MonoBehaviour
         if (player != null)
         {
             player.transform.position = new Vector3(-7f, 1.4f, 0); // 예시 위치
-            Debug.Log("플레이어 위치 변경됨: " + player.transform.position);
-        }
-        else
-        {
-            Debug.LogWarning("Player not found!");
         }
     }
 }
