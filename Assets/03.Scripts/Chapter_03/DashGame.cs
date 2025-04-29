@@ -12,13 +12,7 @@ public class DashGame : MonoBehaviour
     //public float targetTime; // 목표 시간
 
     private SkillBTN skillBTN; // 스킬 버튼 UI
-
-    // Start is called before the first frame update
-
-    private void Update()
-    {
-        EditorLog.Log($"{Managers.Instance.GameManager.Player.Controller.IsControllable}");
-    }
+    [SerializeField] private GameObject TestGameBlock;
     public void Setting()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI 가져오기
@@ -77,6 +71,8 @@ public class DashGame : MonoBehaviour
 
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
+
+        TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
 
     }
 

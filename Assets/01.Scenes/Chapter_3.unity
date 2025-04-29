@@ -6456,6 +6456,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   playerSpeed: 0
   isGameStarted: 0
+  TestGameBlock: {fileID: 0}
 --- !u!4 &1033782734
 Transform:
   m_ObjectHideFlags: 0
@@ -24285,7 +24286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   followTarget: 1
-  offset: {x: 0, y: 4, z: -10}
+  offset: {x: 0, y: 3, z: -10}
   minPosition: {x: -38, y: -5}
   maxPosition: {x: 375, y: 5}
   lightObject: {fileID: 0}

@@ -7,9 +7,11 @@ public class Chapter03Base : SceneBase
     [SerializeField] private DashInteractable[] dashInteractable;
     protected override void InitSceneExtra(Action playIntroCallback)
     {
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogs);
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DogFormChange.GetName(), playIntroCallback);
+
         Init();
         SkillForm();
-
     }
 
     private void Init()
