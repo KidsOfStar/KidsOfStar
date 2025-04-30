@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +11,15 @@ public class UITitle : UIBase
     public Button optionBtn;
     public Button loadBtn;
 
+    
     // Start is called before the first frame update
     void Start()
     {
         // 버튼 클릭 이벤트 등록
         startBtn.onClick.AddListener(OnStartBtnClick);
+        //startBtn.onClick.AddListener(Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UIButton)); // SFX 재생
+
+
         exitBtn.onClick.AddListener(OnExitBtnClick);
         optionBtn.onClick.AddListener(OnOptionBtnClick);
         loadBtn.onClick.AddListener(OnLoadBtnClick);
