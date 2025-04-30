@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 형태 스프라이트 기본 방향
 public enum DefaultDirection
 {
     Right,
     Left
 }
-
 
 [System.Serializable]
 public class FormData

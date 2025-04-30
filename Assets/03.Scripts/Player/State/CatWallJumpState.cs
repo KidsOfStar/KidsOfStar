@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CatWallJumpState : PlayerJumpBaseState
 {
+    // 벽 점프 상태를 유지하는 시간
     private float timer = 0;
 
     public CatWallJumpState(PlayerContextData data, PlayerStateFactory factory) : base(data, factory)
@@ -10,7 +11,9 @@ public class CatWallJumpState : PlayerJumpBaseState
 
     public override void OnEnter()
     {
+        // 벽 점프 실제 동작 실행
         context.Rigid.AddForce(Vector2.up * context.Controller.WallJumpForce, ForceMode2D.Impulse);
+        // 초기화
         timer = 0;
     }
 
@@ -20,8 +23,10 @@ public class CatWallJumpState : PlayerJumpBaseState
 
         timer += Time.deltaTime;
 
+        // 벽 점프 후 0.5초가 지났다면
         if(timer >= 0.5f)
         {
+            // 대기 상태로 전환
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
         }
     }
@@ -29,6 +34,7 @@ public class CatWallJumpState : PlayerJumpBaseState
     public override void OnExit()
     {
         base.OnExit();
+        // 벽 타기 잠금 해제
         context.CanCling = true;
     }
 }
