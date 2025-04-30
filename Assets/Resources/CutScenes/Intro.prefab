@@ -589,4 +589,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSignal: {fileID: 11400000, guid: 03a8f1bb4da0bef4390b7347d0c7cd3f, type: 2}
-  sfxSounds: 01000000
+  sfxSounds: 14000000
