@@ -29,18 +29,12 @@ public class SkillBTN : UIBase
     // Start is called before the first frame update
     void Start()
     {
-        //jumpBtn.onClick.AddListener(OnJump);
-        //hideBtn.onClick.AddListener(OnHide);
-        //catBtn.onClick.AddListener(OnCat);
-        //dogBtn.onClick.AddListener(OnDog);
-        //squirrelBtn.onClick.AddListener(OnSquirrel);
-        //interactionBtn.onClick.AddListener(OnInteraction);
+        jumpBtn.onClick.AddListener(OnJump);
+        hideBtn.onClick.AddListener(OnHide);
+        catBtn.onClick.AddListener(OnCat);
+        dogBtn.onClick.AddListener(OnDog);
+        squirrelBtn.onClick.AddListener(OnSquirrel);
 
-        OnClickListener(jumpBtn, OnJump, SfxSoundType.JumpField); // 점프 버튼 클릭 시 효과음 재생
-        OnClickListener(hideBtn, OnHide, SfxSoundType.FormChange); // 숨기 버튼 클릭 시 효과음 재생
-        OnClickListener(catBtn, OnCat, SfxSoundType.FormChange); // 고양이 버튼 클릭 시 효과음 재생
-        OnClickListener(dogBtn, OnDog, SfxSoundType.FormChange); // 개 버튼 클릭 시 효과음 재생
-        OnClickListener(squirrelBtn, OnSquirrel, SfxSoundType.FormChange); // 다람쥐 버튼 클릭 시 효과음 재생
 
         OnClickListener(interactionBtn, OnInteraction, SfxSoundType.Communication); // 상호작용 버튼 클릭 시 효과음 재생
 
