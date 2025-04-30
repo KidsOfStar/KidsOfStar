@@ -1366,6 +1366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreakWall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4060029524333929585, guid: 5a48ffb24624f0843984e2f0e85a6d99, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4639610492450133648, guid: 5a48ffb24624f0843984e2f0e85a6d99, type: 3}
       propertyPath: m_LayerOverridePriority
       value: 0
@@ -6453,6 +6457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopWatch: {fileID: 0}
   countDownPopup: {fileID: 0}
+  directionRightPopup: {fileID: 0}
   playerController: {fileID: 0}
   playerSpeed: 0
   isGameStarted: 0
