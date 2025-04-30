@@ -21,7 +21,11 @@ public class PopupBase : UIBase
     {
         if (closeBtn != null)
         {
-            closeBtn.onClick.AddListener(HideDirect);
+            closeBtn.onClick.AddListener(() => 
+            {
+                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
+                HideDirect();
+            });
             
         }
     }
@@ -31,6 +35,8 @@ public class PopupBase : UIBase
         if (checkTimeStop)
         {
             Time.timeScale = 1; // 게임 재개
+            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+
         }
     }
 }

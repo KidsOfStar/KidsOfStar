@@ -4,10 +4,15 @@ public class Chapter02Base : SceneBase
 {
     protected override void InitSceneExtra(Action playIntroCallback)
     {
-        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
-        playIntroCallback?.Invoke();
-
         SkillForm();
+        playIntroCallback?.Invoke();
+    }
+
+    // 씬이 로드되자마자 재생되는 컷신이 있다면 이 곳에 컷신이 끝났을 때 호출 될 콜백을 작성합니다.
+    protected override void ChapterCutSceneCallback()
+    {
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.ForestBird);
     }
 
     private void SkillForm()

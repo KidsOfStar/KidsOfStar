@@ -68,11 +68,21 @@ public enum BgmSoundType
     WithDogsRun,
 }
 
+public enum AmbienceSoundType
+{
+    UnderWater,
+    ForestBird,
+    Wind,
+    City,
+    Aquarium,
+}
+
 public enum SfxSoundType
 {
     ButtonPush,
     Communication,
     ElevatorMove,
+    FormChange,
     JumpField,
     JumpFloor,
     JumpWater,
@@ -89,7 +99,8 @@ public enum SfxSoundType
     WalkWater,
     WalkWood,
     Walla,
-    WallBreak
+    WallBreak,
+	Thunder,
 }
 
 public enum FootstepType

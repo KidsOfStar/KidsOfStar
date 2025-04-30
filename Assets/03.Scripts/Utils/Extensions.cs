@@ -16,6 +16,19 @@ public static class Extensions
         };
     }
 
+    public static string GetName(this AmbienceSoundType ambience)
+    {
+        return ambience switch
+        {
+            AmbienceSoundType.UnderWater => "UnderWater",
+            AmbienceSoundType.ForestBird => "ForestBird",
+            AmbienceSoundType.Wind       => "Wind",
+            AmbienceSoundType.City       => "City",
+            AmbienceSoundType.Aquarium   => "Aquarium",
+            _                            => throw new ArgumentOutOfRangeException(nameof(ambience), ambience, null)
+        };
+    }
+
     public static string GetName(this SfxSoundType sfx)
     {
         return sfx switch
@@ -23,6 +36,7 @@ public static class Extensions
             SfxSoundType.ButtonPush      => "ButtonPush",
             SfxSoundType.Communication   => "Communication",
             SfxSoundType.ElevatorMove    => "ElevatorMove",
+            SfxSoundType.FormChange      => "FormChange",
             SfxSoundType.JumpField       => "JumpField",
             SfxSoundType.JumpFloor       => "JumpFloor",
             SfxSoundType.JumpWater       => "JumpWater",
@@ -40,15 +54,16 @@ public static class Extensions
             SfxSoundType.WalkWood        => "WalkWood",
             SfxSoundType.Walla           => "Walla",
             SfxSoundType.WallBreak       => "WallBreak",
+			SfxSoundType.Thunder         => "Thunder",
             _                            => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
         };
     }
-    
+
     public static string GetName(this FootstepType footstepType)
     {
         return string.Empty;
     }
-    
+
     public static string GetName(this SceneType sceneType)
     {
         return sceneType switch
@@ -63,7 +78,7 @@ public static class Extensions
             _                        => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
         };
     }
-    
+
     public static string GetName(this ChapterType chapterType)
     {
         return chapterType switch
@@ -74,7 +89,7 @@ public static class Extensions
             _                     => throw new ArgumentOutOfRangeException(nameof(chapterType), chapterType, null)
         };
     }
-    
+
     public static string GetName(this EndingType endingType)
     {
         return endingType switch
@@ -92,24 +107,24 @@ public static class Extensions
             _                           => throw new ArgumentOutOfRangeException(nameof(endingType), endingType, null)
         };
     }
-    
+
     public static string GetName(this CutSceneType cutSceneType)
     {
         return cutSceneType switch
         {
-            CutSceneType.Intro           => "Intro",
-            CutSceneType.Rescued         => "Rescued",
-            CutSceneType.LeavingForest   => "LeavingForest",
-            CutSceneType.DaunRoom        => "DounRoom",
-            CutSceneType.JigimOrder      => "JigimOrder",
+            CutSceneType.Intro => "Intro",
+            CutSceneType.Rescued => "Rescued",
+            CutSceneType.LeavingForest => "LeavingForest",
+            CutSceneType.DaunRoom => "DounRoom",
+            CutSceneType.JigimOrder => "JigimOrder",
             CutSceneType.FieldNormalLife => "FieldNormalLife",
-            CutSceneType.SemyungGoOut    => "SemyungGoOut",
-            CutSceneType.RescueKitten    => "RescueKitten",
-            CutSceneType.DogFormChange   => "DogFormChange",
-            _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
+            CutSceneType.SemyungGoOut => "SemyungGoOut",
+            CutSceneType.RescueKitten => "RescueKitten",
+            CutSceneType.DogFormChange => "DogFormChange",
+            _ => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }
-    
+
     public static string GetName(this Difficulty difficulty)
     {
         return difficulty switch

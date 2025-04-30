@@ -256,11 +256,13 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public void LockPlayer()
     {
+        // 걸으면서 대화를 할 수 없도록 하기 위해서 Idle 상태로 변경
+        player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.Idle)); // Idle 상태로 변경
         isControllable = false;
         rigid.velocity = Vector2.zero;
     }
     
-    private void UnlockPlayer()
+    public void UnlockPlayer()
     {
         isControllable = true;
     }

@@ -4,17 +4,18 @@ public class DashInteractable : MonoBehaviour
 {
     public InteractionType interactionType; // 상호작용 타입
     public CharacterType npcType; // Jigim 또는 Semyung을 에디터에서 지정
-    //public int dialogIndex; // 대사 인덱스
 
     private SkillBTN skillBTN;
     private DashGame dashGame;
 
-    // Start is called before the first frame update
-    public void Init()
+    readonly int teleport = 30006; // 대사 완료 시 플레이어 위치 변경
+    readonly int startGame = 30007; // 대사 완료 시 게임 시작
+    readonly Vector3 teleportPosition = new Vector3(-7f, 1f, 0); // 예시 위치
+
+    public void Init(DashGame game)
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel; // 스킬 버튼 UI
-        dashGame = FindObjectOfType<DashGame>();
-
+        dashGame = game;
 
         // 대사 완료 이벤트 등록
         Managers.Instance.DialogueManager.OnDialogStepEnd += CheckDialogueCompletion;
@@ -58,11 +59,12 @@ public class DashInteractable : MonoBehaviour
 
     private void CheckDialogueCompletion(int completedDialogIndex)
     {
-        if (completedDialogIndex == 30006)
+        // 다이얼로그 데이터와 SO파일 데이터 합쳐서 다시 리펙토링 필요
+        if (completedDialogIndex == teleport)
         {
             PlayerTeleport(); // 플레이어 위치 변경
         }
-        if (completedDialogIndex == 30007)
+        else if (completedDialogIndex == startGame)
         {
             EditorLog.Log("30007번 대사가 완료되었습니다.");
             dashGame.StartGame();
@@ -71,10 +73,10 @@ public class DashInteractable : MonoBehaviour
 
     private void PlayerTeleport()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        var player = Managers.Instance.GameManager.Player;
         if (player != null)
         {
-            player.transform.position = new Vector3(-7f, 1.4f, 0); // 예시 위치
+            player.transform.position = teleportPosition;
         }
     }
 }

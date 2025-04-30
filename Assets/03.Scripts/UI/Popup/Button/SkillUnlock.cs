@@ -83,10 +83,6 @@ public class SkillUnlock : MonoBehaviour
                 skillPair.bg.SetActive(true);
                 skillPair.icon.SetActive(true);
             }
-            else
-            {
-                Debug.LogWarning($"No skill assigned to chapter {chapter}");
-            }
         }
     }
 
@@ -98,9 +94,6 @@ public class SkillUnlock : MonoBehaviour
             skillPair.bg.SetActive(false);
             skillPair.icon.SetActive(true);
         }
-        else
-        {
-            Debug.LogWarning($"No skill assigned to chapter {chapter}");
-        }
+
     }
 }

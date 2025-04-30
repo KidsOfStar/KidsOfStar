@@ -9,7 +9,7 @@ public class OptionPopup : PopupBase
     public Slider sfxSlider; // SFX 슬라이더
 
     [Header("UI Btn")]
-    public Button retryBtn; // 재시작 버튼
+    //public Button retryBtn; // 재시작 버튼
     public Button endBtn; // 메인 메뉴 버튼
 
     private SoundManager soundManager;
@@ -24,7 +24,7 @@ public class OptionPopup : PopupBase
         // Title Scene에서 다시하기 및 게임 종료 안 나오게
         if (Managers.Instance.SceneLoadManager.CurrentScene == SceneType.Title)
         {
-            retryBtn.gameObject.SetActive(false);
+            //retryBtn.gameObject.SetActive(false);
             endBtn.gameObject.SetActive(false);
         }
     }
@@ -44,16 +44,16 @@ public class OptionPopup : PopupBase
     public void ButtonClick()
     {
         // 버튼 클릭 이벤트 등록
-        retryBtn.onClick.AddListener(OnClickRetryBtn);
+        //retryBtn.onClick.AddListener(OnClickRetryBtn);
         endBtn.onClick.AddListener(OnExitBtnClick);
     }
 
-    public void OnClickRetryBtn()
-    {
-        // 현재 씬에서 재시작
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
-    }
+    //public void OnClickRetryBtn()
+    //{
+    //    // 현재 씬에서 재시작
+    //    string currentSceneName = SceneManager.GetActiveScene().name;
+    //    SceneManager.LoadScene(currentSceneName);
+    //}
 
     private void OnExitBtnClick()
     {
