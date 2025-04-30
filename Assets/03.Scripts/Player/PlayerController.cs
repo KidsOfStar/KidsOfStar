@@ -76,7 +76,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     [Tooltip("Inspector에서 설정할 나뭇잎 힘")]
     public float leafJumpPower;
     private float basePushPower;
-    private bool isLeafJumping = false;
     public void Init(Player player)
     {
         this.player = player;
@@ -103,7 +102,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         if(hit.collider != null && hit.normal.y > 0.7f)
         {
             isGround = true;
-            isLeafJumping = false;
         }
         else
         {
@@ -162,7 +160,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     {
         if (!isControllable) return;
 
-        if (moveDir != Vector2.up && moveDir != Vector2.down && !isLeafJumping)
+        if (moveDir != Vector2.up && moveDir != Vector2.down)
         {
             if (TryDetectBox(moveDir))
             {
@@ -186,7 +184,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public void Jump()
     {
-        isLeafJumping = true;
         if (!isControllable) return;
 
         if (isGround)
@@ -201,15 +198,11 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public float GetWeight()
     {
-        return isLeafJumping
-            ? 0f
-            : Managers.Instance.GameManager.Player.FormControl.GetWeight();
+        return Managers.Instance.GameManager.Player.FormControl.GetWeight();
     }
 
     public void StartLeafJump(Vector2 dropPosition,float jumpPower)
     {
-        isLeafJumping = true;
-
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 1f;
 
@@ -220,14 +213,8 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     public bool TryDetectBox(Vector2 dir)
     {
 
-        //float xOffset = boxCollider.bounds.extents.x + 0.01f;
-        //Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0.1f);
-        //Vector2 direction = Vector2.right * Mathf.Sign(dir.x);
-
         Vector2 origin = (Vector2)boxCollider.bounds.center
         + Vector2.right * Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f);
-
-        // RaycastHit2D hit = Physics2D.Raycast(origin, direction, pushDetectDistance, pushableLayer);
 
         Vector2 size = new Vector2(0.05f, boxCollider.bounds.size.y * 0.9f);
         Vector2 dirVec = Vector2.right * Mathf.Sign(dir.x);
