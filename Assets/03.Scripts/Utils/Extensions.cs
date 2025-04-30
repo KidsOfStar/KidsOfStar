@@ -55,6 +55,7 @@ public static class Extensions
             SfxSoundType.WalkWood        => "WalkWood",
             SfxSoundType.Walla           => "Walla",
             SfxSoundType.WallBreak       => "WallBreak",
+			SfxSoundType.Thunder         => "Thunder",
             _                            => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
         };
     }

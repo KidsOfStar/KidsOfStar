@@ -99,7 +99,8 @@ public enum SfxSoundType
     WalkWater,
     WalkWood,
     Walla,
-    WallBreak
+    WallBreak,
+	Thunder,
 }
 
 public enum FootstepType
