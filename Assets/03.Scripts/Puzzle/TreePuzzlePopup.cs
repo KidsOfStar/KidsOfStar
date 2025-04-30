@@ -15,24 +15,49 @@ public class TreePuzzlePopup : PopupBase
 
     private void Awake()
     {
-        upButton.onClick.RemoveAllListeners();
-        downButton.onClick.RemoveAllListeners();
-        leftButton.onClick.RemoveAllListeners();
-        rightButton.onClick.RemoveAllListeners();
-        rotateButton.onClick.RemoveAllListeners();       
+        // 퍼즐선택버튼
+        var moveButtons = new (Button btn, System.Action action)[]
+        {
+            (upButton, () => currentPuzzle.MoveSelection("Up")),
+            (downButton, ()=> currentPuzzle.MoveSelection("Down")),
+            (leftButton, () => currentPuzzle.MoveSelection("Left")),
+            (rightButton, () => currentPuzzle.MoveSelection("Right")),
+         };
 
-        upButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Up"));
-        downButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Down"));
-        leftButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Left"));
-        rightButton.onClick.AddListener(() => currentPuzzle.MoveSelection("Right"));
-        rotateButton.onClick.AddListener(() => currentPuzzle.RotateSelectedPiece());
-        cancelButton.onClick.AddListener(() => OnCancelButtonClicked());
+        foreach (var (btn, action) in moveButtons)
+        {
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() =>
+            {
+                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UIButton);
+                action();
+            });
+        }
+
+        // 회전버튼
+        rotateButton.onClick.RemoveAllListeners();
+        rotateButton.onClick.AddListener(() =>
+        {
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.TurnPuzzle);
+            currentPuzzle.RotateSelectedPiece();
+        });
+
+        // 팝업 닫기버튼
+        cancelButton.onClick.AddListener(() =>
+        {
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
+            OnCancelButtonClicked();
+        });
 
         // 팝업 닫기 버튼
         foreach (var btn in exitButtons)
         {
             btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() => currentPuzzle.OnExit());
+            btn.onClick.AddListener(() =>
+            {
+                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
+                currentPuzzle.OnExit();
+            });
         }
     }
 

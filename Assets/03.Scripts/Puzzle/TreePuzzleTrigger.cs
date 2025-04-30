@@ -106,7 +106,11 @@ public class TreePuzzleTrigger : MonoBehaviour
         if (hasPlayer && hasBox)
         {
             skillBTN.ShowInteractionButton(true);
-            skillBTN.OnInteractBtnClick += TryStartPuzzle;
+            skillBTN.OnInteractBtnClick += () =>
+            {
+                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Communication);
+                TryStartPuzzle();
+            };
         }
     }
 
