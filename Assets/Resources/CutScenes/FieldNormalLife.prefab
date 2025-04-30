@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
-  <DialogIndexes>k__BackingField: ba0b0000
+  dialogIndexes: ba0b0000
   <Npcs>k__BackingField:
   - {fileID: 4451490121164874670}
   - {fileID: 8925795810135389171}
