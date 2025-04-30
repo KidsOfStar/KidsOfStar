@@ -58,7 +58,8 @@ public abstract class SceneBase : MonoBehaviour
         ShowRequiredUI();
 
         // 씬 고유 초기화 작업
-        InitSceneExtra(PlayChapterIntro);
+        // 챕터별 컷신이 필요한 경우 컷씬 재생 이후 Bgm, Intro 등이 재생되도록 콜백을 등록
+        InitSceneExtra(ChapterCutSceneCallback);
 
         // 컷신 플레이어 위치 정보 설정
         if (spawnPointer != null)
@@ -155,10 +156,10 @@ public abstract class SceneBase : MonoBehaviour
         }
     }
 
-    // playIntroCallback은 씬 진입 시 보여줄 인트로 UI 재생의 콜백
-    // 컷씬 재생이 필요한 경우에는 이 콜백을 사용하여 컷씬 재생 후 인트로를 플레이
-    protected abstract void InitSceneExtra(Action playIntroCallback);
+    protected abstract void InitSceneExtra(Action callback);
 
+    protected abstract void ChapterCutSceneCallback();
+    
     private void OnDestroy()
     {
         // 씬이 파괴될 때 반드시 구독 해제

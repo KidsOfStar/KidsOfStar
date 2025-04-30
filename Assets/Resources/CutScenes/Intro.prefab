@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
+    - {fileID: 11400000, guid: 03a8f1bb4da0bef4390b7347d0c7cd3f, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -98,6 +99,20 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: CutSceneBase, Assembly-CSharp
           m_MethodName: DestroyPrefab
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4985482940978245361}
+          m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -519,6 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1820445864389748123}
   - component: {fileID: 5275350742599227190}
+  - component: {fileID: 4985482940978245361}
   m_Layer: 0
   m_Name: Intro
   m_TagString: Untagged
@@ -560,3 +576,17 @@ MonoBehaviour:
   <Director>k__BackingField: {fileID: 8733609572954153926}
   signalReceiver: {fileID: 3077633339088917799}
   destroySignal: {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
+--- !u!114 &4985482940978245361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7180232120671827811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc9964b2bc5e9b4a8022a86f9da83b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxSignal: {fileID: 11400000, guid: 03a8f1bb4da0bef4390b7347d0c7cd3f, type: 2}
+  sfxSounds: 01000000

@@ -79,6 +79,8 @@ public enum AmbienceSoundType
 
 public enum SfxSoundType
 {
+    UIButton,
+    Thunder,
 }
 
 public enum FootstepType

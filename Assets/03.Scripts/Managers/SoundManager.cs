@@ -8,6 +8,7 @@ public class SoundManager : ISceneLifecycleHandler
     private readonly AudioSource ambienceSource;
     private readonly AudioSource sfxSource;
     private readonly AudioSource footstepSource;
+    private const float ambienceVolumeOffset = 0.2f;
 
     public SoundManager()
     {
@@ -25,7 +26,7 @@ public class SoundManager : ISceneLifecycleHandler
         ambienceSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         ambienceSource.name = "Ambience";
         ambienceSource.loop = true;
-        ambienceSource.volume = gameManager.BgmVolume == 0 ? 0 : Mathf.Max(0.01f, gameManager.BgmVolume - 0.1f);
+        ambienceSource.volume = Mathf.Max(0f, gameManager.BgmVolume - ambienceVolumeOffset);
 
         sfxSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         sfxSource.name = "SFX";
@@ -114,6 +115,12 @@ public class SoundManager : ISceneLifecycleHandler
         bgmSource.clip = null;
     }
 
+    public void StopAmbience()
+    {
+        ambienceSource.Stop();
+        ambienceSource.clip = null;
+    }
+
     // 효과음 재생
     public void PlaySfx(SfxSoundType sound)
     {
@@ -147,7 +154,7 @@ public class SoundManager : ISceneLifecycleHandler
     public void SetBgmVolume(float volume)
     {
         bgmSource.volume = volume;
-        ambienceSource.volume = volume == 0 ? 0 : Mathf.Max(0.01f, volume - 0.1f);
+        ambienceSource.volume = Mathf.Max(0f, volume - ambienceVolumeOffset);
     }
 
     public void SetSfxVolume(float volume)
@@ -157,20 +164,20 @@ public class SoundManager : ISceneLifecycleHandler
     }
 
     // 효과음 재생하고 재생 시간만큼 대기
-    public IEnumerator PlaySfxWithDelay(SfxSoundType sound)
-    {
-        var resourceManager = Managers.Instance.ResourceManager;
-        AudioClip audioClip = resourceManager.Load<AudioClip>($"{Define.sfxPath}{sound.GetName()}");
-
-        if (!audioClip)
-        {
-            EditorLog.LogError($"SoundManager : {sound.GetName()} is not found.");
-            yield break;
-        }
-        
-        sfxSource.PlayOneShot(audioClip);
-        yield return new WaitForSeconds(audioClip.length); //사운드 종료되기 전 씬이 넘어가는 것을 방지
-    }
+    // public IEnumerator PlaySfxWithDelay(SfxSoundType sound)
+    // {
+    //     var resourceManager = Managers.Instance.ResourceManager;
+    //     AudioClip audioClip = resourceManager.Load<AudioClip>($"{Define.sfxPath}{sound.GetName()}");
+    // 
+    //     if (!audioClip)
+    //     {
+    //         EditorLog.LogError($"SoundManager : {sound.GetName()} is not found.");
+    //         yield break;
+    //     }
+    //     
+    //     sfxSource.PlayOneShot(audioClip);
+    //     yield return new WaitForSeconds(audioClip.length); //사운드 종료되기 전 씬이 넘어가는 것을 방지
+    // }
 
     public void OnSceneLoaded()
     {
@@ -181,5 +188,6 @@ public class SoundManager : ISceneLifecycleHandler
     {
         ReparentAudioToSoundManager();
         StopBgm();
+        StopAmbience();
     }
 }

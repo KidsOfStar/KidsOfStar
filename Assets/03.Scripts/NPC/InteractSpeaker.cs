@@ -7,14 +7,14 @@ public abstract class InteractSpeaker : MonoBehaviour
     [field: SerializeField] public CharacterType CharacterType { get; private set; }
     [field: SerializeField] public Transform BubbleTr { get; private set; }
     [SerializeField] private bool dontInit = false;
-    
+
     private readonly Dictionary<int, int> dialogByProgress = new();
     private readonly Dictionary<int, int> requiredDialogByProgress = new();
 
     public void Init()
     {
         if (dontInit) return;
-        
+
         var dict = Managers.Instance.DataManager.GetNpcDataDict();
         var startRange = ((int)Managers.Instance.GameManager.CurrentChapter + 1) * 100;
         var endRange = startRange + 100;
@@ -31,7 +31,7 @@ public abstract class InteractSpeaker : MonoBehaviour
         Managers.Instance.GameManager.OnProgressUpdated += CheckExistRequiredDialog;
         Managers.Instance.DialogueManager.OnDialogStepEnd += DespawnExclamationIcon;
     }
-    
+
     private void InitRequiredDialog()
     {
         // 필수 대사 인덱스 리스트를 읽어옴
@@ -40,13 +40,13 @@ public abstract class InteractSpeaker : MonoBehaviour
         for (int i = 0; i < indexList.Length; i++)
         {
             var indexData = indexList[i];
-            
+
             // 자신의 캐릭터 타입과 맞다면 딕셔너리에 저장
             if (indexData.characterType == CharacterType)
                 requiredDialogByProgress[indexData.progress] = indexData.index;
         }
     }
-    
+
     // 프로그레스가 업데이트 되는 이벤트에 등록
     private void CheckExistRequiredDialog()
     {
@@ -60,9 +60,11 @@ public abstract class InteractSpeaker : MonoBehaviour
             exclamationIcon.transform.localPosition = Vector3.zero;
         }
     }
-    
+
     private void DespawnExclamationIcon(int index)
     {
+        if (BubbleTr.childCount == 0) return;
+        
         foreach (var value in requiredDialogByProgress.Values)
         {
             if (index != value) continue;
@@ -70,7 +72,7 @@ public abstract class InteractSpeaker : MonoBehaviour
             var exclamationIcon = BubbleTr.GetChild(0).gameObject;
             if (!exclamationIcon)
                 EditorLog.LogError("No exclamation icon found");
-            
+
             Managers.Instance.PoolManager.Despawn(exclamationIcon);
         }
     }
@@ -82,9 +84,9 @@ public abstract class InteractSpeaker : MonoBehaviour
         skillPanel.OnInteractBtnClick -= OnInteract;
 
         // 대사 종료 이벤트에 등록
-        Managers.Instance.DialogueManager.OnDialogEnd -= HideInteractionButton; 
+        Managers.Instance.DialogueManager.OnDialogEnd -= HideInteractionButton;
         Managers.Instance.DialogueManager.OnDialogEnd += HideInteractionButton;
-        
+
         // 대사 출력
         ShowDialog();
     }

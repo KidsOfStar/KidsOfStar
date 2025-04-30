@@ -31,7 +31,12 @@ public static class Extensions
 
     public static string GetName(this SfxSoundType sfx)
     {
-        return string.Empty;
+        return sfx switch
+        {
+            SfxSoundType.UIButton => "UIButton",
+            SfxSoundType.Thunder  => "Thunder",
+            _                     => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
+        };
     }
 
     public static string GetName(this FootstepType footstepType)
