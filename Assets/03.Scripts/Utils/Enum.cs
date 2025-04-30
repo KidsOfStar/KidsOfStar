@@ -82,6 +82,7 @@ public enum SfxSoundType
     ButtonPush,
     Communication,
     ElevatorMove,
+    FormChange,
     JumpField,
     JumpFloor,
     JumpWater,

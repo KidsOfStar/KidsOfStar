@@ -37,6 +37,7 @@ public static class Extensions
             SfxSoundType.ButtonPush      => "ButtonPush",
             SfxSoundType.Communication   => "Communication",
             SfxSoundType.ElevatorMove    => "ElevatorMove",
+            SfxSoundType.FormChange      => "FormChange",
             SfxSoundType.JumpField       => "JumpField",
             SfxSoundType.JumpFloor       => "JumpFloor",
             SfxSoundType.JumpWater       => "JumpWater",

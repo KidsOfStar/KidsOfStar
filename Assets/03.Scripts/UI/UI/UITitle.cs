@@ -16,18 +16,12 @@ public class UITitle : UIBase
     // Start is called before the first frame update
     void Start()
     {
-        // 버튼 클릭 이벤트 등록
-        //startBtn.onClick.AddListener(OnStartBtnClick);
-        //exitBtn.onClick.AddListener(OnExitBtnClick);
-        //optionBtn.onClick.AddListener(OnOptionBtnClick);
-        //loadBtn.onClick.AddListener(OnLoadBtnClick);
-
         OnClickListener(startBtn, OnStartBtnClick, SfxSoundType.UIButton);
         OnClickListener(exitBtn, OnExitBtnClick, SfxSoundType.UIButton);
         OnClickListener(optionBtn, OnOptionBtnClick, SfxSoundType.UIButton);
         OnClickListener(loadBtn, OnLoadBtnClick, SfxSoundType.UIButton);
     }
-
+    // 따로 스크립트로 빼서 관리하는게 좋을듯
     private void OnClickListener(Button button, UnityAction callback, SfxSoundType sfxType)
     {
         button.onClick.AddListener(() =>
