@@ -36,10 +36,6 @@ public class DashGame : MonoBehaviour
         if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
         isGameStarted = true; // 게임 시작 상태로 변경
 
-        // 플레이어 속도 0으로 하여 정지
-        //playerController.MoveSpeed = 0; // 플레이어 속도 0으로 설정
-        //Managers.Instance.GameManager.Player.Controller.LockPlayer(); // 플레이어 잠금
-
         Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
         countDownPopup.CountDownStart(); // 카운트다운 시작
 
@@ -54,7 +50,6 @@ public class DashGame : MonoBehaviour
     private IEnumerator StartGame(float delay)
     {
         // Managers.Instance.DialogueManager.OnDialogEnd -= playerController.UnlockPlayer; // 대사 완료 후 이벤트 해제 됨
-
         yield return null;  // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
         playerController.LockPlayer(); // 플레이어 잠금
         Managers.Instance.UIManager.Show<DirectionRightPopup>(); // 대사 팝업 표시
@@ -85,7 +80,6 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
         Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 숨김
-
 
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
     }
