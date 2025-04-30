@@ -21,7 +21,11 @@ public class PopupBase : UIBase
     {
         if (closeBtn != null)
         {
-            closeBtn.onClick.AddListener(HideDirect);
+            closeBtn.onClick.AddListener(() => 
+            {
+                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
+                HideDirect();
+            });
             
         }
     }

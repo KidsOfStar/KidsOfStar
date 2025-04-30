@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UITitle : UIBase
@@ -16,13 +17,24 @@ public class UITitle : UIBase
     void Start()
     {
         // 버튼 클릭 이벤트 등록
-        startBtn.onClick.AddListener(OnStartBtnClick);
-        //startBtn.onClick.AddListener(Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UIButton)); // SFX 재생
+        //startBtn.onClick.AddListener(OnStartBtnClick);
+        //exitBtn.onClick.AddListener(OnExitBtnClick);
+        //optionBtn.onClick.AddListener(OnOptionBtnClick);
+        //loadBtn.onClick.AddListener(OnLoadBtnClick);
 
+        OnClickListener(startBtn, OnStartBtnClick, SfxSoundType.UIButton);
+        OnClickListener(exitBtn, OnExitBtnClick, SfxSoundType.UIButton);
+        OnClickListener(optionBtn, OnOptionBtnClick, SfxSoundType.UIButton);
+        OnClickListener(loadBtn, OnLoadBtnClick, SfxSoundType.UIButton);
+    }
 
-        exitBtn.onClick.AddListener(OnExitBtnClick);
-        optionBtn.onClick.AddListener(OnOptionBtnClick);
-        loadBtn.onClick.AddListener(OnLoadBtnClick);
+    private void OnClickListener(Button button, UnityAction callback, SfxSoundType sfxType)
+    {
+        button.onClick.AddListener(() =>
+        {
+            Managers.Instance.SoundManager.PlaySfx(sfxType); // 효과음 재생
+            callback?.Invoke(); // 콜백 실행
+        });
     }
 
     private void OnLoadBtnClick()
