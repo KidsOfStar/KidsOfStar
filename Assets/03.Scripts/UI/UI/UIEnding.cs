@@ -62,7 +62,7 @@ public class UIEnding : UIBase
 
         if (param.Length == 0) return;
 
-        if (!(param[0] is EndingType))return;
+        if (!(param[0] is EndingType)) return;
 
         EndingType endingType = (EndingType)param[0];
 
