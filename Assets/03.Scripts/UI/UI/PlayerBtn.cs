@@ -31,7 +31,9 @@ public class PlayerBtn : UIBase
     private void OnOptionBtnClick()
     {
         Managers.Instance.UIManager.Show<OptionPopup>();
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UIButton);
         Time.timeScale = 0;
+        Managers.Instance.GameManager.Player.Controller.LockPlayer();
     }
 
     // 스킵 버튼 클릭 시 호출될 메소드 (현재 비어 있음)

@@ -35,6 +35,8 @@ public class PopupBase : UIBase
         if (checkTimeStop)
         {
             Time.timeScale = 1; // 게임 재개
+            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+
         }
     }
 }

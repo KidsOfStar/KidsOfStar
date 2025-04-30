@@ -35,9 +35,7 @@ public class SkillBTN : UIBase
         dogBtn.onClick.AddListener(OnDog);
         squirrelBtn.onClick.AddListener(OnSquirrel);
 
-
         OnClickListener(interactionBtn, OnInteraction, SfxSoundType.Communication); // 상호작용 버튼 클릭 시 효과음 재생
-
 
         interactionBtn.gameObject.SetActive(false); // 상호작용 버튼 비활성화
 
@@ -96,7 +94,6 @@ public class SkillBTN : UIBase
     /// </summary>
     /*    public void OnDog()
     {
-
         UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);
     }*/
     public void OnDog() => UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);
