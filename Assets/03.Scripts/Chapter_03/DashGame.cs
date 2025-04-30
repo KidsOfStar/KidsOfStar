@@ -5,6 +5,7 @@ public class DashGame : MonoBehaviour
 {
     public StopWatch stopWatch;
     public CountDownPopup countDownPopup;
+    public DirectionRightPopup directionRightPopup;
     public PlayerController playerController;
 
     public float playerSpeed; // 플레이어 속도
@@ -25,6 +26,9 @@ public class DashGame : MonoBehaviour
 
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
+
+        directionRightPopup = Managers.Instance.UIManager.Show<DirectionRightPopup>();
+        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 숨김
     }
 
     public void StartGame()
@@ -38,6 +42,8 @@ public class DashGame : MonoBehaviour
 
         Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
         countDownPopup.CountDownStart(); // 카운트다운 시작
+
+        Managers.Instance.UIManager.Show<DirectionRightPopup>(); // 대사 팝업 표시
 
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
@@ -55,6 +61,7 @@ public class DashGame : MonoBehaviour
         stopWatch.StartTime(); // 스탑워치 시간 시작
 
         playerController.UnlockPlayer(); // 플레이어 잠금
+        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 숨김
         playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
     }
 
