@@ -23,6 +23,4 @@ public class ObstacleTeleport : MonoBehaviour
         yield return new WaitForSeconds(5f); // 5초 대기
         teleportTarget.transform.position = transTeleportTarget; // 텔레포트 이펙트 위치 설정
     }
-
-
 }
