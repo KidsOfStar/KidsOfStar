@@ -16,6 +16,7 @@ public class BreakWall : MonoBehaviour
             if (formController.CurFormData.FormName == "Dog")
             {
                 Destroy(gameObject);
+                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.WallBreak);
             }
         }
     }

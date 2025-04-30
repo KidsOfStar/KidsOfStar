@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UITitle : UIBase
@@ -10,14 +12,23 @@ public class UITitle : UIBase
     public Button optionBtn;
     public Button loadBtn;
 
+    
     // Start is called before the first frame update
     void Start()
     {
-        // 버튼 클릭 이벤트 등록
-        startBtn.onClick.AddListener(OnStartBtnClick);
-        exitBtn.onClick.AddListener(OnExitBtnClick);
-        optionBtn.onClick.AddListener(OnOptionBtnClick);
-        loadBtn.onClick.AddListener(OnLoadBtnClick);
+        OnClickListener(startBtn, OnStartBtnClick, SfxSoundType.UIButton);
+        OnClickListener(exitBtn, OnExitBtnClick, SfxSoundType.UIButton);
+        OnClickListener(optionBtn, OnOptionBtnClick, SfxSoundType.UIButton);
+        OnClickListener(loadBtn, OnLoadBtnClick, SfxSoundType.UIButton);
+    }
+    // 따로 스크립트로 빼서 관리하는게 좋을듯
+    private void OnClickListener(Button button, UnityAction callback, SfxSoundType sfxType)
+    {
+        button.onClick.AddListener(() =>
+        {
+            Managers.Instance.SoundManager.PlaySfx(sfxType); // 효과음 재생
+            callback?.Invoke(); // 콜백 실행
+        });
     }
 
     private void OnLoadBtnClick()

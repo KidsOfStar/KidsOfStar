@@ -25,6 +25,7 @@ public class TreePuzzlePiece : MonoBehaviour
 
     public void RotateRight()
     {
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.TurnPuzzle);
         currentRotation = (currentRotation + 90) % 360;
         pieceImage.rectTransform.rotation = Quaternion.Euler(0, 0, -currentRotation);
 

@@ -79,6 +79,28 @@ public enum AmbienceSoundType
 
 public enum SfxSoundType
 {
+    ButtonPush,
+    Communication,
+    ElevatorMove,
+    FormChange,
+    JumpField,
+    JumpFloor,
+    JumpWater,
+    JumpWood,
+    LeafTrampoline,
+    PuzzleClear,
+    PuzzleFail,
+    RunField,
+    TurnPuzzle,
+    UIButton,
+    UICancel,
+    WalkFloor,
+    WalkForest,
+    WalkWater,
+    WalkWood,
+    Walla,
+    WallBreak,
+	Thunder,
 }
 
 public enum FootstepType

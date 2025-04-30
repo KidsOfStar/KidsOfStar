@@ -10,12 +10,17 @@ public class Chapter01PuzzleBase : SceneBase
     
     protected override void InitSceneExtra(Action playIntroCallback)
     {
-        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.MaorumChase);
+        playIntroCallback?.Invoke();
         LockPlayerMove();
         PlayChaseAnim();
         spawner.StartSpawn();
     }
-    
+
+    protected override void ChapterCutSceneCallback()
+    {
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.MaorumChase);
+    }
+
     private void PlayChaseAnim()
     {
         maorum.speed = 1.5f;
@@ -26,7 +31,7 @@ public class Chapter01PuzzleBase : SceneBase
     {
         var player = Managers.Instance.GameManager.Player;
         player.Controller.IsChaseMode = true;
-        player.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, true);
         player.Controller.MoveSpeed = 0;
+        player.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, true);
     }
 }

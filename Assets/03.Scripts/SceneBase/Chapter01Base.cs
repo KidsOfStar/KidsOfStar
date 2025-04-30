@@ -14,9 +14,14 @@ public class Chapter01Base : SceneBase
     
     protected override void InitSceneExtra(Action callback)
     {
-        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Maorum);
-        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.UnderWater);
         Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName(), callback);
         sceneEventTrigger.Init();
+    }
+
+    // 씬이 로드되자마자 재생되는 컷신이 있다면 이 곳에 컷신이 끝났을 때 호출 될 콜백을 작성합니다.
+    protected override void ChapterCutSceneCallback()
+    {
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Maorum);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.UnderWater);
     }
 }

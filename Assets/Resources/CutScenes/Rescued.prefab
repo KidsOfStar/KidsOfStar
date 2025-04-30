@@ -2750,8 +2750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffdaeab845917842b7e3a9b897734ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
-  <DialogIndexes>k__BackingField: e8030000d0070000d1070000d4070000d5070000
+  dialogSignal: {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
+  dialogIndexes: e8030000d0070000d1070000d4070000d5070000
   <Npcs>k__BackingField:
   - {fileID: 697901136552414436}
   - {fileID: 7191340977522221822}
@@ -2770,6 +2770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BgmSoundType>k__BackingField: 2
+  <AmbienceSoundType>k__BackingField: 1
   <PlayBgmSignal>k__BackingField: {fileID: 11400000, guid: b89bdacf10816754d83f49b7f9d1d962, type: 2}
 --- !u!114 &7380230989693784354
 MonoBehaviour:

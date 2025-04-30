@@ -5,6 +5,7 @@ public class DashGame : MonoBehaviour
 {
     public StopWatch stopWatch;
     public CountDownPopup countDownPopup;
+    public DirectionRightPopup directionRightPopup;
     public PlayerController playerController;
 
     public float playerSpeed; // 플레이어 속도
@@ -25,6 +26,9 @@ public class DashGame : MonoBehaviour
 
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
+
+        directionRightPopup = Managers.Instance.UIManager.Show<DirectionRightPopup>();
+        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 숨김
     }
 
     public void StartGame()
@@ -39,8 +43,12 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
         countDownPopup.CountDownStart(); // 카운트다운 시작
 
+        Managers.Instance.UIManager.Show<DirectionRightPopup>(); // 대사 팝업 표시
+
         StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
         Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
+        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 표시
+
     }
 
     private IEnumerator StartGame(float delay)
@@ -49,6 +57,7 @@ public class DashGame : MonoBehaviour
 
         yield return null;  // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
         playerController.LockPlayer(); // 플레이어 잠금
+        Managers.Instance.UIManager.Show<DirectionRightPopup>(); // 대사 팝업 표시
 
         yield return new WaitForSeconds(delay); // 카운트다운 대기
         stopWatch.OnStartWatch(); // 스탑워치 시작
@@ -56,6 +65,9 @@ public class DashGame : MonoBehaviour
 
         playerController.UnlockPlayer(); // 플레이어 잠금
         playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
+
+        yield return null;
+        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 표시
     }
 
     public void EndGame(CharacterType npcType)
@@ -72,6 +84,8 @@ public class DashGame : MonoBehaviour
 
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
+        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 숨김
+
 
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
     }

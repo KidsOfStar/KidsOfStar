@@ -5034,8 +5034,9 @@ GameObject:
   - component: {fileID: 2538945192747803497}
   - component: {fileID: 1298927856925646749}
   - component: {fileID: 2412888711101645567}
-  - component: {fileID: 3744760859458150283}
   - component: {fileID: 7430146534042970419}
+  - component: {fileID: 7430146534042970420}
+  - component: {fileID: 3744760859458150283}
   m_Layer: 0
   m_Name: Songsari
   m_TagString: Untagged
@@ -5634,6 +5635,27 @@ MonoBehaviour:
   - progress: 3
     isActive: 1
     position: {x: 29.5, y: -2.4, z: 0}
+--- !u!95 &7430146534042970420
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317672871012772177}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 378408c0fba6cd543a2da04611f58f9b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7864116626063949060
 GameObject:
   m_ObjectHideFlags: 0

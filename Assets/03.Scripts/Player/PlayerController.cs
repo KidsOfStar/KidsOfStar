@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -273,11 +274,25 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public bool TryDetectBox(Vector2 dir)
     {
-        float xOffset = boxCollider.bounds.extents.x + 0.01f;
-        Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0.1f);
-        Vector2 direction = Vector2.right * Mathf.Sign(dir.x);
 
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, pushDetectDistance, pushableLayer);
+        //float xOffset = boxCollider.bounds.extents.x + 0.01f;
+        //Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0.1f);
+        //Vector2 direction = Vector2.right * Mathf.Sign(dir.x);
+
+        Vector2 origin = (Vector2)boxCollider.bounds.center
+        + Vector2.right * Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f);
+
+        // RaycastHit2D hit = Physics2D.Raycast(origin, direction, pushDetectDistance, pushableLayer);
+
+        Vector2 size = new Vector2(0.05f, boxCollider.bounds.size.y * 0.9f);
+        Vector2 dirVec = Vector2.right * Mathf.Sign(dir.x);
+
+        RaycastHit2D hit = Physics2D.BoxCast(
+        origin, size, 0f,
+        dirVec,
+        pushDetectDistance,
+        pushableLayer
+    );
 
         if (hit.collider != null)
         {

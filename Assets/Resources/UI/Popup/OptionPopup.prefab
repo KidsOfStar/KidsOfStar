@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &979533841484880047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2117,5 +2117,4 @@ MonoBehaviour:
   isFirst: 1
   bgmSlider: {fileID: 2592237279192602301}
   sfxSlider: {fileID: 1014170755849305765}
-  retryBtn: {fileID: 2385762698543356146}
   endBtn: {fileID: 8905078217163179023}

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LoadSceneDebug : MonoBehaviour
 {
-#if UNITY_EDITOR
+#if TEST_BUILD
     [SerializeField] private float buttonWidth = 180f;
     [SerializeField] private float buttonHeight = 60f;
     [SerializeField] private int fontSize = 30;

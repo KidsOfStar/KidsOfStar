@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SkillBTN : UIBase
@@ -33,7 +34,8 @@ public class SkillBTN : UIBase
         catBtn.onClick.AddListener(OnCat);
         dogBtn.onClick.AddListener(OnDog);
         squirrelBtn.onClick.AddListener(OnSquirrel);
-        interactionBtn.onClick.AddListener(OnInteraction);
+
+        OnClickListener(interactionBtn, OnInteraction, SfxSoundType.Communication); // 상호작용 버튼 클릭 시 효과음 재생
 
         interactionBtn.gameObject.SetActive(false); // 상호작용 버튼 비활성화
 
@@ -46,6 +48,15 @@ public class SkillBTN : UIBase
         {
             IsGruoud(); // 플레이어가 땅에 있는지 확인
         }
+    }
+
+    private void OnClickListener(Button button, UnityAction callback, SfxSoundType sfxType)
+    {
+        button.onClick.AddListener(() =>
+        {
+            Managers.Instance.SoundManager.PlaySfx(sfxType); // 효과음 재생
+            callback?.Invoke(); // 콜백 실행
+        });
     }
 
     // 플레이어가 땅에 있는지 확인하여 스킬 UI 표시 여부 결정
@@ -83,7 +94,6 @@ public class SkillBTN : UIBase
     /// </summary>
     /*    public void OnDog()
     {
-
         UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);
     }*/
     public void OnDog() => UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);

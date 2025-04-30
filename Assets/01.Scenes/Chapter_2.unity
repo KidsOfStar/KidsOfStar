@@ -1232,6 +1232,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
+      propertyPath: fallDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: respawnDelay
       value: 5
       objectReference: {fileID: 0}

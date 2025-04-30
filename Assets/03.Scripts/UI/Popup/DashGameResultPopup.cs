@@ -104,6 +104,6 @@ public class DashGameResultPopup : PopupBase
     {
         Vector2 viewportPosition = Camera.main.WorldToViewportPoint(worldPosition);
         Vector2 canvasSize = canvas.GetComponent<RectTransform>().sizeDelta;
-        return new Vector2((viewportPosition.x - 0.5f) * canvasSize.x, (viewportPosition.y - 0.4f) * canvasSize.y);
+        return new Vector2((viewportPosition.x - 0.5f) * canvasSize.x, (viewportPosition.y - 0.35f) * canvasSize.y);
     }
 }
