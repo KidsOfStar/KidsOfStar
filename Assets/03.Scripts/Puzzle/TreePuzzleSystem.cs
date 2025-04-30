@@ -175,6 +175,7 @@ public class TreePuzzleSystem : MonoBehaviour
             if (!piece.IsCorrect())
                 return;
         }
+
         CompletePuzzle();
     }
 
@@ -182,6 +183,7 @@ public class TreePuzzleSystem : MonoBehaviour
     private void CompletePuzzle()
     {
         isRunning = false;
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
         ClearPopup.SetActive(true);
 
         EditorLog.Log("퍼즐 성공!");
@@ -197,6 +199,7 @@ public class TreePuzzleSystem : MonoBehaviour
     private void FailPuzzle()
     {
         isRunning = false;
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
         failPopup.SetActive(true);
 
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))

@@ -15,7 +15,7 @@ public class Leaf : MonoBehaviour
     [Tooltip("Leaf가 떨어지고 다시 스폰되기 전까지 대기할 시간 (초)")]
     [SerializeField] private float respawnDelay = 5f;
     [Tooltip("Leaf가 떨어지고 사라지기까지의 시간 (초)")]
-    [SerializeField] private float fallDuration = 1f;
+    [SerializeField] private float fallDuration = 0.3f;
 
     [Header("충돌 감지 레이어")]
     public LayerMask obstacleMask;
@@ -41,6 +41,7 @@ public class Leaf : MonoBehaviour
         {
             if (collision.collider.TryGetComponent<ILeafJumpable>(out var jumpable))
             {
+                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.LeafTrampoline);
                 jumpable.StartLeafJump(dropPosition,jumpPower);
                 isUsed = true;
                 StartCoroutine(DropAndRespawn());
