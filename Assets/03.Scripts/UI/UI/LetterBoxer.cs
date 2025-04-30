@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class LetterBoxer : MonoBehaviour
 {
     //화면비율의 기준을 선택하되, X:Y비율 / widht:height 해상도 기준으로 선택가능

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 
 public static class Extensions
 {
@@ -33,9 +34,28 @@ public static class Extensions
     {
         return sfx switch
         {
-            SfxSoundType.UIButton => "UIButton",
-            SfxSoundType.Thunder  => "Thunder",
-            _                     => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
+            SfxSoundType.ButtonPush      => "ButtonPush",
+            SfxSoundType.Communication   => "Communication",
+            SfxSoundType.ElevatorMove    => "ElevatorMove",
+            SfxSoundType.JumpField       => "JumpField",
+            SfxSoundType.JumpFloor       => "JumpFloor",
+            SfxSoundType.JumpWater       => "JumpWater",
+            SfxSoundType.JumpWood        => "JumpWood",
+            SfxSoundType.LeafTrampoline  => "LeafTrampoline",
+            SfxSoundType.PuzzleClear     => "PuzzleClear",
+            SfxSoundType.PuzzleFail      => "PuzzleFail",
+            SfxSoundType.RunField        => "RunField",
+            SfxSoundType.TurnPuzzle      => "TurnPuzzle",
+            SfxSoundType.UIButton        => "UIButton",
+            SfxSoundType.UICancel        => "UICancel",
+            SfxSoundType.WalkFloor       => "WalkFloor",
+            SfxSoundType.WalkForest      => "WalkForest",
+            SfxSoundType.WalkWater       => "WalkWater",
+            SfxSoundType.WalkWood        => "WalkWood",
+            SfxSoundType.Walla           => "Walla",
+            SfxSoundType.WallBreak       => "WallBreak",
+			SfxSoundType.Thunder         => "Thunder",
+            _                            => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
         };
     }
 
