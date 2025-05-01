@@ -30,7 +30,6 @@ public class CutSceneInputHandler : DialogInputHandler
 #if TEST_BUILD
         if (Input.GetMouseButtonDown(2))
         {
-            EditorLog.Log("CutSceneInputHandler: DestroyCurrentCutScene");
             Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
         }
 #endif
