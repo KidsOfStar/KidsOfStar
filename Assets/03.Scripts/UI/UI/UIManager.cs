@@ -7,7 +7,6 @@ public class UIManager : ISceneLifecycleHandler
     public SkillBTN SkillBTN { get; set; }
     public SkillUnlock SkillUnlock { get; set; }
 
-
     public RectTransform CanvasRectTr { get; private set; }
     private List<Transform> parents;
 
