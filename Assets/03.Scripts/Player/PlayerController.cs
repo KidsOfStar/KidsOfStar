@@ -328,6 +328,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     /// </summary>
     public void UnlockPlayer()
     {
+        if (Managers.Instance.CutSceneManager.IsCutScenePlaying) return;
         isControllable = true;
     }
 
