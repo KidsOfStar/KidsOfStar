@@ -91,7 +91,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         rigid = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
 
-        EditorLog.Log("매니저 이벤트에 lockPlayer 등록");
         Managers.Instance.CutSceneManager.OnCutSceneStart += LockPlayer;
         Managers.Instance.DialogueManager.OnDialogStart += LockPlayer;
         Managers.Instance.CutSceneManager.OnCutSceneEnd += UnlockPlayer;
