@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 // 챕터 1 특이사항
+// 챕터 1에서 재생해야하는 컷씬이 두개라서 좀 복잡해졌습니다.
 // 챕터 1 진행도는 총 4단계이며, 각 단계는 다음과 같습니다.
 // 1. 마오름과 첫 대화(대화로 인해 진행도 1 증가 및 인간 폼으로 변경)
 // 2. 마오름과 한번 더 대화 후 특정 장소에 도달하면 진행도 1 증가 : 이 때 NPC들의 위치 변경
@@ -14,13 +15,14 @@ public class Chapter01Base : SceneBase
     
     protected override void InitSceneExtra(Action callback)
     {
-        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Intro.GetName(), callback);
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FallingDown, callback);
         sceneEventTrigger.Init();
     }
 
     // 씬이 로드되자마자 재생되는 컷신이 있다면 이 곳에 컷신이 끝났을 때 호출 될 콜백을 작성합니다.
     protected override void ChapterCutSceneCallback()
     {
+        PlayChapterIntro();
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Maorum);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.UnderWater);
     }

@@ -33,29 +33,29 @@ public static class Extensions
     {
         return sfx switch
         {
-            SfxSoundType.ButtonPush      => "ButtonPush",
-            SfxSoundType.Communication   => "Communication",
-            SfxSoundType.ElevatorMove    => "ElevatorMove",
-            SfxSoundType.FormChange      => "FormChange",
-            SfxSoundType.JumpField       => "JumpField",
-            SfxSoundType.JumpFloor       => "JumpFloor",
-            SfxSoundType.JumpWater       => "JumpWater",
-            SfxSoundType.JumpWood        => "JumpWood",
-            SfxSoundType.LeafTrampoline  => "LeafTrampoline",
-            SfxSoundType.PuzzleClear     => "PuzzleClear",
-            SfxSoundType.PuzzleFail      => "PuzzleFail",
-            SfxSoundType.RunField        => "RunField",
-            SfxSoundType.TurnPuzzle      => "TurnPuzzle",
-            SfxSoundType.UIButton        => "UIButton",
-            SfxSoundType.UICancel        => "UICancel",
-            SfxSoundType.WalkFloor       => "WalkFloor",
-            SfxSoundType.WalkForest      => "WalkForest",
-            SfxSoundType.WalkWater       => "WalkWater",
-            SfxSoundType.WalkWood        => "WalkWood",
-            SfxSoundType.Walla           => "Walla",
-            SfxSoundType.WallBreak       => "WallBreak",
-			SfxSoundType.Thunder         => "Thunder",
-            _                            => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
+            SfxSoundType.ButtonPush     => "ButtonPush",
+            SfxSoundType.Communication  => "Communication",
+            SfxSoundType.ElevatorMove   => "ElevatorMove",
+            SfxSoundType.FormChange     => "FormChange",
+            SfxSoundType.JumpField      => "JumpField",
+            SfxSoundType.JumpFloor      => "JumpFloor",
+            SfxSoundType.JumpWater      => "JumpWater",
+            SfxSoundType.JumpWood       => "JumpWood",
+            SfxSoundType.LeafTrampoline => "LeafTrampoline",
+            SfxSoundType.PuzzleClear    => "PuzzleClear",
+            SfxSoundType.PuzzleFail     => "PuzzleFail",
+            SfxSoundType.RunField       => "RunField",
+            SfxSoundType.TurnPuzzle     => "TurnPuzzle",
+            SfxSoundType.UIButton       => "UIButton",
+            SfxSoundType.UICancel       => "UICancel",
+            SfxSoundType.WalkFloor      => "WalkFloor",
+            SfxSoundType.WalkForest     => "WalkForest",
+            SfxSoundType.WalkWater      => "WalkWater",
+            SfxSoundType.WalkWood       => "WalkWood",
+            SfxSoundType.Walla          => "Walla",
+            SfxSoundType.WallBreak      => "WallBreak",
+            SfxSoundType.Thunder        => "Thunder",
+            _                           => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
         };
     }
 
@@ -112,16 +112,16 @@ public static class Extensions
     {
         return cutSceneType switch
         {
-            CutSceneType.Intro => "Intro",
-            CutSceneType.Rescued => "Rescued",
-            CutSceneType.LeavingForest => "LeavingForest",
-            CutSceneType.DaunRoom => "DounRoom",
-            CutSceneType.JigimOrder => "JigimOrder",
+            CutSceneType.FallingDown     => "FallingDown",
+            CutSceneType.Rescued         => "Rescued",
+            CutSceneType.LeavingForest   => "LeavingForest",
+            CutSceneType.DaunRoom        => "DounRoom",
+            CutSceneType.JigimOrder      => "JigimOrder",
             CutSceneType.FieldNormalLife => "FieldNormalLife",
-            CutSceneType.SemyungGoOut => "SemyungGoOut",
-            CutSceneType.RescueKitten => "RescueKitten",
-            CutSceneType.DogFormChange => "DogFormChange",
-            _ => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
+            CutSceneType.SemyungGoOut    => "SemyungGoOut",
+            CutSceneType.RescueKitten    => "RescueKitten",
+            CutSceneType.DogFormChange   => "DogFormChange",
+            _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }
 

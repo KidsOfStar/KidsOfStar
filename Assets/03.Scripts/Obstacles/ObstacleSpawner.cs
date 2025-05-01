@@ -168,7 +168,7 @@ public class ObstaclesSpawner : MonoBehaviour
         {
             Managers.Instance.DialogueManager.OnDialogEnd -= SpawnWave;
             Managers.Instance.SoundManager.StopBgm();
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Rescued.GetName());
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Rescued);
         }
         else
         {

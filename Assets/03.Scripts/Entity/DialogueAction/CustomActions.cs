@@ -30,7 +30,7 @@ public static class CustomActions
         }
         
         if (Managers.Instance.CutSceneManager.IsCutScenePlaying)
-            Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
+            Managers.Instance.CutSceneManager.DestroyCurrentCutScene(true);
         
         Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         Managers.Instance.DialogueManager.OnDialogStepEnd?.Invoke(0);
@@ -70,10 +70,10 @@ public static class CustomActions
         
         if (Managers.Instance.CutSceneManager.IsCutScenePlaying)
         {
-            Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
+            Managers.Instance.CutSceneManager.DestroyCurrentCutScene(true);
         }
         
-        Managers.Instance.CutSceneManager.PlayCutScene(cutSceneType.GetName());
+        Managers.Instance.CutSceneManager.PlayCutScene(cutSceneType);
     }
     
     private static void DoNothing(string param)

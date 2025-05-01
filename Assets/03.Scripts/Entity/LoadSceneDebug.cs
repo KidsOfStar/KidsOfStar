@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LoadSceneDebug : MonoBehaviour
@@ -7,6 +8,7 @@ public class LoadSceneDebug : MonoBehaviour
     [SerializeField] private float buttonHeight = 60f;
     [SerializeField] private int fontSize = 30;
     private GUIStyle buttonStyle;
+    private bool isDebugMode = false;
 
     private void Start()
     {
@@ -28,8 +30,18 @@ public class LoadSceneDebug : MonoBehaviour
         buttonStyle.fixedHeight = buttonHeight;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            isDebugMode = !isDebugMode;
+        }
+    }
+
     private void OnGUI()        
     {
+        if (!isDebugMode) return;
+        
         float startX = Screen.width - buttonWidth - 10f;
         float startY = Screen.height / 3f;
 

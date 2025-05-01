@@ -18,6 +18,6 @@ public class PlayCutSceneAction : IDialogActionHandler
             return;
         }
 
-        Managers.Instance.CutSceneManager.PlayCutScene(cutScene.GetName());
+        Managers.Instance.CutSceneManager.PlayCutScene(cutScene);
     }
 }
