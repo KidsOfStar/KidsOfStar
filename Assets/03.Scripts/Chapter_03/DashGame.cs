@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class DashGame : MonoBehaviour
     public CountDownPopup countDownPopup;
     public DirectionRightPopup directionRightPopup;
     public PlayerController playerController;
+    public CinemachineVirtualCamera virtualCamera;  // 가상 카메라
 
     public float playerSpeed; // 플레이어 속도
     public bool isGameStarted = false;
@@ -36,6 +38,8 @@ public class DashGame : MonoBehaviour
         if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
         isGameStarted = true; // 게임 시작 상태로 변경
 
+        StartCoroutine(VirtualCameraMove(5f)); // 가상 카메라 이동 시작
+
         Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
         countDownPopup.CountDownStart(); // 카운트다운 시작
 
@@ -46,7 +50,17 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 표시
 
     }
+    private IEnumerator VirtualCameraMove(float delay)
+    {
+        virtualCamera.Priority = 10; // 가상 카메라 우선순위 변경
+        virtualCamera.gameObject.SetActive(true); // 가상 카메라 활성화
 
+        yield return new WaitForSeconds(delay); // 대기 시간
+
+        virtualCamera.Priority = -10; // 가상 카메라 우선순위 변경
+        virtualCamera.gameObject.SetActive(false); // 가상 카메라 비활성화
+        
+    }
     private IEnumerator StartGame(float delay)
     {
         // Managers.Instance.DialogueManager.OnDialogEnd -= playerController.UnlockPlayer; // 대사 완료 후 이벤트 해제 됨
@@ -62,7 +76,8 @@ public class DashGame : MonoBehaviour
         playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
 
         yield return null;
-        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 표시
+        Managers.Instance.UIManager.Hide<DirectionRightPopup>();
+        virtualCamera.Priority = -10; // 가상 카메라 우선순위 변경
     }
 
     public void EndGame(CharacterType npcType)
