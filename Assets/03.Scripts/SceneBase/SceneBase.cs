@@ -170,4 +170,3 @@ public abstract class SceneBase : MonoBehaviour
         }
     }
 }
-

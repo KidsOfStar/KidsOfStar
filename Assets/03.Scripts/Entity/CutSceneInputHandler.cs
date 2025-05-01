@@ -26,6 +26,7 @@ public class CutSceneInputHandler : MonoBehaviour
         #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.P))
         {
+            EditorLog.Log("CutSceneInputHandler: P key pressed");
             Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
         }
         #endif
