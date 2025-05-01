@@ -1,6 +1,5 @@
 using Cinemachine;
 using System.Collections;
-using Unity.Play.Publisher.Editor;
 using UnityEngine;
 
 public class DashGame : MonoBehaviour
@@ -45,9 +44,9 @@ public class DashGame : MonoBehaviour
 
     private IEnumerator GameIntroSequence()
     {
-        yield return new WaitForSeconds(1f); // 1초 대기
-
         playerController.LockPlayer(); // 플레이어 잠금
+
+        //yield return new WaitForSeconds(0.5f); // 1초 대기
 
         yield return StartCoroutine(VirtualCameraMove()); // 카메라 이동 끝날 때까지 대기
 
@@ -119,6 +118,9 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
 
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
+        
+        // **게임 종료 후에도 버튼 유지**
+        skillBTN.ShowInteractionButton(true);
     }
 
     private void ShowDialogueResult(float clearTime, CharacterType npcType)
