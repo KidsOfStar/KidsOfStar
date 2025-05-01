@@ -8,6 +8,8 @@ public class Chapter03Base : SceneBase
     
     protected override void InitSceneExtra(Action playIntroCallback)
     {
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogs);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Wind);
         Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DogFormChange, playIntroCallback);
 
         Init();
@@ -18,8 +20,6 @@ public class Chapter03Base : SceneBase
     protected override void ChapterCutSceneCallback()
     {
         PlayChapterIntro();
-        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogs);
-        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Wind);
     }
 
     private void Init()

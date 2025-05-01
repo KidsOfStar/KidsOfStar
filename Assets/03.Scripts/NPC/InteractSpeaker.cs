@@ -86,6 +86,7 @@ public abstract class InteractSpeaker : MonoBehaviour
     {
         // 상호작용 버튼 이벤트에 등록
         if (!other.CompareTag("Player")) return;
+        if (!skillPanel) return;
 
         skillPanel.OnInteractBtnClick -= OnInteract;
         skillPanel.OnInteractBtnClick += OnInteract;
@@ -122,6 +123,7 @@ public abstract class InteractSpeaker : MonoBehaviour
     {
         // 상호작용 버튼 이벤트에 해제
         if (!other.CompareTag("Player")) return;
+        if (!skillPanel) return;
 
         skillPanel.ShowInteractionButton(false);
         skillPanel.OnInteractBtnClick -= OnInteract;

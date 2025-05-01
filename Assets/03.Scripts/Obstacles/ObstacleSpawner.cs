@@ -198,6 +198,7 @@ public class ObstaclesSpawner : MonoBehaviour
         isGameOver = true;
         StopAllCoroutines();
         Managers.Instance.DialogueManager.OnDialogEnd -= SpawnWave;
+        Destroy(Managers.Instance.GameManager.Player.gameObject);
     }
 
     private void OnDestroy()

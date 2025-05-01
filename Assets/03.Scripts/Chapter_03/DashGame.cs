@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using Unity.Play.Publisher.Editor;
 using UnityEngine;
@@ -12,10 +13,13 @@ public class DashGame : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;  // 가상 카메라
     public CinemachineDollyCart trackedDolly;       // 카메라 이동 경로
 
+    public CharacterType characterType; // 캐릭터 타입
+    
     public float cameraMoveSpeed;  // 카메라 이동 속도
 
     public float playerSpeed; // 플레이어 속도
     public bool isGameStarted = false;
+    public bool showDialog = false;
 
     private SkillBTN skillBTN; // 스킬 버튼 UI
     [SerializeField] private GameObject TestGameBlock;
@@ -32,7 +36,6 @@ public class DashGame : MonoBehaviour
 
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
-
     }
 
     public void StartGame()
@@ -113,7 +116,11 @@ public class DashGame : MonoBehaviour
 
         float clearTime = stopWatch.recodeTime;
 
-        ShowDialogueResult(clearTime, npcType); // 대사 출력
+        characterType = npcType; // 캐릭터 타입 설정
+        ShowDialogueResult(); // 대사 출력
+        showDialog = true;
+        var resultPopup = Managers.Instance.UIManager.Get<DashGameResultPopup>();
+        resultPopup.OnDialogEnd += () => showDialog = false;
 
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
@@ -121,7 +128,15 @@ public class DashGame : MonoBehaviour
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
     }
 
-    private void ShowDialogueResult(float clearTime, CharacterType npcType)
+    private void Update()
+    {
+        if (!showDialog) return;
+        
+        if (Input.GetMouseButtonDown(0))
+            ShowDialogueResult();
+    }
+
+    private void ShowDialogueResult()
     {
         // 메인 테이블이랑 SO파일 대사 합쳐서 관리하기
         // 이미 DashGameResultPopup이 열려 있다면, 다음 대사 출력 시도
@@ -135,19 +150,19 @@ public class DashGame : MonoBehaviour
             if (stopWatch.recodeTime < 90f)
             {
                 // 1f는 내부에서 90f 기준 대사를 가져오는 키로 사용 (예: ScriptableObject 내부 설정)
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(0f, npcType).OnClickDialogue();
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(0f, characterType).OnClickDialogue();
             }
             // 1분 30초 이상, 3분 30초 미만일 때 대사 출력
             else if (stopWatch.recodeTime < 210f)
             {
                 // 2f는 내부에서 150f 기준 대사를 가져오는 키로 사용
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(1f, npcType).OnClickDialogue();
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(1f, characterType).OnClickDialogue();
             }
             // 3분 30초 이상일 때 대사 출력
             else
             {
                 // 3f는 내부에서 210f 기준 대사를 가져오는 키로 사용
-                Managers.Instance.UIManager.Show<DashGameResultPopup>(2f, npcType).OnClickDialogue();
+                Managers.Instance.UIManager.Show<DashGameResultPopup>(2f, characterType).OnClickDialogue();
             }
         }
     }
