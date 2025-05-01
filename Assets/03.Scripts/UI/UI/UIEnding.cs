@@ -26,13 +26,12 @@ public class UIEnding : UIBase
     private Dictionary<EndingType, Sprite> endingSpriteDict;
     private bool canClick = false;
 
-    private readonly Color transparentWhite = new Color(1f, 1f, 1f, 0f);
+    private readonly Color transparent = new Color(1f, 1f, 1f, 0f);
     private readonly Color opaqueWhite = new Color(1f, 1f, 1f, 1f);
-    private readonly Color transparentBlack = new Color(0f, 0f, 0f, 0f);
     private readonly Color opaqueBlack = new Color(0f, 0f, 0f, 1f);
 
-    private const float fadeTime = 2f;
-    private const float showDelay = 3f;
+    private const float fadeTime = 0.5f;
+    private const float showDelay = 0.5f;
 
     private void OnEnable()
     {
@@ -50,9 +49,9 @@ public class UIEnding : UIBase
         continueButton.interactable = false; // 처음엔 비활성화
 
         backgroundPanel.enabled = true;
-        backgroundPanel.color = transparentBlack;
+        backgroundPanel.color = transparent;
 
-        endingImage.color = transparentWhite;
+        endingImage.color = transparent;
         clickToContinueText.gameObject.SetActive(false);
     }
     
@@ -79,7 +78,7 @@ public class UIEnding : UIBase
     private IEnumerator PlayEndingFlow()
     {
         yield return Fade(
-           from: transparentWhite,
+           from: transparent,
            to: opaqueWhite,
            duration: fadeTime,
            applyColor: c => endingImage.color = c
@@ -100,7 +99,7 @@ public class UIEnding : UIBase
 
         // 배경 패널 페이드 인 (투명Black → 불투명Black)
         StartCoroutine(Fade(
-            from: transparentBlack,
+            from: transparent,
             to: opaqueBlack,
             duration: fadeTime,
             applyColor: c => backgroundPanel.color = c
@@ -109,7 +108,7 @@ public class UIEnding : UIBase
         // 엔딩 이미지 페이드 아웃 (불투명White → 투명White)
         yield return Fade(
             from: opaqueWhite,
-            to: transparentWhite,
+            to: transparent,
             duration: fadeTime,
             applyColor: c => endingImage.color = c
         );
