@@ -47,6 +47,7 @@ public class DashGame : MonoBehaviour
 
     private IEnumerator GameIntroSequence()
     {
+        yield return null; // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
         playerController.LockPlayer(); // 플레이어 잠금
 
         //yield return new WaitForSeconds(0.5f); // 1초 대기
@@ -90,9 +91,6 @@ public class DashGame : MonoBehaviour
     {
         // Managers.Instance.DialogueManager.OnDialogEnd -= playerController.UnlockPlayer; // 대사 완료 후 이벤트 해제 됨
         yield return null;  // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
-
-        //playerController.LockPlayer(); // 플레이어 잠금
-        //Managers.Instance.UIManager.Show<DirectionRightPopup>(); // 방향 팝업 표시
 
         yield return new WaitForSeconds(delay); // 카운트다운 대기
         stopWatch.OnStartWatch();   // 스탑워치 시작
