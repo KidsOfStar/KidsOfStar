@@ -26,6 +26,9 @@ public class ProgressNpcPlacer : MonoBehaviour
                 
                 // NPC 활성화 여부에 따라 활성화/비활성화
                 gameObject.SetActive(positionData.isActive);
+                
+                if (gameObject.TryGetComponent(out SpriteRenderer sr))
+                    sr.flipX = positionData.isFlip;
             }
         }
     }
@@ -40,6 +43,7 @@ public class ProgressNpcPlacer : MonoBehaviour
 public struct NpcPositionData
 {
     public int progress;
+    public bool isFlip;
     public bool isActive;
     public Vector3 position;
 }

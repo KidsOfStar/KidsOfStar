@@ -142,7 +142,7 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.GameManager.UpdateProgress();
     }
 
-    private void PlayChapterIntro()
+    protected void PlayChapterIntro()
     {
         var intro = Managers.Instance.UIManager.Show<UIChapterIntro>();
         StartCoroutine(intro.IntroCoroutine(isFirstTime, introText));

@@ -3163,7 +3163,8 @@ MonoBehaviour:
   currentChapter: 0
   existRequiredDialog: 1
   isFirstTime: 1
-  introText: "\uC138\uC0C1\uC774 \uC774\uB807\uAC8C \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
+  introText: "\uC81C 1\uC7A5 \uAC1C\uC6B8\n\uC138\uC0C1\uC774 \uC774\uB807\uAC8C
+    \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerStartForm: Stone
   playerSpawnPosition: {fileID: 1652826008}
@@ -4576,6 +4577,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 48.5, y: -2.19, z: 0}
 --- !u!61 &1824104152342824687
@@ -5079,6 +5081,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 31.5, y: -2.4, z: 0}
 --- !u!1 &4550695008732671368
@@ -5347,6 +5350,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 40.5, y: -2.5, z: 0}
 --- !u!4 &5778280355851018693
@@ -5494,6 +5498,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 31.5, y: -2.7, z: 0}
 --- !u!1 &6984021594029669977
@@ -5579,6 +5584,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 33.5, y: -2.4, z: 0}
 --- !u!1 &6999505777742515597
@@ -5616,6 +5622,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 45.5, y: -2.59, z: 0}
 --- !u!114 &7430146534042970419
@@ -5633,6 +5640,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 1
     isActive: 1
     position: {x: 29.5, y: -2.4, z: 0}
 --- !u!95 &7430146534042970420

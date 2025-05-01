@@ -1,6 +1,8 @@
+using System;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Color = UnityEngine.Color;
 
 public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 {
@@ -103,7 +105,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         if(hit.collider != null && hit.normal.y > 0.7f)
         {
             isGround = true;
-            isLeafJumping = false;
         }
         else
         {
@@ -186,7 +187,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public void Jump()
     {
-        isLeafJumping = true;
         if (!isControllable) return;
 
         if (isGround)
@@ -201,9 +201,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public float GetWeight()
     {
-        return isLeafJumping
-            ? 0f
-            : Managers.Instance.GameManager.Player.FormControl.GetWeight();
+        return Managers.Instance.GameManager.Player.FormControl.GetWeight();
     }
 
     public void StartLeafJump(Vector2 dropPosition,float jumpPower)
