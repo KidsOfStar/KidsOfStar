@@ -235,12 +235,12 @@ public class TreePuzzleSystem : MonoBehaviour
         // clearPuzzlenum.Count 에 따라 컷신 분기 재생
         if (clearPuzzlenum.Count == 1)
         {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom.GetName());
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
             Managers.Instance.GameManager.UpdateProgress();
         }
         else if (clearPuzzlenum.Count >= totalPuzzleCount)
         {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest.GetName());
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
             Managers.Instance.GameManager.UpdateProgress();
         }
     }

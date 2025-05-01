@@ -164,7 +164,7 @@ public enum EndingType
 
 public enum CutSceneType
 {
-    Intro,
+    FallingDown,
     Rescued,
     DaunRoom,
     LeavingForest,

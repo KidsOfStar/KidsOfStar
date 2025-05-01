@@ -226,7 +226,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
                 // 상자를 미는 상태가 아니라면 이동속도와 입력 방향에 맞춰 이동
                 rigid.velocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
             }
-            Debug.Log($"rigid.velocity: {rigid.velocity}");
             // FlipControl 함수에 플레이어 이동 방향을 전달
             player.FormControl.FlipControl(moveDir);
         }
@@ -243,8 +242,14 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         // 점프 가능한 레이어의 오브젝트에 발(오브젝트의 아래 방향)이 닿은 상태라면
         if (isGround)
         {
-            // 플레이어의 상태를 점프 상태로 전환
-            player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.Jump));
+            // 플레이어가 점프로 위를 향해 뛰어오르지 않았을 때
+            // 0으로 하면 단순 이동 중에도 점프가 되지 않음
+            // 평지라고 해도 아주 조금씩 y값은 변화중
+            if (rigid.velocity.y <= 0.2f)
+            {
+                // 플레이어의 상태를 점프 상태로 전환
+                player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.Jump));
+            }
         }
         else if(!player.StateMachine.ContextData.CanCling)
         {
@@ -270,7 +275,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     public bool TryDetectBox(Vector2 dir)
     {
         Vector2 origin = (Vector2)boxCollider.bounds.center
-        + Vector2.right * Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f);
+        + Vector2.right * (Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f));
 
         Vector2 size = boxCollider.bounds.size * 0.9f;
 
@@ -278,7 +283,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         origin, size, 0f,
         pushableLayer
     );
-
         if (hit != null)
         {
             if (hit.TryGetComponent<IWeightable>(out var weight))

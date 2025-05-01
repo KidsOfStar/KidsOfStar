@@ -1,7 +1,21 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CutSceneInputHandler : MonoBehaviour
+public abstract class DialogInputHandler : MonoBehaviour
+{
+    protected void OnClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            
+            Managers.Instance.DialogueManager.OnClick?.Invoke();
+        }
+    }
+}
+
+public class CutSceneInputHandler : DialogInputHandler
 {
     private bool isTalk;
 
@@ -13,22 +27,17 @@ public class CutSceneInputHandler : MonoBehaviour
 
     private void Update()
     {
-        if (!isTalk) return;
-        
-        if (Input.GetMouseButtonDown(0))
+#if TEST_BUILD
+        if (Input.GetMouseButtonDown(2))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-            
-            Managers.Instance.DialogueManager.OnClick?.Invoke();
-        }
-
-        #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.P))
-        {
+            EditorLog.Log("CutSceneInputHandler: DestroyCurrentCutScene");
             Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
         }
-        #endif
+#endif
+        
+        if (!isTalk) return;
+
+        OnClick();
     }
 
     private void IsTalk()

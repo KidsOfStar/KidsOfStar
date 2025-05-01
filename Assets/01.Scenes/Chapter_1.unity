@@ -153,7 +153,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 928272736}
-  - {fileID: 2126795735}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &200471206
@@ -424,6 +423,7 @@ Transform:
   m_Children:
   - {fileID: 242815942}
   - {fileID: 2104499962}
+  - {fileID: 2126795735}
   m_Father: {fileID: 2020590304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928272734
@@ -3163,7 +3163,8 @@ MonoBehaviour:
   currentChapter: 0
   existRequiredDialog: 1
   isFirstTime: 1
-  introText: "\uC138\uC0C1\uC774 \uC774\uB807\uAC8C \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
+  introText: "\uC81C 1\uC7A5 \uAC1C\uC6B8\n\uC138\uC0C1\uC774 \uC774\uB807\uAC8C
+    \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerStartForm: Stone
   playerSpawnPosition: {fileID: 1652826008}
@@ -3947,6 +3948,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2019102802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2019102804}
+  - component: {fileID: 2019102803}
+  m_Layer: 0
+  m_Name: Dialog Input Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2019102803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019102802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606ae12007d96d24bba9a2760e902b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2019102804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019102802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020590301
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,11 +4310,11 @@ Transform:
   m_GameObject: {fileID: 2126795734}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6697793, y: -1.3218409, z: 0}
+  m_LocalPosition: {x: 3.6697793, y: -1.3218409, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 75489993}
+  m_Father: {fileID: 583897471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2126795736
 MonoBehaviour:
@@ -4576,6 +4621,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 48.5, y: -2.19, z: 0}
 --- !u!61 &1824104152342824687
@@ -5079,6 +5125,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 31.5, y: -2.4, z: 0}
 --- !u!1 &4550695008732671368
@@ -5347,6 +5394,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 40.5, y: -2.5, z: 0}
 --- !u!4 &5778280355851018693
@@ -5494,6 +5542,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 31.5, y: -2.7, z: 0}
 --- !u!1 &6984021594029669977
@@ -5579,6 +5628,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 33.5, y: -2.4, z: 0}
 --- !u!1 &6999505777742515597
@@ -5616,6 +5666,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 0
     isActive: 1
     position: {x: 45.5, y: -2.59, z: 0}
 --- !u!114 &7430146534042970419
@@ -5633,6 +5684,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 3
+    isFlip: 1
     isActive: 1
     position: {x: 29.5, y: -2.4, z: 0}
 --- !u!95 &7430146534042970420
@@ -5731,9 +5783,10 @@ SceneRoots:
   - {fileID: 75489993}
   - {fileID: 1075698782}
   - {fileID: 1239967656}
+  - {fileID: 2019102804}
+  - {fileID: 1652826008}
   - {fileID: 200471208}
   - {fileID: 1245858370}
-  - {fileID: 1652826008}
   - {fileID: 422745416}
   - {fileID: 3798677716247372858}
   - {fileID: 2538945192747803497}

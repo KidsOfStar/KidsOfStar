@@ -102,17 +102,20 @@ public class DialogueManager : ISceneLifecycleHandler
         textBubble.SetDialog(formattedDialog, localPos);
     }
 
+    // 말풍선 쪽에서 사용하는 함수
     public void OnDialogLineComplete()
     {
+        // 모든 대사가 출력되었는지 체크
         if (dialogQueue.Count > 0)
         {
+            // 다음 대사가 남아있다면 대사 큐에서 다음 대사를 꺼내서 출력
             ShowDialog(dialogQueue.Dequeue(), currentDialogData.Character);
         }
         else
         {
             textBubble.HideDirect();
 
-            // 타입에 따라 다이얼로그 액션 실행
+            // 대사 출력이 끝났다면 액션 타입에 따라 다이얼로그 액션 실행
             dialogActionHandlers[currentDialogData.FirstAction].Execute(currentDialogData, true);
             dialogActionHandlers[currentDialogData.SecondAction].Execute(currentDialogData, false);
         }

@@ -61,8 +61,9 @@ public class SceneEventTrigger : MonoBehaviour
         if (!canTrigger) return;
         if (!other.CompareTag("Player")) return;
 
+        EditorLog.Log("Trigger Entered");
         onTriggerEnterEvent?.Invoke();
-        canTrigger = false;
+        gameObject.SetActive(false);
     }
 
     private void OnDestroy()

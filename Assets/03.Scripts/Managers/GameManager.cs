@@ -29,7 +29,7 @@ public class GameManager
     public GameManager()
     {
 #if UNITY_WEBGL
-        //Application.targetFrameRate = 60;
+        // Application.targetFrameRate = 60;
 #elif UNITY_ANDROID || UNITY_IOS
         Application.targetFrameRate = 60;
 #endif

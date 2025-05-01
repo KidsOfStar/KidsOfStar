@@ -6138,7 +6138,7 @@ MonoBehaviour:
   currentChapter: 2
   existRequiredDialog: 1
   isFirstTime: 1
-  introText: "\uC774\uAC83 \uBD10, \uB2E4\uB4E4 \uBB34\uC12D\uC796\uC544."
+  introText: "\uC81C 3\uC7A5 \uB4E4\uD310\n\uC774\uAC83 \uBD10, \uB2E4\uB4E4 \uBB34\uC12D\uC796\uC544."
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerStartForm: Dog
   playerSpawnPosition: {fileID: 646849047}
