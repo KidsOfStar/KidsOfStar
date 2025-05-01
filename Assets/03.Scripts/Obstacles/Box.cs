@@ -15,14 +15,13 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     private Rigidbody2D rb;
     private int boxLayer;
     private int playerLayer;
+    public Vector3 baseBoxPos;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-
+        rb= GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.gravityScale = 1f;
-        rb.mass = boxWeight;
         boxLayer = gameObject.layer;
         playerLayer = LayerMask.NameToLayer("Player");
     }
@@ -39,10 +38,9 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         StartCoroutine(TemporaryIgnorePlayer(ignoreDuration));
 
         // 물리 초기화
-        rb.velocity = Vector2.zero;
         rb.gravityScale = 1f;
         
-        Vector2 impulse = dropPosition * jumpPower * rb.mass;
+        Vector2 impulse = dropPosition * jumpPower;
 
         rb.AddForce(impulse, ForceMode2D.Impulse);
     }
@@ -58,5 +56,10 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         // 박스, 플레이어 레이어간 충돌 판정 다시 허용
         Physics2D.IgnoreLayerCollision(boxLayer, playerLayer, false);
+    }
+
+    public void ResetPosition()
+    {
+        this.gameObject.transform.position = baseBoxPos;
     }
 }

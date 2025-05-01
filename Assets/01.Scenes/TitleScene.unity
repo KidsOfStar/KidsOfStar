@@ -338,7 +338,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!1001 &1000270097
+--- !u!1001 &1322814922
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -349,22 +349,6 @@ PrefabInstance:
     - target: {fileID: 132536, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_Name
       value: IngameDebugConsole
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452418, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
-      propertyPath: logItemPrefab
-      value: 
-      objectReference: {fileID: 11408050, guid: 391be5df5ef62f345bb76a1051c04da7, type: 3}
-    - target: {fileID: 11452418, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
-      propertyPath: commandSuggestionPrefab
-      value: 
-      objectReference: {fileID: 6838696818539158795, guid: 5e66896448428cf46a1854dbdc014914, type: 3}
-    - target: {fileID: 22414360, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -488
-      objectReference: {fileID: 0}
-    - target: {fileID: 22414360, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -808,4 +792,4 @@ SceneRoots:
   - {fileID: 153576131}
   - {fileID: 1685197248}
   - {fileID: 1834140721}
-  - {fileID: 1000270097}
+  - {fileID: 1322814922}
