@@ -34,7 +34,7 @@ public class TreePuzzlePiece : MonoBehaviour
 
     public void RandomizeRotation()
     {
-        currentRotation = 90 * Random.Range(1, 3);
+        currentRotation = 90 * Random.Range(1, 4);
         pieceImage.rectTransform.rotation = Quaternion.Euler(0, 0, -currentRotation);
     }
 

@@ -77,10 +77,13 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     private Rigidbody2D objRigid = null;
     // Ray로 감지한 물체의 rb
 
+    [Header("나뭇잎")]
     [Tooltip("Inspector에서 설정할 나뭇잎 힘")]
     public float leafJumpPower;
     private float basePushPower;
 
+    [Header("Player")]
+    [Tooltip("Player의 기본 위치")] public Vector3 playerBasePos;
     /// <summary>
     /// 스크립트 초기화 함수
     /// </summary>
@@ -216,8 +219,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
                 basePushPower = Mathf.Min(basePushPower, moveSpeed);
                 // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
 
-                rigid.velocity = new Vector2(moveDir.x * basePushPower, rigid.velocity.y);
-                
+                rigid.velocity = new Vector2(moveDir.x * basePushPower, rigid.velocity.y);   
             }
             else
             {
@@ -270,33 +272,26 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         Vector2 origin = (Vector2)boxCollider.bounds.center
         + Vector2.right * Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f);
 
-        // Vector2 size = new Vector2(0.05f, boxCollider.bounds.size.x * 0.9f);
         Vector2 size = boxCollider.bounds.size * 0.9f;
-        Vector2 dirVec = Vector2.right * Mathf.Sign(dir.x);
 
-        RaycastHit2D hit = Physics2D.BoxCast(
+        Collider2D hit = Physics2D.OverlapBox(
         origin, size, 0f,
-        dirVec * 0.5f,
-        pushDetectDistance,
         pushableLayer
     );
 
-        if (hit.collider != null)
+        if (hit != null)
         {
-            if (hit.collider.TryGetComponent<IWeightable>(out var weight))
+            if (hit.TryGetComponent<IWeightable>(out var weight))
             // IWeightable이 붙은 컴포넌트인지 확인하고, 맞으면 True반환과 무게를 반환        
             {
                 objWeight = weight;
-                objRigid = hit.collider.attachedRigidbody;
+                objRigid = hit.attachedRigidbody;
                 // Collider가 붙어있는 Rigidbody2D를 가져오고
-                Debug.Log("True");
                 return true;
-
             }
         }
         objWeight = null;
         objRigid = null;
-        Debug.Log("False");
         return false;
     }
 
@@ -340,5 +335,10 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         
         Managers.Instance.DialogueManager.OnDialogStart -= LockPlayer;
         Managers.Instance.DialogueManager.OnDialogEnd -= UnlockPlayer;
+    }
+
+    public void ResetPlayer()
+    {
+        player.transform.position = playerBasePos;
     }
 }
