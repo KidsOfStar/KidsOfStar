@@ -217,13 +217,14 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
                 // 미는 속도의 최대 이동속도 이상을 초과할 수 없도록
 
                 rigid.velocity = new Vector2(moveDir.x * basePushPower, rigid.velocity.y);
+                
             }
             else
             {
                 // 상자를 미는 상태가 아니라면 이동속도와 입력 방향에 맞춰 이동
                 rigid.velocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
             }
-
+            Debug.Log($"rigid.velocity: {rigid.velocity}");
             // FlipControl 함수에 플레이어 이동 방향을 전달
             player.FormControl.FlipControl(moveDir);
         }
@@ -266,35 +267,36 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public bool TryDetectBox(Vector2 dir)
     {
-
-       
         Vector2 origin = (Vector2)boxCollider.bounds.center
         + Vector2.right * Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f);
 
-        Vector2 size = new Vector2(0.05f, boxCollider.bounds.size.x * 0.9f);
+        // Vector2 size = new Vector2(0.05f, boxCollider.bounds.size.x * 0.9f);
+        Vector2 size = boxCollider.bounds.size * 0.9f;
         Vector2 dirVec = Vector2.right * Mathf.Sign(dir.x);
 
-        Debug.DrawRay(origin, size, Color.yellow);
         RaycastHit2D hit = Physics2D.BoxCast(
         origin, size, 0f,
-        dirVec,
+        dirVec * 0.5f,
         pushDetectDistance,
         pushableLayer
     );
 
         if (hit.collider != null)
         {
-            if (hit.collider != null && hit.collider.TryGetComponent<IWeightable>(out var weight))
+            if (hit.collider.TryGetComponent<IWeightable>(out var weight))
             // IWeightable이 붙은 컴포넌트인지 확인하고, 맞으면 True반환과 무게를 반환        
             {
                 objWeight = weight;
                 objRigid = hit.collider.attachedRigidbody;
                 // Collider가 붙어있는 Rigidbody2D를 가져오고
+                Debug.Log("True");
                 return true;
+
             }
         }
         objWeight = null;
         objRigid = null;
+        Debug.Log("False");
         return false;
     }
 
