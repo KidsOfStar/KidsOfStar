@@ -57,7 +57,7 @@ public class DashGameResultPopup : PopupBase
         {
             Managers.Instance.UIManager.Hide<DashGameResultPopup>();
             Managers.Instance.GameManager.Player.Controller.UnlockPlayer(); // 플레이어 잠금 해제
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife.GetName()); // 컷씬 재생
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife); // 컷씬 재생
             Managers.Instance.DialogueManager.OnDialogEnd -= OnClickDialogue; // 대사 완료 이벤트 해제
         }
     }

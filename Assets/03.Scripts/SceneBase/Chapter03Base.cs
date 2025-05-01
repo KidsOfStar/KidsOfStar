@@ -8,7 +8,7 @@ public class Chapter03Base : SceneBase
     
     protected override void InitSceneExtra(Action playIntroCallback)
     {
-        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DogFormChange.GetName(), playIntroCallback);
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DogFormChange, playIntroCallback);
 
         Init();
         SkillForm();

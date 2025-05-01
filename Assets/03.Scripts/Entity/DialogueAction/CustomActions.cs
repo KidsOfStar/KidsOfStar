@@ -73,7 +73,7 @@ public static class CustomActions
             Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
         }
         
-        Managers.Instance.CutSceneManager.PlayCutScene(cutSceneType.GetName());
+        Managers.Instance.CutSceneManager.PlayCutScene(cutSceneType);
     }
     
     private static void DoNothing(string param)
