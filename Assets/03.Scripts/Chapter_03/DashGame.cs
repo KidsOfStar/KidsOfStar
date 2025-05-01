@@ -127,7 +127,7 @@ public class DashGame : MonoBehaviour
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
         
         // **게임 종료 후에도 버튼 유지**
-        skillBTN.ShowInteractionButton(true);
+        //skillBTN.ShowInteractionButton(true);
     }
 
     private void Update()
