@@ -1,14 +1,18 @@
 using Cinemachine;
 using System.Collections;
+using Unity.Play.Publisher.Editor;
 using UnityEngine;
 
 public class DashGame : MonoBehaviour
 {
     public StopWatch stopWatch;
     public CountDownPopup countDownPopup;
-    public DirectionRightPopup directionRightPopup;
     public PlayerController playerController;
+
     public CinemachineVirtualCamera virtualCamera;  // 가상 카메라
+    public CinemachineDollyCart trackedDolly;       // 카메라 이동 경로
+
+    public float cameraMoveSpeed;  // 카메라 이동 속도
 
     public float playerSpeed; // 플레이어 속도
     public bool isGameStarted = false;
@@ -29,54 +33,87 @@ public class DashGame : MonoBehaviour
         stopWatch = Managers.Instance.UIManager.Show<StopWatch>();
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 숨김
 
-        directionRightPopup = Managers.Instance.UIManager.Show<DirectionRightPopup>();
-        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 숨김
     }
 
     public void StartGame()
     {
-        if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
-        isGameStarted = true; // 게임 시작 상태로 변경
+        if (isGameStarted) return;
+        isGameStarted = true;
 
-        StartCoroutine(VirtualCameraMove(5f)); // 가상 카메라 이동 시작
-
-        Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
-        countDownPopup.CountDownStart(); // 카운트다운 시작
-
-        Managers.Instance.UIManager.Show<DirectionRightPopup>(); // 대사 팝업 표시
-
-        StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
-        Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
-        //Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 표시
-
+        StartCoroutine(GameIntroSequence()); // 전체 흐름 관리
     }
-    private IEnumerator VirtualCameraMove(float delay)
+
+    //public void StartGame()
+    //{
+    //    if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
+    //    isGameStarted = true; // 게임 시작 상태로 변경
+
+    //    StartCoroutine(VirtualCameraMove()); // 가상 카메라 이동 시작
+
+    //    Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
+
+    //    countDownPopup.CountDownStart(); // 카운트다운 시작
+    //    StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
+    //    Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
+    //}
+
+    private IEnumerator GameIntroSequence()
     {
-        virtualCamera.Priority = 10; // 가상 카메라 우선순위 변경
-        virtualCamera.gameObject.SetActive(true); // 가상 카메라 활성화
+        yield return new WaitForSeconds(1f); // 1초 대기
 
-        yield return new WaitForSeconds(delay); // 대기 시간
+        playerController.LockPlayer(); // 플레이어 잠금
 
-        virtualCamera.Priority = -10; // 가상 카메라 우선순위 변경
-        virtualCamera.gameObject.SetActive(false); // 가상 카메라 비활성화
-        
+        yield return StartCoroutine(VirtualCameraMove()); // 카메라 이동 끝날 때까지 대기
+
+        yield return new WaitForSeconds(1f); // 1초 대기
+
+        // 카운트다운 + 게임 시작 루틴
+        Managers.Instance.UIManager.Show<CountDownPopup>();
+        countDownPopup.CountDownStart();
+
+        Managers.Instance.UIManager.Show<StopWatch>();
+
+        yield return StartCoroutine(StartGame(5f)); // 5초 카운트다운 후 게임 시작
     }
+
+    private IEnumerator VirtualCameraMove()
+    {
+        virtualCamera.gameObject.SetActive(true); // 가상 카메라 활성화
+        virtualCamera.Priority = 20; // 가상 카메라 우선순위 변경
+
+        while (trackedDolly.m_Position < trackedDolly.m_Path.PathLength) // 카메라 이동 조건
+        {
+            trackedDolly.m_Position += cameraMoveSpeed * Time.deltaTime;
+            yield return null; // 다음 프레임까지 대기
+            if(trackedDolly.m_Position == trackedDolly.m_Path.PathLength) // 카메라 이동 완료
+            {
+                trackedDolly.m_Position = trackedDolly.m_Path.PathLength; // 카메라 위치 고정
+                yield return new WaitForSeconds(1f); // 1초 대기
+                break; // 루프 종료
+            }
+        }
+        //yield return new WaitForSeconds(1f); // 대기 시간
+
+        virtualCamera.Priority = -20; // 가상 카메라 우선순위 변경
+        virtualCamera.gameObject.SetActive(false); // 가상 카메라 비활성화
+    }
+
     private IEnumerator StartGame(float delay)
     {
         // Managers.Instance.DialogueManager.OnDialogEnd -= playerController.UnlockPlayer; // 대사 완료 후 이벤트 해제 됨
         yield return null;  // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
-        playerController.LockPlayer(); // 플레이어 잠금
+
+        //playerController.LockPlayer(); // 플레이어 잠금
         //Managers.Instance.UIManager.Show<DirectionRightPopup>(); // 방향 팝업 표시
 
         yield return new WaitForSeconds(delay); // 카운트다운 대기
-        stopWatch.OnStartWatch(); // 스탑워치 시작
-        stopWatch.StartTime(); // 스탑워치 시간 시작
+        stopWatch.OnStartWatch();   // 스탑워치 시작
+        stopWatch.StartTime();      // 스탑워치 시간 시작
 
         playerController.UnlockPlayer(); // 플레이어 잠금
         playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
 
         yield return null;
-        Managers.Instance.UIManager.Hide<DirectionRightPopup>();
         virtualCamera.Priority = -10; // 가상 카메라 우선순위 변경
     }
 
@@ -94,7 +131,6 @@ public class DashGame : MonoBehaviour
 
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
-        Managers.Instance.UIManager.Hide<DirectionRightPopup>(); // 대사 팝업 숨김
 
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
     }
