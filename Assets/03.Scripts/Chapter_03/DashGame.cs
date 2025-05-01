@@ -43,20 +43,6 @@ public class DashGame : MonoBehaviour
         StartCoroutine(GameIntroSequence()); // 전체 흐름 관리
     }
 
-    //public void StartGame()
-    //{
-    //    if (isGameStarted) return; // 이미 게임이 시작된 경우 종료
-    //    isGameStarted = true; // 게임 시작 상태로 변경
-
-    //    StartCoroutine(VirtualCameraMove()); // 가상 카메라 이동 시작
-
-    //    Managers.Instance.UIManager.Show<CountDownPopup>(); // 카운트다운 팝업 표시
-
-    //    countDownPopup.CountDownStart(); // 카운트다운 시작
-    //    StartCoroutine(StartGame(5f)); // 카운트다운 대기 후 게임 시작
-    //    Managers.Instance.UIManager.Show<StopWatch>(); // 스탑워치 표시
-    //}
-
     private IEnumerator GameIntroSequence()
     {
         yield return new WaitForSeconds(1f); // 1초 대기
