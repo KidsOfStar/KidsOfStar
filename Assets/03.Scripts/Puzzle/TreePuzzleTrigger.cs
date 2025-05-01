@@ -129,11 +129,12 @@ public class TreePuzzleTrigger : MonoBehaviour
     public void ResetTrigger()
     {
         triggered = false;
-        hasPlayer = false;
-        hasBox = false;
 
         skillBTN.ShowInteractionButton(false);
         skillBTN.OnInteractBtnClick -= TryStartPuzzle;
+
+        if (hasPlayer && hasBox) 
+            TryEnableInteraction();
     }
 
 }

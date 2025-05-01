@@ -277,9 +277,10 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         Vector2 size = boxCollider.bounds.size * 0.9f;
 
         Collider2D hit = Physics2D.OverlapBox(
-        origin, size, 0f,
-        pushableLayer
-    );
+            origin, size, 0f,
+            pushableLayer
+             );
+
         if (hit != null)
         {
             if (hit.TryGetComponent<IWeightable>(out var weight))
@@ -291,6 +292,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
                 return true;
             }
         }
+
         objWeight = null;
         objRigid = null;
         return false;

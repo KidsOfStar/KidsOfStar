@@ -56,7 +56,7 @@ public class TreePuzzlePopup : PopupBase
             btn.onClick.AddListener(() =>
             {
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
-                currentPuzzle.OnExit();
+                OnCancelButtonClicked();
             });
         }
     }

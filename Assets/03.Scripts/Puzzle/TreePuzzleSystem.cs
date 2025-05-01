@@ -73,7 +73,6 @@ public class TreePuzzleSystem : MonoBehaviour
 
         if (easyModeOutline != null)
             easyModeOutline.SetActive(isEasy);
-
     }
 
     // 퍼즐 조각 생성
