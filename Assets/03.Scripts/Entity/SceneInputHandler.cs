@@ -17,7 +17,6 @@ public class SceneInputHandler : DialogInputHandler
 
     private void ActiveInputHandler()
     {
-        EditorLog.Log(Managers.Instance.CutSceneManager.IsCutScenePlaying);
         if (Managers.Instance.CutSceneManager.IsCutScenePlaying) return;
         gameObject.SetActive(true);
     }
