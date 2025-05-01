@@ -10,6 +10,7 @@ public abstract class InteractSpeaker : MonoBehaviour
 
     private readonly Dictionary<int, int> dialogByProgress = new();
     private readonly Dictionary<int, int> requiredDialogByProgress = new();
+    private SkillBTN skillPanel;
 
     public void Init()
     {
@@ -30,6 +31,10 @@ public abstract class InteractSpeaker : MonoBehaviour
         InitRequiredDialog();
         Managers.Instance.GameManager.OnProgressUpdated += CheckExistRequiredDialog;
         Managers.Instance.DialogueManager.OnDialogStepEnd += DespawnExclamationIcon;
+        
+        var playerBtn = Managers.Instance.UIManager.Show<PlayerBtn>();
+        skillPanel = playerBtn.skillPanel;
+        playerBtn.HideDirect();
     }
 
     private void InitRequiredDialog()
@@ -77,15 +82,25 @@ public abstract class InteractSpeaker : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 상호작용 버튼 이벤트에 등록
+        if (!other.CompareTag("Player")) return;
+
+        skillPanel.OnInteractBtnClick -= OnInteract;
+        skillPanel.OnInteractBtnClick += OnInteract;
+        skillPanel.ShowInteractionButton(true);
+    }
+    
     private void OnInteract()
     {
         // 상호작용 버튼 이벤트에 해제
-        var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         skillPanel.OnInteractBtnClick -= OnInteract;
+        skillPanel.ShowInteractionButton(false);
 
         // 대사 종료 이벤트에 등록
-        Managers.Instance.DialogueManager.OnDialogEnd -= HideInteractionButton;
-        Managers.Instance.DialogueManager.OnDialogEnd += HideInteractionButton;
+        Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButton;
+        Managers.Instance.DialogueManager.OnDialogEnd += ShowInteractionButton;
 
         // 대사 출력
         ShowDialog();
@@ -103,32 +118,20 @@ public abstract class InteractSpeaker : MonoBehaviour
         Managers.Instance.DialogueManager.SetCurrentDialogData(dialogIndex);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // 상호작용 버튼 이벤트에 등록
-        if (!other.CompareTag("Player")) return;
-
-        var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-        skillPanel.OnInteractBtnClick -= OnInteract;
-        skillPanel.OnInteractBtnClick += OnInteract;
-        skillPanel.ShowInteractionButton(true);
-    }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         // 상호작용 버튼 이벤트에 해제
         if (!other.CompareTag("Player")) return;
 
-        var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         skillPanel.ShowInteractionButton(false);
         skillPanel.OnInteractBtnClick -= OnInteract;
-        Managers.Instance.DialogueManager.OnDialogEnd -= HideInteractionButton;
+        Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButton;
     }
 
-    private void HideInteractionButton()
+    private void ShowInteractionButton()
     {
-        var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-        skillPanel.ShowInteractionButton(false);
+        skillPanel.ShowInteractionButton(true);
+        skillPanel.OnInteractBtnClick += OnInteract;
     }
 
     private void OnDestroy()

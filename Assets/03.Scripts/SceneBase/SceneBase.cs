@@ -61,11 +61,8 @@ public abstract class SceneBase : MonoBehaviour
         // 챕터별 컷신이 필요한 경우 컷씬 재생 이후 Bgm, Intro 등이 재생되도록 콜백을 등록
         InitSceneExtra(ChapterCutSceneCallback);
 
-        // 컷신 플레이어 위치 정보 설정
-        if (spawnPointer != null)
-        {
-            spawnPointer.Init();
-        }
+        // 컷신 종료 후 이동 할 플레이어 위치 정보 설정
+        if (spawnPointer) spawnPointer.Init();
     }
 
     private void InitManagers()
@@ -103,7 +100,6 @@ public abstract class SceneBase : MonoBehaviour
             playerObj.transform.position = playerSpawnPosition.position;
             playerObj.transform.rotation = playerSpawnPosition.rotation;
         };
-        Managers.Instance.CutSceneManager.SetPlayerReferences(playerObj.transform, playerSpawnPosition);
         Managers.Instance.CutSceneManager.OnCutSceneEnd += onCutSceneEndHandler;
     }
 

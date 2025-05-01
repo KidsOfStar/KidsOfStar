@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class CutSceneManager
 {
-    public Transform PlayerTransform { get; private set; }
-    public Transform PlayerSpawnPos { get; private set; }
     public string CurrentCutSceneName { get; private set; }
 
     public bool IsCutScenePlaying { get; private set; } = false;
@@ -52,16 +50,11 @@ public class CutSceneManager
         return currentCutScene != null;
     }
     
-    public void DestroyCurrentCutScene()
+    public void DestroyCurrentCutScene(bool isImmediate = false)
     {
         if (!currentCutScene)
             EditorLog.LogError("현재 재생중인 컷씬이 없습니다.");
 
-        currentCutScene.DestroyPrefab(true);
-    }
-    public void SetPlayerReferences(Transform player, Transform spawnPos)
-    {
-        PlayerTransform = player;
-        PlayerSpawnPos = spawnPos;
+        currentCutScene.DestroyPrefab(isImmediate);
     }
 }

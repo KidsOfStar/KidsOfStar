@@ -1,8 +1,5 @@
-using System;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Color = UnityEngine.Color;
 
 public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 {
@@ -223,7 +220,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         //Vector2 direction = Vector2.right * Mathf.Sign(dir.x);
 
         Vector2 origin = (Vector2)boxCollider.bounds.center
-        + Vector2.right * Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f);
+        + Vector2.right * (Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f));
 
         // RaycastHit2D hit = Physics2D.Raycast(origin, direction, pushDetectDistance, pushableLayer);
 
@@ -237,9 +234,9 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         pushableLayer
     );
 
-        if (hit.collider != null)
+        if (hit.collider)
         {
-            if (hit.collider != null && hit.collider.TryGetComponent<IWeightable>(out var weight))
+            if (hit.collider && hit.collider.TryGetComponent<IWeightable>(out var weight))
             // IWeightable이 붙은 컴포넌트인지 확인하고, 맞으면 True반환과 무게를 반환        
             {
                 objWeight = weight;
