@@ -66,8 +66,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     }
 
     [Header("Push")]
-    [SerializeField, Tooltip("플레이어 앞 박스를 감지할 거리")]
-    private float pushDetectDistance = 0.05f;
     [SerializeField, Tooltip("밀 수 있는 박스 레이어")]
     private LayerMask pushableLayer;
 
