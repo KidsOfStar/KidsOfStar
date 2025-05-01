@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DashInteractable : MonoBehaviour
@@ -46,7 +47,6 @@ public class DashInteractable : MonoBehaviour
             skillBTN.OnInteractBtnClick -= OnPlayerInteract;
         }
         else return;
-
     }
 
     private void OnPlayerInteract()

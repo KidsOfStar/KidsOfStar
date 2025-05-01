@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -12,6 +13,8 @@ public class DashGameResultPopup : PopupBase
     [Header("Dialogue Data")]
     [SerializeField] private DashDialogueData dialogueDatabase;
 
+    public Action OnDialogEnd { get; set; }
+
     private int currentLineIndex = 0;
     private List<string> currentDialogLines;
     private CharacterType currentNpcType;
@@ -19,10 +22,6 @@ public class DashGameResultPopup : PopupBase
     public override void Opened(params object[] param)
     {
         base.Opened(param);
-
-        SkillBTN skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-
-        DisableAllTextBubbles();
 
         if (param.Length < 2 || !(param[0] is float index) || !(param[1] is CharacterType npcType))
         {
@@ -37,8 +36,7 @@ public class DashGameResultPopup : PopupBase
         Transform npcTransform = GetNpcTransform(npcType);
         if (npcTransform != null)
         {
-            Canvas canvas = GetComponentInParent<Canvas>();
-            Vector2 uiPosition = WorldToCanvasPosition(canvas, npcTransform.position);
+            Vector2 uiPosition = WorldToCanvasPosition(npcTransform.position);
             GetComponent<RectTransform>().anchoredPosition = uiPosition;
         }
         currentLineIndex = 0;
@@ -58,6 +56,7 @@ public class DashGameResultPopup : PopupBase
             Managers.Instance.GameManager.Player.Controller.UnlockPlayer(); // 플레이어 잠금 해제
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FieldNormalLife); // 컷씬 재생
             Managers.Instance.DialogueManager.OnDialogEnd -= OnClickDialogue; // 대사 완료 이벤트 해제
+            OnDialogEnd?.Invoke(); // 대사 완료 이벤트 호출
         }
     }
 
@@ -83,26 +82,18 @@ public class DashGameResultPopup : PopupBase
         currentLineIndex++;
     }
 
-    private void DisableAllTextBubbles()
-    {
-        UITextBubble[] bubbles = FindObjectsOfType<UITextBubble>(true); // (true) 비활성화 된 것도 찾기
-
-        foreach (var bubble in bubbles)
-        {
-            bubble.gameObject.SetActive(false); // 모든 버블 끄기
-        }
-    }
-
     public Transform GetNpcTransform(CharacterType npcType)
     {
         var npc = FindObjectsOfType<SceneNpc>().FirstOrDefault(n => n.GetCharacterType() == npcType);
         return npc != null ? npc.transform : null;
     }
 
-    private Vector2 WorldToCanvasPosition(Canvas canvas, Vector3 worldPosition)
+    private Vector2 WorldToCanvasPosition(Vector3 worldPosition)
     {
-        Vector2 viewportPosition = Camera.main.WorldToViewportPoint(worldPosition);
-        Vector2 canvasSize = canvas.GetComponent<RectTransform>().sizeDelta;
+        var cam = Managers.Instance.GameManager.MainCamera;
+        var canvasTr = Managers.Instance.UIManager.CanvasRectTr;
+        Vector2 viewportPosition = cam.WorldToViewportPoint(worldPosition);
+        Vector2 canvasSize = canvasTr.sizeDelta;
         return new Vector2((viewportPosition.x - 0.5f) * canvasSize.x, (viewportPosition.y - 0.35f) * canvasSize.y);
     }
 }
