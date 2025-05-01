@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 {
     [Header("공통")]
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField, Tooltip("플레이어가 땅으로 인식할(+점프 가능한) 레이어")] private LayerMask groundLayer;
     public LayerMask GroundLayer { get { return groundLayer; } }
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator anim;
@@ -33,8 +33,10 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     private Rigidbody2D rigid;
 
     // 플레이어 이동 방향
+    // 현재 입력중인 이동 방향
     private Vector2 moveDir = Vector2.zero;
     public Vector2 MoveDir { get { return moveDir; } }
+    // 플레이어 캐릭터가 사다리에 닿았는지 여부
     // 플레이어 캐릭터가 사다리에 닿은 상태일 때 true
     private bool touchLadder = false;
     public bool TouchLadder
@@ -42,9 +44,11 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         get { return touchLadder; }
         set { touchLadder = value; }
     }
+    // 플레이어 캐릭터가 땅에 닿았는지 여부
     // 플레이어 캐릭터가 땅에 닿으면 true
     private bool isGround;
     public bool IsGround { get { return isGround; } }
+    // 플레이어 캐릭터 조작 가능 여부
     // 플레이어 캐릭터 조작 가능하면 true
     private bool isControllable = true;
     public bool IsControllable
@@ -52,6 +56,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         get { return isControllable; }
         set { isControllable = value; }
     }
+    // 추격전 모드 여부
     // 추격 모드면 ture, 평소에는 false
     private bool isChaseMode = false;
     public bool IsChaseMode
@@ -75,7 +80,11 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     [Tooltip("Inspector에서 설정할 나뭇잎 힘")]
     public float leafJumpPower;
     private float basePushPower;
-    private bool isLeafJumping = false;
+
+    /// <summary>
+    /// 스크립트 초기화 함수
+    /// </summary>
+    /// <param name="player">Player 스크립트</param>
     public void Init(Player player)
     {
         this.player = player;
@@ -94,73 +103,108 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         GroundCheck();
     }
 
+    /// <summary>
+    /// 현재 땅(혹은 점프 가능한 오브젝트)에 닿은 상태인지 체크
+    /// </summary>
     void GroundCheck()
     {
+        // 박스 캐스트로 플레이어의 아래 방향을 체크
+        // 레이 캐스트가 아닌 이유는
+        // 플레이어가 플랫폼 끝자락에 위치할 때 제대로 체크되지 않는 경우를 방지하기 위함
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down,
             0.02f, groundLayer);
         
+        // 점프 가능한 오브젝트에 닿은 동시에
+        // 그 위치가 플레이어 기준으로 아래 방향이라면
         if(hit.collider != null && hit.normal.y > 0.7f)
         {
+            //  isGround를 true로
             isGround = true;
         }
         else
         {
+            // 위의 조건이 충족 상태가 아니라면 false로
             isGround = false;
         }
 
+        // 애니메이터의 Ground 파라미터의 값을 isGround에 따라서 수정
         anim.SetBool(PlayerAnimHash.AnimGround, isGround);
     }
 
+    /// <summary>
+    /// 플레이어 이동 조작을 위한 입력 함수
+    /// </summary>
+    /// <param name="context">입력 값</param>
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        // 입력을 시작했거나 입력 중이라면
         if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started)
         {
+            // 입력된 값을 moveDir에 적용
             moveDir = context.ReadValue<Vector2>();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
+            // 입력이 없다면 곧바로 이동을 정지
             moveDir = Vector2.zero;
         }
     }
     
+    /// <summary>
+    /// 점프 키 입력 함수
+    /// 키보드 입력 담당
+    /// </summary>
+    /// <param name="context">입력 값</param>
     public void OnJump(InputAction.CallbackContext context)
     {
+        // 점프 키 입력이 있다면(짧게라도)
         if (context.phase == InputActionPhase.Started)
         {
+            // 실제 점프 동작 함수 호출
             Jump();
         }
     }
 
+    /// <summary>
+    /// 형태 변화 키 입력 함수
+    /// 키보드 입력 담당
+    /// </summary>
+    /// <param name="context"></param>
     public void OnFormChange(InputAction.CallbackContext context)
     {
+        // 충분한 입력이 없었거나(performed를 체크함으로...)
+        // 땅에 닿은 상태가 아니거나
+        // 조작이 불가능한 상태인 경우에는 return
         if (!context.performed || !isGround || !isControllable) return;
         var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         switch (context.control.name)
         {
             case "1":
-                //player.FormControl.FormChange("Squirrel");
                 skillBtn.OnSquirrel();
                 break;
             case "2":
-                //player.FormControl.FormChange("Dog");
                 skillBtn.OnDog();
                 break;
             case "3":
-                //player.FormControl.FormChange("Cat");
                 skillBtn.OnCat();
                 break;
             case "4":
-                //player.FormControl.FormChange("Hide");
                 skillBtn.OnHide();
                 break;
         }
     }
 
+    /// <summary>
+    /// 실제 플레이어 이동 동작 함수
+    /// </summary>
     public void Move()
     {
+        // 조작이 불가능한 상태라면 동작 X
         if (!isControllable) return;
 
-        if (moveDir != Vector2.up && moveDir != Vector2.down && !isLeafJumping)
+        if (moveDir != Vector2.up && moveDir != Vector2.down)
+        // 입력된 값이 위나 아래를 향한 것이 아니고
+        // 나뭇잎 트램펄린을 이용하는 중이 아니라면
         {
             if (TryDetectBox(moveDir))
             {
@@ -176,22 +220,38 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
             }
             else
             {
+                // 상자를 미는 상태가 아니라면 이동속도와 입력 방향에 맞춰 이동
                 rigid.velocity = new Vector2(moveDir.x * moveSpeed, rigid.velocity.y);
             }
+            
+            // FlipControl 함수에 플레이어 이동 방향을 전달
             player.FormControl.FlipControl(moveDir);
         }
     }
 
+    /// <summary>
+    /// 실제 플레이어의 점프 동작 함수
+    /// </summary>
     public void Jump()
     {
+        // 동작 불가 상태라면 return
         if (!isControllable) return;
 
+        // 점프 가능한 레이어의 오브젝트에 발(오브젝트의 아래 방향)이 닿은 상태라면
         if (isGround)
         {
-            player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.Jump));
+            // 플레이어가 점프로 위를 향해 뛰어오르지 않았을 때
+            // 0으로 하면 단순 이동 중에도 점프가 되지 않음
+            // 평지라고 해도 아주 조금씩 y값은 변화중
+            if (rigid.velocity.y <= 0.2f)
+            {
+                // 플레이어의 상태를 점프 상태로 전환
+                player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.Jump));
+            }
         }
         else if(!player.StateMachine.ContextData.CanCling)
         {
+            // 플레이어가 고양이 형태로 벽에 붙은 상태라면 벽 점프 상태로 전환
             player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.WallJump));
         }
     }
@@ -203,8 +263,6 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public void StartLeafJump(Vector2 dropPosition,float jumpPower)
     {
-        isLeafJumping = true;
-
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 1f;
 
@@ -215,18 +273,14 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     public bool TryDetectBox(Vector2 dir)
     {
 
-        //float xOffset = boxCollider.bounds.extents.x + 0.01f;
-        //Vector2 origin = (Vector2)transform.position + new Vector2(Mathf.Sign(dir.x) * xOffset, 0.1f);
-        //Vector2 direction = Vector2.right * Mathf.Sign(dir.x);
-
+       
         Vector2 origin = (Vector2)boxCollider.bounds.center
         + Vector2.right * (Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f));
 
-        // RaycastHit2D hit = Physics2D.Raycast(origin, direction, pushDetectDistance, pushableLayer);
-
-        Vector2 size = new Vector2(0.05f, boxCollider.bounds.size.y * 0.9f);
+        Vector2 size = new Vector2(0.05f, boxCollider.bounds.size.x * 0.9f);
         Vector2 dirVec = Vector2.right * Mathf.Sign(dir.x);
 
+        Debug.DrawRay(origin, size, Color.yellow);
         RaycastHit2D hit = Physics2D.BoxCast(
         origin, size, 0f,
         dirVec,
@@ -264,6 +318,9 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         boxCollider.offset = offset;
     }
 
+    /// <summary>
+    /// 플레이어 조작 잠금 함수
+    /// </summary>
     public void LockPlayer()
     {
         // 걸으면서 대화를 할 수 없도록 하기 위해서 Idle 상태로 변경
@@ -272,6 +329,9 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         rigid.velocity = Vector2.zero;
     }
     
+    /// <summary>
+    /// 플레이어 조작 잠금 해제 함수
+    /// </summary>
     public void UnlockPlayer()
     {
         isControllable = true;

@@ -41,7 +41,6 @@ public class DashGameResultPopup : PopupBase
             Vector2 uiPosition = WorldToCanvasPosition(canvas, npcTransform.position);
             GetComponent<RectTransform>().anchoredPosition = uiPosition;
         }
-
         currentLineIndex = 0;
     }
 
