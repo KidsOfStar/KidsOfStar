@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TreePuzzlePiece : MonoBehaviour
+public class TreePuzzlePiece : MonoBehaviour, IPointerClickHandler
 {
     private TreePuzzleSystem manager;
-    
+    private int curIndex;
+
     [SerializeField] private Image pieceImage; // UI용 조각 이미지
 
     [SerializeField] private int correctRotation; // 0, 90, 180, 270
@@ -14,13 +16,25 @@ public class TreePuzzlePiece : MonoBehaviour
 
     private void Awake()
     {
-      outLine = pieceImage.GetComponent<Outline>();                                    
+        outLine = pieceImage.GetComponent<Outline>();
+        pieceImage.raycastTarget = true;
     }
-    public void Initialize(TreePuzzleSystem systemManager, int correctionRotation)
+    public void Initialize(TreePuzzleSystem systemManager, int correctionRotation, int index)
     {
-        this.manager = systemManager;
-        this.correctRotation = correctionRotation;
+        manager = systemManager;
+        correctRotation = correctionRotation;
         currentRotation = 0;
+        curIndex = index;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (!manager.IsRunning) return;
+
+        if (manager.SelectedIndex == curIndex)
+        {
+            RotateRight();
+        }
     }
 
     public void RotateRight()
@@ -53,6 +67,7 @@ public class TreePuzzlePiece : MonoBehaviour
         if (outLine != null)
             outLine.enabled = on;
     }
+
 }
 
 

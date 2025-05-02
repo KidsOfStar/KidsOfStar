@@ -29,8 +29,10 @@ public class TreePuzzleSystem : MonoBehaviour
     private float currentTime;
     // 작동중인지 체크
     private bool isRunning;
+    public bool IsRunning => isRunning;
     // 현재 선택된 퍼즐 조각의 Index
     private int selectedIndex;
+    public int SelectedIndex => selectedIndex;  
     // 생성된 모든 퍼즐 조각목록
     private List<TreePuzzlePiece> pieces = new();
     // 퍼즐 고유ID
@@ -92,7 +94,7 @@ public class TreePuzzleSystem : MonoBehaviour
             GameObject pieceGO = Instantiate(piecePrefab, puzzleParent);
             TreePuzzlePiece piece = pieceGO.GetComponent<TreePuzzlePiece>();
             piece.SetSprite(correctSprites[i]);
-            piece.Initialize(this, 0); // 정답각도는 0
+            piece.Initialize(this, 0,i); // 정답각도는 0
             pieces.Add(piece);
         }
         HighlightSelectedPiece();
@@ -150,12 +152,12 @@ public class TreePuzzleSystem : MonoBehaviour
         HighlightSelectedPiece();
     }
 
-    // 선택한 퍼즐 90도 회전
-    public void RotateSelectedPiece()
-    {
-        if (!isRunning) return;
-        pieces[selectedIndex].RotateRight();
-    }
+    //// 선택한 퍼즐 90도 회전
+    //public void RotateSelectedPiece()
+    //{
+    //    if (!isRunning) return;
+    //    pieces[selectedIndex].RotateRight();
+    //}
 
     // 선택한 퍼즐 아웃라인표시
     private void HighlightSelectedPiece()

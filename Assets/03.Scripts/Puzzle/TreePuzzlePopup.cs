@@ -7,7 +7,7 @@ public class TreePuzzlePopup : PopupBase
     [SerializeField] private Button downButton;
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
-    [SerializeField] private Button rotateButton;
+    //[SerializeField] private Button rotateButton;
     [SerializeField] private Button[] exitButtons;
     [SerializeField] private Button cancelButton;
 
@@ -34,13 +34,13 @@ public class TreePuzzlePopup : PopupBase
             });
         }
 
-        // 회전버튼
-        rotateButton.onClick.RemoveAllListeners();
-        rotateButton.onClick.AddListener(() =>
-        {
-            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.TurnPuzzle);
-            currentPuzzle.RotateSelectedPiece();
-        });
+        //// 회전버튼
+        //rotateButton.onClick.RemoveAllListeners();
+        //rotateButton.onClick.AddListener(() =>
+        //{
+        //    Managers.Instance.SoundManager.PlaySfx(SfxSoundType.TurnPuzzle);
+        //    currentPuzzle.RotateSelectedPiece();
+        //});
 
         // 팝업 닫기버튼
         cancelButton.onClick.AddListener(() =>
