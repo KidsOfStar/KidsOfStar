@@ -50,8 +50,6 @@ public class DashGame : MonoBehaviour
         yield return null; // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
         playerController.LockPlayer(); // 플레이어 잠금
 
-        //yield return new WaitForSeconds(0.5f); // 1초 대기
-
         yield return StartCoroutine(VirtualCameraMove()); // 카메라 이동 끝날 때까지 대기
 
         yield return new WaitForSeconds(1f); // 1초 대기
