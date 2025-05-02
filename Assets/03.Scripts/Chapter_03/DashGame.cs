@@ -120,12 +120,18 @@ public class DashGame : MonoBehaviour
         ShowDialogueResult(); // 대사 출력
         showDialog = true;
         var resultPopup = Managers.Instance.UIManager.Get<DashGameResultPopup>();
-        resultPopup.OnDialogEnd += () => showDialog = false;
+        resultPopup.OnDialogEnd -= DialogEnd;
+        resultPopup.OnDialogEnd += DialogEnd;
 
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
 
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
+    }
+
+    private void DialogEnd()
+    {
+        showDialog = false;
     }
 
     private void Update()

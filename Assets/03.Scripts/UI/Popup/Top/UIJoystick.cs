@@ -23,20 +23,22 @@ public class UIJoystick : UIBase, IDragHandler, IPointerDownHandler, IPointerUpH
 
     public void OnDrag(PointerEventData eventData)
     {
-        var direction = eventData.position - startPos;
-        var distance = direction.magnitude;
+        // if (!isValid) return;
 
-        if (distance < sensitivity)
-        {
-            inputVector = Vector2.zero;
-            return;
-        }
-        
-        direction = direction.normalized;
-        distance = Mathf.Min(distance, maxDistance);
-        inputVector = direction;
-        
-        joystickHandle.position = startPos + direction * distance;
+        // var direction = eventData.position - startPos;
+        // var distance = direction.magnitude;
+        // 
+        // if (distance < sensitivity)
+        // {
+        //     inputVector = Vector2.zero;
+        //     return;
+        // }
+        // 
+        // direction = direction.normalized;
+        // distance = Mathf.Min(distance, maxDistance);
+        // inputVector = direction;
+        // 
+        // joystickHandle.position = startPos + direction * distance;
     }
 
     public void OnPointerUp(PointerEventData eventData)
