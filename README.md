@@ -290,7 +290,8 @@ AnimatorOverrideController 활용
 <details>
 <summary>클릭해서 열기</summary>
 
-- YouTube 링크:https://youtu.be/wZMDv5eOn9I
+- 클릭 시 이동합니다.
+
 [![별의 아이](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fdm3NIT%2FbtsNHwKWsNb%2FsmQsMsHgEbppYLXS9EgTFK%2Fimg.png)](https://youtu.be/wZMDv5eOn9I)
 
 </details>
