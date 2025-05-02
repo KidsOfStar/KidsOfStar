@@ -291,6 +291,7 @@ AnimatorOverrideController 활용
 <summary>클릭해서 열기</summary>
 
 - YouTube 링크:https://youtu.be/wZMDv5eOn9I
+[![별의 아이](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fdm3NIT%2FbtsNHwKWsNb%2FsmQsMsHgEbppYLXS9EgTFK%2Fimg.png)](https://youtu.be/wZMDv5eOn9I)
 
 </details>
 
@@ -303,7 +304,10 @@ AnimatorOverrideController 활용
 
 - Unity 버전:2022.3.17f1
 - 실행 전 주의사항: 컴퓨터로 실행할 경우 WASD(이동), 스페이스바(점프), 숫자키(1, 2, 3, 4)(변신)으로 플레이 가능합니다.
-- 빌드 방법:Web, 유니티
+- 빌드 방법: Itch.io, 유니티
+- 플레이 링크 
+  - https://beautifulmaple.itch.io/kids-of-star
+  - https://play.unity.com/en/games/1afc6210-f107-41f6-9a27-32a348721b26/test-game
 
 </details>
 
