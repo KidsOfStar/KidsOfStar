@@ -1,7 +1,6 @@
 using Cinemachine;
 using System;
 using System.Collections;
-using Unity.Play.Publisher.Editor;
 using UnityEngine;
 
 public class DashGame : MonoBehaviour
@@ -48,8 +47,7 @@ public class DashGame : MonoBehaviour
 
     private IEnumerator GameIntroSequence()
     {
-        yield return new WaitForSeconds(1f); // 1초 대기
-
+        yield return null; // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
         playerController.LockPlayer(); // 플레이어 잠금
 
         yield return StartCoroutine(VirtualCameraMove()); // 카메라 이동 끝날 때까지 대기
@@ -77,11 +75,11 @@ public class DashGame : MonoBehaviour
             if(trackedDolly.m_Position == trackedDolly.m_Path.PathLength) // 카메라 이동 완료
             {
                 trackedDolly.m_Position = trackedDolly.m_Path.PathLength; // 카메라 위치 고정
-                yield return new WaitForSeconds(1f); // 1초 대기
+                //yield return new WaitForSeconds(1f); // 1초 대기
                 break; // 루프 종료
             }
         }
-        //yield return new WaitForSeconds(1f); // 대기 시간
+        yield return new WaitForSeconds(1f); // 마지막 모습 보이기
 
         virtualCamera.Priority = -20; // 가상 카메라 우선순위 변경
         virtualCamera.gameObject.SetActive(false); // 가상 카메라 비활성화
@@ -91,9 +89,6 @@ public class DashGame : MonoBehaviour
     {
         // Managers.Instance.DialogueManager.OnDialogEnd -= playerController.UnlockPlayer; // 대사 완료 후 이벤트 해제 됨
         yield return null;  // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
-
-        //playerController.LockPlayer(); // 플레이어 잠금
-        //Managers.Instance.UIManager.Show<DirectionRightPopup>(); // 방향 팝업 표시
 
         yield return new WaitForSeconds(delay); // 카운트다운 대기
         stopWatch.OnStartWatch();   // 스탑워치 시작
@@ -120,12 +115,21 @@ public class DashGame : MonoBehaviour
         ShowDialogueResult(); // 대사 출력
         showDialog = true;
         var resultPopup = Managers.Instance.UIManager.Get<DashGameResultPopup>();
-        resultPopup.OnDialogEnd += () => showDialog = false;
+        resultPopup.OnDialogEnd -= DialogEnd;
+        resultPopup.OnDialogEnd += DialogEnd;
 
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
 
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
+        
+        // **게임 종료 후에도 버튼 유지**
+        //skillBTN.ShowInteractionButton(true);
+    }
+
+    private void DialogEnd()
+    {
+        showDialog = false;
     }
 
     private void Update()
