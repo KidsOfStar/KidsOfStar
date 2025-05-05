@@ -17,6 +17,7 @@ public class DashGame : MonoBehaviour
     public float cameraMoveSpeed;  // 카메라 이동 속도
 
     public float playerSpeed; // 플레이어 속도
+    public float playerSpeedMultiplier = 3f; // 플레이어 속도 배율
     public bool isGameStarted = false;
     public bool showDialog = false;
 
@@ -95,7 +96,7 @@ public class DashGame : MonoBehaviour
         stopWatch.StartTime();      // 스탑워치 시간 시작
 
         playerController.UnlockPlayer(); // 플레이어 잠금
-        playerController.MoveSpeed = playerSpeed * 1.5f; // 플레이어 속도 초기화 (1.5배 증가)
+        playerController.MoveSpeed = playerSpeed * playerSpeedMultiplier; // 플레이어 속도 초기화 (1.5배 증가)
 
         yield return null;
         virtualCamera.Priority = -10; // 가상 카메라 우선순위 변경
