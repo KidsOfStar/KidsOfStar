@@ -23,6 +23,10 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     // 변신 이펙트 재생 시간
     private float fxDuration;
 
+    // Hide 스킬 활성화 여부
+    public bool isInHideArea = false;
+
+
     /// <summary>
     /// 초기화 함수
     /// </summary>
@@ -87,7 +91,9 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
                 curFormData = nextFormData;
             }
         }
-
+        
+        // Managers.Instance.GameManager.CurrentForm = curFormData.FormName;
+        
         // 형태 변화 이펙트와 데이터 교체 시작
         StartCoroutine(FormChangeSequence());
     }
@@ -216,5 +222,25 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     public float GetPushPower()
     {
         return curFormData.Force;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 플레이어가 은신지역에 들어갈 때
+        if (collision.CompareTag("HideArea"))
+        {
+            // 대화 시작
+            isInHideArea = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        // 플레이어가 은신지역에서 벗어날 때
+        if (collision.CompareTag("HideArea"))
+        {
+            // 대화 시작
+            isInHideArea = false;
+        }
     }
 }

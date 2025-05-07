@@ -93,13 +93,13 @@ public class DialogueManager : ISceneLifecycleHandler
     private void ShowDialog(string dialog, CharacterType character)
     {
         var npc = isCutScene ? cutSceneSpeakers[character] : sceneSpeakers[character];
-        Vector3 bubblePos = npc.GetBubblePosition();
+        Transform bubbleTr = npc.GetBubbleTr();
 
-        var localPos = WorldToCanvasPosition(bubblePos);
+        // var localPos = WorldToCanvasPosition(bubblePos);
         var formattedDialog = dialog.Replace("\\n", "\n");
 
         textBubble.SetActive(true);
-        textBubble.SetDialog(formattedDialog, localPos);
+        textBubble.SetDialog(formattedDialog, bubbleTr);
     }
 
     // 말풍선 쪽에서 사용하는 함수
@@ -143,7 +143,9 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public void OnSceneLoaded()
     {
-        textBubble = Managers.Instance.UIManager.Show<UITextBubble>();
+        const string path = Define.uiPath + "UITextBubble";
+        textBubble = Managers.Instance.ResourceManager.Instantiate<UITextBubble>(path);
+        textBubble.InitCamera();
         textBubble.HideDirect();
     }
 

@@ -49,9 +49,6 @@ public class CatWallClingState : PlayerStateBase
     public override void OnUpdate()
     {
         base.OnUpdate();
-        // 이동 동작 실행
-        context.Controller.Move();
-        context.Rigid.velocity = new Vector2(context.Rigid.velocity.x, 0);
         clingTimer += Time.deltaTime;
 
         // 벽 타기 후 정해둔 시간이 지났다면
@@ -77,6 +74,14 @@ public class CatWallClingState : PlayerStateBase
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
             return;
         }
+    }
+
+    public override void OnFixedUpdate()
+    {
+        base.OnFixedUpdate();
+        // 이동 동작 실행
+        context.Controller.Move();
+        context.Rigid.velocity = new Vector2(context.Rigid.velocity.x, 0);
     }
 
     /// <summary>

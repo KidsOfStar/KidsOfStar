@@ -46,7 +46,7 @@ public class SkillUnlock : MonoBehaviour
     {
         // 이벤트 등록
         if (Managers.Instance.GameManager != null)
-           Managers.Instance.GameManager.OnUnlockedForms += UnlockSkill;
+            Managers.Instance.GameManager.OnUnlockedForms += UnlockSkill;
     }
 
     private void OnDisable()
@@ -94,6 +94,16 @@ public class SkillUnlock : MonoBehaviour
             skillPair.bg.SetActive(false);
             skillPair.icon.SetActive(true);
         }
+    }
 
+
+    // 현재 스킬 폼일 때 BG를 활성화
+    public void ShowSkillFormBG(string chapter)
+    {
+        if (skillMap.TryGetValue(chapter, out var skillPair))
+        {
+            skillPair.bg.SetActive(true);
+            skillPair.icon.SetActive(true);
+        }
     }
 }

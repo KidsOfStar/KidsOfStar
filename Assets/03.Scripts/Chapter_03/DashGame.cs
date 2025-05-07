@@ -1,5 +1,4 @@
 using Cinemachine;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -48,7 +47,6 @@ public class DashGame : MonoBehaviour
 
     private IEnumerator GameIntroSequence()
     {
-
         yield return null;
         skillBTN.ShowInteractionButton(false); // 스킬 버튼 비활성화
 
@@ -66,6 +64,11 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Show<StopWatch>();
 
         yield return StartCoroutine(StartGame(5f)); // 5초 카운트다운 후 게임 시작
+    }
+
+    private void PlayerStatting()
+    {
+
     }
 
     private IEnumerator VirtualCameraMove()
@@ -113,12 +116,14 @@ public class DashGame : MonoBehaviour
         stopWatch.OnStopWatch();
 
         playerController.LockPlayer(); // 플레이어 잠금
+        playerController.MoveSpeed = playerSpeed; // 플레이어 속도 초기화 (원래 속도로 복구)
 
         float clearTime = stopWatch.recodeTime;
 
         characterType = npcType; // 캐릭터 타입 설정
         ShowDialogueResult(); // 대사 출력
         showDialog = true;
+
         var resultPopup = Managers.Instance.UIManager.Get<DashGameResultPopup>();
         resultPopup.OnDialogEnd -= DialogEnd;
         resultPopup.OnDialogEnd += DialogEnd;

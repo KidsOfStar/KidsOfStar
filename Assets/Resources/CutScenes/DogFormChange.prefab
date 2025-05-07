@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 7
-  bubblePosition: {fileID: 4477277526502934107}
+  bubbleTr: {fileID: 4477277526502934107}
 --- !u!95 &84834146973429138
 Animator:
   serializedVersion: 5

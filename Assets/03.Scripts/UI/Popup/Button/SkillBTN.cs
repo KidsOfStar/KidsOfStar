@@ -86,7 +86,15 @@ public class SkillBTN : UIBase
         Managers.Instance.GameManager.Player.Controller.Jump();
     }
 
-    public void OnHide() => UseSkill("Hide", skillUnlock.hideIcon, skillUnlock.hideBG);
+    //public void OnHide() => UseSkill("Hide", skillUnlock.hideIcon, skillUnlock.hideBG);
+    public void OnHide()
+    {
+        // 태그 Hide Area에 있는지 확인
+        if (Managers.Instance.GameManager.Player.FormControl.isInHideArea)
+            UseSkill("Hide", skillUnlock.hideIcon, skillUnlock.hideBG);
+    }
+
+
     public void OnCat() => UseSkill("Cat", skillUnlock.catIcon, skillUnlock.catBG);
 
     /// <summary>
@@ -136,6 +144,7 @@ public class SkillBTN : UIBase
         OnInteractBtnClick?.Invoke();
         Managers.Instance.DialogueManager.OnClick?.Invoke();
     }
+
     public void ShowInteractionButton(bool isActive)
     {
         interactionBtn.gameObject.SetActive(isActive);

@@ -2,13 +2,12 @@ using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UITextBubble : PopupBase
+public class UITextBubble : UIBase
 {
     [Header("Text Bubble")]
+    [SerializeField] private Canvas canvas;
     [SerializeField] private RectTransform rectTr;
-    [SerializeField] private Image bubbleImage;
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private float clickIgnoreTime = 0.1f;
 
@@ -19,10 +18,18 @@ public class UITextBubble : PopupBase
     private bool isTyping = false;
     private float dialogStartTime;
 
-    public void SetDialog(string dialog, Vector3 pos)
+    public void InitCamera()
+    {
+        canvas.renderMode = RenderMode.WorldSpace;
+        canvas.worldCamera = Managers.Instance.GameManager.MainCamera;
+        rectTr.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+    }
+    
+    public void SetDialog(string dialog, Transform bubbleTr)
     {
         StartDialogCoroutine(dialog);
-        rectTr.position = pos;
+        rectTr.SetParent(bubbleTr);
+        rectTr.localPosition = Vector3.zero;
         dialogStartTime = Time.time;
     }
 

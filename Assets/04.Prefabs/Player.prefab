@@ -57,7 +57,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -226,7 +226,6 @@ MonoBehaviour:
   jumpForce: 2
   wallJumpForce: 5
   catClingTimer: 1.2
-  pushDetectDistance: 0.05
   pushableLayer:
     serializedVersion: 2
     m_Bits: 128

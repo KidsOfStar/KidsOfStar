@@ -3,15 +3,15 @@ using UnityEngine;
 public class CutSceneNpc : MonoBehaviour, IDialogSpeaker
 {
     [SerializeField] private CharacterType characterType;
-    [SerializeField] private Transform bubblePosition;
+    [SerializeField] private Transform bubbleTr;
     
     public CharacterType GetCharacterType()
     {
         return characterType;
     }
     
-    public Vector3 GetBubblePosition()
+    public Transform GetBubbleTr()
     {
-        return bubblePosition.position;
+        return bubbleTr;
     }
 }

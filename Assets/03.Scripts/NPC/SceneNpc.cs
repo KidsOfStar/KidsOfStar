@@ -6,8 +6,8 @@ public class SceneNpc : InteractSpeaker, IDialogSpeaker
         return CharacterType;
     }
 
-    public Vector3 GetBubblePosition()
+    public Transform GetBubbleTr()
     {
-        return BubbleTr.position;
+        return BubbleTr;
     }
 }
