@@ -48,6 +48,10 @@ public class DashGame : MonoBehaviour
 
     private IEnumerator GameIntroSequence()
     {
+
+        yield return null;
+        skillBTN.ShowInteractionButton(false); // 스킬 버튼 비활성화
+
         yield return null; // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
         playerController.LockPlayer(); // 플레이어 잠금
 

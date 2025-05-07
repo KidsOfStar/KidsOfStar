@@ -6497,9 +6497,12 @@ MonoBehaviour:
   playerController: {fileID: 0}
   virtualCamera: {fileID: 2036214067}
   trackedDolly: {fileID: 111038905}
+  characterType: 0
   cameraMoveSpeed: 55
   playerSpeed: 0
+  playerSpeedMultiplier: 2
   isGameStarted: 0
+  showDialog: 0
   TestGameBlock: {fileID: 186699818}
 --- !u!4 &1033782734
 Transform:
