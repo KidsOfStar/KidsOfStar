@@ -1,5 +1,4 @@
 using Cinemachine;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -48,7 +47,6 @@ public class DashGame : MonoBehaviour
 
     private IEnumerator GameIntroSequence()
     {
-
         yield return null;
         skillBTN.ShowInteractionButton(false); // 스킬 버튼 비활성화
 
