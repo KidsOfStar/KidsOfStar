@@ -23,6 +23,7 @@ public abstract class SceneBase : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
+    public Transform MainCameraTransfrom => mainCamera.transform;
 
     private Action onCutSceneEndHandler;
 
@@ -30,6 +31,7 @@ public abstract class SceneBase : MonoBehaviour
     [Header("Player Position")]
 
     [SerializeField] private PlayerSpawnPointer spawnPointer;
+    [SerializeField] private ScrollingBackGround scrollingBackGround;
     // TODO: 각 씬 별로 플레이어가 자유상호작용 때 말하는 부분이 있다면 플레이어도 스폰 후 speaker로 등록해야함
     private void Awake()
     {
@@ -63,6 +65,8 @@ public abstract class SceneBase : MonoBehaviour
 
         // 컷신 종료 후 이동 할 플레이어 위치 정보 설정
         if (spawnPointer) spawnPointer.Init();
+
+        InitBG();
     }
 
     private void InitManagers()
@@ -150,6 +154,11 @@ public abstract class SceneBase : MonoBehaviour
         {
             speaker.Init();
         }
+    }
+
+    private void InitBG()
+    {
+        scrollingBackGround.Initialized(mainCamera.transform);
     }
 
     protected abstract void InitSceneExtra(Action callback);
