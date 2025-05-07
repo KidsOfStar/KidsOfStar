@@ -43,8 +43,7 @@ public class ScrollingBackGround : MonoBehaviour
 
         for (int i = 0; i < backCount; i++)
         {
-            // backSpeed[i] = 1 - (backGrounds[i].transform.position.z - cam.position.z) / farthestBack;
-            backSpeed[i] = 1 - (i - 1) * -1; //0일때 0 /  1일때  1 / 2일때 2 
+           backSpeed[i] = 1 - (backGrounds[i].transform.position.z - cam.position.z) / farthestBack;
         }
     }
 
