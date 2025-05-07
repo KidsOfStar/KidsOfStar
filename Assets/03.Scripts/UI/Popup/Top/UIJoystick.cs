@@ -5,7 +5,7 @@ public class UIJoystick : UIBase, IDragHandler, IPointerDownHandler, IPointerUpH
 {
     [SerializeField] private RectTransform joystickBase;
     [SerializeField] private RectTransform joystickHandle;
-    [SerializeField, Range(5f, 20f)] private float sensitivity = 5f;
+    // [SerializeField, Range(5f, 20f)] private float sensitivity = 5f;
 
     private Vector2 inputVector = Vector2.zero;
     public Vector2 Direction => inputVector;

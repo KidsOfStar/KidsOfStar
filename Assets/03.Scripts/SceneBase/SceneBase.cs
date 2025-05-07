@@ -28,9 +28,8 @@ public abstract class SceneBase : MonoBehaviour
 
     [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
     [Header("Player Position")]
-
     [SerializeField] private PlayerSpawnPointer spawnPointer;
-    // TODO: 각 씬 별로 플레이어가 자유상호작용 때 말하는 부분이 있다면 플레이어도 스폰 후 speaker로 등록해야함
+    
     private void Awake()
     {
         // 매니저들 초기화
@@ -129,7 +128,7 @@ public abstract class SceneBase : MonoBehaviour
         
         // TODO: 이어하기가 있기 때문에 뉴 게임인지 검사해서 진행도 이벤트 호출
         // TODO: 뉴 게임이라면? 챕터 첫 진입이라면? -> ResetProgress
-        // TODO: 이어하기라면? 게임매니저 데이터의 진행도를 가져와서 OnUpdateProgress?.Invoke() 
+        // TODO: 이어하기라면? 게임매니저 데이터의 진행도를 가져와서 OnUpdateProgress?.Invoke()
     }
 
     // 씬 내에서 TriggerEnter로 진행도를 업데이트할 때 사용

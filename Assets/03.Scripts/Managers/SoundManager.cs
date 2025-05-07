@@ -37,6 +37,10 @@ public class SoundManager : ISceneLifecycleHandler
         footstepSource.name = "Footstep";
         footstepSource.loop = false;
         footstepSource.volume = gameManager.SfxVolume;
+
+        var audioListener = new GameObject("AudioListener");
+        audioListener.AddComponent<AudioListener>();
+        audioListener.transform.SetParent(sourceParent);
     }
     
     private void AttachAudioToCamera()

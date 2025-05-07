@@ -87,7 +87,9 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
                 curFormData = nextFormData;
             }
         }
-
+        
+        // Managers.Instance.GameManager.CurrentForm = curFormData.FormName;
+        
         // 형태 변화 이펙트와 데이터 교체 시작
         StartCoroutine(FormChangeSequence());
     }

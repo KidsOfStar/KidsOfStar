@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 15
-  bubblePosition: {fileID: 3455574981813594325}
+  bubbleTr: {fileID: 3455574981813594325}
 --- !u!1 &2627142306401362215
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 16
-  bubblePosition: {fileID: 8858597096275716751}
+  bubbleTr: {fileID: 8858597096275716751}
 --- !u!1 &6630260274879003007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1073741823
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

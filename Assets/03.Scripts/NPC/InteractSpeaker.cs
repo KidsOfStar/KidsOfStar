@@ -10,6 +10,7 @@ public abstract class InteractSpeaker : MonoBehaviour
 
     private readonly Dictionary<int, int> dialogByProgress = new();
     private readonly Dictionary<int, int> requiredDialogByProgress = new();
+    private GameObject exclamationIcon;
     private SkillBTN skillPanel;
 
     public void Init()
@@ -61,7 +62,7 @@ public abstract class InteractSpeaker : MonoBehaviour
             if (pair.Key != currentProgress) continue;
 
             // 느낌표 띄우기
-            var exclamationIcon = Managers.Instance.PoolManager.Spawn(Define.requiredIconKey, BubbleTr);
+            exclamationIcon = Managers.Instance.PoolManager.Spawn(Define.requiredIconKey, BubbleTr);
             exclamationIcon.transform.localPosition = Vector3.zero;
         }
     }
@@ -73,12 +74,10 @@ public abstract class InteractSpeaker : MonoBehaviour
         foreach (var value in requiredDialogByProgress.Values)
         {
             if (index != value) continue;
-
-            var exclamationIcon = BubbleTr.GetChild(0).gameObject;
-            if (!exclamationIcon)
-                EditorLog.LogError("No exclamation icon found");
+            if (!exclamationIcon) return;
 
             Managers.Instance.PoolManager.Despawn(exclamationIcon);
+            exclamationIcon = null;
         }
     }
 
