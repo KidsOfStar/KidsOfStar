@@ -7,7 +7,8 @@ public enum PlayerStateType
     Move,
     Jump,
     WallCling,
-    WallJump
+    WallJump,
+    OnLadder
 }
 
 public class PlayerStateFactory
@@ -29,6 +30,7 @@ public class PlayerStateFactory
             { PlayerStateType.Jump, new PlayerJumpState(context, this) },
             { PlayerStateType.WallCling, new CatWallClingState(context, this) },
             { PlayerStateType.WallJump, new CatWallJumpState(context, this) },
+            { PlayerStateType.OnLadder, new OnLadderState(context, this) },
         };
     }
 
