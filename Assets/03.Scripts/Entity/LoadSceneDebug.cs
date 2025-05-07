@@ -32,7 +32,7 @@ public class LoadSceneDebug : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             isDebugMode = !isDebugMode;
         }
