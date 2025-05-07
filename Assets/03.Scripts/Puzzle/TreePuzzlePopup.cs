@@ -3,36 +3,38 @@ using UnityEngine.UI;
 
 public class TreePuzzlePopup : PopupBase
 {
-    [SerializeField] private Button upButton;
-    [SerializeField] private Button downButton;
-    [SerializeField] private Button leftButton;
-    [SerializeField] private Button rightButton;
+    //[SerializeField] private Button upButton;
+    //[SerializeField] private Button downButton;
+    //[SerializeField] private Button leftButton;
+    //[SerializeField] private Button rightButton;
     //[SerializeField] private Button rotateButton;
     [SerializeField] private Button[] exitButtons;
     [SerializeField] private Button cancelButton;
 
     [SerializeField] private TreePuzzleSystem currentPuzzle;
 
+    [SerializeField] private Image hintImage;
+
     private void Awake()
     {
         // 퍼즐선택버튼
-        var moveButtons = new (Button btn, System.Action action)[]
-        {
-            (upButton, () => currentPuzzle.MoveSelection("Up")),
-            (downButton, ()=> currentPuzzle.MoveSelection("Down")),
-            (leftButton, () => currentPuzzle.MoveSelection("Left")),
-            (rightButton, () => currentPuzzle.MoveSelection("Right")),
-         };
+        //var moveButtons = new (Button btn, System.Action action)[]
+        //{
+        //    (upButton, () => currentPuzzle.MoveSelection("Up")),
+        //    (downButton, ()=> currentPuzzle.MoveSelection("Down")),
+        //    (leftButton, () => currentPuzzle.MoveSelection("Left")),
+        //    (rightButton, () => currentPuzzle.MoveSelection("Right")),
+        // };
 
-        foreach (var (btn, action) in moveButtons)
-        {
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() =>
-            {
-                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UIButton);
-                action();
-            });
-        }
+        //foreach (var (btn, action) in moveButtons)
+        //{
+        //    btn.onClick.RemoveAllListeners();
+        //    btn.onClick.AddListener(() =>
+        //    {
+        //        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UIButton);
+        //        action();
+        //    });
+        //}
 
         //// 회전버튼
         //rotateButton.onClick.RemoveAllListeners();
@@ -72,6 +74,8 @@ public class TreePuzzlePopup : PopupBase
             EditorLog.LogError("TreePuzzlePopup: PuzzleData 누락!");
             return;
         }
+
+        hintImage.sprite = data.backgroundSprite;
 
         int index = (int)param[1];
 
