@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 7
-  bubblePosition: {fileID: 8486397340754864470}
+  bubbleTr: {fileID: 8486397340754864470}
 --- !u!1 &806006698275452445
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 14
-  bubblePosition: {fileID: 519108189324940485}
+  bubbleTr: {fileID: 519108189324940485}
 --- !u!1 &2095486851018417652
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,7 +2733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 3
-  bubblePosition: {fileID: 6140398273291889461}
+  bubbleTr: {fileID: 6140398273291889461}
 --- !u!1 &2815894183721362051
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,7 +2899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 4
-  bubblePosition: {fileID: 6714611192507213848}
+  bubbleTr: {fileID: 6714611192507213848}
 --- !u!1 &3034129259374625968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3444,7 +3444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 5
-  bubblePosition: {fileID: 6089357331306290076}
+  bubbleTr: {fileID: 6089357331306290076}
 --- !u!1 &8609973291587879091
 GameObject:
   m_ObjectHideFlags: 0

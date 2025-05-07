@@ -50,8 +50,8 @@ public class Player : MonoBehaviour, IDialogSpeaker
     /// 말풍선이 위치할 좌표 반환 함수
     /// </summary>
     /// <returns>말풍선 위치</returns>
-    public Vector3 GetBubblePosition()
+    public Transform GetBubbleTr()
     {
-        return bubblePosition.position;
+        return bubblePosition;
     }
 }
