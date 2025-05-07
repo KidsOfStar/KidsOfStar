@@ -90,8 +90,8 @@ public class SkillBTN : UIBase
     public void OnHide()
     {
         // 태그 Hide Area에 있는지 확인
-        //if (
-        UseSkill("Hide", skillUnlock.hideIcon, skillUnlock.hideBG);
+        if (Managers.Instance.GameManager.Player.FormControl.isInHideArea)
+            UseSkill("Hide", skillUnlock.hideIcon, skillUnlock.hideBG);
     }
 
 
