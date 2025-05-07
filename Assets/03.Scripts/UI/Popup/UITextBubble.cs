@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITextBubble : PopupBase
+public class UITextBubble : UIBase
 {
     [Header("Text Bubble")]
     [SerializeField] private RectTransform rectTr;
