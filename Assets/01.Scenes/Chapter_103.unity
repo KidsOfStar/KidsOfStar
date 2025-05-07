@@ -2922,6 +2922,18 @@ PrefabInstance:
       propertyPath: isTest
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5952377060798919337, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
+      propertyPath: extraMax
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952377060798919337, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
+      propertyPath: extraMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952377060798919337, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
+      propertyPath: baseSpacing
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6347151878847138798, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
       propertyPath: m_Name
       value: Obstacle Spawner
@@ -3131,6 +3143,7 @@ MonoBehaviour:
   isDisableInStart: 0
   positionDatas:
   - progress: 2
+    isFlip: 0
     isActive: 1
     position: {x: 20, y: -2.19, z: 0}
 --- !u!61 &1824104151785129960

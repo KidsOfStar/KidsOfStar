@@ -13,6 +13,8 @@ public class SaveData
     // 챕터 신뢰도
     // 형태변환 해금 진행도
     // 지금까지 본 엔딩
+    
+    // TODO: 현재 폼 저장
 
     public string saveName;
     public int difficulty;
