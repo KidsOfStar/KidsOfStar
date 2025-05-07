@@ -34,14 +34,8 @@ public class Chapter03Base : SceneBase
 
     private void SkillForm()
     {
-        var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-        var skillUnlock = skillBtn.skillUnlock;
-
         // GameManager에 'Dog' 스킬 해금 기록
+        // 이벤트 발생 시킴
         Managers.Instance.GameManager.UnlockForm("Dog");
-
-        // SkillUnlock이 'Dog' 스킬을 UI에 반영하도록 호출
-        skillUnlock.UnlockSkill("Dog");
-        skillUnlock.ShowSkillBG(skillUnlock.dogBG); // 'Dog' 스킬 BG 활성화
     }
 }

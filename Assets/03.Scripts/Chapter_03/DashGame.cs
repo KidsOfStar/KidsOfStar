@@ -66,6 +66,11 @@ public class DashGame : MonoBehaviour
         yield return StartCoroutine(StartGame(5f)); // 5초 카운트다운 후 게임 시작
     }
 
+    private void PlayerStatting()
+    {
+
+    }
+
     private IEnumerator VirtualCameraMove()
     {
         virtualCamera.gameObject.SetActive(true); // 가상 카메라 활성화

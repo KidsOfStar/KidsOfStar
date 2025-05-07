@@ -136,6 +136,7 @@ public class SkillBTN : UIBase
         OnInteractBtnClick?.Invoke();
         Managers.Instance.DialogueManager.OnClick?.Invoke();
     }
+
     public void ShowInteractionButton(bool isActive)
     {
         interactionBtn.gameObject.SetActive(isActive);
