@@ -75,11 +75,11 @@ public class DashGame : MonoBehaviour
             if(trackedDolly.m_Position == trackedDolly.m_Path.PathLength) // 카메라 이동 완료
             {
                 trackedDolly.m_Position = trackedDolly.m_Path.PathLength; // 카메라 위치 고정
-                yield return new WaitForSeconds(1f); // 1초 대기
+                //yield return new WaitForSeconds(1f); // 1초 대기
                 break; // 루프 종료
             }
         }
-        //yield return new WaitForSeconds(1f); // 대기 시간
+        yield return new WaitForSeconds(1f); // 마지막 모습 보이기
 
         virtualCamera.Priority = -20; // 가상 카메라 우선순위 변경
         virtualCamera.gameObject.SetActive(false); // 가상 카메라 비활성화
