@@ -73,7 +73,6 @@ public class TreePuzzlePiece : MonoBehaviour, IPointerClickHandler
         if (outLine != null)
             outLine.enabled = on;
     }
-
 }
 
 
