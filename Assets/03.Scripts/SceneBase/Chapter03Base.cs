@@ -36,8 +36,6 @@ public class Chapter03Base : SceneBase
     {
         // GameManager에 'Dog' 스킬 해금 기록
         // 이벤트 발생 시킴
-        Managers.Instance.GameManager.UnlockForm("Dog");
-        Managers.Instance.GameManager.UnlockForm("Hide");
-
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,25 +19,26 @@ public class SkillUnlock : MonoBehaviour
     public GameObject squirrelIcon;
 
     private List<GameObject> skillBGs; // 스킬 배경 오브젝트 리스트
-    private Dictionary<string, (GameObject bg, GameObject icon)> skillMap; // 챕터별 스킬 BG/Icon 매핑
-    private List<string> unlockedSkills;
+    private Dictionary<PlayerFormType, (GameObject bg, GameObject icon)> skillMap; // 챕터별 스킬 BG/Icon 매핑
+    private PlayerFormType unlockedForms; // 비트플래그 기반
 
     //private HashSet<int> unlockedSkills = new HashSet<int>(); // 스킬 잠금 해제 상태 저장
 
     void Awake()
     {
-        unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
+        unlockedForms = Managers.Instance.GameManager.UnlockedForms;
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
         // 챕터 번호와 배경/아이콘 오브젝트 매핑
-        skillMap = new Dictionary<string, (GameObject, GameObject)>
+        skillMap = new Dictionary<PlayerFormType, (GameObject, GameObject)>
         {
-            { "Squirrel", (squirrelBG, squirrelIcon) },
-            { "Dog", (dogBG, dogIcon) },
-            { "Cat", (catBG, catIcon) },
-            { "Hide", (hideBG, hideIcon) },
+            { PlayerFormType.Squirrel, (squirrelBG, squirrelIcon) },
+            { PlayerFormType.Dog, (dogBG, dogIcon) },
+            { PlayerFormType.Cat, (catBG, catIcon) },
+            { PlayerFormType.Hide, (hideBG, hideIcon) },
         };
     }
+
     private void Start()
     {
         ApplyUnlockedSkills();
@@ -69,16 +71,28 @@ public class SkillUnlock : MonoBehaviour
     public void ApplyUnlockedSkills()
     {
         var unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
+        var currenrttForm = Managers.Instance.GameManager.Player.FormControl.CurFormData.FormName;
 
-        foreach (var chapter in unlockedSkills)
+        foreach (PlayerFormType chapter in Enum.GetValues(typeof(PlayerFormType)))
         {
-            if (skillMap.TryGetValue(chapter, out var skillPair))
+            if (!skillMap.TryGetValue(chapter, out var skillPair))
+                continue;
+
+            bool isUnlocked = unlockedSkills.HasFlag(chapter); // 비트플래그로 스킬 잠금 해제 여부 확인
+            bool isCurrent = chapter.ToString() == currenrttForm; // 현재 폼과 비교
+
+            // 기본은 모두 끄기
+            skillPair.bg.SetActive(false);
+            skillPair.icon.SetActive(false);
+
+            // 스킬이 잠금 해제된 경우
+            if (isUnlocked)
             {
-                skillPair.bg.SetActive(false);
-                skillPair.icon.SetActive(true);
+                skillPair.icon.SetActive(true); // 잠금 해제된 스킬 아이콘 활성화
             }
+
             // 현재 나의 폼일 때 BG를 활성화
-            if (chapter == Managers.Instance.GameManager.Player.FormControl.CurFormData.FormName)
+            if (isCurrent)
             {
                 skillPair.bg.SetActive(true);
                 skillPair.icon.SetActive(true);
@@ -87,18 +101,22 @@ public class SkillUnlock : MonoBehaviour
     }
 
     // 특정 챕터의 스킬을 잠금 해제하고 바로 UI에 반영
-    public void UnlockSkill(string chapter)
+    public void UnlockSkill(PlayerFormType chapter)
     {
+        // 이미 해금되어 있지 않으면 무시
+        if(Managers.Instance.GameManager.UnlockedForms.HasFlag(chapter))
+            return;
+
+        // 스킬 잠금 해제
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {
-            skillPair.bg.SetActive(false);
             skillPair.icon.SetActive(true);
         }
     }
 
 
     // 현재 스킬 폼일 때 BG를 활성화
-    public void ShowSkillFormBG(string chapter)
+    public void ShowSkillFormBG(PlayerFormType chapter)
     {
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {

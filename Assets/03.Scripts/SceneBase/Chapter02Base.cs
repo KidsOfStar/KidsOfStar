@@ -18,11 +18,6 @@ public class Chapter02Base : SceneBase
 
     private void SkillForm()
     {
-        var skillBtn = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
-        var skillUnlock = skillBtn.skillUnlock;
-
-        Managers.Instance.GameManager.UnlockForm("Squirrel");
-        skillUnlock.UnlockSkill("Squirrel");
-        skillUnlock.ShowSkillBG(skillUnlock.squirrelBG); // 'Squirrel' 스킬 BG 활성화
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
     }
 }
