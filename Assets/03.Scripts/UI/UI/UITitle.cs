@@ -10,7 +10,8 @@ public class UITitle : UIBase
     public Button optionBtn;
     public Button loadBtn;
 
-    
+    private bool isGameStart = false; // 게임 시작 여부
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,21 +51,15 @@ public class UITitle : UIBase
 
     private void OnStartBtnClick()
     {
-        // 데이터가 있을 경우 
-        //Managers.Instance.UIManager.Show<WarningStartTop>();
-
-        // 아닐 경우 게임 시작
-        //NextScene();
-        if(Input.touchCount > 1)
+        if (isGameStart)
         {
             return;
         }
-        else
-        {
-            // 한 손가락으로 터치 시
-            //Debug.Log("한 손가락으로 터치");
-            LoadScene();
-        }   
+
+        isGameStart = true; // 게임 시작
+
+        // 게임 시작 시 로드 씬으로 이동
+        LoadScene();
     }
 
     private void LoadScene()
