@@ -134,6 +134,7 @@ public abstract class InteractSpeaker : MonoBehaviour
     private void ShowInteractionButton()
     {
         skillPanel.ShowInteractionButton(true);
+        skillPanel.OnInteractBtnClick -= OnInteract;
         skillPanel.OnInteractBtnClick += OnInteract;
     }
 

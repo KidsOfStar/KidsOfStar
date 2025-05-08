@@ -12,31 +12,37 @@ public class TreePuzzleTrigger : MonoBehaviour
     public int SequenceIndex => sequenceIndex;
 
     [SerializeField] private GameObject exclamationInstance;
+    private SpriteRenderer exclamationRenderer;
 
     [Header("트리거가 켜질 ChapterProgress 값")]
     [SerializeField] private int requiredProgress;
 
+    private void Awake()
+    {
+        // SpriteRenderer 컴포넌트 가져오기
+        exclamationRenderer = exclamationInstance.GetComponent<SpriteRenderer>();
+    }
+
     private void Start()
     {
-        exclamationInstance.SetActive(
-        Managers.Instance.GameManager.ChapterProgress == requiredProgress
-        );
+        bool show = Managers.Instance.GameManager.ChapterProgress == requiredProgress;
+        exclamationRenderer.enabled = show;
 
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
-       // Managers.Instance.GameManager.OnProgressUpdated += UpdateExclamation;
+       Managers.Instance.GameManager.OnProgressUpdated += UpdateExclamation;
     }
 
     // 게임 클리어시 비활성화
     public void DisableExclamation()
     {
-        exclamationInstance.SetActive(false);
+        exclamationRenderer.enabled = false;
     }
 
     private void UpdateExclamation()
     {
         bool show = Managers.Instance.GameManager.ChapterProgress == requiredProgress;
-        exclamationInstance.SetActive(show);
+        exclamationRenderer.enabled = show;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
