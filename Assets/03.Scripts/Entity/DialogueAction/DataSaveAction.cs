@@ -10,7 +10,7 @@ public class DataSaveAction : IDialogActionHandler
             Managers.Instance.DialogueManager.InvokeOnDialogStepEnd();
             Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         }
-        
-        // TODO: Save UI 띄우기
+
+        Managers.Instance.UIManager.Show<SavePopup>();
     }
 }
