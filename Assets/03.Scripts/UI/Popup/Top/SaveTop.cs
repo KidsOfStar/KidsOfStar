@@ -32,5 +32,4 @@ public class SaveTop : PopupBase
         Save();
         HideDirect();
     }
-
 }
