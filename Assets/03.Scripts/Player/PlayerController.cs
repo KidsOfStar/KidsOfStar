@@ -202,8 +202,8 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         // 조작이 불가능한 상태라면 동작 X
         if (!isControllable) return;
 
-        if (moveDir != Vector2.up && moveDir != Vector2.down)
-        // 입력된 값이 위나 아래를 향한 것이 아니고
+        if (Mathf.Abs(moveDir.x) > 0.1f)
+        // 좌우 입력 값이 있고
         // 나뭇잎 트램펄린을 이용하는 중이 아니라면
         {
             if (TryDetectBox(moveDir))
@@ -225,6 +225,29 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
             }
             // FlipControl 함수에 플레이어 이동 방향을 전달
             player.FormControl.FlipControl(moveDir);
+        }
+        else
+        {
+            // 좌우 입력이 없다면 정지
+            rigid.velocity = new Vector2(0f, rigid.velocity.y);
+        }
+    }
+
+    /// <summary>
+    /// 사다리 타기 함수
+    /// </summary>
+    public void ClimbLadder()
+    {
+        // 상하 입력이 있다면
+        if(Mathf.Abs(moveDir.y) > 0.1f)
+        {
+            // 사다리를 따라서 상하 이동
+            rigid.velocity = new Vector2(0f, moveDir.y * moveSpeed);
+        }
+        else
+        {
+            // 입력이 없다면 정지
+            rigid.velocity = Vector2.zero;
         }
     }
 

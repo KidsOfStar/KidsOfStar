@@ -8,6 +8,7 @@ TagManager:
   - Box
   - Interactable
   - Loopable
+  - HideArea
   layers:
   - Default
   - TransparentFX

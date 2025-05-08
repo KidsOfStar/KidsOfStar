@@ -53,6 +53,14 @@ public class PlayerStateBase : IPlayerState
     }
 
     /// <summary>
+    /// 이 상태에서 수행되어야 하는 물리 동작
+    /// </summary>
+    public virtual void OnFixedUpdate()
+    {
+
+    }
+
+    /// <summary>
     /// 벽 타기가 가능한 벽이 유효 거리 안에 있는지 체크
     /// </summary>
     protected void WallTouchCheck()
