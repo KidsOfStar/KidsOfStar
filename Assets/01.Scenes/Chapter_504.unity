@@ -1957,7 +1957,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2584,14 +2584,14 @@ Tilemap:
     m_Data: {fileID: 1979039913, guid: 1a3c88bb61c7889439be6df7d12f0544, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 1499651835, guid: fdf70e6fb0ffd294a8d6d279ac76a8e2, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -141689144, guid: c8551127132b24c45b535aa4c9cf15ae, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 49
     m_Data: {fileID: 2135956663, guid: 1a3c88bb61c7889439be6df7d12f0544, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -141689144, guid: c8551127132b24c45b535aa4c9cf15ae, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1972799073, guid: c8551127132b24c45b535aa4c9cf15ae, type: 3}
   - m_RefCount: 127
@@ -3592,7 +3592,7 @@ CompositeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
