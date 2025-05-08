@@ -1,4 +1,20 @@
 using GoogleSheet.Core.Type;
+using System;
+
+#region Player
+
+[Flags]
+public enum PlayerFormType
+{
+    Stone    = 1 << 0, // 000001
+    Human    = 1 << 1, // 000010
+    Squirrel = 1 << 2, // 000100
+    Dog      = 1 << 3, // 001000
+    Cat      = 1 << 4, // 010000
+    Hide     = 1 << 5, // 100000
+}
+
+#endregion
 
 #region Dialogue
 
