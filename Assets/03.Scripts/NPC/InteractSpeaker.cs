@@ -108,6 +108,7 @@ public abstract class InteractSpeaker : MonoBehaviour
 
     private void ShowDialog()
     {
+        EditorLog.Log("대화시작");
         var key = Managers.Instance.GameManager.ChapterProgress;
         if (!dialogByProgress.TryGetValue(key, out int dialogIndex))
         {
@@ -127,6 +128,7 @@ public abstract class InteractSpeaker : MonoBehaviour
         skillPanel.ShowInteractionButton(false);
         skillPanel.OnInteractBtnClick -= OnInteract;
         Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButton;
+        EditorLog.Log("..");
     }
 
     private void ShowInteractionButton()

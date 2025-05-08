@@ -25,7 +25,6 @@ public class TreePuzzleSystem : MonoBehaviour
     private int gridWidth;
     // 모드별 제한 시간
     private float timeLimit;
-
     private float currentTime;
     // 작동중인지 체크
     private bool isRunning;
