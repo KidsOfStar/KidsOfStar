@@ -45,8 +45,6 @@ public class CameraController : MonoBehaviour
         
         smoothedPosition.x = Mathf.Clamp(smoothedPosition.x, minPosition.x, maxPosition.x);
         smoothedPosition.y = Mathf.Clamp(smoothedPosition.y, minPosition.y, maxPosition.y);
-        // desiredPosition.x = Mathf.Clamp(desiredPosition.x, minPosition.x, maxPosition.x);
-        // desiredPosition.y = Mathf.Clamp(desiredPosition.y, minPosition.y, maxPosition.y);
         transform.position = smoothedPosition;
     }
     
