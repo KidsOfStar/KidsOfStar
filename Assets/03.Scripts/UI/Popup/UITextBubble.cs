@@ -92,6 +92,7 @@ public class UITextBubble : UIBase
     private void OnEnable()
     {
         dialogStartTime = 0f;
+        Managers.Instance.DialogueManager.OnClick -= SkipTyping;
         Managers.Instance.DialogueManager.OnClick += SkipTyping;
     }
 

@@ -73,6 +73,7 @@ public static class CustomActions
             Managers.Instance.CutSceneManager.DestroyCurrentCutScene(true);
         }
         
+        Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         Managers.Instance.CutSceneManager.PlayCutScene(cutSceneType);
     }
     

@@ -99,8 +99,8 @@ public abstract class InteractSpeaker : MonoBehaviour
         skillPanel.ShowInteractionButton(false);
 
         // 대사 종료 이벤트에 등록
-        Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButton;
-        Managers.Instance.DialogueManager.OnDialogEnd += ShowInteractionButton;
+        Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButtonCallback;
+        Managers.Instance.DialogueManager.OnDialogEnd += ShowInteractionButtonCallback;
 
         // 대사 출력
         ShowDialog();
@@ -126,12 +126,13 @@ public abstract class InteractSpeaker : MonoBehaviour
 
         skillPanel.ShowInteractionButton(false);
         skillPanel.OnInteractBtnClick -= OnInteract;
-        Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButton;
+        Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButtonCallback;
     }
 
-    private void ShowInteractionButton()
+    private void ShowInteractionButtonCallback()
     {
         skillPanel.ShowInteractionButton(true);
+        skillPanel.OnInteractBtnClick -= OnInteract;
         skillPanel.OnInteractBtnClick += OnInteract;
     }
 
