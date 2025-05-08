@@ -161,21 +161,24 @@ public enum InteractionType
 
 #region CutScene
 
+[Flags]
 public enum EndingType
 {
+    None = 0,
+    
     // 기본 엔딩
-    Absorb,
-    Stable,
-    Obedience,
-    Adaptation,
-    Mistake,
+    Absorb     = 1 << 0,
+    Stable     = 1 << 1,
+    Obedience  = 1 << 2,
+    Adaptation = 1 << 3,
+    Mistake    = 1 << 4,
 
     // 중요 엔딩
-    ComfortableLife,
-    WinRecognition,
-    DreamingCat,
-    IntroTheOcean,
-    DifferentButSame,
+    ComfortableLife  = 1 << 5,
+    WinRecognition   = 1 << 6,
+    DreamingCat      = 1 << 7,
+    IntroTheOcean    = 1 << 8,
+    DifferentButSame = 1 << 9,
 }
 
 public enum CutSceneType

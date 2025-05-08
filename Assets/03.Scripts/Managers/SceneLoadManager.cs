@@ -66,10 +66,8 @@ public class SceneLoadManager : MonoBehaviour
         while (!operation.isDone) yield return null;
 
         // 실제 씬 전환 완료 이후 초기화 및 로딩 시간 병렬 대기
-        while (!IsSceneLoadComplete)
-            yield return null;
-
         yield return new WaitForSeconds(0.1f);
+        yield return new WaitUntil(() => IsSceneLoadComplete);
         SceneManager.UnloadSceneAsync(SceneType.Loading.GetName());
     }
 
