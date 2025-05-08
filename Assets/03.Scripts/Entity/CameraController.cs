@@ -9,8 +9,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector2 minPosition;
     [SerializeField] private Vector2 maxPosition;
     
-    [Header("Light")] // 씬에 배치 할 라이트 오브젝트 : 컷씬 재생 중에는 비활성화
-    [SerializeField] private GameObject lightObject;
+    [Header("Background")] // 씬에 배치 할 배경 오브젝트 : 컷씬 재생 중에는 비활성화
+    [SerializeField] private GameObject background;
     
     private Transform target = null;
     private CutSceneManager cutSceneManager;
@@ -21,10 +21,10 @@ public class CameraController : MonoBehaviour
         cutSceneManager = Managers.Instance.CutSceneManager;
         target = Managers.Instance.GameManager.Player.transform;
 
-        if (lightObject)
+        if (background)
         {
-            cutSceneManager.OnCutSceneStart += InactivateLight;
-            cutSceneManager.OnCutSceneEnd += ActiveLight;
+            cutSceneManager.OnCutSceneStart += InactivateBackground;
+            cutSceneManager.OnCutSceneEnd += ActiveBackground;
         }
     }
 
@@ -50,21 +50,21 @@ public class CameraController : MonoBehaviour
         transform.position = smoothedPosition;
     }
     
-    private void ActiveLight()
+    private void ActiveBackground()
     {
-        if (!lightObject) return;
-        lightObject.SetActive(true);
+        if (!background) return;
+        background.SetActive(true);
     }
     
-    private void InactivateLight()
+    private void InactivateBackground()
     {
-        if (!lightObject) return;
-        lightObject.SetActive(false);
+        if (!background) return;
+        background.SetActive(false);
     }
     
     private void OnDestroy()
     {
-        cutSceneManager.OnCutSceneStart -= InactivateLight;
-        cutSceneManager.OnCutSceneEnd -= ActiveLight;
+        cutSceneManager.OnCutSceneStart -= InactivateBackground;
+        cutSceneManager.OnCutSceneEnd -= ActiveBackground;
     }
 }

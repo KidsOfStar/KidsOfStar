@@ -9,7 +9,7 @@ public abstract class SceneBase : MonoBehaviour
     [Header("Chapter")]
     [SerializeField] private ChapterType currentChapter;
     [SerializeField] private bool existRequiredDialog = true;
-    [SerializeField] private bool isFirstTime = true;
+    [SerializeField] protected bool isFirstTime = true;
     [SerializeField, TextArea] private string introText; // TODO: first Time은 어떻게 설정하지?
 
     [Header("Player Settings")]
@@ -44,11 +44,11 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.LoadTestScene = false;
 #endif
         
-        // 게임 매니저에 현재 챕터를 설정
-        InitSceneBase();
-
         // 씬이 로드된 후에 플레이어를 스폰
         SpawnPlayer();
+        
+        // 게임 매니저에 현재 챕터를 설정
+        InitSceneBase();
 
         // 플레이어 스폰 후 카메라 컨트롤러의 타겟 설정
         InitCameraController();
@@ -83,7 +83,7 @@ public abstract class SceneBase : MonoBehaviour
             Managers.Instance.PoolManager.CreatePool(prefab, 5);
         }
     }
-
+    
     private void SpawnPlayer()
     {
         var gameManager = Managers.Instance.GameManager;
@@ -103,21 +103,7 @@ public abstract class SceneBase : MonoBehaviour
         };
         Managers.Instance.CutSceneManager.OnCutSceneEnd += onCutSceneEndHandler;
     }
-
-    private void InitCameraController()
-    {
-        if (mainCamera.TryGetComponent(out CameraController cameraController))
-            cameraController.Init();
-        else
-            EditorLog.LogError("SceneBase : CameraController not found on the main camera.");
-    }
-
-    private void ShowRequiredUI()
-    {
-        Managers.Instance.UIManager.Show<UIJoystick>();
-        Managers.Instance.UIManager.Show<PlayerBtn>().Init();
-    }
-
+    
     private void InitSceneBase()
     {
         Managers.Instance.GameManager.SetChapter(currentChapter);
@@ -132,6 +118,20 @@ public abstract class SceneBase : MonoBehaviour
             isFirstTime = false;
             Managers.Instance.GameManager.SetLoadedProgress();
         }
+    }
+
+    private void InitCameraController()
+    {
+        if (mainCamera.TryGetComponent(out CameraController cameraController))
+            cameraController.Init();
+        else
+            EditorLog.LogError("SceneBase : CameraController not found on the main camera.");
+    }
+
+    private void ShowRequiredUI()
+    {
+        Managers.Instance.UIManager.Show<UIJoystick>();
+        Managers.Instance.UIManager.Show<PlayerBtn>().Init();
     }
 
     // 씬 내에서 TriggerEnter로 진행도를 업데이트할 때 사용

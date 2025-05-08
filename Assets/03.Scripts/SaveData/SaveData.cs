@@ -26,7 +26,7 @@ public class SaveData
         difficulty = (int)gameManager.Difficulty;
         chapter = (int)gameManager.CurrentChapter;
         chapterProgress = gameManager.ChapterProgress;
-        playerPosition = gameManager.PlayerPosition;
+        playerPosition = gameManager.Player.transform.position;
         unlockedPlayerForms = gameManager.UnlockedForms;
         // TODO: currentPlayerForm = gameManager.CurrentForm; 
         chapterTrust = gameManager.GetTrustArray();
