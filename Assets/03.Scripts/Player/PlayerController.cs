@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -285,11 +286,21 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public void StartLeafJump(Vector2 dropPosition,float jumpPower)
     {
+        StopAllCoroutines();
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 1f;
 
-        Vector2 impulse = dropPosition * jumpPower * rigid.mass;
+        Vector2 impulse = dropPosition * jumpPower * rigid.mass; 
         rigid.AddForce(impulse, ForceMode2D.Impulse);
+
+        StartCoroutine(ApplyGravity());
+    }
+
+    private IEnumerator ApplyGravity()
+    {
+        yield return new WaitUntil(() => rigid.velocity.y <= 0f);
+
+        rigid.gravityScale = 2f;
     }
 
     public bool TryDetectBox(Vector2 dir)

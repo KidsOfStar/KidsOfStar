@@ -125,12 +125,13 @@ public abstract class SceneBase : MonoBehaviour
         // 챕터 변경 후 Npc 초기화
         InitNpc();
         
-        // 이후 진행도 리셋을 통해 이벤트 호출
-        Managers.Instance.GameManager.ResetProgress();
-        
-        // TODO: 이어하기가 있기 때문에 뉴 게임인지 검사해서 진행도 이벤트 호출
-        // TODO: 뉴 게임이라면? 챕터 첫 진입이라면? -> ResetProgress
-        // TODO: 이어하기라면? 게임매니저 데이터의 진행도를 가져와서 OnUpdateProgress?.Invoke()
+        if (Managers.Instance.GameManager.IsNewGame)
+            Managers.Instance.GameManager.ResetProgress();
+        else
+        {
+            isFirstTime = false;
+            Managers.Instance.GameManager.SetLoadedProgress();
+        }
     }
 
     // 씬 내에서 TriggerEnter로 진행도를 업데이트할 때 사용
