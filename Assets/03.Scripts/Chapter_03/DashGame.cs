@@ -116,12 +116,14 @@ public class DashGame : MonoBehaviour
         stopWatch.OnStopWatch();
 
         playerController.LockPlayer(); // 플레이어 잠금
+        playerController.MoveSpeed = playerSpeed; // 플레이어 속도 초기화 (원래 속도로 복구)
 
         float clearTime = stopWatch.recodeTime;
 
         characterType = npcType; // 캐릭터 타입 설정
         ShowDialogueResult(); // 대사 출력
         showDialog = true;
+
         var resultPopup = Managers.Instance.UIManager.Get<DashGameResultPopup>();
         resultPopup.OnDialogEnd -= DialogEnd;
         resultPopup.OnDialogEnd += DialogEnd;

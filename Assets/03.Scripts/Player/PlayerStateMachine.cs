@@ -26,13 +26,21 @@ public class PlayerStateMachine : MonoBehaviour
         ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // 플레이어 조작 잠금 상태이면 return
         if (!player.Controller.IsControllable) return;
 
          // 현재 상태의 OnUpdate 동작
         curState?.OnUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!player.Controller.IsControllable) return;
+
+        // 현재 상태의 OnFixedUpdate 동작
+        curState?.OnFixedUpdate();
     }
 
     /// <summary>

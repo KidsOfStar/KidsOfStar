@@ -21,11 +21,16 @@ public class PlayerIdleState : PlayerGroundState
         base.OnUpdate();
 
         // 이동 키 입력 중 && 땅에 닿은 상태
-        if(context.Controller.MoveDir != Vector2.zero && context.Controller.IsGround)
+        if(Mathf.Abs(context.Controller.MoveDir.x) > 0.1f && context.Controller.IsGround)
         {
             // 이동 상태로 전환
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Move));
         }
+    }
+
+    public override void OnFixedUpdate()
+    {
+        base.OnFixedUpdate();
 
         // 공중에 있는 상태라면
         if(!context.Controller.IsGround)

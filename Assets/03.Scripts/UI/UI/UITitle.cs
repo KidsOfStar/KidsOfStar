@@ -55,8 +55,16 @@ public class UITitle : UIBase
 
         // 아닐 경우 게임 시작
         //NextScene();
-
-        LoadScene();
+        if(Input.touchCount > 1)
+        {
+            return;
+        }
+        else
+        {
+            // 한 손가락으로 터치 시
+            //Debug.Log("한 손가락으로 터치");
+            LoadScene();
+        }   
     }
 
     private void LoadScene()
