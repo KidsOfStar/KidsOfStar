@@ -23,7 +23,6 @@ public class LoadTop : PopupBase
         Managers.Instance.SaveManager.Load(slotIndex);
         EditorLog.Log(Managers.Instance.GameManager.Difficulty.ToString());
     }
-
     public void OnCheck()
     {
         // 씬 불러오기
