@@ -5,7 +5,7 @@ public class ConstantWidthCamera : MonoBehaviour
 {
     [Header("가로로 보이고 싶은 world 단위 길이")]
     [Tooltip("예: 10이면, 항상 가로 10 유닛이 보이도록 합니다.")]
-    public float targetWorldWidth = 10f;
+    public float targetWorldWidth = 18f;
 
     private Camera cam;
     private int lastScreenWidth, lastScreenHeight;

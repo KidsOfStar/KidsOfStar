@@ -19,8 +19,6 @@ public class PlayerJumpBaseState : PlayerStateBase
 
     public override void OnUpdate()
     {
-        // 이동 동작 실행
-        context.Controller.Move();
         base.OnUpdate();
 
         // 점프 이후 경과 시간
@@ -42,5 +40,13 @@ public class PlayerJumpBaseState : PlayerStateBase
                 context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Move));
             }
         }
+    }
+
+    public override void OnFixedUpdate()
+    {
+        base.OnFixedUpdate();
+
+        // 이동 동작 실행
+        context.Controller.Move();
     }
 }
