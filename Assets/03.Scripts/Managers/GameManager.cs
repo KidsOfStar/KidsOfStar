@@ -12,16 +12,16 @@ public class GameManager
 
     // Stage Data
     private readonly Dictionary<ChapterType, int> trustDict = new();
-    private readonly Dictionary<EndingType, bool> endingDict = new();
     public Difficulty Difficulty { get; private set; }
     public ChapterType CurrentChapter { get; private set; }
     public int ChapterProgress { get; private set; } = 1;
-    
+
     // Player Data
     public Vector3 PlayerPosition { get; private set; } = Vector3.zero;
     public Player Player { get; private set; }
-    public PlayerFormType UnlockedForms { get; private set; } = PlayerFormType.Stone;
     public PlayerFormType CurrentForm { get; private set; }
+    public PlayerFormType UnlockedForms { get; private set; } = PlayerFormType.Stone;
+    public EndingType CompletedEnding { get; private set; } = EndingType.None;
 
     // Events
     public Action OnProgressUpdated { get; set; }
@@ -58,13 +58,6 @@ public class GameManager
             var chapter = (ChapterType)i;
             trustDict.TryAdd(chapter, 0);
         }
-        
-        count = Enum.GetValues(typeof(EndingType)).Length;
-        for (int i = 0; i < count; i++)
-        {
-            var ending = (EndingType)i;;
-            endingDict.TryAdd(ending, false);
-        }
     }
 
     public void SetLoadData(SaveData saveData)
@@ -75,12 +68,11 @@ public class GameManager
         ChapterProgress = saveData.chapterProgress;
         PlayerPosition = saveData.playerPosition;
         UnlockedForms = saveData.unlockedPlayerForms;
-        // CurrentForm = saveData.currentPlayerForm;
-        
+        // TODO: CurrentForm = saveData.currentPlayerForm;
+        CompletedEnding = saveData.completedEnding;
+
         for (int i = 0; i < saveData.chapterTrust.Length; i++)
             trustDict[(ChapterType)i] = saveData.chapterTrust[i];
-        for (int i = 0; i < saveData.endingDatas.Length; i++)
-            endingDict[(EndingType)i] = saveData.endingDatas[i];
     }
 
     public int[] GetTrustArray()
@@ -92,23 +84,10 @@ public class GameManager
             var chapter = (ChapterType)i;
             trustArr[i] = trustDict[chapter];
         }
-        
+
         return trustArr;
     }
-    
-    public bool[] GetEndingArray()
-    {
-        var count = Enum.GetValues(typeof(EndingType)).Length;
-        var endingArr = new bool[count];
-        for (int i = 0; i < count; i++)
-        {
-            var ending = (EndingType)i;
-            endingArr[i] = endingDict[ending];
-        }
-        
-        return endingArr;
-    }
-    
+
     public void SetChapter(ChapterType chapter)
     {
         CurrentChapter = chapter;
@@ -120,10 +99,10 @@ public class GameManager
         EditorLog.Log(ChapterProgress.ToString());
         if (ChapterProgress > Managers.Instance.DataManager.GetMaxProgress(CurrentChapter))
             return;
-        
+
         OnProgressUpdated?.Invoke();
     }
-    
+
     public void SetLoadedProgress()
     {
         ChapterProgress = ChapterProgress;
@@ -136,20 +115,20 @@ public class GameManager
         ChapterProgress = 1;
         OnProgressUpdated?.Invoke();
     }
-    
+
     // 폼이 해금 될 때 호출 할 함수
     public void UnlockForm(PlayerFormType formType)
     {
         UnlockedForms |= formType;
         OnUnlockedForms?.Invoke(formType);
     }
-    
+
     // 폼이 해금 되었는지 확인하는 함수
     public bool IsFormUnlocked(PlayerFormType formType)
     {
         return (UnlockedForms & formType) == formType;
     }
-    
+
     public void ModifyTrust(int value)
     {
         trustDict[CurrentChapter] += value;
@@ -159,7 +138,7 @@ public class GameManager
     {
         MainCamera = camera;
     }
-    
+
     public void SetPlayer(Player player)
     {
         Player = player;
@@ -168,7 +147,7 @@ public class GameManager
     //사용법: Managers.Instance.GameManager.TriggerEnding(EndingType. 엔딩이름)
     public void TriggerEnding(EndingType endingType)
     {
-        endingDict[endingType] = true;
-        Managers.Instance.UIManager.Show<UIEnding>(endingType); 
+        CompletedEnding |= endingType;
+        Managers.Instance.UIManager.Show<UIEnding>(endingType);
     }
 }

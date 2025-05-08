@@ -4,24 +4,20 @@ public class ScrollingGameBG : MonoBehaviour
 {
     [Tooltip("스크롤 속도")]
     public float scrollSpeed;
-
-    private Vector3 startPos;
-    private float spriteWidth;
+    private Material mat;
+    private Vector2 offset;
 
     // Start is called before the first frame update
     void Start()
     {
-        startPos = transform.position;
-        spriteWidth = GetComponent<SpriteRenderer>().bounds.size.x;
+        mat = GetComponent<SpriteRenderer>().material;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Time.time * scrollSpeed;
-        float offset = Mathf.Repeat(distance, spriteWidth);
-        float newX = startPos.x - offset;
-
-        transform.position = new Vector3(newX, startPos.y, startPos.z);
+        offset.x -= scrollSpeed * Time.deltaTime;
+        offset.x = Mathf.Repeat(offset.x, 1f);
+        mat.mainTextureOffset = offset;
     }
 }
