@@ -17,14 +17,14 @@ public class GameManager
     public ChapterType CurrentChapter { get; private set; }
     public int ChapterProgress { get; private set; } = 1;
     
-    // Play Data
+    // Player Data
     public Vector3 PlayerPosition { get; private set; } = Vector3.zero;
     public Player Player { get; private set; }
-    public List<string> UnlockedForms { get; private set; } = new();
+    public PlayerFormType UnlockedForms;
 
     // Events
     public Action OnProgressUpdated { get; set; }
-    public Action<string> OnUnlockedForms { get; set; }
+    public Action<PlayerFormType> OnUnlockedForms { get; set; }
 
     public GameManager()
     {
@@ -78,13 +78,6 @@ public class GameManager
             trustDict[(ChapterType)i] = saveData.chapterTrust[i];
         for (int i = 0; i < saveData.endingDatas.Length; i++)
             endingDict[(EndingType)i] = saveData.endingDatas[i];
-
-        for (int i = 0; i < saveData.unlockedPlayerForm.Count; i++)
-        {
-            var form = saveData.unlockedPlayerForm[i];
-            if (!UnlockedForms.Contains(form))
-                UnlockedForms.Add(form);
-        }
     }
 
     public int[] GetTrustArray()
@@ -135,12 +128,16 @@ public class GameManager
     }
     
     // 폼이 해금 될 때 호출 할 함수
-    public void UnlockForm(string formName)
+    public void UnlockForm(PlayerFormType formType)
     {
-        if (UnlockedForms.Contains(formName)) return;
-
-        UnlockedForms.Add(formName);
-        OnUnlockedForms?.Invoke(formName);
+        UnlockedForms |= formType;
+        OnUnlockedForms?.Invoke(formType);
+    }
+    
+    // 폼이 해금 되었는지 확인하는 함수
+    public bool IsFormUnlocked(PlayerFormType formType)
+    {
+        return (UnlockedForms & formType) == formType;
     }
     
     public void ModifyTrust(int value)

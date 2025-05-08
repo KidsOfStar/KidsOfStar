@@ -14,7 +14,6 @@ public abstract class SceneBase : MonoBehaviour
 
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
-
     [SerializeField] protected string playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
 
@@ -23,15 +22,13 @@ public abstract class SceneBase : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
-    public Transform MainCameraTransfrom => mainCamera.transform;
-
-    private Action onCutSceneEndHandler;
-
-    [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
+    
     [Header("Player Position")]
+    [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
     [SerializeField] private PlayerSpawnPointer spawnPointer;
     [SerializeField] private ScrollingBackGround scrollingBackGround;
-    // TODO: 각 씬 별로 플레이어가 자유상호작용 때 말하는 부분이 있다면 플레이어도 스폰 후 speaker로 등록해야함
+
+    private Action onCutSceneEndHandler;
 
     private void Awake()
     {
@@ -66,7 +63,7 @@ public abstract class SceneBase : MonoBehaviour
         // 컷신 종료 후 이동 할 플레이어 위치 정보 설정
         if (spawnPointer) spawnPointer.Init();
 
-        InitBG();
+        InitBg();
     }
 
     private void InitManagers()
@@ -156,7 +153,7 @@ public abstract class SceneBase : MonoBehaviour
         }
     }
 
-    private void InitBG()
+    private void InitBg()
     {
         scrollingBackGround.Initialized(mainCamera.transform);
     }
