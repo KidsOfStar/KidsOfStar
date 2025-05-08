@@ -11,28 +11,43 @@ public class TreePuzzleTrigger : MonoBehaviour
     [SerializeField] private int sequenceIndex;
     public int SequenceIndex => sequenceIndex;
 
-    [SerializeField] private SpriteRenderer exclamationRenderer;
+    [SerializeField] private GameObject exclamationInstance;
+    private SpriteRenderer exclamationRenderer;
+
+    [Header("트리거가 켜질 ChapterProgress 값")]
+    [SerializeField] private int requiredProgress;
+
+    private void Awake()
+    {
+        // SpriteRenderer 컴포넌트 가져오기
+        exclamationRenderer = exclamationInstance.GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
-        exclamationRenderer.enabled = true;
+        bool show = Managers.Instance.GameManager.ChapterProgress == requiredProgress;
+        exclamationRenderer.enabled = show;
+
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+
+       Managers.Instance.GameManager.OnProgressUpdated += UpdateExclamation;
     }
 
     // 게임 클리어시 비활성화
     public void DisableExclamation()
     {
-        if (exclamationRenderer == null)
-        {
-            EditorLog.Log($"[{name}]이 null");
-            return;
-        }
         exclamationRenderer.enabled = false;
+    }
+
+    private void UpdateExclamation()
+    {
+        bool show = Managers.Instance.GameManager.ChapterProgress == requiredProgress;
+        exclamationRenderer.enabled = show;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (triggered) return;
+        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress) return;
 
         if (collision.CompareTag("Player"))
         {
@@ -68,9 +83,9 @@ public class TreePuzzleTrigger : MonoBehaviour
                 );
             }
         }
-        else if(collision.CompareTag("Box"))
+        else if (collision.CompareTag("Box"))
         {
-            hasBox = true ;
+            hasBox = true;
         }
         else
         {
@@ -123,7 +138,7 @@ public class TreePuzzleTrigger : MonoBehaviour
         skillBTN.ShowInteractionButton(false);
         skillBTN.OnInteractBtnClick -= TryStartPuzzle;
 
-        Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData,sequenceIndex);
+        Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData, sequenceIndex);
     }
 
     public void ResetTrigger()
@@ -133,8 +148,12 @@ public class TreePuzzleTrigger : MonoBehaviour
         skillBTN.ShowInteractionButton(false);
         skillBTN.OnInteractBtnClick -= TryStartPuzzle;
 
-        if (hasPlayer && hasBox) 
+        if (hasPlayer && hasBox)
             TryEnableInteraction();
     }
 
+    private void OnDestroy()
+    {
+        Managers.Instance.GameManager.OnProgressUpdated -= UpdateExclamation;
+    }
 }
