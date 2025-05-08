@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 0
-  bubbleTr: {fileID: 0}
+  bubbleTr: {fileID: 4610883918351012586}
 --- !u!1 &3003211180421663724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,8 +2980,6 @@ PlayableDirector:
     value: {fileID: 40294981898431206}
   - key: {fileID: -7386622168155260666, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
     value: {fileID: 4594571978788848273}
-  - key: {fileID: -7659086321096271973, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
-    value: {fileID: 4538203414686143099}
   - key: {fileID: -3651655317496748038, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
     value: {fileID: 5603172055872582464}
   - key: {fileID: -2383559344302606143, guid: eadd76857376c1449aa7fc8f97937a62, type: 2}
