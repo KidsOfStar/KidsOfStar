@@ -156,6 +156,7 @@ public abstract class SceneBase : MonoBehaviour
 
     private void InitBg()
     {
+        if(scrollingBackGround != null)
         scrollingBackGround.Initialized(mainCamera.transform);
     }
 

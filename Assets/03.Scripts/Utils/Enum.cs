@@ -143,6 +143,8 @@ public enum ChapterType
     Chapter01,
     Chapter02,
     Chapter03,
+    Chapter04,
+    Chapter05,
 }
 
 public enum Difficulty
