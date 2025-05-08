@@ -7,14 +7,8 @@ using UnityEngine.Networking;
 [Serializable]
 public class SaveData
 {
-    // 저장할 때 이름 : 챕터 + 날짜 + 시간
-    // 현재 챕터, 현재 챕터 진행도
-    // 플레이어 위치
-    // 챕터 신뢰도
-    // 형태변환 해금 진행도
-    // 지금까지 본 엔딩
-    
     // TODO: 현재 폼 저장
+    // TODO: enumFlags로 폼 해금 저장
 
     public string saveName;
     public int difficulty;
