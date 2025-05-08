@@ -125,40 +125,6 @@ public class TreePuzzleSystem : MonoBehaviour
         }
     }
 
-    // 퍼즐선택방향키(1차원 리스트 활용)
-    //public void MoveSelection(string direction)
-    //{
-    //    if (!isRunning) return;
-    //    switch (direction)
-    //    {
-    //        case "Up":
-    //            if (selectedIndex - gridWidth >= 0)
-    //                selectedIndex -= gridWidth;
-    //            break;
-    //        case "Down":
-    //            if (selectedIndex + gridWidth < pieces.Count)
-    //                selectedIndex += gridWidth;
-    //            break;
-    //        case "Left":
-    //            if (selectedIndex % gridWidth != 0)
-    //                selectedIndex -= 1;
-    //            break;
-    //        case "Right":
-    //            if ((selectedIndex + 1) % gridWidth != 0)
-    //                selectedIndex += 1;
-    //            break;
-    //    }
-    //    EditorLog.Log(direction);
-    //    HighlightSelectedPiece();
-    //}
-
-    //// 선택한 퍼즐 90도 회전
-    //public void RotateSelectedPiece()
-    //{
-    //    if (!isRunning) return;
-    //    pieces[selectedIndex].RotateRight();
-    //}
-
     // 퍼즐 조각 클릭시 실행되는 아웃라인 및 회전 메서드
     public void OnPieceSelected(int index)
     {

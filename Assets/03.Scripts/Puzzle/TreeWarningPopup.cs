@@ -28,6 +28,7 @@ public class TreeWarningPopup : PopupBase
         queueIndex = 0;
 
         objIndicator = FindObjectOfType<ObjectIndicator>();
+        //TODO: FindObjectOfType<>()수정
 
         // 첫 경고 표시
         ShowCurrentWarning();
