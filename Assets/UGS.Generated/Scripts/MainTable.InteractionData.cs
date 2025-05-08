@@ -57,7 +57,7 @@ namespace MainTable
 /* Fields. */
 
 		public System.Int32 Index;
-		public CharacterType Character;
+		public System.String Object;
 		public System.String PlayerDialog;
 		public System.Int32 Progress;
   

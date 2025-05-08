@@ -3,10 +3,13 @@ using System.Collections.Generic;
 
 public class DataManager
 {
+    // UGS
     private readonly Dictionary<int, DialogData> dialogDatas;
     private readonly Dictionary<int, NPCData> npcDatas;
     private readonly Dictionary<int, SpecifiedAction> specifiedActionDatas;
+    private readonly Dictionary<int, InteractionData> interactionDatas;
     
+    // SO
     private readonly Dictionary<ChapterType, int> maxProgressDict = new();
     private Dictionary<ChapterType, RequiredIndex[]> requiredIndexDict;
     
@@ -16,6 +19,7 @@ public class DataManager
         dialogDatas = DialogData.GetDictionary();
         npcDatas = NPCData.GetDictionary();
         specifiedActionDatas = SpecifiedAction.GetDictionary();
+        interactionDatas = InteractionData.GetDictionary();
         
         // SO
         LoadChapterProgressData();
@@ -67,7 +71,7 @@ public class DataManager
         }
     }
     
-    public DialogData GetPlayerData(int index)
+    public DialogData GetDialogData(int index)
     {
         if (dialogDatas.TryGetValue(index, out var data))
             return data;
@@ -91,9 +95,26 @@ public class DataManager
         }
     }
     
+    public InteractionData GetInteractionData(int index)
+    {
+        if (interactionDatas.TryGetValue(index, out var data))
+            return data;
+            
+        else
+        {
+            EditorLog.LogError($"DataManager : Not found InteractionData with index: {index}");
+            return null;
+        }
+    }
+
     public Dictionary<int, NPCData> GetNpcDataDict()
     {
         return npcDatas;
+    }
+    
+    public Dictionary<int, InteractionData> GetInteractionDataDict()
+    {
+        return interactionDatas;
     }
     
     public int GetMaxProgress(ChapterType chapterType)

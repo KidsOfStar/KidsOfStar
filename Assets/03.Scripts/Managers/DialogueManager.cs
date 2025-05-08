@@ -61,7 +61,7 @@ public class DialogueManager : ISceneLifecycleHandler
     // 현재 출력 할 대사 데이터를 초기화
     public void SetCurrentDialogData(int index)
     {
-        currentDialogData = Managers.Instance.DataManager.GetPlayerData(index);
+        currentDialogData = Managers.Instance.DataManager.GetDialogData(index);
         dialogQueue.Clear();
         if (currentDialogData == null)
         {
@@ -89,6 +89,17 @@ public class DialogueManager : ISceneLifecycleHandler
         else OnDialogEnd?.Invoke();
     }
 
+    public void SetInteractObjectDialog(string dialog)
+    {
+        currentDialogData = null;
+        dialogQueue.Clear();
+        isCutScene = false;
+
+        // 대사 출력 시작 이벤트 호출
+        OnDialogStart?.Invoke();
+        ShowDialog(dialog, CharacterType.Dolmengee);
+    }
+
     // 대사를 라인별로 나눠서 TextBubble UI에 전달하여 출력
     private void ShowDialog(string dialog, CharacterType character)
     {
@@ -105,6 +116,14 @@ public class DialogueManager : ISceneLifecycleHandler
     // 말풍선 쪽에서 사용하는 함수
     public void OnDialogLineComplete()
     {
+        // 메인 대사 테이블이 아닌 상호작용 오브젝트 대사일 경우
+        if (currentDialogData == null)
+        {
+            textBubble.HideDirect();
+            OnDialogEnd?.Invoke();
+            return;
+        }
+
         // 모든 대사가 출력되었는지 체크
         if (dialogQueue.Count > 0)
         {
@@ -119,21 +138,6 @@ public class DialogueManager : ISceneLifecycleHandler
             dialogActionHandlers[currentDialogData.FirstAction].Execute(currentDialogData, true);
             dialogActionHandlers[currentDialogData.SecondAction].Execute(currentDialogData, false);
         }
-    }
-
-    // 말풍선 위치를 잡기 위해 월드 좌표를 스크린 좌표로 변환
-    private Vector2 WorldToCanvasPosition(Vector3 worldPos)
-    {
-        var cam = Managers.Instance.GameManager.MainCamera;
-#if UNITY_EDITOR
-        if (Managers.Instance.IsDebugMode && !cam)
-        {
-            cam = Camera.main;
-            Managers.Instance.GameManager.SetCamera(cam);
-        }
-#endif
-        var screenPos = cam.WorldToScreenPoint(worldPos);
-        return screenPos;
     }
 
     public void InvokeOnDialogStepEnd()
@@ -151,6 +155,7 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public void OnSceneUnloaded()
     {
+        textBubble = null;
         sceneSpeakers.Clear();
         cutSceneSpeakers.Clear();
     }
