@@ -51,16 +51,15 @@ public class UITitle : UIBase
 
     private void OnStartBtnClick()
     {
-        isGameStart = true; // 게임 시작
-
-        // 게임 시작 시 로드 씬으로 이동
-        LoadScene();
-
-        if(!isGameStart)
+        if (isGameStart)
         {
             return;
         }
 
+        isGameStart = true; // 게임 시작
+
+        // 게임 시작 시 로드 씬으로 이동
+        LoadScene();
     }
 
     private void LoadScene()
