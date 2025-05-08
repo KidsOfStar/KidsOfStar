@@ -183,7 +183,7 @@
             "ImageType": 8
         },
         {
-            "Name": "Test",
+            "Name": "SceneController",
             "TextColor": {
                 "r": 1.0,
                 "g": 1.0,
@@ -192,9 +192,9 @@
             },
             "IsGradientBackground": false,
             "BackgroundColor": {
-                "r": 0.960784375667572,
-                "g": 0.686274528503418,
-                "b": 0.9058824181556702,
+                "r": 0.7647058963775635,
+                "g": 1.0,
+                "b": 0.6367924213409424,
                 "a": 1.0
             },
             "BackgroundGradient": {
@@ -269,7 +269,7 @@
                 "m_NumAlphaKeys": 2
             },
             "FontSize": 14,
-            "FontStyle": 0,
+            "FontStyle": 1,
             "TextAnchor": 4,
             "ImageType": 8
         }

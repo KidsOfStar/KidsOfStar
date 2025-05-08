@@ -155,8 +155,8 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public void OnSceneUnloaded()
     {
-        textBubble = null;
         sceneSpeakers.Clear();
         cutSceneSpeakers.Clear();
+        textBubble = null;
     }
 }

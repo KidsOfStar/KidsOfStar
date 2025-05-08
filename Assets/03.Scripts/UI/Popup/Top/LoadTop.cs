@@ -1,3 +1,5 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoadTop : PopupBase
@@ -13,19 +15,32 @@ public class LoadTop : PopupBase
     protected override void Start()
     {
         base.Start();
-        //OnCheck();
-
         checkButton.onClick.AddListener(OnCheck);
 
     }
     private void Load()
     {
         Managers.Instance.SaveManager.Load(slotIndex);
-        EditorLog.Log(Managers.Instance.GameManager.Difficulty.ToString());
     }
-    public void OnCheck()
+    
+    private void OnCheck()
     {
         // 씬 불러오기
         Load();
+        Time.timeScale = 1;
+        var loadChapter = Managers.Instance.GameManager.CurrentChapter;
+        var loadScene = GetLoadSceneType(loadChapter);
+        Managers.Instance.SceneLoadManager.LoadScene(loadScene);
+    }
+
+    private SceneType GetLoadSceneType(ChapterType chapter)
+    {
+        return chapter switch
+        {
+            ChapterType.Chapter01 => SceneType.Chapter1,
+            ChapterType.Chapter02 => SceneType.Chapter2,
+            ChapterType.Chapter03 => SceneType.Chapter3,
+            _                     => throw new System.ArgumentOutOfRangeException(nameof(chapter), chapter, null)
+        };
     }
 }

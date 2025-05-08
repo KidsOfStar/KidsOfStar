@@ -82,10 +82,17 @@ public class UITextBubble : UIBase
             Managers.Instance.DialogueManager.OnDialogLineComplete();
         }
     }
-    
+
+    public override void HideDirect()
+    {
+        rectTr.SetParent(null);
+        gameObject.SetActive(false);
+    }
+
     private void OnEnable()
     {
         dialogStartTime = 0f;
+        Managers.Instance.DialogueManager.OnClick -= SkipTyping;
         Managers.Instance.DialogueManager.OnClick += SkipTyping;
     }
 

@@ -134,8 +134,8 @@ public enum SceneType
     Chapter1,
     Chapter1Puzzle,
     Chapter2,
-    Chapter202,
     Chapter3,
+    Chapter4,
 }
 
 public enum ChapterType
@@ -163,22 +163,25 @@ public enum InteractionType
 
 #region CutScene
 
+[Flags]
 public enum EndingType
 {
-    // 기본 엔딩
-    Absorb,
-    Stable,
-    Obedience,
-    Adaptation,
-    Mistake,
-    Detection,
+    None = 0,
+    
+    //기본 엔딩
+    Absorb     = 1 << 0,
+    Stable     = 1 << 1,
+    Obedience  = 1 << 2,
+    Adaptation = 1 << 3,
+    Mistake    = 1 << 4,
+    Detection  = 1 << 5,
 
     // 중요 엔딩
-    ComfortableLife,
-    WinRecognition,
-    DreamingCat,
-    IntroTheOcean,
-    DifferentButSame,
+    ComfortableLife  = 1 << 6,
+    WinRecognition   = 1 << 7,
+    DreamingCat      = 1 << 8,
+    IntroTheOcean    = 1 << 9,
+    DifferentButSame = 1 << 10,
 }
 
 public enum CutSceneType

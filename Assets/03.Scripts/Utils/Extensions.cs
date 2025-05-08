@@ -73,8 +73,8 @@ public static class Extensions
             SceneType.Chapter1       => "Chapter_1",
             SceneType.Chapter1Puzzle => "Chapter_103",
             SceneType.Chapter2       => "Chapter_2",
-            SceneType.Chapter202     => "Chapter_202",
             SceneType.Chapter3       => "Chapter_3",
+            SceneType.Chapter4       => "Chapter_4",
             _                        => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
         };
     }

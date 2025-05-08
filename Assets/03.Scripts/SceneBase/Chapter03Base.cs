@@ -10,7 +10,8 @@ public class Chapter03Base : SceneBase
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogs);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Wind);
-        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DogFormChange, playIntroCallback);
+        if (isFirstTime)
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DogFormChange, playIntroCallback);
 
         Init();
         SkillForm();
