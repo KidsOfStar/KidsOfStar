@@ -216,15 +216,15 @@ MonoBehaviour:
   continueButton: {fileID: 785248934938722343}
   backgroundPanel: {fileID: 3792613369458416904}
   endingSpriteList:
-  - type: 5
-    sprite: {fileID: 21300000, guid: 7f19c69d167e80c459af7b429196ac69, type: 3}
   - type: 6
-    sprite: {fileID: 21300000, guid: 66b2f0abfdc32c6468cc82fc63eca2ae, type: 3}
+    sprite: {fileID: 21300000, guid: 7f19c69d167e80c459af7b429196ac69, type: 3}
   - type: 7
-    sprite: {fileID: 21300000, guid: 2304a722ac2ad1a42b3d1be0ff75f362, type: 3}
+    sprite: {fileID: 21300000, guid: 66b2f0abfdc32c6468cc82fc63eca2ae, type: 3}
   - type: 8
-    sprite: {fileID: 21300000, guid: f1128a9761cc7b445b378eb7d6220896, type: 3}
+    sprite: {fileID: 21300000, guid: 2304a722ac2ad1a42b3d1be0ff75f362, type: 3}
   - type: 9
+    sprite: {fileID: 21300000, guid: f1128a9761cc7b445b378eb7d6220896, type: 3}
+  - type: 10
     sprite: {fileID: 21300000, guid: 738f869546dbe9b48be6a2b7e30368a9, type: 3}
   - type: 0
     sprite: {fileID: 21300000, guid: 1a1b4a989b71c794f9225c284cf2a23b, type: 3}
@@ -236,6 +236,8 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: e81c3cdc7045c4b4db39d9cc03b69e63, type: 3}
   - type: 4
     sprite: {fileID: 21300000, guid: 6bed0f3deb64d5f45b86f43f1664c9e9, type: 3}
+  - type: 5
+    sprite: {fileID: 21300000, guid: dd8653b81a28a434fbd2515aeceb2363, type: 3}
 --- !u!1 &6699855726331284796
 GameObject:
   m_ObjectHideFlags: 0

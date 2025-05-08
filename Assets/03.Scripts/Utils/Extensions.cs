@@ -104,6 +104,7 @@ public static class Extensions
             EndingType.Obedience        => "복종",
             EndingType.Adaptation       => "적응",
             EndingType.Mistake          => "실수",
+            EndingType.Detection        => "발각",
             _                           => throw new ArgumentOutOfRangeException(nameof(endingType), endingType, null)
         };
     }

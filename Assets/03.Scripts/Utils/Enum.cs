@@ -171,6 +171,7 @@ public enum EndingType
     Obedience,
     Adaptation,
     Mistake,
+    Detection,
 
     // 중요 엔딩
     ComfortableLife,
