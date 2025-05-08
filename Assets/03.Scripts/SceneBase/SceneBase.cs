@@ -8,12 +8,14 @@ public abstract class SceneBase : MonoBehaviour
 {
     [Header("Chapter")]
     [SerializeField] private ChapterType currentChapter;
+
     [SerializeField] private bool existRequiredDialog = true;
-    [SerializeField] private bool isFirstTime = true;
+    [SerializeField] protected bool isFirstTime = true;
     [SerializeField, TextArea] private string introText; // TODO: first Time은 어떻게 설정하지?
 
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
+
     [SerializeField] protected string playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
 
@@ -22,10 +24,11 @@ public abstract class SceneBase : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
-    
+
     [Header("Player Position")]
     [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
     [SerializeField] private PlayerSpawnPointer spawnPointer;
+
     [SerializeField] private ScrollingBackGround scrollingBackGround;
 
     private Action onCutSceneEndHandler;
@@ -36,19 +39,19 @@ public abstract class SceneBase : MonoBehaviour
         InitManagers();
 
         CreatePool();
-        
+
         // 로딩중인 씬 매니저에게 씬이 활성화 되었음을 알림
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
 
 #if UNITY_EDITOR
         Managers.Instance.LoadTestScene = false;
 #endif
-        
-        // 게임 매니저에 현재 챕터를 설정
-        InitSceneBase();
 
         // 씬이 로드된 후에 플레이어를 스폰
         SpawnPlayer();
+
+        // 게임 매니저에 현재 챕터를 설정
+        InitSceneBase();
 
         // 플레이어 스폰 후 카메라 컨트롤러의 타겟 설정
         InitCameraController();
@@ -104,6 +107,22 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.CutSceneManager.OnCutSceneEnd += onCutSceneEndHandler;
     }
 
+    private void InitSceneBase()
+    {
+        Managers.Instance.GameManager.SetChapter(currentChapter);
+
+        // 챕터 변경 후 Npc 초기화
+        InitNpc();
+
+        if (Managers.Instance.GameManager.IsNewGame)
+            Managers.Instance.GameManager.ResetProgress();
+        else
+        {
+            isFirstTime = false;
+            Managers.Instance.GameManager.SetLoadedProgress();
+        }
+    }
+
     private void InitCameraController()
     {
         if (mainCamera.TryGetComponent(out CameraController cameraController))
@@ -116,22 +135,6 @@ public abstract class SceneBase : MonoBehaviour
     {
         Managers.Instance.UIManager.Show<UIJoystick>();
         Managers.Instance.UIManager.Show<PlayerBtn>().Init();
-    }
-
-    private void InitSceneBase()
-    {
-        Managers.Instance.GameManager.SetChapter(currentChapter);
-        
-        // 챕터 변경 후 Npc 초기화
-        InitNpc();
-        
-        if (Managers.Instance.GameManager.IsNewGame)
-            Managers.Instance.GameManager.ResetProgress();
-        else
-        {
-            isFirstTime = false;
-            Managers.Instance.GameManager.SetLoadedProgress();
-        }
     }
 
     // 씬 내에서 TriggerEnter로 진행도를 업데이트할 때 사용
@@ -156,14 +159,14 @@ public abstract class SceneBase : MonoBehaviour
 
     private void InitBg()
     {
-        if(scrollingBackGround != null)
-        scrollingBackGround.Initialized(mainCamera.transform);
+        if (scrollingBackGround != null)
+            scrollingBackGround.Initialized(mainCamera.transform);
     }
 
     protected abstract void InitSceneExtra(Action callback);
 
     protected abstract void ChapterCutSceneCallback();
-    
+
     private void OnDestroy()
     {
         // 씬이 파괴될 때 반드시 구독 해제

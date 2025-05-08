@@ -134,8 +134,8 @@ public enum SceneType
     Chapter1,
     Chapter1Puzzle,
     Chapter2,
-    Chapter202,
     Chapter3,
+    Chapter4,
 }
 
 public enum ChapterType

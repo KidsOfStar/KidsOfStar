@@ -488,7 +488,7 @@ MonoBehaviour:
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: 0, y: 0}
   maxPosition: {x: 0, y: 0}
-  lightObject: {fileID: 717657345}
+  background: {fileID: 717657345}
 --- !u!114 &587337545
 MonoBehaviour:
   m_ObjectHideFlags: 0
