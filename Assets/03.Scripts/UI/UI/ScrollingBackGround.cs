@@ -47,12 +47,24 @@ public class ScrollingBackGround : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    //private void LateUpdate()
+    //{
+    //    distance = cam.position.x - camStartPos.x;
+    //    transform.position = new Vector3(cam.position.x, transform.position.y, 0);
+
+    //    for(int i =0; i< backGrounds.Length; i++)
+    //    {
+    //        float speed = backSpeed[i] * parallaxSpeed;
+    //        mat[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
+    //    }
+    //}
+
+    private void FixedUpdate()
     {
         distance = cam.position.x - camStartPos.x;
         transform.position = new Vector3(cam.position.x, transform.position.y, 0);
 
-        for(int i =0; i< backGrounds.Length; i++)
+        for (int i = 0; i < backGrounds.Length; i++)
         {
             float speed = backSpeed[i] * parallaxSpeed;
             mat[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
