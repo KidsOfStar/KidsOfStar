@@ -1336,7 +1336,7 @@ GameObject:
   - component: {fileID: 508550156}
   - component: {fileID: 508550161}
   - component: {fileID: 508550160}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TestGameBlock
   m_TagString: HideArea
   m_Icon: {fileID: 0}
