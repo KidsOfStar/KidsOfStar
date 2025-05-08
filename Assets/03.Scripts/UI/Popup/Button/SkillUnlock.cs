@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,9 +30,9 @@ public class SkillUnlock : MonoBehaviour
         skillBGs = new List<GameObject> { hideBG, catBG, dogBG, squirrelBG };
 
         // 챕터 번호와 배경/아이콘 오브젝트 매핑
-        skillMap = new Dictionary<string, (GameObject, GameObject)>
+        skillMap = new Dictionary<PlayerFormType, (GameObject, GameObject)>
         {
-            { "Squirrel", (squirrelBG, squirrelIcon) },
+            { PlayerFormType.Squirrel, (squirrelBG, squirrelIcon) },
             { "Dog", (dogBG, dogIcon) },
             { "Cat", (catBG, catIcon) },
             { "Hide", (hideBG, hideIcon) },
@@ -70,7 +71,7 @@ public class SkillUnlock : MonoBehaviour
     {
         var unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
 
-        foreach (var chapter in unlockedSkills)
+        foreach (var chapter in Enum.GetValues(typeof(PlayerFormType)))
         {
             if (skillMap.TryGetValue(chapter, out var skillPair))
             {

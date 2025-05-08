@@ -20,7 +20,8 @@ public class GameManager
     // Player Data
     public Vector3 PlayerPosition { get; private set; } = Vector3.zero;
     public Player Player { get; private set; }
-    public PlayerFormType UnlockedForms;
+    public PlayerFormType UnlockedForms { get; private set; } = PlayerFormType.Stone;
+    public PlayerFormType CurrentForm { get; private set; }
 
     // Events
     public Action OnProgressUpdated { get; set; }
@@ -73,6 +74,8 @@ public class GameManager
         CurrentChapter = (ChapterType)saveData.chapter;
         ChapterProgress = saveData.chapterProgress;
         PlayerPosition = saveData.playerPosition;
+        UnlockedForms = saveData.unlockedPlayerForms;
+        // CurrentForm = saveData.currentPlayerForm;
         
         for (int i = 0; i < saveData.chapterTrust.Length; i++)
             trustDict[(ChapterType)i] = saveData.chapterTrust[i];
@@ -118,6 +121,13 @@ public class GameManager
         if (ChapterProgress > Managers.Instance.DataManager.GetMaxProgress(CurrentChapter))
             return;
         
+        OnProgressUpdated?.Invoke();
+    }
+    
+    public void SetLoadedProgress()
+    {
+        ChapterProgress = ChapterProgress;
+        IsNewGame = true;
         OnProgressUpdated?.Invoke();
     }
 
