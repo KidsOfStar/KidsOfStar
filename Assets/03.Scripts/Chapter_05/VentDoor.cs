@@ -9,6 +9,7 @@ public class VentDoor : MonoBehaviour
     public GameObject ventBG;
     public GameObject ventMap;
     public GameObject ventBlockMap;
+    public GameObject ventObject;
 
     [Header("Vent Out")]
     public GameObject timeMap;
@@ -73,6 +74,8 @@ public class VentDoor : MonoBehaviour
     {
         ventIn.Add(ventBG);
         ventIn.Add(ventMap);
+        ventIn.Add(ventBlockMap);
+        ventIn.Add(ventObject);
     }
 
     private void VentOut()
