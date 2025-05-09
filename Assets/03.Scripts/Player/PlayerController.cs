@@ -308,7 +308,8 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         Vector2 origin = (Vector2)boxCollider.bounds.center
         + Vector2.right * (Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f));
 
-        Vector2 size = boxCollider.bounds.size * 0.9f;
+        Vector2 originalSize = boxCollider.bounds.size*0.8f;
+        Vector2 size = new Vector2(originalSize.x * 0.2f, originalSize.y);
 
         Collider2D hit = Physics2D.OverlapBox(
             origin, size, 0f,
