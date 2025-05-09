@@ -65,7 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6593b658a8c8d35438a9798e8e9f227f, type: 2}
   m_sharedMaterial: {fileID: 5922590977744021984, guid: 6593b658a8c8d35438a9798e8e9f227f, type: 2}
@@ -147,7 +149,7 @@ GameObject:
   - component: {fileID: 1715542083926490942}
   - component: {fileID: 2720872560833681720}
   m_Layer: 5
-  m_Name: UITextBubble
+  m_Name: DoorPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!223 &2851685759153203458
@@ -191,7 +193,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 50
@@ -363,6 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2391134598240523232}
+  - component: {fileID: 3103147352756186142}
   m_Layer: 5
   m_Name: UITextBubble
   m_TagString: Untagged
@@ -391,6 +394,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 140}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &3103147352756186142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6131454819547355987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6dc336e0352e1428cce8004fd5d3b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiPosition: 1
+  closeBtn: {fileID: 0}
+  checkTimeStop: 0
+  isFirst: 1
+  messageText: {fileID: 3419803984505640107}
+  boxWarningText: {fileID: 3419803984505640107}
+  boxFallingText: {fileID: 3419803984505640107}
+  confirmButton: {fileID: 0}
+  retryButton: {fileID: 0}
 --- !u!1 &8429540792983777605
 GameObject:
   m_ObjectHideFlags: 0

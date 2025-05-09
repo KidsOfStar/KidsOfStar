@@ -136,6 +136,10 @@ public enum SceneType
     Chapter2,
     Chapter3,
     Chapter4,
+    Chapter501,
+    Chapter502,
+    Chapter503,
+    Chapter504,
 }
 
 public enum ChapterType
