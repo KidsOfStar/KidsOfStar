@@ -12,6 +12,9 @@ public static class Extensions
             BgmSoundType.InForestPuzzle => "InForestPuzzle",
             BgmSoundType.WithDogs       => "WithDogs",
             BgmSoundType.WithDogsRun    => "WithDogs_Run",
+            BgmSoundType.City           => "City",
+            BgmSoundType.CityPuzzle     => "CityPuzzle",
+            BgmSoundType.Aquarium       => "Aquarium",
             _                           => throw new ArgumentOutOfRangeException(nameof(bgm), bgm, null)
         };
     }

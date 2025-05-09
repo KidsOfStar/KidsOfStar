@@ -56,7 +56,6 @@ public class TreePuzzlePopup : PopupBase
     private void OnCancelButtonClicked()
     {
         currentPuzzle.StopPuzzle();
-        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
-        Managers.Instance.GameManager.Player.Controller.IsControllable = true;
+        currentPuzzle.OnExit();
     }
 }

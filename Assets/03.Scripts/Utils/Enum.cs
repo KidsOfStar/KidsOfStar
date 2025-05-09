@@ -82,6 +82,9 @@ public enum BgmSoundType
     InForestPuzzle,
     WithDogs,
     WithDogsRun,
+    City,
+    CityPuzzle,
+    Aquarium,
 }
 
 public enum AmbienceSoundType
