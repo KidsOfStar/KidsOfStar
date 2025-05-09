@@ -6,8 +6,7 @@ public class ProgressNpcPlacer : MonoBehaviour
     [SerializeField] private bool isDisableInStart;
     [SerializeField] private NpcPositionData[] positionDatas;
     
-    // 게임매니저에 있는 이벤트에 등록
-    private void Start()
+    public void Init()
     {
         Managers.Instance.GameManager.OnProgressUpdated += MoveNpcToPosition;
         

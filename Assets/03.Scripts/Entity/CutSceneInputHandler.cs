@@ -28,10 +28,10 @@ public class CutSceneInputHandler : DialogInputHandler
     private void Update()
     {
 #if TEST_BUILD
-        if (Input.GetMouseButtonDown(2))
-        {
-            Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
-        }
+        // if (Input.GetMouseButtonDown(2))
+        // {
+        //     Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
+        // }
 #endif
         
         if (!isTalk) return;
