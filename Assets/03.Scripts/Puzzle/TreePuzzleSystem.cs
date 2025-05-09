@@ -42,6 +42,8 @@ public class TreePuzzleSystem : MonoBehaviour
     [SerializeField] private int totalPuzzleCount = 2;
     // Trigger형태를 저장한 딕셔너리
     private Dictionary<int, TreePuzzleTrigger> triggerMap;
+    
+    //TODO: FindObjectsType보다 다른 방법으로 리펙토링하기.
     private void Awake()
     {
         triggerMap = new Dictionary<int, TreePuzzleTrigger>();
@@ -117,7 +119,7 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         currentTime = timeLimit;
         isRunning = true;
-
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForestPuzzle);
         foreach (var piece in pieces)
         {
             piece.RandomizeRotation();
@@ -221,6 +223,7 @@ public class TreePuzzleSystem : MonoBehaviour
     // UI닫기
     public void OnExit()
     {
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
         Managers.Instance.GameManager.Player.Controller.IsControllable = true;
     }
