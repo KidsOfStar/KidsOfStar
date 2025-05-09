@@ -12,11 +12,6 @@ public enum Direction
     Right
 }
 
-// 물체를 감지할 때마다 MaxWeight를 초과하면 고장나는 코루틴이 시작되어야함
-// 고장나면 움직이지 않음
-// 일정시간 이후 다시 사용할 수 있어야함
-// 잠긴 상태인지 아닌지 정해야함(퍼즐을 풀어야 함)
-
 public class Elevator : MonoBehaviour
 {
     // 이동속도 및 방향을 설정할 수 있어야 함
@@ -37,9 +32,10 @@ public class Elevator : MonoBehaviour
     private readonly WaitForSeconds repairTime = new(5f);
     
     private readonly List<IWeightable> weightables = new();
-    private const float MaxWeight = 3f;
+    private const float MaxWeight = 10f;
     private const float VerticalMargin = 0.02f;
 
+    private Vector3 prevPos;
     private Vector3 startPos;
     private Vector3 targetPos;
     private bool isBroken = false;
@@ -87,7 +83,8 @@ public class Elevator : MonoBehaviour
             float t = elapsed / duration;
             Vector3 nextPos = Vector3.Lerp(from, to, t);
             
-            rigid.MovePosition(nextPos);
+            // rigid.MovePosition(nextPos);
+            transform.position = nextPos;
 
             elapsed += Time.deltaTime;
             yield return waitForFixedUpdate;
@@ -95,20 +92,6 @@ public class Elevator : MonoBehaviour
 
         // 정확히 to 위치 보정
         transform.position = to;
-
-        if (toTarget && direction == Direction.Up)
-        {
-            
-        }
-    }
-
-    private void FixedPlayerVelocity()
-    {
-        for (int i = 0; i < weightables.Count; i++)
-        {
-            var weightable = weightables[i];
-            
-        }
     }
 
     private IEnumerator BreakSequence()
@@ -202,19 +185,35 @@ public class Elevator : MonoBehaviour
         return totalWeight;
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (isBroken || isLocked) return;
+        if (direction == Direction.Left || direction == Direction.Right) return;
+        if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
+
+        if (IsOnElevator(other.collider))
+        {
+            var weightableTr = other.transform;
+            var weightablePos = weightableTr.position;
+            var fixedPositionY = coll.bounds.max.y - 0.1f;
+            var fixedPosition = new Vector2(weightablePos.x, fixedPositionY);
+            other.transform.position = fixedPosition;
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D other)
     {
         if (isBroken || isLocked) return;
         if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
 
         // 물체가 엘레베이터에 올라탄 상태라면
-        // 물체가 엘레베이터에 올라탄 상태가 아니라면
         if (IsOnElevator(other.collider))
         {
             if (weightables.Contains(weightable)) return;
             other.transform.SetParent(transform);
             weightables.Add(weightable);
         }
+        // 물체가 엘레베이터에 올라탄 상태가 아니라면
         else
         {
             other.transform.SetParent(null);

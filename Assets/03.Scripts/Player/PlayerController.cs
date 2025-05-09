@@ -283,6 +283,11 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     {
         return Managers.Instance.GameManager.Player.FormControl.GetWeight();
     }
+    
+    public Rigidbody2D GetRigidbody2D()
+    {
+        return rigid;
+    }
 
     public void StartLeafJump(Vector2 dropPosition,float jumpPower)
     {
