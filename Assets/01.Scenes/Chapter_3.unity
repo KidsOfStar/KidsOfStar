@@ -6419,6 +6419,7 @@ MonoBehaviour:
   - {fileID: 2044657736}
   - {fileID: 1999632609}
   - {fileID: 1370181845}
+  objects: []
   mainCamera: {fileID: 2020590303}
   spawnPointer: {fileID: 45350827}
   scrollingBackGround: {fileID: 2068884058}
@@ -25495,6 +25496,7 @@ MonoBehaviour:
   offset: {x: 0, y: 3, z: -10}
   minPosition: {x: -38, y: -5}
   maxPosition: {x: 375, y: 5}
+  smoothTime: 0.15
   background: {fileID: 2068884056}
 --- !u!114 &2020590307
 MonoBehaviour:
@@ -25512,8 +25514,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 0
-  m_BlendUpdateMethod: 0
+  m_UpdateMethod: 1
+  m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
