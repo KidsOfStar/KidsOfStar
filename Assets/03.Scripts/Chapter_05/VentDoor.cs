@@ -15,7 +15,7 @@ public class VentDoor : MonoBehaviour
     public GameObject timeMap;
     public GameObject Hide;
 
-    private bool isVentDoor = false; // 벤트 안으로 들어갔는지 여부
+    private bool isVentInOut = false; // 벤트 안으로 들어갔는지 여부
 
     List<GameObject> ventIn = new List<GameObject>();
     List<GameObject> ventOut = new List<GameObject>();
@@ -27,27 +27,26 @@ public class VentDoor : MonoBehaviour
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
-        skillBTN.OnInteractBtnClick += OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
+        //skillBTN.OnInteractBtnClick += OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
         VentIn();
         VentOut();
     }
 
-    private void OnDestroy()
-    {
-        if (skillBTN != null)
-        {
-            skillBTN.OnInteractBtnClick -= OnVentInteraction; // 상호작용 버튼 클릭 이벤트 해제
-        }
-    }
+    //private void OnDestroy()
+    //{
+    //    if (skillBTN != null)
+    //    {
+    //        skillBTN.OnInteractBtnClick -= OnVentInteraction; // 상호작용 버튼 클릭 이벤트 해제
+    //    }
+    //}
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("나야!");
-            isVentDoor = true; // 벤트 안으로 들어갔는지 여부
             skillBTN.ShowInteractionButton(true); // 상호작용 버튼 비활성화
+            skillBTN.OnInteractBtnClick += OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
         }
     }
 
@@ -55,9 +54,8 @@ public class VentDoor : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("나가요~");
-            isVentDoor = false; // 벤트 안으로 들어갔는지 여부
             skillBTN.ShowInteractionButton(false); // 상호작용 버튼 비활성화
+            skillBTN.OnInteractBtnClick -= OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
         }
     }
 
@@ -65,7 +63,7 @@ public class VentDoor : MonoBehaviour
     {
         foreach (GameObject obj in objects)
         {
-            // Check if the object is not null before setting active
+            // 오브젝트가 null이 아닐 경우에만 활성화/비활성화
             if (obj != null)
                 obj.SetActive(isActive);
         }
@@ -86,15 +84,19 @@ public class VentDoor : MonoBehaviour
 
     private void OnVentInteraction()
     {
-        if (isVentDoor)   // isVentDoor = true
+        if (!isVentInOut)  
         {
+            Debug.Log($"{isVentInOut} - 벤트 안으로 들어감");
             SetActiveGroup(ventIn, true);
             SetActiveGroup(ventOut, false);
+            isVentInOut = true; // 벤트 안으로 들어갔는지 여부
         }
         else
         {
+            Debug.Log($"{isVentInOut} - 벤트 밖으로 나감");
             SetActiveGroup(ventIn, false);
             SetActiveGroup(ventOut, true);
+            isVentInOut = false; // 벤트 안으로 들어갔는지 여부
         }
     }
 }
