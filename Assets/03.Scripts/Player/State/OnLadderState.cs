@@ -6,6 +6,8 @@ public class OnLadderState : PlayerStateBase
 {
     // 플레이어의 본래 중력 값
     private float gravityScale = 0;
+    // 프레임 간에 위치값 변경 추적
+    private Vector2 previousPosition = Vector2.zero;
 
     public OnLadderState(PlayerContextData data, PlayerStateFactory factory) : base(data, factory)
     {
@@ -20,6 +22,7 @@ public class OnLadderState : PlayerStateBase
         context.Rigid.gravityScale = 0f;
         // 본래 있었을지도 모를 가속도 제거
         context.Rigid.velocity = Vector2.zero;
+        previousPosition = context.Controller.transform.position;
     }
 
     public override void OnUpdate()
@@ -31,21 +34,37 @@ public class OnLadderState : PlayerStateBase
         {
             if(context.Controller.MoveDir.y > 0)
             { 
-
+                // 플레이어가 땅에 닿은 상태 && 사다리 접촉 X
+                if(!context.Controller.IsGround && !context.Controller.TouchLadder)
+                {
+                    context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
+                }
             }
             else
             {
                 // 아래 방향 키를 입력중이라면
-                // isGround 체크 기준과 같은 기준으로 박스 캐스트
-                RaycastHit2D hit = Physics2D.BoxCast(context.BoxCollider.bounds.center, context.BoxCollider.bounds.size, 0f,
-                Vector2.down, 0.02f, context.Controller.GroundLayer);
-
-                // 감지된 오브젝트가 있음 && 감지된 땅 오브젝트에 PlatformEffector2D 있음
-                if(hit.collider != null && !hit.collider.TryGetComponent<PlatformEffector2D>(out _))
+                // 이전 위치 값 유무 체크 && 땅에 닿은 상태
+                if(previousPosition != Vector2.zero && context.Controller.IsGround)
                 {
-                    // 대기 상태로 전환
-                    context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
+                    // 입력은 되고 있지만 위치 값이 변하지 않을 경우
+                    if(Mathf.Abs(context.Controller.transform.position.y - previousPosition.y) < 0.02f)
+                    {
+                        context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
+                    }
                 }
+
+                previousPosition = context.Controller.transform.position;
+
+                // isGround 체크 기준과 같은 기준으로 박스 캐스트
+                //RaycastHit2D hit = Physics2D.BoxCast(context.BoxCollider.bounds.center, context.BoxCollider.bounds.size, 0f,
+                //Vector2.down, 0.02f, context.Controller.GroundLayer);
+
+                //// 감지된 오브젝트가 있음 && 감지된 땅 오브젝트에 PlatformEffector2D 있음
+                //if(hit.collider != null && !hit.collider.TryGetComponent<PlatformEffector2D>(out _))
+                //{
+                //    // 대기 상태로 전환
+                //    context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
+                //}
             }
         }
     }

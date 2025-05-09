@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,21 +17,15 @@ public class UIEnding : UIBase
     [SerializeField] private Image endingImage;
     [SerializeField] private TextMeshProUGUI clickToContinueText;
     [SerializeField] private Button continueButton;
-    [SerializeField] private Image backgroundPanel;
+
+    [Header("Fade Components")]
+    public FadeEffect backgroundFadeEffect;
 
     [Header("엔딩 일러스트 목록")]
     [SerializeField] private List<SpritePair> endingSpriteList;
 
     private Dictionary<EndingType, Sprite> endingSpriteDict;
     private bool canClick = false;
-
-    private readonly Color transparentWhite = new Color(1f, 1f, 1f, 0f);
-    private readonly Color opaqueWhite = new Color(1f, 1f, 1f, 1f);
-    private readonly Color transparentBlack = new Color(0f, 0f, 0f, 0f);
-    private readonly Color opaqueBlack = new Color(0f, 0f, 0f, 1f);
-
-    private const float fadeTime = 2f;
-    private const float showDelay = 3f;
 
     private void OnEnable()
     {
@@ -49,11 +42,9 @@ public class UIEnding : UIBase
         continueButton.onClick.AddListener(() => StartCoroutine(OnContinue()));
         continueButton.interactable = false; // 처음엔 비활성화
 
-        backgroundPanel.enabled = true;
-        backgroundPanel.color = transparentBlack;
-
-        endingImage.color = transparentWhite;
+        backgroundFadeEffect.fadePanel.color = new Color(0, 0, 0, 1f);
         clickToContinueText.gameObject.SetActive(false);
+        endingImage.gameObject.SetActive(false);
     }
     
     public override void Opened(params object[] param)
@@ -68,7 +59,6 @@ public class UIEnding : UIBase
 
         if (!endingSpriteDict.TryGetValue(endingType, out var sprite))
         {
-            EditorLog.LogWarning($"[UIEnding] {endingType}에 해당하는 이미지가 없습니다!");
             return;
         }
 
@@ -78,14 +68,10 @@ public class UIEnding : UIBase
 
     private IEnumerator PlayEndingFlow()
     {
-        yield return Fade(
-           from: transparentWhite,
-           to: opaqueWhite,
-           duration: fadeTime,
-           applyColor: c => endingImage.color = c
-       );
-        yield return new WaitForSeconds(showDelay);
+        yield return StartCoroutine(backgroundFadeEffect.FadeIn());
+        yield return new WaitForSeconds(1f);
 
+        endingImage.gameObject.SetActive(true);
 
         canClick = true;
         clickToContinueText.gameObject.SetActive(true);
@@ -97,23 +83,11 @@ public class UIEnding : UIBase
     {
         canClick = false;
         clickToContinueText.gameObject.SetActive(false);
+        continueButton.interactable = false;
 
-        // 배경 패널 페이드 인 (투명Black → 불투명Black)
-        StartCoroutine(Fade(
-            from: transparentBlack,
-            to: opaqueBlack,
-            duration: fadeTime,
-            applyColor: c => backgroundPanel.color = c
-        ));
+        yield return StartCoroutine(backgroundFadeEffect.FadeOut());
 
-        // 엔딩 이미지 페이드 아웃 (불투명White → 투명White)
-        yield return Fade(
-            from: opaqueWhite,
-            to: transparentWhite,
-            duration: fadeTime,
-            applyColor: c => endingImage.color = c
-        );
-
+        yield return new WaitForSeconds(1f);
         // 씬 전환
         Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title);
     }
@@ -127,18 +101,5 @@ public class UIEnding : UIBase
             clickToContinueText.alpha = 0f;
             yield return new WaitForSeconds(0.5f);
         }
-    }
-
-    private IEnumerator Fade(Color from, Color to, float duration, Action<Color> applyColor)
-    {
-        float elapsedTime = 0f;
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
-            applyColor(Color.Lerp(from, to, t));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        applyColor(to);
     }
 }
