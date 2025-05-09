@@ -8,12 +8,15 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector3 offset = new(0, 2f, -10f);
     [SerializeField] private Vector2 minPosition;
     [SerializeField] private Vector2 maxPosition;
+    [SerializeField] private float smoothTime = 0.15f;
     
     [Header("Background")] // 씬에 배치 할 배경 오브젝트 : 컷씬 재생 중에는 비활성화
     [SerializeField] private GameObject background;
     
     private Transform target = null;
     private CutSceneManager cutSceneManager;
+    private Vector3 velocity = Vector3.zero;
+    
     private const float SmoothSpeed = 8f;
 
     public void Init()
@@ -28,7 +31,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (!followTarget)
             return;
@@ -41,7 +44,9 @@ public class CameraController : MonoBehaviour
 #endif
         if (!target || cutSceneManager.IsCutScenePlaying) return;
         Vector3 desiredPosition = target.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed * Time.deltaTime);
+        // Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed * Time.deltaTime);
+
+        Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothTime);
         
         smoothedPosition.x = Mathf.Clamp(smoothedPosition.x, minPosition.x, maxPosition.x);
         smoothedPosition.y = Mathf.Clamp(smoothedPosition.y, minPosition.y, maxPosition.y);

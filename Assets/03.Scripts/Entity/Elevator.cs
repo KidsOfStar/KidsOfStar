@@ -14,6 +14,11 @@ public enum Direction
     Right
 }
 
+// 물체를 감지할 때마다 MaxWeight를 초과하면 고장나는 코루틴이 시작되어야함
+// 고장나면 움직이지 않음
+// 일정시간 이후 다시 사용할 수 있어야함
+// 잠긴 상태인지 아닌지 정해야함(퍼즐을 풀어야 함)
+
 public class Elevator : MonoBehaviour
 {
     // 이동속도 및 방향을 설정할 수 있어야 함
@@ -29,14 +34,13 @@ public class Elevator : MonoBehaviour
 
     private readonly WaitForSeconds moveWaitTime = new(0.5f);
     private const float MaxWeight = 3f;
-    private const float VerticalMargin = 0.01f;
+    private const float VerticalMargin = 0.02f;
 
     private Vector3 startPos;
     private bool isBroken = false;
 
     private void Start()
     {
-        // 이동 방향, 거리에 따라 엘레베이터 초기화
         startPos = transform.position;
 
         if (!isLocked)
@@ -110,17 +114,6 @@ public class Elevator : MonoBehaviour
         return targetPos;
     }
 
-    // 바닥면이 반 이상 닿은 물체의 무게를 감지해야함
-    // 바닥면이 반 이상 닿은 물체만 같은 방향으로 이동해야함
-    // 물체를 감지할 때마다 MaxWeight를 초과하면 고장나는 코루틴이 시작되어야함
-    // 고장나면 움직이지 않음
-    // 일정시간 이후 다시 사용할 수 있어야함
-    // 잠긴 상태인지 아닌지 정해야함(퍼즐을 풀어야 함)
-
-    // 충돌이 시작되면 물체가 엘레베이터에 올라탄 상태인지를 계속해서 판단
-    // 올라탄 상태라면 자식으로 추가
-    // 올라탄 상태가 아니라면 자식에서 제거
-
     private void OnCollisionStay2D(Collision2D other)
     {
         if (isBroken) return;
@@ -145,6 +138,7 @@ public class Elevator : MonoBehaviour
         var elevator = elevatorCollider.bounds;
 
         // 물체의 바닥면이 엘레베이터의 바닥면보다 아래에 있으면 false
+        EditorLog.Log("수평체크: " + Mathf.Abs(obj.min.y - elevator.max.y));
         if (Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin)
             return false;
 
