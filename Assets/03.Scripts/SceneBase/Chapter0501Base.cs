@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 
 public class Chapter0501Base : SceneBase
 {
-    protected override void ChapterCutSceneCallback()
+    protected override void CutSceneEndCallback()
     {
         PlayChapterIntro();
     }

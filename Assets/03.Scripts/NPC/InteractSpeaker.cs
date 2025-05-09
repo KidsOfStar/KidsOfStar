@@ -43,6 +43,12 @@ public abstract class InteractSpeaker : MonoBehaviour
         // 필수 대사 인덱스 리스트를 읽어옴
         var indexList = Managers.Instance.DataManager.GetRequiredIndex(ChapterType);
 
+        if (indexList == null || indexList.Length == 0)
+        {
+            Debug.LogWarning($"No required dialog index found for {ChapterType}");
+            return;
+        }
+        
         for (int i = 0; i < indexList.Length; i++)
         {
             var indexData = indexList[i];

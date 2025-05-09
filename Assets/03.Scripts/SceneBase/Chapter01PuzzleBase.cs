@@ -16,7 +16,7 @@ public class Chapter01PuzzleBase : SceneBase
         spawner.StartSpawn();
     }
 
-    protected override void ChapterCutSceneCallback()
+    protected override void CutSceneEndCallback()
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.MaorumChase);
     }

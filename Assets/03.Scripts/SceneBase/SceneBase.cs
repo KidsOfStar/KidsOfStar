@@ -62,7 +62,7 @@ public abstract class SceneBase : MonoBehaviour
 
         // 씬 고유 초기화 작업
         // 챕터별 컷신이 필요한 경우 컷씬 재생 이후 Bgm, Intro 등이 재생되도록 콜백을 등록
-        InitSceneExtra(ChapterCutSceneCallback);
+        InitSceneExtra(CutSceneEndCallback);
 
         // 컷신 종료 후 이동 할 플레이어 위치 정보 설정
         if (spawnPointer) spawnPointer.Init();
@@ -188,7 +188,7 @@ public abstract class SceneBase : MonoBehaviour
 
     protected abstract void InitSceneExtra(Action callback);
 
-    protected abstract void ChapterCutSceneCallback();
+    protected abstract void CutSceneEndCallback();
 
     private void OnDestroy()
     {
