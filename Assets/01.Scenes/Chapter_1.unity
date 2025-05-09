@@ -347,13 +347,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 231997132403031121, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: positionDatas.Array.data[0].position.y
+      value: -2.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2222573361031882521, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 2222573361031882521, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 2222573361031882521, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -391,11 +395,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shell
       objectReference: {fileID: 0}
+    - target: {fileID: 5061749671324791383, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d220123f2e4bf1949af5e6a849cf68fe, type: 3}
+    - target: {fileID: 5575908958130948438, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575908958130948438, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575908958130948438, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575908958130948438, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575908958130948438, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575908958130948438, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+--- !u!114 &919943300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2490942458796102739, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+  m_PrefabInstance: {fileID: 919943299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7091fbafd1b6f4f45915201d83df4469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928272734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,6 +3187,8 @@ MonoBehaviour:
   - {fileID: 2412888711101645567}
   - {fileID: 6487071315053406516}
   - {fileID: 2876801511946059318}
+  objects:
+  - {fileID: 919943300}
   mainCamera: {fileID: 2020590303}
   spawnPointer: {fileID: 0}
   scrollingBackGround: {fileID: 3213932190791655461}
@@ -4113,7 +4158,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -672470319, guid: 8e94ffa2653ecf7478fc08a712b6497f, type: 3}
+  m_Sprite: {fileID: 424436016, guid: 94aa7a6c0e32d9b4eb9cb5cb63caae42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

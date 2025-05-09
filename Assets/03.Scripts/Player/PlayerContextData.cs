@@ -16,6 +16,9 @@ public class PlayerContextData
     // 마지막 벽 타기 이후의 시간 체크
     public float CanClingTimer = 0;
 
+    // 사다리 타고 내려오면서 충돌 무시 상태가 된 콜라이더
+    public Collider2D IgnoredPlatform = null;
+
     // 생성자
     // 각 상태에서 사용될 데이터를 보관
     public PlayerContextData(Player player, PlayerController con, PlayerFormController formCon,
