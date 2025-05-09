@@ -8,6 +8,7 @@ public class VentDoor : MonoBehaviour
     [Header("Vent In")]
     public GameObject ventBG;
     public GameObject ventMap;
+    public GameObject ventBlockMap;
 
     [Header("Vent Out")]
     public GameObject timeMap;
@@ -43,6 +44,7 @@ public class VentDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("나야!");
             isVentDoor = true; // 벤트 안으로 들어갔는지 여부
             skillBTN.ShowInteractionButton(true); // 상호작용 버튼 비활성화
         }
@@ -52,6 +54,7 @@ public class VentDoor : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("나가요~");
             isVentDoor = false; // 벤트 안으로 들어갔는지 여부
             skillBTN.ShowInteractionButton(false); // 상호작용 버튼 비활성화
         }
