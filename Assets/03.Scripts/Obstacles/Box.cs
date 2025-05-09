@@ -16,7 +16,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     private Rigidbody2D rb;
     private int boxLayer;
     private int playerLayer;
-    public Vector3 baseBoxPos;
+    public Vector3 boxBasePos;
 
     void Awake()
     {
@@ -61,6 +61,6 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
     public void ResetPosition()
     {
-        this.gameObject.transform.position = baseBoxPos;
+        this.gameObject.transform.position = boxBasePos;
     }
 }

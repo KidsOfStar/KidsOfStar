@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxWeight: 2
   ignoreDuration: 0.5
-  baseBoxPos: {x: 0, y: 0, z: 0}
+  boxBasePos: {x: 0, y: 0, z: 0}
 --- !u!50 &6703722907184269089
 Rigidbody2D:
   serializedVersion: 4
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 33656d554db691a4f980d72128dd4130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
