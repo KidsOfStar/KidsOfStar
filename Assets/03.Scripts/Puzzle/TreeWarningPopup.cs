@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class TreeWarningPopup : PopupBase
 {
@@ -27,8 +28,7 @@ public class TreeWarningPopup : PopupBase
         warningQueue = param.OfType<WarningType>().ToArray();
         queueIndex = 0;
 
-        objIndicator = FindObjectOfType<ObjectIndicator>();
-        //TODO: FindObjectOfType<>()수정
+        objIndicator = param.OfType<ObjectIndicator>().FirstOrDefault();
 
         // 첫 경고 표시
         ShowCurrentWarning();
