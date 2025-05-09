@@ -136,10 +136,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ladder_0
+      name: ladder_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 40
         y: 0
         width: 40
         height: 40
@@ -157,10 +157,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ladder_1
+      name: ladder_0
       rect:
         serializedVersion: 2
-        x: 40
+        x: 0
         y: 0
         width: 40
         height: 40
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c872e6018b414440b59ade7defc8631
-      internalID: 1310661661
+      spriteID: b5fa1e7fb6f8d69439191aac998c6a7b
+      internalID: 1331415826
       vertices: []
       indices: 
       edges: []
@@ -188,8 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ladder_0: 316712457
-      ladder_1: 1310661661
+      ladder_0: 1331415826
+      ladder_1: 316712457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
