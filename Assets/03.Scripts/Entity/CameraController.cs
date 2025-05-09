@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (!followTarget)
             return;

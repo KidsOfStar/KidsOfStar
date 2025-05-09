@@ -3,6 +3,7 @@ using UnityEngine;
 public interface IWeightable
 {
     float GetWeight();
+    // Rigidbody2D GetRigidbody2D();
 }
 
 public class Box : MonoBehaviour, IWeightable, ILeafJumpable
