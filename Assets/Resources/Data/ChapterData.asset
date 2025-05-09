@@ -19,3 +19,7 @@ MonoBehaviour:
     maxProgress: 5
   - chapterType: 2
     maxProgress: 4
+  - chapterType: 3
+    maxProgress: 5
+  - chapterType: 4
+    maxProgress: 5
