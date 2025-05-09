@@ -83,7 +83,7 @@ public class Door : MonoBehaviour
                 Destroy(bubbleTextInstance);
                 bubbleTextInstance = null;
             }
-
+            skillBTN.OnInteractBtnClick -= OnInteraction; // 상호작용 버튼 클릭 이벤트 해제
         }
     }
 }
