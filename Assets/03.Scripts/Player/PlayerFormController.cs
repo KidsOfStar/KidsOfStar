@@ -232,6 +232,11 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             // 대화 시작
             isInHideArea = true;
         }
+        else if(collision.CompareTag("Ladder"))
+        {
+            // 사다리에 닿았을 때
+            controller.TouchLadder = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -241,6 +246,11 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         {
             // 대화 시작
             isInHideArea = false;
+        }
+        else if(collision.CompareTag("Ladder"))
+        {
+            // 사다리에서 떨어졌을 때
+            controller.TouchLadder = false;
         }
     }
 }
