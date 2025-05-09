@@ -542,7 +542,7 @@ MonoBehaviour:
   ventBG: {fileID: 1908416510}
   ventMap: {fileID: 851337230}
   ventBlockMap: {fileID: 840897781}
-  ventObject: {fileID: 0}
+  ventObject: {fileID: 712561782}
   timeMap: {fileID: 1137974846}
   Hide: {fileID: 877466700}
 --- !u!1 &95701902
@@ -2061,7 +2061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &712561783
 Transform:
   m_ObjectHideFlags: 0
@@ -3365,7 +3365,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 8
-      m_TileSpriteIndex: 8
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3410,10 +3410,10 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: -1799907461, guid: 1a3c88bb61c7889439be6df7d12f0544, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1799907461, guid: 1a3c88bb61c7889439be6df7d12f0544, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:

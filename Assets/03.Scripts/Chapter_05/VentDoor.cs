@@ -27,7 +27,7 @@ public class VentDoor : MonoBehaviour
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
-        skillBTN.OnInteractBtnClick += OnInteraction; // 상호작용 버튼 클릭 이벤트 등록
+        skillBTN.OnInteractBtnClick += OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
         VentIn();
         VentOut();
     }
@@ -36,7 +36,7 @@ public class VentDoor : MonoBehaviour
     {
         if (skillBTN != null)
         {
-            skillBTN.OnInteractBtnClick -= OnInteraction; // 상호작용 버튼 클릭 이벤트 해제
+            skillBTN.OnInteractBtnClick -= OnVentInteraction; // 상호작용 버튼 클릭 이벤트 해제
         }
     }
 
@@ -84,7 +84,7 @@ public class VentDoor : MonoBehaviour
         ventOut.Add(Hide);
     }
 
-    private void OnInteraction()
+    private void OnVentInteraction()
     {
         if (isVentDoor)   // isVentDoor = true
         {
