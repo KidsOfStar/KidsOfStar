@@ -1054,7 +1054,7 @@ GameObject:
   - component: {fileID: 417983637}
   - component: {fileID: 417983636}
   - component: {fileID: 417983641}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ladder Plat
   m_TagString: Ladder
   m_Icon: {fileID: 0}
