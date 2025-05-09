@@ -7,7 +7,7 @@ public class InteractObject : MonoBehaviour
     private readonly Dictionary<int, string> dialogByProgress = new();
     private SkillBTN skillPanel;
 
-    private void Start()
+    public void Init()
     {
         var dialogTable = Managers.Instance.DataManager.GetInteractionDataDict();
 

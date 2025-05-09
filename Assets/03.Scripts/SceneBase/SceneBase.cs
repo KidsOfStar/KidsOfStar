@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // 풀 생성, npc 넘겨주기 등 씬 초기화에 필요한 작업들을 담당
@@ -19,8 +20,9 @@ public abstract class SceneBase : MonoBehaviour
     [SerializeField] protected string playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
 
-    [Header("NPCs")]
+    [Header("NPCs"), Tooltip("중복해서 넣지 않도록 주의해주세요")]
     [SerializeField] private SceneNpc[] speakers;
+    [SerializeField] private InteractObject[] objects;
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
@@ -28,7 +30,6 @@ public abstract class SceneBase : MonoBehaviour
     [Header("Player Position")]
     [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
     [SerializeField] private PlayerSpawnPointer spawnPointer;
-
     [SerializeField] private ScrollingBackGround scrollingBackGround;
 
     private Action onCutSceneEndHandler;
@@ -113,6 +114,7 @@ public abstract class SceneBase : MonoBehaviour
 
         // 챕터 변경 후 Npc 초기화
         InitNpc();
+        InitObjects();
 
         if (Managers.Instance.GameManager.IsNewGame)
             Managers.Instance.GameManager.ResetProgress();
@@ -151,9 +153,30 @@ public abstract class SceneBase : MonoBehaviour
 
     private void InitNpc()
     {
-        foreach (var speaker in speakers)
+        for (int i = 0; i < speakers.Length; i++)
         {
+            var speaker = speakers[i];
             speaker.Init();
+
+            // ProgressNpcPlacer가 있다면 초기화
+            if (speaker.TryGetComponent(out ProgressNpcPlacer placer))
+                placer.Init();
+        }
+    }
+
+    private void InitObjects()
+    {
+        if (objects == null || objects.Length == 0)
+            return;
+        
+        for (int i = 0; i < objects.Length; i++)
+        {
+            var obj = objects[i];
+            obj.Init();
+            
+            // ProgressNpcPlacer가 있다면 초기화
+            if (obj.TryGetComponent(out ProgressNpcPlacer placer))
+                placer.Init();
         }
     }
 
