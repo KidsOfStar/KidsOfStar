@@ -66,7 +66,6 @@ public class Door : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("문과 닿음");
             skillBTN.ShowInteractionButton(true); // 상호작용 버튼 활성화
             
         }
