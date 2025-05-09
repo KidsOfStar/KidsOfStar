@@ -219,11 +219,6 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         return curFormData.Weight;
     }
 
-    public Rigidbody2D GetRigidbody2D()
-    {
-        return controller.GetRigidbody2D();
-    }
-
     public float GetPushPower()
     {
         return curFormData.Force;

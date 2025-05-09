@@ -18,7 +18,6 @@ public class Elevator : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Collider2D coll;
     [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private Rigidbody2D rigid;
 
     [Header("Elevator Settings")]
     [SerializeField] private bool isLocked = true;

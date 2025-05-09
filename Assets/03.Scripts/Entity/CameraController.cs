@@ -44,7 +44,6 @@ public class CameraController : MonoBehaviour
 #endif
         if (!target || cutSceneManager.IsCutScenePlaying) return;
         Vector3 desiredPosition = target.position + offset;
-        // Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed * Time.deltaTime);
 
         Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothTime);
         

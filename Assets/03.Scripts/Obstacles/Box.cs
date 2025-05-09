@@ -3,7 +3,6 @@ using UnityEngine;
 public interface IWeightable
 {
     float GetWeight();
-    Rigidbody2D GetRigidbody2D();
 }
 
 public class Box : MonoBehaviour, IWeightable, ILeafJumpable
@@ -33,11 +32,6 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         return boxWeight;
     }
     
-    public Rigidbody2D GetRigidbody2D()
-    {
-        return rb;
-    }
-
     public void StartLeafJump(Vector2 dropPosition, float jumpPower)
     {
         // 레이어간 충돌을 무시하는 코루틴 시작
