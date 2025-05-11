@@ -93,6 +93,8 @@ public static class Extensions
             ChapterType.Chapter01 => "Chapter1",
             ChapterType.Chapter02 => "Chapter2",
             ChapterType.Chapter03 => "Chapter3",
+            ChapterType.Chapter04 => "Chapter4",
+            ChapterType.Chapter05 => "Chapter5",
             _                     => throw new ArgumentOutOfRangeException(nameof(chapterType), chapterType, null)
         };
     }
@@ -129,6 +131,7 @@ public static class Extensions
             CutSceneType.SemyungGoOut    => "SemyungGoOut",
             CutSceneType.RescueKitten    => "RescueKitten",
             CutSceneType.DogFormChange   => "DogFormChange",
+            CutSceneType.MeetingWomen    => "MeetingWomen",
             _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }

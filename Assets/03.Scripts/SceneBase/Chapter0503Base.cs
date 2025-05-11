@@ -25,7 +25,7 @@ public class Chapter0503Base : SceneBase
         if (collision.CompareTag("Player"))
         {
             // 컷신 호출
-            //Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.MeetingWomen);
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.MeetingWomen);
         }
     }
 
