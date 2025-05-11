@@ -202,7 +202,6 @@ public enum CutSceneType
     SemyungGoOut,
     JigimOrder,
     RescueKitten,
-    MeetingWomen,
 }
 
 #endregion
