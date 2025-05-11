@@ -19,4 +19,15 @@ public class Chapter0503Base : SceneBase
     {
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            // 컷신 호출
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.MeetingWomen);
+        }
+    }
+
+
 }
