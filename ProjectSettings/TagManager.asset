@@ -10,6 +10,7 @@ TagManager:
   - Loopable
   - HideArea
   - Ladder
+  - PuzzleDoor
   layers:
   - Default
   - TransparentFX
