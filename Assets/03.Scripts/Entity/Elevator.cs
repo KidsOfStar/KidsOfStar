@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using Unity.Collections;
 using UnityEngine;
 
 public enum Direction
@@ -14,16 +12,12 @@ public enum Direction
     Right
 }
 
-// 물체를 감지할 때마다 MaxWeight를 초과하면 고장나는 코루틴이 시작되어야함
-// 고장나면 움직이지 않음
-// 일정시간 이후 다시 사용할 수 있어야함
-// 잠긴 상태인지 아닌지 정해야함(퍼즐을 풀어야 함)
-
 public class Elevator : MonoBehaviour
 {
     // 이동속도 및 방향을 설정할 수 있어야 함
     [Header("Components")]
-    [SerializeField] private Collider2D elevatorCollider;
+    [SerializeField] private Collider2D coll;
+    [SerializeField] private SpriteRenderer sprite;
 
     [Header("Elevator Settings")]
     [SerializeField] private bool isLocked = true;
@@ -32,78 +26,141 @@ public class Elevator : MonoBehaviour
     [SerializeField] private float distance = 5.0f;
     [SerializeField] private Direction direction = Direction.None;
 
+    private readonly WaitForFixedUpdate waitForFixedUpdate = new();
     private readonly WaitForSeconds moveWaitTime = new(0.5f);
-    private const float MaxWeight = 3f;
+    private readonly WaitForSeconds repairTime = new(5f);
+    
+    private readonly List<IWeightable> weightables = new();
+    private const float MaxWeight = 10f;
     private const float VerticalMargin = 0.02f;
 
+    private Vector3 prevPos;
     private Vector3 startPos;
+    private Vector3 targetPos;
     private bool isBroken = false;
 
     private void Start()
     {
         startPos = transform.position;
+        targetPos = GetTargetPosition();
 
         if (!isLocked)
-            StartCoroutine(MoveCoroutine());
+            StartCoroutine(Move());
     }
 
     private void UnlockElevator()
     {
         isLocked = false;
-        StartCoroutine(MoveCoroutine());
+        StartCoroutine(Move());
     }
 
-    private IEnumerator MoveCoroutine()
+    private IEnumerator Move()
     {
-        Vector3 targetPos = GetTargetPosition();
-
-        while (!isBroken)
+        while (true)
         {
-            yield return moveWaitTime; // 대기
-
-            // 목표 위치까지 이동
-            float elapsedTime = 0f;
-            while (elapsedTime < distance / speed)
-            {
-                transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / (distance / speed));
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
-            transform.position = targetPos;
-
-            yield return moveWaitTime; // 대기
-
-            // 원래 위치로 이동
-            elapsedTime = 0f;
-            while (elapsedTime < distance / speed)
-            {
-                transform.position = Vector3.Lerp(targetPos, startPos, elapsedTime / (distance / speed));
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
-            transform.position = startPos;
+            yield return MoveRoutine(startPos, targetPos, true);
+            yield return moveWaitTime;
+            
+            yield return MoveRoutine(targetPos, startPos);
+            yield return moveWaitTime;
         }
+    }
+
+    private IEnumerator MoveRoutine(Vector3 from, Vector3 to, bool toTarget = false)
+    {
+        float distance = Vector3.Distance(from, to);
+        float duration = distance / speed;
+        float elapsed  = 0f;
+
+        while (elapsed < duration)
+        {
+            // 과부하 감지: true면 BreakSequence 실행 후 리턴하지 않고 그대로 이 지점에서 재개
+            if (GetCurrentWeight() > MaxWeight)
+                yield return StartCoroutine(BreakSequence());
+
+            // 진행도에 맞춰 위치 보간
+            float t = elapsed / duration;
+            Vector3 nextPos = Vector3.Lerp(from, to, t);
+            
+            // rigid.MovePosition(nextPos);
+            transform.position = nextPos;
+
+            elapsed += Time.deltaTime;
+            yield return waitForFixedUpdate;
+        }
+
+        // 정확히 to 위치 보정
+        transform.position = to;
+    }
+
+    private IEnumerator BreakSequence()
+    {
+        const float blinkInterval = 0.5f; // 0.5초씩 색상 전환
+        for (int i = 0; i < 3; i++)
+        {
+            // 1) White → Red
+            float t = 0f;
+            while (t < blinkInterval)
+            {
+                if (GetCurrentWeight() < MaxWeight)
+                {
+                    // 과부하 해제 시 즉시 종료
+                    sprite.color = Color.white;
+                    yield break;
+                }
+
+                sprite.color = Color.Lerp(Color.white, Color.red, t / blinkInterval);
+                t += Time.deltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+            sprite.color = Color.red;
+
+            // 2) Red → White
+            t = 0f;
+            while (t < blinkInterval)
+            {
+                if (GetCurrentWeight() < MaxWeight)
+                {
+                    sprite.color = Color.white;
+                    yield break;
+                }
+
+                sprite.color = Color.Lerp(Color.red, Color.white, t / blinkInterval);
+                t += Time.deltaTime;
+                yield return null;
+            }
+
+            sprite.color = Color.white;
+        }
+        
+        // 3초 경고 후에도 과부하 상태라면 완전 고장
+        isBroken = true;
+
+        // 복구 대기
+        yield return repairTime;
+
+        // 고장 해제
+        isBroken    = false;
+        sprite.color = Color.white;
     }
 
     private Vector3 GetTargetPosition()
     {
-        Vector3 targetPos = startPos;
+        Vector3 targetPosition = startPos;
 
         switch (direction)
         {
             case Direction.Up:
-                targetPos.y += distance;
+                targetPosition.y += distance;
                 break;
             case Direction.Down:
-                targetPos.y -= distance;
+                targetPosition.y -= distance;
                 break;
             case Direction.Left:
-                targetPos.x -= distance;
+                targetPosition.x -= distance;
                 break;
             case Direction.Right:
-                targetPos.x += distance;
+                targetPosition.x += distance;
                 break;
             case Direction.None:
                 break;
@@ -111,34 +168,74 @@ public class Elevator : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
 
-        return targetPos;
+        return targetPosition;
+    }
+    
+    private float GetCurrentWeight()
+    {
+        float totalWeight = 0f;
+
+        for (int i = 0; i < weightables.Count; i++)
+        {
+            var weightable = weightables[i];
+            totalWeight += weightable.GetWeight();
+        }
+        
+        return totalWeight;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (isBroken || isLocked) return;
+        if (direction == Direction.Left || direction == Direction.Right) return;
+        if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
+
+        if (IsOnElevator(other.collider))
+        {
+            var weightableTr = other.transform;
+            var weightablePos = weightableTr.position;
+            var fixedPositionY = coll.bounds.max.y - 0.1f;
+            var fixedPosition = new Vector2(weightablePos.x, fixedPositionY);
+            other.transform.position = fixedPosition;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (isBroken) return;
+        if (isBroken || isLocked) return;
         if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
 
         // 물체가 엘레베이터에 올라탄 상태라면
+        if (IsOnElevator(other.collider))
+        {
+            if (weightables.Contains(weightable)) return;
+            other.transform.SetParent(transform);
+            weightables.Add(weightable);
+        }
         // 물체가 엘레베이터에 올라탄 상태가 아니라면
-        other.transform.SetParent(IsOnElevator(other.collider) ? transform : null);
+        else
+        {
+            other.transform.SetParent(null);
+            if (weightables.Contains(weightable))
+                weightables.Remove(weightable);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (isBroken) return;
         if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
 
         other.transform.SetParent(null);
+        if (weightables.Contains(weightable))
+            weightables.Remove(weightable);
     }
 
     private bool IsOnElevator(Collider2D weightable)
     {
         var obj = weightable.bounds;
-        var elevator = elevatorCollider.bounds;
+        var elevator = coll.bounds;
 
         // 물체의 바닥면이 엘레베이터의 바닥면보다 아래에 있으면 false
-        EditorLog.Log("수평체크: " + Mathf.Abs(obj.min.y - elevator.max.y));
         if (Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin)
             return false;
 

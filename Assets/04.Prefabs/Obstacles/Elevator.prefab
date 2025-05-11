@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49bce977895eb144d8492e5fc2ddcd4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elevatorCollider: {fileID: 5666899442389033103}
+  coll: {fileID: 5666899442389033103}
+  sprite: {fileID: 3595238995172783778}
   isLocked: 0
-  speed: 3
+  speed: 2
   distance: 5
   direction: 1
 --- !u!61 &5666899442389033103

@@ -31,7 +31,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     {
         return boxWeight;
     }
-
+    
     public void StartLeafJump(Vector2 dropPosition, float jumpPower)
     {
         // 레이어간 충돌을 무시하는 코루틴 시작
