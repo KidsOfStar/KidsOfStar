@@ -58,7 +58,7 @@ public class TreePuzzleTrigger : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        EditorLog.Log("구독");
+        
         if (gameObject.layer != LayerMask.NameToLayer("PuzzleDoor"))
             return;
 
@@ -67,6 +67,8 @@ public class TreePuzzleTrigger : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
+            EditorLog.Log("구독");
+            if (hasPlayer) return;
             hasPlayer = true;
 
             // 다람쥐 형태 검사
@@ -101,6 +103,7 @@ public class TreePuzzleTrigger : MonoBehaviour
         }
         else if (collision.CompareTag("Box"))
         {
+            if (hasBox) return;
             hasBox = true;
         }
         else
@@ -129,8 +132,7 @@ public class TreePuzzleTrigger : MonoBehaviour
             return;
         }
 
-        skillBTN.ShowInteractionButton(false);
-        skillBTN.OnInteractBtnClick -= TryStartPuzzle;
+        HideInteraction();
     }
 
     private void TryEnableInteraction()
@@ -144,6 +146,7 @@ public class TreePuzzleTrigger : MonoBehaviour
             //    TryStartPuzzle();
             //};
             skillBTN.ShowInteractionButton(true);
+            skillBTN.OnInteractBtnClick -= OnPuzzleButtonPressed;
             skillBTN.OnInteractBtnClick += OnPuzzleButtonPressed;
         }
     }
@@ -174,8 +177,7 @@ public class TreePuzzleTrigger : MonoBehaviour
     {
         triggered = false;
 
-        skillBTN.ShowInteractionButton(false);
-        skillBTN.OnInteractBtnClick -= TryStartPuzzle;
+        HideInteraction();
 
         if (hasPlayer && hasBox)
             TryEnableInteraction();

@@ -9153,6 +9153,7 @@ MonoBehaviour:
   sequenceIndex: 0
   exclamationInstance: {fileID: 3125597759484119318}
   requiredProgress: 2
+  puzzleLayerName: PuzzleDoor
 --- !u!61 &1575658467
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9198,19 +9199,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1, y: 1.6666666}
   m_EdgeRadius: 0
---- !u!114 &1575658470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2924388353751946138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7091fbafd1b6f4f45915201d83df4469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectName: DaunRoom
 --- !u!61 &1595185364
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9272,19 +9260,7 @@ MonoBehaviour:
   sequenceIndex: 1
   exclamationInstance: {fileID: 2041152587}
   requiredProgress: 4
---- !u!114 &1595185369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2924388353872493134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7091fbafd1b6f4f45915201d83df4469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectName: DongdoRoom
+  puzzleLayerName: PuzzleDoor
 --- !u!4 &1595888734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3273424459126957439, guid: feaf0e457d4b06b428097aa4c73ffa15, type: 3}
@@ -9859,11 +9835,8 @@ MonoBehaviour:
   - {fileID: 1123795026}
   - {fileID: 1478535746}
   - {fileID: 1316870513}
-  - {fileID: 1575658470}
   - {fileID: 1595888735}
   - {fileID: 1439355240}
-  - {fileID: 1595185369}
-  - {fileID: 1354949868}
   mainCamera: {fileID: 2020590303}
   spawnPointer: {fileID: 1925362554}
   scrollingBackGround: {fileID: 1083819329}
@@ -13132,6 +13105,7 @@ MonoBehaviour:
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: -6.5, y: -18.8}
   maxPosition: {x: 36.3, y: 100}
+  smoothTime: 0.15
   background: {fileID: 1083819327}
 --- !u!114 &2020590307
 MonoBehaviour:
@@ -14035,7 +14009,7 @@ GameObject:
   - component: {fileID: 4709294409952828583}
   - component: {fileID: 1575658467}
   - component: {fileID: 1575658466}
-  - component: {fileID: 1575658470}
+  - component: {fileID: 4709294409952828584}
   m_Layer: 10
   m_Name: Daun's Door
   m_TagString: Untagged
@@ -14055,7 +14029,7 @@ GameObject:
   - component: {fileID: 4709294409761420659}
   - component: {fileID: 1595185364}
   - component: {fileID: 1595185366}
-  - component: {fileID: 1595185369}
+  - component: {fileID: 4709294409761420660}
   m_Layer: 10
   m_Name: Dongdo's Door
   m_TagString: Untagged
@@ -14298,6 +14272,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4709294409761420660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2924388353872493134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7091fbafd1b6f4f45915201d83df4469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: DongdoRoom
 --- !u!212 &4709294409952828583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14350,6 +14337,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4709294409952828584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2924388353751946138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7091fbafd1b6f4f45915201d83df4469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: DaunRoom
 --- !u!4 &4714527144084346386
 Transform:
   m_ObjectHideFlags: 0
