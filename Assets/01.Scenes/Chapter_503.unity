@@ -20979,7 +20979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8fd46f427e57c4590c285787a14624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 2047708880}
+  mainCamera: {fileID: 0}
   followTarget: 1
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: 0, y: 0}
