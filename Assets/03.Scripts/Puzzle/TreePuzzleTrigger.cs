@@ -17,8 +17,19 @@ public class TreePuzzleTrigger : MonoBehaviour
     [Header("트리거가 켜질 ChapterProgress 값")]
     [SerializeField] private int requiredProgress;
 
+    [SerializeField] private string puzzleLayerName = "PuzzleDoor";
+    private int puzzleLayer;
+
     private void Awake()
     {
+        puzzleLayer = LayerMask.NameToLayer(puzzleLayerName);
+
+        if (gameObject.layer != puzzleLayer)
+        {
+            enabled = false;
+            return;
+        }
+
         // SpriteRenderer 컴포넌트 가져오기
         exclamationRenderer = exclamationInstance.GetComponent<SpriteRenderer>();
     }
@@ -47,7 +58,12 @@ public class TreePuzzleTrigger : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress) return;
+        EditorLog.Log("구독");
+        if (gameObject.layer != LayerMask.NameToLayer("PuzzleDoor"))
+            return;
+
+        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress) 
+            return;
 
         if (collision.CompareTag("Player"))
         {
@@ -97,6 +113,7 @@ public class TreePuzzleTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        EditorLog.Log("구독해제");
         if (triggered) return;
 
         if (collision.CompareTag("Player"))
@@ -118,27 +135,39 @@ public class TreePuzzleTrigger : MonoBehaviour
 
     private void TryEnableInteraction()
     {
-        if (hasPlayer && hasBox)
+        if (hasPlayer && hasBox) //여기가 문제
         {
+            //skillBTN.ShowInteractionButton(true);
+            //skillBTN.OnInteractBtnClick += () =>
+            //{
+            //    Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Communication);
+            //    TryStartPuzzle();
+            //};
             skillBTN.ShowInteractionButton(true);
-            skillBTN.OnInteractBtnClick += () =>
-            {
-                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Communication);
-                TryStartPuzzle();
-            };
+            skillBTN.OnInteractBtnClick += OnPuzzleButtonPressed;
         }
     }
 
     private void TryStartPuzzle()
     {
         if (triggered) return;
-
         triggered = true;
 
-        skillBTN.ShowInteractionButton(false);
-        skillBTN.OnInteractBtnClick -= TryStartPuzzle;
+        HideInteraction();
 
         Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData, sequenceIndex);
+    }
+
+    private void HideInteraction()
+    {
+        skillBTN.ShowInteractionButton(false);
+        skillBTN.OnInteractBtnClick -= OnPuzzleButtonPressed;
+    }
+
+    private void OnPuzzleButtonPressed()
+    {
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Communication);
+        TryStartPuzzle();
     }
 
     public void ResetTrigger()
