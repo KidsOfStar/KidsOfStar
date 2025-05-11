@@ -29,13 +29,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/Chapter_501.unity
     guid: 8e59f4b7ead765c488c7453cc60595a7
-  - enabled: 1
-    path: Assets/01.Scenes/Chapter_502.unity
-    guid: 7f50d5c4a2129f146a45e1f3655e0109
-  - enabled: 1
-    path: Assets/01.Scenes/Chapter_503.unity
-    guid: 500f7e19c8a2b534498bc8324714c32b
-  - enabled: 1
-    path: Assets/01.Scenes/Chapter_504.unity
-    guid: 48bbc18739c1eb64aa0bd0134b534051
   m_configObjects: {}

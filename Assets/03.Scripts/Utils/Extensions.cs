@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.VersionControl;
 
 public static class Extensions
 {
@@ -94,8 +93,6 @@ public static class Extensions
             ChapterType.Chapter01 => "Chapter1",
             ChapterType.Chapter02 => "Chapter2",
             ChapterType.Chapter03 => "Chapter3",
-            ChapterType.Chapter04 => "Chapter4",
-            ChapterType.Chapter05 => "Chapter5",
             _                     => throw new ArgumentOutOfRangeException(nameof(chapterType), chapterType, null)
         };
     }
