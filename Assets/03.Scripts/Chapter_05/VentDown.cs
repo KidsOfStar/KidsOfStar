@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class VentDoor : MonoBehaviour
+public class VentDown : MonoBehaviour
 {
     [Header("Vent In")]
     public GameObject ventBG;
@@ -75,7 +75,7 @@ public class VentDoor : MonoBehaviour
 
     private void OnVentInteraction()
     {
-        if (!isVentInOut)  
+        if (!isVentInOut)
         {
             Debug.Log($"{isVentInOut} - 벤트 안으로 들어감");
             SetActiveGroup(ventIn, true);
