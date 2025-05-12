@@ -8884,7 +8884,6 @@ GameObject:
   - component: {fileID: 1416217612}
   - component: {fileID: 1416217611}
   - component: {fileID: 1416217610}
-  - component: {fileID: 1416217615}
   m_Layer: 0
   m_Name: NPCRode
   m_TagString: Untagged
@@ -9466,24 +9465,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!252 &1416217615
-SurfaceEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416217608}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Speed: 1
-  m_SpeedVariation: 0
-  m_ForceScale: 0.1
-  m_UseContactForce: 0
-  m_UseFriction: 1
-  m_UseBounce: 1
 --- !u!1 &1555421970
 GameObject:
   m_ObjectHideFlags: 0
