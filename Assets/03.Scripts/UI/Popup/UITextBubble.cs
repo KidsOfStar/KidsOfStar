@@ -1,3 +1,4 @@
+using Febucci.UI;
 using System.Collections;
 using System.Text;
 using TMPro;
@@ -8,7 +9,8 @@ public class UITextBubble : UIBase
     [Header("Text Bubble")]
     [SerializeField] private Canvas canvas;
     [SerializeField] private RectTransform rectTr;
-    [SerializeField] private TextMeshProUGUI dialogText;
+    [SerializeField] private TextMeshProUGUI dialogTmp;
+    [SerializeField] private TypewriterByCharacter typewriter;
     [SerializeField] private float clickIgnoreTime = 0.1f;
 
     private readonly StringBuilder dialogSb = new();
@@ -35,39 +37,27 @@ public class UITextBubble : UIBase
 
     private void StartDialogCoroutine(string dialog)
     {
-        if (dialogCoroutine != null)
-        {
-            StopCoroutine(dialogCoroutine);
-            dialogCoroutine = null;
-        }
-        
-        dialogText.text = string.Empty;
-        dialogSb.Clear();
-        
-        dialogCoroutine = StartCoroutine(ShowDialog(dialog));
+        ShowDialogue(dialog);
     }
     
-    private IEnumerator ShowDialog(string dialog)
+    // 한글자 출력할 때마다 발생하는 이벤트에 isTyping이 false라면 전부 다 출력하는 함수를 등록
+    // 모든 글자가 출력됐을 때 발생하는 이벤트에 isTyping = false; 를 등록
+    // 출력 끝났을 때 이벤트 해제
+
+    private void ShowDialogue(string dialog)
     {
         isTyping = true;
-        dialogSb.Clear();
-        dialogText.text = string.Empty;
+        dialogTmp.text = string.Empty;
         
-        for (int i = 0; i < dialog.Length; i++)
-        {
-            dialogSb.Append(dialog[i]);
-            dialogText.text = dialogSb.ToString();
+        typewriter.onCharacterVisible.AddListener(_ => CheckSkipTyping());
+        typewriter.onTextShowed.AddListener(() => isTyping = false);
+        typewriter.ShowText(dialog);
+    }
 
-            if (!isTyping)
-            {
-                dialogText.text = dialog;
-                yield break;
-            }
-            
-            yield return textWaitTime;
-        }
-
-        isTyping = false;
+    private void CheckSkipTyping()
+    {
+        if (!isTyping)
+            typewriter.SkipTypewriter();
     }
     
     private void SkipTyping()
@@ -79,6 +69,8 @@ public class UITextBubble : UIBase
             isTyping = false;
         else
         {
+            typewriter.onCharacterVisible.RemoveAllListeners();
+            typewriter.onTextShowed.RemoveAllListeners();
             Managers.Instance.DialogueManager.OnDialogLineComplete();
         }
     }

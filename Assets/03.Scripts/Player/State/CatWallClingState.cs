@@ -18,8 +18,6 @@ public class CatWallClingState : PlayerStateBase
         WallRatationSet();
         // 곧바로 다시 벽을 타지 못하게 잠금
         context.CanCling = false;
-        // 초기화
-        clingTimer = 0;
     }
 
     /// <summary>
@@ -79,6 +77,7 @@ public class CatWallClingState : PlayerStateBase
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();
+        if (context.StateMachine.CurState != this) return;
         // 이동 동작 실행
         context.Controller.Move();
         context.Rigid.velocity = new Vector2(context.Rigid.velocity.x, 0);
@@ -111,5 +110,7 @@ public class CatWallClingState : PlayerStateBase
         // 각도를 원래대로
         context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.zero);
         context.Controller.SetCollider();
+        // 초기화
+        clingTimer = 0;
     }
 }

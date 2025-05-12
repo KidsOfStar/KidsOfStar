@@ -3176,7 +3176,7 @@ MonoBehaviour:
   currentChapter: 0
   existRequiredDialog: 1
   isFirstTime: 1
-  introText: "\uC81C 1\uC7A5 \uAC1C\uC6B8\n\uC138\uC0C1\uC774 \uC774\uB807\uAC8C
+  introText: "\uC81C 1\uC7A5 \uAC1C\uC6B8\n\n\uC138\uC0C1\uC774 \uC774\uB807\uAC8C
     \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerStartForm: Stone
