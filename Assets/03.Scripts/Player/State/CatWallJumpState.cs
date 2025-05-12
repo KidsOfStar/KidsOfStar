@@ -11,10 +11,16 @@ public class CatWallJumpState : PlayerJumpBaseState
 
     public override void OnEnter()
     {
+        context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.zero);
+        context.Controller.SetCollider();
+        context.Rigid.velocity = Vector2.zero;
+        Vector2 pushDir = new Vector2(-Mathf.Sign(context.Controller.MoveDir.normalized.x) * 2f, 
+            context.Controller.WallJumpForce);
         // 벽 점프 실제 동작 실행
-        context.Rigid.AddForce(Vector2.up * context.Controller.WallJumpForce, ForceMode2D.Impulse);
+        context.Rigid.AddForce(pushDir, ForceMode2D.Impulse);
         // 초기화
         timer = 0;
+
     }
 
     public override void OnUpdate()

@@ -133,6 +133,7 @@ public static class Extensions
             CutSceneType.DogFormChange   => "DogFormChange",
             CutSceneType.JieuiRequest    => "JieuiRequest",
             CutSceneType.MeetingWomen    => "MeetingWomen",
+            CutSceneType.HaniRequest     => "HaniRequest",
             _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }
