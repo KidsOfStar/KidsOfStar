@@ -31,7 +31,7 @@ public class Elevator : MonoBehaviour
     private readonly WaitForSeconds repairTime = new(5f);
     
     private readonly List<IWeightable> weightables = new();
-    private const float MaxWeight = 10f;
+    private const float MaxWeight = 3f;
     private const float VerticalMargin = 0.02f;
 
     private Vector3 prevPos;
@@ -235,15 +235,17 @@ public class Elevator : MonoBehaviour
         var obj = weightable.bounds;
         var elevator = coll.bounds;
 
-        // 물체의 바닥면이 엘레베이터의 바닥면보다 아래에 있으면 false
-        if (Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin)
-            return false;
+        // 물체의 바닥면이 엘레베이터의 바닥면보다 맞지 않으면 false
+        return !(Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin);
 
-        // 물체가 수평으로 반 이상 겹쳐있는지 확인
-        float overlap = Mathf.Min(obj.max.x, elevator.max.x) - Mathf.Max(obj.min.x, elevator.min.x);
-        overlap = Mathf.Max(overlap, 0f);
-
-        return overlap >= obj.size.x * 0.5f;
+        // if (Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin)
+        //     return false;
+        
+        // // 물체가 수평으로 반 이상 겹쳐있는지 확인
+        // float overlap = Mathf.Min(obj.max.x, elevator.max.x) - Mathf.Max(obj.min.x, elevator.min.x);
+        // overlap = Mathf.Max(overlap, 0f);
+        // 
+        // return overlap >= obj.size.x * 0.5f;
     }
 
     private void OnDestroy()
