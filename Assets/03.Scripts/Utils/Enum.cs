@@ -202,6 +202,7 @@ public enum CutSceneType
     SemyungGoOut,
     JigimOrder,
     RescueKitten,
+    JieuiRequest,
 }
 
 #endregion

@@ -125,6 +125,7 @@ public static class Extensions
             CutSceneType.SemyungGoOut    => "SemyungGoOut",
             CutSceneType.RescueKitten    => "RescueKitten",
             CutSceneType.DogFormChange   => "DogFormChange",
+            CutSceneType.JieuiRequest    => "JieuiRequest",
             _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }
