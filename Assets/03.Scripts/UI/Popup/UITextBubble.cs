@@ -1,3 +1,4 @@
+using Febucci.UI;
 using System.Collections;
 using System.Text;
 using TMPro;
@@ -9,6 +10,7 @@ public class UITextBubble : UIBase
     [SerializeField] private Canvas canvas;
     [SerializeField] private RectTransform rectTr;
     [SerializeField] private TextMeshProUGUI dialogText;
+    [SerializeField] private TypewriterByCharacter typewriter;
     [SerializeField] private float clickIgnoreTime = 0.1f;
 
     private readonly StringBuilder dialogSb = new();

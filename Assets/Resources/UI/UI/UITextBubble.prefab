@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8995837604101331114}
   - component: {fileID: 1443659418636833389}
   - component: {fileID: 3419803984505640107}
+  - component: {fileID: 7890836396488831953}
   m_Layer: 5
   m_Name: tmp_Dialog
   m_TagString: Untagged
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\uC548\uB155 \uB315\uB315\uC544"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6593b658a8c8d35438a9798e8e9f227f, type: 2}
   m_sharedMaterial: {fileID: 5922590977744021984, guid: 6593b658a8c8d35438a9798e8e9f227f, type: 2}
@@ -134,6 +135,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7890836396488831953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813627839889150383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ace8ced0e81c847968cdca0aeda757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typewriterStartsAutomatically: 0
+  animationLoop: 0
+  timeScale: 0
+  _text: "\uC548\uB155 \uB315\uB315\uC544"
+  useDynamicScaling: 1
+  referenceFontSize: 10
+  isResettingTimeOnNewText: 1
+  useDefaultDatabases: 1
+  databaseBehaviors: {fileID: 11400000, guid: ba4323e0bc925f645bc4fa6bd572464a, type: 2}
+  databaseAppearances: {fileID: 11400000, guid: 58fbf43431337b04e8b555f3e8351c14, type: 2}
+  useDefaultStyleSheet: 1
+  styleSheet: {fileID: 0}
+  databaseActions: {fileID: 11400000, guid: 87fbbee2984c7d841b7feb287a6c7c15, type: 2}
+  defaultAppearancesTags:
+  - size a=0.3
+  defaultDisappearancesTags:
+  - fade
+  defaultBehaviorsTags: []
+  defaultTagsMode: 0
 --- !u!1 &2057746623309824022
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +223,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 50
@@ -235,6 +267,7 @@ MonoBehaviour:
   canvas: {fileID: 2851685759153203458}
   rectTr: {fileID: 6872692231134291710}
   dialogText: {fileID: 3419803984505640107}
+  typewriter: {fileID: 0}
   clickIgnoreTime: 0.1
 --- !u!1 &4312404214207553246
 GameObject:

@@ -53,7 +53,10 @@ public class CutSceneManager
     public void DestroyCurrentCutScene(bool isImmediate = false)
     {
         if (!currentCutScene)
-            EditorLog.LogError("현재 재생중인 컷씬이 없습니다.");
+        {
+            EditorLog.LogWarning("현재 재생중인 컷씬이 없습니다.");
+            return;
+        }
 
         currentCutScene.DestroyPrefab(isImmediate);
     }

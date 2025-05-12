@@ -1,3 +1,4 @@
+using Febucci.UI;
 using System;
 using System.Collections;
 using TMPro;
@@ -8,6 +9,7 @@ public class UIChapterIntro : UIBase
 {
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI introText;
+    [SerializeField] private TypewriterByCharacter typewriter;
     private const float fadeTime = 2f;
     private const float fadeOutTime = 2f;
     private readonly Color fadeOutColor = new(0, 0, 0, 0f);
@@ -21,18 +23,25 @@ public class UIChapterIntro : UIBase
         }
 
         Managers.Instance.GameManager.Player.Controller.IsControllable = false;
-        introText.text = text;
+        introText.text = string.Empty;
         
         // 배경 페이드 인
         // yield return Fade(fadeOutColor, Color.black, fadeTime, c => backgroundImage.color = c);
 
         // 텍스트 페이드 인
-        yield return Fade(fadeOutColor, Color.white, fadeTime, c => introText.color = c);
+        // yield return Fade(fadeOutColor, Color.white, fadeTime, c => introText.color = c);
 
-        // 배경+텍스트 페이드 아웃
+        typewriter.onTextShowed.AddListener(() => StartCoroutine(CompleteTextShowed()));
+        typewriter.ShowText(text);
+    }
+
+    private IEnumerator CompleteTextShowed()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
         StartCoroutine(Fade(Color.white, fadeOutColor, fadeOutTime, c => introText.color = c));
         yield return Fade(Color.black, fadeOutColor, fadeOutTime, c => backgroundImage.color = c);
-
+        
         HideDirect();
         Managers.Instance.GameManager.Player.Controller.IsControllable = true;
     }
@@ -49,5 +58,10 @@ public class UIChapterIntro : UIBase
         }
         
         applyColor(to);
+    }
+
+    private void OnDisable()
+    {
+        typewriter.onTextShowed.RemoveAllListeners();
     }
 }
