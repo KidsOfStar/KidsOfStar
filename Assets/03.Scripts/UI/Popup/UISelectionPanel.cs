@@ -5,7 +5,6 @@ public class UISelectionPanel : PopupBase
 {
     [SerializeField] private UISelectButton[] selectButtons;
     private DialogData dialogData;
-    private const string SelectButtonKey = "UISelectButton";
     
     public void SetPanel(DialogData dialog)
     {
@@ -13,10 +12,16 @@ public class UISelectionPanel : PopupBase
         var selectionList = dialogData.SelectOption;
         
         for (int i = 0; i < selectionList.Count; i++)
-        {
-            selectButtons[i].Init(i, OnSelectButtonClick, dialogData.SelectOption[i]);
-            selectButtons[i].gameObject.SetActive(true);
-        }
+            selectButtons[i].DefaultInit(i, OnSelectButtonClick, dialogData.SelectOption[i]);
+    }
+
+    public void SetHighlightPanel(DialogData dialog)
+    {
+        dialogData = dialog;
+        var selectionList = dialogData.SelectOption;
+
+        for (int i = 0; i < selectionList.Count; i++)
+            selectButtons[i].HighlightInit(i, OnSelectButtonClick, dialogData.SelectOption[i]);
     }
 
     private void OnSelectButtonClick(int index)

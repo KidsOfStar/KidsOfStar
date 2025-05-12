@@ -40,6 +40,7 @@ public enum CharacterType
     People2,
     People3,
     Women,
+    Save,
 }
 
 [UGS(typeof(DialogActionType))]
@@ -47,6 +48,7 @@ public enum DialogActionType
 {
     None,
     ShowSelect,
+    HighlightSelect,
     DataSave,
     ModifyTrust,
     PlayCutScene,

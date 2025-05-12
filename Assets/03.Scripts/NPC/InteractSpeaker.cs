@@ -114,7 +114,6 @@ public abstract class InteractSpeaker : MonoBehaviour
 
     private void ShowDialog()
     {
-        EditorLog.Log("대화시작");
         var key = Managers.Instance.GameManager.ChapterProgress;
         if (!dialogByProgress.TryGetValue(key, out int dialogIndex))
         {
