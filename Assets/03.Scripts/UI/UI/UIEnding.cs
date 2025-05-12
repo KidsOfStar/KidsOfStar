@@ -31,36 +31,34 @@ public class UIEnding : UIBase
     {
         // Dictionary 초기화
         endingSpriteDict = new Dictionary<EndingType, Sprite>();
+
         foreach (var pair in endingSpriteList)
         {
             if (!endingSpriteDict.ContainsKey(pair.type))
-            {
                 endingSpriteDict.Add(pair.type, pair.sprite);
-            }
         }
+
         continueButton.onClick.RemoveAllListeners();
         continueButton.onClick.AddListener(() => StartCoroutine(OnContinue()));
         continueButton.interactable = false; // 처음엔 비활성화
 
+        endingImage.gameObject.SetActive(true);
+        
+        backgroundFadeEffect.fadePanel.gameObject.SetActive(true);
         backgroundFadeEffect.fadePanel.color = new Color(0, 0, 0, 1f);
+
         clickToContinueText.gameObject.SetActive(false);
-        endingImage.gameObject.SetActive(false);
     }
     
     public override void Opened(params object[] param)
     {
         base.Opened(param);
-
         if (param.Length == 0) return;
 
         if (!(param[0] is EndingType)) return;
-
         EndingType endingType = (EndingType)param[0];
 
-        if (!endingSpriteDict.TryGetValue(endingType, out var sprite))
-        {
-            return;
-        }
+        if (!endingSpriteDict.TryGetValue(endingType, out var sprite)) return;
 
         endingImage.sprite = sprite;
         StartCoroutine(PlayEndingFlow());
@@ -68,10 +66,9 @@ public class UIEnding : UIBase
 
     private IEnumerator PlayEndingFlow()
     {
-        yield return StartCoroutine(backgroundFadeEffect.FadeIn());
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
-        endingImage.gameObject.SetActive(true);
+        yield return StartCoroutine(backgroundFadeEffect.Fade(1,0));
 
         canClick = true;
         clickToContinueText.gameObject.SetActive(true);
@@ -85,9 +82,9 @@ public class UIEnding : UIBase
         clickToContinueText.gameObject.SetActive(false);
         continueButton.interactable = false;
 
-        yield return StartCoroutine(backgroundFadeEffect.FadeOut());
+        backgroundFadeEffect.fadePanel.gameObject.SetActive(true);
+        yield return StartCoroutine(backgroundFadeEffect.Fade(0,1));
 
-        yield return new WaitForSeconds(1f);
         // 씬 전환
         Managers.Instance.SceneLoadManager.LoadScene(SceneType.Title);
     }

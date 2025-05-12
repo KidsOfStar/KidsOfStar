@@ -10,31 +10,24 @@ public class FadeEffect : MonoBehaviour
     [Range(0.0f, 10f)] private float fadeTime;
     [SerializeField] private float durationTime;
 
-    public IEnumerator FadeIn()
-    {
-        fadePanel.gameObject.SetActive(true);
-        Color alpha = fadePanel.color;
-        while (alpha.a > 0f)
-        {
-            fadeTime += Time.deltaTime / durationTime;
-            alpha.a = Mathf.Lerp(1, 0, fadeTime);
-            yield return null;
-        }
-        fadePanel.gameObject.SetActive(false);
-        yield return null;
-    }
 
-    public IEnumerator FadeOut()
+    //Fade In(0,1)로
+    //Fade Out(1,0)으로 호출
+    public IEnumerator Fade(float start, float end)
     {
-        fadePanel.gameObject.SetActive(true);
-        Color alpha = fadePanel.color;
-        while(alpha.a < 1f)
+        float currentTime = 0.0f;
+        float percent = 0.0f;
+
+        while (percent < 1)
         {
-            fadeTime += Time.deltaTime / durationTime;
-            alpha.a = Mathf.Lerp(0, 1, fadeTime);
-            fadePanel.color = alpha;
+            currentTime += Time.deltaTime;
+            percent = currentTime / fadeTime;
+
+            Color color = fadePanel.color;
+            color.a = Mathf.Lerp(start, end, percent);
+            fadePanel.color = color;
+
             yield return null;
         }
-        yield return null;
     }
 }
