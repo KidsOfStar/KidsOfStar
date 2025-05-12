@@ -17,7 +17,8 @@ public class GoToEndingAction : IDialogActionHandler
             EditorLog.LogError($"GoToEndingAction : Invalid load scene type: {dialogData.Param}");
             return;
         }
-        
+
+        Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
         Managers.Instance.GameManager.TriggerEnding(endingType);
     }
 }
