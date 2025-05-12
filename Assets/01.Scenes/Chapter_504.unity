@@ -277,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &168141168
 Transform:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 168141167}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.3, y: -3.4, z: 0}
+  m_LocalPosition: {x: 26.2, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -357,10 +357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c23a29e0c3c9b84c8948cb694c1a0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 0}
+  tilemap: {fileID: 1137974852}
   moveSpeed: 3
   patrolPath:
-  - {x: 0, y: 0, z: 0}
+  - {x: 20, y: -4, z: 0}
+  - {x: 26, y: -4, z: 0}
+  - {x: 20, y: -4, z: 0}
 --- !u!1 &176587339
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +421,7 @@ Transform:
   m_GameObject: {fileID: 227947867}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.41, y: -2.4, z: 0}
+  m_LocalPosition: {x: -1.28, y: -2.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -492,8 +494,10 @@ MonoBehaviour:
   tilemap: {fileID: 1416217614}
   moveSpeed: 3
   patrolPath:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -2, y: -3, z: 0}
+  - {x: 8, y: -3, z: 0}
+  - {x: 8, y: -3, z: 0}
+  - {x: -2, y: -3, z: 0}
 --- !u!1 &329590676
 GameObject:
   m_ObjectHideFlags: 8
@@ -5727,7 +5731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1167753039
 Transform:
   m_ObjectHideFlags: 0
@@ -5737,7 +5741,7 @@ Transform:
   m_GameObject: {fileID: 1167753038}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.93, y: -3.4, z: 0}
+  m_LocalPosition: {x: 18.24, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5807,10 +5811,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c23a29e0c3c9b84c8948cb694c1a0ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 0}
+  tilemap: {fileID: 1137974852}
   moveSpeed: 3
   patrolPath:
-  - {x: 0, y: 0, z: 0}
+  - {x: 19, y: -4, z: 0}
+  - {x: 10, y: -4, z: 0}
+  - {x: 26, y: -4, z: 0}
+  - {x: 19, y: -4, z: 0}
 --- !u!1 &1168848970
 GameObject:
   m_ObjectHideFlags: 0
@@ -7531,7 +7538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1287010144
 Transform:
   m_ObjectHideFlags: 0
@@ -7583,21 +7590,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1287010147}
-    m_ColliderPaths:
-    - - X: 270000000
-        Y: 0
-      - X: -20000000
-        Y: 0
-      - X: -20000000
-        Y: -30000000
-      - X: 90000000
-        Y: -30000000
-      - X: 90000000
-        Y: -40000000
-      - X: 270000000
-        Y: -40000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 26.999971, y: -4}
