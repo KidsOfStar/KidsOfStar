@@ -38,6 +38,7 @@ public class VentDoor : MonoBehaviour
             skillBTN.ShowInteractionButton(true); // 상호작용 버튼 비활성화
             skillBTN.OnInteractBtnClick += OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

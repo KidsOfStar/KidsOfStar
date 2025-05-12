@@ -69,10 +69,16 @@ public class PlayerStateBase : IPlayerState
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
 
         // 레이캐스트
-        RaycastHit2D checkHit = Physics2D.Raycast(context.BoxCollider.bounds.center, dir,
-            context.BoxCollider.bounds.size.x * 0.75f, context.Controller.GroundLayer);
+        //RaycastHit2D checkHit = Physics2D.Raycast(context.BoxCollider.bounds.center, dir,
+        //    context.BoxCollider.bounds.size.x * 0.75f, context.Controller.GroundLayer);
         //Debug.DrawRay(context.BoxCollider.bounds.center, dir * context.BoxCollider.bounds.size.x * 0.75f,
         //    Color.red, 1f);
+
+        RaycastHit2D checkHit = Physics2D.Raycast(context.Controller.transform.position, dir,
+            context.BoxCollider.bounds.size.x, context.Controller.GroundLayer);
+
+        Debug.DrawRay(context.Controller.transform.position, dir * context.BoxCollider.bounds.size.x,
+            Color.red, 1f);
 
         // 벽이 감지 됐다면
         if (checkHit.collider != null)
