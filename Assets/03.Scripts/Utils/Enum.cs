@@ -203,6 +203,7 @@ public enum CutSceneType
     JigimOrder,
     RescueKitten,
     JieuiRequest,
+    MeetingWomen,
 }
 
 #endregion

@@ -78,6 +78,10 @@ public static class Extensions
             SceneType.Chapter2       => "Chapter_2",
             SceneType.Chapter3       => "Chapter_3",
             SceneType.Chapter4       => "Chapter_4",
+            SceneType.Chapter501     => "Chapter_501",
+            SceneType.Chapter502     => "Chapter_502",
+            SceneType.Chapter503     => "Chapter_503",
+            SceneType.Chapter504     => "Chapter_504",
             _                        => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
         };
     }
@@ -89,6 +93,8 @@ public static class Extensions
             ChapterType.Chapter01 => "Chapter1",
             ChapterType.Chapter02 => "Chapter2",
             ChapterType.Chapter03 => "Chapter3",
+            ChapterType.Chapter04 => "Chapter4",
+            ChapterType.Chapter05 => "Chapter5",
             _                     => throw new ArgumentOutOfRangeException(nameof(chapterType), chapterType, null)
         };
     }
@@ -126,6 +132,7 @@ public static class Extensions
             CutSceneType.RescueKitten    => "RescueKitten",
             CutSceneType.DogFormChange   => "DogFormChange",
             CutSceneType.JieuiRequest    => "JieuiRequest",
+            CutSceneType.MeetingWomen    => "MeetingWomen",
             _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }
