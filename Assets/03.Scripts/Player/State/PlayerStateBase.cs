@@ -68,11 +68,17 @@ public class PlayerStateBase : IPlayerState
         // 현재 이동 방향
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
 
+        // 레이를 발사할 콜라이더 가장자리 위치 값 구하기
+        Vector2 origin = context.BoxCollider.bounds.center;
+        origin.x += dir.x * (context.BoxCollider.bounds.extents.x - 0.01f);
+
+        // 레이 길이
+        float rayLength = 0.1f;
+
         // 레이캐스트
-        RaycastHit2D checkHit = Physics2D.Raycast(context.BoxCollider.bounds.center, dir,
-            context.BoxCollider.bounds.size.x * 0.75f, context.Controller.GroundLayer);
-        //Debug.DrawRay(context.BoxCollider.bounds.center, dir * context.BoxCollider.bounds.size.x * 0.75f,
-        //    Color.red, 1f);
+        RaycastHit2D checkHit = Physics2D.Raycast(origin, dir,
+            rayLength, context.Controller.GroundLayer);
+        Debug.DrawRay(origin, dir * rayLength, Color.red, 1f);
 
         // 벽이 감지 됐다면
         if (checkHit.collider != null)

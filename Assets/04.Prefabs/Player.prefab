@@ -224,8 +224,8 @@ MonoBehaviour:
   anim: {fileID: 9191272023835942332}
   moveSpeed: 3
   jumpForce: 2
-  wallJumpForce: 5
-  catClingTimer: 1.2
+  wallJumpForce: 10
+  catClingTimer: 0.5
   pushableLayer:
     serializedVersion: 2
     m_Bits: 128
