@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagID: vertexp
   baseDuration: 0.5
-  startsFromBottom: 1
+  startsFromBottom: 0

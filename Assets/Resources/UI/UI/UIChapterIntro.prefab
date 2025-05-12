@@ -67,8 +67,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC81C 1\uC7A5 \uC5B4\uCA4C\uAD6C\n\n\uCC55\uD130 1\uC5D0 \uB4E4\uC5B4\uAC08
-    \uB300\uC0AC\uB97C \uC5EC\uAE30 \uC4F8\uAC70\uC784"
+  m_text: "<size=50>\uC81C 1\uC7A5 \uC5B4\uCA4C\uAD6C</size>\n\n\uCC55\uD130 1\uC5D0
+    \uB4E4\uC5B4\uAC08 \uB300\uC0AC\uB97C \uC5EC\uAE30 \uC4F8\uAC70\uC784"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ef8ade7b327847a43b90050c3daadee9, type: 2}
   m_sharedMaterial: {fileID: -5283566785530584950, guid: ef8ade7b327847a43b90050c3daadee9, type: 2}
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 5
   m_wordSpacing: 0
-  m_lineSpacing: 30
+  m_lineSpacing: -4.5
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -152,8 +152,8 @@ MonoBehaviour:
   typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
-  _text: "\uC81C 1\uC7A5 \uC5B4\uCA4C\uAD6C\n\n\uCC55\uD130 1\uC5D0 \uB4E4\uC5B4\uAC08
-    \uB300\uC0AC\uB97C \uC5EC\uAE30 \uC4F8\uAC70\uC784"
+  _text: "<size=50>\uC81C 1\uC7A5 \uC5B4\uCA4C\uAD6C</size>\n\n\uCC55\uD130 1\uC5D0
+    \uB4E4\uC5B4\uAC08 \uB300\uC0AC\uB97C \uC5EC\uAE30 \uC4F8\uAC70\uC784"
   useDynamicScaling: 1
   referenceFontSize: 10
   isResettingTimeOnNewText: 1
@@ -165,8 +165,7 @@ MonoBehaviour:
   databaseActions: {fileID: 11400000, guid: 87fbbee2984c7d841b7feb287a6c7c15, type: 2}
   defaultAppearancesTags:
   - fade
-  defaultDisappearancesTags:
-  - fade
+  defaultDisappearancesTags: []
   defaultBehaviorsTags: []
   defaultTagsMode: 0
 --- !u!114 &31702629575695870
@@ -213,7 +212,7 @@ MonoBehaviour:
   waitForLastCharacter: 1
   useTypewriterWaitForDisappearances: 1
   disappearanceWaitTime: 0.015
-  disappearanceSpeedMultiplier: 1
+  disappearanceSpeedMultiplier: 1.5
 --- !u!1 &9180078057978016831
 GameObject:
   m_ObjectHideFlags: 0
