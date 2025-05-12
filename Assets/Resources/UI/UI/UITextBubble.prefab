@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1443659418636833389}
   - component: {fileID: 3419803984505640107}
   - component: {fileID: 7890836396488831953}
+  - component: {fileID: 3957134484458495509}
   m_Layer: 5
   m_Name: tmp_Dialog
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC548\uB155 \uB315\uB315\uC544"
+  m_text: "\uD14C\uC2A4\uD2B8 \uD14D\uC2A4\uD2B8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6593b658a8c8d35438a9798e8e9f227f, type: 2}
   m_sharedMaterial: {fileID: 5922590977744021984, guid: 6593b658a8c8d35438a9798e8e9f227f, type: 2}
@@ -150,8 +151,8 @@ MonoBehaviour:
   typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
-  _text: "\uC548\uB155 \uB315\uB315\uC544"
-  useDynamicScaling: 1
+  _text: "\uD14C\uC2A4\uD2B8 \uD14D\uC2A4\uD2B8"
+  useDynamicScaling: 0
   referenceFontSize: 10
   isResettingTimeOnNewText: 1
   useDefaultDatabases: 1
@@ -161,11 +162,56 @@ MonoBehaviour:
   styleSheet: {fileID: 0}
   databaseActions: {fileID: 11400000, guid: 87fbbee2984c7d841b7feb287a6c7c15, type: 2}
   defaultAppearancesTags:
-  - size a=0.3
+  - size a=0.5
   defaultDisappearancesTags:
   - fade
   defaultBehaviorsTags: []
   defaultTagsMode: 0
+--- !u!114 &3957134484458495509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813627839889150383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useTypeWriter: 1
+  startTypewriterMode: 2
+  hideAppearancesOnSkip: 1
+  hideDisappearancesOnSkip: 0
+  triggerEventsOnSkip: 0
+  resetTypingSpeedAtStartup: 0
+  disappearanceOrientation: 0
+  triggerShowedAfterEffectsEnd: 0
+  triggerDisappearedAfterEffectsEnd: 0
+  onTextShowed:
+    m_PersistentCalls:
+      m_Calls: []
+  onTypewriterStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onTextDisappeared:
+    m_PersistentCalls:
+      m_Calls: []
+  onCharacterVisible:
+    m_PersistentCalls:
+      m_Calls: []
+  onMessage:
+    m_PersistentCalls:
+      m_Calls: []
+  waitForNormalChars: 0.05
+  waitLong: 0.6
+  waitMiddle: 0.2
+  avoidMultiplePunctuationWait: 0
+  waitForNewLines: 0
+  waitForLastCharacter: 1
+  useTypewriterWaitForDisappearances: 1
+  disappearanceWaitTime: 0.015
+  disappearanceSpeedMultiplier: 1
 --- !u!1 &2057746623309824022
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +296,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2720872560833681720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,8 +312,8 @@ MonoBehaviour:
   uiPosition: 1
   canvas: {fileID: 2851685759153203458}
   rectTr: {fileID: 6872692231134291710}
-  dialogText: {fileID: 3419803984505640107}
-  typewriter: {fileID: 0}
+  dialogTmp: {fileID: 3419803984505640107}
+  typewriter: {fileID: 3957134484458495509}
   clickIgnoreTime: 0.1
 --- !u!1 &4312404214207553246
 GameObject:
