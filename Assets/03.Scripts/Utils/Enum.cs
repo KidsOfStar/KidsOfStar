@@ -204,6 +204,7 @@ public enum CutSceneType
     RescueKitten,
     JieuiRequest,
     MeetingWomen,
+    HaniRequest,
 }
 
 #endregion
