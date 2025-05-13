@@ -409,6 +409,37 @@ MonoBehaviour:
     isFlip: 0
     isActive: 1
     position: {x: 1.4, y: -21.7, z: 0}
+--- !u!1 &123614160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123614161}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123614161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123614160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 450, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &153235127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2776,7 +2807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2759841982836350755, guid: b589dd3089f9dfe4e894f3c93147525e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.13
+      value: 2.87
       objectReference: {fileID: 0}
     - target: {fileID: 2759841982836350755, guid: b589dd3089f9dfe4e894f3c93147525e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9149,6 +9180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18bf7cc9091a0c4fb84a3ffc031a72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTutorialDoor: 1
   puzzleData: {fileID: 11400000, guid: edc478d643bdb114cad935b95c8748a6, type: 2}
   sequenceIndex: 0
   exclamationInstance: {fileID: 3125597759484119318}
@@ -9256,6 +9288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18bf7cc9091a0c4fb84a3ffc031a72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTutorialDoor: 0
   puzzleData: {fileID: 11400000, guid: 5a61ba438c50a08468318dea14f7e3c5, type: 2}
   sequenceIndex: 1
   exclamationInstance: {fileID: 2041152587}
@@ -9820,7 +9853,7 @@ MonoBehaviour:
   currentChapter: 1
   existRequiredDialog: 1
   isFirstTime: 1
-  introText: "\uC81C 2\uC7A5 \uAE4A\uC740 \uC0B0\n\uC544\uBB34\uB9AC \uC0C1\uB0E5\uD574\uB3C4
+  introText: "\uC81C 2\uC7A5 \uAE4A\uC740 \uC0B0\n\n\uC544\uBB34\uB9AC \uC0C1\uB0E5\uD574\uB3C4
     \uAE34\uC7A5\uC744 \uB193\uC744 \uC21C \uC5C6\uC5B4."
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerStartForm: Squirrel
@@ -13039,7 +13072,7 @@ Transform:
   m_GameObject: {fileID: 2020590301}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.87, y: -18.8, z: -10}
+  m_LocalPosition: {x: 3, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14691,3 +14724,4 @@ SceneRoots:
   - {fileID: 1945924727}
   - {fileID: 1550185416}
   - {fileID: 376672858}
+  - {fileID: 123614161}
