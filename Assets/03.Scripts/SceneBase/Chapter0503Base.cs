@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Chapter0503Base : SceneBase
 {
-    private bool cutSceneEnd = false;
+    private bool cutSceneEnd = true;
     protected override void CutSceneEndCallback()
     {
         PlayChapterIntro();

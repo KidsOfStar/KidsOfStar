@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1137974852}
-  moveSpeed: 3
+  moveSpeed: 4
   patrolPath:
   - {x: 20, y: -2.8, z: 0}
   - {x: 26, y: -2.8, z: 0}
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1416217614}
-  moveSpeed: 3
+  moveSpeed: 2
   patrolPath:
   - {x: -2, y: -1.8, z: 0}
   - {x: 8, y: -1.8, z: 0}
