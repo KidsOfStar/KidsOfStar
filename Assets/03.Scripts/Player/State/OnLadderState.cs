@@ -40,7 +40,7 @@ public class OnLadderState : PlayerStateBase
                     context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
                 }
             }
-            else
+            else if(context.Controller.MoveDir.y < 0)
             {
                 // 아래 방향 키를 입력중이라면
                 // 이전 위치 값 유무 체크 && 땅에 닿은 상태

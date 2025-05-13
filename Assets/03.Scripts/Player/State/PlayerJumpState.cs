@@ -10,13 +10,4 @@ public class PlayerJumpState : PlayerJumpBaseState
         // 리지드바디로 실제 점프 동작 실행
         context.Rigid.AddForce(Vector2.up * context.Controller.JumpForce, ForceMode2D.Impulse);
     }
-
-
-    public override void OnFixedUpdate()
-    {
-        base.OnFixedUpdate();
-
-        // 이동 동작 실행
-        context.Controller.Move();
-    }
 }
