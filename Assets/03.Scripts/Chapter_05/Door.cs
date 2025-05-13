@@ -15,19 +15,18 @@ public class Door : MonoBehaviour
     // 문 잠금 여부
     public bool isDoorLocked = false;
     private SkillBTN skillBTN;
-    // 문과 닿을 시 상호작용 키 활성화
 
     private void Start()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
     }
-    //private void OnDestroy()
-    //{
-    //    if (skillBTN != null)
-    //    {
-    //        skillBTN.OnInteractBtnClick -= OnInteraction; // 상호작용 버튼 클릭 이벤트 해제
-    //    }
-    //}
+    private void OnDestroy()
+    {
+        if (skillBTN != null)
+        {
+            skillBTN.OnInteractBtnClick -= OnInteraction; // 상호작용 버튼 클릭 이벤트 해제
+        }
+    }
 
     private void OnInteraction()
     {
