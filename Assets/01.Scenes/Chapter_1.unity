@@ -4547,6 +4547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 6037322822605988540, guid: bba16a8019314204a9cd36fc6b1ce175, type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 7953835736454408363, guid: bba16a8019314204a9cd36fc6b1ce175, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.3
