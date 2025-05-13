@@ -96,12 +96,5 @@ public class VentDown : MonoBehaviour
             SetActiveGroup(ventOut, false);
             isVentActive = true; // 벤트 안으로 들어갔는지 여부
         }
-        //else
-        //{
-        //    Debug.Log($"{isVentActive} - 벤트 밖으로 나감");
-        //    SetActiveGroup(ventIn, false);
-        //    SetActiveGroup(ventOut, true);
-        //    isVentActive = false; // 벤트 안으로 들어갔는지 여부
-        //}
     }
 }
