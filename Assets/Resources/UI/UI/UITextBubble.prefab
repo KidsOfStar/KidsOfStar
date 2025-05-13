@@ -163,8 +163,7 @@ MonoBehaviour:
   databaseActions: {fileID: 11400000, guid: 87fbbee2984c7d841b7feb287a6c7c15, type: 2}
   defaultAppearancesTags:
   - size a=0.5
-  defaultDisappearancesTags:
-  - fade
+  defaultDisappearancesTags: []
   defaultBehaviorsTags: []
   defaultTagsMode: 0
 --- !u!114 &3957134484458495509
@@ -180,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTypeWriter: 1
-  startTypewriterMode: 2
+  startTypewriterMode: 0
   hideAppearancesOnSkip: 1
   hideDisappearancesOnSkip: 0
   triggerEventsOnSkip: 0
@@ -204,11 +203,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.05
-  waitLong: 0.6
+  waitLong: 0.2
   waitMiddle: 0.2
-  avoidMultiplePunctuationWait: 0
+  avoidMultiplePunctuationWait: 1
   waitForNewLines: 0
-  waitForLastCharacter: 1
+  waitForLastCharacter: 0
   useTypewriterWaitForDisappearances: 1
   disappearanceWaitTime: 0.015
   disappearanceSpeedMultiplier: 1
@@ -312,7 +311,6 @@ MonoBehaviour:
   uiPosition: 1
   canvas: {fileID: 2851685759153203458}
   rectTr: {fileID: 6872692231134291710}
-  dialogTmp: {fileID: 3419803984505640107}
   typewriter: {fileID: 3957134484458495509}
   clickIgnoreTime: 0.1
 --- !u!1 &4312404214207553246

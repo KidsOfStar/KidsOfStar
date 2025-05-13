@@ -135,6 +135,7 @@ public static class Extensions
             CutSceneType.MeetingWomen    => "MeetingWomen",
             CutSceneType.HaniRequest     => "HaniRequest",
             CutSceneType.MeetingBihyi    => "MeetingBihyi",
+            CutSceneType.TheCatReturns   => "TheCatReturns",
             _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }

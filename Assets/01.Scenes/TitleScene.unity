@@ -684,7 +684,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 301014797448863357, guid: cdef7d2fed4f63b4dbc1c0b6c4806c87, type: 3}
       propertyPath: <TestScene>k__BackingField
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 301014797448863357, guid: cdef7d2fed4f63b4dbc1c0b6c4806c87, type: 3}
       propertyPath: <IsDebugMode>k__BackingField
@@ -692,7 +692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 301014797448863357, guid: cdef7d2fed4f63b4dbc1c0b6c4806c87, type: 3}
       propertyPath: <LoadTestScene>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4740022187713168800, guid: cdef7d2fed4f63b4dbc1c0b6c4806c87, type: 3}
       propertyPath: m_Name

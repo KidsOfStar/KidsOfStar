@@ -50,6 +50,7 @@ public enum DialogActionType
     ShowSelect,
     HighlightSelect,
     DataSave,
+    FinalSelect,
     ModifyTrust,
     PlayCutScene,
     LoadScene,
@@ -208,6 +209,7 @@ public enum CutSceneType
     MeetingWomen,
     HaniRequest,
     MeetingBihyi,
+    TheCatReturns,
 }
 
 #endregion

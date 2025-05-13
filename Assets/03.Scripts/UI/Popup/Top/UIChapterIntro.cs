@@ -27,7 +27,6 @@ public class UIChapterIntro : UIBase
         
         // 배경 페이드 인
         // yield return Fade(fadeOutColor, Color.black, fadeTime, c => backgroundImage.color = c);
-
         // 텍스트 페이드 인
         // yield return Fade(fadeOutColor, Color.white, fadeTime, c => introText.color = c);
 

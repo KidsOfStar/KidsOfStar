@@ -1,12 +1,14 @@
 using MainTable;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UISelectionPanel : PopupBase
 {
     [SerializeField] private UISelectButton[] selectButtons;
     private DialogData dialogData;
+    private List<int> finalNextIndexes;
     
-    public void SetPanel(DialogData dialog)
+    public void SetDefaultPanel(DialogData dialog)
     {
         dialogData = dialog;
         var selectionList = dialogData.SelectOption;
@@ -24,9 +26,20 @@ public class UISelectionPanel : PopupBase
             selectButtons[i].HighlightInit(i, OnSelectButtonClick, dialogData.SelectOption[i]);
     }
 
+    public void SetFinalPanel(List<string> finalSelection, List<int> nextIndexes)
+    {
+        finalNextIndexes = nextIndexes;
+        
+        for (int i = 0; i < finalSelection.Count; i++)
+        {
+            selectButtons[i].HighlightInit(i, OnSelectButtonClick, finalSelection[i]);
+        }
+    }
+
     private void OnSelectButtonClick(int index)
     {
-        var nextIndex = dialogData.NextIndex[index];
+        int nextIndex = finalNextIndexes != null ? finalNextIndexes[index] : dialogData.NextIndex[index];
+        
         HideDirect();
         if (nextIndex < 0)
         {

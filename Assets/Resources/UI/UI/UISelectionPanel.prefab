@@ -305,7 +305,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.1
-  waitLong: 0.6
+  waitLong: 0.2
   waitMiddle: 0.2
   avoidMultiplePunctuationWait: 0
   waitForNewLines: 1
@@ -519,7 +519,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.1
-  waitLong: 0.6
+  waitLong: 0.2
   waitMiddle: 0.2
   avoidMultiplePunctuationWait: 0
   waitForNewLines: 1
@@ -733,7 +733,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.1
-  waitLong: 0.6
+  waitLong: 0.2
   waitMiddle: 0.2
   avoidMultiplePunctuationWait: 0
   waitForNewLines: 1
@@ -947,7 +947,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.1
-  waitLong: 0.6
+  waitLong: 0.2
   waitMiddle: 0.2
   avoidMultiplePunctuationWait: 0
   waitForNewLines: 1
@@ -1132,7 +1132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 6263839423825603683}
-  selectionText: {fileID: 8328205723244882654}
   typewriter: {fileID: 5507254640688146992}
 --- !u!1 &5489599119083013951
 GameObject:
@@ -1311,7 +1310,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2699216194577309998}
-  selectionText: {fileID: 3255569047070611}
   typewriter: {fileID: 4176876005405000892}
 --- !u!1 &5557790585124413143
 GameObject:
@@ -1518,7 +1516,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.1
-  waitLong: 0.6
+  waitLong: 0.2
   waitMiddle: 0.2
   avoidMultiplePunctuationWait: 0
   waitForNewLines: 0
@@ -1703,7 +1701,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 3569168014013889755}
-  selectionText: {fileID: 1510431394649569894}
   typewriter: {fileID: 4775085546231662145}
 --- !u!1 &6531801685496307425
 GameObject:
@@ -1882,7 +1879,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 3746691996441426160}
-  selectionText: {fileID: 1621567148199788109}
   typewriter: {fileID: 2793693348893570453}
 --- !u!1 &7394880866809488806
 GameObject:
@@ -2061,5 +2057,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1136199531742725047}
-  selectionText: {fileID: 3078928650774054154}
   typewriter: {fileID: 4268986114652913407}

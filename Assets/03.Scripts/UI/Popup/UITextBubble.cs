@@ -9,12 +9,9 @@ public class UITextBubble : UIBase
     [Header("Text Bubble")]
     [SerializeField] private Canvas canvas;
     [SerializeField] private RectTransform rectTr;
-    [SerializeField] private TextMeshProUGUI dialogTmp;
     [SerializeField] private TypewriterByCharacter typewriter;
     [SerializeField] private float clickIgnoreTime = 0.1f;
 
-    private readonly StringBuilder dialogSb = new();
-    private readonly WaitForSeconds textWaitTime = new(0.1f);
     private Coroutine dialogCoroutine;
     
     private bool isTyping = false;
@@ -29,29 +26,20 @@ public class UITextBubble : UIBase
     
     public void SetDialog(string dialog, Transform bubbleTr)
     {
-        StartDialogCoroutine(dialog);
+        ShowDialogue(dialog);
         rectTr.SetParent(bubbleTr);
         rectTr.localPosition = Vector3.zero;
         dialogStartTime = Time.time;
     }
 
-    private void StartDialogCoroutine(string dialog)
-    {
-        ShowDialogue(dialog);
-    }
-    
-    // 한글자 출력할 때마다 발생하는 이벤트에 isTyping이 false라면 전부 다 출력하는 함수를 등록
-    // 모든 글자가 출력됐을 때 발생하는 이벤트에 isTyping = false; 를 등록
-    // 출력 끝났을 때 이벤트 해제
-
     private void ShowDialogue(string dialog)
     {
         isTyping = true;
-        dialogTmp.text = string.Empty;
+        typewriter.ShowText(dialog);
         
         typewriter.onCharacterVisible.AddListener(_ => CheckSkipTyping());
         typewriter.onTextShowed.AddListener(() => isTyping = false);
-        typewriter.ShowText(dialog);
+        typewriter.StartShowingText();
     }
 
     private void CheckSkipTyping()
@@ -90,6 +78,7 @@ public class UITextBubble : UIBase
 
     private void OnDisable()
     {
+        typewriter.ShowText(string.Empty);
         Managers.Instance.DialogueManager.OnClick -= SkipTyping;
     }
 }
