@@ -17,6 +17,7 @@ public class Chapter0502Base : SceneBase
 
     private void SkillForm()
     {
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
     }
 

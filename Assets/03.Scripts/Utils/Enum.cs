@@ -208,6 +208,7 @@ public enum CutSceneType
     JieuiRequest,
     MeetingWomen,
     HaniRequest,
+    MeetingBihyi,
     TheCatReturns,
 }
 

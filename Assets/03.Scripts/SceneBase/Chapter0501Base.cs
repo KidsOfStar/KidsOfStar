@@ -9,9 +9,10 @@ public class Chapter0501Base : SceneBase
         PlayChapterIntro();
     }
 
-    protected override void InitSceneExtra(Action callback)
+    protected override void InitSceneExtra(Action playIntroCallback)
     {
         SkillForm();
+        playIntroCallback?.Invoke();
     }
 
     private void SkillForm()
