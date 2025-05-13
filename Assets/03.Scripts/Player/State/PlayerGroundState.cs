@@ -30,12 +30,17 @@ public class PlayerGroundState : PlayerStateBase
         // 상하 이동 키를 입력하지 않는 상태면 return
         if (Mathf.Abs(context.Controller.MoveDir.y) < 0.1f) return;
 
+        Vector2 origin = context.BoxCollider.bounds.center;
+        origin.y = context.BoxCollider.bounds.min.y + 0.03f;
+        float rayLength = 0.1f;
         // 닿은 땅 오브젝트의 PlatformEffector2D 여부
         bool onEffector = false;
-        // isGround 체크와 같은 조건으로 박스 캐스트
-        RaycastHit2D hit = Physics2D.BoxCast(context.BoxCollider.bounds.center, context.BoxCollider.bounds.size, 0f, 
-            Vector2.down, 0.02f, context.Controller.GroundLayer);
-        
+
+        // isGround 체크와 같은 조건으로 레이 캐스트
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, rayLength,
+            context.Controller.GroundLayer);
+        Debug.DrawRay(origin, Vector2.down * rayLength, Color.red, 1f);
+
         if(hit.collider != null)
         {
             // 체크

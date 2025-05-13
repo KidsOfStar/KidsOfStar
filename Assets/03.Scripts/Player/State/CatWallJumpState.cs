@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CatWallJumpState : PlayerJumpBaseState
@@ -20,21 +18,13 @@ public class CatWallJumpState : PlayerJumpBaseState
         context.Rigid.velocity = Vector2.zero;
         Vector2 pushDir = new Vector2(0f, 
             context.Controller.WallJumpForce);
-        //context.Rigid.AddForce(Vector2.right * -dirX * 10f, 0);
-        //// 벽 점프 실제 동작 실행
-        //context.Rigid.AddForce(pushDir, ForceMode2D.Impulse);
-        context.StateMachine.RunCoroutine(DelayWallJump(pushDir));
+        // 벽 점프 실제 동작 실행
+        context.Rigid.AddForce(pushDir, ForceMode2D.Impulse);
         EditorLog.Log(context.Rigid.velocity.y);
         EditorLog.Log(context.Controller.transform.position.y);
 
         // 초기화
         timer = 0;
-    }
-
-    private IEnumerator DelayWallJump(Vector2 force)
-    {
-        yield return new WaitForFixedUpdate();
-        context.Rigid.AddForce(force, ForceMode2D.Impulse);
     }
 
     public override void OnUpdate()

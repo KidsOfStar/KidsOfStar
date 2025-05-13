@@ -6,6 +6,10 @@ public class OnLadderState : PlayerStateBase
 {
     // 플레이어의 본래 중력 값
     private float gravityScale = 0;
+    // 하강 상태로 진입 시 상태 탈출을 막는 최소 시간
+    private float safeDuration = 0.2f;
+    // 사다리 타기 상태 진입 후 경과 시간
+    private float ladderEnterTime = 0f;
     // 프레임 간에 위치값 변경 추적
     private Vector2 previousPosition = Vector2.zero;
 
@@ -16,13 +20,18 @@ public class OnLadderState : PlayerStateBase
     public override void OnEnter()
     {
         base.OnEnter();
+        // 초기화
+        ladderEnterTime = 0;
         // 원래의 중력 값을 변수에 캐싱
         gravityScale = context.Rigid.gravityScale;
         // 중력 값을 0으로 전환
         context.Rigid.gravityScale = 0f;
         // 본래 있었을지도 모를 가속도 제거
         context.Rigid.velocity = Vector2.zero;
-        previousPosition = context.Controller.transform.position;
+        if(context.IgnoredPlatform != null)
+        {
+            Physics2D.IgnoreCollision(context.BoxCollider, context.IgnoredPlatform, true);
+        }
     }
 
     public override void OnUpdate()
@@ -37,19 +46,38 @@ public class OnLadderState : PlayerStateBase
                 // 플레이어가 땅에 닿은 상태 && 사다리 접촉 X
                 if(!context.Controller.IsGround && !context.Controller.TouchLadder)
                 {
+                    EditorLog.Log("1");
                     context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
                 }
             }
             else if(context.Controller.MoveDir.y < 0)
             {
+                ladderEnterTime += Time.deltaTime;
+
                 // 아래 방향 키를 입력중이라면
-                // 이전 위치 값 유무 체크 && 땅에 닿은 상태
-                if(previousPosition != Vector2.zero && context.Controller.IsGround)
+                // 이전 위치 값 유무 체크 && 땅에 닿은 상태 && 보호 시간 초과
+                if(previousPosition != Vector2.zero && context.Controller.IsGround
+                    && ladderEnterTime > safeDuration)
                 {
+                    Vector2 origin = context.BoxCollider.bounds.center;
+                    origin.y = context.BoxCollider.bounds.min.y + 0.03f;
+                    float rayLength = 0.1f;
+
+                    // isGround 체크와 같은 조건으로 레이 캐스트
+                    RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, rayLength,
+                        context.Controller.GroundLayer);
+
+                    if(hit.collider != null)
+                    {
+                        EditorLog.Log(hit.collider.name);
+                    }
+
                     // 입력은 되고 있지만 위치 값이 변하지 않을 경우
-                    if(Mathf.Abs(context.Controller.transform.position.y - previousPosition.y) < 0.02f)
+                    if (Mathf.Abs(context.Controller.transform.position.y - previousPosition.y) 
+                        < 0.005f)
                     {
                         context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
+                        EditorLog.Log("2");
                     }
                 }
 
