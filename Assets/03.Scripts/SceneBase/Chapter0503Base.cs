@@ -3,7 +3,23 @@ using UnityEngine;
 
 public class Chapter0503Base : SceneBase
 {
-    private bool cutSceneEnd = true;
+    public Collider2D meetingWomanTriger;   // 앞
+    public Collider2D meetingBihyiTriger;   // 뒤
+
+    private void Start()
+    {
+        if(Managers.Instance.GameManager.visitCount == 1 )
+        {
+            meetingWomanTriger.enabled = false;
+        }
+        else if (Managers.Instance.GameManager.visitCount == 2)
+        {
+            meetingWomanTriger.enabled = false;
+            meetingBihyiTriger.enabled = false;
+        }
+        Managers.Instance.GameManager.visitCount++;
+    }
+
     protected override void CutSceneEndCallback()
     {
         PlayChapterIntro();
@@ -17,18 +33,5 @@ public class Chapter0503Base : SceneBase
     private void SkillForm()
     {
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            if (!cutSceneEnd)
-            {
-                // 컷신 호출
-                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.MeetingWomen);
-            }
-            cutSceneEnd = true;
-        }
     }
 }

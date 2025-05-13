@@ -13,7 +13,8 @@ public class VentDoor : MonoBehaviour
 
     [Header("Vent Out")]
     public GameObject timeMap;
-    public GameObject Hide;
+    public GameObject hide;
+    public GameObject waterTank;
 
     private bool isVentInOut = false; // 벤트 안으로 들어갔는지 여부
 
@@ -71,7 +72,8 @@ public class VentDoor : MonoBehaviour
     private void VentOut()
     {
         ventOut.Add(timeMap);
-        ventOut.Add(Hide);
+        ventOut.Add(hide);
+        ventOut.Add(waterTank);
     }
 
     private void OnVentInteraction()
