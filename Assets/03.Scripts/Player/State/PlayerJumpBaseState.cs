@@ -41,12 +41,4 @@ public class PlayerJumpBaseState : PlayerStateBase
             }
         }
     }
-
-    public override void OnFixedUpdate()
-    {
-        base.OnFixedUpdate();
-
-        // 이동 동작 실행
-        context.Controller.Move();
-    }
 }
