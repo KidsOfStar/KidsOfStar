@@ -228,7 +228,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057746623309824022}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b78ed195ef83d545b279b58f7e87afc, type: 3}
   m_Name: 
@@ -236,8 +236,7 @@ MonoBehaviour:
   uiPosition: 1
   canvas: {fileID: 2851685759153203458}
   rectTr: {fileID: 6872692231134291710}
-  dialogTmp: {fileID: 3419803984505640107}
-  typewriter: {fileID: 0}
+  dialogText: {fileID: 3419803984505640107}
   clickIgnoreTime: 0.1
 --- !u!1 &4312404214207553246
 GameObject:
@@ -414,6 +413,8 @@ MonoBehaviour:
   messageText: {fileID: 3419803984505640107}
   boxWarningText: {fileID: 3419803984505640107}
   boxFallingText: {fileID: 3419803984505640107}
+  confirmButton: {fileID: 0}
+  retryButton: {fileID: 0}
 --- !u!1 &8429540792983777605
 GameObject:
   m_ObjectHideFlags: 0

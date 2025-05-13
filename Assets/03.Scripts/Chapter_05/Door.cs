@@ -15,18 +15,19 @@ public class Door : MonoBehaviour
     // 문 잠금 여부
     public bool isDoorLocked = false;
     private SkillBTN skillBTN;
+    // 문과 닿을 시 상호작용 키 활성화
 
     private void Start()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
     }
-    private void OnDestroy()
-    {
-        if (skillBTN != null)
-        {
-            skillBTN.OnInteractBtnClick -= OnInteraction; // 상호작용 버튼 클릭 이벤트 해제
-        }
-    }
+    //private void OnDestroy()
+    //{
+    //    if (skillBTN != null)
+    //    {
+    //        skillBTN.OnInteractBtnClick -= OnInteraction; // 상호작용 버튼 클릭 이벤트 해제
+    //    }
+    //}
 
     private void OnInteraction()
     {
@@ -34,6 +35,7 @@ public class Door : MonoBehaviour
         {
             if (bubbleTextInstance == null && bubbleTextPrefab != null)
             {
+                Debug.Log("문이 잠겨 있음 - 버블 생성");
                 bubbleTextInstance = Instantiate(bubbleTextPrefab, transform);
                 bubbleTextInstance.transform.localPosition = new Vector3(0, 2f, 0); // 문 위 위치
 
@@ -45,6 +47,7 @@ public class Door : MonoBehaviour
             }
             else if (bubbleTextInstance != null)
             {
+                Debug.Log("이미 생성됨 - 제거");
                 Destroy(bubbleTextInstance);
                 bubbleTextInstance = null;
             }
