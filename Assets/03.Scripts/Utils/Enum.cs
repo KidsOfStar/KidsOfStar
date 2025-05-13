@@ -50,6 +50,7 @@ public enum DialogActionType
     ShowSelect,
     HighlightSelect,
     DataSave,
+    FinalSelect,
     ModifyTrust,
     PlayCutScene,
     LoadScene,

@@ -24,6 +24,7 @@ public class DialogueManager : ISceneLifecycleHandler
         dialogActionHandlers[DialogActionType.None] = new NoneAction();
         dialogActionHandlers[DialogActionType.ShowSelect] = new ShowSelectAction();
         dialogActionHandlers[DialogActionType.HighlightSelect] = new HighlightSelectAction();
+        dialogActionHandlers[DialogActionType.FinalSelect] = new FinalSelectAction();
         dialogActionHandlers[DialogActionType.ModifyTrust] = new ModifyTrustAction();
         dialogActionHandlers[DialogActionType.DataSave] = new DataSaveAction();
         dialogActionHandlers[DialogActionType.PlayCutScene] = new PlayCutSceneAction();
