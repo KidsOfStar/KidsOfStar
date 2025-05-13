@@ -14,7 +14,8 @@ public class VentDown : MonoBehaviour
     public GameObject timeMap;
     public GameObject Hide;
 
-    private bool isVentInOut = false; // 벤트 안으로 들어갔는지 여부
+    private bool isVentActive = false; // ventIn이 현재 활성화 상태인지 여부
+
 
     List<GameObject> ventIn = new List<GameObject>();
     List<GameObject> ventOut = new List<GameObject>();
@@ -28,6 +29,8 @@ public class VentDown : MonoBehaviour
 
         VentIn();
         VentOut();
+        SetActiveGroup(ventIn, false);  // 시작 시 벤트 안 활성화
+        SetActiveGroup(ventOut, true);
     }
 
     private void OnDestroy()
@@ -41,6 +44,13 @@ public class VentDown : MonoBehaviour
         {
             skillBTN.ShowInteractionButton(true); // 상호작용 버튼 비활성화
             skillBTN.OnInteractBtnClick += OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
+
+            if(isVentActive)
+            {
+                SetActiveGroup(ventIn, false);  // 벤트 안 활성화
+                SetActiveGroup(ventOut, true); // 벤트 밖 비활성화
+                isVentActive = false; // 벤트 안으로 들어갔는지 여부
+            }
         }
     }
 
@@ -50,7 +60,6 @@ public class VentDown : MonoBehaviour
         {
             skillBTN.ShowInteractionButton(false); // 상호작용 버튼 비활성화
             skillBTN.OnInteractBtnClick -= OnVentInteraction; // 상호작용 버튼 클릭 이벤트 
-            OnVentInteraction();
         }
     }
 
@@ -80,19 +89,19 @@ public class VentDown : MonoBehaviour
 
     private void OnVentInteraction()
     {
-        if (!isVentInOut)
+        if (!isVentActive)
         {
-            Debug.Log($"{isVentInOut} - 벤트 안으로 들어감");
+            Debug.Log($"{isVentActive} - 벤트 안으로 들어감");
             SetActiveGroup(ventIn, true);
             SetActiveGroup(ventOut, false);
-            isVentInOut = true; // 벤트 안으로 들어갔는지 여부
+            isVentActive = true; // 벤트 안으로 들어갔는지 여부
         }
-        else
-        {
-            Debug.Log($"{isVentInOut} - 벤트 밖으로 나감");
-            SetActiveGroup(ventIn, false);
-            SetActiveGroup(ventOut, true);
-            isVentInOut = false; // 벤트 안으로 들어갔는지 여부
-        }
+        //else
+        //{
+        //    Debug.Log($"{isVentActive} - 벤트 밖으로 나감");
+        //    SetActiveGroup(ventIn, false);
+        //    SetActiveGroup(ventOut, true);
+        //    isVentActive = false; // 벤트 안으로 들어갔는지 여부
+        //}
     }
 }
