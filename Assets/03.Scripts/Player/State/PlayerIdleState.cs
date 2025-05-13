@@ -38,5 +38,11 @@ public class PlayerIdleState : PlayerGroundState
             // 이동
             context.Controller.Move();
         }
+        else
+        {
+            // 땅 위에 서 있는 상태라면
+            // 정지
+            context.Rigid.velocity = Vector2.zero;
+        }
     }
 }

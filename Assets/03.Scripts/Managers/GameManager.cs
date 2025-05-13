@@ -129,9 +129,23 @@ public class GameManager
         return (UnlockedForms & formType) == formType;
     }
 
-    public void ModifyTrust(int value)
+    public void ModifyTrust(ChapterType chapterType, int value)
     {
-        trustDict[CurrentChapter] += value;
+        var trustData = Managers.Instance.DataManager.GetTrustData(chapterType);
+        var currentValue = trustDict[chapterType];
+
+        if (value > 0)
+            trustDict[chapterType] = Mathf.Min(currentValue + value, trustData.maxTrust);
+        else
+            trustDict[chapterType] = Mathf.Max(currentValue + value, trustData.minTrust);
+    }
+
+    public bool EnoughTrustForEnding(ChapterType chapterType)
+    {
+        var trustData = Managers.Instance.DataManager.GetTrustData(chapterType);
+        var currentValue = trustDict[chapterType];
+
+        return currentValue >= trustData.endingThreshold;
     }
 
     public void SetCamera(Camera camera)

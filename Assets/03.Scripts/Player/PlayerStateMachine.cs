@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
@@ -59,5 +61,10 @@ public class PlayerStateMachine : MonoBehaviour
         // 새로운 현재 상태의 OnEnter 동작
         curState?.OnEnter();
         EditorLog.Log(curState.ToString());
+    }
+
+    public void RunCoroutine(IEnumerator routine)
+    {
+        StartCoroutine(routine);
     }
 }

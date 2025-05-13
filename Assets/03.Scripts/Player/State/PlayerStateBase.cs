@@ -44,8 +44,9 @@ public class PlayerStateBase : IPlayerState
         if(!context.Controller.IsGround)
         {
             // 고양이 형태 || 이동 키 입력중 || 벽타기 가능한 상태
-            if (context.FormController.CurFormData.FormName == "Cat" && context.Controller.MoveDir.x != 0
-                && context.CanCling)
+            if (context.FormController.CurFormData.FormName == "Cat" && 
+                context.Controller.MoveDir.x != 0 && 
+                context.CanCling)
             {
                 WallTouchCheck();
             }
@@ -70,7 +71,7 @@ public class PlayerStateBase : IPlayerState
 
         // 레이를 발사할 콜라이더 가장자리 위치 값 구하기
         Vector2 origin = context.BoxCollider.bounds.center;
-        origin.x += dir.x * (context.BoxCollider.bounds.extents.x + 0.03f);
+        origin.x += dir.x * (context.BoxCollider.bounds.extents.x + 0.012f);
 
         // 레이 길이
         float rayLength = 0.1f;

@@ -12,6 +12,7 @@ public class DataManager
     // SO
     private readonly Dictionary<ChapterType, int> maxProgressDict = new();
     private Dictionary<ChapterType, RequiredIndex[]> requiredIndexDict;
+    private Dictionary<ChapterType, TrustData> trustDataDict;
     
     public DataManager()
     {
@@ -24,6 +25,7 @@ public class DataManager
         // SO
         LoadChapterProgressData();
         LoadRequiredIndexData();
+        LoadTrustData();
     }
 
     private void LoadChapterProgressData()
@@ -58,6 +60,19 @@ public class DataManager
         data.Init();
         requiredIndexDict = data.requiredIndexDict;
     }
+
+    private void LoadTrustData()
+    {
+        var data = Managers.Instance.ResourceManager.Load<TrustValueData>(Define.dataPath + "TrustValueData");
+
+        if (data == null)
+        {
+            EditorLog.LogError("DataManager : TrustValueData is null");
+            return;
+        }
+
+        trustDataDict = data.GetTrustDataDict();
+    }
     
     public RequiredIndex[] GetRequiredIndex(ChapterType chapterType)
     {
@@ -69,6 +84,11 @@ public class DataManager
             EditorLog.LogError($"DataManager : Not found RequiredIndex with chapterType: {chapterType}");
             return null;
         }
+    }
+
+    public TrustData GetTrustData(ChapterType chapterType)
+    {
+        return trustDataDict[chapterType];
     }
     
     public DialogData GetDialogData(int index)
