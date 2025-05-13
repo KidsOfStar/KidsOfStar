@@ -90,10 +90,13 @@ public class CatWallClingState : PlayerStateBase
     bool IsWallTouchCheck()
     {
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
-        RaycastHit2D hit = Physics2D.Raycast(context.BoxCollider.bounds.center, dir,
+        Vector2 origin = context.BoxCollider.bounds.center;
+        origin.y = context.BoxCollider.bounds.min.y + 0.05f;
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, dir,
             context.BoxCollider.bounds.size.x * 1.5f, context.Controller.GroundLayer);
-        //Debug.DrawRay(context.BoxCollider.bounds.center, dir * context.BoxCollider.bounds.size.x * 1.5f,
-        //    Color.green, 1f);
+        Debug.DrawRay(origin, dir * context.BoxCollider.bounds.size.x * 1.5f,
+            Color.green, 1f);
 
         if (hit.collider != null)
         {

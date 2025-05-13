@@ -272,7 +272,8 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
                 player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.Jump));
             }
         }
-        else if(!player.StateMachine.ContextData.CanCling)
+        else if(player.StateMachine.CurState == 
+            player.StateMachine.Factory.GetPlayerState(PlayerStateType.WallCling))
         {
             // 플레이어가 고양이 형태로 벽에 붙은 상태라면 벽 점프 상태로 전환
             player.StateMachine.ChangeState(player.StateMachine.Factory.GetPlayerState(PlayerStateType.WallJump));

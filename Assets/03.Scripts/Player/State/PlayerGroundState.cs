@@ -60,7 +60,7 @@ public class PlayerGroundState : PlayerStateBase
         }
     }
 
-    public override void OnExit()
+    public override void OnEnter()
     {
         // 한 번 땅에 내려가면 다시 벽 타기가 가능하도록
         context.CanCling = true;
