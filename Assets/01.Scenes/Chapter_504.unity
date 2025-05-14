@@ -3786,7 +3786,7 @@ MonoBehaviour:
   ventBG: {fileID: 771679456}
   ventMap: {fileID: 1198605211}
   ventBlockMap: {fileID: 1999180058}
-  ventObject: {fileID: 0}
+  ventObject: {fileID: 1707651814}
   timeMap: {fileID: 918614539}
   Hide: {fileID: 0}
 --- !u!1 &760836014
@@ -21842,7 +21842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1707651815
 Transform:
   m_ObjectHideFlags: 0
