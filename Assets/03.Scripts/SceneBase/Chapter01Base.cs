@@ -13,6 +13,8 @@ public class Chapter01Base : SceneBase
 {
     [Header("Chapter 1")]
     [SerializeField] private SceneEventTrigger sceneEventTrigger;
+
+    private bool isTutorial = true;
     
     protected override void InitSceneExtra(Action callback)
     {
@@ -34,5 +36,18 @@ public class Chapter01Base : SceneBase
         var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
         var joystick = Managers.Instance.UIManager.Get<UIJoystick>();
         tutorial.SetTarget(joystick.joystickBase);
+    }
+    
+    public void InteractTutorial()
+    {
+        if (!isTutorial) return;
+        isTutorial = false;
+        
+        EditorLog.Log("interact Tutorial");
+        var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
+        var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+        var interactBtn = skillPanel.interactionBtn.GetComponent<RectTransform>();
+
+        tutorial.SetTarget(interactBtn);
     }
 }

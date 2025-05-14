@@ -488,6 +488,7 @@ MonoBehaviour:
   offset: {x: 0, y: 2, z: -10}
   minPosition: {x: 0, y: 0}
   maxPosition: {x: 0, y: 0}
+  smoothTime: 0.15
   background: {fileID: 717657345}
 --- !u!114 &587337545
 MonoBehaviour:
@@ -2925,7 +2926,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5952377060798919337, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
       propertyPath: isTest
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5952377060798919337, guid: 170ab325ee34c4c488e4ca570e39515b, type: 3}
       propertyPath: extraMax
@@ -3114,6 +3115,7 @@ MonoBehaviour:
   playerSpawnPosition: {fileID: 191726442}
   speakers:
   - {fileID: 4071668484214120451}
+  objects: []
   mainCamera: {fileID: 587337541}
   spawnPointer: {fileID: 0}
   scrollingBackGround: {fileID: 0}

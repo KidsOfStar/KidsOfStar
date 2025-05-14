@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Chapter01PuzzleBase : SceneBase
@@ -14,6 +15,8 @@ public class Chapter01PuzzleBase : SceneBase
         LockPlayerMove();
         PlayChaseAnim();
         spawner.StartSpawn();
+
+        StartCoroutine(JumpTutorial());
     }
 
     protected override void CutSceneEndCallback()
@@ -33,5 +36,15 @@ public class Chapter01PuzzleBase : SceneBase
         player.Controller.IsChaseMode = true;
         player.Controller.MoveSpeed = 0;
         player.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, true);
+    }
+
+    private IEnumerator JumpTutorial()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
+        var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+        var jumpBtn = skillPanel.jumpBtn.GetComponent<RectTransform>();
+        tutorial.SetTarget(jumpBtn);
     }
 }

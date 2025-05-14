@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,8 +8,7 @@ public class UITutorial : UIBase
     [SerializeField] private Button closeButton;
     [SerializeField] private RectTransform arrow;
     
-    private readonly Vector3 arrowOffset = new(0f, 180f, 0f);
-    private readonly WaitForSecondsRealtime showTime = new(2.5f);
+    private readonly Vector3 arrowOffset = new(0f, 150f, 0f);
     private const float Padding = 80f;
     
     private void OnEnable()
@@ -42,7 +40,7 @@ public class UITutorial : UIBase
     private IEnumerator AnimCoroutine()
     {
         closeButton.onClick.AddListener(HideDirect);
-        yield return showTime;
+        yield return new WaitForSecondsRealtime(2.5f);
         HideDirect();
     }
 
