@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,12 @@ public class WirePuzzleSystem : MonoBehaviour
     [SerializeField, Tooltip("퍼즐 세로 칸 수")] private int gridHeight = 4;
     [SerializeField, Tooltip("조각의 크기")] private float cellSize = 75f;
 
+    [SerializeField, Tooltip("퍼즐 조각 섞는 횟수")] private int shuffleCount = 10;
+
+    [Space, Header("테스트용 임시 변수들")]
+    [SerializeField, Tooltip("테스트 퍼즐 조각용 스프라이트 배열")]
+    private Sprite[] testSprites;
+
     // 퍼즐 조각 배열
     private WirePuzzlePiece[,] puzzleGrid;
     // 선택 영역의 좌표
@@ -23,6 +30,31 @@ public class WirePuzzleSystem : MonoBehaviour
         // 퍼즐 조각 배열 초기화
         puzzleGrid = new WirePuzzlePiece[gridWidth, gridHeight];
 
+    }
+
+    private void Start()
+    {
+        Init();
+        GeneratePuzzle();
+        UpdateSelectionBoxPosition();
+        selectionBox.SetAsLastSibling();
+        ShufflePuzzle();
+        selectX = 0;
+        selectY = 0;
+    }
+
+    void Update()
+    {
+        
+    }
+
+    public void SetupPuzzle()
+    {
+
+    }
+
+    public void GeneratePuzzle()
+    {
         // 퍼즐 조각 생성&배열에 배치
         for(int i = 0; i < gridHeight; i++)
         {
@@ -32,12 +64,118 @@ public class WirePuzzleSystem : MonoBehaviour
                 GameObject go = Instantiate(piecePrefab, puzzlePanel);
                 WirePuzzlePiece piece = go.GetComponent<WirePuzzlePiece>();
 
+                // 테스트용 스프라이트 적용
+                Sprite spriet = testSprites[i * gridWidth + j];
+                piece.InitPiece(j, i, spriet);
+                piece.WireColor = GetColorType(j);
+                puzzleGrid[j, i] = piece;
             }
         }
     }
 
-    void Update()
+    private WireColorType GetColorType(int x)
     {
-        
+        return x switch
+        {
+            0 => WireColorType.Yellow,
+            1 => WireColorType.Blue,
+            2 => WireColorType.Red,
+            3 => WireColorType.Green,
+            _ => WireColorType.Green
+        };
     }
+
+    public void StartPuzzle()
+    {
+
+    }
+
+    #region 작동을 위한 임시 코드
+    private void ShufflePuzzle()
+    {
+        for(int i = 0; i < shuffleCount; i++)
+        {
+            selectX = UnityEngine.Random.Range(0, gridWidth - 1);
+            selectY = UnityEngine.Random.Range(0,gridHeight - 1);
+            RotateSelection();
+        }
+    }
+
+    private void MoveSelection(int dx, int dy)
+    {
+        selectX = Mathf.Clamp(selectX + dx, 0, gridWidth - 2);
+        selectY = Mathf.Clamp(selectY + dy, 0, gridHeight - 2);
+        UpdateSelectionBoxPosition();
+    }
+
+    private void UpdateSelectionBoxPosition()
+    {
+        float x = selectX * cellSize;
+        float y = -selectY * cellSize;
+        selectionBox.anchoredPosition = new Vector2(x, y);
+    }
+
+    // 선택 영역 이동 버튼 연결 함수들
+    public void OnMoveLeft() { MoveSelection(-1, 0); }
+    public void OnMoveRight() { MoveSelection(1, 0); }
+    public void OnMoveUp() { MoveSelection(0, -1); }
+    public void OnMoveDown() { MoveSelection(0, 1); }
+
+    // 선택 영역 내의 조각 스프라이트 시계방향으로 교체
+    public void RotateSelection()
+    {
+        int x = selectX;
+        int y = selectY;
+
+        // 선택 영역 내의 조각 참조
+        WirePuzzlePiece p1 = puzzleGrid[x, y];
+        WirePuzzlePiece p2 = puzzleGrid[x + 1, y];
+        WirePuzzlePiece p3 = puzzleGrid[x + 1, y + 1];
+        WirePuzzlePiece p4 = puzzleGrid[x, y + 1];
+
+        // 스프라이트 참조
+        Sprite s1 = p1.GetSprite();
+        Sprite s2 = p2.GetSprite();
+        Sprite s3 = p3.GetSprite();
+        Sprite s4 = p4.GetSprite();
+
+        // 배선 색상 참조
+        WireColorType c1 = p1.WireColor;
+        WireColorType c2 = p2.WireColor;
+        WireColorType c3 = p3.WireColor;
+        WireColorType c4 = p4.WireColor;
+
+        // 회전 적용
+        p1.SetSprite(s4);
+        p2.SetSprite(s1);
+        p3.SetSprite(s2);
+        p4.SetSprite(s3);
+
+        p1.WireColor = c4;
+        p2.WireColor = c1;
+        p3.WireColor = c2;
+        p4.WireColor = c3;
+
+        if(CheckPuzzleClear())
+        {
+            EditorLog.Log("Clear");
+        }
+    }
+
+    // 퍼즐 클리어 체크
+    private bool CheckPuzzleClear()
+    {
+        for(int x = 0; x < gridWidth; x++)
+        {
+            WireColorType wColor = GetColorType(x);
+            for(int y = 0; y < gridHeight; y++)
+            {
+                if (puzzleGrid[x, y].WireColor != wColor)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+    #endregion
 }

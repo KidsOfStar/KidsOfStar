@@ -1,9 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum WireColorType
+{
+    Yellow,
+    Blue,
+    Red,
+    Green
+}
+
 public class WirePuzzlePiece : MonoBehaviour
 {
     [SerializeField, Tooltip("퍼즐 조각의 이미지 컴포넌트")] private Image puzzlePieceImage;
+    [SerializeField, Tooltip("배선 색깔")] private WireColorType wireColer;
+    public WireColorType WireColor
+    {
+        get {  return wireColer; }
+        set { wireColer = value; }
+    }
+    
     // 배열 좌표
     private Vector2Int gridPosition;
     public Vector2Int GridPosition {  get { return gridPosition; } }

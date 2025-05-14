@@ -39,12 +39,12 @@ public class OnLadderState : PlayerStateBase
         // 상하 이동키 입력이 있음
         if(Mathf.Abs(context.Controller.MoveDir.y) > 0.1f)
         {
+            // 위 방향 키를 입력중이라면
             if(context.Controller.MoveDir.y > 0)
             { 
                 // 플레이어가 땅에 닿은 상태 && 사다리 접촉 X
                 if(!context.Controller.IsGround && !context.Controller.TouchLadder)
                 {
-                    EditorLog.Log("1");
                     context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
                 }
             }
@@ -71,31 +71,7 @@ public class OnLadderState : PlayerStateBase
                         // 대기 상태로 전환
                         context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
                     }
-
-                    //if(hit.collider != null)
-                    //{
-                    //    EditorLog.Log(hit.collider.name);
-                    //}
-
-                    // 입력은 되고 있지만 위치 값이 변하지 않을 경우
-                    //if (Mathf.Abs(context.Controller.transform.position.y - previousPosition.y) 
-                    //    < 0.01f)
-                    //{
-                    //    context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
-                    //    EditorLog.Log("2");
-                    //}
                 }
-
-                // isGround 체크 기준과 같은 기준으로 박스 캐스트
-                //RaycastHit2D hit = Physics2D.BoxCast(context.BoxCollider.bounds.center, context.BoxCollider.bounds.size, 0f,
-                //Vector2.down, 0.02f, context.Controller.GroundLayer);
-
-                //// 감지된 오브젝트가 있음 && 감지된 땅 오브젝트에 PlatformEffector2D 있음
-                //if(hit.collider != null && !hit.collider.TryGetComponent<PlatformEffector2D>(out _))
-                //{
-                //    // 대기 상태로 전환
-                //    context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
-                //}
             }
         }
     }
