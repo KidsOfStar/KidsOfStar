@@ -19,9 +19,11 @@ public class UISelectButton : MonoBehaviour
 
     public void HighlightInit(int index, Action<int> onClickAction, string text)
     {
-        typewriter.ShowText(text);
         button.enabled = false;
         button.onClick.AddListener(() => onClickAction(index));
+        
+        typewriter.useTypeWriter = true;
+        typewriter.ShowText(text);
         typewriter.onTextShowed.AddListener(() => button.enabled = true);
         
         gameObject.SetActive(true);

@@ -145,10 +145,10 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.GameManager.UpdateProgress();
     }
 
-    protected void PlayChapterIntro()
+    protected void PlayChapterIntro(Action callback = null)
     {
         var intro = Managers.Instance.UIManager.Show<UIChapterIntro>();
-        StartCoroutine(intro.IntroCoroutine(isFirstTime, introText));
+        StartCoroutine(intro.IntroCoroutine(isFirstTime, introText, callback));
     }
 
     private void InitNpc()

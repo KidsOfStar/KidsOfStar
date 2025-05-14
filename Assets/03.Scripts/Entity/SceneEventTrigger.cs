@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class SceneEventTrigger : MonoBehaviour
 {
+    [Header("Trigger"), Tooltip("단순 TriggerCheck만 하는 경우 true")]
+    [SerializeField] private bool canTrigger = false;
+    
     [Header("Trigger Event"), Tooltip("특정 오브젝트의 Trigger에 반응합니다.")]
     [SerializeField] private int[] requiredDialogs;
     [SerializeField] private UnityEvent onTriggerEnterEvent;
@@ -12,10 +15,10 @@ public class SceneEventTrigger : MonoBehaviour
     [Header("Specified Dialog Event"), Tooltip("특정 대화가 끝나면 반응합니다.")]
     [SerializeField] private int specifiedDialogIndex;
     [SerializeField] private UnityEvent onSpecifiedDialogEnd;
-    private Action<int> onSpecifiedDialogCheck;
+    
     
     private readonly Dictionary<int, bool> finishedDialog = new();
-    private bool canTrigger = false;
+    private Action<int> onSpecifiedDialogCheck;
 
     public void Init()
     {
@@ -55,13 +58,12 @@ public class SceneEventTrigger : MonoBehaviour
         if (index == specifiedDialogIndex)
             onSpecifiedDialogEnd?.Invoke();
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!canTrigger) return;
         if (!other.CompareTag("Player")) return;
 
-        EditorLog.Log("Trigger Entered");
         onTriggerEnterEvent?.Invoke();
         gameObject.SetActive(false);
     }

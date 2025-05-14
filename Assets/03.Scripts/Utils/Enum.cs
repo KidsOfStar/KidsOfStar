@@ -123,6 +123,7 @@ public enum SfxSoundType
     Walla,
     WallBreak,
 	Thunder,
+    ImportantChoice,
 }
 
 public enum FootstepType
@@ -209,6 +210,7 @@ public enum CutSceneType
     MeetingWomen,
     HaniRequest,
     TheCatReturns,
+    FinalChoice,
 }
 
 #endregion
