@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class TreePuzzleTrigger : MonoBehaviour
 {
+    private bool tutorialShown = false;
     private bool triggered = false;
     private bool hasPlayer = false;
     private bool hasBox = false;
 
+    [Header("튜토리얼 문인지 체크")]
+    [SerializeField] private bool isTutorialDoor = false;
+
     private SkillBTN skillBTN;
+
     [SerializeField] private TreePuzzleData puzzleData;
     [SerializeField] private int sequenceIndex;
     public int SequenceIndex => sequenceIndex;
@@ -137,14 +142,8 @@ public class TreePuzzleTrigger : MonoBehaviour
 
     private void TryEnableInteraction()
     {
-        if (hasPlayer && hasBox) //여기가 문제
+        if (hasPlayer && hasBox) 
         {
-            //skillBTN.ShowInteractionButton(true);
-            //skillBTN.OnInteractBtnClick += () =>
-            //{
-            //    Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Communication);
-            //    TryStartPuzzle();
-            //};
             skillBTN.ShowInteractionButton(true);
             skillBTN.OnInteractBtnClick -= OnPuzzleButtonPressed;
             skillBTN.OnInteractBtnClick += OnPuzzleButtonPressed;
@@ -158,6 +157,20 @@ public class TreePuzzleTrigger : MonoBehaviour
 
         HideInteraction();
 
+        if(isTutorialDoor 
+           && requiredProgress == Managers.Instance.GameManager.ChapterProgress 
+           && sequenceIndex ==0 
+           && !tutorialShown)
+        {
+            tutorialShown = true;
+            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(2);
+            popup.OnClosed += () =>
+            {
+                Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData, sequenceIndex);
+            };
+            return;
+
+        }
         Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData, sequenceIndex);
     }
 
