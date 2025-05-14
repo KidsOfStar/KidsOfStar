@@ -11,6 +11,7 @@ public class Chapter0501Base : SceneBase
 
     protected override void InitSceneExtra(Action callback)
     {
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         SkillForm();
     }
 
