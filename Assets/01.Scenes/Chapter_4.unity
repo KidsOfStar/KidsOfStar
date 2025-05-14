@@ -1070,8 +1070,8 @@ MonoBehaviour:
   currentChapter: 3
   existRequiredDialog: 1
   isFirstTime: 1
-  introText: "<size=50>\uC81C 4\uC7A5 \uB3C4\uC2DC</size>\n\n\uC870\uAE08 \uB9C8\uC74C\uC744
-    \uB193\uB294 \uAC83\uB3C4 \uAD1C\uCC2E\uC9C0 \uC54A\uC744\uAE4C?"
+  introText: "\uC81C 4\uC7A5 \uB3C4\uC2DC\n\n\uC870\uAE08 \uB9C8\uC74C\uC744 \uB193\uB294
+    \uAC83\uB3C4 \uAD1C\uCC2E\uC9C0 \uC54A\uC744\uAE4C?"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
   playerStartForm: Cat
   playerSpawnPosition: {fileID: 591129210}

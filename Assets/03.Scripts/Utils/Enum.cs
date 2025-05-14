@@ -123,6 +123,7 @@ public enum SfxSoundType
     Walla,
     WallBreak,
 	Thunder,
+    ImportantChoice,
 }
 
 public enum FootstepType
