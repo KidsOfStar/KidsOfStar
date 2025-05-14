@@ -11,7 +11,6 @@ public class CutSceneBase : MonoBehaviour
     [SerializeField] private SignalAsset destroySignal;
 
     public Action OnCutSceneCompleted { get; set; }
-    private int currentIndex;
 
     // 컷씬 초기화는 컷씬을 생성한 CutSceneManager에서 호출
     public void Init()
