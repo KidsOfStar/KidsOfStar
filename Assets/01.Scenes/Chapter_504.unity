@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 168141168}
   - component: {fileID: 168141169}
   - component: {fileID: 168141170}
+  - component: {fileID: 168141171}
   m_Layer: 0
   m_Name: Tallman (1)
   m_TagString: Untagged
@@ -441,6 +442,19 @@ MonoBehaviour:
   - {x: 20, y: -2.8, z: 0}
   - {x: 26, y: -2.8, z: 0}
   - {x: 20, y: -2.8, z: 0}
+--- !u!114 &168141171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168141167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba58078b2a5d34e42b17d6fc4bf29089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleTextPrefab: {fileID: 2057746623309824022, guid: b80e6b532f9dd0f429494077edc3d622, type: 3}
 --- !u!1 &176587339
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +496,9 @@ GameObject:
   m_Component:
   - component: {fileID: 227947868}
   - component: {fileID: 227947869}
+  - component: {fileID: 227947872}
   - component: {fileID: 227947870}
+  - component: {fileID: 227947871}
   m_Layer: 0
   m_Name: Tallman
   m_TagString: Untagged
@@ -576,6 +592,64 @@ MonoBehaviour:
   - {x: 8, y: -1.8, z: 0}
   - {x: 8, y: -1.8, z: 0}
   - {x: -2, y: -1.8, z: 0}
+--- !u!114 &227947871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227947867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a7d38e1209ed9145bc3abbd3a607791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleTextPrefab: {fileID: 2057746623309824022, guid: b80e6b532f9dd0f429494077edc3d622, type: 3}
+--- !u!61 &227947872
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227947867}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 2.4}
+    newSize: {x: 0.4, y: 1.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 2.4}
+  m_EdgeRadius: 0
 --- !u!1 &235656928
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,9 +882,9 @@ CompositeCollider2D:
       - X: 0
         Y: 110000000
       - X: 0
-        Y: 130000000
+        Y: 150000000
       - X: -10000000
-        Y: 130000000
+        Y: 150000000
       - X: -10000000
         Y: 110000000
       - X: -20000000
@@ -831,14 +905,6 @@ CompositeCollider2D:
         Y: 150000000
       - X: 40000000
         Y: 150000000
-    - - X: 0
-        Y: 150000000
-      - X: -10000000
-        Y: 150000000
-      - X: -10000000
-        Y: 140000000
-      - X: 0
-        Y: 140000000
     - - X: -50000000
         Y: 150000000
       - X: -60000000
@@ -847,14 +913,6 @@ CompositeCollider2D:
         Y: 140000000
       - X: -50000000
         Y: 140000000
-    - - X: -70000000
-        Y: 140000000
-      - X: -90000000
-        Y: 140000000
-      - X: -90000000
-        Y: 130000000
-      - X: -70000000
-        Y: 130000000
     - - X: -20000000
         Y: 140000000
       - X: -40000000
@@ -862,6 +920,14 @@ CompositeCollider2D:
       - X: -40000000
         Y: 130000000
       - X: -20000000
+        Y: 130000000
+    - - X: -70000000
+        Y: 140000000
+      - X: -90000000
+        Y: 140000000
+      - X: -90000000
+        Y: 130000000
+      - X: -70000000
         Y: 130000000
     - - X: 30000000
         Y: 140000000
@@ -951,8 +1017,8 @@ CompositeCollider2D:
       - {x: 1, y: 12}
       - {x: 1, y: 11}
       - {x: 0, y: 11}
-      - {x: 0, y: 13}
-      - {x: -1, y: 13}
+      - {x: 0, y: 15}
+      - {x: -1, y: 15}
       - {x: -1, y: 11}
       - {x: -2, y: 11}
       - {x: -2, y: 10}
@@ -963,22 +1029,18 @@ CompositeCollider2D:
       - {x: 1, y: 16}
       - {x: 1, y: 15}
       - {x: 4, y: 15}
-    - - {x: 0, y: 15}
-      - {x: -1, y: 15}
-      - {x: -1, y: 14}
-      - {x: 0, y: 14}
     - - {x: -5, y: 15}
       - {x: -6, y: 15}
       - {x: -6, y: 14}
       - {x: -5, y: 14}
-    - - {x: -7, y: 14}
-      - {x: -9, y: 14}
-      - {x: -9, y: 13}
-      - {x: -7, y: 13}
     - - {x: -2, y: 14}
       - {x: -4, y: 14}
       - {x: -4, y: 13}
       - {x: -2, y: 13}
+    - - {x: -7, y: 14}
+      - {x: -9, y: 14}
+      - {x: -9, y: 13}
+      - {x: -7, y: 13}
     - - {x: 3, y: 14}
       - {x: 1, y: 14}
       - {x: 1, y: 13}
@@ -1559,6 +1621,16 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: -3, y: 13, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 13, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 6
@@ -2312,7 +2384,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 2cab07fd744887f41844aad46c410ffb, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 117
+  - m_RefCount: 118
     m_Data: {fileID: 11400000, guid: 55ba4b5edab526d4ea33c39a9d0c026a, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -2323,10 +2395,10 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
-  - m_RefCount: 117
+  - m_RefCount: 118
     m_Data: {fileID: 21300000, guid: 2d75f7acd64bbe34a8063f5052b5f8b5, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 119
+  - m_RefCount: 120
     m_Data:
       e00: 1
       e01: 0
@@ -2345,11 +2417,11 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 119
+  - m_RefCount: 120
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Origin: {x: -52, y: -29, z: 0}
   m_Size: {x: 435, y: 94, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -2667,7 +2739,7 @@ GameObject:
   - component: {fileID: 701440941}
   m_Layer: 0
   m_Name: VentDoor
-  m_TagString: HideArea
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8486,6 +8558,7 @@ GameObject:
   - component: {fileID: 1167753039}
   - component: {fileID: 1167753040}
   - component: {fileID: 1167753041}
+  - component: {fileID: 1167753042}
   m_Layer: 0
   m_Name: Tallman (2)
   m_TagString: Untagged
@@ -8579,6 +8652,19 @@ MonoBehaviour:
   - {x: 10, y: -2.8, z: 0}
   - {x: 26, y: -2.8, z: 0}
   - {x: 19, y: -2.8, z: 0}
+--- !u!114 &1167753042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167753038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba58078b2a5d34e42b17d6fc4bf29089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleTextPrefab: {fileID: 2057746623309824022, guid: b80e6b532f9dd0f429494077edc3d622, type: 3}
 --- !u!1 &1198605211
 GameObject:
   m_ObjectHideFlags: 0
