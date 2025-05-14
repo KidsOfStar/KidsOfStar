@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Cobweb : MonoBehaviour
@@ -23,6 +24,22 @@ public class Cobweb : MonoBehaviour
             // 플레이어의 점프력을 0으로 설정
             playerController.JumpForce = 0f;
         }
+
+        if (other.gameObject.TryGetComponent(out PlayerFormController formController))
+        {
+            if (formController.CurFormData.FormName == "Dog")
+            {
+                StartCoroutine(DogBreakCobweb());
+            }
+        }
+    }
+
+
+    private IEnumerator DogBreakCobweb()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.WallBreak);
     }
 
     public void OnTriggerStay2D(Collider2D other)

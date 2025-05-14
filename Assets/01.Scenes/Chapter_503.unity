@@ -445,13 +445,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d251e0e780ad2fb4dbe59cab7db3031d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ventBG: {fileID: 1908416510}
-  ventMap: {fileID: 851337230}
-  ventBlockMap: {fileID: 840897781}
-  ventObject: {fileID: 712561782}
-  timeMap: {fileID: 1137974846}
-  hide: {fileID: 877466700}
-  waterTank: {fileID: 1046202652}
+  ventIn:
+  - {fileID: 1908416510}
+  - {fileID: 851337230}
+  - {fileID: 840897781}
+  - {fileID: 712561782}
+  ventOut:
+  - {fileID: 1137974846}
+  - {fileID: 877466700}
+  - {fileID: 1046202652}
+  - {fileID: 1148625387}
 --- !u!1 &95701902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2136,7 +2139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleTextPrefab: {fileID: 2057746623309824022, guid: b80e6b532f9dd0f429494077edc3d622, type: 3}
-  dangerFormMask: 28
+  dangerFormMask: 30
 --- !u!1 &370448063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3882,7 +3885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &840897782
 Transform:
   m_ObjectHideFlags: 0
@@ -3934,57 +3937,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 840897785}
-    m_ColliderPaths:
-    - - X: 560000000
-        Y: 60000000
-      - X: 600000000
-        Y: 60000000
-      - X: 600000000
-        Y: 110000000
-      - X: 580000000
-        Y: 110000000
-      - X: 580000000
-        Y: 120000000
-      - X: 340000000
-        Y: 120000000
-      - X: 340000000
-        Y: 110000000
-      - X: 320000000
-        Y: 110000000
-      - X: 320000000
-        Y: 60000000
-      - X: 340000000
-        Y: 60000000
-      - X: 340000000
-        Y: 30000000
-      - X: 560000000
-        Y: 30000000
-    - - X: 350000000
-        Y: 40000000
-      - X: 350000000
-        Y: 70000000
-      - X: 330000000
-        Y: 70000000
-      - X: 330000000
-        Y: 100000000
-      - X: 350000000
-        Y: 100000000
-      - X: 350000000
-        Y: 110000000
-      - X: 570000000
-        Y: 110000000
-      - X: 570000000
-        Y: 100000000
-      - X: 590000000
-        Y: 100000000
-      - X: 590000000
-        Y: 70000000
-      - X: 550000000
-        Y: 70000000
-      - X: 550000000
-        Y: 40000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 55.99997, y: 3}
