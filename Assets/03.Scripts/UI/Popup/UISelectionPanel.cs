@@ -22,6 +22,7 @@ public class UISelectionPanel : PopupBase
         dialogData = dialog;
         var selectionList = dialogData.SelectOption;
 
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ImportantChoice);
         for (int i = 0; i < selectionList.Count; i++)
             selectButtons[i].HighlightInit(i, OnSelectButtonClick, dialogData.SelectOption[i]);
     }
@@ -30,6 +31,7 @@ public class UISelectionPanel : PopupBase
     {
         finalNextIndexes = nextIndexes;
         
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ImportantChoice);
         for (int i = 0; i < finalSelection.Count; i++)
         {
             selectButtons[i].HighlightInit(i, OnSelectButtonClick, finalSelection[i]);

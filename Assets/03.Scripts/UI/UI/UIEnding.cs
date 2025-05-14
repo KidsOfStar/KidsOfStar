@@ -61,6 +61,7 @@ public class UIEnding : UIBase
         if (!endingSpriteDict.TryGetValue(endingType, out var sprite)) return;
 
         endingImage.sprite = sprite;
+        Managers.Instance.GameManager.Player.Controller.IsControllable = false;
         StartCoroutine(PlayEndingFlow());
     }
 

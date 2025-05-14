@@ -24,11 +24,11 @@ public class RequiredIndexData : ScriptableObject
     public void Init()
     {
         requiredIndexDict.Clear();
-        requiredIndexDict.Add(ChapterType.Chapter01, chapter1List);
-        requiredIndexDict.Add(ChapterType.Chapter02, chapter2List);
-        requiredIndexDict.Add(ChapterType.Chapter03, chapter3List);
-        requiredIndexDict.Add(ChapterType.Chapter04, chapter4List);
-        requiredIndexDict.Add(ChapterType.Chapter05, chapter5List);
+        requiredIndexDict.Add(ChapterType.Chapter1, chapter1List);
+        requiredIndexDict.Add(ChapterType.Chapter2, chapter2List);
+        requiredIndexDict.Add(ChapterType.Chapter3, chapter3List);
+        requiredIndexDict.Add(ChapterType.Chapter4, chapter4List);
+        requiredIndexDict.Add(ChapterType.Chapter5, chapter5List);
     }
 }
 

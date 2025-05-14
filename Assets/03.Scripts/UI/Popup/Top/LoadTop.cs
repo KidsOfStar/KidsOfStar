@@ -37,9 +37,9 @@ public class LoadTop : PopupBase
     {
         return chapter switch
         {
-            ChapterType.Chapter01 => SceneType.Chapter1,
-            ChapterType.Chapter02 => SceneType.Chapter2,
-            ChapterType.Chapter03 => SceneType.Chapter3,
+            ChapterType.Chapter1 => SceneType.Chapter1,
+            ChapterType.Chapter2 => SceneType.Chapter2,
+            ChapterType.Chapter3 => SceneType.Chapter3,
             _                     => throw new System.ArgumentOutOfRangeException(nameof(chapter), chapter, null)
         };
     }

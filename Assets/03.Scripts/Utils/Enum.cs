@@ -123,6 +123,7 @@ public enum SfxSoundType
     Walla,
     WallBreak,
 	Thunder,
+    ImportantChoice,
 }
 
 public enum FootstepType
@@ -142,19 +143,19 @@ public enum SceneType
     Chapter2,
     Chapter3,
     Chapter4,
-    Chapter_501,
-    Chapter_502,
-    Chapter_503,
-    Chapter_504,
+    Chapter501,
+    Chapter502,
+    Chapter503,
+    Chapter504,
 }
 
 public enum ChapterType
 {
-    Chapter01,
-    Chapter02,
-    Chapter03,
-    Chapter04,
-    Chapter05,
+    Chapter1,
+    Chapter2,
+    Chapter3,
+    Chapter4,
+    Chapter5,
 }
 
 public enum Difficulty
@@ -209,6 +210,7 @@ public enum CutSceneType
     MeetingWomen,
     HaniRequest,
     TheCatReturns,
+    FinalChoice,
 }
 
 #endregion
