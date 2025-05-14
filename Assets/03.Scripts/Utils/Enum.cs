@@ -209,6 +209,7 @@ public enum CutSceneType
     MeetingWomen,
     HaniRequest,
     TheCatReturns,
+    FinalChoice,
 }
 
 #endregion
