@@ -10,8 +10,6 @@ public class OnLadderState : PlayerStateBase
     private float safeDuration = 0.2f;
     // 사다리 타기 상태 진입 후 경과 시간
     private float ladderEnterTime = 0f;
-    // 프레임 간에 위치값 변경 추적
-    private Vector2 previousPosition = Vector2.zero;
 
     public OnLadderState(PlayerContextData data, PlayerStateFactory factory) : base(data, factory)
     {
@@ -56,8 +54,7 @@ public class OnLadderState : PlayerStateBase
 
                 // 아래 방향 키를 입력중이라면
                 // 이전 위치 값 유무 체크 && 땅에 닿은 상태 && 보호 시간 초과
-                if(previousPosition != Vector2.zero && context.Controller.IsGround
-                    && ladderEnterTime > safeDuration)
+                if(context.Controller.IsGround && ladderEnterTime > safeDuration)
                 {
                     Vector2 origin = context.BoxCollider.bounds.center;
                     origin.y = context.BoxCollider.bounds.min.y + 0.03f;
@@ -67,21 +64,27 @@ public class OnLadderState : PlayerStateBase
                     RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, rayLength,
                         context.Controller.GroundLayer);
 
-                    if(hit.collider != null)
+                    // 하강 중에 플랫폼이펙터가 없는 땅에 닿으면
+                    if(hit.collider != null &&
+                        !hit.collider.TryGetComponent<PlatformEffector2D>(out _))
                     {
-                        EditorLog.Log(hit.collider.name);
+                        // 대기 상태로 전환
+                        context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
                     }
+
+                    //if(hit.collider != null)
+                    //{
+                    //    EditorLog.Log(hit.collider.name);
+                    //}
 
                     // 입력은 되고 있지만 위치 값이 변하지 않을 경우
-                    if (Mathf.Abs(context.Controller.transform.position.y - previousPosition.y) 
-                        < 0.005f)
-                    {
-                        context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
-                        EditorLog.Log("2");
-                    }
+                    //if (Mathf.Abs(context.Controller.transform.position.y - previousPosition.y) 
+                    //    < 0.01f)
+                    //{
+                    //    context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
+                    //    EditorLog.Log("2");
+                    //}
                 }
-
-                previousPosition = context.Controller.transform.position;
 
                 // isGround 체크 기준과 같은 기준으로 박스 캐스트
                 //RaycastHit2D hit = Physics2D.BoxCast(context.BoxCollider.bounds.center, context.BoxCollider.bounds.size, 0f,
@@ -116,7 +119,7 @@ public class OnLadderState : PlayerStateBase
         if(context.IgnoredPlatform != null)
         {
             // 충돌 처리가 되도록 되돌리기
-            Physics2D.IgnoreCollision(context.BoxCollider, context.IgnoredPlatform, false);
+            context.IgnoredPlatform.GetComponent<PlatformEffector2D>().surfaceArc = 180f;
             // 체크를 위해 변수 비워두기
             context.IgnoredPlatform = null;
         }
