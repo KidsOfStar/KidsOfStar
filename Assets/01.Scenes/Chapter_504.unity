@@ -438,9 +438,9 @@ MonoBehaviour:
   tilemap: {fileID: 1137974852}
   moveSpeed: 4
   patrolPath:
-  - {x: 20, y: -2, z: 0}
-  - {x: 26, y: -2, z: 0}
-  - {x: 20, y: -2, z: 0}
+  - {x: 20, y: -2.8, z: 0}
+  - {x: 26, y: -2.8, z: 0}
+  - {x: 20, y: -2.8, z: 0}
 --- !u!1 &176587339
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,10 +572,10 @@ MonoBehaviour:
   tilemap: {fileID: 1416217614}
   moveSpeed: 2
   patrolPath:
-  - {x: -2, y: -1, z: 0}
-  - {x: 8, y: -1, z: 0}
-  - {x: 8, y: -1, z: 0}
-  - {x: -2, y: -1, z: 0}
+  - {x: -2, y: -1.8, z: 0}
+  - {x: 8, y: -1.8, z: 0}
+  - {x: 8, y: -1.8, z: 0}
+  - {x: -2, y: -1.8, z: 0}
 --- !u!1 &235656928
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,13 +3059,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 701440934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c76dd4cf099b8f9479ed829d7c41824f, type: 3}
+  m_Script: {fileID: 11500000, guid: 618805b4aaa087647bd50054bd78f79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ventBG: {fileID: 771679456}
   ventMap: {fileID: 1198605211}
   ventBlockMap: {fileID: 1999180058}
-  ventObject: {fileID: 918614539}
+  ventObject: {fileID: 0}
   timeMap: {fileID: 918614539}
   Hide: {fileID: 0}
 --- !u!1 &760836014
@@ -8575,10 +8575,10 @@ MonoBehaviour:
   tilemap: {fileID: 1137974852}
   moveSpeed: 3
   patrolPath:
-  - {x: 19, y: -2, z: 0}
-  - {x: 10, y: -2, z: 0}
-  - {x: 26, y: -2, z: 0}
-  - {x: 19, y: -2, z: 0}
+  - {x: 19, y: -2.8, z: 0}
+  - {x: 10, y: -2.8, z: 0}
+  - {x: 26, y: -2.8, z: 0}
+  - {x: 19, y: -2.8, z: 0}
 --- !u!1 &1198605211
 GameObject:
   m_ObjectHideFlags: 0
@@ -22428,8 +22428,8 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   followTarget: 1
   offset: {x: 0, y: 3, z: -10}
-  minPosition: {x: -1, y: -6}
-  maxPosition: {x: 31, y: 7}
+  minPosition: {x: -1, y: -10}
+  maxPosition: {x: 31, y: 16}
   smoothTime: 0.15
   background: {fileID: 0}
 --- !u!1 &2116966682
