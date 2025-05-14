@@ -3,8 +3,8 @@ using UnityEngine.EventSystems;
 
 public class UIJoystick : UIBase, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private RectTransform joystickBase;
-    [SerializeField] private RectTransform joystickHandle;
+    [field: SerializeField] public RectTransform joystickBase;
+    [field: SerializeField] public RectTransform joystickHandle;
     // [SerializeField, Range(5f, 20f)] private float sensitivity = 5f;
 
     private Vector2 inputVector = Vector2.zero;

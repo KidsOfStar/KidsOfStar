@@ -30,7 +30,6 @@ public class Crowd : MonoBehaviour
             {
                 StopCoroutine(warningCoroutine);
                 warningCoroutine = null;
-                Debug.Log($"StopCoroutine");
             }
 
             if (bubbleTextInstance != null)
@@ -54,7 +53,6 @@ public class Crowd : MonoBehaviour
         if (animalForms.Contains(currentForm))
         {
             warningCoroutine = StartCoroutine(ShowWarning());
-            Debug.Log($"StartCoroutine(ShowWarning())");
         }
     }
 
@@ -72,7 +70,6 @@ public class Crowd : MonoBehaviour
         if (bubbleText != null)
         {
             bubbleText.SetText("정체를 들킬 것 같다.");
-            Debug.Log("정체를 들킬 것 같다.");
         }
         yield return new WaitForSeconds(1f);
 

@@ -10,12 +10,14 @@ public class UIChapterIntro : UIBase
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI introText;
     [SerializeField] private TypewriterByCharacter typewriter;
-    private const float fadeTime = 2f;
-    private const float fadeOutTime = 2f;
+    private const float FadeTime = 2f;
+    private const float FadeOutTime = 2f;
     private readonly Color fadeOutColor = new(0, 0, 0, 0f);
+    private Action introEndCallback;
 
-    public IEnumerator IntroCoroutine(bool isFirst, string text)
+    public IEnumerator IntroCoroutine(bool isFirst, string text, Action callback = null)
     {
+        introEndCallback = callback;
         if (!isFirst)
         {
             HideDirect();
@@ -25,11 +27,6 @@ public class UIChapterIntro : UIBase
         Managers.Instance.GameManager.Player.Controller.IsControllable = false;
         introText.text = string.Empty;
         
-        // 배경 페이드 인
-        // yield return Fade(fadeOutColor, Color.black, fadeTime, c => backgroundImage.color = c);
-        // 텍스트 페이드 인
-        // yield return Fade(fadeOutColor, Color.white, fadeTime, c => introText.color = c);
-
         typewriter.onTextShowed.AddListener(() => StartCoroutine(CompleteTextShowed()));
         typewriter.ShowText(text);
     }
@@ -38,11 +35,12 @@ public class UIChapterIntro : UIBase
     {
         yield return new WaitForSeconds(0.5f);
         
-        StartCoroutine(Fade(Color.white, fadeOutColor, fadeOutTime, c => introText.color = c));
-        yield return Fade(Color.black, fadeOutColor, fadeOutTime, c => backgroundImage.color = c);
+        StartCoroutine(Fade(Color.white, fadeOutColor, FadeOutTime, c => introText.color = c));
+        yield return Fade(Color.black, fadeOutColor, FadeOutTime, c => backgroundImage.color = c);
         
-        HideDirect();
         Managers.Instance.GameManager.Player.Controller.IsControllable = true;
+        introEndCallback?.Invoke();
+        HideDirect();
     }
     
     private IEnumerator Fade(Color from, Color to, float duration, Action<Color> applyColor)
@@ -62,5 +60,6 @@ public class UIChapterIntro : UIBase
     private void OnDisable()
     {
         typewriter.onTextShowed.RemoveAllListeners();
+        introEndCallback = null;
     }
 }
