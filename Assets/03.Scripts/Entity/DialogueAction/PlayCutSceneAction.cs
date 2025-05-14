@@ -18,6 +18,9 @@ public class PlayCutSceneAction : IDialogActionHandler
             return;
         }
 
+        if (Managers.Instance.CutSceneManager.IsCutScenePlaying)
+            Managers.Instance.CutSceneManager.DestroyCurrentCutScene(true);
+        
         Managers.Instance.CutSceneManager.PlayCutScene(cutScene);
     }
 }

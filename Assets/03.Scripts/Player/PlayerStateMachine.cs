@@ -60,11 +60,6 @@ public class PlayerStateMachine : MonoBehaviour
         curState = nextState;
         // 새로운 현재 상태의 OnEnter 동작
         curState?.OnEnter();
-        EditorLog.Log(curState.ToString());
-    }
-
-    public void RunCoroutine(IEnumerator routine)
-    {
-        StartCoroutine(routine);
+        //EditorLog.Log(curState.ToString());
     }
 }

@@ -58,7 +58,7 @@ public class PlayerStateBase : IPlayerState
     /// </summary>
     public virtual void OnFixedUpdate()
     {
-
+        if (!context.Controller.IsControllable) return;
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ public class PlayerStateBase : IPlayerState
         // 레이캐스트
         RaycastHit2D checkHit = Physics2D.Raycast(origin, dir,
             rayLength, context.Controller.GroundLayer);
-        Debug.DrawRay(origin, dir * rayLength, Color.red, 1f);
+        //Debug.DrawRay(origin, dir * rayLength, Color.red, 1f);
 
         // 벽이 감지 됐다면
         if (checkHit.collider != null)

@@ -30,16 +30,22 @@ public class PlayerGroundState : PlayerStateBase
         // 상하 이동 키를 입력하지 않는 상태면 return
         if (Mathf.Abs(context.Controller.MoveDir.y) < 0.1f) return;
 
+        Vector2 origin = context.BoxCollider.bounds.center;
+        origin.y = context.BoxCollider.bounds.min.y + 0.03f;
+        float rayLength = 0.1f;
         // 닿은 땅 오브젝트의 PlatformEffector2D 여부
         bool onEffector = false;
-        // isGround 체크와 같은 조건으로 박스 캐스트
-        RaycastHit2D hit = Physics2D.BoxCast(context.BoxCollider.bounds.center, context.BoxCollider.bounds.size, 0f, 
-            Vector2.down, 0.02f, context.Controller.GroundLayer);
-        
+
+        // isGround 체크와 같은 조건으로 레이 캐스트
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, rayLength,
+            context.Controller.GroundLayer);
+        //Debug.DrawRay(origin, Vector2.down * rayLength, Color.red, 1f);
+        PlatformEffector2D effector = null;
+
         if(hit.collider != null)
         {
             // 체크
-            onEffector = hit.collider.TryGetComponent<PlatformEffector2D>(out _);
+            onEffector = hit.collider.TryGetComponent<PlatformEffector2D>(out effector);
         }
 
         // 위쪽 방향으로 입력 중이라면
@@ -52,7 +58,7 @@ public class PlayerGroundState : PlayerStateBase
         {
             // 아래 방향으로 입력 중이라면
             // 딛고 있는 플랫폼과의 충돌을 일시적으로 무시
-            Physics2D.IgnoreCollision(context.BoxCollider, hit.collider, true);
+            effector.surfaceArc = 0f;
             // 상태 전환
             context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.OnLadder));
             // 물리 처리 무시된 플랫폼의 콜라이더를 변수에 캐싱
