@@ -40,9 +40,9 @@ public class PlayerIdleState : PlayerGroundState
         }
         else
         {
-            // 땅 위에 서 있는 상태라면
-            // 정지
-            context.Rigid.velocity = Vector2.zero;
+            //// 땅 위에 서 있는 상태라면
+            //// 정지
+            //context.Rigid.velocity = Vector2.zero;
         }
     }
 }
