@@ -39,6 +39,8 @@ public class FormData
     public bool IsActive = false;
     [SerializeField, Tooltip("스프라이트가 기본으로 바라보는 방향")] private DefaultDirection direction;
     public DefaultDirection Direction { get { return direction; } }
+
+    public PlayerFormType playerFormType;
 }
 
 [CreateAssetMenu(fileName = "new PlayerForm Data", menuName = "PlayerForm Data")]

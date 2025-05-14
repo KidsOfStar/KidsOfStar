@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crowd : MonoBehaviour
+public class FormBlocker : MonoBehaviour
 {
     [SerializeField] private GameObject bubbleTextPrefab;   // 말풍선 프리팹
     private GameObject bubbleTextInstance;                  // 생성된 프리팹 인스턴스
@@ -11,7 +10,7 @@ public class Crowd : MonoBehaviour
     private Coroutine warningCoroutine;                     // 경고 코루틴
 
     // 동물 폼 목록 (모두 소문자)
-    public  static readonly HashSet<string> animalForms = new HashSet<string> { "cat", "dog", "squirrel" };
+    [SerializeField] private PlayerFormType dangerFormMask;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,12 +44,11 @@ public class Crowd : MonoBehaviour
         if (warningCoroutine != null) return;
 
         var player = Managers.Instance.GameManager.Player;
-        string currentForm = player?.FormControl?.CurFormData?.FormName?.ToLower();
+        var currentForm = player?.FormControl?.CurFormData;
 
-        if (string.IsNullOrEmpty(currentForm)) return;
+        if (currentForm == null) return;
 
-        // 동물 폼인 경우에만 경고 시작
-        if (animalForms.Contains(currentForm))
+        if ((dangerFormMask & currentForm.playerFormType) != 0)
         {
             warningCoroutine = StartCoroutine(ShowWarning());
         }
