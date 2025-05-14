@@ -2542,6 +2542,10 @@ PlayableDirector:
     value: {fileID: 8872669496233447256}
   - key: {fileID: -3416392578744459364, guid: f2210b61ef1d8194faea7656230ed56c, type: 2}
     value: {fileID: 2761648110755199799}
+  - key: {fileID: 5661336905150232500, guid: f2210b61ef1d8194faea7656230ed56c, type: 2}
+    value: {fileID: 8208361630338653063}
+  - key: {fileID: -1188842335620474933, guid: f2210b61ef1d8194faea7656230ed56c, type: 2}
+    value: {fileID: 3213495214505816040}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &4816529614256939335
@@ -4063,7 +4067,6 @@ GameObject:
   - component: {fileID: 1635494894384813816}
   - component: {fileID: 6236399253675237637}
   - component: {fileID: 6154774850738526493}
-  - component: {fileID: 6942903691118922418}
   m_Layer: 0
   m_Name: TheCatReturns
   m_TagString: Untagged
@@ -4126,19 +4129,6 @@ MonoBehaviour:
   - {fileID: 4001063906698871713}
   - {fileID: 7591769613737581436}
   - {fileID: 4127170347864507004}
---- !u!114 &6942903691118922418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8280678066399883095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd44269260663b459601ae854110866, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <SceneType>k__BackingField: 7
 --- !u!1 &8902101599657771129
 GameObject:
   m_ObjectHideFlags: 0
