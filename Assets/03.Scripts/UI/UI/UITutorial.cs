@@ -1,14 +1,55 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UITutorial : MonoBehaviour
+public class UITutorial : UIBase
 {
     [SerializeField] private RectTransform holeMask;
+    [SerializeField] private Button closeButton;
+    [SerializeField] private RectTransform arrow;
     
-    // timeScale = 0
-    // 강조 할 ui 찾음 -> hole x,y = 강조 할 ui 위치
-    // button 추가
-    // 애니메이션?
-    // 애니메이션 이후 블링크 화살표 active < offset 설정 (타겟 ui 조금 위쪽)
-    //  ㄴ 화면을 반으로 나눠서 왼쪽 섹션이면 플립, 아니면 그대로
-    // hole size = ui의 크기 + padding
+    private readonly Vector3 arrowOffset = new(0f, 180f, 0f);
+    private readonly WaitForSecondsRealtime showTime = new(2.5f);
+    private const float Padding = 80f;
+    
+    private void OnEnable()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void SetTarget(RectTransform targetUI)
+    {
+        holeMask.position = targetUI.position;
+        holeMask.sizeDelta = new Vector2(targetUI.sizeDelta.x + Padding, targetUI.sizeDelta.y + Padding);
+        
+        arrow.position = targetUI.position + arrowOffset;
+        arrow.localScale = IsOnLeftTargetUI(targetUI) ? new Vector3(-1f, 1f, 1f) : Vector3.one;
+        
+        StartCoroutine(AnimCoroutine());
+    }
+
+    private bool IsOnLeftTargetUI(RectTransform targetUI)
+    {
+        // UI 월드 위치 → 스크린 좌표
+        var mainCam = Managers.Instance.GameManager.MainCamera;
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(mainCam, targetUI.position);
+        
+        // 왼쪽 절반이면 true, 아니면 false
+        return screenPoint.x < (Screen.width * 0.5f);
+    }
+
+    private IEnumerator AnimCoroutine()
+    {
+        closeButton.onClick.AddListener(HideDirect);
+        yield return showTime;
+        HideDirect();
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        closeButton.onClick.RemoveAllListeners();
+        Time.timeScale = 1;
+    }
 }
