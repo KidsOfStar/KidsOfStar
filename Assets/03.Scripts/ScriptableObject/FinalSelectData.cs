@@ -8,7 +8,7 @@ public class FinalSelectData : ScriptableObject
 
     public FinalSelection GetSelection(ChapterType chapterType)
     {
-        if (chapterType is ChapterType.Chapter02 or ChapterType.Chapter03 or ChapterType.Chapter04)
+        if (chapterType is ChapterType.Chapter2 or ChapterType.Chapter3 or ChapterType.Chapter4)
         {
             if (!Managers.Instance.GameManager.EnoughTrustForEnding(chapterType))
                 return null;
