@@ -95,8 +95,8 @@ public class CatWallClingState : PlayerStateBase
 
         RaycastHit2D hit = Physics2D.Raycast(origin, dir,
             context.BoxCollider.bounds.size.x * 1.5f, context.Controller.GroundLayer);
-        Debug.DrawRay(origin, dir * context.BoxCollider.bounds.size.x * 1.5f,
-            Color.green, 1f);
+        //Debug.DrawRay(origin, dir * context.BoxCollider.bounds.size.x * 1.5f,
+        //    Color.green, 1f);
 
         if (hit.collider != null)
         {
