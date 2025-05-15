@@ -2,16 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WirePuzzleSystem : MonoBehaviour
 {
     [SerializeField, Tooltip("퍼즐 조각 프리팹")] private GameObject piecePrefab;
+    [SerializeField, Tooltip("볼트 프리팹")] private GameObject boltPrefab;
     [SerializeField, Tooltip("퍼즐 조각이 배치될 패널")] private Transform puzzlePanel;
     [SerializeField, Tooltip("선택 영역의 RectTransform")] private RectTransform selectionBox;
 
     [SerializeField, Tooltip("퍼즐 가로 칸 수")] private int gridWidth = 4;
     [SerializeField, Tooltip("퍼즐 세로 칸 수")] private int gridHeight = 4;
     [SerializeField, Tooltip("조각의 크기")] private float cellSize = 75f;
+    [SerializeField, Tooltip("padding 보정용")] private Vector2 offset = new Vector2(15f, 15f);
 
     #region 테스트용 임시 변수
     [Space, Header("테스트용 임시 변수들")]
@@ -31,6 +34,7 @@ public class WirePuzzleSystem : MonoBehaviour
         // 퍼즐 조각 배열 초기화
         puzzleGrid = new WirePuzzlePiece[gridWidth, gridHeight];
         GeneratePuzzle();
+        SpawnBolt();
         UpdateSelectionBoxPosition();
         selectionBox.SetAsLastSibling();
         ShufflePuzzle();
@@ -90,7 +94,31 @@ public class WirePuzzleSystem : MonoBehaviour
 
     }
 
+    public void SpawnBolt()
+    {
+        for (int i = 0; i < gridHeight - 1; i++)
+        {
+            for (int j = 0; j < gridWidth - 1; j++)
+            {
+                GameObject bolt = Instantiate(boltPrefab, puzzlePanel);
+                RectTransform rt = bolt.GetComponent<RectTransform>();
+
+                float x = j * cellSize + offset.x - ((gridWidth - 1) * cellSize / 2f);
+                float y = -(i * cellSize + offset.y - ((gridHeight - 1) * cellSize / 2f));
+
+                rt.anchoredPosition = new Vector2(x, y);
+
+                int capturedX = j;
+                int capturedY = i;
+
+                Button btn = bolt.GetComponent<Button>();
+                btn.onClick.AddListener(() => MoveSelection(capturedX, capturedY));
+            }
+        }
+    }
+
     #region 작동을 위한 임시 코드
+    // 생성된 퍼즐 조각 섞기
     private void ShufflePuzzle()
     {
         for(int i = 0; i < puzzleData.ShuffleCount; i++)
@@ -106,17 +134,21 @@ public class WirePuzzleSystem : MonoBehaviour
         }
     }
 
+    // 선택 영역의 조각 회전
     private void MoveSelection(int dx, int dy)
     {
-        selectX = Mathf.Clamp(selectX + dx, 0, gridWidth - 2);
-        selectY = Mathf.Clamp(selectY + dy, 0, gridHeight - 2);
+        //selectX = Mathf.Clamp(selectX + dx, 0, gridWidth - 2);
+        //selectY = Mathf.Clamp(selectY + dy, 0, gridHeight - 2);
+        selectX = Mathf.Clamp(dx, 0, gridWidth - 2);
+        selectY =Mathf.Clamp(dy, 0, gridHeight - 2);
         UpdateSelectionBoxPosition();
     }
 
+    // 선택 영역 좌표 수정
     private void UpdateSelectionBoxPosition()
     {
-        float x = selectX * cellSize;
-        float y = -selectY * cellSize;
+        float x = selectX * cellSize - ((gridWidth - 1) * cellSize / 2f);
+        float y = -(selectY * cellSize - ((gridHeight - 1) * cellSize / 2f));
         selectionBox.anchoredPosition = new Vector2(x, y);
     }
 

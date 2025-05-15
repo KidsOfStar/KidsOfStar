@@ -211,6 +211,9 @@ public enum CutSceneType
     HaniRequest,
     TheCatReturns,
     FinalChoice,
+    ComebackForest,
+    ComebackField,
+    ComebackCity,
 }
 
 #endregion

@@ -137,6 +137,9 @@ public static class Extensions
             CutSceneType.HaniRequest     => "HaniRequest",
             CutSceneType.TheCatReturns   => "TheCatReturns",
             CutSceneType.FinalChoice     => "FinalChoice",
+            CutSceneType.ComebackForest  => "ComebackForest",
+            CutSceneType.ComebackField    => "ComebackField",
+            CutSceneType.ComebackCity    => "ComebackCity",
             _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }
