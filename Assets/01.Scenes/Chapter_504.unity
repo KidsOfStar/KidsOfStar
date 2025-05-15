@@ -4151,7 +4151,7 @@ MonoBehaviour:
   ventBG: {fileID: 771679456}
   ventMap: {fileID: 1198605211}
   ventBlockMap: {fileID: 1999180058}
-  ventObject: {fileID: 0}
+  ventObject: {fileID: 1707651814}
   timeMap: {fileID: 918614539}
   Hide: {fileID: 0}
 --- !u!1 &760836014

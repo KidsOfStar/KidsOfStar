@@ -67,6 +67,10 @@ public class UIManager : ISceneLifecycleHandler
         {
             return Define.uiPath + name;
         }
+        else if (name.Contains("BackGround"))
+        {
+            return Define.uiBG + name;
+        }
         else if (name.Contains("Popup"))
         {
             return Define.popupPath + name;
@@ -133,7 +137,7 @@ public class UIManager : ISceneLifecycleHandler
         List<Transform> parentList = new List<Transform>();
 
         // Canvas 하위에 UI, Popup, Top 위치 생성
-        string[] childNames = { "UI", "Popup", "Top" };
+        string[] childNames = {"BG", "UI", "Popup", "Top" };
 
         foreach (string childName in childNames)
         {
