@@ -29,7 +29,7 @@ public class GameManager
 
     // Chapter Data
     // 챕터 5에서만 사용하는 변수
-    public int visitCount = 0; 
+    public int VisitCount { get; set; } = 0;
     // 방문 횟수
 
     public GameManager()

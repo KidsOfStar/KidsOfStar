@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6488317988904012061}
   - component: {fileID: 3307929362144645277}
-  - component: {fileID: 1092640043792963789}
   - component: {fileID: 4692914312386512818}
+  - component: {fileID: 6662066144643443148}
   m_Layer: 0
   m_Name: MediumSeaweed
   m_TagString: Obstacle
@@ -86,8 +86,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &1092640043792963789
-PolygonCollider2D:
+--- !u!114 &4692914312386512818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010678122097542033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8551c5856042f5c4187c901e6ea67f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 5
+--- !u!61 &6662066144643443148
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -128,33 +141,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.475, y: 0.38750002}
-      - {x: -0.475, y: 0.16250001}
-      - {x: -0.4, y: 0.16250001}
-      - {x: -0.25, y: 0.1375}
-      - {x: -0.175, y: 0.1375}
-      - {x: -0.2, y: 0.1375}
-      - {x: -0.275, y: 0.112500004}
-      - {x: -0.4, y: 0.112500004}
-      - {x: -0.475, y: 0.0625}
-      - {x: -0.475, y: -0.16250001}
-      - {x: -0.1, y: -0.38750002}
-      - {x: 0.22500001, y: -0.38750002}
-      - {x: 0.475, y: -0.0375}
-      - {x: 0.475, y: 0.38750002}
-  m_UseDelaunayMesh: 0
---- !u!114 &4692914312386512818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010678122097542033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8551c5856042f5c4187c901e6ea67f34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollSpeed: 5
+  serializedVersion: 2
+  m_Size: {x: 0.95, y: 0.775}
+  m_EdgeRadius: 0

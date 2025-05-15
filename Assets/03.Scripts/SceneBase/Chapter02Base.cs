@@ -5,6 +5,8 @@ public class Chapter02Base : SceneBase
 {
     protected override void InitSceneExtra(Action playIntroCallback)
     {
+        Managers.Instance.DialogueManager.OnDialogStepEnd += HandleDialogStep;
+
         SkillForm();
         playIntroCallback?.Invoke();
     }
@@ -28,5 +30,14 @@ public class Chapter02Base : SceneBase
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var squirrelBtn = skillPanel.squirrelBtn.GetComponent<RectTransform>();
         tutorial.SetTarget(squirrelBtn);
+    }
+
+    private void HandleDialogStep(int index)
+    {
+        if (index == 20002)
+        {
+            Managers.Instance.UIManager.Show<TutorialPopup>(2);
+            Managers.Instance.DialogueManager.OnDialogStepEnd -= HandleDialogStep;
+        }
     }
 }

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8916441257075247396}
   - component: {fileID: 3618419526599261695}
-  - component: {fileID: 8422642466872711587}
   - component: {fileID: 6883455643148782245}
+  - component: {fileID: 6744328733857893765}
   m_Layer: 0
   m_Name: SmallSeaweed
   m_TagString: Obstacle
@@ -86,8 +86,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8422642466872711587
-PolygonCollider2D:
+--- !u!114 &6883455643148782245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4156516336411142507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8551c5856042f5c4187c901e6ea67f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 5
+--- !u!61 &6744328733857893765
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -128,26 +141,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.38750002, y: 0.25}
-      - {x: -0.4625, y: 0.2}
-      - {x: -0.4625, y: -0.05}
-      - {x: -0.2375, y: -0.25}
-      - {x: 0.2375, y: -0.25}
-      - {x: 0.4625, y: -0.075}
-      - {x: 0.4625, y: 0.25}
-  m_UseDelaunayMesh: 0
---- !u!114 &6883455643148782245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4156516336411142507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8551c5856042f5c4187c901e6ea67f34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollSpeed: 5
+  serializedVersion: 2
+  m_Size: {x: 0.925, y: 0.5}
+  m_EdgeRadius: 0

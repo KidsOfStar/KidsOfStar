@@ -261,9 +261,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2640669635583908512}
-  - component: {fileID: 7135144648119847556}
   m_Layer: 5
-  m_Name: UITextBubble
+  m_Name: TextBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -290,26 +289,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 140}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &7135144648119847556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5809013058225066515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b78ed195ef83d545b279b58f7e87afc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiPosition: 0
-  closeBtn: {fileID: 0}
-  checkTimeStop: 0
-  isFirst: 0
-  rectTr: {fileID: 2640669635583908512}
-  bubbleImage: {fileID: 6544321126646918876}
-  dialogText: {fileID: 3098224410218913259}
-  clickIgnoreTime: 0.1
 --- !u!1 &5905893530374077797
 GameObject:
   m_ObjectHideFlags: 0

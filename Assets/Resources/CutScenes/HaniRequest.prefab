@@ -3942,6 +3942,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6893527159965108476}
   - component: {fileID: 3886562573060766869}
+  - component: {fileID: 8835080501507879798}
   m_Layer: 0
   m_Name: LCam
   m_TagString: Untagged
@@ -4005,6 +4006,19 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6671659054055086172}
+--- !u!114 &8835080501507879798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5708643892974754208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWorldWidth: 18
 --- !u!1 &6146560549648185558
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,6 +4029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3386692224797826011}
   - component: {fileID: 4330972720231373027}
+  - component: {fileID: 7635664214291132999}
   m_Layer: 0
   m_Name: RCam
   m_TagString: Untagged
@@ -4078,6 +4093,19 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1864847245058346031}
+--- !u!114 &7635664214291132999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6146560549648185558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWorldWidth: 18
 --- !u!1 &6322701133199594667
 GameObject:
   m_ObjectHideFlags: 0
