@@ -43,7 +43,6 @@ public class Chapter01Base : SceneBase
         if (!isTutorial) return;
         isTutorial = false;
         
-        EditorLog.Log("interact Tutorial");
         var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var interactBtn = skillPanel.interactionBtn.GetComponent<RectTransform>();

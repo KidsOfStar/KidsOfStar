@@ -40,6 +40,7 @@ public class PlayerGroundState : PlayerStateBase
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, rayLength,
             context.Controller.GroundLayer);
         //Debug.DrawRay(origin, Vector2.down * rayLength, Color.red, 1f);
+        // 하강 시에 딛고 있던 플랫폼의 플랫폼이펙터를 연결할 변수
         PlatformEffector2D effector = null;
 
         if(hit.collider != null)

@@ -163,7 +163,7 @@ public class TreePuzzleTrigger : MonoBehaviour
            && !tutorialShown)
         {
             tutorialShown = true;
-            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(2);
+            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(0);
             popup.OnClosed += () =>
             {
                 Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData, sequenceIndex);

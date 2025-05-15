@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class SoundManager : ISceneLifecycleHandler
 {
@@ -8,7 +10,9 @@ public class SoundManager : ISceneLifecycleHandler
     private readonly AudioSource ambienceSource;
     private readonly AudioSource sfxSource;
     private readonly AudioSource footstepSource;
-    private const float ambienceVolumeOffset = 0.2f;
+    
+    private const float AmbienceVolumeOffset = 0.2f;
+    public Action<float> SetBgmVolumeCallback { get; set; }
 
     public SoundManager()
     {
@@ -26,7 +30,7 @@ public class SoundManager : ISceneLifecycleHandler
         ambienceSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         ambienceSource.name = "Ambience";
         ambienceSource.loop = true;
-        ambienceSource.volume = Mathf.Max(0f, gameManager.BgmVolume - ambienceVolumeOffset);
+        ambienceSource.volume = Mathf.Max(0f, gameManager.BgmVolume - AmbienceVolumeOffset);
 
         sfxSource = Object.Instantiate(audioSource, sourceParent).GetComponent<AudioSource>();
         sfxSource.name = "SFX";
@@ -158,7 +162,8 @@ public class SoundManager : ISceneLifecycleHandler
     public void SetBgmVolume(float volume)
     {
         bgmSource.volume = volume;
-        ambienceSource.volume = Mathf.Max(0f, volume - ambienceVolumeOffset);
+        ambienceSource.volume = Mathf.Max(0f, volume - AmbienceVolumeOffset);
+        SetBgmVolumeCallback?.Invoke(volume);
     }
 
     public void SetSfxVolume(float volume)
