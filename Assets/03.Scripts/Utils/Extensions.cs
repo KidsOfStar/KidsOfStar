@@ -79,10 +79,10 @@ public static class Extensions
             SceneType.Chapter2       => "Chapter_2",
             SceneType.Chapter3       => "Chapter_3",
             SceneType.Chapter4       => "Chapter_4",
-            SceneType.Chapter_501    => "Chapter_501",
-            SceneType.Chapter_502    => "Chapter_502",
-            SceneType.Chapter_503    => "Chapter_503",
-            SceneType.Chapter_504    => "Chapter_504",
+            SceneType.Chapter501    => "Chapter_501",
+            SceneType.Chapter502    => "Chapter_502",
+            SceneType.Chapter503    => "Chapter_503",
+            SceneType.Chapter504    => "Chapter_504",
             _                        => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
         };
     }
@@ -91,11 +91,11 @@ public static class Extensions
     {
         return chapterType switch
         {
-            ChapterType.Chapter01 => "Chapter1",
-            ChapterType.Chapter02 => "Chapter2",
-            ChapterType.Chapter03 => "Chapter3",
-            ChapterType.Chapter04 => "Chapter4",
-            ChapterType.Chapter05 => "Chapter5",
+            ChapterType.Chapter1 => "Chapter1",
+            ChapterType.Chapter2 => "Chapter2",
+            ChapterType.Chapter3 => "Chapter3",
+            ChapterType.Chapter4 => "Chapter4",
+            ChapterType.Chapter5 => "Chapter5",
             _                     => throw new ArgumentOutOfRangeException(nameof(chapterType), chapterType, null)
         };
     }

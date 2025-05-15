@@ -6,20 +6,13 @@ using UnityEngine.Rendering;
 public class VentDoor : MonoBehaviour
 {
     [Header("Vent In")]
-    public GameObject ventBG;
-    public GameObject ventMap;
-    public GameObject ventBlockMap;
-    public GameObject ventObject;
+    public List<GameObject> ventIn = new List<GameObject>();
 
     [Header("Vent Out")]
-    public GameObject timeMap;
-    public GameObject hide;
-    public GameObject waterTank;
+    public List<GameObject> ventOut = new List<GameObject>();
 
     private bool isVentInOut = false; // 벤트 안으로 들어갔는지 여부
 
-    List<GameObject> ventIn = new List<GameObject>();
-    List<GameObject> ventOut = new List<GameObject>();
 
     private SkillBTN skillBTN;
 
@@ -28,8 +21,7 @@ public class VentDoor : MonoBehaviour
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
-        VentIn();
-        VentOut();
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -59,21 +51,6 @@ public class VentDoor : MonoBehaviour
             if (obj != null)
                 obj.SetActive(isActive);
         }
-    }
-
-    private void VentIn()
-    {
-        ventIn.Add(ventBG);
-        ventIn.Add(ventMap);
-        ventIn.Add(ventBlockMap);
-        ventIn.Add(ventObject);
-    }
-
-    private void VentOut()
-    {
-        ventOut.Add(timeMap);
-        ventOut.Add(hide);
-        ventOut.Add(waterTank);
     }
 
     private void OnVentInteraction()
