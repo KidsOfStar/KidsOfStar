@@ -18,6 +18,7 @@ public class PopupBase : UIBase
         if(isFirst)
             transform.SetAsLastSibling();
     }
+
     protected virtual void Start()
     {
         if (closeBtn != null)
@@ -27,9 +28,9 @@ public class PopupBase : UIBase
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
                 HideDirect();
             });
-            
         }
     }
+
     public override void HideDirect()
     {
         base.HideDirect();

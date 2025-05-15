@@ -2901,4 +2901,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 5
-  bubbleTr: {fileID: 7318935219332741536}
+  bubbleTr: {fileID: 8773198426618679051}
+--- !u!4 &8773198426618679051 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 169102530955154047, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+  m_PrefabInstance: {fileID: 8905987730638167412}
+  m_PrefabAsset: {fileID: 0}
