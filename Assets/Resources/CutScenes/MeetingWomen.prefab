@@ -3118,6 +3118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4419740507089962534}
   - component: {fileID: 7588993056183009711}
+  - component: {fileID: 5865416888553099351}
   m_Layer: 0
   m_Name: CamL
   m_TagString: Untagged
@@ -3182,6 +3183,19 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1464983874455121038}
+--- !u!114 &5865416888553099351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4470798962778406217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWorldWidth: 18
 --- !u!1 &4791306631856857497
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,6 +3681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1528414825762176864}
   - component: {fileID: 5562720195760072981}
+  - component: {fileID: 4814708705611388343}
   m_Layer: 0
   m_Name: CamR
   m_TagString: Untagged
@@ -3731,6 +3746,19 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 624524000175956549}
+--- !u!114 &4814708705611388343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5711844674675464617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWorldWidth: 18
 --- !u!1 &5827628687168917173
 GameObject:
   m_ObjectHideFlags: 0

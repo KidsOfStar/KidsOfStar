@@ -9,7 +9,7 @@ public class BgmLayeredFader : MonoBehaviour
     [SerializeField] private AudioSource[] mainSources;
 
     [Header("Dialog")]
-    [SerializeField] private int firstDialog = 5012;
+    [SerializeField] private int strMelodyIndex = 5012;
     [SerializeField] private int[] dialogIndexes;
     [SerializeField] private int finalDialog = 5021;
     
@@ -48,15 +48,22 @@ public class BgmLayeredFader : MonoBehaviour
         StartCoroutine(FadeInAudio(piano, 4f));
     }
 
-    // 컷씬 시작 시 marimba 재생
-    private void OnCutSceneStart()
+    private void AddListener()
     {
-        var currentCutScene = Managers.Instance.CutSceneManager.CurrentCutSceneName;
-        if (currentCutScene == "FinalChoice")
-            PlayScr(MainBgmSourceType.Marimba);
+        var dialogManager = Managers.Instance.DialogueManager;
+        dialogManager.OnDialogStepEnd += OnPlayStrMelody;
+        
+        var cutSceneManager = Managers.Instance.CutSceneManager;
     }
 
-    // 특정 대사마다 3~8번 트랙 재생
+    // 5012번 대사가 끝나면 StrMelody 재생
+    private void OnPlayStrMelody(int dialogIndex)
+    {
+        if (dialogIndex == strMelodyIndex)
+            PlaySource(MainBgmSourceType.StrMelody1);
+    }
+
+    // 특정 대사가 시작될 때 3~8번 트랙 재생
     private void OnPlayAudioSources(int dialogIndex)
     {
         
@@ -93,7 +100,7 @@ public class BgmLayeredFader : MonoBehaviour
         }
     }
     
-    private void PlayScr(MainBgmSourceType srcType)
+    private void PlaySource(MainBgmSourceType srcType)
     {
         var scr = audioDict[srcType];
         var duration = srcType == MainBgmSourceType.StrMelody2 ? 4f : 2f;
