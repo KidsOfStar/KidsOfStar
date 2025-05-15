@@ -6,6 +6,8 @@ public class TitleScene : MonoBehaviour
     {
         Managers.Instance.OnSceneLoaded();
         Managers.Instance.SceneLoadManager.IsSceneLoadComplete = true;
-        Managers.Instance.UIManager.Show<UITitle>();
+        //Managers.Instance.UIManager.Show<UITitle>();
+
+        Managers.Instance.UIManager.Show<BackGroundTitile>();
     }
 }
