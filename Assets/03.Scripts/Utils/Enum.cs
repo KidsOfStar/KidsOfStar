@@ -191,7 +191,7 @@ public enum EndingType
     ComfortableLife  = 1 << 6,
     WinRecognition   = 1 << 7,
     DreamingCat      = 1 << 8,
-    IntroTheOcean    = 1 << 9,
+    IntoTheOcean    = 1 << 9,
     DifferentButSame = 1 << 10,
 }
 

@@ -107,7 +107,7 @@ public static class Extensions
             EndingType.ComfortableLife  => "안락한 일상",
             EndingType.WinRecognition   => "쟁취한 인정",
             EndingType.DreamingCat      => "낭만 고양이",
-            EndingType.IntroTheOcean    => "드넓은 바다로",
+            EndingType.IntoTheOcean    => "드넓은 바다로",
             EndingType.DifferentButSame => "같지만 다르게",
             EndingType.Absorb           => "흡수",
             EndingType.Stable           => "안정",
