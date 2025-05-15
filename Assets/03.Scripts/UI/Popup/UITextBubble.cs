@@ -1,7 +1,4 @@
 using Febucci.UI;
-using System.Collections;
-using System.Text;
-using TMPro;
 using UnityEngine;
 
 public class UITextBubble : UIBase
