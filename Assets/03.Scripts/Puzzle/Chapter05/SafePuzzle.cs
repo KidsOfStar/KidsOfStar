@@ -12,6 +12,8 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     public float rotationDuration = 0.5f; // 회전하는 데 걸리는 시간
 
+    public SafePopup safePopup; // 퍼즐 팝업을 참조하기 위한 변수
+
     public Dictionary<GameObject, float> rotationAmount;                        // 퍼즐 조각과 회전량을 매핑하는 딕셔너리
     private HashSet<GameObject> completedPieces = new HashSet<GameObject>();    // 완료된 퍼즐 조각들
     private Dictionary<GameObject, Coroutine> rotationCorotines = new Dictionary<GameObject, Coroutine>(); // 천천히 회전하는 코루틴을 저장하는 딕셔너리
@@ -100,6 +102,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             {
                 completedPieces.Add(piece);
                 Debug.Log($"{piece.name} 퍼즐 완료!");
+                safePopup.safePuzzle = true; // 퍼즐 완료 상태 업데이트
             }
         }
 
