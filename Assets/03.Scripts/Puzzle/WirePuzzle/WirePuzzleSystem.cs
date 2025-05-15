@@ -13,11 +13,12 @@ public class WirePuzzleSystem : MonoBehaviour
     [SerializeField, Tooltip("퍼즐 세로 칸 수")] private int gridHeight = 4;
     [SerializeField, Tooltip("조각의 크기")] private float cellSize = 75f;
 
-    [SerializeField, Tooltip("퍼즐 조각 섞는 횟수")] private int shuffleCount = 10;
-
+    #region 테스트용 임시 변수
     [Space, Header("테스트용 임시 변수들")]
     [SerializeField, Tooltip("테스트 퍼즐 조각용 스프라이트 배열")]
     private Sprite[] testSprites;
+    [SerializeField, Tooltip("테스트용 퍼즐 데이터")] private WirePuzzleData puzzleData;
+    #endregion
 
     // 퍼즐 조각 배열
     private WirePuzzlePiece[,] puzzleGrid;
@@ -29,18 +30,17 @@ public class WirePuzzleSystem : MonoBehaviour
     {
         // 퍼즐 조각 배열 초기화
         puzzleGrid = new WirePuzzlePiece[gridWidth, gridHeight];
-
-    }
-
-    private void Start()
-    {
-        Init();
         GeneratePuzzle();
         UpdateSelectionBoxPosition();
         selectionBox.SetAsLastSibling();
         ShufflePuzzle();
         selectX = 0;
         selectY = 0;
+    }
+
+    private void Start()
+    {
+        Init();
     }
 
     void Update()
@@ -93,11 +93,16 @@ public class WirePuzzleSystem : MonoBehaviour
     #region 작동을 위한 임시 코드
     private void ShufflePuzzle()
     {
-        for(int i = 0; i < shuffleCount; i++)
+        for(int i = 0; i < puzzleData.ShuffleCount; i++)
         {
             selectX = UnityEngine.Random.Range(0, gridWidth - 1);
             selectY = UnityEngine.Random.Range(0,gridHeight - 1);
-            RotateSelection();
+            int rotateCount = UnityEngine.Random.Range(1, 3);
+
+            for(int j = 0; j < rotateCount; j++)
+            {
+                RotateSelection();
+            }
         }
     }
 
