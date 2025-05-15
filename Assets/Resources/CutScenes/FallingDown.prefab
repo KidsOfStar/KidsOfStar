@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6477171342330887800}
   - component: {fileID: 6122403166624757134}
+  - component: {fileID: 610022940691140541}
   m_Layer: 0
   m_Name: Cam
   m_TagString: Untagged
@@ -162,6 +163,19 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2433070484512475205}
+--- !u!114 &610022940691140541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458319311454096031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWorldWidth: 18
 --- !u!1 &1513079129248379594
 GameObject:
   m_ObjectHideFlags: 0

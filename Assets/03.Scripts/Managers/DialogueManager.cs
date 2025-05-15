@@ -15,6 +15,7 @@ public class DialogueManager : ISceneLifecycleHandler
 
     public Action OnClick { get; set; }
     public Action OnDialogStart { get; set; }
+    public Action<int> OnDialogStepStart { get; set; }
     public Action OnDialogEnd { get; set; }
     public Action<int> OnDialogStepEnd { get; set; }
     private bool isCutScene;
@@ -81,6 +82,7 @@ public class DialogueManager : ISceneLifecycleHandler
 
         // 대사 출력 시작 이벤트 호출
         OnDialogStart?.Invoke();
+        OnDialogStepStart?.Invoke(currentDialogData.Index);
 
         // 큐의 Count가 0이 될 때까지 대사를 출력
         if (dialogQueue.Count > 0)
