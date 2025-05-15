@@ -102,13 +102,14 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             {
                 completedPieces.Add(piece);
                 Debug.Log($"{piece.name} 퍼즐 완료!");
-                safePopup.safePuzzle = true; // 퍼즐 완료 상태 업데이트
             }
         }
 
         // 모든 퍼즐 완료됐는지 확인
         if (completedPieces.Count == rotationAmount.Count)
         {
+            safePopup.safePuzzle = true; // 퍼즐 완료 상태 업데이트
+
             Debug.Log("Puzzle Clear!");
         }
     }

@@ -47,6 +47,8 @@ public class SafeSystem : MonoBehaviour
         {
             OntextBubbleText(player);
         }
+        else
+            Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
     }
 
     private void OntextBubbleText(Player player)
