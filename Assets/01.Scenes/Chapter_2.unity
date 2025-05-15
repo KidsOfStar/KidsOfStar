@@ -3781,7 +3781,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c452e4699b838e54b864d2cba5e8af01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backSpeed: []
   parallaxSpeed: 0.05
 --- !u!1001 &1123795024
 PrefabInstance:
@@ -13405,7 +13404,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
