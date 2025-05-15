@@ -3,13 +3,13 @@ using UnityEngine;
 public class SafePopup : PopupBase
 {
     /// Chapter 5에서 사용되는 퍼즐 시스템
+    [Header("퍼즐 시스템")]
     public bool elevatorPuzzle = false;
     public bool safePuzzle = false;
 
     public override void Opened(params object[] param)
     {
         base.Start();
-
     }
 
     // 모든 퍼즐이 완료되었는지 확인하는 메서드
