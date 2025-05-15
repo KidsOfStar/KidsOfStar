@@ -211,6 +211,9 @@ public enum CutSceneType
     HaniRequest,
     TheCatReturns,
     FinalChoice,
+    ComebackForest,
+    ComebackField,
+    ComebackCity,
 }
 
 #endregion
@@ -219,9 +222,10 @@ public enum CutSceneType
 
 public enum UIPosition
 {
-    UI,    // 기본 씬 UI
-    Popup, // 팝업 창
-    Top,   // 에러 창 
+    BG, // 배경 UI
+    UI,         // 기본 씬 UI
+    Popup,      // 팝업 창
+    Top,        // 에러 창 
 }
 
 public enum ObstacleType
