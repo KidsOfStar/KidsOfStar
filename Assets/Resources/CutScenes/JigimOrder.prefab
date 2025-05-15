@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4682611077217418684}
   - component: {fileID: 9209194543119133736}
   - component: {fileID: 2143601119304949834}
+  - component: {fileID: 785572371507590093}
   m_Layer: 0
   m_Name: RightCam
   m_TagString: Untagged
@@ -131,6 +132,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &785572371507590093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359637484475283090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWorldWidth: 18
 --- !u!1 &892899816819188135
 GameObject:
   m_ObjectHideFlags: 0
@@ -3918,6 +3932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 502835919285775995}
   - component: {fileID: 5483181122844453853}
+  - component: {fileID: 5792190512586989101}
   m_Layer: 0
   m_Name: LeftCam
   m_TagString: Untagged
@@ -3982,6 +3997,19 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 5791189079411715485}
+--- !u!114 &5792190512586989101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6049558154271194533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWorldWidth: 18
 --- !u!1 &6427008766976115711
 GameObject:
   m_ObjectHideFlags: 0

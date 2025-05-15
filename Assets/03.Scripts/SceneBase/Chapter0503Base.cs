@@ -8,16 +8,16 @@ public class Chapter0503Base : SceneBase
 
     private void Start()
     {
-        if(Managers.Instance.GameManager.visitCount == 1 )
+        if(Managers.Instance.GameManager.VisitCount == 1 )
         {
             meetingWomanTriger.enabled = false;
         }
-        else if (Managers.Instance.GameManager.visitCount == 2)
+        else if (Managers.Instance.GameManager.VisitCount == 2)
         {
             meetingWomanTriger.enabled = false;
             meetingBihyiTriger.enabled = false;
         }
-        Managers.Instance.GameManager.visitCount++;
+        Managers.Instance.GameManager.VisitCount++;
     }
 
     protected override void CutSceneEndCallback()
