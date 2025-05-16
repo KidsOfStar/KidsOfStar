@@ -37,4 +37,5 @@ public class Chapter0503Base : SceneBase
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
     }
+
 }
