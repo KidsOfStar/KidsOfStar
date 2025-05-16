@@ -1,33 +1,52 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WirePuzzleSystem : MonoBehaviour
 {
+    [Header("외부 참조")]
     [SerializeField, Tooltip("퍼즐 조각 프리팹")] private GameObject piecePrefab;
     [SerializeField, Tooltip("볼트 프리팹")] private GameObject boltPrefab;
     [SerializeField, Tooltip("퍼즐 조각이 배치될 패널")] private Transform puzzlePanel;
     [SerializeField, Tooltip("선택 영역의 RectTransform")] private RectTransform selectionBox;
+    [SerializeField, Tooltip("배경 이미지")] private Image backgroundImage;
 
     [SerializeField, Tooltip("퍼즐 가로 칸 수")] private int gridWidth = 4;
     [SerializeField, Tooltip("퍼즐 세로 칸 수")] private int gridHeight = 4;
     [SerializeField, Tooltip("조각의 크기")] private float cellSize = 75f;
     [SerializeField, Tooltip("padding 보정용")] private Vector2 offset = new Vector2(15f, 15f);
 
+    [Header("UI")]
+    [SerializeField, Tooltip("타이머 텍스트")] private TextMeshProUGUI timerTxt;
+    [SerializeField, Tooltip("실패 팝업")] private GameObject failPopup;
+    [SerializeField, Tooltip("클리어 팝업")] private GameObject clearPopup;
+    [SerializeField, Tooltip("클리어 버튼")] private Button clearExitBtn;
+
     #region 테스트용 임시 변수
     [Space, Header("테스트용 임시 변수들")]
-    [SerializeField, Tooltip("테스트 퍼즐 조각용 스프라이트 배열")]
     private Sprite[] testSprites;
     [SerializeField, Tooltip("테스트용 퍼즐 데이터")] private WirePuzzleData puzzleData;
     #endregion
 
+    // 퍼즐 트리거 딕셔너리
+    Dictionary<int, WirePuzzleTrigger> triggerMap;
     // 퍼즐 조각 배열
     private WirePuzzlePiece[,] puzzleGrid;
     // 선택 영역의 좌표
     private int selectX = 0;
     private int selectY = 0;
+
+    private void Awake()
+    {
+        // 씬 내 모든 트리거 탐색 및 연결
+        triggerMap = new Dictionary<int, WirePuzzleTrigger>();
+
+        foreach(var trigger in FindObjectsOfType<WirePuzzleTrigger>())
+        {
+            triggerMap[trigger.SequenceIndex] = trigger;
+        }
+    }
 
     public void Init()
     {
@@ -52,9 +71,16 @@ public class WirePuzzleSystem : MonoBehaviour
         
     }
 
-    public void SetupPuzzle()
+    // 퍼즐 데이터 초기화
+    public void SetupPuzzle(WirePuzzleData data, int idx)
     {
+        // 클리어 & 실패 팝업 숨김
+        if(clearPopup != null)
+            clearPopup.SetActive(false);
+        if(failPopup != null)
+            failPopup.SetActive(false);
 
+        
     }
 
     public void GeneratePuzzle()
@@ -90,6 +116,16 @@ public class WirePuzzleSystem : MonoBehaviour
     }
 
     public void StartPuzzle()
+    {
+
+    }
+
+    public void StopPuzzle()
+    {
+
+    }
+
+    public void OnExit()
     {
 
     }
