@@ -16,8 +16,8 @@ public class TreePuzzleSystem : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerTxt;
     [SerializeField] private GameObject failPopup;
-    [SerializeField] private GameObject ClearPopup;
-    [SerializeField] private Button clearExitBtn;
+    [SerializeField] protected GameObject ClearPopup;
+    [SerializeField] protected Button clearExitBtn;
 
     // 정답 Sprite 목록
     private List<Sprite> correctSprites;
@@ -27,7 +27,7 @@ public class TreePuzzleSystem : MonoBehaviour
     private float timeLimit;
     private float currentTime;
     // 작동중인지 체크
-    private bool isRunning;
+    protected bool isRunning;
     public bool IsRunning => isRunning;
     // 현재 선택된 퍼즐 조각의 Index
     private int selectedIndex;
@@ -35,13 +35,13 @@ public class TreePuzzleSystem : MonoBehaviour
     // 생성된 모든 퍼즐 조각목록
     private List<TreePuzzlePiece> pieces = new();
     // 퍼즐 고유ID
-    private int puzzleIndex;
+    protected int puzzleIndex;
     // 성공 완료된 퍼즐 ID의 집합
-    private HashSet<int> clearPuzzlenum = new();
+    protected HashSet<int> clearPuzzlenum = new();
     // 에디터에서 전체 퍼즐의 개수
-    [SerializeField] private int totalPuzzleCount = 2;
+    [SerializeField] protected int totalPuzzleCount = 2;
     // Trigger형태를 저장한 딕셔너리
-    private Dictionary<int, TreePuzzleTrigger> triggerMap;
+    protected Dictionary<int, TreePuzzleTrigger> triggerMap;
     
     //TODO: FindObjectsType보다 다른 방법으로 리펙토링하기.
     private void Awake()
@@ -155,7 +155,7 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     //퍼즐 Clear시
-    private void CompletePuzzle()
+    protected virtual void CompletePuzzle()
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
@@ -197,7 +197,7 @@ public class TreePuzzleSystem : MonoBehaviour
             trig.ResetTrigger();
     }
 
-    public void OnClearButtonClicked()
+    public virtual void OnClearButtonClicked()
     {
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))
         {
@@ -221,7 +221,7 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // UI닫기
-    public void OnExit()
+    public virtual void OnExit()
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
