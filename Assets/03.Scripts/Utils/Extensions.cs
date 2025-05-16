@@ -79,10 +79,10 @@ public static class Extensions
             SceneType.Chapter2       => "Chapter_2",
             SceneType.Chapter3       => "Chapter_3",
             SceneType.Chapter4       => "Chapter_4",
-            SceneType.Chapter501    => "Chapter_501",
-            SceneType.Chapter502    => "Chapter_502",
-            SceneType.Chapter503    => "Chapter_503",
-            SceneType.Chapter504    => "Chapter_504",
+            SceneType.Chapter501     => "Chapter_501",
+            SceneType.Chapter502     => "Chapter_502",
+            SceneType.Chapter503     => "Chapter_503",
+            SceneType.Chapter504     => "Chapter_504",
             _                        => throw new ArgumentOutOfRangeException(nameof(sceneType), sceneType, null)
         };
     }
@@ -107,7 +107,7 @@ public static class Extensions
             EndingType.ComfortableLife  => "안락한 일상",
             EndingType.WinRecognition   => "쟁취한 인정",
             EndingType.DreamingCat      => "낭만 고양이",
-            EndingType.IntoTheOcean    => "드넓은 바다로",
+            EndingType.IntoTheOcean     => "드넓은 바다로",
             EndingType.DifferentButSame => "같지만 다르게",
             EndingType.Absorb           => "흡수",
             EndingType.Stable           => "안정",
@@ -138,8 +138,9 @@ public static class Extensions
             CutSceneType.TheCatReturns   => "TheCatReturns",
             CutSceneType.FinalChoice     => "FinalChoice",
             CutSceneType.ComebackForest  => "ComebackForest",
-            CutSceneType.ComebackField    => "ComebackField",
+            CutSceneType.ComebackField   => "ComebackField",
             CutSceneType.ComebackCity    => "ComebackCity",
+            CutSceneType.MeetingBihyi    => "MeetingBihyi",
             _                            => throw new ArgumentOutOfRangeException(nameof(cutSceneType), cutSceneType, null)
         };
     }

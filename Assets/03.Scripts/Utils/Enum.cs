@@ -208,6 +208,7 @@ public enum CutSceneType
     RescueKitten,
     JieuiRequest,
     MeetingWomen,
+    MeetingBihyi,
     HaniRequest,
     TheCatReturns,
     FinalChoice,

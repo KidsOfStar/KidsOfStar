@@ -64,4 +64,7 @@ MonoBehaviour:
   - characterType: 10
     progress: 4
     index: 4010
+  - characterType: 9
+    progress: 5
+    index: 40018
   chapter5List: []

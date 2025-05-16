@@ -18,7 +18,6 @@ public class Chapter01Base : SceneBase
     
     protected override void InitSceneExtra(Action callback)
     {
-        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.TheCatReturns);
         //Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FallingDown, callback);
         callback?.Invoke();
         sceneEventTrigger.Init();
