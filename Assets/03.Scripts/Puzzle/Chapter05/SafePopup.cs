@@ -7,25 +7,28 @@ public class SafePopup : PopupBase
     /// Chapter 5에서 사용되는 퍼즐 시스템
     [SerializeField] private SafePuzzleSystem currentPuzzle;
 
+    public Door door; // 문 잠금 여부
+
+    [Header("퍼즐 시스템")]
     public TreePuzzleData[] datas;
     public SafePuzzleSystem[] puzzleSystems;
 
 
     public int countIndex = 0; // 퍼즐 조각의 인덱스
 
-    [Header("퍼즐 시스템")]
-    public bool elevatorPuzzle = false;
-    public bool safePuzzle = false;
 
-    public override void Opened(params object[] param)
+
+    protected override void Start()
     {
-        base.Start();
-        HideUI(false); // UI 비활성화
-        LockPlayer(true); // 플레이어 잠금
-
         currentPuzzle = puzzleSystems[0];
 
         nextPuzzle();
+    }
+    public override void Opened(params object[] param)
+    {
+        base.Start();
+        //HideUI(false); // UI 비활성화
+        LockPlayer(true); // 플레이어 잠금
 
     }
     public void nextPuzzle()
@@ -33,6 +36,9 @@ public class SafePopup : PopupBase
         if (countIndex >= datas.Length)
         {
             Debug.Log("모든 퍼즐이 완료되었습니다.");
+            UpdateChapterProgress();
+            // 모든 퍼즐이 완료되었으므로 팝업을 닫고 플레이어 제어를 복구합니다.
+            Managers.Instance.UIManager.Hide<SafePopup>();
             return;
         }
         currentPuzzle.SetupPuzzle(datas[countIndex], 2);
@@ -55,19 +61,13 @@ public class SafePopup : PopupBase
     }
 
     // 모든 퍼즐이 완료되었는지 확인하는 메서드
-    public bool IsAllPuzzlesCompleted()
-    {
-        return elevatorPuzzle && safePuzzle;
-    }
 
     // 모든 퍼즐이 완료가 되면 챕터 진행도 올리기
     public void UpdateChapterProgress()
     {
-        if (IsAllPuzzlesCompleted())
-        {
-            // 챕터 진행도 올리기
-            Managers.Instance.GameManager.UpdateProgress();
-            Debug.Log("모든 퍼즐이 완료되었습니다. 챕터 진행도를 올립니다.");
-        }
+
+        // 챕터 진행도 올리기
+        Managers.Instance.GameManager.UpdateProgress();
+        Debug.Log("모든 퍼즐이 완료되었습니다. 챕터 진행도를 올립니다.");
     }
 }

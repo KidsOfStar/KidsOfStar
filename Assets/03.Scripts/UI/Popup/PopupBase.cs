@@ -20,7 +20,7 @@ public class PopupBase : UIBase
         if(isFirst)
             transform.SetAsLastSibling();
 
-        HideUI(false); // UI 비활성화
+        //HideUI(false); // UI 비활성화
     }
 
     protected virtual void Start()
@@ -31,18 +31,18 @@ public class PopupBase : UIBase
             {
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
                 HideDirect();
-                HideUI(true); // UI 활성화
+                //HideUI(true); // UI 활성화
                 LockPlayer(false); // 플레이어 잠금
                 Debug.Log("PopupBase Close");
             });
         }
 
-        // 팝업이 열릴 때 UI 숨기기
-        uiHide = new List<GameObject>()
-        {
-            Managers.Instance.UIManager.Get<PlayerBtn>().gameObject,
-            Managers.Instance.UIManager.Get<UIJoystick>().gameObject,
-        };
+        //// 팝업이 열릴 때 UI 숨기기
+        //uiHide = new List<GameObject>()
+        //{
+        //    Managers.Instance.UIManager.Get<PlayerBtn>().gameObject,
+        //    Managers.Instance.UIManager.Get<UIJoystick>().gameObject,
+        //};
 
     }
 
@@ -60,13 +60,13 @@ public class PopupBase : UIBase
 
     }
 
-    public void HideUI(bool hideUI)
-    {
-        foreach (var ui in uiHide)
-        {
-            ui.SetActive(hideUI); // UI 비활성화
-        }
-    }
+    //public void HideUI(bool hideUI)
+    //{
+    //    foreach (var ui in uiHide)
+    //    {
+    //        ui.SetActive(hideUI); // UI 비활성화
+    //    }
+    //}
 
     // 퍼즐이 열리면 플레이어 잠금
     protected virtual void LockPlayer(bool lockPlayer)
