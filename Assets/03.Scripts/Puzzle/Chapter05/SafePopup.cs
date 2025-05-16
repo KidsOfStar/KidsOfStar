@@ -46,7 +46,7 @@ public class SafePopup : PopupBase
         countIndex++;
 
         // 조건 수정
-        if (countIndex < puzzleSystems.Length)
+        if (countIndex > puzzleSystems.Length)
         {
             currentPuzzle = puzzleSystems[countIndex];
         }

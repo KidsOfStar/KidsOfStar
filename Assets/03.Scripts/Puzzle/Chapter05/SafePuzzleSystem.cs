@@ -28,13 +28,13 @@ public class SafePuzzleSystem : TreePuzzleSystem
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
-        OnExit();
-        Managers.Instance.UIManager.Show<GameOverPopup>();
-        safePopup.FullReset();
+        OnExit(); // UI 닫고 플레이어 언락
+        Managers.Instance.UIManager.Show<GameOverPopup>(); // 실패 팝업
+        safePopup.FullReset(); // 퍼즐 시스템 리셋
 
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))
         {
-            trig.ResetTrigger();
+            trig.ResetTrigger(); // 트리거 리셋
         }
     }
 
