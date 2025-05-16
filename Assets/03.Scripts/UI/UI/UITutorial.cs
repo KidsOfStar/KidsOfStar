@@ -7,12 +7,12 @@ public class UITutorial : UIBase
     [SerializeField] private RectTransform holeMask;
     [SerializeField] private Button closeButton;
     [SerializeField] private RectTransform arrow;
-    
-    private readonly Vector3 arrowOffset = new(0f, 150f, 0f);
     private const float Padding = 80f;
     
     private void OnEnable()
     {
+        var player = Managers.Instance.GameManager.Player;
+        player.Controller.LockPlayer();
         Time.timeScale = 0;
     }
 
@@ -20,8 +20,9 @@ public class UITutorial : UIBase
     {
         holeMask.position = targetUI.position;
         holeMask.sizeDelta = new Vector2(targetUI.sizeDelta.x + Padding, targetUI.sizeDelta.y + Padding);
-        
-        arrow.position = targetUI.position + arrowOffset;
+
+        var maskLocal = holeMask.localPosition;
+        arrow.localPosition = maskLocal + new Vector3(0, holeMask.sizeDelta.y * 0.5f, 0);
         arrow.localScale = IsOnLeftTargetUI(targetUI) ? new Vector3(-1f, 1f, 1f) : Vector3.one;
         
         StartCoroutine(AnimCoroutine());
@@ -48,6 +49,9 @@ public class UITutorial : UIBase
     {
         StopAllCoroutines();
         closeButton.onClick.RemoveAllListeners();
+        
+        var player = Managers.Instance.GameManager.Player;
+        player.Controller.UnlockPlayer();
         Time.timeScale = 1;
     }
 }

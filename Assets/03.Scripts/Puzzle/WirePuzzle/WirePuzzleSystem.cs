@@ -96,23 +96,38 @@ public class WirePuzzleSystem : MonoBehaviour
 
     public void SpawnBolt()
     {
+        // 퍼즐 전체 너비
+        float totalWidth = gridWidth * cellSize;
+        // 퍼즐 전체 높이
+        float totalHeight = gridHeight * cellSize;
+        // 퍼즐 중심이 (0,0)이 되도록 하기 위한 오프셋
+        Vector2 centerOffset = new Vector2(totalWidth / 2f, totalHeight / 2f);
+
         for (int i = 0; i < gridHeight - 1; i++)
         {
             for (int j = 0; j < gridWidth - 1; j++)
             {
+                // 나사 프리팹 생성
                 GameObject bolt = Instantiate(boltPrefab, puzzlePanel);
                 RectTransform rt = bolt.GetComponent<RectTransform>();
 
-                float x = j * cellSize + offset.x - ((gridWidth - 1) * cellSize / 2f);
-                float y = -(i * cellSize + offset.y - ((gridHeight - 1) * cellSize / 2f));
+                // 모서리 위치
+                float x = (j + 1) * cellSize - centerOffset.x;
+                float y = -((i + 1) * cellSize - centerOffset.y);
 
                 rt.anchoredPosition = new Vector2(x, y);
 
                 int capturedX = j;
                 int capturedY = i;
 
-                Button btn = bolt.GetComponent<Button>();
-                btn.onClick.AddListener(() => MoveSelection(capturedX, capturedY));
+                bolt.GetComponent<BoltButtonHandler>().Init(capturedX, capturedY);
+                bolt.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    if (MoveSelection(capturedX, capturedY))
+                    {
+                        bolt.transform.Rotate(Vector3.forward, 90f);
+                    }
+                });
             }
         }
     }
@@ -135,20 +150,36 @@ public class WirePuzzleSystem : MonoBehaviour
     }
 
     // 선택 영역의 조각 회전
-    private void MoveSelection(int dx, int dy)
+    public bool MoveSelection(int dx, int dy)
     {
-        //selectX = Mathf.Clamp(selectX + dx, 0, gridWidth - 2);
-        //selectY = Mathf.Clamp(selectY + dy, 0, gridHeight - 2);
-        selectX = Mathf.Clamp(dx, 0, gridWidth - 2);
-        selectY =Mathf.Clamp(dy, 0, gridHeight - 2);
-        UpdateSelectionBoxPosition();
+        // 이미 선택된 위치의 나사를 다시 클릭
+        if(dx == selectX && dy == selectY)
+        {
+            RotateSelection();
+            return true;
+        }
+        else
+        {
+            // 선택 영역 위치 갱신
+            selectX = Mathf.Clamp(dx, 0, gridWidth - 2);
+            selectY =Mathf.Clamp(dy, 0, gridHeight - 2);
+            UpdateSelectionBoxPosition();
+            return false;
+        }
     }
 
     // 선택 영역 좌표 수정
     private void UpdateSelectionBoxPosition()
     {
-        float x = selectX * cellSize - ((gridWidth - 1) * cellSize / 2f);
-        float y = -(selectY * cellSize - ((gridHeight - 1) * cellSize / 2f));
+        // 퍼즐의 전체 크기
+        float totalWidth = gridWidth * cellSize;
+        float totalHeight = gridHeight * cellSize;
+        Vector2 centerOffset = new Vector2(totalWidth / 2f, totalHeight / 2f);
+
+        // 선택된 나사 기준으로 선택영역 위치 설정
+        float x = (selectX + 1) * cellSize - centerOffset.x;
+        float y = -((selectY + 1) * cellSize - centerOffset.y);
+
         selectionBox.anchoredPosition = new Vector2(x, y);
     }
 
