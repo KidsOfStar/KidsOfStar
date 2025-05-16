@@ -82,6 +82,7 @@ public class WirePuzzleSystem : MonoBehaviour
         if(failPopup != null)
             failPopup.SetActive(false);
 
+        puzzleData = data;
         puzzleIndex = idx;
 
         correctSprites = new List<Sprite>(data.pieceSprites);
@@ -98,8 +99,8 @@ public class WirePuzzleSystem : MonoBehaviour
     {
         foreach(Transform child in puzzlePanel)
         {
-            if(TryGetComponent<WirePuzzlePiece>(out _)
-                || TryGetComponent<BoltButtonHandler>(out _))
+            if(child.TryGetComponent<WirePuzzlePiece>(out _)
+                || child.TryGetComponent<BoltButtonHandler>(out _))
             {
                 Destroy(child.gameObject);
             }
@@ -117,7 +118,7 @@ public class WirePuzzleSystem : MonoBehaviour
                 WirePuzzlePiece piece = go.GetComponent<WirePuzzlePiece>();
 
                 // 테스트용 스프라이트 적용
-                Sprite spriet = testSprites[i * gridWidth + j];
+                Sprite spriet = correctSprites[i * gridWidth + j];
                 piece.InitPiece(j, i, spriet);
                 piece.WireColor = GetColorType(j);
                 puzzleGrid[j, i] = piece;
@@ -177,6 +178,38 @@ public class WirePuzzleSystem : MonoBehaviour
         }
     }
 
+    // 퍼즐 클리어
+    private void CompletePuzzle()
+    {
+        isRunning = failPopup;
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
+        clearPopup.SetActive(true);
+
+        if (triggerMap.TryGetValue(puzzleIndex, out var trigger))
+        {
+            trigger.LockedElevator.UnlockElevator();
+        }
+
+        // 나가기 버튼 클릭 이벤트 연결
+        clearExitBtn.onClick.RemoveAllListeners();
+        clearExitBtn.onClick.AddListener(OnClearButtonClicked);
+    }
+
+    // 클리어 팝업 내 버튼 클릭 시 처리
+    public void OnClearButtonClicked()
+    {
+        if(triggerMap.TryGetValue(puzzleIndex, out var trigger))
+        {
+            trigger.DisableExclamation();
+        }
+
+        OnExit();
+        
+        // 나무껍질 퍼즐의 경우 컷씬 재생과 진행도 관련 설정이 있었음
+        // 배선 퍼즐은 엘리베이터 작동과 연결할 지점으로 보임
+    }
+
+    // 팝업 닫고 제어 복구
     public void OnExit()
     {
         // 잠시 보류. 재생할 bgm 알아내고 적용
@@ -223,11 +256,11 @@ public class WirePuzzleSystem : MonoBehaviour
             }
         }
         
-        UpdateSelectionBoxPosition();
-        selectionBox.SetAsLastSibling();
         ShufflePuzzle();
         selectX = 0;
         selectY = 0;
+        UpdateSelectionBoxPosition();
+        selectionBox.SetAsLastSibling();
     }
 
     #region 나무껍질 퍼즐에는 없는 함수들
@@ -318,7 +351,8 @@ public class WirePuzzleSystem : MonoBehaviour
 
         if(CheckPuzzleClear())
         {
-            EditorLog.Log("Clear");
+            //EditorLog.Log("Clear");
+            CompletePuzzle();
         }
     }
 

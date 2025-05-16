@@ -12,6 +12,9 @@ public class WirePuzzleTrigger : MonoBehaviour
     private SpriteRenderer exclamationRenderer;
     [SerializeField, Tooltip("트리거가 작동할 ChapterProgress 값")]
     private int requireProgress;
+    [SerializeField, Tooltip("이 트리거의 퍼즐이 클리어 되면 작동하는 엘리베이터")]
+    private Elevator lockedElevator;
+    public Elevator LockedElevator { get { return lockedElevator; } }
 
     // 상호 작용 버튼
     private SkillBTN skillBtn;
@@ -98,6 +101,28 @@ public class WirePuzzleTrigger : MonoBehaviour
         {
             return;
         }
+
+        TryEnableInteraction();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (triggered) return;
+
+        if(collision.CompareTag("Player"))
+        {
+            hasPlayer = false;
+        }
+        else if(collision.CompareTag("Box"))
+        {
+            hasBox = false;
+        }
+        else
+        {
+            return;
+        }
+
+        HideInteraction();
     }
 
     // 상호 작용 버튼을 보여줄 상태인지 체크하고 클릭 이벤트 연결
