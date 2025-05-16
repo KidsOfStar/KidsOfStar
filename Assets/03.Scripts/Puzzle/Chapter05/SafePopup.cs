@@ -26,7 +26,7 @@ public class SafePopup : PopupBase
     {
         base.Start();
         //HideUI(false); // UI 비활성화
-        LockPlayer(true); // 플레이어 잠금
+        Managers.Instance.GameManager.Player.Controller.LockPlayer();
 
     }
     public void nextPuzzle()
@@ -37,7 +37,7 @@ public class SafePopup : PopupBase
             UpdateChapterProgress();
             // 모든 퍼즐이 완료되었으므로 팝업을 닫고 플레이어 제어를 복구합니다.
             door.isDoorLocked = true; // 문 잠금 해제
-            Managers.Instance.UIManager.Hide<SafePopup>();
+            Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
             Managers.Instance.GameManager.Player.Controller.UnlockPlayer(); // 플레이어 제어 복구
             return;
         }
@@ -53,11 +53,6 @@ public class SafePopup : PopupBase
         {
             currentPuzzle = puzzleSystems[countIndex];
         }
-    }
-
-    protected override void LockPlayer(bool lockPlayer)
-    {
-        base.LockPlayer(lockPlayer);
     }
 
     // 모든 퍼즐이 완료되었는지 확인하는 메서드

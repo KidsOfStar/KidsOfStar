@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class SafePuzzleSystem : TreePuzzleSystem
     public SafePuzzle safePuzzle;
     public SafePopup safePopup;
     public int index; // 퍼즐 고유 ID
+
+    // 성공 시
     protected override void CompletePuzzle()
     {
         isRunning = false;
@@ -24,6 +27,25 @@ public class SafePuzzleSystem : TreePuzzleSystem
         // 클리어 시 다음 퍼즐로 이동
         safePopup.nextPuzzle();
     }
+
+    // 실패 시
+    protected override void FailPuzzle()
+    {
+        isRunning = false;
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
+
+        OnExit();
+
+        // GameOverPopup 보여주고 다시 시작할지 물어봄
+        Managers.Instance.UIManager.Show<GameOverPopup>();
+
+        // 트리거 리셋
+        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
+        {
+            trig.ResetTrigger();
+        }
+    }
+
 
     public override void OnClearButtonClicked()
     {

@@ -160,7 +160,7 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // 퍼즐 실패시
-    private void FailPuzzle()
+    protected virtual void FailPuzzle()
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
