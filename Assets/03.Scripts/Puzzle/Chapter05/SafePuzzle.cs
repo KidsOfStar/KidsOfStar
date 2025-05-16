@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -107,8 +106,6 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         // 모든 퍼즐 완료됐는지 확인
         if (completedPieces.Count == rotationAmount.Count)
         {
-            safePopup.safePuzzle = true; // 퍼즐 완료 상태 업데이트
-
             Debug.Log("Puzzle Clear!");
         }
     }
