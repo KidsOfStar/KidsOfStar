@@ -3541,6 +3541,10 @@ PlayableDirector:
     value: {fileID: 5829916514717954591}
   - key: {fileID: -2926200330691680019, guid: f2210b61ef1d8194faea7656230ed56c, type: 2}
     value: {fileID: 9180189292435002880}
+  - key: {fileID: 5359353757107787013, guid: f2210b61ef1d8194faea7656230ed56c, type: 2}
+    value: {fileID: 5829916514717954591}
+  - key: {fileID: -8966959525708060894, guid: f2210b61ef1d8194faea7656230ed56c, type: 2}
+    value: {fileID: 9180189292435002880}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &4816529614256939335
@@ -4621,7 +4625,121 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 4114474075217680319}
+    m_ColliderPaths:
+    - - X: -140000000
+        Y: 100000000
+      - X: -180000000
+        Y: 100000000
+      - X: -180000000
+        Y: 90000000
+      - X: -140000000
+        Y: 90000000
+    - - X: -100000000
+        Y: 90000000
+      - X: -140000000
+        Y: 90000000
+      - X: -140000000
+        Y: 80000000
+      - X: -100000000
+        Y: 80000000
+    - - X: -50000000
+        Y: 80000000
+      - X: -90000000
+        Y: 80000000
+      - X: -90000000
+        Y: 70000000
+      - X: -50000000
+        Y: 70000000
+    - - X: -10000000
+        Y: 70000000
+      - X: -40000000
+        Y: 70000000
+      - X: -40000000
+        Y: 60000000
+      - X: -10000000
+        Y: 60000000
+    - - X: 40000000
+        Y: 60000000
+      - X: 0
+        Y: 60000000
+      - X: 0
+        Y: 50000000
+      - X: 40000000
+        Y: 50000000
+    - - X: 80000000
+        Y: 50000000
+      - X: 50000000
+        Y: 50000000
+      - X: 50000000
+        Y: 40000000
+      - X: 80000000
+        Y: 40000000
+    - - X: 50000000
+        Y: 30000000
+      - X: 20000000
+        Y: 30000000
+      - X: 20000000
+        Y: 20000000
+      - X: 50000000
+        Y: 20000000
+    - - X: 110000000
+        Y: 30000000
+      - X: 80000000
+        Y: 30000000
+      - X: 80000000
+        Y: 20000000
+      - X: 110000000
+        Y: 20000000
+    - - X: 70000000
+        Y: 20000000
+      - X: 60000000
+        Y: 20000000
+      - X: 60000000
+        Y: -10000000
+      - X: 70000000
+        Y: -10000000
+    - - X: 140000000
+        Y: 10000000
+      - X: 110000000
+        Y: 10000000
+      - X: 110000000
+        Y: 0
+      - X: 140000000
+        Y: 0
+    - - X: 180000000
+        Y: -10000000
+      - X: 140000000
+        Y: -10000000
+      - X: 140000000
+        Y: -20000000
+      - X: 180000000
+        Y: -20000000
+    - - X: 50000000
+        Y: -20000000
+      - X: 20000000
+        Y: -20000000
+      - X: 20000000
+        Y: -30000000
+      - X: 50000000
+        Y: -30000000
+    - - X: 420000000
+        Y: -30000000
+      - X: 180000000
+        Y: -30000000
+      - X: 180000000
+        Y: -40000000
+      - X: 420000000
+        Y: -40000000
+    - - X: 10000000
+        Y: -40000000
+      - X: -160000000
+        Y: -40000000
+      - X: -160000000
+        Y: -50000000
+      - X: 10000000
+        Y: -50000000
   m_CompositePaths:
     m_Paths:
     - - {x: -14.000029, y: 9}
@@ -6004,11 +6122,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2992472945023931535, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.52
+      value: 76.7
       objectReference: {fileID: 0}
     - target: {fileID: 2992472945023931535, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.2
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2992472945023931535, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6382,7 +6500,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3596318209446566221, guid: 155bdb503bb0ec44e9f875804020494a, type: 3}
       propertyPath: m_Name
-      value: Cat
+      value: CutScenePlayer
       objectReference: {fileID: 0}
     - target: {fileID: 4825113071885938362, guid: 155bdb503bb0ec44e9f875804020494a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6426,6 +6544,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5204544610941691148, guid: 155bdb503bb0ec44e9f875804020494a, type: 3}
       propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204544610941691148, guid: 155bdb503bb0ec44e9f875804020494a, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5204544610941691148, guid: 155bdb503bb0ec44e9f875804020494a, type: 3}
@@ -6481,7 +6603,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2992472945023931535, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.6100006
+      value: 80.100006
       objectReference: {fileID: 0}
     - target: {fileID: 2992472945023931535, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6533,7 +6655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8437937338503995706, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_Name
-      value: Hide
+      value: CutScenePlayer_Hide
       objectReference: {fileID: 0}
     - target: {fileID: 8437937338503995706, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_IsActive
@@ -6586,11 +6708,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2992472945023931535, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5200014
+      value: 76.7
       objectReference: {fileID: 0}
     - target: {fileID: 2992472945023931535, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.91
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 2992472945023931535, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6638,7 +6760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8437937338503995706, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_Name
-      value: Hide (1)
+      value: Ea_Hide
       objectReference: {fileID: 0}
     - target: {fileID: 8437937338503995706, guid: 6fe14a1fd08bd2d4580aaedccc967b61, type: 3}
       propertyPath: m_IsActive
