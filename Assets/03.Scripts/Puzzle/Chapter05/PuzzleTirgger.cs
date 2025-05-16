@@ -4,21 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
-public class PuzzleTirgger : TreePuzzleTrigger
+public class PuzzleTirgger : MonoBehaviour
 {
     [SerializeField] private GameObject bubbleTextPrefab;
     private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
     private SkillBTN skillBTN;
 
-    [SerializeField] private int sequenceIndex;
-    public int SequenceIndex => sequenceIndex;
 
     [Header("튜토리얼 문인지 체크")]
     [SerializeField] private bool isTutorial = false;
     private bool tutorialShown = false;
-    private bool triggered = false;
-    private bool hasPlayer = false;
+
 
     // 동물 폼
     [SerializeField] private PlayerFormType dangerFormMask;
@@ -76,12 +73,7 @@ public class PuzzleTirgger : TreePuzzleTrigger
         Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
     }
 
-    public override void ResetTrigger()
-    {
-        triggered = false;
 
-        HideInteraction();
-    }
 
     private void OntextBubbleText(Player player)
     {

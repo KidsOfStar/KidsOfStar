@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +6,12 @@ public class SafePuzzleSystem : TreePuzzleSystem
 {
     public SafePuzzle safePuzzle;
     public SafePopup safePopup;
-    public int index; // 퍼즐 고유 ID
+    public int index;
 
-    // 성공 시
     protected override void CompletePuzzle()
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-
-        // 금고 다이얼 해금
         SafeSetActive(index);
 
         EditorLog.Log("퍼즐 성공!");
@@ -24,28 +20,36 @@ public class SafePuzzleSystem : TreePuzzleSystem
             clearPuzzlenum.Add(puzzleIndex);
         }
 
-        // 클리어 시 다음 퍼즐로 이동
         safePopup.nextPuzzle();
     }
 
-    // 실패 시
     protected override void FailPuzzle()
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
-
         OnExit();
-
-        // GameOverPopup 보여주고 다시 시작할지 물어봄
         Managers.Instance.UIManager.Show<GameOverPopup>();
+        safePopup.FullReset();
 
-        // 트리거 리셋
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))
         {
             trig.ResetTrigger();
         }
     }
 
+    public void ResetPuzzle()
+    {
+        isRunning = false;
+        safePopup.FullReset();
+        Managers.Instance.UIManager.Hide<SafePopup>();
+
+        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
+        {
+            trig.ResetTrigger();
+        }
+
+        EditorLog.Log("퍼즐이 초기화되었습니다. 다시 시도할 수 있습니다.");
+    }
 
     public override void OnClearButtonClicked()
     {
@@ -54,7 +58,6 @@ public class SafePuzzleSystem : TreePuzzleSystem
             trig.DisableExclamation();
         }
 
-        // 팝업 닫고 플레이어 제어 복구
         OnExit();
     }
 
@@ -65,12 +68,26 @@ public class SafePuzzleSystem : TreePuzzleSystem
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
     }
 
-
     private void SafeSetActive(int indexs)
     {
-        safePuzzle.safeImage[indexs].raycastTarget = true; // 클릭 가능하게 설정
-        safePuzzle.safeImage[indexs].color = Color.white; // 색상 변경
+        safePuzzle.safeImage[indexs].raycastTarget = true;
+        safePuzzle.safeImage[indexs].color = Color.white;
         index++;
     }
 
+    // 시스템 초기화
+    public void ResetSystem()
+    {
+        index = 0;
+        clearPuzzlenum.Clear();
+        isRunning = false;
+
+        foreach (var img in safePuzzle.safeImage)
+        {
+            img.raycastTarget = false;
+            img.color = Color.gray;
+        }
+
+        safePuzzle.ResetPuzzleState(); // 퍼즐 상태 초기화
+    }
 }
