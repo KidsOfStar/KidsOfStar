@@ -10,7 +10,6 @@ public class PopupBase : UIBase
     public bool checkTimeStop = false;
     public bool isFirst = false;
 
-    private List<GameObject> uiHide;   // 숨길 UI
 
     public override void Opened(params object[] param)
     {
@@ -28,6 +27,7 @@ public class PopupBase : UIBase
             closeBtn.onClick.AddListener(() => 
             {
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
+                Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
                 HideDirect();
                 Debug.Log("PopupBase Close");
             });
