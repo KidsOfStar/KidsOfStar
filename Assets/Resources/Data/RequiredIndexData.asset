@@ -54,7 +54,7 @@ MonoBehaviour:
   chapter4List:
   - characterType: 8
     progress: 1
-    index: 40000
+    index: 40001
   - characterType: 10
     progress: 2
     index: 4002
