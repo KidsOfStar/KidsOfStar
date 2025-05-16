@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SafePopup : PopupBase
@@ -7,24 +8,17 @@ public class SafePopup : PopupBase
     public bool elevatorPuzzle = false;
     public bool safePuzzle = false;
 
-
-    private bool isPlayerLocked = false;
-
     public override void Opened(params object[] param)
     {
         base.Start();
-        // 퍼즐이 열리면 플레이어 잠금
-        if (!isPlayerLocked)
-        {
-            Managers.Instance.GameManager.Player.Controller.LockPlayer();
-            isPlayerLocked = true;
-        }
-        else
-        {
-            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
-            isPlayerLocked = false;
-        }
+        HideUI(false); // UI 비활성화
+        LockPlayer(true); // 플레이어 잠금
+        Debug.Log("SafePopup Opened");
+    }
 
+    protected override void LockPlayer(bool lockPlayer)
+    {
+        base.LockPlayer(lockPlayer);
     }
 
     // 모든 퍼즐이 완료되었는지 확인하는 메서드
@@ -32,6 +26,7 @@ public class SafePopup : PopupBase
     {
         return elevatorPuzzle && safePuzzle;
     }
+
 
     // 모든 퍼즐이 완료가 되면 챕터 진행도 올리기
     public void UpdateChapterProgress()
