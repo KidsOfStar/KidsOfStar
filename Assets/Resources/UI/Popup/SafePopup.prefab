@@ -624,7 +624,7 @@ MonoBehaviour:
   failPopup: {fileID: 0}
   ClearPopup: {fileID: 0}
   clearExitBtn: {fileID: 0}
-  totalPuzzleCount: 2
+  totalPuzzleCount: 3
 --- !u!1 &3150037054210543029
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,7 +842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &135410819644898881
 RectTransform:
   m_ObjectHideFlags: 0
