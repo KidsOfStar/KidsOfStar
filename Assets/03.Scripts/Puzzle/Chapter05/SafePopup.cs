@@ -17,7 +17,7 @@ public class SafePopup : PopupBase
 
     protected override void Start()
     {
-        door = GameObject.FindWithTag("Interacta").GetComponent<Door>();
+        door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
         currentPuzzle = puzzleSystems[0];
 
         nextPuzzle();
@@ -38,6 +38,7 @@ public class SafePopup : PopupBase
             // 모든 퍼즐이 완료되었으므로 팝업을 닫고 플레이어 제어를 복구합니다.
             door.isDoorLocked = true; // 문 잠금 해제
             Managers.Instance.UIManager.Hide<SafePopup>();
+            Managers.Instance.GameManager.Player.Controller.UnlockPlayer(); // 플레이어 제어 복구
             return;
         }
         currentPuzzle.SetupPuzzle(datas[countIndex], 2);

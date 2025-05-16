@@ -131,9 +131,6 @@ MonoBehaviour:
   piecePrefab: {fileID: 438276036279181801, guid: 455eb5035b83a4240a12a0a2ac60aa42, type: 3}
   puzzleParent: {fileID: 1615524650850619976}
   timerTxt: {fileID: 1581728804614112435}
-  failPopup: {fileID: 5281560845787335523}
-  ClearPopup: {fileID: 8088134487262609189}
-  clearExitBtn: {fileID: 3008075300718502582}
   totalPuzzleCount: 3
   safePuzzle: {fileID: 4325809574330469050}
   safePopup: {fileID: 2533478449912557472}
@@ -807,9 +804,6 @@ MonoBehaviour:
   piecePrefab: {fileID: 438276036279181801, guid: 455eb5035b83a4240a12a0a2ac60aa42, type: 3}
   puzzleParent: {fileID: 8751811173182245736}
   timerTxt: {fileID: 1581728804614112435}
-  failPopup: {fileID: 5281560845787335523}
-  ClearPopup: {fileID: 8088134487262609189}
-  clearExitBtn: {fileID: 3008075300718502582}
   totalPuzzleCount: 3
   safePuzzle: {fileID: 4325809574330469050}
   safePopup: {fileID: 2533478449912557472}
@@ -1089,9 +1083,6 @@ MonoBehaviour:
   piecePrefab: {fileID: 438276036279181801, guid: 455eb5035b83a4240a12a0a2ac60aa42, type: 3}
   puzzleParent: {fileID: 4476430299644357720}
   timerTxt: {fileID: 1581728804614112435}
-  failPopup: {fileID: 5281560845787335523}
-  ClearPopup: {fileID: 8088134487262609189}
-  clearExitBtn: {fileID: 3008075300718502582}
   totalPuzzleCount: 3
   safePuzzle: {fileID: 4325809574330469050}
   safePopup: {fileID: 2533478449912557472}
