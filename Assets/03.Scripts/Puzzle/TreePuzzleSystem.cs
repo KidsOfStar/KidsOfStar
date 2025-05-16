@@ -213,7 +213,6 @@ public class TreePuzzleSystem : MonoBehaviour
     public virtual void OnExit()
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
-        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
     }
 }

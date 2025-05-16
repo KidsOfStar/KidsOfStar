@@ -21,10 +21,13 @@ public class PopupBase : UIBase
             transform.SetAsLastSibling();
 
         //HideUI(false); // UI 비활성화
+        
     }
 
     protected virtual void Start()
     {
+        Managers.Instance.GameManager.Player.Controller.LockPlayer();// 플레이어 잠금
+
         if (closeBtn != null)
         {
             closeBtn.onClick.AddListener(() => 
@@ -32,7 +35,7 @@ public class PopupBase : UIBase
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
                 HideDirect();
                 //HideUI(true); // UI 활성화
-                LockPlayer(false); // 플레이어 잠금
+                Managers.Instance.GameManager.Player.Controller.UnlockPlayer(); 
                 Debug.Log("PopupBase Close");
             });
         }
@@ -69,15 +72,15 @@ public class PopupBase : UIBase
     //}
 
     // 퍼즐이 열리면 플레이어 잠금
-    protected virtual void LockPlayer(bool lockPlayer)
-    {
-        if (lockPlayer)
-        {
-            Managers.Instance.GameManager.Player.Controller.LockPlayer();
-        }
-        else
-        {
-            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
-        }
-    }
+    //protected virtual void LockPlayer(bool lockPlayer)
+    //{
+    //    if (lockPlayer)
+    //    {
+    //        Managers.Instance.GameManager.Player.Controller.LockPlayer();
+    //    }
+    //    else
+    //    {
+    //        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+    //    }
+    //}
 }
