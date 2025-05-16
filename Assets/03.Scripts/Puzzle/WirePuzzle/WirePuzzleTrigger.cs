@@ -19,7 +19,7 @@ public class WirePuzzleTrigger : MonoBehaviour
     // 상호 작용 버튼
     private SkillBTN skillBtn;
     // 시퀀스 번호
-    private int sequenceIndex;
+    [SerializeField] private int sequenceIndex;
     public int SequenceIndex => sequenceIndex;
     // 플레이어가 트리거 안에 있는지 여부
     private bool hasPlayer = false;

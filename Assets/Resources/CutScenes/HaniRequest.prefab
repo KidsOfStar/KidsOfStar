@@ -3436,6 +3436,7 @@ GameObject:
   - component: {fileID: 761100626179796656}
   - component: {fileID: 7932245619889029421}
   - component: {fileID: 4449978873296842431}
+  - component: {fileID: -7329885176042009842}
   m_Layer: 0
   m_Name: HaniRequest
   m_TagString: Untagged
@@ -3508,6 +3509,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644eb0ee14edd184da802766d88e6f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7329885176042009842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147154621691267508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899abdb48fadc434b8c449db47f08c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movePosition: {x: -61, y: -32, z: 0}
 --- !u!1 &3848988246786109008
 GameObject:
   m_ObjectHideFlags: 0
