@@ -260,8 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00992713f4d255341a0bdb95fe989bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 2
+  uiPosition: 3
   closeBtn: {fileID: 855378380792527638}
+  checkTimeStop: 0
+  isFirst: 0
   appltBtn: {fileID: 7889241460637208414}
 --- !u!1 &7040780038777033045
 GameObject:

@@ -7,9 +7,24 @@ public class SafePopup : PopupBase
     public bool elevatorPuzzle = false;
     public bool safePuzzle = false;
 
+
+    private bool isPlayerLocked = false;
+
     public override void Opened(params object[] param)
     {
         base.Start();
+        // 퍼즐이 열리면 플레이어 잠금
+        if (!isPlayerLocked)
+        {
+            Managers.Instance.GameManager.Player.Controller.LockPlayer();
+            isPlayerLocked = true;
+        }
+        else
+        {
+            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+            isPlayerLocked = false;
+        }
+
     }
 
     // 모든 퍼즐이 완료되었는지 확인하는 메서드

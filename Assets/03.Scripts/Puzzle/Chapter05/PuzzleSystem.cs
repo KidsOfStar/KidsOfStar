@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SafeSystem : MonoBehaviour
+public class PuzzleSystem : MonoBehaviour
 {
     [SerializeField] private GameObject bubbleTextPrefab;
     private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
-    private SkillBTN skillBTN;
+    public GameObject uiHide;   // 숨길 UI
 
+    private SkillBTN skillBTN;
     // 동물 폼
     [SerializeField] private PlayerFormType dangerFormMask;
 
@@ -31,8 +32,7 @@ public class SafeSystem : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            skillBTN.ShowInteractionButton(false); // 상호작용 버튼 비활성화
-            skillBTN.OnInteractBtnClick -= OnInteraction; // 상호작용 버튼 클릭 이벤트 해제
+            HideInteraction();
         }
     }
 
@@ -48,7 +48,16 @@ public class SafeSystem : MonoBehaviour
             OntextBubbleText(player);
         }
         else
-            Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
+            TryStartPuzzle();
+    }
+
+    private void TryStartPuzzle()
+    {
+        // 화면 UI 끄기
+        uiHide.SetActive(false); // UI 숨기기
+
+        // 튜토리얼 보여주고 시작
+        Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
     }
 
     private void OntextBubbleText(Player player)
@@ -71,4 +80,14 @@ public class SafeSystem : MonoBehaviour
             bubbleTextInstance = null;
         }
     }
+
+    private void HideInteraction()
+    {
+        skillBTN.ShowInteractionButton(false);
+        uiHide.SetActive(true); // UI 활성화
+
+        skillBTN.OnInteractBtnClick -= OnInteraction;
+    }
+
+
 }

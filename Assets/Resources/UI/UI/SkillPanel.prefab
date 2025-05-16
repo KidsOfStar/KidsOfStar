@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585c6b37de6b2434aaba627edfc13310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 0
+  uiPosition: 1
   jumpBtn: {fileID: 1286391226584112225}
   hideBtn: {fileID: 5924729629114838315}
   catBtn: {fileID: 7800499986508598219}
@@ -855,6 +855,7 @@ MonoBehaviour:
   dogSkill: {fileID: 6421704359486253562}
   squirrelSkill: {fileID: 4879830893964538454}
   skillUnlock: {fileID: 1997861961092552872}
+  isSkillAdd: 0
 --- !u!114 &1997861961092552872
 MonoBehaviour:
   m_ObjectHideFlags: 0

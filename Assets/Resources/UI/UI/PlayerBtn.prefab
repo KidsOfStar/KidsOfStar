@@ -1509,7 +1509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27847cf83fd244045aca99d06a976f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 0
+  uiPosition: 1
   stopBtn: {fileID: 6899352835546882842}
   skipBtn: {fileID: 5506947748116757338}
   skillPanel: {fileID: 5899448696036790164}

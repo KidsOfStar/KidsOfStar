@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347009d8edfd80d41942c4694008f771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 1
+  uiPosition: 2
   closeBtn: {fileID: 0}
   checkTimeStop: 0
   isFirst: 1

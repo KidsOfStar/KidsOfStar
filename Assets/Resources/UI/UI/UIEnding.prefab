@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f82b07dd74c14a4bb2e5a84e9379b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 0
+  uiPosition: 1
   endingImage: {fileID: 5947137477687632638}
   clickToContinueText: {fileID: 8965059999061753853}
   continueButton: {fileID: 5101906830692112968}
