@@ -48,7 +48,7 @@ public class Elevator : MonoBehaviour
             StartCoroutine(Move());
     }
 
-    private void UnlockElevator()
+    public void UnlockElevator()
     {
         isLocked = false;
         StartCoroutine(Move());

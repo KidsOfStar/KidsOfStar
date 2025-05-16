@@ -1,66 +1,115 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WirePuzzleSystem : MonoBehaviour
 {
+    [Header("외부 참조")]
     [SerializeField, Tooltip("퍼즐 조각 프리팹")] private GameObject piecePrefab;
     [SerializeField, Tooltip("볼트 프리팹")] private GameObject boltPrefab;
     [SerializeField, Tooltip("퍼즐 조각이 배치될 패널")] private Transform puzzlePanel;
     [SerializeField, Tooltip("선택 영역의 RectTransform")] private RectTransform selectionBox;
+    [SerializeField, Tooltip("배경 이미지")] private Image backgroundImage;
 
-    [SerializeField, Tooltip("퍼즐 가로 칸 수")] private int gridWidth = 4;
-    [SerializeField, Tooltip("퍼즐 세로 칸 수")] private int gridHeight = 4;
+    //[SerializeField, Tooltip("퍼즐 세로 칸 수")] private int gridWidth = 4;
     [SerializeField, Tooltip("조각의 크기")] private float cellSize = 75f;
     [SerializeField, Tooltip("padding 보정용")] private Vector2 offset = new Vector2(15f, 15f);
 
+    [Header("UI")]
+    [SerializeField, Tooltip("타이머 텍스트")] private TextMeshProUGUI timerTxt;
+    [SerializeField, Tooltip("실패 팝업")] private GameObject failPopup;
+    [SerializeField, Tooltip("클리어 팝업")] private GameObject clearPopup;
+    [SerializeField, Tooltip("클리어 버튼")] private Button clearExitBtn;
+
     #region 테스트용 임시 변수
     [Space, Header("테스트용 임시 변수들")]
-    [SerializeField, Tooltip("테스트 퍼즐 조각용 스프라이트 배열")]
     private Sprite[] testSprites;
     [SerializeField, Tooltip("테스트용 퍼즐 데이터")] private WirePuzzleData puzzleData;
     #endregion
 
+    // 퍼즐 트리거 딕셔너리
+    Dictionary<int, WirePuzzleTrigger> triggerMap;
+    // 정답 조각들
+    private List<Sprite> correctSprites;
     // 퍼즐 조각 배열
     private WirePuzzlePiece[,] puzzleGrid;
     // 선택 영역의 좌표
     private int selectX = 0;
     private int selectY = 0;
+    // 퍼즐 한 줄의 조각 수
+    private int gridWidth = 4;
+    // 현재 퍼즐 ID
+    private int puzzleIndex;
+    // 제한 시간
+    private float timeLimit;
+    // 남은 시간
+    private float currentTime;
+    // 퍼즐 진행 여부
+    private bool isRunning;
+    public bool IsRunning => isRunning;
 
-    public void Init()
+    private void Awake()
     {
-        // 퍼즐 조각 배열 초기화
-        puzzleGrid = new WirePuzzlePiece[gridWidth, gridHeight];
-        GeneratePuzzle();
-        SpawnBolt();
-        UpdateSelectionBoxPosition();
-        selectionBox.SetAsLastSibling();
-        ShufflePuzzle();
-        selectX = 0;
-        selectY = 0;
-    }
+        // 씬 내 모든 트리거 탐색 및 연결
+        triggerMap = new Dictionary<int, WirePuzzleTrigger>();
 
-    private void Start()
-    {
-        Init();
+        foreach(var trigger in FindObjectsOfType<WirePuzzleTrigger>())
+        {
+            triggerMap[trigger.SequenceIndex] = trigger;
+        }
     }
 
     void Update()
     {
-        
+        if (!isRunning) return;
+
+        currentTime -= Time.deltaTime;
+        timerTxt.text = Mathf.CeilToInt(currentTime).ToString();
+
+        if(currentTime <= 0f)
+        {
+            FailPuzzle();
+        }
     }
 
-    public void SetupPuzzle()
+    // 퍼즐 데이터 초기화
+    public void SetupPuzzle(WirePuzzleData data, int idx)
     {
+        // 클리어 & 실패 팝업 숨김
+        if(clearPopup != null)
+            clearPopup.SetActive(false);
+        if(failPopup != null)
+            failPopup.SetActive(false);
 
+        puzzleData = data;
+        puzzleIndex = idx;
+
+        correctSprites = new List<Sprite>(data.pieceSprites);
+        gridWidth = data.gridWidth;
+
+        bool isEasy = Managers.Instance.GameManager.Difficulty == Difficulty.Easy;
+        timeLimit = isEasy ? data.easyTimeLimit : data.hardTimeLimit;
+
+        if (backgroundImage != null)
+            backgroundImage.sprite = data.backgroundSprite;
     }
 
     public void GeneratePuzzle()
     {
+        foreach(Transform child in puzzlePanel)
+        {
+            if(child.TryGetComponent<WirePuzzlePiece>(out _)
+                || child.TryGetComponent<BoltButtonHandler>(out _))
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        puzzleGrid = new WirePuzzlePiece[gridWidth, gridWidth];
+
         // 퍼즐 조각 생성&배열에 배치
-        for(int i = 0; i < gridHeight; i++)
+        for(int i = 0; i < gridWidth; i++)
         {
             for(int j = 0; j < gridWidth; j++)
             {
@@ -69,12 +118,13 @@ public class WirePuzzleSystem : MonoBehaviour
                 WirePuzzlePiece piece = go.GetComponent<WirePuzzlePiece>();
 
                 // 테스트용 스프라이트 적용
-                Sprite spriet = testSprites[i * gridWidth + j];
+                Sprite spriet = correctSprites[i * gridWidth + j];
                 piece.InitPiece(j, i, spriet);
                 piece.WireColor = GetColorType(j);
                 puzzleGrid[j, i] = piece;
             }
         }
+        SpawnBolt();
     }
 
     private WireColorType GetColorType(int x)
@@ -89,21 +139,96 @@ public class WirePuzzleSystem : MonoBehaviour
         };
     }
 
+    // 퍼즐 시작
     public void StartPuzzle()
     {
+        currentTime = timeLimit;
+        isRunning = true;
 
+        // 무슨 bgm을 넣어야 하는지 몰라서 잠깐 보류
+        //Managers.Instance.SoundManager.PlayBgm(BgmSoundType.)
     }
 
+    // 퍼즐 중단
+    public void StopPuzzle()
+    {
+        isRunning = false;
+
+        if (failPopup != null)
+            failPopup.SetActive(false);
+        if (clearPopup != null)
+            clearPopup.SetActive(false);
+
+        if (triggerMap.TryGetValue(puzzleIndex, out var trigger))
+        {
+            trigger.ResetTrigger();
+        }
+    }
+
+    // 퍼즐 실패
+    private void FailPuzzle()
+    {
+        isRunning = false;
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
+        failPopup.SetActive(false);
+
+        if(triggerMap.TryGetValue(puzzleIndex, out var trigger))
+        {
+            trigger.ResetTrigger();
+        }
+    }
+
+    // 퍼즐 클리어
+    private void CompletePuzzle()
+    {
+        isRunning = failPopup;
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
+        clearPopup.SetActive(true);
+
+        if (triggerMap.TryGetValue(puzzleIndex, out var trigger))
+        {
+            trigger.LockedElevator.UnlockElevator();
+        }
+
+        // 나가기 버튼 클릭 이벤트 연결
+        clearExitBtn.onClick.RemoveAllListeners();
+        clearExitBtn.onClick.AddListener(OnClearButtonClicked);
+    }
+
+    // 클리어 팝업 내 버튼 클릭 시 처리
+    public void OnClearButtonClicked()
+    {
+        if(triggerMap.TryGetValue(puzzleIndex, out var trigger))
+        {
+            trigger.DisableExclamation();
+        }
+
+        OnExit();
+        
+        // 나무껍질 퍼즐의 경우 컷씬 재생과 진행도 관련 설정이 있었음
+        // 배선 퍼즐은 엘리베이터 작동과 연결할 지점으로 보임
+    }
+
+    // 팝업 닫고 제어 복구
+    public void OnExit()
+    {
+        // 잠시 보류. 재생할 bgm 알아내고 적용
+        //Managers.Instance.SoundManager.PlayBgm(BgmSoundType.In)
+        Managers.Instance.UIManager.Hide<WirePuzzlePopup>();
+        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+    }
+
+    // 나사 생성
     public void SpawnBolt()
     {
         // 퍼즐 전체 너비
         float totalWidth = gridWidth * cellSize;
         // 퍼즐 전체 높이
-        float totalHeight = gridHeight * cellSize;
+        float totalHeight = gridWidth * cellSize;
         // 퍼즐 중심이 (0,0)이 되도록 하기 위한 오프셋
         Vector2 centerOffset = new Vector2(totalWidth / 2f, totalHeight / 2f);
 
-        for (int i = 0; i < gridHeight - 1; i++)
+        for (int i = 0; i < gridWidth - 1; i++)
         {
             for (int j = 0; j < gridWidth - 1; j++)
             {
@@ -130,16 +255,22 @@ public class WirePuzzleSystem : MonoBehaviour
                 });
             }
         }
+        
+        ShufflePuzzle();
+        selectX = 0;
+        selectY = 0;
+        UpdateSelectionBoxPosition();
+        selectionBox.SetAsLastSibling();
     }
 
-    #region 작동을 위한 임시 코드
+    #region 나무껍질 퍼즐에는 없는 함수들
     // 생성된 퍼즐 조각 섞기
     private void ShufflePuzzle()
     {
         for(int i = 0; i < puzzleData.ShuffleCount; i++)
         {
             selectX = UnityEngine.Random.Range(0, gridWidth - 1);
-            selectY = UnityEngine.Random.Range(0,gridHeight - 1);
+            selectY = UnityEngine.Random.Range(0,gridWidth - 1);
             int rotateCount = UnityEngine.Random.Range(1, 3);
 
             for(int j = 0; j < rotateCount; j++)
@@ -162,7 +293,7 @@ public class WirePuzzleSystem : MonoBehaviour
         {
             // 선택 영역 위치 갱신
             selectX = Mathf.Clamp(dx, 0, gridWidth - 2);
-            selectY =Mathf.Clamp(dy, 0, gridHeight - 2);
+            selectY =Mathf.Clamp(dy, 0, gridWidth - 2);
             UpdateSelectionBoxPosition();
             return false;
         }
@@ -173,7 +304,7 @@ public class WirePuzzleSystem : MonoBehaviour
     {
         // 퍼즐의 전체 크기
         float totalWidth = gridWidth * cellSize;
-        float totalHeight = gridHeight * cellSize;
+        float totalHeight = gridWidth * cellSize;
         Vector2 centerOffset = new Vector2(totalWidth / 2f, totalHeight / 2f);
 
         // 선택된 나사 기준으로 선택영역 위치 설정
@@ -182,12 +313,6 @@ public class WirePuzzleSystem : MonoBehaviour
 
         selectionBox.anchoredPosition = new Vector2(x, y);
     }
-
-    // 선택 영역 이동 버튼 연결 함수들
-    public void OnMoveLeft() { MoveSelection(-1, 0); }
-    public void OnMoveRight() { MoveSelection(1, 0); }
-    public void OnMoveUp() { MoveSelection(0, -1); }
-    public void OnMoveDown() { MoveSelection(0, 1); }
 
     // 선택 영역 내의 조각 스프라이트 시계방향으로 교체
     public void RotateSelection()
@@ -226,7 +351,8 @@ public class WirePuzzleSystem : MonoBehaviour
 
         if(CheckPuzzleClear())
         {
-            EditorLog.Log("Clear");
+            //EditorLog.Log("Clear");
+            CompletePuzzle();
         }
     }
 
@@ -236,7 +362,7 @@ public class WirePuzzleSystem : MonoBehaviour
         for(int x = 0; x < gridWidth; x++)
         {
             WireColorType wColor = GetColorType(x);
-            for(int y = 0; y < gridHeight; y++)
+            for(int y = 0; y < gridWidth; y++)
             {
                 if (puzzleGrid[x, y].WireColor != wColor)
                     return false;
