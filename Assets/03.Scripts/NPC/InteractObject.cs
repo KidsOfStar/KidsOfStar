@@ -10,6 +10,8 @@ public class InteractObject : MonoBehaviour
 
     public void Init()
     {
+        if (objectName == string.Empty) return;
+        
         var dialogTable = Managers.Instance.DataManager.GetInteractionDataDict();
 
         foreach (var interactionData in dialogTable.Values)
@@ -29,6 +31,8 @@ public class InteractObject : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (objectName == string.Empty) return;
+        
         // 상호작용 버튼 이벤트에 등록
         if (!other.CompareTag("Player")) return;
         if (!skillPanel) SetSkillBtn();
@@ -67,6 +71,8 @@ public class InteractObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (objectName == string.Empty) return;
+        
         // 상호작용 버튼 이벤트에 해제
         if (!other.CompareTag("Player")) return;
         if (!skillPanel) return;

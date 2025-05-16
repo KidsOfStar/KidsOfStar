@@ -12,7 +12,7 @@ public class UILoading : MonoBehaviour
     private LoadingData currentLoadingData;
 
     [Header("Loading UI")]
-    [SerializeField] private Image backgroundImage;
+    [SerializeField] private SpriteRenderer backgroundImage;
 
     [SerializeField] private TextMeshProUGUI tooltipText;
     [SerializeField] private string[] tooltips;

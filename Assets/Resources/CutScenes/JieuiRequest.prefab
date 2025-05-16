@@ -764,7 +764,6 @@ GameObject:
   - component: {fileID: 2732359021219723106}
   - component: {fileID: 501425613699778080}
   - component: {fileID: 3099304217941999709}
-  - component: {fileID: 2516189425065765971}
   m_Layer: 0
   m_Name: JieuiRequest
   m_TagString: Untagged
@@ -837,19 +836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644eb0ee14edd184da802766d88e6f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2516189425065765971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4054273372946229213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899abdb48fadc434b8c449db47f08c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movePosition: {x: -60.2, y: -31.9, z: 0}
 --- !u!1 &4130130263435109464
 GameObject:
   m_ObjectHideFlags: 0
