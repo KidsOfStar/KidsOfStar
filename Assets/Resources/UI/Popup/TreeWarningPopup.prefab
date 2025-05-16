@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21443ee4a91a72943974bbbedcb1fbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPosition: 1
+  uiPosition: 2
   closeBtn: {fileID: 6945467555830300086}
   checkTimeStop: 0
   isFirst: 1

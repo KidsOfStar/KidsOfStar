@@ -1,14 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject safeS;
-    public GameObject safeM;
-    public GameObject safeL;
+    public Image []safeImage;
 
     public float rotationDuration = 0.5f; // 회전하는 데 걸리는 시간
 
@@ -17,15 +15,15 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public Dictionary<GameObject, float> rotationAmount;                        // 퍼즐 조각과 회전량을 매핑하는 딕셔너리
     private HashSet<GameObject> completedPieces = new HashSet<GameObject>();    // 완료된 퍼즐 조각들
     private Dictionary<GameObject, Coroutine> rotationCorotines = new Dictionary<GameObject, Coroutine>(); // 천천히 회전하는 코루틴을 저장하는 딕셔너리
-
+    
     void Start()
     {
         // 시작 시 랜덤으로 회전하기
         rotationAmount = new Dictionary<GameObject, float>
         {
-            { safeS, 45f },
-            { safeM, 60f },
-            { safeL, 135f }
+            { safeImage[0].gameObject, 45f },
+            { safeImage[1].gameObject, 60f },
+            { safeImage[2].gameObject, 135f }
         };
 
          RandomizeRotation();
@@ -108,8 +106,6 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         // 모든 퍼즐 완료됐는지 확인
         if (completedPieces.Count == rotationAmount.Count)
         {
-            safePopup.safePuzzle = true; // 퍼즐 완료 상태 업데이트
-
             Debug.Log("Puzzle Clear!");
         }
     }
