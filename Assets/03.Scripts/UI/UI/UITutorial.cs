@@ -23,7 +23,7 @@ public class UITutorial : UIBase
 
         var maskLocal = holeMask.localPosition;
         arrow.localPosition = maskLocal + new Vector3(0, holeMask.sizeDelta.y * 0.5f, 0);
-        arrow.localScale = IsOnLeftTargetUI(targetUI) ? new Vector3(-1f, 1f, 1f) : Vector3.one;
+        arrow.localScale = IsOnLeftTargetUI(targetUI) ? Vector3.zero : new Vector3(-1f, 1f, 1f);
         
         StartCoroutine(AnimCoroutine());
     }
