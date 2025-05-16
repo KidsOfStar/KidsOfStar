@@ -526,8 +526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -872,8 +872,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1477,6 +1477,7 @@ MonoBehaviour:
   checkTimeStop: 0
   isFirst: 0
   currentPuzzle: {fileID: 0}
+  door: {fileID: 0}
   datas:
   - {fileID: 11400000, guid: dd12ade5b22b33b4abb2e99ccc29be2c, type: 2}
   - {fileID: 11400000, guid: eee4feb56838c334590d89fb98df656f, type: 2}
@@ -1486,8 +1487,6 @@ MonoBehaviour:
   - {fileID: 4669319487755286331}
   - {fileID: 5261036144616428656}
   countIndex: 0
-  elevatorPuzzle: 0
-  safePuzzle: 0
 --- !u!1 &4162094645368473258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,8 +1980,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

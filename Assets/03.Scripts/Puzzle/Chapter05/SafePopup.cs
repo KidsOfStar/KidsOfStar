@@ -13,13 +13,11 @@ public class SafePopup : PopupBase
     public TreePuzzleData[] datas;
     public SafePuzzleSystem[] puzzleSystems;
 
-
     public int countIndex = 0; // 퍼즐 조각의 인덱스
-
-
 
     protected override void Start()
     {
+        door = GameObject.FindWithTag("Interacta").GetComponent<Door>();
         currentPuzzle = puzzleSystems[0];
 
         nextPuzzle();
@@ -38,6 +36,7 @@ public class SafePopup : PopupBase
             Debug.Log("모든 퍼즐이 완료되었습니다.");
             UpdateChapterProgress();
             // 모든 퍼즐이 완료되었으므로 팝업을 닫고 플레이어 제어를 복구합니다.
+            door.isDoorLocked = true; // 문 잠금 해제
             Managers.Instance.UIManager.Hide<SafePopup>();
             return;
         }
