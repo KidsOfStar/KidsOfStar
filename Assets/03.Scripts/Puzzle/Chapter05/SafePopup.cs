@@ -52,19 +52,6 @@ public class SafePopup : PopupBase
         }
     }
 
-    public void ResetAllPuzzles()
-    {
-        countIndex = 0;
-
-        foreach (var puzzleSystem in puzzleSystems)
-        {
-            puzzleSystem.ResetSystem();
-        }
-
-        currentPuzzle = puzzleSystems[0];
-        Debug.Log("모든 퍼즐이 초기화되었습니다.");
-    }
-
     public void UpdateChapterProgress()
     {
         Managers.Instance.GameManager.UpdateProgress();
@@ -82,5 +69,6 @@ public class SafePopup : PopupBase
         }
 
         Debug.Log("SafePopup과 모든 퍼즐이 완전히 초기화되었습니다.");
+        nextPuzzle();
     }
 }

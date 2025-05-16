@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SafePuzzleSystem : TreePuzzleSystem
@@ -90,4 +91,10 @@ public class SafePuzzleSystem : TreePuzzleSystem
 
         safePuzzle.ResetPuzzleState(); // 퍼즐 상태 초기화
     }
+
+    public override void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
+    {
+        base.SetupPuzzle(data, puzzleClearIndex);
+    }
+
 }

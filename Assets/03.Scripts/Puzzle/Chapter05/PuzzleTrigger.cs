@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
-public class PuzzleTirgger : MonoBehaviour
+public class PuzzleTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject bubbleTextPrefab;
     private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
@@ -72,8 +71,6 @@ public class PuzzleTirgger : MonoBehaviour
         // 튜토리얼 보여주고 시작
         Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
     }
-
-
 
     private void OntextBubbleText(Player player)
     {
