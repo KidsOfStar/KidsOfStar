@@ -3,31 +3,17 @@ using UnityEngine.UI;
 
 public class WirePuzzlePopup : PopupBase
 {
-    // 팝업을 닫는 버튼들
-    [SerializeField, Tooltip("팝업을 닫는 버튼들")] private Button[] exitButtons;
-    [SerializeField] private Button cancelButton;
     [SerializeField, Tooltip("퍼즐 시스템 스크립트")] private WirePuzzleSystem currentPuzzle;
     [SerializeField, Tooltip("퍼즐 힌트 이미지")] private Image hintImage;
 
     private void Awake()
     {
         // 취소 버튼 클릭 시 퍼즐 종료
-        cancelButton.onClick.AddListener(() =>
+        closeBtn.onClick.AddListener(() =>
         {
             Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
             OnCancelButtonClicked();
         });
-
-        // 모든 exit 버튼에 동작 연결
-        foreach(var btn in exitButtons)
-        {
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(() =>
-            {
-                Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
-                OnCancelButtonClicked();
-            });
-        }
     }
 
     // 팝업이 열릴 때 호출
@@ -63,7 +49,6 @@ public class WirePuzzlePopup : PopupBase
     {
         // 퍼즐 정지
         currentPuzzle.StopPuzzle();
-        // 퍼즐 종료 처리
         currentPuzzle.OnExit();
     }
 }

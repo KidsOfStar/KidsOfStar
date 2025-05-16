@@ -12,21 +12,11 @@ public class WirePuzzleSystem : MonoBehaviour
     [SerializeField, Tooltip("선택 영역의 RectTransform")] private RectTransform selectionBox;
     [SerializeField, Tooltip("배경 이미지")] private Image backgroundImage;
 
-    //[SerializeField, Tooltip("퍼즐 세로 칸 수")] private int gridWidth = 4;
     [SerializeField, Tooltip("조각의 크기")] private float cellSize = 75f;
     [SerializeField, Tooltip("padding 보정용")] private Vector2 offset = new Vector2(15f, 15f);
 
     [Header("UI")]
     [SerializeField, Tooltip("타이머 텍스트")] private TextMeshProUGUI timerTxt;
-    [SerializeField, Tooltip("실패 팝업")] private GameObject failPopup;
-    [SerializeField, Tooltip("클리어 팝업")] private GameObject clearPopup;
-    [SerializeField, Tooltip("클리어 버튼")] private Button clearExitBtn;
-
-    #region 테스트용 임시 변수
-    [Space, Header("테스트용 임시 변수들")]
-    private Sprite[] testSprites;
-    [SerializeField, Tooltip("테스트용 퍼즐 데이터")] private WirePuzzleData puzzleData;
-    #endregion
 
     // 퍼즐 트리거 딕셔너리
     Dictionary<int, WirePuzzleTrigger> triggerMap;
@@ -34,6 +24,8 @@ public class WirePuzzleSystem : MonoBehaviour
     private List<Sprite> correctSprites;
     // 퍼즐 조각 배열
     private WirePuzzlePiece[,] puzzleGrid;
+    // 퍼즐 데이터
+    private WirePuzzleData puzzleData;
     // 선택 영역의 좌표
     private int selectX = 0;
     private int selectY = 0;
@@ -44,7 +36,7 @@ public class WirePuzzleSystem : MonoBehaviour
     // 제한 시간
     private float timeLimit;
     // 남은 시간
-    private float currentTime;
+    [SerializeField, Tooltip("타임 오버 테스트를 위함")]private float currentTime;
     // 퍼즐 진행 여부
     private bool isRunning;
     public bool IsRunning => isRunning;
@@ -76,12 +68,6 @@ public class WirePuzzleSystem : MonoBehaviour
     // 퍼즐 데이터 초기화
     public void SetupPuzzle(WirePuzzleData data, int idx)
     {
-        // 클리어 & 실패 팝업 숨김
-        if(clearPopup != null)
-            clearPopup.SetActive(false);
-        if(failPopup != null)
-            failPopup.SetActive(false);
-
         puzzleData = data;
         puzzleIndex = idx;
 
@@ -145,19 +131,13 @@ public class WirePuzzleSystem : MonoBehaviour
         currentTime = timeLimit;
         isRunning = true;
 
-        // 무슨 bgm을 넣어야 하는지 몰라서 잠깐 보류
-        //Managers.Instance.SoundManager.PlayBgm(BgmSoundType.)
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.CityPuzzle);
     }
 
     // 퍼즐 중단
     public void StopPuzzle()
     {
         isRunning = false;
-
-        if (failPopup != null)
-            failPopup.SetActive(false);
-        if (clearPopup != null)
-            clearPopup.SetActive(false);
 
         if (triggerMap.TryGetValue(puzzleIndex, out var trigger))
         {
@@ -170,7 +150,8 @@ public class WirePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
-        failPopup.SetActive(false);
+        OnExit();
+        Managers.Instance.UIManager.Show<GameOverPopup>();
 
         if(triggerMap.TryGetValue(puzzleIndex, out var trigger))
         {
@@ -181,18 +162,14 @@ public class WirePuzzleSystem : MonoBehaviour
     // 퍼즐 클리어
     private void CompletePuzzle()
     {
-        isRunning = failPopup;
+        isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-        clearPopup.SetActive(true);
-
-        if (triggerMap.TryGetValue(puzzleIndex, out var trigger))
-        {
-            trigger.LockedElevator.UnlockElevator();
-        }
+        OnExit();
+        Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
 
         // 나가기 버튼 클릭 이벤트 연결
-        clearExitBtn.onClick.RemoveAllListeners();
-        clearExitBtn.onClick.AddListener(OnClearButtonClicked);
+        //clearExitBtn.onClick.RemoveAllListeners();
+        //clearExitBtn.onClick.AddListener(OnClearButtonClicked);
     }
 
     // 클리어 팝업 내 버튼 클릭 시 처리
@@ -201,19 +178,14 @@ public class WirePuzzleSystem : MonoBehaviour
         if(triggerMap.TryGetValue(puzzleIndex, out var trigger))
         {
             trigger.DisableExclamation();
+            // 엘리베이터 잠금 해제
+            trigger.LockedElevator.UnlockElevator();
         }
-
-        OnExit();
-        
-        // 나무껍질 퍼즐의 경우 컷씬 재생과 진행도 관련 설정이 있었음
-        // 배선 퍼즐은 엘리베이터 작동과 연결할 지점으로 보임
     }
 
     // 팝업 닫고 제어 복구
     public void OnExit()
     {
-        // 잠시 보류. 재생할 bgm 알아내고 적용
-        //Managers.Instance.SoundManager.PlayBgm(BgmSoundType.In)
         Managers.Instance.UIManager.Hide<WirePuzzlePopup>();
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
     }
@@ -351,7 +323,6 @@ public class WirePuzzleSystem : MonoBehaviour
 
         if(CheckPuzzleClear())
         {
-            //EditorLog.Log("Clear");
             CompletePuzzle();
         }
     }
