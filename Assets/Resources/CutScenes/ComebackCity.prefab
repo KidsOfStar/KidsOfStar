@@ -3540,7 +3540,7 @@ GameObject:
   - component: {fileID: 8990825886808542715}
   - component: {fileID: 7130999964154889134}
   m_Layer: 0
-  m_Name: human_0
+  m_Name: CutScenePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

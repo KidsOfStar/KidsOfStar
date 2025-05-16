@@ -3452,7 +3452,7 @@ Transform:
   m_GameObject: {fileID: 3147154621691267508}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2, y: 0, z: 0}
+  m_LocalPosition: {x: -2.2, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3666,7 +3666,7 @@ GameObject:
   - component: {fileID: 1309020252024073997}
   - component: {fileID: 5992784938612291637}
   m_Layer: 0
-  m_Name: Fade (1)
+  m_Name: FadeL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4018,7 +4018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetWorldWidth: 18
+  targetWorldWidth: 24
 --- !u!1 &6146560549648185558
 GameObject:
   m_ObjectHideFlags: 0
@@ -4046,7 +4046,7 @@ Transform:
   m_GameObject: {fileID: 6146560549648185558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.42, y: 1.12, z: 0}
+  m_LocalPosition: {x: 11.42, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4105,7 +4105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4748e4077f2dc5f408718424ae8cb614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetWorldWidth: 18
+  targetWorldWidth: 22
 --- !u!1 &6322701133199594667
 GameObject:
   m_ObjectHideFlags: 0
@@ -4118,7 +4118,7 @@ GameObject:
   - component: {fileID: 7722101033546452792}
   - component: {fileID: 1644400608614736164}
   m_Layer: 0
-  m_Name: Cat
+  m_Name: CutScenePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4225,12 +4225,12 @@ GameObject:
   - component: {fileID: 1801401118846465884}
   - component: {fileID: 1954758772298450155}
   m_Layer: 0
-  m_Name: Fade
+  m_Name: FadeR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7827738526329995127
 Transform:
   m_ObjectHideFlags: 0

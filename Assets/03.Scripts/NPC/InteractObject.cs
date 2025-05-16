@@ -35,6 +35,7 @@ public class InteractObject : MonoBehaviour
         
         // 상호작용 버튼 이벤트에 등록
         if (!other.CompareTag("Player")) return;
+
         if (!skillPanel) SetSkillBtn();
 
         skillPanel.OnInteractBtnClick -= OnInteract;

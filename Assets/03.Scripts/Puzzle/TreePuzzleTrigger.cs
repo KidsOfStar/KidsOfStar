@@ -57,13 +57,20 @@ public class TreePuzzleTrigger : MonoBehaviour
 
     private void UpdateExclamation()
     {
-        bool show = Managers.Instance.GameManager.ChapterProgress == requiredProgress;
-        exclamationRenderer.enabled = show;
+        int progress = Managers.Instance.GameManager.ChapterProgress;
+        exclamationRenderer.enabled = (progress == requiredProgress);
+
+        if (progress > requiredProgress)
+        {
+            HideInteraction();          
+            Managers.Instance.GameManager.OnProgressUpdated -= UpdateExclamation;
+            this.enabled = false;
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        
         if (gameObject.layer != LayerMask.NameToLayer("PuzzleDoor"))
             return;
 
@@ -121,21 +128,17 @@ public class TreePuzzleTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        EditorLog.Log("구독해제");
-        if (triggered) return;
+        if (Managers.Instance.GameManager.ChapterProgress != requiredProgress || triggered)
+            return;
 
         if (collision.CompareTag("Player"))
-        {
             hasPlayer = false;
-        }
+
         else if (collision.CompareTag("Box"))
-        {
             hasBox = false;
-        }
+
         else
-        {
             return;
-        }
 
         HideInteraction();
     }
