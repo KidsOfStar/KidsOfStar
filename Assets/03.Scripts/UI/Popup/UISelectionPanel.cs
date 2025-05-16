@@ -2,7 +2,7 @@ using MainTable;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UISelectionPanel : PopupBase
+public class UISelectionPanel : UIBase
 {
     [SerializeField] private UISelectButton[] selectButtons;
     private DialogData dialogData;

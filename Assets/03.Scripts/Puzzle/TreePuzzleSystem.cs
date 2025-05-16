@@ -15,9 +15,6 @@ public class TreePuzzleSystem : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerTxt;
-    [SerializeField] private GameObject failPopup;
-    [SerializeField] protected GameObject ClearPopup;
-    [SerializeField] protected Button clearExitBtn;
 
     // 정답 Sprite 목록
     private List<Sprite> correctSprites;
@@ -56,15 +53,6 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 준비
     public void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
     {
-        if (ClearPopup != null)
-        {
-            ClearPopup.SetActive(false);
-        }
-        if (failPopup != null)
-        {
-            failPopup.SetActive(false);
-        }
-
         puzzleIndex = puzzleClearIndex;
         correctSprites = new List<Sprite>(data.pieceSprites);
         gridWidth = data.gridWidth;
@@ -159,15 +147,16 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-        ClearPopup.SetActive(true);
+
+        Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
+
+        OnExit();
 
         EditorLog.Log("퍼즐 성공!");
         if (!clearPuzzlenum.Contains(puzzleIndex))
         {
             clearPuzzlenum.Add(puzzleIndex);
         }
-        clearExitBtn.onClick.RemoveAllListeners();
-        clearExitBtn.onClick.AddListener(OnClearButtonClicked);
     }
 
     // 퍼즐 실패시
@@ -175,7 +164,10 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
-        failPopup.SetActive(true);
+
+        OnExit();
+
+        Managers.Instance.UIManager.Show<GameOverPopup>();
 
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))
         {
@@ -188,10 +180,7 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
 
-        if (failPopup != null)
-            failPopup.SetActive(false);
-        if (ClearPopup != null)
-            ClearPopup.SetActive(false);
+        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
 
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))
             trig.ResetTrigger();
@@ -225,6 +214,6 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
-        Managers.Instance.GameManager.Player.Controller.IsControllable = true;
+        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
     }
 }
