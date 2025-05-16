@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc32cb27c9b5bc5478c8839caacb675f, type: 3}
-  m_Name: Wire1
+  m_Name: Wire2
   m_EditorClassIdentifier: 
-  puzzleId: Wire1
+  puzzleId: Wire2
   backgroundSprite: {fileID: 2102837217, guid: dc20ec269f2867a458a256d54ecaa95a, type: 3}
   pieceSprites:
   - {fileID: -1428345701, guid: dc20ec269f2867a458a256d54ecaa95a, type: 3}
@@ -34,4 +34,4 @@ MonoBehaviour:
   gridWidth: 4
   easyTimeLimit: 90
   hardTimeLimit: 90
-  shuffleCount: 1
+  shuffleCount: 2
