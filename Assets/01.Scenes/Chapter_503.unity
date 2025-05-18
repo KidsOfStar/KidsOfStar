@@ -513,6 +513,7 @@ MonoBehaviour:
   mainCamera: {fileID: 2047708880}
   spawnPointer: {fileID: 437470844}
   scrollingBackGround: {fileID: 0}
+  crowd: {fileID: 1335034271}
   meetingWomanTriger: {fileID: 1944824693}
   meetingBihyiTriger: {fileID: 746859598}
 --- !u!61 &95701905
@@ -3963,7 +3964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b34fb29984eca4ab28eab6ae05cb26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutSceneType: 12
+  cutSceneType: 11
 --- !u!1 &768294506
 GameObject:
   m_ObjectHideFlags: 0
@@ -13821,7 +13822,6 @@ GameObject:
   - component: {fileID: 1335034275}
   - component: {fileID: 1335034274}
   - component: {fileID: 1335034273}
-  - component: {fileID: 1335034278}
   m_Layer: 6
   m_Name: CrowdChapter
   m_TagString: Untagged
@@ -14273,24 +14273,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1335034278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335034271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDisableInStart: 0
-  positionDatas:
-  - progress: 3
-    isFlip: 0
-    isActive: 0
-    position: {x: 0, y: 0, z: 0}
 --- !u!1 &1341427137
 GameObject:
   m_ObjectHideFlags: 0
