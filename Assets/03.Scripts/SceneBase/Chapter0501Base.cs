@@ -14,6 +14,7 @@ public class Chapter0501Base : SceneBase
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
         SkillForm();
+
     }
 
     private void SkillForm()
@@ -26,6 +27,7 @@ public class Chapter0501Base : SceneBase
 
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
     }
+    // 진행도를 저장하는 함수
 }
 
 

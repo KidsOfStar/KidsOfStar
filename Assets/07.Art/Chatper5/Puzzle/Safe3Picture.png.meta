@@ -126,12 +126,12 @@ TextureImporter:
       name: Safe3Picture_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 67
-        width: 22
-        height: 22
+        x: 3
+        y: 66
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +147,12 @@ TextureImporter:
       name: Safe3Picture_1
       rect:
         serializedVersion: 2
-        x: 23
-        y: 67
-        width: 22
-        height: 22
+        x: 24
+        y: 66
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,11 +169,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 45
-        y: 67
-        width: 22
-        height: 22
+        y: 66
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: Safe3Picture_3
       rect:
         serializedVersion: 2
-        x: 67
-        y: 67
-        width: 22
-        height: 22
+        x: 66
+        y: 66
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: Safe3Picture_4
       rect:
         serializedVersion: 2
-        x: 1
+        x: 3
         y: 45
-        width: 22
-        height: 22
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: Safe3Picture_5
       rect:
         serializedVersion: 2
-        x: 23
+        x: 24
         y: 45
-        width: 22
-        height: 22
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,10 +254,10 @@ TextureImporter:
         serializedVersion: 2
         x: 45
         y: 45
-        width: 22
-        height: 22
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,12 +273,12 @@ TextureImporter:
       name: Safe3Picture_7
       rect:
         serializedVersion: 2
-        x: 67
+        x: 66
         y: 45
-        width: 22
-        height: 22
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,12 +294,12 @@ TextureImporter:
       name: Safe3Picture_8
       rect:
         serializedVersion: 2
-        x: 1
-        y: 23
-        width: 22
-        height: 22
+        x: 3
+        y: 24
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -315,12 +315,12 @@ TextureImporter:
       name: Safe3Picture_9
       rect:
         serializedVersion: 2
-        x: 23
-        y: 23
-        width: 22
-        height: 22
+        x: 24
+        y: 24
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -337,11 +337,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 45
-        y: 23
-        width: 22
-        height: 22
+        y: 24
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,12 +357,12 @@ TextureImporter:
       name: Safe3Picture_11
       rect:
         serializedVersion: 2
-        x: 67
-        y: 23
-        width: 22
-        height: 22
+        x: 66
+        y: 24
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -378,12 +378,12 @@ TextureImporter:
       name: Safe3Picture_12
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 22
-        height: 22
+        x: 3
+        y: 3
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,12 +399,12 @@ TextureImporter:
       name: Safe3Picture_13
       rect:
         serializedVersion: 2
-        x: 23
-        y: 1
-        width: 22
-        height: 22
+        x: 24
+        y: 3
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -421,11 +421,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 45
-        y: 1
-        width: 22
-        height: 22
+        y: 3
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,12 +441,12 @@ TextureImporter:
       name: Safe3Picture_15
       rect:
         serializedVersion: 2
-        x: 67
-        y: 1
-        width: 22
-        height: 22
+        x: 66
+        y: 3
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -459,7 +459,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Safe3Picture_BG
+      name: Safe3Picture_16
       rect:
         serializedVersion: 2
         x: 0
@@ -467,14 +467,14 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5491f2abd5164124d9da7c8c7998ec86
-      internalID: 1945735274
+      spriteID: 545ecb890215e3a4daa9d0e7e1b7fb9c
+      internalID: -190660706
       vertices: []
       indices: 
       edges: []
@@ -498,6 +498,7 @@ TextureImporter:
       Safe3Picture_13: -896074430
       Safe3Picture_14: 1871221402
       Safe3Picture_15: 1664024158
+      Safe3Picture_16: -190660706
       Safe3Picture_2: 311983257
       Safe3Picture_3: -1860572299
       Safe3Picture_4: 1419169904
@@ -506,7 +507,6 @@ TextureImporter:
       Safe3Picture_7: -1524178672
       Safe3Picture_8: 1806087547
       Safe3Picture_9: -2107226469
-      Safe3Picture_BG: 1945735274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

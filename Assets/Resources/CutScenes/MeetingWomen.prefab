@@ -535,7 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTextPrefab: {fileID: 2057746623309824022, guid: b80e6b532f9dd0f429494077edc3d622, type: 3}
   sceneType: 5
-  isDoorLocked: 0
+  isDoorOpen: 0
 --- !u!61 &8854702489596734985
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3296,7 +3296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTextPrefab: {fileID: 2057746623309824022, guid: b80e6b532f9dd0f429494077edc3d622, type: 3}
   sceneType: 5
-  isDoorLocked: 0
+  isDoorOpen: 0
 --- !u!61 &7022618147884451475
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3525,7 +3525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7980dba096fa3e4dae7f9cfe2b1e895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 18
+  characterType: 19
   bubbleTr: {fileID: 3483123300290365443}
 --- !u!95 &6922705950651573531
 Animator:
@@ -4090,7 +4090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTextPrefab: {fileID: 2057746623309824022, guid: b80e6b532f9dd0f429494077edc3d622, type: 3}
   sceneType: 5
-  isDoorLocked: 0
+  isDoorOpen: 0
 --- !u!61 &2499605804807933343
 BoxCollider2D:
   m_ObjectHideFlags: 0

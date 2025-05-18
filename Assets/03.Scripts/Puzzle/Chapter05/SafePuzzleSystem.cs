@@ -9,6 +9,7 @@ public class SafePuzzleSystem : TreePuzzleSystem
     public SafePopup safePopup;
     public int index;
 
+    // 퍼블 성공
     protected override void CompletePuzzle()
     {
         isRunning = false;
@@ -24,6 +25,7 @@ public class SafePuzzleSystem : TreePuzzleSystem
         safePopup.nextPuzzle();
     }
 
+    // 퍼즐 실패
     protected override void FailPuzzle()
     {
         isRunning = false;

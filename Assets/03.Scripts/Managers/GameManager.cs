@@ -14,7 +14,7 @@ public class GameManager
     private readonly Dictionary<ChapterType, int> trustDict = new();
     public Difficulty Difficulty { get; private set; }
     public ChapterType CurrentChapter { get; private set; }
-    public int ChapterProgress { get; private set; } = 1;
+    public int ChapterProgress { get; set; } = 1;   
 
     // Player Data
     public Vector3 PlayerPosition { get; private set; } = Vector3.zero;

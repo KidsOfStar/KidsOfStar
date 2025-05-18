@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Chapter0503Base : SceneBase
@@ -8,9 +9,13 @@ public class Chapter0503Base : SceneBase
 
     private void Start()
     {
-        if(Managers.Instance.GameManager.VisitCount == 1 )
+        Managers.Instance.GameManager.ChapterProgress = 3;
+
+        if (Managers.Instance.GameManager.VisitCount == 1 )
         {
             meetingWomanTriger.enabled = false;
+            Managers.Instance.GameManager.ChapterProgress = 4;
+
         }
         else if (Managers.Instance.GameManager.VisitCount == 2)
         {

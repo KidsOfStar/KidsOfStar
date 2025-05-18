@@ -9,6 +9,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public Image[] safeImage;
     public float rotationDuration = 0.5f;
     public SafePopup safePopup;
+    public Door door;
 
     public Dictionary<GameObject, float> rotationAmount;
     private HashSet<GameObject> completedPieces = new HashSet<GameObject>();
@@ -16,6 +17,8 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
+        door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
+
         rotationAmount = new Dictionary<GameObject, float>
         {
             { safeImage[0].gameObject, 45f },
@@ -25,13 +28,22 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
         RandomizeRotation();
     }
-
+    
+    // 금고 다이얼 랜덤 배치 
     private void RandomizeRotation()
     {
+
         foreach (var pair in rotationAmount)
         {
             int randomMultiplier = UnityEngine.Random.Range(0, 3);
             float randomRotation = pair.Value * randomMultiplier;
+
+            while (randomRotation == 0f) // 0도 포함되면 안됨
+            {
+                randomMultiplier = UnityEngine.Random.Range(0, 3);
+                randomRotation = pair.Value * randomMultiplier;
+            }
+
             pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
         }
     }
@@ -86,12 +98,20 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             }
         }
 
+        // 퍼즐 완료 체크
         if (completedPieces.Count == rotationAmount.Count)
         {
             Debug.Log("Puzzle Clear!");
+            Managers.Instance.UIManager.Hide<SafePopup>();
+            Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
+            Managers.Instance.GameManager.UpdateProgress();
+            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+
+            door.isDoorOpen = true;
         }
     }
 
+    // 클릭 이벤트 처리
     public void OnPointerClick(PointerEventData eventData)
     {
         GameObject clicked = eventData.pointerCurrentRaycast.gameObject;

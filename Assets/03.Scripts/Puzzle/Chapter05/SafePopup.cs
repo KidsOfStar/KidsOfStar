@@ -32,10 +32,6 @@ public class SafePopup : PopupBase
         if (countIndex >= datas.Length)
         {
             Debug.Log("모든 퍼즐이 완료되었습니다.");
-            UpdateChapterProgress();
-            door.isDoorLocked = true;
-            Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
-            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
             return;
         }
 
@@ -52,11 +48,11 @@ public class SafePopup : PopupBase
         }
     }
 
-    public void UpdateChapterProgress()
-    {
-        Managers.Instance.GameManager.UpdateProgress();
-        Debug.Log("모든 퍼즐이 완료되었습니다. 챕터 진행도를 올립니다.");
-    }
+    //public void UpdateChapterProgress()
+    //{
+    //    Managers.Instance.GameManager.UpdateProgress();
+    //    Debug.Log("모든 퍼즐이 완료되었습니다. 챕터 진행도를 올립니다.");
+    //}
 
     public void FullReset()
     {
