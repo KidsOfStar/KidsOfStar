@@ -15,7 +15,6 @@ public class Chapter0503Base : SceneBase
         {
             meetingWomanTriger.enabled = false;
             Managers.Instance.GameManager.ChapterProgress = 4;
-
         }
         else if (Managers.Instance.GameManager.VisitCount == 2)
         {
@@ -23,6 +22,7 @@ public class Chapter0503Base : SceneBase
             meetingBihyiTriger.enabled = false;
         }
         Managers.Instance.GameManager.VisitCount++;
+        Debug.Log($"{Managers.Instance.GameManager.ChapterProgress}");
     }
 
     protected override void CutSceneEndCallback()

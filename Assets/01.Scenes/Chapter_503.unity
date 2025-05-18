@@ -983,8 +983,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1503142845}
   - {fileID: 1793941908}
+  - {fileID: 1503142845}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &159064854
@@ -13777,6 +13777,7 @@ GameObject:
   - component: {fileID: 1335034275}
   - component: {fileID: 1335034274}
   - component: {fileID: 1335034273}
+  - component: {fileID: 1335034278}
   m_Layer: 6
   m_Name: CrowdChapter
   m_TagString: Untagged
@@ -14228,6 +14229,24 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1335034278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335034271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisableInStart: 0
+  positionDatas:
+  - progress: 4
+    isFlip: 0
+    isActive: 0
+    position: {x: 0, y: 0, z: 0}
 --- !u!1 &1341427137
 GameObject:
   m_ObjectHideFlags: 0
@@ -18960,8 +18979,8 @@ GameObject:
   - component: {fileID: 1793941908}
   - component: {fileID: 1793941910}
   - component: {fileID: 1793941912}
-  - component: {fileID: 1793941909}
   - component: {fileID: 1793941911}
+  - component: {fileID: 1793941909}
   m_Layer: 0
   m_Name: Middleman
   m_TagString: Untagged
@@ -18999,10 +19018,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDisableInStart: 0
   positionDatas:
-  - progress: 3
-    isFlip: 0
-    isActive: 1
-    position: {x: 9.5, y: -1.8, z: 0}
   - progress: 4
     isFlip: 0
     isActive: 1

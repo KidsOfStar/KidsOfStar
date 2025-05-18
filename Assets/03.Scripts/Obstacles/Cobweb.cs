@@ -11,6 +11,7 @@ public class Cobweb : MonoBehaviour
     {
         cobwebCollider = GetComponent<Collider2D>();
         originalJumpForce = Managers.Instance.GameManager.Player.Controller.JumpForce;
+        Debug.Log($"originalJumpForce: {originalJumpForce}");
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -22,8 +23,6 @@ public class Cobweb : MonoBehaviour
             {
             // 플레이어의 속도를 0으로 설정
             playerController.MoveSpeed /= slowDownFacto;
-            // 원래 점프력 저장
-            originalJumpForce = playerController.JumpForce;
 
             // 플레이어의 점프력을 0으로 설정
             playerController.JumpForce = 0f;
@@ -38,7 +37,9 @@ public class Cobweb : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.TryGetComponent(out PlayerController playerController))
+        if (other.CompareTag("Player") 
+            && other.TryGetComponent(out PlayerController playerController)
+            && other.TryGetComponent(out PlayerFormController formController))
         {
             // 만약 변신 등의 이유로 점프력이 다시 설정되었다면,
             // 거미줄 안에 있는 동안은 강제로 0으로 유지
@@ -46,9 +47,13 @@ public class Cobweb : MonoBehaviour
             {
                 playerController.JumpForce = 0f;
             }
+
+            if (formController.CurFormData.FormName == "Dog")
+            {
+                StartCoroutine(DogBreakCobweb(playerController));
+            }
         }
     }
-
 
     private IEnumerator DogBreakCobweb(PlayerController playerController)
     {
@@ -60,19 +65,15 @@ public class Cobweb : MonoBehaviour
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.WallBreak);
     }
 
-
     public void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player") && other.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            // 플레이어의 속도를 0으로 설정
+            // 플레이어의  속도를 원래대로 복원
             playerController.MoveSpeed *= slowDownFacto;
 
             // 플레이어의 점프력을 0으로 설정
-            playerController.JumpForce = Managers.Instance.GameManager.Player.Controller.JumpForce;
+            playerController.JumpForce = originalJumpForce;
         }
     }
-    
 }
-
-
