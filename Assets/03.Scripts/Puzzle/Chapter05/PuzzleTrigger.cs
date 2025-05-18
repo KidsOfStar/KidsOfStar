@@ -57,7 +57,6 @@ public class PuzzleTrigger : MonoBehaviour
 
     private void TryStartPuzzle()
     {
-        EditorLog.Log($"a : {isTutorial}");
         if (!isTutorial)
         {
             isTutorial = true;
@@ -66,9 +65,6 @@ public class PuzzleTrigger : MonoBehaviour
             {
                 Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
             };
-
-            EditorLog.Log($"b : {isTutorial}");
-
             return;
         }
         // 튜토리얼 보여주고 시작
