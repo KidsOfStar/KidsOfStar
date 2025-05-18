@@ -39,6 +39,7 @@ public enum CharacterType
     People1,
     People2,
     People3,
+    People4,
     Women,
     Save,
 }

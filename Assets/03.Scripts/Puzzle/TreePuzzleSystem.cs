@@ -51,7 +51,7 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // 퍼즐 준비
-    public void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
+    public virtual void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
     {
         puzzleIndex = puzzleClearIndex;
         correctSprites = new List<Sprite>(data.pieceSprites);
@@ -160,7 +160,7 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // 퍼즐 실패시
-    private void FailPuzzle()
+    protected virtual void FailPuzzle()
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);

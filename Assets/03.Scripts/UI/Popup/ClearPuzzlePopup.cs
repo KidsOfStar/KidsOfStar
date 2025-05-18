@@ -9,10 +9,16 @@ public class ClearPuzzlePopup : PopupBase
     {
         base.Opened(param);
 
-        if (param.Length > 0 && param[0] is TreePuzzleSystem ts)
-            treePuzzle = ts;
-        else
-            treePuzzle = null;
+        treePuzzle = null;
+        wirePuzzle = null;
+
+        foreach (var p in param)
+        {
+            if (p is TreePuzzleSystem tree)
+                treePuzzle = tree;
+            else if (p is WirePuzzleSystem wire)
+                wirePuzzle = wire;
+        }
 
         closeBtn.onClick.RemoveAllListeners();
         closeBtn.onClick.AddListener(() =>
@@ -24,10 +30,7 @@ public class ClearPuzzlePopup : PopupBase
             if (treePuzzle != null)
                 treePuzzle.OnClearButtonClicked();
             if (wirePuzzle != null)
-            {
-                EditorLog.Log(wirePuzzle);
                 wirePuzzle.OnClearButtonClicked();
-            }
         });
     }
 }

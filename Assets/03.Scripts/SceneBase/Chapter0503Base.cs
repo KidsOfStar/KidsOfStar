@@ -37,4 +37,17 @@ public class Chapter0503Base : SceneBase
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            var upgrade = Managers.Instance.GameManager;
+            if (upgrade.ChapterProgress == 4)
+            {
+                upgrade.UpdateProgress();
+            }
+        }
+    }
 }

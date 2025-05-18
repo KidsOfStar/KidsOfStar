@@ -99,9 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleTextPrefab: {fileID: 2057746623309824022, guid: b80e6b532f9dd0f429494077edc3d622, type: 3}
-  uiHide:
-  - {fileID: 3843351717722338959, guid: df69f07e9a1b30c42a4349bac60dc106, type: 3}
-  - {fileID: 5479877872132083748, guid: f75a27c255255e641ba87073da30a18c, type: 3}
   dangerFormMask: 28
 --- !u!61 &8362681282379246840
 BoxCollider2D:

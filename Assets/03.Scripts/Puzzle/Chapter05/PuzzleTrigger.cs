@@ -3,12 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleTirgger : MonoBehaviour
+public class PuzzleTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject bubbleTextPrefab;
     private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
     private SkillBTN skillBTN;
+
+
+    [Header("튜토리얼 문인지 체크")]
+    [SerializeField] private bool isTutorial = false;
+    private bool tutorialShown = false;
+
 
     // 동물 폼
     [SerializeField] private PlayerFormType dangerFormMask;
@@ -52,12 +58,18 @@ public class PuzzleTirgger : MonoBehaviour
 
     private void TryStartPuzzle()
     {
-        // 화면 UI 끄기
-
-
+        if (isTutorial && !tutorialShown)
+        {
+            tutorialShown = true;
+            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(0);
+            popup.OnClosed += () =>
+            {
+                Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
+            };
+            return;
+        }
         // 튜토리얼 보여주고 시작
         Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
-
     }
 
     private void OntextBubbleText(Player player)
@@ -86,6 +98,4 @@ public class PuzzleTirgger : MonoBehaviour
         skillBTN.ShowInteractionButton(false);
         skillBTN.OnInteractBtnClick -= OnInteraction;
     }
-
-
 }
