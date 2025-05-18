@@ -165,6 +165,7 @@ MonoBehaviour:
   mainCamera: {fileID: 2047708880}
   spawnPointer: {fileID: 1183143562}
   scrollingBackGround: {fileID: 0}
+  istutorialForm: 1
 --- !u!4 &28862384
 Transform:
   m_ObjectHideFlags: 0
@@ -904,6 +905,10 @@ PrefabInstance:
     - target: {fileID: 7007950380014761620, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
       propertyPath: m_Name
       value: Safe
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+      propertyPath: isTutorial
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
