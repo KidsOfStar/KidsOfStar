@@ -21,7 +21,7 @@ public class Chapter0501Base : SceneBase
             istutorialForm = true;
         }
 
-        //SkillForm();
+        SkillForm();
     }
 
     private void SkillForm()

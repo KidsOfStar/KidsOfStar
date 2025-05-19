@@ -16,7 +16,6 @@ public class SafePuzzleSystem : TreePuzzleSystem
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
         SafeSetActive(index);
 
-        EditorLog.Log("퍼즐 성공!");
         if (!clearPuzzlenum.Contains(puzzleIndex))
         {
             clearPuzzlenum.Add(puzzleIndex);
@@ -40,19 +39,6 @@ public class SafePuzzleSystem : TreePuzzleSystem
         }
     }
 
-    //public void ResetPuzzle()
-    //{
-    //    isRunning = false;
-    //    safePopup.FullReset();
-    //    Managers.Instance.UIManager.Hide<SafePopup>();
-
-    //    if (triggerMap.TryGetValue(puzzleIndex, out var trig))
-    //    {
-    //        trig.ResetTrigger();
-    //    }
-
-    //    EditorLog.Log("퍼즐이 초기화되었습니다. 다시 시도할 수 있습니다.");
-    //}
 
     public override void OnClearButtonClicked()
     {
