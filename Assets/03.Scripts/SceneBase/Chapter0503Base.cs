@@ -11,28 +11,35 @@ public class Chapter0503Base : SceneBase
 
     private void Start()
     {
-        Managers.Instance.GameManager.ChapterProgress = 3;
-        Debug.Log($"{Managers.Instance.GameManager.VisitCount}");
-        Debug.Log($"{Managers.Instance.GameManager.ChapterProgress}");
+        var gm = Managers.Instance.GameManager;
 
-        if (Managers.Instance.GameManager.VisitCount == 1 )
+        Debug.Log($"[Chapter503] VisitCount: {gm.VisitCount}, ChapterProgress: {gm.ChapterProgress}");
+
+        gm.ChapterProgress = 3;
+
+        if (gm.VisitCount == 0)
         {
-            meetingWomanTriger.enabled = false;
-            Managers.Instance.GameManager.ChapterProgress = 4;
-        }
-        else if (Managers.Instance.GameManager.VisitCount == 2)
-        {
-            meetingWomanTriger.enabled = false;
+            // 처음 503 진입
+            meetingWomanTriger.enabled = true;
             meetingBihyiTriger.enabled = false;
+            gm.VisitCount++;
         }
-        Managers.Instance.GameManager.VisitCount++;
-
-
-        if (Managers.Instance.GameManager.ChapterProgress == 4)
+        else if (gm.VisitCount == 1)
         {
-            crowd.SetActive(false);
+            // 두 번째 503 진입 (504 -> 503)
+            meetingWomanTriger.enabled = false;
+            meetingBihyiTriger.enabled = true;
+            gm.ChapterProgress = 4;
         }
+
+
+        // Crowd 처리
+        if (gm.ChapterProgress == 4)
+            crowd.SetActive(false);
+
+        Debug.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
     }
+
 
     protected override void CutSceneEndCallback()
     {
@@ -61,8 +68,6 @@ public class Chapter0503Base : SceneBase
             if (upgrade.ChapterProgress == 4)
             {
                 upgrade.UpdateProgress();
-                Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
-
             }
         }
     }
