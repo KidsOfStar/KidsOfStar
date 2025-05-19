@@ -238,7 +238,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 76c1efc52069ce54aaf350f9288dc7e3, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -297,7 +297,8 @@ MonoBehaviour:
       \uBAA9\uC801\uC9C0\uAE4C\uC9C0 \uC62E\uACA8\uBCF4\uC138\uC694."
     customPrefab: {fileID: 0}
     imageSize: {x: 800, y: 400}
-  - images: []
+  - images:
+    - {fileID: -1480084108, guid: 14bbda8050164f8469679787f9c0bd76, type: 3}
     title: "\uC740\uC2E0 \uD615\uD0DC\uBCC0\uD654"
     description: "0. \uC774\uACF3\uC5D0\uC11C\uB294 \uB2E4\uB978 \uC0AC\uB78C\uB4E4\uC5D0\uAC8C
       \uC815\uCCB4\uB97C \uB4E4\uD0A4\uBA74 \uC548\uB429\uB2C8\uB2E4.\n1. \uC0AC\uB78C\uC774
@@ -305,7 +306,7 @@ MonoBehaviour:
       \uC740\uC2E0\uC744 \uC0AC\uC6A9\uD574\uC57C \uD569\uB2C8\uB2E4.\n2. \uC740\uC2E0\uC740
       \uB2E4\uB978 \uACF3\uBCF4\uB2E4 \uC5B4\uB461\uAC70\uB098, \uC0AC\uB78C\uC774
       \uC5C6\uB294 \uACF3\uC5D0\uC11C \uC0AC\uC6A9/\uD574\uC81C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    customPrefab: {fileID: 1963661148065388421, guid: 36dcfec08e86efa428aaa2a6e3e0c2ca, type: 3}
+    customPrefab: {fileID: 0}
     imageSize: {x: 800, y: 400}
   - images:
     - {fileID: 21300000, guid: 24f23c5fd9f8d6845a15d07558eb60a8, type: 3}

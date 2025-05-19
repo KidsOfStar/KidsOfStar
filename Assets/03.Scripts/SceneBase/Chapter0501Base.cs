@@ -18,7 +18,7 @@ public class Chapter0501Base : SceneBase
         EditorLog.Log("Chapter 5-1 시작");
         if (istutorialForm)
         {
-            //var popup = Managers.Instance.UIManager.Show<TutorialPopup>(3);
+            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(3);
             istutorialForm = true;
             EditorLog.Log("튜토리얼 팝업이 열렸습니다.");
         }
