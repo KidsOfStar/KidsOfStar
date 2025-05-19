@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Chapter0503Base : SceneBase
@@ -13,7 +12,6 @@ public class Chapter0503Base : SceneBase
     {
         var gm = Managers.Instance.GameManager;
 
-        Debug.Log($"[Chapter503] VisitCount: {gm.VisitCount}, ChapterProgress: {gm.ChapterProgress}");
 
         gm.ChapterProgress = 3;
 
@@ -40,7 +38,6 @@ public class Chapter0503Base : SceneBase
         Debug.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
     }
 
-
     protected override void CutSceneEndCallback()
     {
         PlayChapterIntro();
@@ -48,17 +45,9 @@ public class Chapter0503Base : SceneBase
 
     protected override void InitSceneExtra(Action callback)
     {
-        SkillForm();
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
     }
-
-    private void SkillForm()
-    {
-        //Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

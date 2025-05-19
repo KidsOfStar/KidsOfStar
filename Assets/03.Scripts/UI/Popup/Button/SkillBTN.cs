@@ -26,6 +26,7 @@ public class SkillBTN : UIBase
     private bool isSkillActive = false; // 스킬 UI 활성화 여부
     private float skillCooldown = 0.5f; // 스킬 쿨타임
     public bool isSkillAdd = false; // 스킬 활성화 여부
+
     // Start is called before the first frame update
     void Start()
     {
