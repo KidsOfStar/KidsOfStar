@@ -124,6 +124,11 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     {
         // 땅 체크 잠금 여부 체크
         if (groundCheckLocked) return;
+		if (groundCheckLocked)
+        {
+            isGround = false;
+            return;
+        }
         
         // // 박스 캐스트로 플레이어의 아래 방향을 체크
         // // 레이 캐스트가 아닌 이유는

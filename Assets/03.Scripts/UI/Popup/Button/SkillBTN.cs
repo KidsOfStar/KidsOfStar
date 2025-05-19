@@ -26,6 +26,7 @@ public class SkillBTN : UIBase
     private bool isSkillActive = false; // 스킬 UI 활성화 여부
     private float skillCooldown = 0.5f; // 스킬 쿨타임
     public bool isSkillAdd = false; // 스킬 활성화 여부
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,12 +76,12 @@ public class SkillBTN : UIBase
 
     public void OnJump()
     {
-        ToggleSkillUI(false); // 점프 시 스킬 UI 숨기기
+        //ToggleSkillUI(false); // 점프 시 스킬 UI 숨기기
         OnBlink(skillUnlock.jumpBG, 0.1f); // 배경 깜빡임 효과
 
         // 공중일 경우 점프 불가
-        if (!Managers.Instance.GameManager.Player.Controller.IsGround)
-            return;
+        //if (!Managers.Instance.GameManager.Player.Controller.IsGround)
+        //    return;
 
         // 실제 점프 실행
         Managers.Instance.GameManager.Player.Controller.Jump();

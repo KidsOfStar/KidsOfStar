@@ -12,16 +12,9 @@ public class Chapter0502Base : SceneBase
 
     protected override void InitSceneExtra(Action callback)
     {
-        SkillForm();
-        
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
+
         Managers.Instance.GameManager.UpdateProgress(); // 진행도 2
-
     }
-
-    private void SkillForm()
-    {
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
-    }
-
-
 }

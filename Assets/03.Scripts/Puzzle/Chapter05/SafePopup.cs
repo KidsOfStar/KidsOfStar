@@ -34,7 +34,6 @@ public class SafePopup : PopupBase
     {
         if (countIndex >= datas.Length)
         {
-            Debug.Log("모든 퍼즐이 완료되었습니다.");
             return;
         }
 
