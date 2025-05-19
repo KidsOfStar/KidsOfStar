@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SafePopup : PopupBase
 {
+    [SerializeField] private GameObject exclamationInstance;
+    private SpriteRenderer exclamationRenderer;
+
     [SerializeField] private SafePuzzleSystem currentPuzzle;
 
     public Door door;
@@ -63,7 +66,6 @@ public class SafePopup : PopupBase
         {
             puzzleSystem.ResetSystem();
         }
-
         Debug.Log("SafePopup과 모든 퍼즐이 완전히 초기화되었습니다.");
         nextPuzzle();
     }

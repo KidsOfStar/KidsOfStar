@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PuzzleTrigger : MonoBehaviour
 {
+    [SerializeField] private GameObject exclamationInstance;
+    private SpriteRenderer exclamationRenderer;
+
     [SerializeField] private GameObject bubbleTextPrefab;
     private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
@@ -96,5 +99,11 @@ public class PuzzleTrigger : MonoBehaviour
     {
         skillBTN.ShowInteractionButton(false);
         skillBTN.OnInteractBtnClick -= OnInteraction;
+    }
+
+    // 게임 클리어시 비활성화
+    public void DisableExclamation()
+    {
+        exclamationInstance.SetActive(false);
     }
 }

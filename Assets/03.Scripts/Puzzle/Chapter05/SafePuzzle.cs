@@ -9,6 +9,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public Image[] safeImage;
     public float rotationDuration = 0.5f;
     public SafePopup safePopup;
+    public PuzzleTrigger puzzleTrigger;
     public Door door;
 
     public Dictionary<GameObject, float> rotationAmount;
@@ -17,7 +18,9 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
+
         door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
+        puzzleTrigger = FindObjectOfType<PuzzleTrigger>();
 
         rotationAmount = new Dictionary<GameObject, float>
         {
@@ -94,21 +97,25 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             if (Quaternion.Angle(piece.transform.rotation, target) <= 1f)
             {
                 completedPieces.Add(piece);
-                Debug.Log($"{piece.name} 퍼즐 완료!");
             }
         }
 
         // 퍼즐 완료 체크
         if (completedPieces.Count == rotationAmount.Count)
         {
-            Debug.Log("Puzzle Clear!");
-            Managers.Instance.UIManager.Hide<SafePopup>();
-            Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
-            Managers.Instance.GameManager.UpdateProgress();
-            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
-
-            door.isDoorOpen = true;
+            ClearPuzzle();
         }
+    }
+
+    private void ClearPuzzle()
+    {
+        Debug.Log("퍼즐이 완료되었습니다.");
+        Managers.Instance.UIManager.Hide<SafePopup>();
+        Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
+        Managers.Instance.GameManager.UpdateProgress();
+        //Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+        puzzleTrigger.DisableExclamation();
+        door.isDoorOpen = true;
     }
 
     // 클릭 이벤트 처리
