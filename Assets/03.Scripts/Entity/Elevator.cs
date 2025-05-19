@@ -27,12 +27,12 @@ public class Elevator : MonoBehaviour
     [SerializeField] private Direction direction = Direction.None;
 
     private readonly WaitForFixedUpdate waitForFixedUpdate = new();
-    private readonly WaitForSeconds moveWaitTime = new(0.5f);
+    private readonly WaitForSeconds moveWaitTime = new(1.5f);
     private readonly WaitForSeconds repairTime = new(5f);
     
     private readonly List<IWeightable> weightables = new();
     private const float MaxWeight = 3f;
-    private const float VerticalMargin = 0.02f;
+    private const float VerticalMargin = 0.1f;
 
     private Vector3 prevPos;
     private Vector3 startPos;
@@ -56,6 +56,8 @@ public class Elevator : MonoBehaviour
 
     private IEnumerator Move()
     {
+        yield return moveWaitTime;
+        
         while (true)
         {
             yield return MoveRoutine(startPos, targetPos, true);
@@ -135,11 +137,13 @@ public class Elevator : MonoBehaviour
         
         // 3초 경고 후에도 과부하 상태라면 완전 고장
         isBroken = true;
+        EditorLog.Log($"{gameObject.name} : is Broken");
 
         // 복구 대기
         yield return repairTime;
 
         // 고장 해제
+        EditorLog.Log($"{gameObject.name} : is repair");
         isBroken    = false;
         sprite.color = Color.white;
     }

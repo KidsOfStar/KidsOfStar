@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 public interface IWeightable
@@ -7,10 +8,14 @@ public interface IWeightable
 
 public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 {
-    public float boxWeight = 2f;
+    private float baseWight = 2f;
+    public float boxWeight;
 
     [Tooltip("Player 레이어와의 충돌을 무시할 시간")]
     public float ignoreDuration = 0.5f;
+
+    [SerializeField] private Collider2D coll;
+    [SerializeField] private bool canOnWeightable;
 
     private Rigidbody2D rb;
     private int boxLayer;
@@ -22,6 +27,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
         rb= GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.gravityScale = 1f;
+        boxWeight = baseWight;
         boxLayer = gameObject.layer;
         playerLayer = LayerMask.NameToLayer("Player");
     }
@@ -49,7 +55,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     private IEnumerator TemporaryIgnorePlayer(float duration)
     {
         // 박스, 플레이어 레이어간 충돌 판정을 무시
-        Physics2D.IgnoreLayerCollision(boxLayer, playerLayer, true);
+        Physics2D.IgnoreLayerCollision(boxLayer, playerLayer, false);
 
         // duration만큼만 무시
         yield return new WaitForSeconds(duration);
@@ -61,5 +67,53 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     public void ResetPosition()
     {
         this.gameObject.transform.position = boxBasePos;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (!canOnWeightable) return;
+        if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
+
+        if (IsOnBox(other.collider))
+        {
+            var weightablePos = other.transform.position;
+            var fixedPositionY = coll.bounds.max.y - 0.1f;
+            var fixedPosition = new Vector2(weightablePos.x, fixedPositionY);
+            other.transform.position = fixedPosition;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (!canOnWeightable) return;
+        if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
+
+        if (IsOnBox(other.collider))
+        {
+            other.transform.SetParent(transform);
+            boxWeight = baseWight + weightable.GetWeight();
+        }
+        else
+        {
+            other.transform.SetParent(null);
+            boxWeight = baseWight;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (!canOnWeightable) return;
+        if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
+        
+        other.transform.SetParent(null);
+        boxWeight = baseWight;
+    }
+
+    private bool IsOnBox(Collider2D weightable)
+    {
+        var obj = weightable.bounds;
+        var elevator = coll.bounds;
+
+        return !(Mathf.Abs(obj.min.y - elevator.max.y) > 0.1f);
     }
 }
