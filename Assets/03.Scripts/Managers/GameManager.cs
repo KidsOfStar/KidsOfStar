@@ -19,7 +19,7 @@ public class GameManager
     // Player Data
     public Vector3 PlayerPosition { get; private set; } = Vector3.zero;
     public Player Player { get; private set; }
-    public PlayerFormType CurrentForm { get; private set; }
+    public PlayerFormType CurrentForm { get; private set; } = PlayerFormType.Human;
     public PlayerFormType UnlockedForms { get; private set; } = PlayerFormType.Stone;
     public EndingType CompletedEnding { get; private set; } = EndingType.None;
 
@@ -161,6 +161,11 @@ public class GameManager
     public void SetPlayer(Player player)
     {
         Player = player;
+    }
+
+    public void SetCurrentForm(PlayerFormType formType)
+    {
+        CurrentForm = formType;
     }
 
     //사용법: Managers.Instance.GameManager.TriggerEnding(EndingType. 엔딩이름)

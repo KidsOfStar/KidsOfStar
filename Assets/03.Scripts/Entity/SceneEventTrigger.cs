@@ -16,7 +16,6 @@ public class SceneEventTrigger : MonoBehaviour
     [SerializeField] private int specifiedDialogIndex;
     [SerializeField] private UnityEvent onSpecifiedDialogEnd;
     
-    
     private readonly Dictionary<int, bool> finishedDialog = new();
     private Action<int> onSpecifiedDialogCheck;
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -123,12 +124,21 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     {
         // 땅 체크 잠금 여부 체크
         if (groundCheckLocked) return;
-
-        // 박스 캐스트로 플레이어의 아래 방향을 체크
-        // 레이 캐스트가 아닌 이유는
-        // 플레이어가 플랫폼 끝자락에 위치할 때 제대로 체크되지 않는 경우를 방지하기 위함
-        RaycastHit2D hit = Physics2D.BoxCast(capsuleCollider.bounds.center, capsuleCollider.bounds.size, 0f, Vector2.down,
-            0.02f, groundLayer);
+        
+        // // 박스 캐스트로 플레이어의 아래 방향을 체크
+        // // 레이 캐스트가 아닌 이유는
+        // // 플레이어가 플랫폼 끝자락에 위치할 때 제대로 체크되지 않는 경우를 방지하기 위함
+        // RaycastHit2D hit = Physics2D.BoxCast(capsuleCollider.bounds.center, capsuleCollider.bounds.size, 0f, Vector2.down,
+        //     0.02f, groundLayer);
+        
+        // GroundCheck 내부에서 BoxCast 대신에…
+        RaycastHit2D hit = Physics2D.CapsuleCast(capsuleCollider.bounds.center,
+                                                 capsuleCollider.size,
+                                                 CapsuleDirection2D.Vertical,
+                                                 0f,
+                                                 Vector2.down,
+                                                 0.02f,
+                                                 groundLayer);
         
         // 점프 가능한 오브젝트에 닿은 동시에
         // 그 위치가 플레이어 기준으로 아래 방향이라면
@@ -146,7 +156,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         // 애니메이터의 Ground 파라미터의 값을 isGround에 따라서 수정
         anim.SetBool(PlayerAnimHash.AnimGround, isGround);
     }
-
+    
     /// <summary>
     /// 플레이어 이동 조작을 위한 입력 함수
     /// </summary>

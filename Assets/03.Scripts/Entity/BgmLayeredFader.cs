@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class BgmLayeredFader : MonoBehaviour
 {
+    // TODO: 503 SceneBase에서 풀매니저로 먼저 생성시킬 것. Instantiate 괘오래걸림
+    // TODO: GameManager에 넣을 수 밖에 없지 않냐..
+    
     [Header("Audio")]
     [SerializeField] private AudioSource[] mainSources;
     [SerializeField] private AudioSource[] loopEffects;
@@ -19,7 +22,7 @@ public class BgmLayeredFader : MonoBehaviour
     
     // 5022, 5023, 5024, 5026, 5027 시작할 때
     [SerializeField] private int[] finalDialogs;
-    
+
     private readonly Dictionary<MainBgmSourceType, AudioSource> audioDict = new();
     private readonly Dictionary<int, MainBgmSourceType> audioByIndexDict = new();
     
@@ -131,7 +134,7 @@ public class BgmLayeredFader : MonoBehaviour
         {
             if (dialogIndex != dialogIndexes[i]) continue;
 
-            var audioType = audioByIndexDict[dialogIndexes[i + 2]];
+            var audioType = audioByIndexDict[dialogIndexes[i]];
             PlaySource(audioType);
             progress++;
         }
@@ -149,11 +152,12 @@ public class BgmLayeredFader : MonoBehaviour
         if (!correct) return;
         
         isLoop = false;
-
+        
         // 1, 9번 제외 재생 멈춤
         for (int i = 1; i < mainSources.Length - 1; i++)
             StopSource((MainBgmSourceType)i);
-        
+
+        audioDict[MainBgmSourceType.RiseEffect].Play();
         PlaySource(MainBgmSourceType.RiseEffect);
     }
 
@@ -223,7 +227,7 @@ public class BgmLayeredFader : MonoBehaviour
             src.volume = Mathf.Lerp(bgmVolume, 0f, elapsed / duration);
             yield return null;
         }                         
-        src.volume = bgmVolume;   
+        src.volume = 0f;   
     }
 
     private void OnDestroy()
@@ -242,7 +246,7 @@ public enum MainBgmSourceType
     StrMelody1,
     Marimba,
     StringPizz,
-    Glock,Celesta,
+    GlockCelesta,
     Woodwinds,
     Bass,
     StrMelody2,

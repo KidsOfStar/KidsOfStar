@@ -9,6 +9,7 @@ public abstract class SceneBase : MonoBehaviour
 {
     [Header("Chapter")]
     [SerializeField] private ChapterType currentChapter;
+
     [SerializeField] private bool existRequiredDialog = true;
     [SerializeField] protected bool isFirstTime = true;
     [SerializeField, TextArea] private string introText;
@@ -21,6 +22,7 @@ public abstract class SceneBase : MonoBehaviour
 
     [Header("NPCs"), Tooltip("중복해서 넣지 않도록 주의해주세요")]
     [SerializeField] private SceneNpc[] speakers;
+
     [SerializeField] private InteractObject[] objects;
 
     [Header("Camera")]
@@ -29,6 +31,7 @@ public abstract class SceneBase : MonoBehaviour
     [Header("Player Position")]
     [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
     [SerializeField] private PlayerSpawnPointer spawnPointer;
+
     [SerializeField] private ScrollingBackGround scrollingBackGround;
 
     private Action onCutSceneEndHandler;
@@ -95,15 +98,11 @@ public abstract class SceneBase : MonoBehaviour
         GameObject playerObj = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
         Player player = playerObj.GetComponent<Player>();
 
+        var currentForm = Managers.Instance.GameManager.CurrentForm;
         if (Managers.Instance.GameManager.IsNewGame)
-        {
-            player.Init(playerStartForm);
-            // Managers.Instance.GameManager.UnlockForm();
-        }
-        // TODO: CurrentForm에 저장되어 있던 폼으로 Init
-        // TODO: playerStartForm이 string.empty여도 저장되어 있던 폼으로
+            player.Init(playerStartForm == 0 ? currentForm : playerStartForm);
         else
-            player.Init(playerStartForm);
+            player.Init(currentForm);
 
         Managers.Instance.GameManager.SetPlayer(player);
         Managers.Instance.DialogueManager.SetPlayerSpeaker(player);
@@ -176,12 +175,12 @@ public abstract class SceneBase : MonoBehaviour
     {
         if (objects == null || objects.Length == 0)
             return;
-        
+
         for (int i = 0; i < objects.Length; i++)
         {
             var obj = objects[i];
             obj.Init();
-            
+
             // ProgressNpcPlacer가 있다면 초기화
             if (obj.TryGetComponent(out ProgressNpcPlacer placer))
                 placer.Init();

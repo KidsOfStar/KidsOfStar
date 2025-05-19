@@ -35,7 +35,6 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     public void Init(Player player)
     {
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        EditorLog.LogWarning(capsuleCollider == null ? "null" : "null이 아님");
         SetFormData();
         controller = player.Controller;
         Animator fxAnim = formChangeEffectObj.GetComponent<Animator>();
@@ -92,8 +91,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
                 curFormData = nextFormData;
             }
         }
-        
-        // Managers.Instance.GameManager.CurrentForm = curFormData.FormName;
+        Managers.Instance.GameManager.SetCurrentForm(formType);
         
         // 형태 변화 이펙트와 데이터 교체 시작
         StartCoroutine(FormChangeSequence());
@@ -116,6 +114,8 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             return;
         }
 
+        Managers.Instance.GameManager.SetCurrentForm(formType);
+        
         curFormData = nextFormData;
         spriteRenderer.sprite = curFormData.FormImage;
         capsuleCollider.direction = curFormData.ColliderDirection;
