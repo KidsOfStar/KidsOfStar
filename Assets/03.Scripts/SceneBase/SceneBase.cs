@@ -197,7 +197,7 @@ public abstract class SceneBase : MonoBehaviour
 
     protected abstract void CutSceneEndCallback();
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         // 씬이 파괴될 때 반드시 구독 해제
         if (onCutSceneEndHandler != null)
