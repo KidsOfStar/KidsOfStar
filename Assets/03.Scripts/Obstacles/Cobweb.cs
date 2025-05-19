@@ -27,7 +27,7 @@ public class Cobweb : MonoBehaviour
             playerController.JumpForce = 0f;
             }
 
-            if (formController.CurFormData.FormName == "Dog")
+            if (formController.CurFormData.playerFormType == PlayerFormType.Dog)
             {
                 StartCoroutine(DogBreakCobweb(playerController));
             }
@@ -47,7 +47,7 @@ public class Cobweb : MonoBehaviour
                 playerController.JumpForce = 0f;
             }
 
-            if (formController.CurFormData.FormName == "Dog")
+            if (formController.CurFormData.playerFormType == PlayerFormType.Dog)
             {
                 StartCoroutine(DogBreakCobweb(playerController));
             }
