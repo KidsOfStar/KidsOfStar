@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     public SceneType sceneType;
 
     // 문 잠금 여부
-    public bool isDoorLocked = false;
+    public bool isDoorOpen = false;
     private SkillBTN skillBTN;
     // 문과 닿을 시 상호작용 키 활성화
 
@@ -31,7 +31,7 @@ public class Door : MonoBehaviour
 
     private void OnInteraction()
     {
-        if (!isDoorLocked)
+        if (!isDoorOpen)
         {
             if (bubbleTextInstance == null && bubbleTextPrefab != null)
             {

@@ -13,7 +13,6 @@ public class PuzzleTrigger : MonoBehaviour
 
     [Header("튜토리얼 문인지 체크")]
     [SerializeField] private bool isTutorial = false;
-    private bool tutorialShown = false;
 
 
     // 동물 폼
@@ -58,10 +57,10 @@ public class PuzzleTrigger : MonoBehaviour
 
     private void TryStartPuzzle()
     {
-        if (isTutorial && !tutorialShown)
+        if (!isTutorial)
         {
-            tutorialShown = true;
-            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(0);
+            isTutorial = true;
+            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(4);
             popup.OnClosed += () =>
             {
                 Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
