@@ -6,10 +6,6 @@ public class OnLadderState : PlayerStateBase
 {
     // 플레이어의 본래 중력 값
     private float gravityScale = 0;
-    // 하강 상태로 진입 시 상태 탈출을 막는 최소 시간
-    private float safeDuration = 0.2f;
-    // 사다리 타기 상태 진입 후 경과 시간
-    private float ladderEnterTime = 0f;
 
     public OnLadderState(PlayerContextData data, PlayerStateFactory factory) : base(data, factory)
     {
@@ -18,18 +14,18 @@ public class OnLadderState : PlayerStateBase
     public override void OnEnter()
     {
         base.OnEnter();
-        // 초기화
-        ladderEnterTime = 0;
         // 원래의 중력 값을 변수에 캐싱
         gravityScale = context.Rigid.gravityScale;
         // 중력 값을 0으로 전환
         context.Rigid.gravityScale = 0f;
         // 본래 있었을지도 모를 가속도 제거
         context.Rigid.velocity = Vector2.zero;
-        if(context.IgnoredPlatform != null)
-        {
-            Physics2D.IgnoreCollision(context.BoxCollider, context.IgnoredPlatform, true);
-        }
+        // 땅체크 중단
+        context.Controller.GroundCheckLocked = true;
+        //if(context.IgnoredPlatform != null)
+        //{
+        //    Physics2D.IgnoreCollision(context.BoxCollider, context.IgnoredPlatform, true);
+        //}
     }
 
     public override void OnUpdate()
@@ -43,18 +39,27 @@ public class OnLadderState : PlayerStateBase
             if(context.Controller.MoveDir.y > 0)
             { 
                 // 플레이어가 땅에 닿은 상태 && 사다리 접촉 X
-                if(!context.Controller.IsGround && !context.Controller.TouchLadder)
+                if(!context.Controller.TouchLadder)
                 {
                     context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
                 }
             }
             else if(context.Controller.MoveDir.y < 0)
             {
-                ladderEnterTime += Time.deltaTime;
+                Vector2 boxOrigin = context.BoxCollider.bounds.center;
+                RaycastHit2D boxHit =
+                    Physics2D.BoxCast(boxOrigin, context.BoxCollider.bounds.size, 0,
+                    Vector2.down, 0.02f, context.Controller.GroundLayer);
+                bool isEffector = false;
+
+                if(boxHit.collider != null)
+                {
+                    isEffector = boxHit.collider.TryGetComponent<PlatformEffector2D>(out _);
+                }
 
                 // 아래 방향 키를 입력중이라면
-                // 이전 위치 값 유무 체크 && 땅에 닿은 상태 && 보호 시간 초과
-                if(context.Controller.IsGround && ladderEnterTime > safeDuration)
+                // 감지 범위의 땅에 이펙터가 없을 경우
+                if(!isEffector)
                 {
                     Vector2 origin = context.BoxCollider.bounds.center;
                     origin.y = context.BoxCollider.bounds.min.y + 0.03f;
@@ -90,6 +95,8 @@ public class OnLadderState : PlayerStateBase
         context.Rigid.velocity = Vector2.zero;
         // 본래의 중력 값 적용
         context.Rigid.gravityScale = gravityScale;
+        // 땅 체크 잠금 해제
+        context.Controller.GroundCheckLocked = false;
 
         // 하강하면서 충돌 처리를 무시하게 된 플랫폼이 있다면
         if(context.IgnoredPlatform != null)

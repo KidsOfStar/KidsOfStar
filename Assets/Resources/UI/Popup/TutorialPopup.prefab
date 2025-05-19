@@ -279,7 +279,8 @@ MonoBehaviour:
       \uC624\uB978\uCABD\uC5D0 \uC788\uB294 \uADF8\uB9BC\uCC98\uB7FC \uB9DE\uCD94\uC138\uC694."
     customPrefab: {fileID: 0}
     imageSize: {x: 600, y: 400}
-  - images: []
+  - images:
+    - {fileID: 21300000, guid: 98fa5e9ee9acc5d45960f0735867f4ac, type: 3}
     title: "\uBC30\uC120\uD310 \uD37C\uC990"
     description: "0. \uC774\uACF3\uC758 \uC5D8\uB808\uBCA0\uC774\uD130\uB294 \uC790\uC8FC
       \uACE0\uC7A5\uB098 \uC788\uC2B5\uB2C8\uB2E4.\n1. \uD37C\uC990\uC758 \uD574\uB2F9

@@ -7,6 +7,7 @@ public class PlayerStateBase : IPlayerState
     // 상태 클래스 모음집
     protected PlayerStateFactory factory;
 
+
     // 생성자를 통해 데이터를 전달 받고 적용
     public PlayerStateBase(PlayerContextData data, PlayerStateFactory factory)
     {
@@ -46,7 +47,9 @@ public class PlayerStateBase : IPlayerState
             // 고양이 형태 || 이동 키 입력중 || 벽타기 가능한 상태
             if (context.FormController.CurFormData.FormName == "Cat" && 
                 context.Controller.MoveDir.x != 0 && 
-                context.CanCling)
+                context.CanCling &&
+                context.Rigid.velocity.y < 
+                context.Controller.WallJumpForce - context.Controller.WallJumpCut)
             {
                 WallTouchCheck();
             }
