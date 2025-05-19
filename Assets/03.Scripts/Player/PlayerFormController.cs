@@ -13,7 +13,8 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     [SerializeField, Tooltip("이펙트 재생용 오브젝트")] private GameObject formChangeEffectObj;
     [SerializeField] private SpriteRenderer spriteRenderer;
     // 플레이어 전체 형태 데이터 딕셔너리
-    private Dictionary<string, FormData> formDataDictionary = new Dictionary<string, FormData>();
+    private Dictionary<PlayerFormType, FormData> formDataDictionary = 
+        new Dictionary<PlayerFormType, FormData>();
 
     private PlayerController controller;    // 플레이어 컨트롤러
     private BoxCollider2D boxCollider;
@@ -31,8 +32,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     /// 초기화 함수
     /// </summary>
     /// <param name="player">플레이어 스크립트</param>
-    /// <param name="formName">시작할 형태</param>
-    public void Init(Player player, string formName)
+    public void Init(Player player)
     {
         boxCollider = GetComponent<BoxCollider2D>();
         SetFormData();
@@ -49,7 +49,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     {
         for(int i = 0; i < formData.PlayerFromDataList.Count; i++)
         {
-            formDataDictionary.Add(formData.PlayerFromDataList[i].FormName, formData.PlayerFromDataList[i]);
+            formDataDictionary.Add(formData.PlayerFromDataList[i].playerFormType, formData.PlayerFromDataList[i]);
         }
     }
 
@@ -58,15 +58,15 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     /// 형태 변화가 가능한 상태인지를 판별
     /// </summary>
     /// <param name="formName">변하려는 형태의 이름</param>
-    public void FormChange(string formName)
+    public void FormChange(PlayerFormType formType)
     {
         // 매개 변수로 온 형태 이름으로 변하려는 형태 데이터 찾기
-        FormData nextFormData = formDataDictionary[formName];
+        FormData nextFormData = formDataDictionary[formType];
         
         // 변할 수 있는 상태인지 체크
         // 요청된 형태가 게임상 존재하는 형태인지 || 요청된 형태가 해금된 상태인지 || 플레이어 조작이 가능한 상태인지
         // || 현재 형태 데이터가 비어있는 상태가 아니고(초기화 전에는 비어있으므로 예외를 위함) 플레이어가 땅에 닿은 상태인지
-        if (nextFormData == null || !nextFormData.IsActive || !controller.IsControllable 
+        if (nextFormData == null || !controller.IsControllable 
             || (curFormData != null && !controller.IsGround)) return;
 
         // 현재 형태의 데이터가 비어있다면
@@ -80,10 +80,10 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             // 초기화가 끝나서 현재 형태 데이터가 존재하는 경우
 
             // 이미 변화한 형태로 재용청이 왔다면
-            if (formName == curFormData.FormName)
+            if (formType == curFormData.playerFormType)
             {
                 // 인간의 형태로 형태 변화
-                curFormData = formDataDictionary["Human"];
+                curFormData = formDataDictionary[PlayerFormType.Human];
             }
             else
             {
@@ -103,15 +103,15 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     /// 플레이어가 아닌 게임 진행을 위한 형태 변화
     /// 조건 체크 없이 바로 변화
     /// </summary>
-    /// <param name="formName">변하려는 형태의 이름</param>
-    public void CutSceneFormChange(string formName)
+    /// <param name="formType">변하려는 형태의 이름</param>
+    public void CutSceneFormChange(PlayerFormType formType)
     {
-        FormData nextFormData = formDataDictionary[formName];
+        FormData nextFormData = formDataDictionary[formType];
 
         // 요청된 형태가 존재하는 형태가 아니라면 로그 띄우기
         if(nextFormData == null)
         {
-            EditorLog.Log("존재하지 않는 형태 변화 시도");
+            EditorLog.LogWarning("존재하지 않는 형태 변화 시도");
             return;
         }
 
@@ -177,41 +177,10 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         }
     }
 
-    /// <summary>
-    /// 돌과 사람을 제외한 모든 형태의 해금 상태를 반환
-    /// </summary>
-    /// <returns></returns>
-    public Dictionary<string, bool> GetAllFormLock()
-    {
-        Dictionary<string, bool> activeDic =
-            new Dictionary<string, bool>()
-            {
-                {"Squirrel", formDataDictionary["Squirrel"].IsActive },
-                {"Dog", formDataDictionary["Dog"].IsActive },
-                {"Cat", formDataDictionary["Cat"].IsActive },
-                {"Hide", formDataDictionary["Hide"].IsActive },
-            };
-
-        return activeDic;
-    }
-
-    // 형태의 해금 상태를 반환
-    public bool GetFormLock(string formName)
-    {
-        bool active = formDataDictionary[formName].IsActive;
-        return active;
-    }
-
-    // 형태의 해금 상태를 변경
-    public void SetFormActive(string formName)
-    {
-        formDataDictionary[formName].IsActive = !formDataDictionary[formName].IsActive;
-    }
-
     // 현재 형태의 이름을 반환
-    public string ReturnCurFormName()
+    public PlayerFormType ReturnCurFormType()
     {
-        return curFormData.FormName;
+        return curFormData.playerFormType;
     }
 
     public float GetWeight()

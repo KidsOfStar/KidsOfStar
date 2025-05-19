@@ -91,11 +91,11 @@ public class SkillBTN : UIBase
     {
         // 태그 Hide Area에 있는지 확인
         if (Managers.Instance.GameManager.Player.FormControl.isInHideArea)
-            UseSkill("Hide", skillUnlock.hideIcon, skillUnlock.hideBG);
+            UseSkill(PlayerFormType.Hide, skillUnlock.hideIcon, skillUnlock.hideBG);
     }
 
 
-    public void OnCat() => UseSkill("Cat", skillUnlock.catIcon, skillUnlock.catBG);
+    public void OnCat() => UseSkill(PlayerFormType.Cat, skillUnlock.catIcon, skillUnlock.catBG);
 
     /// <summary>
     /// 개 스킬 버튼 클릭 시 호출
@@ -104,9 +104,9 @@ public class SkillBTN : UIBase
     {
         UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);
     }*/
-    public void OnDog() => UseSkill("Dog", skillUnlock.dogIcon, skillUnlock.dogBG);
-    public void OnSquirrel() => UseSkill("Squirrel", skillUnlock.squirrelIcon, skillUnlock.squirrelBG);
-    public void UseSkill(string formName, GameObject icon, GameObject bg)
+    public void OnDog() => UseSkill(PlayerFormType.Dog, skillUnlock.dogIcon, skillUnlock.dogBG);
+    public void OnSquirrel() => UseSkill(PlayerFormType.Squirrel, skillUnlock.squirrelIcon, skillUnlock.squirrelBG);
+    public void UseSkill(PlayerFormType formType, GameObject icon, GameObject bg)
     {
         // 스킬이 이미 활성화된 상태라면 중복 실행을 방지하고 메서드 종료
         if (isSkillActive) return;
@@ -125,7 +125,7 @@ public class SkillBTN : UIBase
         // 스킬 활성화 상태로 변경
         isSkillActive = true;
 
-        Managers.Instance.GameManager.Player.FormControl.FormChange(formName);
+        Managers.Instance.GameManager.Player.FormControl.FormChange(formType);
 
         if (bg.activeSelf)
         {

@@ -72,13 +72,13 @@ public class WirePuzzleTrigger : MonoBehaviour
 
             // 현재 형태가 인간인지 확인
             var formControl = Managers.Instance.GameManager.Player.FormControl;
-            bool isHuman = formControl.ReturnCurFormName() == "Human";
+            bool isHuman = formControl.ReturnCurFormType() == PlayerFormType.Human;
 
             // 사람 형태가 아닐 때
             if(!isHuman)
             {
                 // 사람 형태 변신이 필요하다는 경고
-                Managers.Instance.UIManager.Show<TreeWarningPopup>(WarningType.Squirrel);
+                Managers.Instance.UIManager.Show<WarningPopup>(WarningType.Squirrel);
                 return;
             }
 

@@ -1,4 +1,5 @@
 using MainTable;
+using System;
 
 public class ChangeFormAction : IDialogActionHandler
 {
@@ -11,10 +12,15 @@ public class ChangeFormAction : IDialogActionHandler
             Managers.Instance.DialogueManager.OnDialogEnd?.Invoke();
         }
 
-        var player = Managers.Instance.GameManager.Player;
-        if (!player.FormControl.GetFormLock(dialogData.Param))
-            player.FormControl.SetFormActive(dialogData.Param);
+        if (!Enum.TryParse<PlayerFormType>(dialogData.Param, out var formType))
+        {
+            EditorLog.LogError($"ChangeFormAction : Invalid form type : {dialogData.Param}");
+            return;
+        }
 
-        player.FormControl.FormChange(dialogData.Param);
+        var player = Managers.Instance.GameManager.Player;
+
+        player.FormControl.FormChange(formType);
+        Managers.Instance.GameManager.UnlockForm(formType);
     }
 }
