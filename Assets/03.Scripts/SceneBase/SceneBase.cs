@@ -9,14 +9,12 @@ public abstract class SceneBase : MonoBehaviour
 {
     [Header("Chapter")]
     [SerializeField] private ChapterType currentChapter;
-
     [SerializeField] private bool existRequiredDialog = true;
     [SerializeField] protected bool isFirstTime = true;
-    [SerializeField, TextArea] private string introText; // TODO: first Time은 어떻게 설정하지?
+    [SerializeField, TextArea] private string introText;
 
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
-
     [SerializeField] protected string playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
 
@@ -95,7 +93,16 @@ public abstract class SceneBase : MonoBehaviour
 
         GameObject playerObj = Instantiate(playerPrefab, playerPosition, Quaternion.identity);
         Player player = playerObj.GetComponent<Player>();
-        player.Init(playerStartForm);
+
+        if (Managers.Instance.GameManager.IsNewGame)
+        {
+            player.Init(playerStartForm);
+            // Managers.Instance.GameManager.UnlockForm();
+        }
+        // TODO: CurrentForm에 저장되어 있던 폼으로 Init
+        // TODO: playerStartForm이 string.empty여도 저장되어 있던 폼으로
+        else
+            player.Init(playerStartForm);
 
         Managers.Instance.GameManager.SetPlayer(player);
         Managers.Instance.DialogueManager.SetPlayerSpeaker(player);
