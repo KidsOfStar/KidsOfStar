@@ -11,7 +11,6 @@ public class TreeWarningPopup : PopupBase
     [SerializeField] private TextMeshProUGUI boxWarningText;
     [SerializeField] private TextMeshProUGUI boxFallingText;
     [SerializeField] private Button confirmButton;
-    [SerializeField] private Button retryButton;
 
     // WarningType의 값을 순서대로 저장
     private WarningType[] warningQueue;
@@ -41,10 +40,8 @@ public class TreeWarningPopup : PopupBase
         boxWarningText.gameObject.SetActive(false);
         boxFallingText.gameObject.SetActive(false);
         confirmButton.gameObject.SetActive(false);
-        retryButton.gameObject.SetActive(false);
 
         confirmButton.onClick.RemoveAllListeners();
-        retryButton.onClick.RemoveAllListeners();   
 
         // 현재 경고 타입 가져오기
         switch (warningQueue[queueIndex])
