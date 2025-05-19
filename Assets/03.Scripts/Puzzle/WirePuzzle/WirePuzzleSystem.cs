@@ -187,6 +187,7 @@ public class WirePuzzleSystem : MonoBehaviour
     public void OnExit()
     {
         Managers.Instance.UIManager.Hide<WirePuzzlePopup>();
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.City);
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
     }
 

@@ -15,7 +15,7 @@ public class PlayerGroundState : PlayerStateBase
         if(context.Controller.TouchLadder && context.Controller.IsGround)
         {
             // 플레이어의 현재 형태가 은신 형태
-            if(context.FormController.CurFormData.FormName == "Hide")
+            if(context.FormController.CurFormData.playerFormType == PlayerFormType.Hide)
             {
                 CheckLadderClimb();
             }
