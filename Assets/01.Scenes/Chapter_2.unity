@@ -10157,7 +10157,7 @@ MonoBehaviour:
   introText: "\uC81C 2\uC7A5 \uAE4A\uC740 \uC0B0\n\n\uC544\uBB34\uB9AC \uC0C1\uB0E5\uD574\uB3C4
     \uAE34\uC7A5\uC744 \uB193\uC744 \uC21C \uC5C6\uC5B4."
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
-  playerStartForm: Squirrel
+  playerStartForm: 4
   playerSpawnPosition: {fileID: 1440882714}
   speakers:
   - {fileID: 5717506542985252047}

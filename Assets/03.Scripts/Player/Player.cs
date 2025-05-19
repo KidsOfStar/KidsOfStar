@@ -19,8 +19,8 @@ public class Player : MonoBehaviour, IDialogSpeaker
     /// <summary>
     /// 플레이어를 초기화 하기 위한 함수
     /// </summary>
-    /// <param name="formName">플레이어가 처음에 취할 형태</param>
-    public void Init(string formName)
+    /// <param name="formType">플레이어가 처음에 취할 형태</param>
+    public void Init(PlayerFormType formType)
     {
         // MonoBehavior를 상속한 각 스크립트를 가져오기
         controller = GetComponent<PlayerController>();
@@ -29,12 +29,12 @@ public class Player : MonoBehaviour, IDialogSpeaker
 
         // 가져온 스크립트를 초기화
         controller.Init(this);
-        formControl.Init(this, formName);
+        formControl.Init(this);
         stateMachine.Init(this);
 
         // 플레이어 초기 형태 적용
         // 따로 명시된 형태가 없으면 인간의 형태로
-        formControl.CutSceneFormChange(formName == "" ? "Human" : formName);
+        formControl.CutSceneFormChange(formType);
     }
 
     /// <summary>

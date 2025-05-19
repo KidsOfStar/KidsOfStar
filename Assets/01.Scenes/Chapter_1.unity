@@ -3330,7 +3330,7 @@ MonoBehaviour:
   introText: "\uC81C 1\uC7A5 \uAC1C\uC6B8\n\n\uC138\uC0C1\uC774 \uC774\uB807\uAC8C
     \uBB34\uC11C\uC6B4 \uACF3\uC774\uC57C?"
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
-  playerStartForm: Stone
+  playerStartForm: 1
   playerSpawnPosition: {fileID: 1652826008}
   speakers:
   - {fileID: 4071668483689947396}

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class TreeWarningPopup : PopupBase
+public class WarningPopup : PopupBase
 {
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private TextMeshProUGUI boxWarningText;
@@ -83,7 +83,7 @@ public class TreeWarningPopup : PopupBase
 
         // 모두 다 봤으면 팝업 닫기
         else
-            Managers.Instance.UIManager.Hide<TreeWarningPopup>();
+            Managers.Instance.UIManager.Hide<WarningPopup>();
     }
 
     private void ButtonWithSfx(Button btn, SfxSoundType sfx, UnityAction action)
