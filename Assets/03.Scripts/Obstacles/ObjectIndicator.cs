@@ -50,7 +50,7 @@ public class ObjectIndicator : MonoBehaviour
         {
             if (!box) return;
 
-            Managers.Instance.UIManager.Show<TreeWarningPopup>(WarningType.BoxFalling, this);
+            Managers.Instance.UIManager.Show<WarningPopup>(WarningType.BoxFalling, this);
             Time.timeScale = 0f;
             return;
         }

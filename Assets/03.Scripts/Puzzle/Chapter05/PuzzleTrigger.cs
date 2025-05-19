@@ -50,7 +50,7 @@ public class PuzzleTrigger : MonoBehaviour
         if ((dangerFormMask & currentForm.playerFormType) != 0)
         {
             //OntextBubbleText(player);
-            Managers.Instance.UIManager.Show<TreeWarningPopup>(
+            Managers.Instance.UIManager.Show<WarningPopup>(
                 WarningType.Squirrel
                 );
         }
