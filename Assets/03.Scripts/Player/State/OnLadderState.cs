@@ -46,9 +46,9 @@ public class OnLadderState : PlayerStateBase
             }
             else if(context.Controller.MoveDir.y < 0)
             {
-                Vector2 boxOrigin = context.BoxCollider.bounds.center;
+                Vector2 boxOrigin = context.CapsuleCollider.bounds.center;
                 RaycastHit2D boxHit =
-                    Physics2D.BoxCast(boxOrigin, context.BoxCollider.bounds.size, 0,
+                    Physics2D.BoxCast(boxOrigin, context.CapsuleCollider.bounds.size, 0,
                     Vector2.down, 0.02f, context.Controller.GroundLayer);
                 bool isEffector = false;
 
@@ -61,8 +61,8 @@ public class OnLadderState : PlayerStateBase
                 // 감지 범위의 땅에 이펙터가 없을 경우
                 if(!isEffector)
                 {
-                    Vector2 origin = context.BoxCollider.bounds.center;
-                    origin.y = context.BoxCollider.bounds.min.y + 0.03f;
+                    Vector2 origin = context.CapsuleCollider.bounds.center;
+                    origin.y = context.CapsuleCollider.bounds.min.y + 0.03f;
                     float rayLength = 0.1f;
 
                     // isGround 체크와 같은 조건으로 레이 캐스트

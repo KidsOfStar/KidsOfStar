@@ -17,6 +17,7 @@ MonoBehaviour:
     formImage: {fileID: 761482113, guid: 8bc8306f834470b4ba5265ff39b7c0a9, type: 3}
     formAnim: {fileID: 22100000, guid: 2283efee023738c4aa8a9920d5df8db1, type: 2}
     jumpForce: 0
+    colliderDirection: 1
     offsetX: 0
     offsetY: 0.3
     sizeX: 0.75
@@ -30,6 +31,7 @@ MonoBehaviour:
     formImage: {fileID: 1727844007, guid: d06ffee833dc42d4cadc78e2351edaf8, type: 3}
     formAnim: {fileID: 22100000, guid: 48c6daba1cf2bc640ab2a5b9031d1272, type: 2}
     jumpForce: 8
+    colliderDirection: 0
     offsetX: 0
     offsetY: 0.7
     sizeX: 0.6
@@ -43,6 +45,7 @@ MonoBehaviour:
     formImage: {fileID: 2076127918, guid: 5c1b3cb93d2c4a848b4081e20ee66acc, type: 3}
     formAnim: {fileID: 22100000, guid: 510a0a9ffd34f02428dbacd125510f1c, type: 2}
     jumpForce: 12
+    colliderDirection: 1
     offsetX: 0
     offsetY: 0.3
     sizeX: 0.3
@@ -56,6 +59,7 @@ MonoBehaviour:
     formImage: {fileID: -372320300, guid: 4395c9b503ecf9d48a3476ceb874cc16, type: 3}
     formAnim: {fileID: 22100000, guid: 9850f24ac044fcb45baefb134834d973, type: 2}
     jumpForce: 10
+    colliderDirection: 1
     offsetX: 0
     offsetY: 0.38
     sizeX: 0.9
@@ -69,6 +73,7 @@ MonoBehaviour:
     formImage: {fileID: -75012031, guid: be2052563e1f1934a8f0ea4869c3fcf0, type: 3}
     formAnim: {fileID: 22100000, guid: ff43a1e0e32003f4181256f2dfd045d6, type: 2}
     jumpForce: 10
+    colliderDirection: 1
     offsetX: 0
     offsetY: 0.33
     sizeX: 0.72
@@ -82,10 +87,11 @@ MonoBehaviour:
     formImage: {fileID: 1749720049, guid: 63ea964f811089f42865f4df70f2602f, type: 3}
     formAnim: {fileID: 22100000, guid: 46b24c8b3f7aff64a9f81c90d8f0bb9a, type: 2}
     jumpForce: 0
+    colliderDirection: 0
     offsetX: 0
     offsetY: 0.7
     sizeX: 0.6
-    sizeY: 1.4
+    sizeY: 1.3
     force: 0
     weight: 5
     IsActive: 1

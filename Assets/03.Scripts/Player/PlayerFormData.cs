@@ -21,6 +21,10 @@ public class FormData
     [SerializeField, Tooltip("형태의 점프력")] private float jumpForce;
     public float JumpForce { get { return jumpForce; } }
 
+    // 콜라이더 기본 방향
+    [SerializeField] private CapsuleDirection2D colliderDirection;
+    public CapsuleDirection2D ColliderDirection { get { return colliderDirection; } }
+
     // 형태의 콜라이더 offset
     [SerializeField] private float offsetX;
     public float OffsetX { get { return offsetX; } }

@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     public float WallJumpCut { get { return wallJumpCut; } }
 
     private Player player;
-    private BoxCollider2D boxCollider;
+    private CapsuleCollider2D capsuleCollider;
     private Rigidbody2D rigid;
 
     // 땅 체크 할지 여부
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     {
         this.player = player;
         rigid = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
 
         Managers.Instance.CutSceneManager.OnCutSceneStart += LockPlayer;
         Managers.Instance.DialogueManager.OnDialogStart += LockPlayer;
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         // 박스 캐스트로 플레이어의 아래 방향을 체크
         // 레이 캐스트가 아닌 이유는
         // 플레이어가 플랫폼 끝자락에 위치할 때 제대로 체크되지 않는 경우를 방지하기 위함
-        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down,
+        RaycastHit2D hit = Physics2D.BoxCast(capsuleCollider.bounds.center, capsuleCollider.bounds.size, 0f, Vector2.down,
             0.02f, groundLayer);
         
         // 점프 가능한 오브젝트에 닿은 동시에
@@ -321,10 +321,10 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     public bool TryDetectBox(Vector2 dir)
     {
-        Vector2 origin = (Vector2)boxCollider.bounds.center
-        + Vector2.right * (Mathf.Sign(dir.x) * (boxCollider.bounds.extents.x + 0.01f));
+        Vector2 origin = (Vector2)capsuleCollider.bounds.center
+        + Vector2.right * (Mathf.Sign(dir.x) * (capsuleCollider.bounds.extents.x + 0.01f));
 
-        Vector2 originalSize = boxCollider.bounds.size*0.8f;
+        Vector2 originalSize = capsuleCollider.bounds.size*0.8f;
         Vector2 size = new Vector2(originalSize.x * 0.2f, originalSize.y);
 
         Collider2D hit = Physics2D.OverlapBox(
@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     }
 
     //sprite 이미지에 맞춰서 콜라이더 생성
-    public void SetCollider()
+    public void SetCollider(CapsuleDirection2D direct)
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Bounds bounds = spriteRenderer.bounds;
@@ -359,8 +359,9 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
         Vector2 size = transform.InverseTransformVector(bounds.size);
         Vector2 offset = transform.InverseTransformPoint(bounds.center);
 
-        boxCollider.size = size;
-        boxCollider.offset = offset;
+        capsuleCollider.direction = direct;
+        capsuleCollider.size = size;
+        capsuleCollider.offset = offset;
     }
 
     /// <summary>

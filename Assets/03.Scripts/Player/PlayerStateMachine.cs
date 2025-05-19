@@ -21,7 +21,7 @@ public class PlayerStateMachine : MonoBehaviour
         this.player = player;
         // 데이터 모음 생성
         contextData = new PlayerContextData(player, player.Controller, player.FormControl, this,
-            GetComponentInChildren<SpriteRenderer>(), GetComponent<Rigidbody2D>(), GetComponent<BoxCollider2D>());
+            GetComponentInChildren<SpriteRenderer>(), GetComponent<Rigidbody2D>(), GetComponent<CapsuleCollider2D>());
         // 상태 클래스 생성
         factory = new PlayerStateFactory(contextData);
         // 대기 상태로 시작

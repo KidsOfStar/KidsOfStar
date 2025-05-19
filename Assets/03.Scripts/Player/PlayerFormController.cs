@@ -17,7 +17,7 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         new Dictionary<PlayerFormType, FormData>();
 
     private PlayerController controller;    // 플레이어 컨트롤러
-    private BoxCollider2D boxCollider;
+    private CapsuleCollider2D capsuleCollider;
     private FormData curFormData;   // 현재 형태의 데이터
     public FormData CurFormData { get { return  curFormData; } }
 
@@ -34,7 +34,8 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
     /// <param name="player">플레이어 스크립트</param>
     public void Init(Player player)
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
+        EditorLog.LogWarning(capsuleCollider == null ? "null" : "null이 아님");
         SetFormData();
         controller = player.Controller;
         Animator fxAnim = formChangeEffectObj.GetComponent<Animator>();
@@ -117,8 +118,9 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
 
         curFormData = nextFormData;
         spriteRenderer.sprite = curFormData.FormImage;
-        boxCollider.offset = new Vector2(curFormData.OffsetX, curFormData.OffsetY);
-        boxCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
+        capsuleCollider.direction = curFormData.ColliderDirection;
+        capsuleCollider.offset = new Vector2(curFormData.OffsetX, curFormData.OffsetY);
+        capsuleCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
         controller.JumpForce = curFormData.JumpForce;
         controller.Anim.runtimeAnimatorController = curFormData.FormAnim;
     }
@@ -146,8 +148,9 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
         // 현재 형태에 맞춰 데이터 교체
         controller.IsControllable = true;
         spriteRenderer.sprite = curFormData.FormImage;
-        boxCollider.offset = new Vector2(curFormData.OffsetX, curFormData.OffsetY);
-        boxCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
+        capsuleCollider.direction = curFormData.ColliderDirection;
+        capsuleCollider.offset = new Vector2(curFormData.OffsetX, curFormData.OffsetY);
+        capsuleCollider.size = new Vector2(curFormData.SizeX, curFormData.SizeY);
         controller.JumpForce = curFormData.JumpForce;
         controller.Anim.runtimeAnimatorController = curFormData.FormAnim;
         // 플레이어 스프라이트 렌더러 활성화

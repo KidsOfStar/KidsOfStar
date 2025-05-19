@@ -41,7 +41,7 @@ public class CatWallClingState : PlayerStateBase
         }
 
         context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(rot);
-        context.Controller.SetCollider();
+        context.Controller.SetCollider(CapsuleDirection2D.Vertical);
     }
 
     public override void OnUpdate()
@@ -90,11 +90,11 @@ public class CatWallClingState : PlayerStateBase
     bool IsWallTouchCheck()
     {
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
-        Vector2 origin = context.BoxCollider.bounds.center;
-        origin.y = context.BoxCollider.bounds.min.y + 0.05f;
+        Vector2 origin = context.CapsuleCollider.bounds.center;
+        origin.y = context.CapsuleCollider.bounds.min.y + 0.05f;
 
         RaycastHit2D hit = Physics2D.Raycast(origin, dir,
-            context.BoxCollider.bounds.size.x * 1.5f, context.Controller.GroundLayer);
+            context.CapsuleCollider.bounds.size.x * 1.5f, context.Controller.GroundLayer);
         //Debug.DrawRay(origin, dir * context.BoxCollider.bounds.size.x * 1.5f,
         //    Color.green, 1f);
 
@@ -112,7 +112,7 @@ public class CatWallClingState : PlayerStateBase
     {
         // 각도를 원래대로
         context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.zero);
-        context.Controller.SetCollider();
+        context.Controller.SetCollider(CapsuleDirection2D.Horizontal);
         // 초기화
         clingTimer = 0;
     }
