@@ -11,7 +11,6 @@ public class Cobweb : MonoBehaviour
     {
         cobwebCollider = GetComponent<Collider2D>();
         originalJumpForce = Managers.Instance.GameManager.Player.Controller.JumpForce;
-        Debug.Log($"originalJumpForce: {originalJumpForce}");
     }
 
     public void OnTriggerEnter2D(Collider2D other)

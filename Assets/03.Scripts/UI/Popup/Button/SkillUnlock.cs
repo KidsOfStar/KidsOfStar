@@ -103,15 +103,17 @@ public class SkillUnlock : MonoBehaviour
     // 특정 챕터의 스킬을 잠금 해제하고 바로 UI에 반영
     public void UnlockSkill(PlayerFormType chapter)
     {
-        // 이미 해금되어 있지 않으면 무시
-        if(Managers.Instance.GameManager.UnlockedForms.HasFlag(chapter))
-            return;
+        //// 이미 해금되어 있지 않으면 무시
+        //if(Managers.Instance.GameManager.UnlockedForms.HasFlag(chapter))
+        //    return;
 
         // 스킬 잠금 해제
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {
+            Debug.Log($"[SkillUnlock] UnlockSkill 호출됨 - {chapter}");
             skillPair.icon.SetActive(true);
         }
+        ApplyUnlockedSkills();
     }
 
 
