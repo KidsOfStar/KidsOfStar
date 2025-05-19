@@ -18,8 +18,13 @@ public class ChangeFormAction : IDialogActionHandler
             return;
         }
 
-        var player = Managers.Instance.GameManager.Player;
-
+        if (!Enum.TryParse<PlayerFormType>(dialogData.Param, out var formType))
+        {
+            EditorLog.LogError($"ChangeFormAction : Invalid form type : {dialogData.Param}");
+            return;
+        }
+		
+		var player = Managers.Instance.GameManager.Player;
         player.FormControl.FormChange(formType);
         Managers.Instance.GameManager.UnlockForm(formType);
     }

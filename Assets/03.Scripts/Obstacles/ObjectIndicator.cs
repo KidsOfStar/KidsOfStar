@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectIndicator : MonoBehaviour
@@ -12,6 +11,7 @@ public class ObjectIndicator : MonoBehaviour
     [Header("리셋 위치")]
     [Tooltip("리셋 시 플레이어가 이동할 위치")]
     [SerializeField] private Vector3 resetPlayerPos;
+
     [Tooltip("리셋 시 박스가 이동할 위치")]
     [SerializeField] private Vector3 resetBoxPos;
 
@@ -21,6 +21,7 @@ public class ObjectIndicator : MonoBehaviour
         UpdateActive();
         Managers.Instance.GameManager.OnProgressUpdated += UpdateActive;
     }
+
     void OnDestroy()
     {
         Managers.Instance.GameManager.OnProgressUpdated -= UpdateActive;
@@ -36,13 +37,26 @@ public class ObjectIndicator : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
 
-        if (Managers.Instance.GameManager.CurrentChapter == ChapterType.Chapter2 
+        if (Managers.Instance.GameManager.CurrentChapter == ChapterType.Chapter2
             && other.gameObject.CompareTag("Box"))
         {
             Managers.Instance.UIManager.Show<WarningPopup>(
                 WarningType.BoxFalling, this);
             Time.timeScale = 0f;
         }
+
+        if (Managers.Instance.GameManager.CurrentChapter != ChapterType.Chapter4) return;
+        if (other.gameObject.CompareTag("Box"))
+        {
+            if (!box) return;
+
+            Managers.Instance.UIManager.Show<TreeWarningPopup>(WarningType.BoxFalling, this);
+            Time.timeScale = 0f;
+            return;
+        }
+
+        if (other.gameObject.CompareTag("Player"))
+            player.transform.position = resetPlayerPos;
     }
 
     public void ResetPosition()
