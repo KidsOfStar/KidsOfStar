@@ -13,7 +13,7 @@ public class BreakWall : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out PlayerFormController formController))
         {
-            if (formController.CurFormData.FormName == "Dog")
+            if (formController.CurFormData.playerFormType == PlayerFormType.Dog)
             {
                 Destroy(gameObject);
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.WallBreak);

@@ -36,7 +36,6 @@ public class Leaf : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Managers.Instance.UIManager.Show<TutorialPopup>(2);
 
         if (isUsed) return;
         if ((collision.collider.CompareTag("Player") || collision.collider.CompareTag("Box")) && CheckBoundary(collision.transform))

@@ -147,6 +147,7 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
+        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
 
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
 

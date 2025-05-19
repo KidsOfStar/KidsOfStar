@@ -55,7 +55,7 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     private IEnumerator TemporaryIgnorePlayer(float duration)
     {
         // 박스, 플레이어 레이어간 충돌 판정을 무시
-        Physics2D.IgnoreLayerCollision(boxLayer, playerLayer, false);
+        Physics2D.IgnoreLayerCollision(boxLayer, playerLayer, true);
 
         // duration만큼만 무시
         yield return new WaitForSeconds(duration);
