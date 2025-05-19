@@ -190,8 +190,7 @@ public class Elevator : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (isBroken || isLocked) return;
-        if (direction == Direction.Left || direction == Direction.Right) return;
+        // if (direction == Direction.Left || direction == Direction.Right) return;
         if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
 
         if (IsOnElevator(other.collider))
@@ -201,12 +200,17 @@ public class Elevator : MonoBehaviour
             var fixedPositionY = coll.bounds.max.y - 0.1f;
             var fixedPosition = new Vector2(weightablePos.x, fixedPositionY);
             other.transform.position = fixedPosition;
+
+            if (other.gameObject.CompareTag("Player"))
+            {
+                EditorLog.Log("SetPhysicsMaterial");
+                var player = Managers.Instance.GameManager.Player;
+            }
         }
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (isBroken || isLocked) return;
         if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
 
         // 물체가 엘레베이터에 올라탄 상태라면
@@ -232,6 +236,12 @@ public class Elevator : MonoBehaviour
         other.transform.SetParent(null);
         if (weightables.Contains(weightable))
             weightables.Remove(weightable);
+        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            EditorLog.Log("UnSetPhysicsMaterial");
+            var player = Managers.Instance.GameManager.Player;
+        }
     }
 
     private bool IsOnElevator(Collider2D weightable)
@@ -241,15 +251,6 @@ public class Elevator : MonoBehaviour
 
         // 물체의 바닥면이 엘레베이터의 바닥면보다 맞지 않으면 false
         return !(Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin);
-
-        // if (Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin)
-        //     return false;
-        
-        // // 물체가 수평으로 반 이상 겹쳐있는지 확인
-        // float overlap = Mathf.Min(obj.max.x, elevator.max.x) - Mathf.Max(obj.min.x, elevator.min.x);
-        // overlap = Mathf.Max(overlap, 0f);
-        // 
-        // return overlap >= obj.size.x * 0.5f;
     }
 
     private void OnDestroy()

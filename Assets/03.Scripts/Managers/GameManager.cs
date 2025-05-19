@@ -73,7 +73,7 @@ public class GameManager
         ChapterProgress = saveData.chapterProgress;
         PlayerPosition = saveData.playerPosition;
         UnlockedForms = saveData.unlockedPlayerForms;
-        // TODO: CurrentForm = saveData.currentPlayerForm;
+        CurrentForm = saveData.currentPlayerForm;
         CompletedEnding = saveData.completedEnding;
 
         for (int i = 0; i < saveData.chapterTrust.Length; i++)
