@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     public float WallJumpForce { get { return wallJumpForce; } }
     [SerializeField, Tooltip("벽에 붙었다가 떨어졌을 때 다시 붙을 수 있게 되기까지의 쿨타임")] private float catClingTimer = 1f;
     public float CatClingTimer { get { return catClingTimer; } }
+    [SerializeField, Tooltip("점프 후 어느 정도의 감속이 있어야 벽점프가 가능한지")]
+    private float wallJumpCut = 1f;
+    public float WallJumpCut { get { return wallJumpCut; } }
 
     private Player player;
     private BoxCollider2D boxCollider;
