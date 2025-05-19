@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigid;
 
+    // 땅 체크 할지 여부
+    private bool groundCheckLocked = false;
+
     // 플레이어 이동 방향
     // 현재 입력중인 이동 방향
     private Vector2 moveDir = Vector2.zero;
@@ -109,6 +112,9 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     /// </summary>
     void GroundCheck()
     {
+        // 땅 체크 잠금 여부 체크
+        if (groundCheckLocked) return;
+
         // 박스 캐스트로 플레이어의 아래 방향을 체크
         // 레이 캐스트가 아닌 이유는
         // 플레이어가 플랫폼 끝자락에 위치할 때 제대로 체크되지 않는 경우를 방지하기 위함
