@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     // 땅 체크 할지 여부
     private bool groundCheckLocked = false;
+    public bool GroundCheckLocked
+    {
+        get { return groundCheckLocked; }
+        set { groundCheckLocked = value; }
+    }
 
     // 플레이어 이동 방향
     // 현재 입력중인 이동 방향
@@ -86,6 +91,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     [Header("Player")]
     [Tooltip("Player의 기본 위치")] public Vector3 playerBasePos;
+
     /// <summary>
     /// 스크립트 초기화 함수
     /// </summary>

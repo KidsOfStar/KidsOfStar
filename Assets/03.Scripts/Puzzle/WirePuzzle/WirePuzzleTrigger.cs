@@ -51,7 +51,7 @@ public class WirePuzzleTrigger : MonoBehaviour
         exclamationRenderer.enabled = false;
     }
 
-    // 진행도 변경 시 느낌표 표시 갱신
+    // 느낌표 표시 갱신
     private void UpdateExclamation()
     {
         bool show = Managers.Instance.GameManager.ChapterProgress == requireProgress;
