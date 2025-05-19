@@ -15,7 +15,8 @@ public abstract class SceneBase : MonoBehaviour
 
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
-    [SerializeField] protected string playerStartForm;
+
+    [SerializeField] protected PlayerFormType playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
 
     [Header("NPCs"), Tooltip("중복해서 넣지 않도록 주의해주세요")]

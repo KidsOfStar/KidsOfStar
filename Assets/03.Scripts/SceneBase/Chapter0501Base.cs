@@ -23,7 +23,6 @@ public class Chapter0501Base : SceneBase
             EditorLog.Log("튜토리얼 팝업이 열렸습니다.");
         }
 
-
         SkillForm();
 
     }

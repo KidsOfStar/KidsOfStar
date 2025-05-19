@@ -27,7 +27,6 @@ public class PopupBase : UIBase
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
                 Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
                 HideDirect();
-                Debug.Log("PopupBase Close");
             });
         }
     }

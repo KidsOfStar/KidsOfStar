@@ -158,7 +158,7 @@ MonoBehaviour:
   introText: "\uC81C 5\uC7A5 \uC544\uCFE0\uC544\uB9AC\uC6C0\n\n\uB098\uB97C \uD56D\uC0C1
     \uB3CC\uBCFC \uC218 \uC788\uB294 \uAC74 \uB098 \uBC16\uC5D0 \uC5C6\uC73C\uB2C8\uAE4C. "
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
-  playerStartForm: Hide
+  playerStartForm: 32
   playerSpawnPosition: {fileID: 263364338}
   speakers: []
   objects: []
@@ -924,7 +924,7 @@ CompositeCollider2D:
   m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:

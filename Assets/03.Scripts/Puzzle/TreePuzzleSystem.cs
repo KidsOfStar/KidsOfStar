@@ -133,11 +133,11 @@ public class TreePuzzleSystem : MonoBehaviour
     // 조각 체크
     public void CheckPuzzle()
     {
-        //foreach (var piece in pieces)
-        //{
-        //    if (!piece.IsCorrect())
-        //        return;
-        //}
+        foreach (var piece in pieces)
+        {
+            if (!piece.IsCorrect())
+                return;
+        }
 
         CompletePuzzle();
     }
@@ -147,6 +147,7 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
+        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
 
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
 

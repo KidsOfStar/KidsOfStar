@@ -310,7 +310,7 @@ MonoBehaviour:
     customPrefab: {fileID: 0}
     imageSize: {x: 800, y: 400}
   - images:
-    - {fileID: 21300000, guid: 24f23c5fd9f8d6845a15d07558eb60a8, type: 3}
+    - {fileID: 21300000, guid: 3e7c9662072a825418a2d0bdd48e7ba0, type: 3}
     title: "\uAE08\uACE0 \uD37C\uC990"
     description: "0. \uC774\uACF3\uC758 \uBB38\uC740 \uCD9C\uC785\uC744 \uB9C9\uAE30
       \uC704\uD574 \uC7A0\uACA8\uC788\uC2B5\uB2C8\uB2E4.\n1. \uD37C\uC990\uC758 \uD574\uB2F9

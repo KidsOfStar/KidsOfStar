@@ -71,7 +71,7 @@ public class SkillUnlock : MonoBehaviour
     public void ApplyUnlockedSkills()
     {
         var unlockedSkills = Managers.Instance.GameManager.UnlockedForms;
-        var currenrttForm = Managers.Instance.GameManager.Player.FormControl.CurFormData.FormName;
+        var currenrttForm = Managers.Instance.GameManager.Player.FormControl.CurFormData.playerFormType;
 
         foreach (PlayerFormType chapter in Enum.GetValues(typeof(PlayerFormType)))
         {
@@ -79,7 +79,7 @@ public class SkillUnlock : MonoBehaviour
                 continue;
 
             bool isUnlocked = unlockedSkills.HasFlag(chapter); // 비트플래그로 스킬 잠금 해제 여부 확인
-            bool isCurrent = chapter.ToString() == currenrttForm; // 현재 폼과 비교
+            bool isCurrent = chapter == currenrttForm; // 현재 폼과 비교
 
             // 기본은 모두 끄기
             skillPair.bg.SetActive(false);
@@ -110,7 +110,6 @@ public class SkillUnlock : MonoBehaviour
         // 스킬 잠금 해제
         if (skillMap.TryGetValue(chapter, out var skillPair))
         {
-            Debug.Log($"[SkillUnlock] UnlockSkill 호출됨 - {chapter}");
             skillPair.icon.SetActive(true);
         }
         ApplyUnlockedSkills();
