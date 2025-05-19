@@ -28,10 +28,21 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     public float WallJumpForce { get { return wallJumpForce; } }
     [SerializeField, Tooltip("벽에 붙었다가 떨어졌을 때 다시 붙을 수 있게 되기까지의 쿨타임")] private float catClingTimer = 1f;
     public float CatClingTimer { get { return catClingTimer; } }
+    [SerializeField, Tooltip("점프 후 어느 정도의 감속이 있어야 벽점프가 가능한지")]
+    private float wallJumpCut = 1f;
+    public float WallJumpCut { get { return wallJumpCut; } }
 
     private Player player;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigid;
+
+    // 땅 체크 할지 여부
+    private bool groundCheckLocked = false;
+    public bool GroundCheckLocked
+    {
+        get { return groundCheckLocked; }
+        set { groundCheckLocked = value; }
+    }
 
     // 플레이어 이동 방향
     // 현재 입력중인 이동 방향
@@ -83,6 +94,7 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     [Header("Player")]
     [Tooltip("Player의 기본 위치")] public Vector3 playerBasePos;
+
     /// <summary>
     /// 스크립트 초기화 함수
     /// </summary>
@@ -109,6 +121,9 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     /// </summary>
     void GroundCheck()
     {
+        // 땅 체크 잠금 여부 체크
+        if (groundCheckLocked) return;
+
         // 박스 캐스트로 플레이어의 아래 방향을 체크
         // 레이 캐스트가 아닌 이유는
         // 플레이어가 플랫폼 끝자락에 위치할 때 제대로 체크되지 않는 경우를 방지하기 위함

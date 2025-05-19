@@ -226,6 +226,7 @@ MonoBehaviour:
   jumpForce: 2
   wallJumpForce: 10
   catClingTimer: 0.5
+  wallJumpCut: 2
   pushableLayer:
     serializedVersion: 2
     m_Bits: 128
