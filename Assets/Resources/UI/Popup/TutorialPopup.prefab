@@ -30,10 +30,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 9053948326621606747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 800}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &318864838661889735
 GameObject:
@@ -205,10 +205,10 @@ RectTransform:
   - {fileID: 9215641576766820980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 800}
+  m_SizeDelta: {x: -200, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7405954946248499179
 CanvasRenderer:
@@ -280,13 +280,14 @@ MonoBehaviour:
     customPrefab: {fileID: 0}
     imageSize: {x: 600, y: 400}
   - images: []
-    title: "\uC740\uC2E0 \uD615\uD0DC\uBCC0\uD654"
-    description: "0. \uBCC4\uC758 \uC544\uC774\uB4E4\uC740 \uC885\uC885 \uBC29\uC744
-      \uC7A0\uAD88\uB461\uB2C8\uB2E4.\n1. \uD37C\uC990\uC758 \uD574\uB2F9 \uCE78\uC744
-      \uB450\uBC88 \uD130\uCE58\uD558\uBA74 \uB3CC\uC544\uAC11\uB2C8\uB2E4. \n2.
-      \uC624\uB978\uCABD\uC5D0 \uC788\uB294 \uADF8\uB9BC\uCC98\uB7FC \uB9DE\uCD94\uC138\uC694."
+    title: "\uBC30\uC120\uD310 \uD37C\uC990"
+    description: "0. \uC774\uACF3\uC758 \uC5D8\uB808\uBCA0\uC774\uD130\uB294 \uC790\uC8FC
+      \uACE0\uC7A5\uB098 \uC788\uC2B5\uB2C8\uB2E4.\n1. \uD37C\uC990\uC758 \uD574\uB2F9
+      \uCE78\uC744 \uB450 \uBC88 \uD130\uCE58\uD558\uBA74 \uB124 \uCE78\uC758 \uC704\uCE58\uAC00
+      \uBC14\uB01D\uB2C8\uB2E4.\n2. \uBAA8\uB4E0 \uC804\uC120\uC744 \uB3D9\uC77C\uD55C
+      \uC0C9\uC73C\uB85C, \uC77C\uC9C1\uC120\uC73C\uB85C \uC5F0\uACB0\uD574\uC8FC\uC138\uC694."
     customPrefab: {fileID: 0}
-    imageSize: {x: 0, y: 0}
+    imageSize: {x: 600, y: 600}
   - images:
     - {fileID: 21300000, guid: 6b01d4ee887daf8448b5fdab819141bf, type: 3}
     title: "\uB098\uBB47\uC78E \uD2B8\uB7A8\uD384\uB9B0"
@@ -294,6 +295,27 @@ MonoBehaviour:
       \uB354 \uB192\uC740 \uACF3\uC73C\uB85C \uC62C\uB77C\uAC08 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n2.
       \uB098\uBB47\uC78E \uD2B8\uB7A8\uD384\uB9B0\uC744 \uC0AC\uC6A9\uD574 \uC0C1\uC790\uB97C
       \uBAA9\uC801\uC9C0\uAE4C\uC9C0 \uC62E\uACA8\uBCF4\uC138\uC694."
+    customPrefab: {fileID: 0}
+    imageSize: {x: 800, y: 400}
+  - images: []
+    title: "\uC740\uC2E0 \uD615\uD0DC\uBCC0\uD654"
+    description: "0. \uC774\uACF3\uC5D0\uC11C\uB294 \uB2E4\uB978 \uC0AC\uB78C\uB4E4\uC5D0\uAC8C
+      \uC815\uCCB4\uB97C \uB4E4\uD0A4\uBA74 \uC548\uB429\uB2C8\uB2E4.\n1. \uC0AC\uB78C\uC774
+      \uB9CE\uC740 \uACF3, \uC815\uCCB4\uB97C \uC228\uACA8\uC57C\uD558\uB294 \uACF3\uC5D0\uC11C\uB294
+      \uC740\uC2E0\uC744 \uC0AC\uC6A9\uD574\uC57C \uD569\uB2C8\uB2E4.\n2. \uC740\uC2E0\uC740
+      \uB2E4\uB978 \uACF3\uBCF4\uB2E4 \uC5B4\uB461\uAC70\uB098, \uC0AC\uB78C\uC774
+      \uC5C6\uB294 \uACF3\uC5D0\uC11C \uC0AC\uC6A9/\uD574\uC81C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    customPrefab: {fileID: 1963661148065388421, guid: 36dcfec08e86efa428aaa2a6e3e0c2ca, type: 3}
+    imageSize: {x: 800, y: 400}
+  - images:
+    - {fileID: 21300000, guid: 24f23c5fd9f8d6845a15d07558eb60a8, type: 3}
+    title: "\uAE08\uACE0 \uD37C\uC990"
+    description: "0. \uC774\uACF3\uC758 \uBB38\uC740 \uCD9C\uC785\uC744 \uB9C9\uAE30
+      \uC704\uD574 \uC7A0\uACA8\uC788\uC2B5\uB2C8\uB2E4.\n1. \uD37C\uC990\uC758 \uD574\uB2F9
+      \uCE78\uC744 \uB450 \uBC88 \uD130\uCE58\uD558\uBA74 \uBC29\uD5A5\uC774 \uBC14\uB01D\uB2C8\uB2E4.\n2.
+      \uADF8\uB9BC\uC744 \uC54C\uB9DE\uAC8C \uB9DE\uCDB0\uC8FC\uC138\uC694.\n3. \uD558\uB098\uC529
+      \uD574\uAE08\uB418\uB294 \uB2E4\uC774\uC5BC\uC744 \uB9DE\uCD94\uBA74 \uBB38\uC774
+      \uC5F4\uB9BD\uB2C8\uB2E4."
     customPrefab: {fileID: 0}
     imageSize: {x: 800, y: 400}
 --- !u!1 &2530471945173415138
@@ -334,7 +356,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1074550987415234421
 CanvasRenderer:
@@ -408,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -96, y: -23}
+  m_AnchoredPosition: {x: -100, y: -30}
   m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1727516624484712439
@@ -619,7 +641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 80}
+  m_AnchoredPosition: {x: 0, y: 40}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5585972652621875001
