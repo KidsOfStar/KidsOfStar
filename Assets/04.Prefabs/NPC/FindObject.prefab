@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4826549436356297133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 6695838928045518868}
   - component: {fileID: 2426770855588332605}
   - component: {fileID: 4322962386963951716}
-  - component: {fileID: 5322436965267880222}
   m_Layer: 0
   m_Name: FindObject
   m_TagString: Untagged
@@ -108,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1534067229, guid: c583eb0e2e15e5b4db6c8cff7558a4e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -199,18 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ChapterType>k__BackingField: 4
-  <CharacterType>k__BackingField: 19
+  <CharacterType>k__BackingField: 20
   <BubbleTr>k__BackingField: {fileID: 7018765124060432402}
   dontInit: 0
---- !u!114 &5322436965267880222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7963855875982492063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 606ae12007d96d24bba9a2760e902b13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

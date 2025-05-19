@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CutSceneLode : MonoBehaviour
+public class CutSceneLoad : MonoBehaviour
 {
     public CutSceneType cutSceneType;
 

@@ -13,6 +13,9 @@ public class Chapter0502Base : SceneBase
     protected override void InitSceneExtra(Action callback)
     {
         SkillForm();
+        
+        Managers.Instance.GameManager.UpdateProgress(); // 진행도 2
+
     }
 
     private void SkillForm()

@@ -36,7 +36,8 @@ public class ObjectIndicator : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
 
-        if (other.gameObject.CompareTag("Box"))
+        if (Managers.Instance.GameManager.CurrentChapter == ChapterType.Chapter2 
+            && other.gameObject.CompareTag("Box"))
         {
             Managers.Instance.UIManager.Show<TreeWarningPopup>(
                 WarningType.BoxFalling, this);
@@ -53,6 +54,8 @@ public class ObjectIndicator : MonoBehaviour
         box.ResetPosition();
 
         Time.timeScale = 1f;
+
+        if(Managers.Instance.GameManager.CurrentChapter== ChapterType.Chapter2)
         Managers.Instance.UIManager.Hide<TreeWarningPopup>();
     }
 }

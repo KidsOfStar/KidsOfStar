@@ -79,7 +79,6 @@ public class TreePuzzleTrigger : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            EditorLog.Log("구독");
             if (hasPlayer) return;
             hasPlayer = true;
 

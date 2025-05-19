@@ -119,6 +119,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -126,12 +139,12 @@ TextureImporter:
       name: acorn_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 3
         y: 66
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +160,12 @@ TextureImporter:
       name: acorn_1
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 66
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +181,12 @@ TextureImporter:
       name: acorn_2
       rect:
         serializedVersion: 2
-        x: 46
+        x: 45
         y: 66
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +202,12 @@ TextureImporter:
       name: acorn_3
       rect:
         serializedVersion: 2
-        x: 67
+        x: 66
         y: 66
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +223,12 @@ TextureImporter:
       name: acorn_4
       rect:
         serializedVersion: 2
-        x: 4
+        x: 3
         y: 45
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,12 +244,12 @@ TextureImporter:
       name: acorn_5
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 45
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,12 +265,12 @@ TextureImporter:
       name: acorn_6
       rect:
         serializedVersion: 2
-        x: 46
+        x: 45
         y: 45
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,12 +286,12 @@ TextureImporter:
       name: acorn_7
       rect:
         serializedVersion: 2
-        x: 67
+        x: 66
         y: 45
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,12 +307,12 @@ TextureImporter:
       name: acorn_8
       rect:
         serializedVersion: 2
-        x: 4
+        x: 3
         y: 24
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -315,12 +328,12 @@ TextureImporter:
       name: acorn_9
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 24
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -336,12 +349,12 @@ TextureImporter:
       name: acorn_10
       rect:
         serializedVersion: 2
-        x: 46
+        x: 45
         y: 24
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,12 +370,12 @@ TextureImporter:
       name: acorn_11
       rect:
         serializedVersion: 2
-        x: 67
+        x: 66
         y: 24
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -378,12 +391,12 @@ TextureImporter:
       name: acorn_12
       rect:
         serializedVersion: 2
-        x: 4
+        x: 3
         y: 3
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,12 +412,12 @@ TextureImporter:
       name: acorn_13
       rect:
         serializedVersion: 2
-        x: 25
+        x: 24
         y: 3
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -420,12 +433,12 @@ TextureImporter:
       name: acorn_14
       rect:
         serializedVersion: 2
-        x: 46
+        x: 45
         y: 3
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,12 +454,12 @@ TextureImporter:
       name: acorn_15
       rect:
         serializedVersion: 2
-        x: 67
+        x: 66
         y: 3
-        width: 20
-        height: 20
+        width: 21
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -467,14 +480,14 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7642256be6623b408e591164cf46288
-      internalID: 1551216176
+      spriteID: dcb8f2280c0bbdf43aa36e6ae00fd20b
+      internalID: -930275152
       vertices: []
       indices: 
       edges: []
@@ -490,7 +503,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BG: 1551216176
+      BG: -930275152
       acorn_0: -1755681074
       acorn_1: -1219625041
       acorn_10: -1391939037

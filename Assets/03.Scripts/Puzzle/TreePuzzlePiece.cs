@@ -11,11 +11,11 @@ public class TreePuzzlePiece : MonoBehaviour, IPointerClickHandler
     [SerializeField] private int correctRotation; // 0, 90, 180, 270
 
     private int currentRotation;
-    private Outline outLine;
+    [SerializeField] private GameObject outLine;
 
     private void Awake()
     {
-        outLine = pieceImage.GetComponent<Outline>();
+        outLine.SetActive(false);
         pieceImage.raycastTarget = true;
     }
     public void Initialize(TreePuzzleSystem systemManager, int correctionRotation, int index)
@@ -71,7 +71,7 @@ public class TreePuzzlePiece : MonoBehaviour, IPointerClickHandler
     public void SetHighlight(bool on)
     {
         if (outLine != null)
-            outLine.enabled = on;
+            outLine.SetActive(on);
     }
 }
 

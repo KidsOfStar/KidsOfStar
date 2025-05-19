@@ -24,7 +24,7 @@ public class BgmLayeredFader : MonoBehaviour
     private readonly Dictionary<int, MainBgmSourceType> audioByIndexDict = new();
     
     // Audio Setting
-    private int progress = 1;
+    private int progress = 0;
     private bool isLoop = true;
     private double dspStart;
     
@@ -55,6 +55,7 @@ public class BgmLayeredFader : MonoBehaviour
 
         var piano = audioDict[MainBgmSourceType.Piano];
         StartCoroutine(FadeInAudio(piano, 2f));
+        progress++;
     }
 
     private void AddListener()
@@ -130,7 +131,7 @@ public class BgmLayeredFader : MonoBehaviour
         {
             if (dialogIndex != dialogIndexes[i]) continue;
 
-            var audioType = audioByIndexDict[dialogIndexes[i]];
+            var audioType = audioByIndexDict[dialogIndexes[i + 2]];
             PlaySource(audioType);
             progress++;
         }
