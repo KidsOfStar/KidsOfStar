@@ -16,8 +16,10 @@ public class PopupBase : UIBase
         // 특정 bool를 이용해서 앞에서 보여지게 하기
         if(isFirst)
             transform.SetAsLastSibling();
-        Managers.Instance.GameManager.Player.Controller.LockPlayer();
-
+        if (Managers.Instance.SceneLoadManager.CurrentScene != SceneType.Title)
+        {
+            Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+        }
     }
 
     protected virtual void Start()
@@ -27,12 +29,6 @@ public class PopupBase : UIBase
             closeBtn.onClick.AddListener(() => 
             {
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
-
-                // 타이플이 아닐 경우 언락 -> UIBase에 비활성화만 하고 있음
-                if (Managers.Instance.SceneLoadManager.CurrentScene != SceneType.Title)
-                {
-                    Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
-                }
                 HideDirect();
             });
         }
