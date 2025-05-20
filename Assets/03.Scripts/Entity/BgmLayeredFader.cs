@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +20,7 @@ public class BgmLayeredFader : MonoBehaviour
     [SerializeField] private int[] dialogIndexes;
     
     // 5022, 5023, 5024, 5026, 5027 시작할 때
-    [SerializeField] private int[] finalDialogs;
+    // [SerializeField] private int[] finalDialogs;
 
     private readonly Dictionary<MainBgmSourceType, AudioSource> audioDict = new();
     private readonly Dictionary<int, MainBgmSourceType> audioByIndexDict = new();
@@ -66,7 +65,10 @@ public class BgmLayeredFader : MonoBehaviour
         var dialogManager = Managers.Instance.DialogueManager;
         dialogManager.OnDialogStepEnd += OnPlayStrMelody;
         dialogManager.OnDialogStepStart += OnPlayAudioSources;
-        dialogManager.OnDialogStepEnd += OnPlayRiseEffect;
+
+        var selectionPanel = Managers.Instance.UIManager.Show<UISelectionPanel>();
+        selectionPanel.HideDirect();
+        selectionPanel.OnFinalSelect += OnPlayRiseEffect;
     }
 
     private void ScheduleLoop()
@@ -141,16 +143,8 @@ public class BgmLayeredFader : MonoBehaviour
     }
 
     // 9번 라이즈 이펙트 재생과 동시에 2~8번 멈춤
-    private void OnPlayRiseEffect(int dialogIndex)
+    private void OnPlayRiseEffect()
     {
-        bool correct = false;
-        for (int i = 0; i < finalDialogs.Length; i++)
-        {
-            if (dialogIndex == finalDialogs[i])
-                correct = true;
-        }
-        if (!correct) return;
-        
         isLoop = false;
         
         // 1, 9번 제외 재생 멈춤
@@ -235,7 +229,9 @@ public class BgmLayeredFader : MonoBehaviour
         var dialogManager = Managers.Instance.DialogueManager;
         dialogManager.OnDialogStepEnd -= OnPlayStrMelody;
         dialogManager.OnDialogStepStart -= OnPlayAudioSources;
-        dialogManager.OnDialogStepEnd -= OnPlayRiseEffect;
+
+        var selectionPanel = Managers.Instance.UIManager.Get<UISelectionPanel>();
+        selectionPanel.OnFinalSelect -= OnPlayRiseEffect;
         Managers.Instance.SoundManager.SetBgmVolumeCallback -= SetVolume;
     }
 }

@@ -19,6 +19,7 @@ public class Managers : Singleton<Managers>
     public DialogueManager DialogueManager { get; private set; }
     public SaveManager SaveManager { get; private set; }
     public CutSceneManager CutSceneManager { get; private set; }
+    public AnalyticsManager AnalyticsManager { get; private set; }
 
     protected override void Awake()
     {
@@ -38,6 +39,7 @@ public class Managers : Singleton<Managers>
         DialogueManager = new DialogueManager();
         SaveManager = new SaveManager();
         CutSceneManager = new CutSceneManager();
+        AnalyticsManager = new AnalyticsManager();
 #if UNITY_EDITOR
         if (!IsDebugMode) return;
 
