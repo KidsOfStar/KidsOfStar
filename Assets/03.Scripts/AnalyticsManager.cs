@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
 
@@ -46,6 +47,14 @@ public class AnalyticsManager
 
         // 4) Analytics 전송
         AnalyticsService.Instance.RecordEvent(ce);
+    }
+
+    public void SendFunnel(string number)
+    {
+        var funnelEvent = new CustomEvent("Funnel_Chapter");
+        funnelEvent["Funnel_Chapter_Step"] = number;
+        
+        AnalyticsService.Instance.RecordEvent(funnelEvent);
     }
 }
 
