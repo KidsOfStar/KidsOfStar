@@ -6921,6 +6921,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   virtualCamera: {fileID: 2036214067}
   trackedDolly: {fileID: 111038905}
+  deadIine: {fileID: 710120444}
   characterType: 0
   cameraMoveSpeed: 40
   playerSpeed: 0

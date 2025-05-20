@@ -16,7 +16,7 @@ public class Chapter01PuzzleBase : SceneBase
         PlayChaseAnim();
         spawner.StartSpawn();
 
-        Managers.Instance.AnalyticsManager.ChaseTryCount++;
+        Managers.Instance.AnalyticsManager.TryCount++;
         StartCoroutine(JumpTutorial());
     }
 

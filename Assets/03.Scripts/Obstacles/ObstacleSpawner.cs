@@ -191,9 +191,9 @@ public class ObstaclesSpawner : MonoBehaviour
     {
         var analytics = Managers.Instance.AnalyticsManager;
         analytics.RecordChapterEvent("ChaseClear",
-                                     ("ChallengeCount", analytics.ChaseTryCount));
+                                     ("ChallengeCount", analytics.TryCount));
 
-        analytics.ChaseTryCount = 0;
+        analytics.TryCount = 0;
     }
 
     private IEnumerator OnDialogEnd()
