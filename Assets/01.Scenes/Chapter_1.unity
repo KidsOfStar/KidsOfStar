@@ -653,7 +653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1000617796
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763fd521ad5998e429b20b9889fc5234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutSceneType: 0
+  cutSceneType: 11
   bgmFader: {fileID: 6335355426110140136, guid: 517780d158f837149b557f633f62f9de, type: 3}
   isTrigger: 1
 --- !u!4 &1000617798
@@ -3390,7 +3390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1236714531
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3448,7 +3448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763fd521ad5998e429b20b9889fc5234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutSceneType: 0
+  cutSceneType: 14
   bgmFader: {fileID: 0}
   isTrigger: 1
 --- !u!4 &1236714533
