@@ -1,14 +1,10 @@
-using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Net.NetworkInformation;
-using MainTable;
 
 public class AnalyticsManager
 {
+    public int fallCount;
+
     public AnalyticsManager()
     {
         Init();
