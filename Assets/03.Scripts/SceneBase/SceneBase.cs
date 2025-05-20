@@ -9,20 +9,17 @@ public abstract class SceneBase : MonoBehaviour
 {
     [Header("Chapter")]
     [SerializeField] private ChapterType currentChapter;
-
     [SerializeField] private bool existRequiredDialog = true;
     [SerializeField] protected bool isFirstTime = true;
     [SerializeField, TextArea] private string introText;
 
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
-
     [SerializeField] protected PlayerFormType playerStartForm;
     [SerializeField] private Transform playerSpawnPosition;
 
     [Header("NPCs"), Tooltip("중복해서 넣지 않도록 주의해주세요")]
     [SerializeField] private SceneNpc[] speakers;
-
     [SerializeField] private InteractObject[] objects;
 
     [Header("Camera")]
@@ -31,7 +28,6 @@ public abstract class SceneBase : MonoBehaviour
     [Header("Player Position")]
     [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
     [SerializeField] private PlayerSpawnPointer spawnPointer;
-
     [SerializeField] private ScrollingBackGround scrollingBackGround;
 
     private Action onCutSceneEndHandler;
