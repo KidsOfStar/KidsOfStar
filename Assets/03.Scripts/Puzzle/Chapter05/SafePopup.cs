@@ -12,14 +12,16 @@ public class SafePopup : PopupBase
     [Header("퍼즐 시스템")]
     private SceneType sceneType;
     public TreePuzzleData[] datas; // 전체 9개 퍼즐 SO
-    public SafePuzzleSystem[] puzzleSystems; // 3개 퍼즐 시스템 (각 퍼즐 UI와 연결됨)
+    public SafePuzzleSystem puzzleSystem; // 3개 퍼즐 시스템 (각 퍼즐 UI와 연결됨)
 
     private int[] puzzleIndex;        // 현재 씬에서 사용할 퍼즐 3개의 인덱스
     public int countIndex = 0;
 
     protected override void Start()
     {
+        base.Start();
         door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
+
         /*puzzleIndex = GetIndexSetForScene(sceneType);
 
         currentPuzzle = puzzleSystems[0];
@@ -38,7 +40,6 @@ public class SafePopup : PopupBase
 
         puzzleIndex = GetIndexSetForScene(sceneType); // 꼭 세팅해줘야 함
 
-        SetupAllPuzzles();
         StartPuzzleAtIndex(countIndex);
 
         Debug.Log($"[SafePopup] 씬 {sceneType} 의 퍼즐 인덱스 배열: {string.Join(", ", puzzleIndex)}");
@@ -46,7 +47,9 @@ public class SafePopup : PopupBase
     }
     public void nextPuzzle()
     {
-        Debug.Log($"[SafePopup] nextPuzzle 호출됨 - 현재 countIndex: {countIndex}");
+        countIndex++;
+
+        //Debug.Log($"[SafePopup] nextPuzzle 호출됨 - 현재 countIndex: {countIndex}");
 
         if (countIndex >= puzzleIndex.Length)
         {
@@ -54,12 +57,6 @@ public class SafePopup : PopupBase
             return;
         }
 
-        // 인덱스 유효성 점검
-        if (countIndex >= puzzleSystems.Length)
-        {
-            Debug.LogError($"[SafePopup] puzzleSystems 배열 인덱스 초과! countIndex: {countIndex}, puzzleSystems.Length: {puzzleSystems.Length}");
-            return;
-        }
 
         if (countIndex >= puzzleIndex.Length)
         {
@@ -67,14 +64,12 @@ public class SafePopup : PopupBase
             return;
         }
 
-        Debug.Log($"[SafePopup] 다음 퍼즐로 이동 준비 중...");
-        Debug.Log($" - countIndex = {countIndex}");
-        Debug.Log($" - 사용될 SO 인덱스 = {puzzleIndex[countIndex]}");
-        Debug.Log($" - 사용할 PuzzleSystem = {puzzleSystems[countIndex].name}");
+        //Debug.Log($"[SafePopup] 다음 퍼즐로 이동 준비 중...");
+        //Debug.Log($" - countIndex = {countIndex}");
+        //Debug.Log($" - 사용될 SO 인덱스 = {puzzleIndex[countIndex]}");
+        //Debug.Log($" - 사용할 PuzzleSystem = {puzzleSystems[countIndex].name}");
 
         StartPuzzleAtIndex(countIndex);
-
-        countIndex++;
     }
 
 
@@ -83,17 +78,12 @@ public class SafePopup : PopupBase
     {
         countIndex = 0;
 
-        foreach (var puzzleSystem in puzzleSystems)
-        {
-            puzzleSystem.ResetSystem();
-        }
+        puzzleSystem.ResetSystem();
         Debug.Log("SafePopup과 모든 퍼즐이 완전히 초기화되었습니다.");
 
 
         // 씬에 맞는 퍼즐 데이터 재설정
         puzzleIndex = GetIndexSetForScene(sceneType);
-        SetupAllPuzzles();
-        countIndex++;
 
         Debug.Log("SafePopup과 모든 퍼즐이 완전히 초기화되었습니다.");
 
@@ -109,22 +99,21 @@ public class SafePopup : PopupBase
     {
         Debug.Log($"[StartPuzzleAtIndex] 호출됨 - index: {index}");
 
-        if (index >= puzzleSystems.Length || index >= puzzleIndex.Length)
+        if (index >= puzzleIndex.Length)
         {
-            Debug.LogWarning($"[StartPuzzleAtIndex] 퍼즐 인덱스 범위 초과 - index: {index}, puzzleSystems.Length: {puzzleSystems.Length}, curSceneIndex.Length: {puzzleIndex.Length}");
+            Debug.LogWarning($"[StartPuzzleAtIndex] 퍼즐 인덱스 범위 초과 - index: {index}, curSceneIndex.Length: {puzzleIndex.Length}");
             return;
         }
 
         var data = datas[puzzleIndex[index]];
-        var system = puzzleSystems[index];
 
-        Debug.Log($"[StartPuzzleAtIndex] 퍼즐 시작 - Scene: {sceneType}, index: {index}");
-        Debug.Log($" - 사용될 TreePuzzleData 이름: {data.name}");
-        Debug.Log($" - 연결된 퍼즐 시스템: {system.name}");
+        //Debug.Log($"[StartPuzzleAtIndex] 퍼즐 시작 - Scene: {sceneType}, index: {index}");
+        //Debug.Log($" - 사용될 TreePuzzleData 이름: {data.name}");
+        //Debug.Log($" - 연결된 퍼즐 시스템: {system.name}");
 
-        system.SetupPuzzle(data, 2);
-        system.GeneratePuzzle();
-        system.StartPuzzle();
+        puzzleSystem.SetupPuzzle(data, 2);
+        puzzleSystem.GeneratePuzzle();
+        puzzleSystem.StartPuzzle();
     }
 
     private int[] GetIndexSetForScene(SceneType sceneName)
@@ -139,18 +128,6 @@ public class SafePopup : PopupBase
                 return new int[] { 6, 7, 8 }; // Chapter504에서 사용할 퍼즐 인덱스
             default:
                 return new int[] { 0, 1, 2};
-        }
-    }
-
-    // 퍼즐 시스템에 데이터 미리 세팅 (생성 전에 필요한 준비)
-    private void SetupAllPuzzles()
-    {
-        for(int i = 0; i < puzzleSystems.Length; i++)
-        {
-            if(i < puzzleIndex.Length)
-            {
-                puzzleSystems[i].SetupPuzzle(datas[puzzleIndex[i]], i);
-            }
         }
     }
 }
