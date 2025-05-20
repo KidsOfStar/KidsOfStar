@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: AndroidTooltips
   m_EditorClassIdentifier: 
   Backgrounds:
-  - {fileID: 166888047, guid: 0a95f507a51f8a34e9f8657fa5b686fe, type: 3}
+  - {fileID: 21300000, guid: 73af5210df7b9454880af4c2a6ca1b04, type: 3}
   - {fileID: 21300000, guid: a4e2a8905be477545866573fb42e2840, type: 3}
   - {fileID: 21300000, guid: 1a61a7c665cd1bc4aa96787d13ec6376, type: 3}
   - {fileID: 21300000, guid: 31f62c6af7b629f4c866b152d93652b4, type: 3}
-  - {fileID: 21300000, guid: 9dbbf6109f429054094e99fcb980a7c3, type: 3}
-  - {fileID: 21300000, guid: bb55cb7fe827e454abf9ec08fb091b1d, type: 3}
+  - {fileID: 21300000, guid: a4cc95544785ebf4582ecea573bfdfa4, type: 3}
+  - {fileID: 21300000, guid: a1be160c9c792c34e95c0c90e25e899d, type: 3}
   - {fileID: 21300000, guid: ff898de3183047248b761c52b87e79c6, type: 3}
   Tooltips:
   - sceneType: 0
