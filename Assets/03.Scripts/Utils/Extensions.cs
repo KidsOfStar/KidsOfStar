@@ -126,7 +126,7 @@ public static class Extensions
             CutSceneType.FallingDown     => "FallingDown",
             CutSceneType.Rescued         => "Rescued",
             CutSceneType.LeavingForest   => "LeavingForest",
-            CutSceneType.DaunRoom        => "DounRoom",
+            CutSceneType.DaunRoom        => "DaunRoom",
             CutSceneType.JigimOrder      => "JigimOrder",
             CutSceneType.FieldNormalLife => "FieldNormalLife",
             CutSceneType.SemyungGoOut    => "SemyungGoOut",

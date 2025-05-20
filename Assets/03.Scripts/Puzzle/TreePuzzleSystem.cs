@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +39,9 @@ public class TreePuzzleSystem : MonoBehaviour
     [SerializeField] protected int totalPuzzleCount = 2;
     // Trigger형태를 저장한 딕셔너리
     protected Dictionary<int, TreePuzzleTrigger> triggerMap;
-    
+
+    private int challengeCount;
+
     //TODO: FindObjectsType보다 다른 방법으로 리펙토링하기.
     private void Awake()
     {
@@ -106,6 +107,8 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 시작
     public void StartPuzzle()
     {
+        challengeCount++;
+
         currentTime = timeLimit;
         isRunning = true;
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForestPuzzle);
@@ -148,10 +151,9 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
+
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
-
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
-
         OnExit();
 
         EditorLog.Log("퍼즐 성공!");
@@ -159,6 +161,22 @@ public class TreePuzzleSystem : MonoBehaviour
         {
             clearPuzzlenum.Add(puzzleIndex);
         }
+
+        int clearTime = Mathf.CeilToInt(timeLimit - currentTime);
+        var analyticsManager = Managers.Instance.AnalyticsManager;
+        var fallNum = Managers.Instance.AnalyticsManager.fallCount;
+
+        analyticsManager.RecordChapterEvent("MapPuzzle",
+                                            ("PuzzleNumber", puzzleIndex),
+                                            ("FallCount", fallNum));
+
+        analyticsManager.RecordChapterEvent("PopUpPuzzle",
+                                           ("PuzzleNumber", puzzleIndex),
+                                           ("ChallengeCount", challengeCount),
+                                           ("ClearTime", clearTime));
+        fallNum = 0;
+        challengeCount = 0;
+        puzzleIndex = 0;
     }
 
     // 퍼즐 실패시
@@ -167,9 +185,9 @@ public class TreePuzzleSystem : MonoBehaviour
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
 
-        OnExit();
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
         Managers.Instance.UIManager.Show<GameOverPopup>();
+        OnExit();
 
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))
         {

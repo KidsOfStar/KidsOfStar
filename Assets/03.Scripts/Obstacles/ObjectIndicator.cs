@@ -35,6 +35,8 @@ public class ObjectIndicator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Managers.Instance.AnalyticsManager.fallCount++;
+
         if (!gameObject.activeSelf) return;
 
         if (Managers.Instance.GameManager.CurrentChapter == ChapterType.Chapter2
@@ -69,7 +71,6 @@ public class ObjectIndicator : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        if(Managers.Instance.GameManager.CurrentChapter== ChapterType.Chapter2)
         Managers.Instance.UIManager.Hide<WarningPopup>();
     }
 }

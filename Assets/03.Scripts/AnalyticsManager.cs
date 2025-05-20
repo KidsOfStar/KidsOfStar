@@ -1,13 +1,14 @@
-using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Net.NetworkInformation;
 
-public class AnalyticsManager 
+public class AnalyticsManager
 {
+    // Chapter 103
+    public int ChaseTryCount { get; set; }
+    
+    // Chapter 2, 4
+    public int fallCount;
+
     public AnalyticsManager()
     {
         Init();
@@ -28,7 +29,7 @@ public class AnalyticsManager
         }
     }
 
-    public static void RecordChapterEvent(
+    public void RecordChapterEvent(
         string eventType,
         params (string key, object value)[] parameters
     )
@@ -37,7 +38,7 @@ public class AnalyticsManager
         var ce = new CustomEvent(eventType);
 
         // 2) 공통 파라미터: Chapter 번호
-        ce["Chapter"] = (int)Managers.Instance.GameManager.CurrentChapter;
+        ce["ChapterType"] = Managers.Instance.GameManager.CurrentChapter.GetName();
 
         // 3) 추가 파라미터 병합
         foreach (var (key, value) in parameters)
@@ -48,5 +49,19 @@ public class AnalyticsManager
     }
 }
 
+// 1. 사용해야할 CustomEventName을 찾는다.
+// 2. var analyticsManager = Managers.Instance.AnalyticsManager; 를 선언
+// 3. RecordEvent를 등록하기 위해 메서드를 호출
+// 4. 등록해야하는 데이터와 파라미터를 연결
+// 5. 연결방법
+// analyticsManager.RecordChapterEvent("CustomEventName",
+//                                    ("ParameterName", 해당씬에서 연결해야할 변수)
+
+// **ChapterType 파라미터는 공통적으로 연결되므로 따로 작성안해도 됨.
+
+// 사용예시
+// analyticsManager.RecordChapterEvent("Choice",
+//                                    ("Choice", dialogData.SelectOption[selectIndex]),
+//                                    ("Index", dialogData.Index));
 
 
