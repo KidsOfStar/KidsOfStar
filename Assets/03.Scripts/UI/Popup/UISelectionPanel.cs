@@ -1,4 +1,5 @@
 using MainTable;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,9 @@ public class UISelectionPanel : UIBase
     [SerializeField] private UISelectButton[] selectButtons;
     private DialogData dialogData;
     private List<int> finalNextIndexes;
-    
+
+    public Action OnFinalSelect { get; set; }
+
     public void SetDefaultPanel(DialogData dialog)
     {
         dialogData = dialog;
@@ -54,6 +57,7 @@ public class UISelectionPanel : UIBase
         
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ButtonPush);
         Managers.Instance.DialogueManager.SetCurrentDialogData(nextIndex);
+        OnFinalSelect?.Invoke();
         
         // 특정 index 선택지일떄만 발생하게 할 수는 있음
         // 이벤트 이름 : select Info < 선택지를 선택했을 때 항상 발생
