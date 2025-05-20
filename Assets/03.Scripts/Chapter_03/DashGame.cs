@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DashGame : MonoBehaviour
 {
+    [Header("Game Settings")]
     public StopWatch stopWatch;
     public CountDownPopup countDownPopup;
     public PlayerController playerController;
 
     public CinemachineVirtualCamera virtualCamera;  // 가상 카메라
     public CinemachineDollyCart trackedDolly;       // 카메라 이동 경로
+
 
     public CharacterType characterType; // 캐릭터 타입
     
@@ -20,8 +22,12 @@ public class DashGame : MonoBehaviour
     public bool isGameStarted = false;
     public bool showDialog = false;
 
+    
     private SkillBTN skillBTN; // 스킬 버튼 UI
     [SerializeField] private GameObject TestGameBlock;
+
+    [Header("AnalyticsManager")]
+    [SerializeField] private DeadIine deadIine;     // 데드라인
 
     public void Setting()
     {
@@ -41,6 +47,9 @@ public class DashGame : MonoBehaviour
     {
         if (isGameStarted) return;
         isGameStarted = true;
+
+        // AnalyticsManager 게임 시도
+        Managers.Instance.AnalyticsManager.TryCount++; // 시도 횟수 증가
 
         StartCoroutine(GameIntroSequence()); // 전체 흐름 관리
     }
@@ -90,7 +99,6 @@ public class DashGame : MonoBehaviour
 
     private IEnumerator StartGame(float delay)
     {
-        // Managers.Instance.DialogueManager.OnDialogEnd -= playerController.UnlockPlayer; // 대사 완료 후 이벤트 해제 됨
         yield return null;  // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
 
         yield return new WaitForSeconds(delay); // 카운트다운 대기
@@ -127,7 +135,17 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
 
         TestGameBlock.SetActive(false); // 테스트 게임 블록 비활성화
-        
+
+        var analyticsManager = Managers.Instance.AnalyticsManager;
+
+        analyticsManager.RecordChapterEvent("Chapter3RunningPuzzle",
+            ("ClearTime", clearTime), // 클리어 시간
+            ("ChallengeCount", analyticsManager.TryCount), // 몇 번만에 시도 횟수
+            ("FallPosition", deadIine.playerPosX) // 낙하 횟수 - 변수 띄어쓰기 해야해요?
+        );
+        Managers.Instance.AnalyticsManager.TryCount = 0; // 시도 횟수 초기화
+
+
         // **게임 종료 후에도 버튼 유지**
         //skillBTN.ShowInteractionButton(true);
     }

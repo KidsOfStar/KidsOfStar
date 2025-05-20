@@ -4,7 +4,7 @@ using Unity.Services.Analytics;
 public class AnalyticsManager
 {
     // Chapter 103
-    public int ChaseTryCount { get; set; }
+    public int TryCount { get; set; }
     
     // Chapter 2, 4
     public int fallCount;
