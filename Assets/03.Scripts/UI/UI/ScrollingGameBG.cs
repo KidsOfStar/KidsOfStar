@@ -16,7 +16,7 @@ public class ScrollingGameBG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        offset.x -= scrollSpeed * Time.deltaTime;
+        offset.x += scrollSpeed * Time.deltaTime;
         offset.x = Mathf.Repeat(offset.x, 1f);
         mat.mainTextureOffset = offset;
     }

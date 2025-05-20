@@ -26,6 +26,7 @@ public class Chapter02Base : SceneBase
 
     private void SquirrelTutorial()
     {
+        Managers.Instance.AnalyticsManager.SendFunnel("11");
         var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var squirrelBtn = skillPanel.squirrelBtn.GetComponent<RectTransform>();
@@ -39,5 +40,8 @@ public class Chapter02Base : SceneBase
             Managers.Instance.UIManager.Show<TutorialPopup>(2);
             Managers.Instance.DialogueManager.OnDialogStepEnd -= HandleDialogStep;
         }
+        
+        if (index == 20000)
+            Managers.Instance.AnalyticsManager.SendFunnel("12");
     }
 }

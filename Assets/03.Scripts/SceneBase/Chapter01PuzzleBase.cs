@@ -11,6 +11,9 @@ public class Chapter01PuzzleBase : SceneBase
     
     protected override void InitSceneExtra(Action playIntroCallback)
     {
+        Managers.Instance.AnalyticsManager.SendFunnel("9");
+        Managers.Instance.CutSceneManager.OnCutSceneStart += SendCutSceneFunnel;
+        
         playIntroCallback?.Invoke();
         LockPlayerMove();
         PlayChaseAnim();
@@ -47,5 +50,17 @@ public class Chapter01PuzzleBase : SceneBase
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var jumpBtn = skillPanel.jumpBtn.GetComponent<RectTransform>();
         tutorial.SetTarget(jumpBtn);
+    }
+
+    private void SendCutSceneFunnel()
+    {
+        if (Managers.Instance.CutSceneManager.CurrentCutSceneName == "Rescued")
+            Managers.Instance.AnalyticsManager.SendFunnel("10");
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        Managers.Instance.CutSceneManager.OnCutSceneStart -= SendCutSceneFunnel;
     }
 }
