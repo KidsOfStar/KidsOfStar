@@ -20,8 +20,8 @@ public class CatWallJumpState : PlayerJumpBaseState
             context.Controller.WallJumpForce);
         // 벽 점프 실제 동작 실행
         context.Rigid.AddForce(pushDir, ForceMode2D.Impulse);
-        EditorLog.Log(context.Rigid.velocity.y);
-        EditorLog.Log(context.Controller.transform.position.y);
+        //EditorLog.Log(context.Rigid.velocity.y);
+        //EditorLog.Log(context.Controller.transform.position.y);
 
         // 초기화
         timer = 0;
@@ -44,8 +44,8 @@ public class CatWallJumpState : PlayerJumpBaseState
     public override void OnFixedUpdate()
     {
         base.OnFixedUpdate();
-        EditorLog.Log(context.Rigid.velocity.y);
-        EditorLog.Log(context.Controller.transform.position.y);
+        //EditorLog.Log(context.Rigid.velocity.y);
+        //EditorLog.Log(context.Controller.transform.position.y);
     }
 
     public override void OnExit()

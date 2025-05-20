@@ -69,7 +69,6 @@ public class ObjectIndicator : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        if(Managers.Instance.GameManager.CurrentChapter== ChapterType.Chapter2)
         Managers.Instance.UIManager.Hide<WarningPopup>();
     }
 }
