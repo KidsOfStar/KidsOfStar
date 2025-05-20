@@ -41,6 +41,9 @@ public class WirePuzzleSystem : MonoBehaviour
     private bool isRunning;
     public bool IsRunning => isRunning;
 
+    // 퍼즐 시도 횟수
+    private int challengeCount = 0;
+
     private void Awake()
     {
         // 씬 내 모든 트리거 탐색 및 연결
@@ -132,6 +135,7 @@ public class WirePuzzleSystem : MonoBehaviour
         isRunning = true;
 
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.CityPuzzle);
+        challengeCount++;
     }
 
     // 퍼즐 중단
@@ -163,13 +167,15 @@ public class WirePuzzleSystem : MonoBehaviour
     private void CompletePuzzle()
     {
         isRunning = false;
+        float clearTime = Mathf.CeilToInt(timeLimit - currentTime);
+        Managers.Instance.AnalyticsManager.RecordChapterEvent("PopUpPuzzle",
+            ("PuzzleNumber", puzzleIndex), 
+            ("ChallengeCount", challengeCount),
+            ("ClearTime", clearTime));
+        challengeCount = 0;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
         OnExit();
-
-        // 나가기 버튼 클릭 이벤트 연결
-        //clearExitBtn.onClick.RemoveAllListeners();
-        //clearExitBtn.onClick.AddListener(OnClearButtonClicked);
     }
 
     // 클리어 팝업 내 버튼 클릭 시 처리
