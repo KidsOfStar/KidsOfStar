@@ -50,12 +50,6 @@ public class SafePopup : PopupBase
         }
     }
 
-    //public void UpdateChapterProgress()
-    //{
-    //    Managers.Instance.GameManager.UpdateProgress();
-    //    Debug.Log("모든 퍼즐이 완료되었습니다. 챕터 진행도를 올립니다.");
-    //}
-
     public void FullReset()
     {
         countIndex = 0;
@@ -67,5 +61,11 @@ public class SafePopup : PopupBase
         }
         Debug.Log("SafePopup과 모든 퍼즐이 완전히 초기화되었습니다.");
         nextPuzzle();
+    }
+
+    public override void HideDirect()
+    {
+        base.HideDirect();
+        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
     }
 }
