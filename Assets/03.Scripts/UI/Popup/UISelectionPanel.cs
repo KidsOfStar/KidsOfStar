@@ -58,11 +58,8 @@ public class UISelectionPanel : UIBase
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ButtonPush);
         Managers.Instance.DialogueManager.SetCurrentDialogData(nextIndex);
         OnFinalSelect?.Invoke();
-        
-        // 특정 index 선택지일떄만 발생하게 할 수는 있음
-        // 이벤트 이름 : select Info < 선택지를 선택했을 때 항상 발생
-        // 현재 다이얼로그 index : 10022
-        // 선택한 선택지 : 좋아, 싫어
+
+        RecordChapterChoice(index);
     }
 
     private void OnDisable()
@@ -70,6 +67,20 @@ public class UISelectionPanel : UIBase
         for (int i = 0; i < selectButtons.Length; i++)
         {
             selectButtons[i].gameObject.SetActive(false);
+        }
+    }
+
+    private void RecordChapterChoice(int selectIndex)
+    {
+        if (dialogData == null) return;
+
+        if (dialogData.Index == 10022)
+        {
+            EditorLog.Log("RecordChapterChoice");
+            var analyticsManager = Managers.Instance.AnalyticsManager;
+            analyticsManager.RecordChapterEvent("Choice",
+                                                ("Choice", dialogData.SelectOption[selectIndex]),
+                                                ("Index", dialogData.Index));
         }
     }
 }

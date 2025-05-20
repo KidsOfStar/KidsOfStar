@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Net.NetworkInformation;
 
-public class AnalyticsManager 
+public class AnalyticsManager
 {
     public AnalyticsManager()
     {
@@ -28,7 +28,7 @@ public class AnalyticsManager
         }
     }
 
-    public static void RecordChapterEvent(
+    public void RecordChapterEvent(
         string eventType,
         params (string key, object value)[] parameters
     )
@@ -37,7 +37,7 @@ public class AnalyticsManager
         var ce = new CustomEvent(eventType);
 
         // 2) 공통 파라미터: Chapter 번호
-        ce["Chapter"] = (int)Managers.Instance.GameManager.CurrentChapter;
+        ce["ChapterType"] = Managers.Instance.GameManager.CurrentChapter.GetName();
 
         // 3) 추가 파라미터 병합
         foreach (var (key, value) in parameters)
