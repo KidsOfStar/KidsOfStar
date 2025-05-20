@@ -12,6 +12,8 @@ public class SafePuzzleSystem : TreePuzzleSystem
     // 퍼블 성공
     protected override void CompletePuzzle()
     {
+        Debug.Log($"[SafePuzzleSystem] 퍼즐 완료 처리 시작 - index: {index}");
+
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
         SafeSetActive(index);
@@ -21,6 +23,7 @@ public class SafePuzzleSystem : TreePuzzleSystem
             clearPuzzlenum.Add(puzzleIndex);
         }
 
+        Debug.Log("[SafePuzzleSystem] 퍼즐 완료 - SafePopup의 nextPuzzle() 호출");
         safePopup.nextPuzzle();
     }
 
@@ -38,7 +41,6 @@ public class SafePuzzleSystem : TreePuzzleSystem
             trig.ResetTrigger(); // 트리거 리셋
         }
     }
-
 
     public override void OnClearButtonClicked()
     {

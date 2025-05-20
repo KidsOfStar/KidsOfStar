@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class PuzzleTrigger : MonoBehaviour
 {
+    [Header("상호작용 이펙트")]
+    public SceneType sceneType;
     [SerializeField] private GameObject exclamationInstance;
     //private SpriteRenderer exclamationRenderer;
 
-    [SerializeField] private GameObject bubbleTextPrefab;
+    //[SerializeField] private GameObject bubbleTextPrefab;
     //private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
     private SkillBTN skillBTN;
 
-
     [Header("튜토리얼 문인지 체크")]
     [SerializeField] private bool isTutorial = false;
-
 
     // 동물 폼
     [SerializeField] private PlayerFormType dangerFormMask;
@@ -66,12 +66,12 @@ public class PuzzleTrigger : MonoBehaviour
             var popup = Managers.Instance.UIManager.Show<TutorialPopup>(4);
             popup.OnClosed += () =>
             {
-                Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
+                Managers.Instance.UIManager.Show<SafePopup>().Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
             };
             return;
         }
         // 튜토리얼 보여주고 시작
-        Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
+        Managers.Instance.UIManager.Show<SafePopup>().Opened(sceneType); // 안전한 폼일 경우 팝업 표시
     }
 
     //private void OntextBubbleText(Player player)

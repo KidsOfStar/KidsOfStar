@@ -18,13 +18,12 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-
         door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
         puzzleTrigger = FindObjectOfType<PuzzleTrigger>();
 
         rotationAmount = new Dictionary<GameObject, float>
         {
-            { safeImage[0].gameObject, 45f },
+            { safeImage[0].gameObject, 90f },
             { safeImage[1].gameObject, 60f },
             { safeImage[2].gameObject, 135f }
         };
@@ -140,7 +139,6 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             float randomRotation = pair.Value * randomMultiplier;
             pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
         }
-
         Debug.Log("SafePuzzle 회전 상태와 완료 상태가 초기화되었습니다.");
     }
 }

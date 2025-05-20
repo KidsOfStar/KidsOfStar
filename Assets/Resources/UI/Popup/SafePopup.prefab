@@ -1144,6 +1144,7 @@ MonoBehaviour:
   - {fileID: 7368773478950292770}
   rotationDuration: 0.5
   safePopup: {fileID: 2533478449912557472}
+  puzzleTrigger: {fileID: 0}
   door: {fileID: 0}
 --- !u!1 &3985656495200401652
 GameObject:
@@ -1467,11 +1468,18 @@ MonoBehaviour:
   closeBtn: {fileID: 3008075300718502582}
   checkTimeStop: 0
   isFirst: 0
+  exclamationInstance: {fileID: 0}
   currentPuzzle: {fileID: 0}
   door: {fileID: 0}
   datas:
+  - {fileID: 11400000, guid: 7b83764688543c847b25fd1177805430, type: 2}
+  - {fileID: 11400000, guid: 541ea2a437c786946baa7ac68b9c5b63, type: 2}
   - {fileID: 11400000, guid: dd12ade5b22b33b4abb2e99ccc29be2c, type: 2}
+  - {fileID: 11400000, guid: 93a16c5952da76d4fba3be4cbcf370e5, type: 2}
+  - {fileID: 11400000, guid: a526416175e0cdc49bf9e16d2031bf08, type: 2}
   - {fileID: 11400000, guid: eee4feb56838c334590d89fb98df656f, type: 2}
+  - {fileID: 11400000, guid: 9f7259773c38ba147b70e2d4a21d6316, type: 2}
+  - {fileID: 11400000, guid: bd2d2d5ea08cdc34281ed37d4ae893fc, type: 2}
   - {fileID: 11400000, guid: 696b0aabe1823ff4781bc917b57a5be9, type: 2}
   puzzleSystems:
   - {fileID: 1569135355270111907}
