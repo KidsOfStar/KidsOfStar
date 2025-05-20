@@ -7,7 +7,7 @@ public class AnalyticsManager
     public int ChaseTryCount { get; set; }
     
     // Chapter 2, 4
-    public int FallCount { get; set; }
+    public int fallCount;
 
     public AnalyticsManager()
     {
