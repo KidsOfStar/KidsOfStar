@@ -154,7 +154,7 @@ public class TreePuzzleSystem : MonoBehaviour
 
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
-        OnExit();
+        // OnExit();
 
         EditorLog.Log("퍼즐 성공!");
         if (!clearPuzzlenum.Contains(puzzleIndex))
@@ -166,17 +166,20 @@ public class TreePuzzleSystem : MonoBehaviour
         var analyticsManager = Managers.Instance.AnalyticsManager;
         var fallNum = Managers.Instance.AnalyticsManager.fallCount;
 
-        analyticsManager.RecordChapterEvent("MapPuzzle",
-                                            ("PuzzleNumber", puzzleIndex),
-                                            ("FallCount", fallNum));
+        if (Managers.Instance.GameManager.CurrentChapter == ChapterType.Chapter2)
+        {
+            analyticsManager.RecordChapterEvent("MapPuzzle",
+                                               ("PuzzleNumber", puzzleIndex),
+                                               ("FallCount", fallNum));
+        }
 
         analyticsManager.RecordChapterEvent("PopUpPuzzle",
                                            ("PuzzleNumber", puzzleIndex),
                                            ("ChallengeCount", challengeCount),
                                            ("ClearTime", clearTime));
-        fallNum = 0;
         challengeCount = 0;
         puzzleIndex = 0;
+        Managers.Instance.AnalyticsManager.fallCount = 0;
     }
 
     // 퍼즐 실패시
