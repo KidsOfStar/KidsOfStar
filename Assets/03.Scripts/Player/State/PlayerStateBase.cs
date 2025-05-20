@@ -73,8 +73,8 @@ public class PlayerStateBase : IPlayerState
         Vector2 dir = new Vector2(Mathf.Sign(context.Controller.MoveDir.x), 0);
 
         // 레이를 발사할 콜라이더 가장자리 위치 값 구하기
-        Vector2 origin = context.BoxCollider.bounds.center;
-        origin.x += dir.x * (context.BoxCollider.bounds.extents.x + 0.012f);
+        Vector2 origin = context.CapsuleCollider.bounds.center;
+        origin.x += dir.x * (context.CapsuleCollider.bounds.extents.x + 0.012f);
 
         // 레이 길이
         float rayLength = 0.1f;

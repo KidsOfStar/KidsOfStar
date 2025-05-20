@@ -161,7 +161,11 @@ MonoBehaviour:
   playerStartForm: 32
   playerSpawnPosition: {fileID: 263364338}
   speakers: []
-  objects: []
+  objects:
+  - {fileID: 333340231}
+  - {fileID: 115142950}
+  - {fileID: 784038526}
+  - {fileID: 987893665}
   mainCamera: {fileID: 2047708880}
   spawnPointer: {fileID: 1183143562}
   scrollingBackGround: {fileID: 0}
@@ -590,6 +594,7 @@ GameObject:
   - component: {fileID: 115142952}
   - component: {fileID: 115142951}
   - component: {fileID: 115142950}
+  - component: {fileID: 115142954}
   m_Layer: 0
   m_Name: Tank1
   m_TagString: Untagged
@@ -744,6 +749,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &115142954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115142947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisableInStart: 0
+  positionDatas:
+  - progress: 1
+    isFlip: 0
+    isActive: 1
+    position: {x: 13.7, y: -0.44, z: 0}
 --- !u!1 &182963775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1069,7 @@ Transform:
   m_GameObject: {fileID: 311316027}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1065,6 +1088,7 @@ GameObject:
   - component: {fileID: 333340233}
   - component: {fileID: 333340232}
   - component: {fileID: 333340231}
+  - component: {fileID: 333340235}
   m_Layer: 0
   m_Name: TicketBooth
   m_TagString: Untagged
@@ -1219,6 +1243,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &333340235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333340228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisableInStart: 0
+  positionDatas:
+  - progress: 1
+    isFlip: 0
+    isActive: 1
+    position: {x: -3.24, y: -2.5, z: 0}
 --- !u!1 &417983634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,7 +1841,7 @@ Transform:
   m_GameObject: {fileID: 705305023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1818,6 +1860,7 @@ GameObject:
   - component: {fileID: 784038528}
   - component: {fileID: 784038527}
   - component: {fileID: 784038526}
+  - component: {fileID: 784038530}
   m_Layer: 0
   m_Name: Tank2
   m_TagString: Untagged
@@ -1972,6 +2015,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &784038530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784038523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisableInStart: 0
+  positionDatas:
+  - progress: 1
+    isFlip: 0
+    isActive: 1
+    position: {x: 25.14, y: -1.53, z: 0}
 --- !u!1 &987893663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,6 +2046,7 @@ GameObject:
   - component: {fileID: 987893667}
   - component: {fileID: 987893666}
   - component: {fileID: 987893665}
+  - component: {fileID: 987893669}
   m_Layer: 0
   m_Name: Tank3
   m_TagString: Untagged
@@ -2020,7 +2082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091fbafd1b6f4f45915201d83df4469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Tank2
+  objectName: Tank3
 --- !u!61 &987893666
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2139,6 +2201,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &987893669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987893663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisableInStart: 0
+  positionDatas:
+  - progress: 1
+    isFlip: 0
+    isActive: 1
+    position: {x: 38.5, y: -1.53, z: 0}
 --- !u!1 &1031232073
 GameObject:
   m_ObjectHideFlags: 0
@@ -8537,6 +8617,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1430257035
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327430611039737118, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687915401461578787, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
+      propertyPath: m_Name
+      value: DialogueInputHandler
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 320917c90f873bb4fb21c9a1346c3010, type: 3}
 --- !u!1 &1472746460
 GameObject:
   m_ObjectHideFlags: 0
@@ -10949,7 +11086,7 @@ Transform:
   m_GameObject: {fileID: 1715705941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10980,7 +11117,7 @@ Transform:
   m_GameObject: {fileID: 1725609320}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11551,6 +11688,7 @@ SceneRoots:
   - {fileID: 697589587}
   - {fileID: 1755343443}
   - {fileID: 28862384}
+  - {fileID: 1430257035}
   - {fileID: 1183143563}
   - {fileID: 1214546918}
   - {fileID: 523285108}

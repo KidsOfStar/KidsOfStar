@@ -9,7 +9,7 @@ public class PlayerContextData
     public PlayerStateMachine StateMachine { get; private set; }    // 상태 머신 스크립트
     public SpriteRenderer Renderer { get; private set; }
     public Rigidbody2D Rigid { get; private set; }
-    public BoxCollider2D BoxCollider { get; private set; }
+    public CapsuleCollider2D CapsuleCollider { get; private set; }
     
     // 벽 타기가 가능한 상태인지 여부
     public bool CanCling { get; set; }
@@ -22,7 +22,7 @@ public class PlayerContextData
     // 생성자
     // 각 상태에서 사용될 데이터를 보관
     public PlayerContextData(Player player, PlayerController con, PlayerFormController formCon,
-        PlayerStateMachine machine, SpriteRenderer sr, Rigidbody2D rb, BoxCollider2D box)
+        PlayerStateMachine machine, SpriteRenderer sr, Rigidbody2D rb, CapsuleCollider2D box)
     {
         this.PlayerSc = player;
         this.Controller = con;
@@ -30,6 +30,6 @@ public class PlayerContextData
         this.StateMachine = machine;
         this.Renderer = sr;
         this.Rigid = rb;
-        this.BoxCollider = box;
+        this.CapsuleCollider = box;
     }
 }

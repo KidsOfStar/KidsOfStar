@@ -30,8 +30,8 @@ public class PlayerGroundState : PlayerStateBase
         // 상하 이동 키를 입력하지 않는 상태면 return
         if (Mathf.Abs(context.Controller.MoveDir.y) < 0.1f) return;
 
-        Vector2 origin = context.BoxCollider.bounds.center;
-        origin.y = context.BoxCollider.bounds.min.y + 0.03f;
+        Vector2 origin = context.CapsuleCollider.bounds.center;
+        origin.y = context.CapsuleCollider.bounds.min.y + 0.03f;
         float rayLength = 0.1f;
         // 닿은 땅 오브젝트의 PlatformEffector2D 여부
         bool onEffector = false;

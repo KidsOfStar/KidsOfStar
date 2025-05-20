@@ -13,8 +13,8 @@ public class CatWallJumpState : PlayerJumpBaseState
     {
         float dirX = Mathf.Sign(context.Controller.MoveDir.x);
 
-        context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.zero);
-        context.Controller.SetCollider();
+        // context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.zero);
+        // context.Controller.SetCollider();
         context.Rigid.velocity = Vector2.zero;
         Vector2 pushDir = new Vector2(0f, 
             context.Controller.WallJumpForce);

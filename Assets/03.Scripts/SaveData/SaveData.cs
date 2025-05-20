@@ -17,7 +17,7 @@ public class SaveData
     public Vector3 playerPosition;
     public int[] chapterTrust;
     public PlayerFormType unlockedPlayerForms;
-    // public PlayerFormType currentPlayerForm;
+    public PlayerFormType currentPlayerForm;
     public EndingType completedEnding;
 
     public void InitData()
@@ -28,7 +28,7 @@ public class SaveData
         chapterProgress = gameManager.ChapterProgress;
         playerPosition = gameManager.Player.transform.position;
         unlockedPlayerForms = gameManager.UnlockedForms;
-        // TODO: currentPlayerForm = gameManager.CurrentForm; 
+        currentPlayerForm = gameManager.Player.FormControl.CurFormData.playerFormType; 
         chapterTrust = gameManager.GetTrustArray();
         completedEnding = gameManager.CompletedEnding;
     }

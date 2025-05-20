@@ -17,6 +17,7 @@ public class Elevator : MonoBehaviour
     // 이동속도 및 방향을 설정할 수 있어야 함
     [Header("Components")]
     [SerializeField] private Collider2D coll;
+
     [SerializeField] private SpriteRenderer sprite;
 
     [Header("Elevator Settings")]
@@ -29,7 +30,7 @@ public class Elevator : MonoBehaviour
     private readonly WaitForFixedUpdate waitForFixedUpdate = new();
     private readonly WaitForSeconds moveWaitTime = new(1.5f);
     private readonly WaitForSeconds repairTime = new(5f);
-    
+
     private readonly List<IWeightable> weightables = new();
     private const float MaxWeight = 3f;
     private const float VerticalMargin = 0.1f;
@@ -37,7 +38,6 @@ public class Elevator : MonoBehaviour
     private Vector3 prevPos;
     private Vector3 startPos;
     private Vector3 targetPos;
-    private bool isBroken = false;
 
     private void Start()
     {
@@ -57,12 +57,12 @@ public class Elevator : MonoBehaviour
     private IEnumerator Move()
     {
         yield return moveWaitTime;
-        
+
         while (true)
         {
             yield return MoveRoutine(startPos, targetPos, true);
             yield return moveWaitTime;
-            
+
             yield return MoveRoutine(targetPos, startPos);
             yield return moveWaitTime;
         }
@@ -72,7 +72,7 @@ public class Elevator : MonoBehaviour
     {
         float distance = Vector3.Distance(from, to);
         float duration = distance / speed;
-        float elapsed  = 0f;
+        float elapsed = 0f;
 
         while (elapsed < duration)
         {
@@ -83,7 +83,7 @@ public class Elevator : MonoBehaviour
             // 진행도에 맞춰 위치 보간
             float t = elapsed / duration;
             Vector3 nextPos = Vector3.Lerp(from, to, t);
-            
+
             // rigid.MovePosition(nextPos);
             transform.position = nextPos;
 
@@ -115,6 +115,7 @@ public class Elevator : MonoBehaviour
                 t += Time.deltaTime;
                 yield return new WaitForFixedUpdate();
             }
+
             sprite.color = Color.red;
 
             // 2) Red → White
@@ -134,17 +135,14 @@ public class Elevator : MonoBehaviour
 
             sprite.color = Color.white;
         }
-        
-        // 3초 경고 후에도 과부하 상태라면 완전 고장
-        isBroken = true;
-        EditorLog.Log($"{gameObject.name} : is Broken");
 
+        // 3초 경고 후에도 과부하 상태라면 완전 고장
         // 복구 대기
+        EditorLog.Log($"{gameObject.name} : is Broken");
         yield return repairTime;
 
         // 고장 해제
         EditorLog.Log($"{gameObject.name} : is repair");
-        isBroken    = false;
         sprite.color = Color.white;
     }
 
@@ -174,7 +172,7 @@ public class Elevator : MonoBehaviour
 
         return targetPosition;
     }
-    
+
     private float GetCurrentWeight()
     {
         float totalWeight = 0f;
@@ -184,14 +182,12 @@ public class Elevator : MonoBehaviour
             var weightable = weightables[i];
             totalWeight += weightable.GetWeight();
         }
-        
+
         return totalWeight;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (isBroken || isLocked) return;
-        if (direction == Direction.Left || direction == Direction.Right) return;
         if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
 
         if (IsOnElevator(other.collider))
@@ -206,7 +202,6 @@ public class Elevator : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (isBroken || isLocked) return;
         if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
 
         // 물체가 엘레베이터에 올라탄 상태라면
@@ -241,15 +236,6 @@ public class Elevator : MonoBehaviour
 
         // 물체의 바닥면이 엘레베이터의 바닥면보다 맞지 않으면 false
         return !(Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin);
-
-        // if (Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin)
-        //     return false;
-        
-        // // 물체가 수평으로 반 이상 겹쳐있는지 확인
-        // float overlap = Mathf.Min(obj.max.x, elevator.max.x) - Mathf.Max(obj.min.x, elevator.min.x);
-        // overlap = Mathf.Max(overlap, 0f);
-        // 
-        // return overlap >= obj.size.x * 0.5f;
     }
 
     private void OnDestroy()
