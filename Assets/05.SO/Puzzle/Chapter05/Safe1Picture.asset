@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cb34f350dee4944ca22155d34f13d92, type: 3}
-  m_Name: SafePuzzle_Goldfish
+  m_Name: Safe1Picture
   m_EditorClassIdentifier: 
-  puzzleId: SafePuzzle_Goldfish
+  puzzleId: Safe1Picture
   backgroundSprite: {fileID: 326271729, guid: eebe8c82e52791247be97d957c4a18cb, type: 3}
   pieceSprites:
   - {fileID: 451295055, guid: eebe8c82e52791247be97d957c4a18cb, type: 3}

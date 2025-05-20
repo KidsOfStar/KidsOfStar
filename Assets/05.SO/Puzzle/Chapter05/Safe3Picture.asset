@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cb34f350dee4944ca22155d34f13d92, type: 3}
-  m_Name: SafePuzzle_Manatee
+  m_Name: Safe3Picture
   m_EditorClassIdentifier: 
-  puzzleId: SafePuzzle_Manatee
+  puzzleId: Safe3Picture
   backgroundSprite: {fileID: -190660706, guid: a1081c076f3a6f04fbde6177d73bcca8, type: 3}
   pieceSprites:
   - {fileID: 635028585, guid: a1081c076f3a6f04fbde6177d73bcca8, type: 3}
