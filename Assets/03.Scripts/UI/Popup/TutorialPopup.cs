@@ -113,7 +113,6 @@ public class TutorialPopup : PopupBase
     {
         base.HideDirect();
         // 팝업이 완전히 닫히면 이벤트 발행
-
         OnClosed?.Invoke();
         OnClosed = null; // 구독 해제
     }
