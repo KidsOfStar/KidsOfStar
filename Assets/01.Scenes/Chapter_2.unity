@@ -9941,7 +9941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: jumpPower
-      value: 3.8
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: fallDuration
@@ -9953,11 +9953,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.x
-      value: 0.6
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.y
-      value: 3.8
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 6201726208722172984, guid: c6e98da1d7c373142aceabbe4b0ae652, type: 3}
       propertyPath: dropPosition.z
