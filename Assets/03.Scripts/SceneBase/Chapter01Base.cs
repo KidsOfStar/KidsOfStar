@@ -18,7 +18,10 @@ public class Chapter01Base : SceneBase
     
     protected override void InitSceneExtra(Action callback)
     {
-        //Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FallingDown, callback);
+        Managers.Instance.AnalyticsManager.SendFunnel("3");
+        Managers.Instance.DialogueManager.OnDialogStepEnd += SendFunnel;
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FallingDown, callback);
+
         callback?.Invoke();
         sceneEventTrigger.Init();
     }
@@ -26,6 +29,7 @@ public class Chapter01Base : SceneBase
     // 씬이 로드되자마자 재생되는 컷신이 있다면 이 곳에 컷신이 끝났을 때 호출 될 콜백을 작성합니다.
     protected override void CutSceneEndCallback()
     {
+        Managers.Instance.AnalyticsManager.SendFunnel("4");
         PlayChapterIntro(ChapterIntroEndCallback);
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Maorum);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.UnderWater);
@@ -33,6 +37,7 @@ public class Chapter01Base : SceneBase
 
     private void ChapterIntroEndCallback()
     {
+        Managers.Instance.AnalyticsManager.SendFunnel("5");
         var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
         var joystick = Managers.Instance.UIManager.Get<UIJoystick>();
         tutorial.SetTarget(joystick.joystickBase);
@@ -43,10 +48,26 @@ public class Chapter01Base : SceneBase
         if (!isTutorial) return;
         isTutorial = false;
         
+        Managers.Instance.AnalyticsManager.SendFunnel("6");
         var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var interactBtn = skillPanel.interactionBtn.GetComponent<RectTransform>();
 
         tutorial.SetTarget(interactBtn);
+    }
+
+    private void SendFunnel(int dialogIndex)
+    {
+        if (dialogIndex == 10000)
+            Managers.Instance.AnalyticsManager.SendFunnel("7");
+        
+        if (dialogIndex == 10021)
+            Managers.Instance.AnalyticsManager.SendFunnel("8");
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        Managers.Instance.DialogueManager.OnDialogStepEnd -= SendFunnel;
     }
 }
