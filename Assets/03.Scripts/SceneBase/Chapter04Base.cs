@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Chapter04Base : SceneBase
 {
+    [Header("Chapter 4")]
+    [SerializeField] private int[] puzzleClearDialog;
+    
     protected override void InitSceneExtra(Action callback)
     {
         Managers.Instance.GameManager.OnProgressUpdated += AddListenerTutorial;
+        Managers.Instance.DialogueManager.OnDialogStepStart += RecordPuzzleClear;
         callback?.Invoke();
     }
     
@@ -37,9 +41,25 @@ public class Chapter04Base : SceneBase
         tutorial.SetTarget(catBtn);
     }
 
+    private void RecordPuzzleClear(int dialogIndex)
+    {
+        for (int i = 0; i < puzzleClearDialog.Length; i++)
+        {
+            if (puzzleClearDialog[i] != dialogIndex) continue;
+
+            var analytics = Managers.Instance.AnalyticsManager;
+            analytics.RecordChapterEvent("MapPuzzle",
+                                         ("PuzzleNumber", i),
+                                         ("FallCount", analytics.FallCount));
+
+            analytics.FallCount = 0;
+        }
+    }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
         Managers.Instance.GameManager.OnProgressUpdated -= AddListenerTutorial;
+        Managers.Instance.DialogueManager.OnDialogStepStart -= RecordPuzzleClear;
     }
 }

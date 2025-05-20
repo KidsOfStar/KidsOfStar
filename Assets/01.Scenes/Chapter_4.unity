@@ -1269,6 +1269,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1674279362854907797}
   spawnPointer: {fileID: 0}
   scrollingBackGround: {fileID: 1023085340}
+  puzzleClearDialog: 499c0000529c0000
 --- !u!1 &370988011
 GameObject:
   m_ObjectHideFlags: 0
