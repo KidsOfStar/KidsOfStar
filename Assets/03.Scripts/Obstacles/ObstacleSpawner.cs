@@ -166,6 +166,7 @@ public class ObstaclesSpawner : MonoBehaviour
 
         if (currentWave >= 3)
         {
+            RecordChaseClear();
             Managers.Instance.DialogueManager.OnDialogEnd -= SpawnWave;
             Managers.Instance.SoundManager.StopBgm();
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.Rescued);
@@ -184,6 +185,15 @@ public class ObstaclesSpawner : MonoBehaviour
 
             StartCoroutine(OnDialogEnd());
         }
+    }
+
+    private void RecordChaseClear()
+    {
+        var analytics = Managers.Instance.AnalyticsManager;
+        analytics.RecordChapterEvent("ChaseClear",
+                                     ("ChallengeCount", analytics.ChaseTryCount));
+
+        analytics.ChaseTryCount = 0;
     }
 
     private IEnumerator OnDialogEnd()

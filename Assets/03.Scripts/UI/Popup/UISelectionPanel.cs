@@ -8,6 +8,7 @@ public class UISelectionPanel : UIBase
     [SerializeField] private UISelectButton[] selectButtons;
     private DialogData dialogData;
     private List<int> finalNextIndexes;
+    private List<string> finalSelections;
 
     public Action OnFinalSelect { get; set; }
 
@@ -33,6 +34,7 @@ public class UISelectionPanel : UIBase
     public void SetFinalPanel(List<string> finalSelection, List<int> nextIndexes)
     {
         finalNextIndexes = nextIndexes;
+        finalSelections = finalSelection;
         
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ImportantChoice);
         for (int i = 0; i < finalSelection.Count; i++)
@@ -60,6 +62,7 @@ public class UISelectionPanel : UIBase
         OnFinalSelect?.Invoke();
 
         RecordChapterChoice(index);
+        RecordFinalChoice(index);
     }
 
     private void OnDisable()
@@ -74,13 +77,24 @@ public class UISelectionPanel : UIBase
     {
         if (dialogData == null) return;
 
-        if (dialogData.Index == 10022)
-        {
-            EditorLog.Log("RecordChapterChoice");
-            var analyticsManager = Managers.Instance.AnalyticsManager;
-            analyticsManager.RecordChapterEvent("Choice",
-                                                ("Choice", dialogData.SelectOption[selectIndex]),
-                                                ("Index", dialogData.Index));
-        }
+        if (dialogData.Index != 10022) return;
+        if (dialogData.Index != 2032) return;
+        if (dialogData.Index != 3039) return;
+        if (dialogData.Index != 4024) return;
+        
+        var analyticsManager = Managers.Instance.AnalyticsManager;
+        analyticsManager.RecordChapterEvent("Choice",
+                                            ("Choice", dialogData.SelectOption[selectIndex]),
+                                            ("Index", dialogData.Index));
+    }
+
+    private void RecordFinalChoice(int selectIndex)
+    {
+        if (finalSelections == null) return;
+        
+        var analyticsManager = Managers.Instance.AnalyticsManager;
+        analyticsManager.RecordChapterEvent("Choice",
+                                            ("Choice", finalSelections[selectIndex]),
+                                            ("Index", 5021));
     }
 }
