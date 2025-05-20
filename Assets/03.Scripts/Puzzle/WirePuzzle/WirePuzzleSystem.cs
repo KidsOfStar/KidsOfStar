@@ -164,8 +164,8 @@ public class WirePuzzleSystem : MonoBehaviour
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-        OnExit();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
+        OnExit();
 
         // 나가기 버튼 클릭 이벤트 연결
         //clearExitBtn.onClick.RemoveAllListeners();
