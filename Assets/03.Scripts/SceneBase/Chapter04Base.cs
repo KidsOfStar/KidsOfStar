@@ -50,9 +50,9 @@ public class Chapter04Base : SceneBase
             var analytics = Managers.Instance.AnalyticsManager;
             analytics.RecordChapterEvent("MapPuzzle",
                                          ("PuzzleNumber", i),
-                                         ("FallCount", analytics.FallCount));
+                                         ("FallCount", analytics.fallCount));
 
-            analytics.FallCount = 0;
+            analytics.fallCount = 0;
         }
     }
 
