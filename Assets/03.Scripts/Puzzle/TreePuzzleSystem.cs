@@ -141,7 +141,6 @@ public class TreePuzzleSystem : MonoBehaviour
         }
 
         CompletePuzzle();
-        Managers.Instance.an
     }
 
     //퍼즐 Clear시
