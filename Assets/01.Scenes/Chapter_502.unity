@@ -1459,7 +1459,7 @@ MonoBehaviour:
   isFirstTime: 0
   introText: 
   playerPrefab: {fileID: 194787036661805367, guid: 425d9dda5fc7c8b4e822d186e6416c0d, type: 3}
-  playerStartForm: 2
+  playerStartForm: 0
   playerSpawnPosition: {fileID: 784139468}
   speakers:
   - {fileID: 7049053922606748694}
