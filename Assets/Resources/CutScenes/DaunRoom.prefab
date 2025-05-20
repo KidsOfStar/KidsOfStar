@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 5969389733580513680}
   - component: {fileID: 2591174581337833102}
   m_Layer: 0
-  m_Name: DounRoom
+  m_Name: DaunRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
