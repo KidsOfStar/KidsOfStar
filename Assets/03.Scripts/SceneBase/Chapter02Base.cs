@@ -40,8 +40,5 @@ public class Chapter02Base : SceneBase
             Managers.Instance.UIManager.Show<TutorialPopup>(2);
             Managers.Instance.DialogueManager.OnDialogStepEnd -= HandleDialogStep;
         }
-        
-        if (index == 20000)
-            Managers.Instance.AnalyticsManager.SendFunnel("12");
     }
 }

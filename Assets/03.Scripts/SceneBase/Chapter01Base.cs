@@ -19,10 +19,7 @@ public class Chapter01Base : SceneBase
     protected override void InitSceneExtra(Action callback)
     {
         Managers.Instance.AnalyticsManager.SendFunnel("3");
-        Managers.Instance.DialogueManager.OnDialogStepEnd += SendFunnel;
         Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FallingDown, callback);
-
-        callback?.Invoke();
         sceneEventTrigger.Init();
     }
 
@@ -54,20 +51,5 @@ public class Chapter01Base : SceneBase
         var interactBtn = skillPanel.interactionBtn.GetComponent<RectTransform>();
 
         tutorial.SetTarget(interactBtn);
-    }
-
-    private void SendFunnel(int dialogIndex)
-    {
-        if (dialogIndex == 10000)
-            Managers.Instance.AnalyticsManager.SendFunnel("7");
-        
-        if (dialogIndex == 10021)
-            Managers.Instance.AnalyticsManager.SendFunnel("8");
-    }
-
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-        Managers.Instance.DialogueManager.OnDialogStepEnd -= SendFunnel;
     }
 }

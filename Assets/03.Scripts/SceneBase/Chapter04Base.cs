@@ -40,7 +40,7 @@ public class Chapter04Base : SceneBase
         var catBtn = skillPanel.catBtn.GetComponent<RectTransform>();
         tutorial.SetTarget(catBtn);
     }
-
+    
     private void RecordPuzzleClear(int dialogIndex)
     {
         for (int i = 0; i < puzzleClearDialog.Length; i++)

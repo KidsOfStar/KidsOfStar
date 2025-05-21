@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,6 +25,9 @@ public abstract class SceneBase : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
+
+    [Header("Funnel")]
+    [SerializeField] private FunnelData funnelData;
 
     [Header("Player Position")]
     [Tooltip("컷신 이후 플레이어 위치를 잡는 부모오브젝트")]
@@ -66,6 +70,8 @@ public abstract class SceneBase : MonoBehaviour
         if (spawnPointer) spawnPointer.Init();
 
         InitBg();
+
+        SendFunnel();
     }
 
     private void InitManagers()
@@ -189,6 +195,60 @@ public abstract class SceneBase : MonoBehaviour
             scrollingBackGround.Initialized(mainCamera.transform);
     }
 
+    private void SendFunnel()
+    {
+        if (funnelData?.dialogStartFunnel != null)
+        {
+            Managers.Instance.DialogueManager.OnDialogStepStart += SendDialogStartFunnel;
+        }
+        
+        if (funnelData?.dialogEndFunnel != null)
+        {
+            Managers.Instance.DialogueManager.OnDialogStepEnd += SendDialogEndFunnel;
+        }
+        
+        if (funnelData?.cutSceneStartFunnel != null)
+        {
+            Managers.Instance.CutSceneManager.OnCutSceneStart += SendCutSceneStartFunnel;
+        }
+    }
+
+    private void SendDialogStartFunnel(int dialogIndex)
+    {
+        if (funnelData?.dialogStartFunnel == null) return;
+
+        var dict = funnelData.GetDialogStartDict();
+        foreach (var pair in dict)
+        {
+            if (pair.Key == dialogIndex)
+                Managers.Instance.AnalyticsManager.SendFunnel(pair.Value.ToString());
+        }
+    }
+
+    private void SendDialogEndFunnel(int dialogIndex)
+    {
+        if (funnelData?.dialogEndFunnel == null) return;
+
+        var dict = funnelData.GetDialogEndDict();
+        foreach (var pair in dict)
+        {
+            if (pair.Key == dialogIndex)
+                Managers.Instance.AnalyticsManager.SendFunnel(pair.Value.ToString());
+        }
+    }
+
+    private void SendCutSceneStartFunnel()
+    {
+        if (funnelData?.cutSceneStartFunnel == null) return;
+
+        var dict = funnelData.GetCutSceneStartDict();
+        foreach (var pair in dict)
+        {
+            if (pair.Key == Managers.Instance.CutSceneManager.CurrentCutSceneName)
+                Managers.Instance.AnalyticsManager.SendFunnel(pair.Value.ToString());
+        }
+    }
+
     protected abstract void InitSceneExtra(Action callback);
 
     protected abstract void CutSceneEndCallback();
@@ -201,5 +261,9 @@ public abstract class SceneBase : MonoBehaviour
             Managers.Instance.CutSceneManager.OnCutSceneEnd -= onCutSceneEndHandler;
             onCutSceneEndHandler = null;
         }
+        
+        Managers.Instance.DialogueManager.OnDialogStepStart -= SendDialogStartFunnel;
+        Managers.Instance.DialogueManager.OnDialogStepEnd -= SendDialogEndFunnel;
+        Managers.Instance.CutSceneManager.OnCutSceneStart -= SendCutSceneStartFunnel;
     }
 }
