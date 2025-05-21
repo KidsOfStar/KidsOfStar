@@ -14,6 +14,11 @@ public class PlayerIdleState : PlayerGroundState
             // 애니메이터의 Move 파라미터를 false로
             context.Controller.Anim.SetBool(PlayerAnimHash.AnimMove, false);
         }
+
+        if(context.Controller.IsGround)
+        {
+            context.Rigid.velocity = Vector2.zero;
+        }
     }
 
     public override void OnUpdate()
