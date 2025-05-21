@@ -3,56 +3,43 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TreePuzzleSystem : MonoBehaviour
+public class puzzleBase : MonoBehaviour
 {
-    [Header("Background & Hint")]
-    [SerializeField] private Image backgroundImage;    // SO.backgroundSprite 할당용
-    [SerializeField] private GameObject easyModeOutline; // Easy 모드일 때만 켤 테두리
+    [Header("setting")]
+    [SerializeField] protected Image backgroundImage;
+    [SerializeField] protected GameObject outLine;
 
-    [Header("Prefab & Layout")]
-    [SerializeField] private GameObject piecePrefab;
+    [Header("Prefab")]
+    [SerializeField] protected GameObject piecePrefab;
     [SerializeField] private Transform puzzleParent;
 
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI timerTxt;
+    [SerializeField] protected TextMeshProUGUI timerTxt;
+
+    protected float timeLimit;
+    protected float currentTime;
+    protected int gridWidth = 4;
+    protected bool isRunning;
+    protected int challengeCount;
 
     // 정답 Sprite 목록
     private List<Sprite> correctSprites;
-    // 퍼즐 배열 가로의 개수
-    private int gridWidth;
-    // 모드별 제한 시간
-    protected float timeLimit;
-    protected float currentTime;
-    // 작동중인지 체크
-    protected bool isRunning;
-    // 현재 선택된 퍼즐 조각의 Index
-    private int selectedIndex;
-    public int SelectedIndex => selectedIndex;  
+
     // 생성된 모든 퍼즐 조각목록
     private List<TreePuzzlePiece> pieces = new();
+
     // 퍼즐 고유ID
     protected int puzzleIndex;
-    // 성공 완료된 퍼즐 ID의 집합
-    protected HashSet<int> clearPuzzlenum = new();
-    // 에디터에서 씬의 전체 퍼즐의 개수
-    [SerializeField] protected int totalPuzzleCount = 2;
+
+    // 현재 선택된 퍼즐 조각의 Index
+    protected int selectedIndex;
+
     // Trigger형태를 저장한 딕셔너리
-    protected Dictionary<int, TreePuzzleTrigger> triggerMap;
+    protected Dictionary<int, PuzzleTrigger> triggerMap;
 
-    private int challengeCount;
-
-    //TODO: FindObjectsType보다 다른 방법으로 리펙토링하기.
-    private void Awake()
-    {
-        triggerMap = new Dictionary<int, TreePuzzleTrigger>();
-        foreach (var trig in FindObjectsOfType<TreePuzzleTrigger>())
-        {
-            triggerMap[trig.SequenceIndex] = trig;
-        }
-    }
 
     // 퍼즐 준비
-    public virtual void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
+    public virtual void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex) // PuzzleData로 수정
     {
         puzzleIndex = puzzleClearIndex;
         correctSprites = new List<Sprite>(data.pieceSprites);
@@ -63,12 +50,12 @@ public class TreePuzzleSystem : MonoBehaviour
         if (backgroundImage != null)
             backgroundImage.sprite = data.backgroundSprite;
 
-        if (easyModeOutline != null)
-            easyModeOutline.SetActive(isEasy);
+        if (outLine != null)
+            outLine.SetActive(isEasy);
     }
 
     // 퍼즐 조각 생성
-    public void GeneratePuzzle()
+    public virtual void GeneratePuzzle()
     {
         selectedIndex = 0;
         // 기존 조각 제거
@@ -84,13 +71,13 @@ public class TreePuzzleSystem : MonoBehaviour
             GameObject pieceGO = Instantiate(piecePrefab, puzzleParent);
             TreePuzzlePiece piece = pieceGO.GetComponent<TreePuzzlePiece>();
             piece.SetSprite(correctSprites[i]);
-            piece.Initialize(this, 0,i); // 정답각도는 0
+            piece.Initialize(this, 0, i); // 정답각도는 0
             pieces.Add(piece);
         }
         HighlightSelectedPiece();
     }
 
-    private void Update()
+    private void Update()  //TODO: 코루틴으로 변경
     {
         if (!isRunning) return;
 
@@ -104,19 +91,19 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // 퍼즐 시작
-    public void StartPuzzle()
+    public virtual void StartPuzzle()
     {
-        var sequence = puzzleIndex == 0 ? 13
-                     : puzzleIndex == 1 ? 15
-                     : 0;
-        if (sequence != 0)
-            Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
+        //var sequence = puzzleIndex == 0 ? 13
+        //             : puzzleIndex == 1 ? 15
+        //             : 0;
+        //if (sequence != 0)
+        //    Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
 
         challengeCount++;
 
         currentTime = timeLimit;
         isRunning = true;
-        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForestPuzzle);
+        // Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForestPuzzle);
         foreach (var piece in pieces)
         {
             piece.RandomizeRotation();
@@ -124,14 +111,15 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // 퍼즐 조각 클릭시 실행되는 아웃라인 및 회전 메서드
-    public void OnPieceSelected(int index)
-    {
-        selectedIndex = index;
-        HighlightSelectedPiece();
-    }
+    // TODO: YDY만 쓸 예정
+    //public void OnPieceSelected(int index)
+    //{
+    //    selectedIndex = index;
+    //    HighlightSelectedPiece();
+    //}
 
     // 선택한 퍼즐 아웃라인표시
-    private void HighlightSelectedPiece()
+    protected virtual void HighlightSelectedPiece()
     {
         for (int i = 0; i < pieces.Count; i++)
         {
@@ -140,7 +128,7 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // 조각 체크
-    public void CheckPuzzle()
+    public virtual void CheckPuzzle()
     {
         foreach (var piece in pieces)
         {
@@ -210,7 +198,7 @@ public class TreePuzzleSystem : MonoBehaviour
             trig.ResetTrigger();
         }
     }
-    
+
     //퍼즐 취소시
     public void StopPuzzle()
     {
