@@ -1468,6 +1468,10 @@ MonoBehaviour:
   - {fileID: 608968977}
   - {fileID: 509531540}
   mainCamera: {fileID: 728889590}
+  funnelData:
+    dialogStartFunnel: []
+    dialogEndFunnel: []
+    cutSceneStartFunnel: []
   spawnPointer: {fileID: 1697745476}
   scrollingBackGround: {fileID: 0}
 --- !u!1 &784139467
@@ -10736,6 +10740,14 @@ PrefabInstance:
     - target: {fileID: 993622563197875621, guid: ad55d2c7e43a49c43bb20c76b6640f24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426770855588332605, guid: ad55d2c7e43a49c43bb20c76b6640f24, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2426770855588332605, guid: ad55d2c7e43a49c43bb20c76b6640f24, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7963855875982492063, guid: ad55d2c7e43a49c43bb20c76b6640f24, type: 3}
       propertyPath: m_Name

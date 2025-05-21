@@ -90,7 +90,11 @@ public class InteractObject : MonoBehaviour
 
     private void OnDestroy()
     {
-        skillPanel.OnInteractBtnClick -= OnInteract;
+        if (skillPanel != null)
+        {
+            skillPanel.OnInteractBtnClick -= OnInteract;
+        }
+        
         Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButton;
     }
 }
