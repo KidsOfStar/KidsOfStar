@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// 배선 퍼즐 볼트

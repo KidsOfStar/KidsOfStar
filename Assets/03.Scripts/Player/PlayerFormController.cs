@@ -84,14 +84,16 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             {
                 // 인간의 형태로 형태 변화
                 curFormData = formDataDictionary[PlayerFormType.Human];
+                Managers.Instance.GameManager.SetCurrentForm(PlayerFormType.Human);
             }
             else
             {
                 // 현재 형태와 요청된 형태가 다르다면 요청된 형태로 형태 변화
                 curFormData = nextFormData;
+                Managers.Instance.GameManager.SetCurrentForm(formType);
             }
         }
-        Managers.Instance.GameManager.SetCurrentForm(formType);
+        
         
         // 형태 변화 이펙트와 데이터 교체 시작
         StartCoroutine(FormChangeSequence());

@@ -10,7 +10,6 @@ public class UIChapterIntro : UIBase
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI introText;
     [SerializeField] private TypewriterByCharacter typewriter;
-    private const float FadeTime = 2f;
     private const float FadeOutTime = 2f;
     private readonly Color fadeOutColor = new(0, 0, 0, 0f);
     private Action introEndCallback;

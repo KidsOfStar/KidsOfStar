@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 // 챕터 1 특이사항
 // 챕터 1에서 재생해야하는 컷씬이 두개라서 좀 복잡해졌습니다.

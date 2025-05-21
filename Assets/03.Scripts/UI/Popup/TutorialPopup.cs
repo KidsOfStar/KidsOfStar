@@ -48,6 +48,9 @@ public class TutorialPopup : PopupBase
     {
         base.Opened(param);
 
+        Managers.Instance.GameManager.Player.Controller.LockPlayer();
+
+
         // param[0]에 tutorialIndex를 int로 넘겨받는다
         if (param.Length == 0 || !(param[0] is int idx))
         {
@@ -111,10 +114,13 @@ public class TutorialPopup : PopupBase
 
     public override void HideDirect()
     {
+        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+        
         base.HideDirect();
         // 팝업이 완전히 닫히면 이벤트 발행
         OnClosed?.Invoke();
         OnClosed = null; // 구독 해제
+
     }
 
     public void ClosePopup()
