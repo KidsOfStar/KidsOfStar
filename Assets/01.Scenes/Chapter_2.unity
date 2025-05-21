@@ -10175,6 +10175,12 @@ MonoBehaviour:
   - {fileID: 4709294409761420660}
   - {fileID: 1354949868}
   mainCamera: {fileID: 2020590303}
+  funnelData:
+    dialogStartFunnel:
+    - dialogIndex: 20000
+      funnelNum: 12
+    dialogEndFunnel: []
+    cutSceneStartFunnel: []
   spawnPointer: {fileID: 1925362554}
   scrollingBackGround: {fileID: 1083819329}
 --- !u!1001 &1893283791

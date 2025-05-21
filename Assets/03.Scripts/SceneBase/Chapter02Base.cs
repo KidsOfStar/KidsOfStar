@@ -26,6 +26,7 @@ public class Chapter02Base : SceneBase
 
     private void SquirrelTutorial()
     {
+        Managers.Instance.AnalyticsManager.SendFunnel("11");
         var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var squirrelBtn = skillPanel.squirrelBtn.GetComponent<RectTransform>();

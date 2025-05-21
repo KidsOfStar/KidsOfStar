@@ -11,6 +11,8 @@ public class Chapter01PuzzleBase : SceneBase
     
     protected override void InitSceneExtra(Action playIntroCallback)
     {
+        Managers.Instance.AnalyticsManager.SendFunnel("9");
+        
         playIntroCallback?.Invoke();
         LockPlayerMove();
         PlayChaseAnim();

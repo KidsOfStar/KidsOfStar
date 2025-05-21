@@ -520,6 +520,16 @@ MonoBehaviour:
   - {fileID: 1077044974}
   - {fileID: 1773737818}
   mainCamera: {fileID: 2047708880}
+  funnelData:
+    dialogStartFunnel: []
+    dialogEndFunnel: []
+    cutSceneStartFunnel:
+    - cutSceneIndex: MeetingWomen
+      funnelNum: 44
+    - cutSceneIndex: MeetingBihyi
+      funnelNum: 46
+    - cutSceneIndex: FinalChoice
+      funnelNum: 47
   spawnPointer: {fileID: 437470844}
   scrollingBackGround: {fileID: 0}
   crowd: {fileID: 1335034271}
