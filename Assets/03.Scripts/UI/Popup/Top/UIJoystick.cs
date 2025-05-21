@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIJoystick : UIBase, IDragHandler, IPointerDownHandler, IPointerUpHandler
+public class UIJoystick : UIBase
 {
     [field: SerializeField] public RectTransform joystickBase;
     [field: SerializeField] public RectTransform joystickHandle;
@@ -20,27 +20,6 @@ public class UIJoystick : UIBase, IDragHandler, IPointerDownHandler, IPointerUpH
     }
 
     public void OnPointerDown(PointerEventData eventData) { }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        // if (!isValid) return;
-
-        // var direction = eventData.position - startPos;
-        // var distance = direction.magnitude;
-        // 
-        // if (distance < sensitivity)
-        // {
-        //     inputVector = Vector2.zero;
-        //     return;
-        // }
-        // 
-        // direction = direction.normalized;
-        // distance = Mathf.Min(distance, maxDistance);
-        // inputVector = direction;
-        // 
-        // joystickHandle.position = startPos + direction * distance;
-    }
-
     public void OnPointerUp(PointerEventData eventData)
     {
         inputVector = Vector2.zero;
