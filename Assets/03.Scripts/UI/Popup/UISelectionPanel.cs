@@ -16,7 +16,7 @@ public class UISelectionPanel : UIBase
     {
         dialogData = dialog;
         var selectionList = dialogData.SelectOption;
-        
+
         for (int i = 0; i < selectionList.Count; i++)
             selectButtons[i].DefaultInit(i, OnSelectButtonClick, dialogData.SelectOption[i]);
     }
@@ -35,7 +35,7 @@ public class UISelectionPanel : UIBase
     {
         finalNextIndexes = nextIndexes;
         finalSelections = finalSelection;
-        
+
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ImportantChoice);
         for (int i = 0; i < finalSelection.Count; i++)
         {
@@ -46,7 +46,7 @@ public class UISelectionPanel : UIBase
     private void OnSelectButtonClick(int index)
     {
         int nextIndex = finalNextIndexes != null ? finalNextIndexes[index] : dialogData.NextIndex[index];
-        
+
         HideDirect();
         if (nextIndex < 0)
         {
@@ -56,7 +56,7 @@ public class UISelectionPanel : UIBase
             CustomActions.ExecuteAction(specifiedAction);
             return;
         }
-        
+
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ButtonPush);
         Managers.Instance.DialogueManager.SetCurrentDialogData(nextIndex);
         OnFinalSelect?.Invoke();
@@ -76,21 +76,43 @@ public class UISelectionPanel : UIBase
     private void RecordChapterChoice(int selectIndex)
     {
         if (dialogData == null) return;
-        if (dialogData.Index != 10022) return;
-        if (dialogData.Index != 2032) return;
-        if (dialogData.Index != 3039) return;
-        if (dialogData.Index != 4024) return;
-        
         var analyticsManager = Managers.Instance.AnalyticsManager;
-        analyticsManager.RecordChapterEvent("Choice",
-                                            ("Choice", dialogData.SelectOption[selectIndex]),
-                                            ("Index", dialogData.Index));
+        if (dialogData.Index == 10022)
+        {
+            analyticsManager.RecordChapterEvent("Choice",
+                                                ("Choice", dialogData.SelectOption[selectIndex]),
+                                                ("Index", dialogData.Index));
+            return;
+        }
+
+        if (dialogData.Index == 2032)
+        {
+            analyticsManager.RecordChapterEvent("Choice",
+                                                ("Choice", dialogData.SelectOption[selectIndex]),
+                                                ("Index", dialogData.Index));
+            return;
+        }
+
+        if (dialogData.Index == 3039)
+        {
+            analyticsManager.RecordChapterEvent("Choice",
+                                                ("Choice", dialogData.SelectOption[selectIndex]),
+                                                ("Index", dialogData.Index));
+            return;
+        }
+
+        if (dialogData.Index == 4024)
+        {
+            analyticsManager.RecordChapterEvent("Choice",
+                                                ("Choice", dialogData.SelectOption[selectIndex]),
+                                                ("Index", dialogData.Index));
+        }
     }
 
     private void RecordFinalChoice(int selectIndex)
     {
         if (finalSelections == null) return;
-        
+
         var analyticsManager = Managers.Instance.AnalyticsManager;
         analyticsManager.RecordChapterEvent("Choice",
                                             ("Choice", finalSelections[selectIndex]),

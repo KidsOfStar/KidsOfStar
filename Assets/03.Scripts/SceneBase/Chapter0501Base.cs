@@ -15,6 +15,7 @@ public class Chapter0501Base : SceneBase
     protected override void CutSceneEndCallback()
     {
         PlayChapterIntro(HideTutorial);
+        SkillForm();
     }
 
     private void SkillForm()
