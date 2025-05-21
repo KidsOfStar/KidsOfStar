@@ -535,6 +535,7 @@ MonoBehaviour:
   crowd: {fileID: 1335034271}
   meetingWomanTriger: {fileID: 1944824693}
   meetingBihyiTriger: {fileID: 746859598}
+  bgmLayeredFader: {fileID: 6335355426110140136, guid: 517780d158f837149b557f633f62f9de, type: 3}
 --- !u!61 &95701905
 BoxCollider2D:
   m_ObjectHideFlags: 0

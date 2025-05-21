@@ -22,9 +22,6 @@ public class PlayerBtn : UIBase
 
         Managers.Instance.CutSceneManager.OnCutSceneStart += OnCutSceneSkip;
         Managers.Instance.CutSceneManager.OnCutSceneEnd += OffCutSceneSkip;
-
-        Managers.Instance.UIManager.SkillBTN = this.skillPanel;
-        Managers.Instance.UIManager.SkillUnlock = this.skillPanel.skillUnlock;
     }
 
     // 정지 버튼 클릭 시 게임 일시정지
