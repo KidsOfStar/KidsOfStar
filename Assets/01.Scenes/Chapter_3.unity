@@ -506,6 +506,7 @@ GameObject:
   - component: {fileID: 186699822}
   - component: {fileID: 186699821}
   - component: {fileID: 186699820}
+  - component: {fileID: 186699825}
   m_Layer: 6
   m_Name: TestGameBlock
   m_TagString: Untagged
@@ -1127,6 +1128,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &186699825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186699818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395bd7535cd7261488d87b2074f0094a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBoxNotifier: 0
 --- !u!1001 &259745697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24655,6 +24669,7 @@ GameObject:
   - component: {fileID: 1777408274}
   - component: {fileID: 1777408273}
   - component: {fileID: 1777408272}
+  - component: {fileID: 1777408277}
   m_Layer: 6
   m_Name: Blockmap
   m_TagString: Untagged
@@ -25316,6 +25331,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1777408277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777408270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395bd7535cd7261488d87b2074f0094a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBoxNotifier: 0
 --- !u!1001 &1962814550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25547,6 +25575,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2109303362}
     m_Modifications:
+    - target: {fileID: 626918617068514483, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: positionDatas.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 626918617068514483, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: positionDatas.Array.data[3].isActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 626918617068514483, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: positionDatas.Array.data[3].progress
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 626918617068514483, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: positionDatas.Array.data[3].position.x
+      value: 305
+      objectReference: {fileID: 0}
+    - target: {fileID: 626918617068514483, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
+      propertyPath: positionDatas.Array.data[3].position.y
+      value: 4.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2136488510606508772, guid: 764e48386f6727d49b0c4afc5595faee, type: 3}
       propertyPath: m_Name
       value: Jigim
@@ -26183,6 +26231,26 @@ PrefabInstance:
     - target: {fileID: 4777981336440180038, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
       propertyPath: <CharacterType>k__BackingField
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418368146598885708, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: positionDatas.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418368146598885708, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: positionDatas.Array.data[3].isActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418368146598885708, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: positionDatas.Array.data[3].progress
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418368146598885708, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: positionDatas.Array.data[3].position.x
+      value: 299
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418368146598885708, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
+      propertyPath: positionDatas.Array.data[3].position.y
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 7830701120311079455, guid: e926bfa8d26643b4a8e502b8ea61ad66, type: 3}
       propertyPath: m_Name
