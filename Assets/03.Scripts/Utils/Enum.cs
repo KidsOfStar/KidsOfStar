@@ -125,6 +125,7 @@ public enum SfxSoundType
     WallBreak,
 	Thunder,
     ImportantChoice,
+    BrokenElevator,
 }
 
 public enum FootstepType
