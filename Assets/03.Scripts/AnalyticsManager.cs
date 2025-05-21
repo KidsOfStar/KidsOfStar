@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
 
