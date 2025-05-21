@@ -81,7 +81,7 @@ public abstract class SceneBase : MonoBehaviour
         Managers.Instance.DialogueManager.InitSceneNPcs(speakers);
     }
 
-    private void CreatePool()
+    protected virtual void CreatePool()
     {
         // 필수 대화 아이콘 풀 생성
         if (existRequiredDialog)

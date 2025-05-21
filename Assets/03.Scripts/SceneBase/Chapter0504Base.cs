@@ -2,22 +2,7 @@ using System;
 
 public class Chapter0504Base : SceneBase
 {
-    protected override void CutSceneEndCallback()
-    {
-        // 컷신이 끝났을 때 호출되는 콜백
-        PlayChapterIntro();
-    }
-    protected override void InitSceneExtra(Action callback)
-    {
-        SkillForm();
-    }
+    protected override void CutSceneEndCallback() { }
 
-    private void SkillForm()
-    {
-        //Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
-        //Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
-        //Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
-        //Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
-
-    }
+    protected override void InitSceneExtra(Action callback) { }
 }

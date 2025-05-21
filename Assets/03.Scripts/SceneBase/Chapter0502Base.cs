@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class Chapter0502Base : SceneBase
 {
-    protected override void CutSceneEndCallback()
-    {
-        PlayChapterIntro();
-    }
+    protected override void CutSceneEndCallback() { }
 
     protected override void InitSceneExtra(Action callback)
     {
