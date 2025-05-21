@@ -13,9 +13,7 @@ public class ConstantWidthCamera : MonoBehaviour
     private void Awake()
     {
         cam = GetComponent<Camera>();
-
-        if (!cam.orthographic)
-            UpdateOrthographicSize();
+        UpdateOrthographicSize();
         lastScreenWidth = Screen.width;
         lastScreenHeight = Screen.height;
     }
@@ -28,8 +26,6 @@ public class ConstantWidthCamera : MonoBehaviour
             UpdateOrthographicSize();
             lastScreenWidth = Screen.width;
             lastScreenHeight = Screen.height;
-
-            EditorLog.Log("UpdateOrthographicSize");
         }
     }
 
@@ -42,5 +38,6 @@ public class ConstantWidthCamera : MonoBehaviour
         // targetWorldWidth / screenAspect = world 단위 세로 전체 길이
         // 이를 절반으로 잘라서 orthographicSize로 세팅
         cam.orthographicSize = (targetWorldWidth / screenAspect) * 0.5f;
+        EditorLog.Log("UpdateOrthographicSize");
     }
 }
