@@ -167,6 +167,7 @@ public class WirePuzzleSystem : MonoBehaviour
     private void CompletePuzzle()
     {
         isRunning = false;
+
         float clearTime = Mathf.CeilToInt(timeLimit - currentTime);
         Managers.Instance.AnalyticsManager.RecordChapterEvent("PopUpPuzzle",
             ("PuzzleNumber", puzzleIndex), 
@@ -176,6 +177,17 @@ public class WirePuzzleSystem : MonoBehaviour
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
         OnExit();
+
+        var sequence = puzzleIndex == 0 ? 32
+                     : puzzleIndex == 1 ? 33
+                     : puzzleIndex == 2 ? 34
+                     : puzzleIndex == 3 ? 38
+                     : puzzleIndex == 4 ? 39
+                     : puzzleIndex == 5 ? 40
+                     : 0;
+
+        if (sequence != 0)
+            Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
     }
 
     // 클리어 팝업 내 버튼 클릭 시 처리

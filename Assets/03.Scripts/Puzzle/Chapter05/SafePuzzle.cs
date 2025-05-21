@@ -115,6 +115,8 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         //Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
         puzzleTrigger.DisableExclamation();
         door.isDoorOpen = true;
+
+
     }
 
     // 클릭 이벤트 처리
