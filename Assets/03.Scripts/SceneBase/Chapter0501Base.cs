@@ -1,6 +1,4 @@
 using System;
-using UnityEngine.Rendering;
-
 
 public class Chapter0501Base : SceneBase
 {
@@ -31,6 +29,14 @@ public class Chapter0501Base : SceneBase
             var popup = Managers.Instance.UIManager.Show<TutorialPopup>(3);
             istutorialForm = true;
         }
+    }
+
+    private void SkillForm()
+    {
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
     }
 }
 
