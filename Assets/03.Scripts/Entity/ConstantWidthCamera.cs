@@ -14,7 +14,6 @@ public class ConstantWidthCamera : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         if (!cam.orthographic)
-            Debug.LogWarning("이 스크립트는 반드시 Orthographic 카메라에 붙여야 합니다.");
 
         // 최초 설정
         UpdateOrthographicSize();

@@ -16,7 +16,6 @@ public class FormBlocker : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             OnInteraction();
-            Debug.Log($"OnInteraction");
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

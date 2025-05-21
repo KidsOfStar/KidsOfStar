@@ -31,7 +31,6 @@ public class Door : MonoBehaviour
         {
             if (bubbleTextInstance == null && bubbleTextPrefab != null)
             {
-                Debug.Log("문이 잠겨 있음 - 버블 생성");
                 bubbleTextInstance = Instantiate(bubbleTextPrefab, transform);
                 bubbleTextInstance.transform.localPosition = new Vector3(0, 2f, 0); // 문 위 위치
 
@@ -43,7 +42,6 @@ public class Door : MonoBehaviour
             }
             else if (bubbleTextInstance != null)
             {
-                Debug.Log("이미 생성됨 - 제거");
                 Destroy(bubbleTextInstance);
                 bubbleTextInstance = null;
             }

@@ -56,14 +56,12 @@ public class VentDoor : MonoBehaviour
     {
         if (!isVentInOut)  
         {
-            Debug.Log($"{isVentInOut} - 벤트 안으로 들어감");
             SetActiveGroup(ventIn, true);
             SetActiveGroup(ventOut, false);
             isVentInOut = true; // 벤트 안으로 들어갔는지 여부
         }
         else
         {
-            Debug.Log($"{isVentInOut} - 벤트 밖으로 나감");
             SetActiveGroup(ventIn, false);
             SetActiveGroup(ventOut, true);
             isVentInOut = false; // 벤트 안으로 들어갔는지 여부
