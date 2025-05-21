@@ -21,8 +21,8 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 배열 가로의 개수
     private int gridWidth;
     // 모드별 제한 시간
-    private float timeLimit;
-    private float currentTime;
+    protected float timeLimit;
+    protected float currentTime;
     // 작동중인지 체크
     protected bool isRunning;
     public bool IsRunning => isRunning;

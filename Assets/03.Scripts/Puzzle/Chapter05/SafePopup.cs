@@ -14,15 +14,19 @@ public class SafePopup : PopupBase
     public TreePuzzleData[] datas; // 전체 9개 퍼즐 SO
     public SafePuzzleSystem puzzleSystem; // 3개 퍼즐 시스템 (각 퍼즐 UI와 연결됨)
 
-    private int[] puzzleIndex;        // 현재 씬에서 사용할 퍼즐 3개의 인덱스
+    private int[] puzzleIndexs;        // 현재 씬에서 사용할 퍼즐 3개의 인덱스
     public int countIndex = 0;
+
+    public int challengeCount;   // 도전 횟수
+
+    public SafePuzzle safePuzzle; // 금고 퍼즐
 
     protected override void Start()
     {
         base.Start();
         door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
 
-        /*puzzleIndex = GetIndexSetForScene(sceneType);
+        /*puzzleIndexs = GetIndexSetForScene(sceneType);
 
         currentPuzzle = puzzleSystems[0];
         nextPuzzle();
@@ -38,36 +42,26 @@ public class SafePopup : PopupBase
         }
         Managers.Instance.GameManager.Player.Controller.LockPlayer();
 
-        puzzleIndex = GetIndexSetForScene(sceneType); // 꼭 세팅해줘야 함
+        puzzleIndexs = GetIndexSetForScene(sceneType); // 꼭 세팅해줘야 함
 
         StartPuzzleAtIndex(countIndex);
-
-        Debug.Log($"[SafePopup] 씬 {sceneType} 의 퍼즐 인덱스 배열: {string.Join(", ", puzzleIndex)}");
-
     }
     public void nextPuzzle()
     {
         countIndex++;
 
-        //Debug.Log($"[SafePopup] nextPuzzle 호출됨 - 현재 countIndex: {countIndex}");
-
-        if (countIndex >= puzzleIndex.Length)
+        if (countIndex >= puzzleIndexs.Length)
         {
             Debug.LogWarning("[SafePopup] 퍼즐이 모두 완료되었습니다. 더 이상 진행할 퍼즐이 없습니다.");
             return;
         }
 
 
-        if (countIndex >= puzzleIndex.Length)
+        if (countIndex >= puzzleIndexs.Length)
         {
-            Debug.LogError($"[SafePopup] curSceneIndex 배열 인덱스 초과! countIndex: {countIndex}, curSceneIndex.Length: {puzzleIndex.Length}");
+            Debug.LogError($"[SafePopup] curSceneIndex 배열 인덱스 초과! countIndex: {countIndex}, curSceneIndex.Length: {puzzleIndexs.Length}");
             return;
         }
-
-        //Debug.Log($"[SafePopup] 다음 퍼즐로 이동 준비 중...");
-        //Debug.Log($" - countIndex = {countIndex}");
-        //Debug.Log($" - 사용될 SO 인덱스 = {puzzleIndex[countIndex]}");
-        //Debug.Log($" - 사용할 PuzzleSystem = {puzzleSystems[countIndex].name}");
 
         StartPuzzleAtIndex(countIndex);
     }
@@ -79,14 +73,9 @@ public class SafePopup : PopupBase
         countIndex = 0;
 
         puzzleSystem.ResetSystem();
-        Debug.Log("SafePopup과 모든 퍼즐이 완전히 초기화되었습니다.");
-
 
         // 씬에 맞는 퍼즐 데이터 재설정
-        puzzleIndex = GetIndexSetForScene(sceneType);
-
-        Debug.Log("SafePopup과 모든 퍼즐이 완전히 초기화되었습니다.");
-
+        puzzleIndexs = GetIndexSetForScene(sceneType);
     }
 
     public override void HideDirect()
@@ -97,17 +86,15 @@ public class SafePopup : PopupBase
 
     private void StartPuzzleAtIndex(int index)
     {
-        Debug.Log($"[StartPuzzleAtIndex] 호출됨 - index: {index}");
-
-        if (index >= puzzleIndex.Length)
+        challengeCount++;
+        if (index >= puzzleIndexs.Length)
         {
-            Debug.LogWarning($"[StartPuzzleAtIndex] 퍼즐 인덱스 범위 초과 - index: {index}, curSceneIndex.Length: {puzzleIndex.Length}");
             return;
         }
 
-        var data = datas[puzzleIndex[index]];
+        var data = datas[puzzleIndexs[index]];
 
-        //Debug.Log($"[StartPuzzleAtIndex] 퍼즐 시작 - Scene: {sceneType}, index: {index}");
+        //Debug.Log($"[StartPuzzleAtIndex] 퍼즐 시작 - Scene: {sceneType}, safeIndex: {safeIndex}");
         //Debug.Log($" - 사용될 TreePuzzleData 이름: {data.name}");
         //Debug.Log($" - 연결된 퍼즐 시스템: {system.name}");
 

@@ -7,21 +7,25 @@ public class SafePuzzleSystem : TreePuzzleSystem
 {
     public SafePuzzle safePuzzle;
     public SafePopup safePopup;
-    public int index;
+    public int safeIndex;       // 금고 다이얼의 인덱스
 
     // 퍼블 성공
     protected override void CompletePuzzle()
     {
-        Debug.Log($"[SafePuzzleSystem] 퍼즐 완료 처리 시작 - index: {index}");
+        Debug.Log($"[SafePuzzleSystem] 퍼즐 완료 처리 시작 - index: {safeIndex}");
 
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-        SafeSetActive(index);
+        SafeSetActive(safeIndex);
 
         if (!clearPuzzlenum.Contains(puzzleIndex))
         {
             clearPuzzlenum.Add(puzzleIndex);
         }
+
+        int clearTime = Mathf.CeilToInt(timeLimit - currentTime);
+
+
 
         Debug.Log("[SafePuzzleSystem] 퍼즐 완료 - SafePopup의 nextPuzzle() 호출");
         safePopup.nextPuzzle();
@@ -63,13 +67,13 @@ public class SafePuzzleSystem : TreePuzzleSystem
     {
         safePuzzle.safeImage[indexs].raycastTarget = true;
         safePuzzle.safeImage[indexs].color = Color.white;
-        index++;
+        safeIndex++;
     }
 
     // 시스템 초기화
     public void ResetSystem()
     {
-        index = 0;
+        safeIndex = 0;
         clearPuzzlenum.Clear();
         isRunning = false;
 

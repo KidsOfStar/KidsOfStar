@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 3392493104796892496}
   - component: {fileID: 1569135355270111907}
   m_Layer: 5
-  m_Name: SafePuzzle
+  m_Name: SafePuzzleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -671,7 +671,7 @@ MonoBehaviour:
   totalPuzzleCount: 3
   safePuzzle: {fileID: 4325809574330469050}
   safePopup: {fileID: 2533478449912557472}
-  index: 0
+  safeIndex: 0
 --- !u!1 &3150037054210543029
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 7140561411859598574}
   - component: {fileID: 4325809574330469050}
   m_Layer: 5
-  m_Name: Safe
+  m_Name: SafePuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1143,6 +1143,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 696b0aabe1823ff4781bc917b57a5be9, type: 2}
   puzzleSystem: {fileID: 1569135355270111907}
   countIndex: 0
+  challengeCount: 0
+  safePuzzle: {fileID: 4325809574330469050}
 --- !u!1 &4162094645368473258
 GameObject:
   m_ObjectHideFlags: 0
