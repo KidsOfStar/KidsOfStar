@@ -19074,7 +19074,7 @@ MonoBehaviour:
   positionDatas:
   - progress: 6
     isFlip: 0
-    isActive: 0
+    isActive: 1
     position: {x: 102, y: 1.5, z: 0}
 --- !u!114 &1503142850
 MonoBehaviour:
