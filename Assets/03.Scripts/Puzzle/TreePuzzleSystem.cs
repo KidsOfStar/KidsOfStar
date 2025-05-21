@@ -150,7 +150,7 @@ public class TreePuzzleSystem : MonoBehaviour
         }
 
         CompletePuzzle();
-    }
+    } //
 
     //퍼즐 Clear시
     protected virtual void CompletePuzzle()
@@ -184,7 +184,7 @@ public class TreePuzzleSystem : MonoBehaviour
                                            ("PuzzleNumber", puzzleIndex),
                                            ("ChallengeCount", challengeCount),
                                            ("ClearTime", clearTime));
-        challengeCount = 0;
+        challengeCount = 0; //
         puzzleIndex = 0;
         Managers.Instance.AnalyticsManager.fallCount = 0;
 

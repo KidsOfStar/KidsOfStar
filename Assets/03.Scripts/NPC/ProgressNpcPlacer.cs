@@ -15,6 +15,12 @@ public class ProgressNpcPlacer : MonoBehaviour
     
     private void MoveNpcToPosition()
     {
+        if (this == null)
+        {
+            Managers.Instance.GameManager.OnProgressUpdated -= MoveNpcToPosition;
+            return;
+        }
+        EditorLog.Log($"[ProgressNpcPlacer] {gameObject.name} : {Managers.Instance.GameManager.ChapterProgress}");
         for (int i = 0; i < positionDatas.Length; i++)
         {
             NpcPositionData positionData = positionDatas[i];

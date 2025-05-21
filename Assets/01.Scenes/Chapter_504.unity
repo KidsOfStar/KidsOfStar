@@ -371,6 +371,10 @@ MonoBehaviour:
   speakers: []
   objects: []
   mainCamera: {fileID: 2047708880}
+  funnelData:
+    dialogStartFunnel: []
+    dialogEndFunnel: []
+    cutSceneStartFunnel: []
   spawnPointer: {fileID: 57934970}
   scrollingBackGround: {fileID: 0}
 --- !u!4 &109380599
@@ -1281,7 +1285,7 @@ GameObject:
   - component: {fileID: 235656931}
   - component: {fileID: 235656930}
   m_Layer: 6
-  m_Name: Wire
+  m_Name: WireSquirrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
