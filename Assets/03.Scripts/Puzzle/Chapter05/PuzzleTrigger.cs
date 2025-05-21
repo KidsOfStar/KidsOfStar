@@ -39,6 +39,12 @@ public class PuzzleTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             HideInteraction();
+
+            if (bubbleTextInstance != null)
+            {
+                Destroy(bubbleTextInstance);
+                bubbleTextInstance = null;
+            }
         }
     }
 
@@ -51,10 +57,10 @@ public class PuzzleTrigger : MonoBehaviour
 
         if ((dangerFormMask & currentForm.playerFormType) != 0)
         {
-            //OntextBubbleText(player);
-            Managers.Instance.UIManager.Show<WarningPopup>(
-                WarningType.Squirrel
-                );
+            OntextBubbleText();
+            //Managers.Instance.UIManager.Show<WarningPopup>(
+            //    WarningType.Squirrel
+            //    );
         }
         else
             TryStartPuzzle();
@@ -78,11 +84,11 @@ public class PuzzleTrigger : MonoBehaviour
         Managers.Instance.UIManager.Show<SafePopup>().Opened(sceneType); // 안전한 폼일 경우 팝업 표시
     }
 
-    private void OntextBubbleText(Player player)
+    private void OntextBubbleText()
     {
         if (bubbleTextInstance == null && bubbleTextPrefab != null)
         {
-            bubbleTextInstance = Instantiate(bubbleTextPrefab, player.transform);
+            bubbleTextInstance = Instantiate(bubbleTextPrefab, this.transform);
             bubbleTextInstance.transform.localPosition = new Vector3(0, 2f, 0);
 
             var bubbleText = bubbleTextInstance.GetComponentInChildren<DoorPopup>();
