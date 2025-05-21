@@ -27,6 +27,9 @@ public class Chapter0501Base : SceneBase
     private void SkillForm()
     {
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
     }
     // 진행도를 저장하는 함수
 }

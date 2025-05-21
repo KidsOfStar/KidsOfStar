@@ -167,6 +167,10 @@ MonoBehaviour:
   - {fileID: 784038526}
   - {fileID: 987893665}
   mainCamera: {fileID: 2047708880}
+  funnelData:
+    dialogStartFunnel: []
+    dialogEndFunnel: []
+    cutSceneStartFunnel: []
   spawnPointer: {fileID: 1183143562}
   scrollingBackGround: {fileID: 0}
   istutorialForm: 1
@@ -2633,13 +2637,13 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1137974850}
     m_ColliderPaths:
-    - - X: 400000000
+    - - X: 420000000
         Y: 80000000
       - X: 320000000
         Y: 80000000
       - X: 320000000
         Y: 70000000
-      - X: 400000000
+      - X: 420000000
         Y: 70000000
     - - X: 90000000
         Y: 80000000
@@ -2683,10 +2687,10 @@ CompositeCollider2D:
         Y: -50000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 40, y: 8}
+    - - {x: 42, y: 8}
       - {x: 32, y: 8}
       - {x: 32, y: 7}
-      - {x: 40, y: 7}
+      - {x: 42, y: 7}
     - - {x: 9, y: 8}
       - {x: -10, y: 8}
       - {x: -10, y: 7}
@@ -4302,6 +4306,26 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 40, y: 7, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 8
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 41, y: 7, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 8
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
@@ -4320,7 +4344,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 65478115cc5019b41b69420fea7c2451, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 010737e6a30b1214fbd03e09f0f0b4c0, type: 2}
-  - m_RefCount: 80
+  - m_RefCount: 82
     m_Data: {fileID: 11400000, guid: 27fd94b2906c8a545a5770e73ea0c256, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 1d0fe43e7246752429020c2819c5d9b0, type: 2}
@@ -4337,10 +4361,10 @@ Tilemap:
     m_Data: {fileID: 1979039913, guid: 1a3c88bb61c7889439be6df7d12f0544, type: 3}
   - m_RefCount: 12
     m_Data: {fileID: 907446365, guid: fdf70e6fb0ffd294a8d6d279ac76a8e2, type: 3}
-  - m_RefCount: 80
+  - m_RefCount: 82
     m_Data: {fileID: -1799907461, guid: 1a3c88bb61c7889439be6df7d12f0544, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 147
+  - m_RefCount: 149
     m_Data:
       e00: 1
       e01: 0
@@ -4359,7 +4383,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 147
+  - m_RefCount: 149
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -11335,7 +11359,7 @@ Transform:
   m_GameObject: {fileID: 2047708878}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 1.1, z: -10}
+  m_LocalPosition: {x: 30.91, y: 1.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11414,7 +11438,7 @@ MonoBehaviour:
   followTarget: 1
   offset: {x: 1.5, y: 0, z: -10}
   minPosition: {x: 1.5, y: 0}
-  maxPosition: {x: 31, y: 8}
+  maxPosition: {x: 33, y: 8}
   smoothTime: 0.15
   background: {fileID: 0}
 --- !u!114 &2047708885
