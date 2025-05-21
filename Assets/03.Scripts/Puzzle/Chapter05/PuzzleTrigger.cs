@@ -11,12 +11,14 @@ public class PuzzleTrigger : MonoBehaviour
     //private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
     private SkillBTN skillBTN;
-
     [Header("튜토리얼 문인지 체크")]
     [SerializeField] private bool isTutorial = false;
 
     // 동물 폼
     [SerializeField] private PlayerFormType dangerFormMask;
+
+    [Header("금고 번호")]
+    public int safeNumber; // 각 씬의 금고 번호
 
     private void Start()
     {
@@ -66,7 +68,9 @@ public class PuzzleTrigger : MonoBehaviour
             var popup = Managers.Instance.UIManager.Show<TutorialPopup>(4);
             popup.OnClosed += () =>
             {
-                Managers.Instance.UIManager.Show<SafePopup>().Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
+                var safePopup = Managers.Instance.UIManager.Show<SafePopup>();
+                safePopup.Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
+                safePopup.safePuzzle.SetSafeNumber(safeNumber);
             };
             return;
         }

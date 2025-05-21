@@ -1088,7 +1088,6 @@ GameObject:
   - component: {fileID: 333340233}
   - component: {fileID: 333340232}
   - component: {fileID: 333340231}
-  - component: {fileID: 333340235}
   m_Layer: 0
   m_Name: TicketBooth
   m_TagString: Untagged
@@ -1243,24 +1242,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &333340235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333340228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDisableInStart: 0
-  positionDatas:
-  - progress: 1
-    isFlip: 0
-    isActive: 1
-    position: {x: -3.24, y: -2.5, z: 0}
 --- !u!1 &350804780
 GameObject:
   m_ObjectHideFlags: 0
@@ -5265,8 +5246,16 @@ PrefabInstance:
       value: Safe
       objectReference: {fileID: 0}
     - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+      propertyPath: sceneType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
       propertyPath: isTutorial
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+      propertyPath: safeNumber
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

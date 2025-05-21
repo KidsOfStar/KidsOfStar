@@ -340,7 +340,7 @@ public class WirePuzzleSystem : MonoBehaviour
         p3.WireColor = c2;
         p4.WireColor = c3;
 
-        if(CheckPuzzleClear())
+        if (CheckPuzzleClear())
         {
             CompletePuzzle();
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,10 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public SafePopup safePopup;
     public PuzzleTrigger puzzleTrigger;
     public Door door;
+
+    // 모드별 제한 시간
+    private int currentTime;
+    private int safeNumber;
 
     public Dictionary<GameObject, float> rotationAmount;
     private HashSet<GameObject> completedPieces = new HashSet<GameObject>();
@@ -30,7 +35,25 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
         RandomizeRotation();
     }
-    
+
+    private void OnEnable()
+    {
+        StartCoroutine(ClearTime());
+    }
+
+    private IEnumerator ClearTime()
+    {
+        currentTime = 0;   // 초기화
+        // 1초마다 currentTime 증가
+        WaitForSeconds oneSeconds = new WaitForSeconds(1f);
+
+        while (true)
+        {
+            yield return oneSeconds;
+            currentTime += 1;
+        }
+    }
+
     // 금고 다이얼 랜덤 배치 
     private void RandomizeRotation()
     {
@@ -108,15 +131,41 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     private void ClearPuzzle()
     {
+        StopCoroutine(ClearTime());
+        EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
         Debug.Log("퍼즐이 완료되었습니다.");
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
         Managers.Instance.GameManager.UpdateProgress();
-        //Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+
         puzzleTrigger.DisableExclamation();
+
         door.isDoorOpen = true;
 
+        var analyticsManager = Managers.Instance.AnalyticsManager;
+        analyticsManager.RecordChapterEvent("PopUpPuzzle",
+            ("PuzzleNumber", safeNumber),
+            ("ChallengeCount", safePopup.challengeCount),
+            ("ClearTime", currentTime)
+            );
 
+        if (safeNumber == 1)
+        {
+            analyticsManager.SendFunnel("42");
+        }
+        else if (safeNumber == 2)
+        {
+            analyticsManager.SendFunnel("43");
+        }
+        else if (safeNumber == 3)
+        {
+            analyticsManager.SendFunnel("45");
+        }
+    }
+
+    public void SetSafeNumber(int number)
+    {
+        safeNumber = number;
     }
 
     // 클릭 이벤트 처리

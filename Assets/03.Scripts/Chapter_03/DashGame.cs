@@ -143,7 +143,7 @@ public class DashGame : MonoBehaviour
         analyticsManager.RecordChapterEvent("Chapter3RunningPuzzle",
             ("ClearTime", clearTime), // 클리어 시간
             ("ChallengeCount", analyticsManager.TryCount), // 몇 번만에 시도 횟수
-            ("FallPosition", deadIine.playerPosX) // 낙하 횟수 - 변수 띄어쓰기 해야해요?
+            ("FallPosition", deadIine.playerPosX) // 낙하 횟수
         );
         Managers.Instance.AnalyticsManager.TryCount = 0; // 시도 횟수 초기화
 
