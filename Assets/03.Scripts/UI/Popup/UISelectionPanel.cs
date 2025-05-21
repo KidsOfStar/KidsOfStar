@@ -76,7 +76,6 @@ public class UISelectionPanel : UIBase
     private void RecordChapterChoice(int selectIndex)
     {
         if (dialogData == null) return;
-
         if (dialogData.Index != 10022) return;
         if (dialogData.Index != 2032) return;
         if (dialogData.Index != 3039) return;

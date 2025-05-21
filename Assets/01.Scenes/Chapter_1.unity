@@ -3527,6 +3527,14 @@ MonoBehaviour:
   objects:
   - {fileID: 919943300}
   mainCamera: {fileID: 2020590303}
+  funnelData:
+    dialogStartFunnel: []
+    dialogEndFunnel:
+    - dialogIndex: 10001
+      funnelNum: 7
+    - dialogIndex: 10021
+      funnelNum: 8
+    cutSceneStartFunnel: []
   spawnPointer: {fileID: 0}
   scrollingBackGround: {fileID: 3213932190791655461}
   sceneEventTrigger: {fileID: 200471209}

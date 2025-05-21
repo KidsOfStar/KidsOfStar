@@ -52,6 +52,8 @@ public class DashGame : MonoBehaviour
         Managers.Instance.AnalyticsManager.TryCount++; // 시도 횟수 증가
 
         StartCoroutine(GameIntroSequence()); // 전체 흐름 관리
+
+        Managers.Instance.AnalyticsManager.SendFunnel("20");
     }
 
     private IEnumerator GameIntroSequence()

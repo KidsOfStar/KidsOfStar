@@ -1267,6 +1267,24 @@ MonoBehaviour:
   - {fileID: 1569491214}
   - {fileID: 585444843}
   mainCamera: {fileID: 1674279362854907797}
+  funnelData:
+    dialogStartFunnel:
+    - dialogIndex: 40000
+      funnelNum: 28
+    - dialogIndex: 40004
+      funnelNum: 29
+    dialogEndFunnel:
+    - dialogIndex: 4009
+      funnelNum: 31
+    - dialogIndex: 4014
+      funnelNum: 37
+    cutSceneStartFunnel:
+    - cutSceneIndex: JieuiRequest
+      funnelNum: 30
+    - cutSceneIndex: HaniReques
+      funnelNum: 36
+    - cutSceneIndex: TheCatReturns
+      funnelNum: 41
   spawnPointer: {fileID: 0}
   scrollingBackGround: {fileID: 1023085340}
   puzzleClearDialog: 499c0000529c0000

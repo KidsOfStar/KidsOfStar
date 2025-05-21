@@ -6533,6 +6533,28 @@ MonoBehaviour:
   - {fileID: 7963855876493376282}
   - {fileID: 2038232331}
   mainCamera: {fileID: 2020590303}
+  funnelData:
+    dialogStartFunnel:
+    - dialogIndex: 30006
+      funnelNum: 19
+    - dialogIndex: 30008
+      funnelNum: 21
+    - dialogIndex: 30009
+      funnelNum: 21
+    - dialogIndex: 30011
+      funnelNum: 23
+    - dialogIndex: 30016
+      funnelNum: 25
+    - dialogIndex: 3039
+      funnelNum: 26
+    dialogEndFunnel: []
+    cutSceneStartFunnel:
+    - cutSceneIndex: FieldNormalLife
+      funnelNum: 22
+    - cutSceneIndex: SemyungGoOut
+      funnelNum: 24
+    - cutSceneIndex: JigimOrder
+      funnelNum: 27
   spawnPointer: {fileID: 45350827}
   scrollingBackGround: {fileID: 2068884058}
   dashGame: {fileID: 1033782733}
@@ -6921,7 +6943,6 @@ MonoBehaviour:
   playerController: {fileID: 0}
   virtualCamera: {fileID: 2036214067}
   trackedDolly: {fileID: 111038905}
-  deadIine: {fileID: 710120444}
   characterType: 0
   cameraMoveSpeed: 40
   playerSpeed: 0
@@ -6929,6 +6950,7 @@ MonoBehaviour:
   isGameStarted: 0
   showDialog: 0
   TestGameBlock: {fileID: 186699818}
+  deadIine: {fileID: 710120444}
 --- !u!4 &1033782734
 Transform:
   m_ObjectHideFlags: 0

@@ -52,7 +52,7 @@ public class AnalyticsManager
     public void SendFunnel(string number)
     {
         var funnelEvent = new CustomEvent("Funnel_Chapter");
-        funnelEvent["Funnel_Chapter_Step"] = number;
+        funnelEvent["Funnel_Chapter_Number"] = number;
         
         AnalyticsService.Instance.RecordEvent(funnelEvent);
     }

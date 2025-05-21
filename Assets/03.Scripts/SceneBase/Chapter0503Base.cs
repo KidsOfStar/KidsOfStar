@@ -12,7 +12,6 @@ public class Chapter0503Base : SceneBase
     {
         var gm = Managers.Instance.GameManager;
 
-
         gm.ChapterProgress = 3;
 
         if (gm.VisitCount == 0)
@@ -29,7 +28,6 @@ public class Chapter0503Base : SceneBase
             meetingBihyiTriger.enabled = true;
             gm.ChapterProgress = 4;
         }
-
 
         // Crowd 처리
         if (gm.ChapterProgress == 4)

@@ -107,6 +107,12 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 시작
     public void StartPuzzle()
     {
+        var sequence = puzzleIndex == 0 ? 13
+                     : puzzleIndex == 1 ? 15
+                     : 0;
+        if (sequence != 0)
+            Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
+
         challengeCount++;
 
         currentTime = timeLimit;
@@ -150,6 +156,7 @@ public class TreePuzzleSystem : MonoBehaviour
     protected virtual void CompletePuzzle()
     {
         isRunning = false;
+
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
 
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
@@ -180,6 +187,13 @@ public class TreePuzzleSystem : MonoBehaviour
         challengeCount = 0;
         puzzleIndex = 0;
         Managers.Instance.AnalyticsManager.fallCount = 0;
+
+        var sequence = puzzleIndex == 1 ? 14
+                     : puzzleIndex == 2 ? 16
+                     : 0;
+
+        if (sequence != 0)
+            analyticsManager.SendFunnel(sequence.ToString());
     }
 
     // 퍼즐 실패시
@@ -229,6 +243,7 @@ public class TreePuzzleSystem : MonoBehaviour
         {
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
             Managers.Instance.GameManager.UpdateProgress();
+            Managers.Instance.AnalyticsManager.SendFunnel("17");
         }
     }
 
