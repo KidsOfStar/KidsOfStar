@@ -54,7 +54,8 @@ public class SaveData
         var difficultyName = ((Difficulty)difficulty).GetName();
         var chapterName = ((ChapterType)chapter).GetName();
         var result = internetTime.ToString("yy-MM-dd HH:mm:ss");
-        saveName = $"[{difficultyName}]{chapterName}. {result}";
+        // saveName = $"[{difficultyName}]{chapterName}. {result}";
+        saveName = $"{chapterName}. {result}";
         onFetched?.Invoke();
     }
 }

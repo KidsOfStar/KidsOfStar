@@ -16,12 +16,12 @@ MonoBehaviour:
   - chapter: 1
     minTrust: -20
     maxTrust: 40
-    endingThreshold: 0
+    endingThreshold: 40
   - chapter: 2
     minTrust: 0
     maxTrust: 40
-    endingThreshold: 0
+    endingThreshold: 40
   - chapter: 3
     minTrust: -10
     maxTrust: 50
-    endingThreshold: 0
+    endingThreshold: 50
