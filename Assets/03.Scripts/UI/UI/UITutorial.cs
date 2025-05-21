@@ -18,6 +18,7 @@ public class UITutorial : UIBase
 
     public void SetTarget(RectTransform targetUI)
     {
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Communication);
         holeMask.position = targetUI.position;
         holeMask.sizeDelta = new Vector2(targetUI.sizeDelta.x + Padding, targetUI.sizeDelta.y + Padding);
 

@@ -94,8 +94,8 @@ public class PlayerFormController : MonoBehaviour, IWeightable, IPusher
             }
         }
         
-        
         // 형태 변화 이펙트와 데이터 교체 시작
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.FormChange);
         StartCoroutine(FormChangeSequence());
     }
 

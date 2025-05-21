@@ -58,6 +58,7 @@ public class Elevator : MonoBehaviour
     {
         yield return moveWaitTime;
 
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ElevatorMove);
         while (true)
         {
             yield return MoveRoutine(startPos, targetPos, true);
@@ -137,12 +138,12 @@ public class Elevator : MonoBehaviour
         }
 
         // 3초 경고 후에도 과부하 상태라면 완전 고장
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.BrokenElevator);
+        
         // 복구 대기
-        EditorLog.Log($"{gameObject.name} : is Broken");
         yield return repairTime;
 
         // 고장 해제
-        EditorLog.Log($"{gameObject.name} : is repair");
         sprite.color = Color.white;
     }
 
