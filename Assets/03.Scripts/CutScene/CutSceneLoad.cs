@@ -13,6 +13,13 @@ public class CutSceneLoad : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Managers.Instance.CutSceneManager.PlayCutScene(cutSceneType);
+
+            if (cutSceneType == CutSceneType.MeetingBihyi)
+            {
+                var bgm = Managers.Instance.PoolManager.Spawn<BgmLayeredFader>("MainBgmFader");
+                bgm.Init();
+            }
+
             Collider.enabled = false; // 트리거가 한 번만 작동하도록 비활성화
         }
     }

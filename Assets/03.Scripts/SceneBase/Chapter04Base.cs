@@ -6,12 +6,12 @@ public class Chapter04Base : SceneBase
 {
     [Header("Chapter 4")]
     [SerializeField] private int[] puzzleClearDialog;
-    
+
     protected override void InitSceneExtra(Action callback)
     {
+        callback?.Invoke();
         Managers.Instance.GameManager.OnProgressUpdated += AddListenerTutorial;
         Managers.Instance.DialogueManager.OnDialogStepStart += RecordPuzzleClear;
-        callback?.Invoke();
     }
     
     protected override void CutSceneEndCallback()

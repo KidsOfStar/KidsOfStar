@@ -231,6 +231,7 @@ public class BgmLayeredFader : MonoBehaviour
         dialogManager.OnDialogStepStart -= OnPlayAudioSources;
 
         var selectionPanel = Managers.Instance.UIManager.Get<UISelectionPanel>();
+        if (selectionPanel == null) return;
         selectionPanel.OnFinalSelect -= OnPlayRiseEffect;
         Managers.Instance.SoundManager.SetBgmVolumeCallback -= SetVolume;
     }

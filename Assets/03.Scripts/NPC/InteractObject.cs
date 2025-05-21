@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -85,5 +86,11 @@ public class InteractObject : MonoBehaviour
     {
         skillPanel.ShowInteractionButton(true);
         skillPanel.OnInteractBtnClick += OnInteract;
+    }
+
+    private void OnDestroy()
+    {
+        skillPanel.OnInteractBtnClick -= OnInteract;
+        Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButton;
     }
 }
