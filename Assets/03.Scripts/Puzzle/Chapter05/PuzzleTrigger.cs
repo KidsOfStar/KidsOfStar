@@ -7,8 +7,8 @@ public class PuzzleTrigger : MonoBehaviour
     [SerializeField] private GameObject exclamationInstance;
     //private SpriteRenderer exclamationRenderer;
 
-    //[SerializeField] private GameObject bubbleTextPrefab;
-    //private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
+    [SerializeField] private GameObject bubbleTextPrefab;
+    private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
     private SkillBTN skillBTN;
     [Header("튜토리얼 문인지 체크")]
@@ -78,26 +78,26 @@ public class PuzzleTrigger : MonoBehaviour
         Managers.Instance.UIManager.Show<SafePopup>().Opened(sceneType); // 안전한 폼일 경우 팝업 표시
     }
 
-    //private void OntextBubbleText(Player player)
-    //{
-    //    if (bubbleTextInstance == null && bubbleTextPrefab != null)
-    //    {
-    //        bubbleTextInstance = Instantiate(bubbleTextPrefab, player.transform);
-    //        bubbleTextInstance.transform.localPosition = new Vector3(0, 2f, 0);
+    private void OntextBubbleText(Player player)
+    {
+        if (bubbleTextInstance == null && bubbleTextPrefab != null)
+        {
+            bubbleTextInstance = Instantiate(bubbleTextPrefab, player.transform);
+            bubbleTextInstance.transform.localPosition = new Vector3(0, 2f, 0);
 
-    //        var bubbleText = bubbleTextInstance.GetComponentInChildren<DoorPopup>();
+            var bubbleText = bubbleTextInstance.GetComponentInChildren<DoorPopup>();
 
-    //        if (bubbleText != null)
-    //        {
-    //            bubbleText.SetText("세심하게 만져야 한다. 다른 방법이 없을까?");
-    //        }
-    //    }
-    //    else if (bubbleTextInstance != null)
-    //    {
-    //        Destroy(bubbleTextInstance);
-    //        bubbleTextInstance = null;
-    //    }
-    //}
+            if (bubbleText != null)
+            {
+                bubbleText.SetText("세심하게 만져야 한다. 다른 방법이 없을까?");
+            }
+        }
+        else if (bubbleTextInstance != null)
+        {
+            Destroy(bubbleTextInstance);
+            bubbleTextInstance = null;
+        }
+    }
 
     private void HideInteraction()
     {
