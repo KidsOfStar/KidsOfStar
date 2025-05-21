@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SafePopup : PopupBase
 {
     [SerializeField] private GameObject exclamationInstance;
-    public Door door;
 
     [Header("퍼즐 시스템")]
     private SceneType sceneType;
@@ -20,19 +15,6 @@ public class SafePopup : PopupBase
     public int challengeCount;   // 도전 횟수
 
     public SafePuzzle safePuzzle; // 금고 퍼즐
-
-    protected override void Start()
-    {
-        base.Start();
-        door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
-
-        /*puzzleIndexs = GetIndexSetForScene(sceneType);
-
-        currentPuzzle = puzzleSystems[0];
-        nextPuzzle();
-        SetupAllPuzzles(); // 퍼즐 시스템 전체 초기화 및 세팅
-        StartPuzzleAtIndex(0); // 첫 퍼즐 시작*/
-    }
 
     public override void Opened(params object[] param)
     {
@@ -52,14 +34,14 @@ public class SafePopup : PopupBase
 
         if (countIndex >= puzzleIndexs.Length)
         {
-            Debug.LogWarning("[SafePopup] 퍼즐이 모두 완료되었습니다. 더 이상 진행할 퍼즐이 없습니다.");
+            EditorLog.LogWarning("[SafePopup] 퍼즐이 모두 완료되었습니다. 더 이상 진행할 퍼즐이 없습니다.");
             return;
         }
 
 
         if (countIndex >= puzzleIndexs.Length)
         {
-            Debug.LogError($"[SafePopup] curSceneIndex 배열 인덱스 초과! countIndex: {countIndex}, curSceneIndex.Length: {puzzleIndexs.Length}");
+            EditorLog.LogError($"[SafePopup] curSceneIndex 배열 인덱스 초과! countIndex: {countIndex}, curSceneIndex.Length: {puzzleIndexs.Length}");
             return;
         }
 

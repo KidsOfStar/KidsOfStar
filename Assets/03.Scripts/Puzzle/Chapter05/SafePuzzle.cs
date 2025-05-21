@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -133,7 +132,6 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     {
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
-        Debug.Log("퍼즐이 완료되었습니다.");
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
         Managers.Instance.GameManager.UpdateProgress();
@@ -190,6 +188,5 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             float randomRotation = pair.Value * randomMultiplier;
             pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
         }
-        Debug.Log("SafePuzzle 회전 상태와 완료 상태가 초기화되었습니다.");
     }
 }

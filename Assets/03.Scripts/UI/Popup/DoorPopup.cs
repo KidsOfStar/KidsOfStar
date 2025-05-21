@@ -1,8 +1,5 @@
-using System.Linq;
 using TMPro;
-using UnityEngine.Events;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DoorPopup : PopupBase
 {

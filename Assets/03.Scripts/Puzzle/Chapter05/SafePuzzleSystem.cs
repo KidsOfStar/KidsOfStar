@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SafePuzzleSystem : TreePuzzleSystem
@@ -12,8 +9,6 @@ public class SafePuzzleSystem : TreePuzzleSystem
     // 퍼블 성공
     protected override void CompletePuzzle()
     {
-        Debug.Log($"[SafePuzzleSystem] 퍼즐 완료 처리 시작 - index: {safeIndex}");
-
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
         SafeSetActive(safeIndex);
@@ -23,11 +18,6 @@ public class SafePuzzleSystem : TreePuzzleSystem
             clearPuzzlenum.Add(puzzleIndex);
         }
 
-        int clearTime = Mathf.CeilToInt(timeLimit - currentTime);
-
-
-
-        Debug.Log("[SafePuzzleSystem] 퍼즐 완료 - SafePopup의 nextPuzzle() 호출");
         safePopup.nextPuzzle();
     }
 
@@ -85,10 +75,4 @@ public class SafePuzzleSystem : TreePuzzleSystem
 
         safePuzzle.ResetPuzzleState(); // 퍼즐 상태 초기화
     }
-
-    public override void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
-    {
-        base.SetupPuzzle(data, puzzleClearIndex);
-    }
-
 }

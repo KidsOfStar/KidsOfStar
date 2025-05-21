@@ -1,6 +1,4 @@
 using System;
-using UnityEngine.Rendering;
-
 
 public class Chapter0501Base : SceneBase
 {
@@ -31,7 +29,6 @@ public class Chapter0501Base : SceneBase
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
     }
-    // 진행도를 저장하는 함수
 }
 
 

@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class WarningPopup : PopupBase
 {
