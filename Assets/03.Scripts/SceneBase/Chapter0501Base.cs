@@ -7,31 +7,24 @@ public class Chapter0501Base : SceneBase
     public bool istutorialForm = false;
     protected override void CutSceneEndCallback()
     {
-        PlayChapterIntro();
+        PlayChapterIntro(HideTutorial);
     }
 
     protected override void InitSceneExtra(Action callback)
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
+        callback?.Invoke();
+    }
 
+    private void HideTutorial()
+    {
         if (istutorialForm)
         {
             var popup = Managers.Instance.UIManager.Show<TutorialPopup>(3);
             istutorialForm = true;
         }
-
-        SkillForm();
     }
-
-    private void SkillForm()
-    {
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
-    }
-    // 진행도를 저장하는 함수
 }
 
 
