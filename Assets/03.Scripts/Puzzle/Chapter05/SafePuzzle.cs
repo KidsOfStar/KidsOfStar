@@ -56,7 +56,6 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     // 금고 다이얼 랜덤 배치 
     private void RandomizeRotation()
     {
-
         foreach (var pair in rotationAmount)
         {
             int randomMultiplier = UnityEngine.Random.Range(0, 3);
