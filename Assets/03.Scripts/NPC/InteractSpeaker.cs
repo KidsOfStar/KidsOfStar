@@ -150,7 +150,6 @@ public abstract class InteractSpeaker : MonoBehaviour
     {
         Managers.Instance.GameManager.OnProgressUpdated -= CheckExistRequiredDialog;
         Managers.Instance.DialogueManager.OnDialogStepEnd -= DespawnExclamationIcon;
-
         Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButtonCallback;
     }
 }
