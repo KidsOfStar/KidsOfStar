@@ -14,7 +14,6 @@ public class Chapter0501Base : SceneBase
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
         callback?.Invoke();
-
     }
 
     private void SkillForm()
@@ -30,14 +29,5 @@ public class Chapter0501Base : SceneBase
             istutorialForm = true;
         }
     }
-
-    private void SkillForm()
-    {
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
-        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Cat);
-    }
 }
-
 

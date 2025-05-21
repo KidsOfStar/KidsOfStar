@@ -1,4 +1,4 @@
-public class BackGroundTitile : UIBase
+public class BackGroundTitle : UIBase
 {
     // Start is called before the first frame update
     void Start()
