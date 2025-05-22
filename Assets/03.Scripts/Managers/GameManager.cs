@@ -13,6 +13,7 @@ public class GameManager
     // Stage Data
     private readonly Dictionary<ChapterType, int> trustDict = new();
     public Difficulty Difficulty { get; private set; }
+    public SceneType CurrentScene { get; private set; }
     public ChapterType CurrentChapter { get; private set; }
     public int ChapterProgress { get; set; } = 1;   
 
@@ -69,12 +70,14 @@ public class GameManager
     {
         IsNewGame = false;
         Difficulty = (Difficulty)saveData.difficulty;
+        CurrentScene = (SceneType)saveData.scene;
         CurrentChapter = (ChapterType)saveData.chapter;
         ChapterProgress = saveData.chapterProgress;
         PlayerPosition = saveData.playerPosition;
         UnlockedForms = saveData.unlockedPlayerForms;
         CurrentForm = saveData.currentPlayerForm;
         CompletedEnding = saveData.completedEnding;
+        VisitCount = saveData.visitCount;
 
         for (int i = 0; i < saveData.chapterTrust.Length; i++)
             trustDict[(ChapterType)i] = saveData.chapterTrust[i];
@@ -166,6 +169,11 @@ public class GameManager
     public void SetCurrentForm(PlayerFormType formType)
     {
         CurrentForm = formType;
+    }
+
+    public void SetCurrentScene(SceneType sceneType)
+    {
+        CurrentScene = sceneType;
     }
 
     public void TriggerEnding(EndingType endingType)

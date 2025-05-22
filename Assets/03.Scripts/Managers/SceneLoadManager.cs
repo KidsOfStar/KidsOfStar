@@ -61,6 +61,7 @@ public class SceneLoadManager : MonoBehaviour
 
         // 로드 씬 활성화
         CurrentScene = loadScene;
+        Managers.Instance.GameManager.SetCurrentScene(CurrentScene);
         operation.allowSceneActivation = true;
         while (!operation.isDone) yield return null;
 
