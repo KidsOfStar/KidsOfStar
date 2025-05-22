@@ -108,14 +108,21 @@ public class PoolManager : ISceneLifecycleHandler
 
     public void ClearPool()
     {
+        foreach (var pool in poolDictionary)
+        {
+            while (pool.Value.Count > 0)
+            {
+                GameObject obj = pool.Value.Dequeue();
+                if (!obj)
+                {
+                    obj.SetActive(true);
+                }
+            }
+        }
+        
         prefabDictionary.Clear();
         poolDictionary.Clear();
         poolParentDictionary.Clear();
-    }
-
-    public bool IsExistPool(string poolKey)
-    {
-        return poolDictionary.ContainsKey(poolKey);
     }
 
     public void OnSceneLoaded() { }
