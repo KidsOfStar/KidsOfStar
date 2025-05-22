@@ -129,6 +129,9 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     {
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
+
+        StartCoroutine(HidePopupAfterDelay(1f));
+
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
         Managers.Instance.GameManager.UpdateProgress();
@@ -161,9 +164,16 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    private IEnumerator HidePopupAfterDelay(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        Managers.Instance.UIManager.Hide<SafePopup>();
+    }
+
     public void SetSafeNumber(int number)
     {
         safeNumber = number;
+        Debug.Log($"[SafePuzzle] 금고 번호 설정: {safeNumber}");
     }
 
     // 클릭 이벤트 처리
