@@ -35,7 +35,7 @@ public class Chapter0503Base : SceneBase
         if (gm.ChapterProgress == 4)
             crowd.SetActive(false);
 
-        Debug.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
+        EditorLog.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
     }
 
     protected override void CreatePool()

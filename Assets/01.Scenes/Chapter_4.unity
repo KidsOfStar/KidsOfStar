@@ -9551,8 +9551,8 @@ MonoBehaviour:
     position: {x: 53.9, y: 8.2, z: 0}
   - progress: 4
     isFlip: 0
-    isActive: 0
-    position: {x: 53.9, y: 8.2, z: 0}
+    isActive: 1
+    position: {x: 53.9, y: -100, z: 0}
 --- !u!1 &1546194205
 GameObject:
   m_ObjectHideFlags: 0
@@ -11665,8 +11665,8 @@ MonoBehaviour:
     position: {x: 53.7, y: -0.8, z: 0}
   - progress: 4
     isFlip: 0
-    isActive: 0
-    position: {x: 53.7, y: -0.8, z: 0}
+    isActive: 1
+    position: {x: 53.7, y: -100, z: 0}
 --- !u!1 &1968634509
 GameObject:
   m_ObjectHideFlags: 0
@@ -13598,8 +13598,8 @@ MonoBehaviour:
     position: {x: 19.6, y: -2.73, z: 0}
   - progress: 5
     isFlip: 0
-    isActive: 0
-    position: {x: 19.6, y: -2.73, z: 0}
+    isActive: 1
+    position: {x: 19.6, y: -100, z: 0}
 --- !u!114 &8371217841260009588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13644,8 +13644,8 @@ MonoBehaviour:
     position: {x: 6.53, y: 5.28, z: 0}
   - progress: 5
     isFlip: 0
-    isActive: 0
-    position: {x: 6.53, y: 5.28, z: 0}
+    isActive: 1
+    position: {x: 6.53, y: -100, z: 0}
 --- !u!114 &8560045578830650927
 MonoBehaviour:
   m_ObjectHideFlags: 0

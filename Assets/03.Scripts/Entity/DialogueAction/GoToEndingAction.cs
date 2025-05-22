@@ -18,7 +18,7 @@ public class GoToEndingAction : IDialogActionHandler
             return;
         }
 
-        Managers.Instance.CutSceneManager.DestroyCurrentCutScene();
+        Managers.Instance.CutSceneManager.DestroyCurrentCutScene(true);
         Managers.Instance.GameManager.TriggerEnding(endingType);
     }
 }

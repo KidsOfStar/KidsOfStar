@@ -45,7 +45,7 @@ public class Elevator : MonoBehaviour
         targetPos = GetTargetPosition();
 
         if (!isLocked)
-            StartCoroutine(Move());
+            StartCoroutine(Move(false));
     }
 
     public void UnlockElevator()
@@ -54,11 +54,13 @@ public class Elevator : MonoBehaviour
         StartCoroutine(Move());
     }
 
-    private IEnumerator Move()
+    private IEnumerator Move(bool isPlaySound = true)
     {
         yield return moveWaitTime;
 
-        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ElevatorMove);
+        if (isPlaySound)
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ElevatorMove);
+        
         while (true)
         {
             yield return MoveRoutine(startPos, targetPos, true);

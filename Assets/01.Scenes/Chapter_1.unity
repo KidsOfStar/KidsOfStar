@@ -135,8 +135,9 @@ GameObject:
   - component: {fileID: 1388798}
   - component: {fileID: 1388797}
   - component: {fileID: 1388796}
+  - component: {fileID: 1388800}
   m_Layer: 0
-  m_Name: Stone
+  m_Name: Stone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,6 +274,19 @@ Transform:
   - {fileID: 1960566396}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1388800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7091fbafd1b6f4f45915201d83df4469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: 
 --- !u!1 &75489992
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +512,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 231997132403031121, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
+      propertyPath: positionDatas.Array.data[0].isActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 231997132403031121, guid: 4a9c3405b8bab4f44bb94670826fe59c, type: 3}
       propertyPath: positionDatas.Array.data[0].position.y
       value: -2.7
@@ -3340,6 +3358,7 @@ MonoBehaviour:
   - {fileID: 2876801511946059318}
   objects:
   - {fileID: 919943300}
+  - {fileID: 1388800}
   mainCamera: {fileID: 2020590303}
   funnelData:
     dialogStartFunnel: []
@@ -5524,7 +5543,7 @@ GameObject:
   - component: {fileID: 3450516648562858537}
   - component: {fileID: 6907925868594232505}
   m_Layer: 0
-  m_Name: Stone
+  m_Name: Stone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
