@@ -12,7 +12,7 @@ public class PuzzleTrigger : MonoBehaviour
 
     private SkillBTN skillBTN;
     [Header("튜토리얼 문인지 체크")]
-    [SerializeField] private bool isTutorial = false;
+    [SerializeField] private bool isTutorial = true;
 
     // 동물 폼
     [SerializeField] private PlayerFormType dangerFormMask;
@@ -71,9 +71,9 @@ public class PuzzleTrigger : MonoBehaviour
 
     private void TryStartPuzzle()
     {
-        if (!isTutorial)
+        if (isTutorial)
         {
-            isTutorial = true;
+            isTutorial = false;
             var popup = Managers.Instance.UIManager.Show<TutorialPopup>(4);
             popup.OnClosed += () =>
             {
@@ -81,7 +81,7 @@ public class PuzzleTrigger : MonoBehaviour
 
                 var safePopup = Managers.Instance.UIManager.Show<SafePopup>();
                 safePopup.Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
-                //safePopup.safePuzzle.SetSafeNumber(safeNumber);
+                safePopup.safePuzzle.SetSafeNumber(safeNumber);
             };
             return;
         }
@@ -90,8 +90,6 @@ public class PuzzleTrigger : MonoBehaviour
         var safePopup = Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
         safePopup.Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
         safePopup.safePuzzle.SetSafeNumber(safeNumber);
-        
-
 
     }
 
