@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class ObstaclesSpawner : MonoBehaviour
 {
-#if UNITY_EDITOR
+#if TEST_BUILD
     [Header("Debug")]
     [SerializeField] private bool isTest = false;
 #endif
@@ -54,7 +54,7 @@ public class ObstaclesSpawner : MonoBehaviour
     //장애물을 Pool에서 스폰
     public void StartSpawn()
     {
-#if UNITY_EDITOR
+#if TEST_BUILD
         if (isTest)
         {
             currentWave = 3;
