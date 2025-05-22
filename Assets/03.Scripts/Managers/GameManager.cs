@@ -105,10 +105,12 @@ public class GameManager
     {
         ChapterProgress++;
         EditorLog.Log(ChapterProgress.ToString());
+        Debug.Log("ChapterProgress : " + ChapterProgress);
         if (ChapterProgress > Managers.Instance.DataManager.GetMaxProgress(CurrentChapter))
             return;
 
         OnProgressUpdated?.Invoke();
+        Debug.Log("OnProgressUpdated");
     }
 
     public void SetLoadedProgress()

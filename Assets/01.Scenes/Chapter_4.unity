@@ -1271,8 +1271,8 @@ MonoBehaviour:
     dialogStartFunnel:
     - dialogIndex: 40000
       funnelNum: 28
-    - dialogIndex: 40004
-      funnelNum: 29
+    - dialogIndex: 40009
+      funnelNum: 35
     dialogEndFunnel:
     - dialogIndex: 4009
       funnelNum: 31
@@ -1281,7 +1281,7 @@ MonoBehaviour:
     cutSceneStartFunnel:
     - cutSceneIndex: JieuiRequest
       funnelNum: 30
-    - cutSceneIndex: HaniReques
+    - cutSceneIndex: HaniRequest
       funnelNum: 36
     - cutSceneIndex: TheCatReturns
       funnelNum: 41
