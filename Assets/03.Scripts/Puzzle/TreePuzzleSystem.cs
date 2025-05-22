@@ -114,6 +114,8 @@ public class TreePuzzleSystem : MonoBehaviour
         if (sequence > 0)
             Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
 
+        EditorLog.Log(sequence.ToString());
+
         challengeCount++;
 
         currentTime = timeLimit;
@@ -188,13 +190,6 @@ public class TreePuzzleSystem : MonoBehaviour
         challengeCount = 0;
 
         Managers.Instance.AnalyticsManager.fallCount = 0;
-
-        var sequence = puzzleIndex == 0 ? 14
-                     : puzzleIndex == 1 ? 16
-                     : -1;
-
-        if (sequence > 0)
-            analyticsManager.SendFunnel(sequence.ToString());
     }
 
     // 퍼즐 실패시
@@ -234,11 +229,22 @@ public class TreePuzzleSystem : MonoBehaviour
         // 팝업 닫고 플레이어 제어 복구
         OnExit();
 
+        var analyticsManager = Managers.Instance.AnalyticsManager;
+
+        var sequence = puzzleIndex == 0 ? 14
+                     : puzzleIndex == 1 ? 16
+                     : -1;
+        EditorLog.Log(sequence.ToString());
+
+        if (sequence > 0)
+            analyticsManager.SendFunnel(sequence.ToString());
+
         switch (puzzleIndex)
         {
             case 0:
                 Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
                 Managers.Instance.GameManager.UpdateProgress();
+                Managers.Instance.AnalyticsManager.SendFunnel("14");
                 break;
 
             case 1:

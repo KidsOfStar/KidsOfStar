@@ -6988,10 +6988,6 @@ MonoBehaviour:
     dialogStartFunnel:
     - dialogIndex: 30006
       funnelNum: 19
-    - dialogIndex: 30008
-      funnelNum: 21
-    - dialogIndex: 30009
-      funnelNum: 21
     - dialogIndex: 30011
       funnelNum: 23
     - dialogIndex: 30016
