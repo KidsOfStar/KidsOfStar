@@ -4,6 +4,7 @@ public class PuzzleTrigger : MonoBehaviour
 {
     [Header("상호작용 이펙트")]
     public SceneType sceneType;
+
     [SerializeField] private GameObject exclamationInstance;
     //private SpriteRenderer exclamationRenderer;
 
@@ -11,6 +12,7 @@ public class PuzzleTrigger : MonoBehaviour
     private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
     private SkillBTN skillBTN;
+
     [Header("튜토리얼 문인지 체크")]
     [SerializeField] private bool isTutorial = false;
 
@@ -22,7 +24,6 @@ public class PuzzleTrigger : MonoBehaviour
 
     public Door door;
 
-
     private void Start()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
@@ -32,7 +33,7 @@ public class PuzzleTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            skillBTN.ShowInteractionButton(true); // 상호작용 버튼 활성화
+            skillBTN.ShowInteractionButton(true);         // 상호작용 버튼 활성화
             skillBTN.OnInteractBtnClick += OnInteraction; // 상호작용 버튼 클릭 이벤트 등록
         }
     }
@@ -56,7 +57,7 @@ public class PuzzleTrigger : MonoBehaviour
         var player = Managers.Instance.GameManager.Player;
         var currentForm = player?.FormControl?.CurFormData;
 
-        if(currentForm == null) return;
+        if (currentForm == null) return;
 
         if ((dangerFormMask & currentForm.playerFormType) != 0)
         {
@@ -78,13 +79,14 @@ public class PuzzleTrigger : MonoBehaviour
             popup.OnClosed += () =>
             {
                 var safePopup = Managers.Instance.UIManager.Show<SafePopup>();
-                safePopup.Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
-                safePopup.safePuzzle.SetSafeNumber(safeNumber);
+                safePopup.Opened(sceneType); // 안전한 폼일 경우 팝업 표시
             };
             return;
         }
+
         // 튜토리얼 보여주고 시작
-        Managers.Instance.UIManager.Show<SafePopup>().Opened(sceneType); // 안전한 폼일 경우 팝업 표시
+        var safe = Managers.Instance.UIManager.Show<SafePopup>();
+        safe.Opened(sceneType); // 안전한 폼일 경우 팝업 표시
     }
 
     private void OntextBubbleText()

@@ -1,5 +1,6 @@
 using Unity.Services.Core;
 using Unity.Services.Analytics;
+using UnityEngine;
 
 public class AnalyticsManager
 {
@@ -55,6 +56,7 @@ public class AnalyticsManager
         funnelEvent["Funnel_Chapter_Number"] = number;
         
         AnalyticsService.Instance.RecordEvent(funnelEvent);
+        Debug.Log("SendFunnel : " + number);
     }
 }
 

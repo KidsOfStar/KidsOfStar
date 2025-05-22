@@ -147,6 +147,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             ("ClearTime", currentTime)
             );
 
+        Debug.Log("SafeNum : " + safeNumber);
         if (safeNumber == 1)
         {
             analyticsManager.SendFunnel("42");
@@ -164,6 +165,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public void SetSafeNumber(int number)
     {
         safeNumber = number;
+        Debug.Log("SafeNum : " + safeNumber);
     }
 
     // 클릭 이벤트 처리

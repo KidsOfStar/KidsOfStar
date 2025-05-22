@@ -173,6 +173,7 @@ public class BgmLayeredFader : MonoBehaviour
     {
         var scr = audioDict[srcType];
         var duration = srcType == MainBgmSourceType.StrMelody2 ? 2f : 1f;
+        duration = srcType == MainBgmSourceType.RiseEffect ? 8f : duration;
         EditorLog.LogWarning("Play Source : " + scr.gameObject.name);
         StartCoroutine(FadeInAudio(scr, duration));
     }
