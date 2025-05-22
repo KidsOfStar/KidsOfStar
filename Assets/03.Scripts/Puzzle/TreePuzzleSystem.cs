@@ -110,8 +110,8 @@ public class TreePuzzleSystem : MonoBehaviour
     {
         var sequence = puzzleIndex == 0 ? 13
                      : puzzleIndex == 1 ? 15
-                     : 0;
-        if (sequence != 0)
+                     : -1;
+        if (sequence > 0)
             Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
 
         challengeCount++;
@@ -189,11 +189,11 @@ public class TreePuzzleSystem : MonoBehaviour
 
         Managers.Instance.AnalyticsManager.fallCount = 0;
 
-        var sequence = puzzleIndex == 1 ? 14
-                     : puzzleIndex == 2 ? 16
-                     : 0;
+        var sequence = puzzleIndex == 0 ? 14
+                     : puzzleIndex == 1 ? 16
+                     : -1;
 
-        if (sequence != 0)
+        if (sequence > 0)
             analyticsManager.SendFunnel(sequence.ToString());
     }
 
