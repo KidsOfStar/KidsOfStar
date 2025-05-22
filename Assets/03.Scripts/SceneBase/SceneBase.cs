@@ -221,7 +221,9 @@ public abstract class SceneBase : MonoBehaviour
         foreach (var pair in dict)
         {
             if (pair.Key == dialogIndex)
+            {
                 Managers.Instance.AnalyticsManager.SendFunnel(pair.Value.ToString());
+            }
         }
     }
 
