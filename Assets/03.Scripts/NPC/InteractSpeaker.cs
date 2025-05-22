@@ -75,7 +75,15 @@ public abstract class InteractSpeaker : MonoBehaviour
 
     private void DespawnExclamationIcon(int index)
     {
-        if (!this) return;
+        if (!this)
+        {
+            Managers.Instance.GameManager.OnProgressUpdated -= CheckExistRequiredDialog;
+            Managers.Instance.DialogueManager.OnDialogStepEnd -= DespawnExclamationIcon;
+            Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButtonCallback;
+            EditorLog.Log("Destroy InteractSpeaker But Not Destroy");
+            return;
+        }
+        
         if (BubbleTr.childCount == 0) return;
         
         foreach (var value in requiredDialogByProgress.Values)

@@ -24049,6 +24049,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2109303362}
     m_Modifications:
+    - target: {fileID: 540261376932756791, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
+      propertyPath: positionDatas.Array.data[3].isActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 540261376932756791, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
+      propertyPath: positionDatas.Array.data[3].position.y
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 2689098336217944140, guid: 36d29457d008f9c4bbe77406fcfa547d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21
@@ -26094,8 +26102,8 @@ MonoBehaviour:
     position: {x: 310, y: 1.4, z: 0}
   - progress: 5
     isFlip: 0
-    isActive: 0
-    position: {x: 310, y: 1.4, z: 0}
+    isActive: 1
+    position: {x: 310, y: -100, z: 0}
 --- !u!114 &2038232331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27336,8 +27344,8 @@ MonoBehaviour:
     position: {x: -22.5, y: 4.28, z: 0}
   - progress: 2
     isFlip: 0
-    isActive: 0
-    position: {x: -22.5, y: 4.28, z: 0}
+    isActive: 1
+    position: {x: -22.5, y: -100, z: 0}
 --- !u!1 &7963855876493376280
 GameObject:
   m_ObjectHideFlags: 0
@@ -27379,8 +27387,8 @@ MonoBehaviour:
     position: {x: 313, y: 1.5, z: 0}
   - progress: 4
     isFlip: 0
-    isActive: 0
-    position: {x: 313, y: 1.5, z: 0}
+    isActive: 1
+    position: {x: 313, y: -100, z: 0}
 --- !u!114 &7963855876493376282
 MonoBehaviour:
   m_ObjectHideFlags: 0
