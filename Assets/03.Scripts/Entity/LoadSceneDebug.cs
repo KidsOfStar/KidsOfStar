@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LoadSceneDebug : MonoBehaviour
 {
-#if TEST_BUILD // || UNITY_EDITOR
+#if TEST_BUILD || UNITY_EDITOR
     [SerializeField] private float buttonWidth = 180f;
     [SerializeField] private float buttonHeight = 60f;
     [SerializeField] private int fontSize = 30;
@@ -45,9 +45,9 @@ public class LoadSceneDebug : MonoBehaviour
         float startY = Screen.height / 3f;
 
         Rect buttonRect = new(startX, startY, buttonWidth, buttonHeight);
-        if (GUI.Button(buttonRect, "Chapter 01", buttonStyle))
+        if (GUI.Button(buttonRect, "Time", buttonStyle))
         {
-            Managers.Instance.SceneLoadManager.LoadScene(SceneType.Chapter1);
+            EditorLog.Log(Time.timeScale);
         }
 
         buttonRect.y += buttonHeight + 10f;

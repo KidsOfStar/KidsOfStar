@@ -27,6 +27,7 @@ public class UILoading : MonoBehaviour
             return;
         }
 
+        currentLoadingData = webGLData;
 #if UNITY_EDITOR
         currentLoadingData = webGLData;
 #elif UNITY_ANDROID

@@ -75,6 +75,7 @@ public abstract class InteractSpeaker : MonoBehaviour
 
     private void DespawnExclamationIcon(int index)
     {
+        if (!this) return;
         if (BubbleTr.childCount == 0) return;
         
         foreach (var value in requiredDialogByProgress.Values)
