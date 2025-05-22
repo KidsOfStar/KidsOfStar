@@ -139,6 +139,9 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
         door.isDoorOpen = true;
 
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
+
         var analyticsManager = Managers.Instance.AnalyticsManager;
         analyticsManager.RecordChapterEvent("PopUpPuzzle",
             ("PuzzleNumber", safeNumber),

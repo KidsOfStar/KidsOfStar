@@ -64,6 +64,8 @@ public class SafePopup : PopupBase
     {
         base.HideDirect();
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
     }
 
     private void StartPuzzleAtIndex(int index)

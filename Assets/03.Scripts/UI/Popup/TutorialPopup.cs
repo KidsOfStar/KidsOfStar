@@ -111,7 +111,6 @@ public class TutorialPopup : PopupBase
         }
     }
 
-
     public override void HideDirect()
     {
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
