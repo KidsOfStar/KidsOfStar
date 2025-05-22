@@ -3740,6 +3740,10 @@ PrefabInstance:
       value: Safe
       objectReference: {fileID: 0}
     - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 760836016}
+    - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
       propertyPath: sceneType
       value: 10
       objectReference: {fileID: 0}
@@ -3880,14 +3884,6 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 701440938}
     m_ColliderPaths:
-    - - X: -5250000
-        Y: -10000000
-      - X: -15000000
-        Y: -10000000
-      - X: -15000000
-        Y: -30000000
-      - X: -5250000
-        Y: -30000000
     - - X: 364749984
         Y: -10000000
       - X: 355000000
@@ -3902,10 +3898,6 @@ CompositeCollider2D:
       - {x: 36.47497, y: -1}
       - {x: 35.5, y: -1.0000293}
       - {x: 35.50003, y: -3}
-    - - {x: -0.5250293, y: -3}
-      - {x: -0.5250293, y: -1}
-      - {x: -1.5, y: -1.0000293}
-      - {x: -1.4999707, y: -3}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -4031,26 +4023,6 @@ Tilemap:
   m_GameObject: {fileID: 701440934}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: -2, y: -3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 10
-      m_TileSpriteIndex: 10
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -1, y: -3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 9
-      m_TileSpriteIndex: 9
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 35, y: -3, z: 0}
     second:
       serializedVersion: 2
@@ -4062,26 +4034,6 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: 36, y: -3, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 9
-      m_TileSpriteIndex: 9
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -2, y: -2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 10
-      m_TileSpriteIndex: 10
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -1, y: -2, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 9
@@ -4131,9 +4083,9 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 4
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 036c3875c87b9bc43afbeb970dfc4712, type: 2}
-  - m_RefCount: 4
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: cff6e56e222c2a146b37e4c3e6c7edb6, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
@@ -4154,12 +4106,12 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 4
+  - m_RefCount: 2
     m_Data: {fileID: -188389829, guid: 1ae32e05af5e4b44e8e2cb781748ca35, type: 3}
-  - m_RefCount: 4
+  - m_RefCount: 2
     m_Data: {fileID: -188389829, guid: c1d16315319a7c04ebfa60d0aa0c8500, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 8
+  - m_RefCount: 4
     m_Data:
       e00: 1
       e01: 0
@@ -4178,7 +4130,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 8
+  - m_RefCount: 4
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -11383,6 +11335,14 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1198605216}
     m_ColliderPaths:
+    - - X: 0
+        Y: -10000000
+      - X: -20000000
+        Y: -10000000
+      - X: -20000000
+        Y: -30000000
+      - X: 0
+        Y: -30000000
     - - X: 10000000
         Y: -30000000
       - X: 0
@@ -11477,6 +11437,10 @@ CompositeCollider2D:
         Y: -110000000
   m_CompositePaths:
     m_Paths:
+    - - {x: -0.000029300001, y: -3}
+      - {x: -0.000029300001, y: -1}
+      - {x: -2, y: -1.0000293}
+      - {x: -1.9999708, y: -3}
     - - {x: 0.99997073, y: -9}
       - {x: 0.99997073, y: -3}
       - {x: 0, y: -3.0000293}
@@ -11515,14 +11479,14 @@ CompositeCollider2D:
       - {x: -2.999971, y: -11}
       - {x: 2, y: -11.00003}
       - {x: 2.0000293, y: -13}
-    - - {x: 31.999971, y: -11}
-      - {x: 31.999971, y: -10}
-      - {x: 28, y: -10.00003}
-      - {x: 28.000029, y: -11}
     - - {x: 17.999971, y: -11}
       - {x: 17.999971, y: -10}
       - {x: 14, y: -10.00003}
       - {x: 14.000029, y: -11}
+    - - {x: 31.999971, y: -11}
+      - {x: 31.999971, y: -10}
+      - {x: 28, y: -10.00003}
+      - {x: 28.000029, y: -11}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -12398,6 +12362,46 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -2, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -2, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
@@ -12412,8 +12416,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 4
+    m_Data: {fileID: 11400000, guid: 55ba4b5edab526d4ea33c39a9d0c026a, type: 2}
   - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 9bd941e204896844a903eb2ab3faf50e, type: 2}
   - m_RefCount: 6
@@ -12435,8 +12439,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 4
+    m_Data: {fileID: 21300000, guid: 2d75f7acd64bbe34a8063f5052b5f8b5, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 84580469, guid: 1a3c88bb61c7889439be6df7d12f0544, type: 3}
   - m_RefCount: 6
@@ -12446,7 +12450,7 @@ Tilemap:
   - m_RefCount: 12
     m_Data: {fileID: 1979039913, guid: 1a3c88bb61c7889439be6df7d12f0544, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 75
+  - m_RefCount: 79
     m_Data:
       e00: 1
       e01: 0
@@ -12465,7 +12469,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 75
+  - m_RefCount: 79
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
