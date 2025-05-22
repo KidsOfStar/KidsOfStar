@@ -20,6 +20,9 @@ public class PuzzleTrigger : MonoBehaviour
     [Header("금고 번호")]
     public int safeNumber; // 각 씬의 금고 번호
 
+    public Door door;
+
+
     private void Start()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;

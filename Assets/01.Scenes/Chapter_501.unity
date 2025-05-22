@@ -5270,6 +5270,10 @@ PrefabInstance:
       value: Safe
       objectReference: {fileID: 0}
     - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 3024409753289656798}
+    - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
       propertyPath: sceneType
       value: 7
       objectReference: {fileID: 0}
@@ -11686,6 +11690,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 879ff2579b39e2845a4aa558767de07f, type: 3}
+--- !u!114 &3024409753289656798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9114928326479447907, guid: 879ff2579b39e2845a4aa558767de07f, type: 3}
+  m_PrefabInstance: {fileID: 3024409753289656797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c034b5fbcef6f843a50e699c571b32f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
