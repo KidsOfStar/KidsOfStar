@@ -98,6 +98,7 @@ MonoBehaviour:
     - {fileID: -8686875428017147144}
     - {fileID: -624183991395534263}
     - {fileID: -8944193134756883644}
+    - {fileID: -4932531881062945069}
 --- !u!114 &-8686875428017147144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,6 +185,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset(Clone)(Clone)
   m_EditorClassIdentifier: 
+--- !u!114 &-4932531881062945069
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 16.983333333333334
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 03a8f1bb4da0bef4390b7347d0c7cd3f, type: 2}
 --- !u!114 &-4212333100358680499
 MonoBehaviour:
   m_ObjectHideFlags: 1
