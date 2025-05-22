@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class CatWallClingState : PlayerStateBase
 {
-    // 벽 타기 시작 후 경과 시간
-    float clingTimer = 0;
-    // 벽 타기가 가능한 제한 시간
-    float limit = 1f;
-
     public CatWallClingState(PlayerContextData data, PlayerStateFactory factory) : base(data, factory)
     {
     }
@@ -47,15 +42,6 @@ public class CatWallClingState : PlayerStateBase
     public override void OnUpdate()
     {
         base.OnUpdate();
-        clingTimer += Time.deltaTime;
-
-        // 벽 타기 후 정해둔 시간이 지났다면
-        if(clingTimer >= limit)
-        {
-            // 대기 상태로 전환
-            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.Idle));
-            return;
-        }
 
         // 땅에 닿는다면
         if(context.Controller.IsGround)
@@ -113,7 +99,5 @@ public class CatWallClingState : PlayerStateBase
         // 각도를 원래대로
         context.Controller.transform.GetChild(0).rotation = Quaternion.Euler(Vector3.zero);
         context.Controller.SetCollider(CapsuleDirection2D.Horizontal);
-        // 초기화
-        clingTimer = 0;
     }
 }
