@@ -55,6 +55,7 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 준비
     public virtual void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
     {
+
         puzzleIndex = puzzleClearIndex;
         correctSprites = new List<Sprite>(data.pieceSprites);
         gridWidth = data.gridWidth;
@@ -185,7 +186,6 @@ public class TreePuzzleSystem : MonoBehaviour
                                            ("ChallengeCount", challengeCount),
                                            ("ClearTime", clearTime));
         challengeCount = 0;
-        puzzleIndex = 0;
         Managers.Instance.AnalyticsManager.fallCount = 0;
 
         var sequence = puzzleIndex == 1 ? 14
@@ -233,17 +233,18 @@ public class TreePuzzleSystem : MonoBehaviour
         // 팝업 닫고 플레이어 제어 복구
         OnExit();
 
-        // clearPuzzlenum.Count 에 따라 컷신 분기 재생
-        if (clearPuzzlenum.Count == 1)
+        switch (puzzleIndex)
         {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
-            Managers.Instance.GameManager.UpdateProgress();
-        }
-        else if (clearPuzzlenum.Count >= totalPuzzleCount)
-        {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
-            Managers.Instance.GameManager.UpdateProgress();
-            Managers.Instance.AnalyticsManager.SendFunnel("17");
+            case 0:
+                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
+                Managers.Instance.GameManager.UpdateProgress();
+                break;
+
+            case 1:
+                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
+                Managers.Instance.GameManager.UpdateProgress();
+                Managers.Instance.AnalyticsManager.SendFunnel("17");
+                break;
         }
     }
 
