@@ -77,14 +77,22 @@ public class PuzzleTrigger : MonoBehaviour
             var popup = Managers.Instance.UIManager.Show<TutorialPopup>(4);
             popup.OnClosed += () =>
             {
+                Debug.Log("튜토리얼 후 퍼즐 시작");
+
                 var safePopup = Managers.Instance.UIManager.Show<SafePopup>();
                 safePopup.Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
-                safePopup.safePuzzle.SetSafeNumber(safeNumber);
+                //safePopup.safePuzzle.SetSafeNumber(safeNumber);
             };
             return;
         }
+        Debug.Log("퍼즐 시작");
         // 튜토리얼 보여주고 시작
-        Managers.Instance.UIManager.Show<SafePopup>().Opened(sceneType); // 안전한 폼일 경우 팝업 표시
+        var safePopup = Managers.Instance.UIManager.Show<SafePopup>(); // 안전한 폼일 경우 팝업 표시
+        safePopup.Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
+        safePopup.safePuzzle.SetSafeNumber(safeNumber);
+        
+
+
     }
 
     private void OntextBubbleText()
