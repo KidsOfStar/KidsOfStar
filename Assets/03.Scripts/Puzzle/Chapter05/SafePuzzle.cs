@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SafePuzzle : MonoBehaviour, IPointerClickHandler
@@ -138,7 +139,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
         puzzleTrigger.DisableExclamation();
 
-        puzzleTrigger.door.isDoorOpen = true;
+        AddObject();
 
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
@@ -164,6 +165,18 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    private void AddObject()
+    {
+        if (puzzleTrigger.VentDoor != null)
+        {
+            puzzleTrigger.VentDoor.SetActive(true);
+        }
+
+        else if (puzzleTrigger.door != null)
+        {
+            puzzleTrigger.door.gameObject.SetActive(true);
+        }
+    }
     private IEnumerator HidePopupAfterDelay(float delaySeconds)
     {
         yield return new WaitForSeconds(delaySeconds);
