@@ -184,9 +184,9 @@ public class WirePuzzleSystem : MonoBehaviour
                      : puzzleIndex == 3 ? 38
                      : puzzleIndex == 4 ? 39
                      : puzzleIndex == 5 ? 40
-                     : 0;
+                     : -1;
 
-        if (sequence != 0)
+        if (sequence > 0)
             Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
     }
 
