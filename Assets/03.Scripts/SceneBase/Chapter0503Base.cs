@@ -14,11 +14,11 @@ public class Chapter0503Base : SceneBase
     private void Start()
     {
         var gm = Managers.Instance.GameManager;
-        gm.ChapterProgress = 3;
 
         if (gm.VisitCount == 0)
         {
             // 처음 503 진입
+            gm.ChapterProgress = 3;
             meetingWomanTriger.enabled = true;
             meetingBihyiTriger.enabled = false;
             gm.VisitCount++;
@@ -28,14 +28,21 @@ public class Chapter0503Base : SceneBase
             // 두 번째 503 진입 (504 -> 503)
             meetingWomanTriger.enabled = false;
             meetingBihyiTriger.enabled = true;
-            gm.ChapterProgress = 4;
+
+            if (Managers.Instance.GameManager.ChapterProgress == 3)
+                gm.ChapterProgress = 4;
         }
 
         // Crowd 처리
         if (gm.ChapterProgress == 4)
             crowd.SetActive(false);
 
-        Debug.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
+        EditorLog.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
+    }
+
+    private void Update()
+    {
+        Debug.Log(Managers.Instance.GameManager.ChapterProgress);
     }
 
     protected override void CreatePool()

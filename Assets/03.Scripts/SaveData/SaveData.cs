@@ -11,18 +11,23 @@ public class SaveData
 
     public string saveName;
     public int difficulty;
+    public int scene;
+
     public int chapter;
     public int chapterProgress;
     public Vector3 playerPosition;
     public int[] chapterTrust;
+    
     public PlayerFormType unlockedPlayerForms;
     public PlayerFormType currentPlayerForm;
     public EndingType completedEnding;
+    public int visitCount;
 
     public void InitData()
     {
         var gameManager = Managers.Instance.GameManager;
         difficulty = (int)gameManager.Difficulty;
+        scene = (int)gameManager.CurrentScene;
         chapter = (int)gameManager.CurrentChapter;
         chapterProgress = gameManager.ChapterProgress;
         playerPosition = gameManager.Player.transform.position;
@@ -30,6 +35,7 @@ public class SaveData
         currentPlayerForm = gameManager.Player.FormControl.CurFormData.playerFormType; 
         chapterTrust = gameManager.GetTrustArray();
         completedEnding = gameManager.CompletedEnding;
+        visitCount = gameManager.VisitCount;
     }
 
     public void LoadData()

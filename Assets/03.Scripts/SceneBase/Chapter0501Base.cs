@@ -21,6 +21,8 @@ public class Chapter0501Base : SceneBase
     private void SkillForm()
     {
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
+
     }
 
     private void HideTutorial()

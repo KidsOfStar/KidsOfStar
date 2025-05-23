@@ -409,7 +409,7 @@ MonoBehaviour:
   closeBtn: {fileID: 388347872266394736}
   checkTimeStop: 0
   isFirst: 0
-  appltBtn: {fileID: 190675909798535517}
+  allowBtn: {fileID: 190675909798535517}
 --- !u!1 &7849549868169949140
 GameObject:
   m_ObjectHideFlags: 0

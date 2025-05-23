@@ -1,5 +1,6 @@
 using Unity.Services.Core;
 using Unity.Services.Analytics;
+using UnityEngine;
 
 public class AnalyticsManager
 {
@@ -39,7 +40,7 @@ public class AnalyticsManager
 
         // 2) 공통 파라미터: Chapter 번호
         ce["ChapterType"] = Managers.Instance.GameManager.CurrentChapter.GetName();
-        EditorLog.Log(Managers.Instance.GameManager.CurrentChapter.GetName());
+        //EditorLog.Log(Managers.Instance.GameManager.CurrentChapter.GetName());
 
         // 3) 추가 파라미터 병합
         foreach (var (key, value) in parameters)
@@ -55,6 +56,7 @@ public class AnalyticsManager
         funnelEvent["Funnel_Chapter_Number"] = number;
         
         AnalyticsService.Instance.RecordEvent(funnelEvent);
+        Debug.Log("SendFunnel : " + number);
     }
 }
 

@@ -24,7 +24,8 @@ public class DashGame : MonoBehaviour
 
     
     private SkillBTN skillBTN; // 스킬 버튼 UI
-    [SerializeField] private GameObject TestGameBlock;
+    [SerializeField] private GameObject TestGameBlock;  // 끌날 떄
+    [SerializeField] private GameObject StartGameBlock; // 게임 시작 블록
 
     [Header("AnalyticsManager")]
     [SerializeField] private DeadIine deadIine;     // 데드라인
@@ -77,6 +78,9 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Show<StopWatch>();
 
         yield return StartCoroutine(StartGame(5f)); // 5초 카운트다운 후 게임 시작
+
+        StartGameBlock.SetActive(false); // 게임 시작 블록 비활성화
+
     }
 
     private IEnumerator VirtualCameraMove()

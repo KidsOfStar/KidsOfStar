@@ -67,6 +67,8 @@ public class DashGameResultPopup : PopupBase
             return;
         }
 
+        Managers.Instance.AnalyticsManager.SendFunnel("21");
+
         string line = currentDialogLines[currentLineIndex];
 
         if (currentNpcType == CharacterType.Jigim)

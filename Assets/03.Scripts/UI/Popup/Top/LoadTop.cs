@@ -27,21 +27,7 @@ public class LoadTop : PopupBase
         // 씬 불러오기
         Load();
         Time.timeScale = 1;
-        var loadChapter = Managers.Instance.GameManager.CurrentChapter;
-        var loadScene = GetLoadSceneType(loadChapter);
+        var loadScene = Managers.Instance.GameManager.CurrentScene;
         Managers.Instance.SceneLoadManager.LoadScene(loadScene);
-    }
-
-    private SceneType GetLoadSceneType(ChapterType chapter)
-    {
-        return chapter switch
-        {
-            ChapterType.Chapter1   => SceneType.Chapter1,
-            ChapterType.Chapter2   => SceneType.Chapter2,
-            ChapterType.Chapter3   => SceneType.Chapter3,
-            ChapterType.Chapter4   => SceneType.Chapter4,
-            ChapterType.Chapter5 => SceneType.Chapter501,
-            _                      => throw new System.ArgumentOutOfRangeException(nameof(chapter), chapter, null)
-        };
     }
 }

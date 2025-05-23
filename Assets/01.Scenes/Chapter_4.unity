@@ -1271,8 +1271,8 @@ MonoBehaviour:
     dialogStartFunnel:
     - dialogIndex: 40000
       funnelNum: 28
-    - dialogIndex: 40004
-      funnelNum: 29
+    - dialogIndex: 40009
+      funnelNum: 35
     dialogEndFunnel:
     - dialogIndex: 4009
       funnelNum: 31
@@ -1281,7 +1281,7 @@ MonoBehaviour:
     cutSceneStartFunnel:
     - cutSceneIndex: JieuiRequest
       funnelNum: 30
-    - cutSceneIndex: HaniReques
+    - cutSceneIndex: HaniRequest
       funnelNum: 36
     - cutSceneIndex: TheCatReturns
       funnelNum: 41
@@ -3941,16 +3941,6 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -35, y: -24, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6932,7 +6922,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 1f241a9bf4c52c949a92462c81baca31, type: 2}
   - m_RefCount: 21
     m_Data: {fileID: 11400000, guid: 65478115cc5019b41b69420fea7c2451, type: 2}
-  - m_RefCount: 276
+  - m_RefCount: 275
     m_Data: {fileID: 11400000, guid: a66b10d88cac0034db68b4c8ca51ce67, type: 2}
   - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: 433dd2d0bb87dc44b8ebdd88722a8f72, type: 2}
@@ -6949,7 +6939,7 @@ Tilemap:
     m_Data: {fileID: 742162408, guid: fdf70e6fb0ffd294a8d6d279ac76a8e2, type: 3}
   - m_RefCount: 21
     m_Data: {fileID: -83880951, guid: fdf70e6fb0ffd294a8d6d279ac76a8e2, type: 3}
-  - m_RefCount: 276
+  - m_RefCount: 275
     m_Data: {fileID: 907446365, guid: fdf70e6fb0ffd294a8d6d279ac76a8e2, type: 3}
   - m_RefCount: 9
     m_Data: {fileID: -1834672172, guid: fdf70e6fb0ffd294a8d6d279ac76a8e2, type: 3}
@@ -6962,7 +6952,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 337
+  - m_RefCount: 336
     m_Data:
       e00: 1
       e01: 0
@@ -6981,7 +6971,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 337
+  - m_RefCount: 336
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -7652,9 +7642,9 @@ CompositeCollider2D:
         Y: -240000000
     - - X: -310000000
         Y: -230000000
-      - X: -350000000
+      - X: -340000000
         Y: -230000000
-      - X: -350000000
+      - X: -340000000
         Y: -240000000
       - X: -310000000
         Y: -240000000
@@ -8027,8 +8017,8 @@ CompositeCollider2D:
       - {x: -59, y: -24}
       - {x: -56, y: -24}
     - - {x: -31, y: -23}
-      - {x: -35, y: -23}
-      - {x: -35, y: -24}
+      - {x: -34, y: -23}
+      - {x: -34, y: -24}
       - {x: -31, y: -24}
     - - {x: -47, y: -23}
       - {x: -51, y: -23}
@@ -9561,8 +9551,8 @@ MonoBehaviour:
     position: {x: 53.9, y: 8.2, z: 0}
   - progress: 4
     isFlip: 0
-    isActive: 0
-    position: {x: 53.9, y: 8.2, z: 0}
+    isActive: 1
+    position: {x: 53.9, y: -100, z: 0}
 --- !u!1 &1546194205
 GameObject:
   m_ObjectHideFlags: 0
@@ -11675,8 +11665,8 @@ MonoBehaviour:
     position: {x: 53.7, y: -0.8, z: 0}
   - progress: 4
     isFlip: 0
-    isActive: 0
-    position: {x: 53.7, y: -0.8, z: 0}
+    isActive: 1
+    position: {x: 53.7, y: -100, z: 0}
 --- !u!1 &1968634509
 GameObject:
   m_ObjectHideFlags: 0
@@ -13608,8 +13598,8 @@ MonoBehaviour:
     position: {x: 19.6, y: -2.73, z: 0}
   - progress: 5
     isFlip: 0
-    isActive: 0
-    position: {x: 19.6, y: -2.73, z: 0}
+    isActive: 1
+    position: {x: 19.6, y: -100, z: 0}
 --- !u!114 &8371217841260009588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13654,8 +13644,8 @@ MonoBehaviour:
     position: {x: 6.53, y: 5.28, z: 0}
   - progress: 5
     isFlip: 0
-    isActive: 0
-    position: {x: 6.53, y: 5.28, z: 0}
+    isActive: 1
+    position: {x: 6.53, y: -100, z: 0}
 --- !u!114 &8560045578830650927
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -184,9 +184,9 @@ public class WirePuzzleSystem : MonoBehaviour
                      : puzzleIndex == 3 ? 38
                      : puzzleIndex == 4 ? 39
                      : puzzleIndex == 5 ? 40
-                     : 0;
+                     : -1;
 
-        if (sequence != 0)
+        if (sequence > 0)
             Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
     }
 
@@ -258,17 +258,20 @@ public class WirePuzzleSystem : MonoBehaviour
     // 생성된 퍼즐 조각 섞기
     private void ShufflePuzzle()
     {
-        for(int i = 0; i < puzzleData.ShuffleCount; i++)
+        do
         {
-            selectX = UnityEngine.Random.Range(0, gridWidth - 1);
-            selectY = UnityEngine.Random.Range(0,gridWidth - 1);
-            int rotateCount = UnityEngine.Random.Range(1, 3);
-
-            for(int j = 0; j < rotateCount; j++)
+            for (int i = 0; i < puzzleData.ShuffleCount; i++)
             {
-                RotateSelection();
+                selectX = UnityEngine.Random.Range(0, gridWidth - 1);
+                selectY = UnityEngine.Random.Range(0, gridWidth - 1);
+                int rotateCount = UnityEngine.Random.Range(1, 3);
+
+                for (int j = 0; j < rotateCount; j++)
+                {
+                    RotateSelection();
+                }
             }
-        }
+        } while(CheckPuzzleClear());
     }
 
     // 선택 영역의 조각 회전

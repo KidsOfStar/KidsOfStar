@@ -9,6 +9,7 @@ public class Chapter0502Base : SceneBase
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
 
-        Managers.Instance.GameManager.UpdateProgress(); // 진행도 2
+        if (isFirstTime)
+            Managers.Instance.GameManager.UpdateProgress(); // 진행도 2
     }
 }
