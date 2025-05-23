@@ -10,26 +10,18 @@ public class EntranceBlock : MonoBehaviour
             if (player != null)
             {
                 var formType = player.FormControl.CurFormData.playerFormType;
+                Debug.Log($"플레이어 형태: {formType}");
+
 
                 // 은신 폼(Hide)이 아닐 경우 무조건 막기
-                if ((formType == PlayerFormType.Hide))
+                if ((formType != PlayerFormType.Hide))
                 {
-                    player.Controller.IsControllable = false;
+                    // 뒤로 밀어주기
+                    player.Controller.BackMove();
                 }
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            var player = other.GetComponent<Player>();
-            if (player != null)
-            {
-                // 이동 가능 복구
-                player.Controller.IsControllable = true;
-            }
-        }
-    }
+    
 }

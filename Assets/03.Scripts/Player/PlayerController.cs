@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -405,5 +406,21 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
     public void ResetPlayer()
     {
         player.transform.position = playerBasePos;
+    }
+
+    public void BackMove()
+    {
+        LockPlayer();
+        // 충돌 시 뒤로 밀어주기
+        Vector2 vector2 = new Vector2((-moveDir.x * moveSpeed), rigid.velocity.y);
+        rigid.velocity = vector2;
+
+        Invoke("BackMoveStop", 0.5f);
+    }
+
+    private void BackMoveStop()
+    {
+        UnlockPlayer();
+        rigid.velocity = Vector2.zero;
     }
 }
