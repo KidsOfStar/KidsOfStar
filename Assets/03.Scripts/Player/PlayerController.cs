@@ -420,7 +420,11 @@ public class PlayerController : MonoBehaviour,IWeightable, ILeafJumpable
 
     private void BackMoveStop()
     {
+        var popup = Managers.Instance.UIManager.Show<WarningPopup>(WarningType.BackMove);
+        popup.SetScreenPosition(player.transform.position + new Vector3(0, 1.5f, 0));
+
         UnlockPlayer();
         rigid.velocity = Vector2.zero;
+
     }
 }

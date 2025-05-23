@@ -65,6 +65,12 @@ public class WarningPopup : PopupBase
                 ButtonWithSfx(confirmButton, SfxSoundType.ButtonPush, OnConfirmPressed);
                 break;
 
+            case WarningType.BackMove:
+                messageText.text = "사람 눈에 안 띄게 할 수 없을까?";
+                messageText.gameObject.SetActive(true);
+                ButtonWithSfx(confirmButton, SfxSoundType.ButtonPush, OnConfirmPressed);
+                break;
+
             default:
                 messageText.text = "…";
                 messageText.gameObject.SetActive(true);
