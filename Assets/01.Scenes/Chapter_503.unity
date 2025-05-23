@@ -19076,7 +19076,7 @@ MonoBehaviour:
   - progress: 6
     isFlip: 0
     isActive: 1
-    position: {x: 102, y: 1.5, z: 0}
+    position: {x: 102, y: 0.04, z: 0}
 --- !u!114 &1503142850
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ public class Cobweb : MonoBehaviour
     public float slowDownFacto; // 느려지는 비율
     private float originalJumpForce; // 점프력 원본
     private bool isBreaking = false; // 거미줄 파괴 중인지 여부
-    public PlayerFormType  playerFormType; // 플레이어 형태 타입
 
     private void Start()
     {
@@ -21,6 +20,7 @@ public class Cobweb : MonoBehaviour
             other.TryGetComponent(out PlayerController playerController) &&
             other.TryGetComponent(out PlayerFormController formController))
         {
+
             // 이동속도 감소
             playerController.MoveSpeed /= slowDownFacto;
 
@@ -45,9 +45,6 @@ public class Cobweb : MonoBehaviour
             {
                 playerController.JumpForce = 0f;
             }
-            if (formController.CurFormData.playerFormType == PlayerFormType.Cat)
-            {
-            }
 
             if (formController.CurFormData.playerFormType == PlayerFormType.Dog && !isBreaking)
             {
@@ -65,8 +62,6 @@ public class Cobweb : MonoBehaviour
         // 점프력 복원
         playerController.JumpForce = originalJumpForce;
 
-        // 이동속도 복원
-        playerController.MoveSpeed *= slowDownFacto;
 
         // 거미줄 제거
         Destroy(gameObject);
@@ -77,11 +72,18 @@ public class Cobweb : MonoBehaviour
     public void OnTriggerExit2D(Collider2D other)
     {
         // 점프력은 DogBreakCobweb에서만 복원되도록 수정
-        if (other.CompareTag("Player") && !isBreaking &&
-            other.gameObject.TryGetComponent(out PlayerController playerController))
+        if (other.CompareTag("Player") &&
+        other.TryGetComponent(out PlayerController playerController) &&
+        other.TryGetComponent(out PlayerFormController formController))
         {
-            // 이동속도만 복원 (거미줄에서 나간 경우)
+            // 이동속도 복원
             playerController.MoveSpeed *= slowDownFacto;
+
+            // Dog 폼이 아니면 점프력 복원
+            if (!isBreaking && formController.CurFormData.playerFormType != PlayerFormType.Dog)
+            {
+                playerController.JumpForce = originalJumpForce;
+            }
         }
     }
 }
