@@ -8,6 +8,8 @@ public class Cobweb : MonoBehaviour
     private float originalJumpForce; // 점프력 원본
     private bool isBreaking = false; // 거미줄 파괴 중인지 여부
 
+    private Coroutine warningTime;
+    private bool hasShownWarning = false;
     private void Start()
     {
         cobwebCollider = GetComponent<Collider2D>();
@@ -31,6 +33,9 @@ public class Cobweb : MonoBehaviour
             {
                 StartCoroutine(DogBreakCobweb(playerController));
             }
+
+            if (!hasShownWarning && warningTime == null)
+                warningTime = StartCoroutine(ShowCobwebWarningAfterDelay(other.transform));
         }
     }
 
@@ -85,5 +90,24 @@ public class Cobweb : MonoBehaviour
                 playerController.JumpForce = originalJumpForce;
             }
         }
+
+        if (warningTime != null)
+        {
+            StopCoroutine(warningTime);
+            warningTime = null;
+        }
+    }
+
+    private IEnumerator ShowCobwebWarningAfterDelay(Transform playerTransform)
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        hasShownWarning = true;
+        warningTime = null;
+
+        var popup = Managers.Instance.UIManager.Show<WarningPopup>(WarningType.Coweb);
+
+        Vector3 worldAboveHead = playerTransform.position + new Vector3(0, 1.5f, 0);
+        popup.SetScreenPosition(worldAboveHead);
     }
 }

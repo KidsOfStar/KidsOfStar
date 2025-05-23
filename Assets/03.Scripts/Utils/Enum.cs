@@ -251,6 +251,7 @@ public enum WarningType
     Squirrel,
     BoxMissing,
     BoxFalling,
+    Coweb,
 }
 
 #endregion
