@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class WarningPopup : PopupBase
 {
     [SerializeField] private TextMeshProUGUI messageText;
-    [SerializeField] private TextMeshProUGUI boxWarningText;
-    [SerializeField] private TextMeshProUGUI boxFallingText;
     [SerializeField] private Button confirmButton;
 
     // WarningType의 값을 순서대로 저장
@@ -36,8 +34,6 @@ public class WarningPopup : PopupBase
     {
         // 텍스트 숨겨두고, 해당 타입만 활성화
         messageText.gameObject.SetActive(false);
-        boxWarningText.gameObject.SetActive(false);
-        boxFallingText.gameObject.SetActive(false);
         confirmButton.gameObject.SetActive(false);
 
         confirmButton.onClick.RemoveAllListeners();
@@ -52,22 +48,26 @@ public class WarningPopup : PopupBase
                 break;
 
             case WarningType.BoxMissing:
-                boxWarningText.text = "박스를 문 앞으로 가져와야할 것 같다."; 
-                boxWarningText.gameObject.SetActive(true);
+                messageText.text = "박스를 문 앞으로 가져와야할 것 같다.";
+                messageText.gameObject.SetActive(true);
                 ButtonWithSfx(confirmButton, SfxSoundType.ButtonPush, OnConfirmPressed);
                 break;
 
             case WarningType.BoxFalling:
-                boxFallingText.text = "상자가 떨어졌다. 다시 시도해보자.";
-                boxFallingText.gameObject.SetActive(true);
+                messageText.text = "상자가 떨어졌다. 다시 시도해보자.";
+                messageText.gameObject.SetActive(true);
                 ButtonWithSfx(confirmButton, SfxSoundType.ButtonPush, objIndicator.ResetPosition);
+                break;
+
+            case WarningType.Coweb:
+                messageText.text = "거미줄을 없앨 수 없을까?";
+                messageText.gameObject.SetActive(true);
+                ButtonWithSfx(confirmButton, SfxSoundType.ButtonPush, OnConfirmPressed);
                 break;
 
             default:
                 messageText.text = "…";
-                boxWarningText.text = "…";
                 messageText.gameObject.SetActive(true);
-                boxWarningText.gameObject.SetActive(true);
                 break;
         }
     }
@@ -94,6 +94,14 @@ public class WarningPopup : PopupBase
             Managers.Instance.SoundManager.PlaySfx(sfx);
             action();
         });
+    }
+
+    public void SetScreenPosition(Vector3 worldPos)
+    {
+        if (Camera.main == null) return;
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+        GetComponent<RectTransform>().position = screenPos;
     }
 }
 

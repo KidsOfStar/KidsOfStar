@@ -252,6 +252,7 @@ public enum WarningType
     BoxMissing,
     BoxFalling,
     BackMove,
+    Coweb,
 }
 
 #endregion
