@@ -1,9 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DoorPopup : PopupBase
 {
     [SerializeField] private TextMeshProUGUI messageText;
+    [SerializeField] private Button confirmButton;
 
     public override void Opened(params object[] param)
     {

@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleTrigger : MonoBehaviour
 {
     [Header("상호작용 이펙트")]
     public SceneType sceneType;
     [SerializeField] private GameObject exclamationInstance;
+
     //private SpriteRenderer exclamationRenderer;
 
     [SerializeField] private GameObject bubbleTextPrefab;

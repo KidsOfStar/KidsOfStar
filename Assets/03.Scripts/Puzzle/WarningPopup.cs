@@ -32,7 +32,7 @@ public class WarningPopup : PopupBase
         ShowCurrentWarning();
     }
 
-    private void ShowCurrentWarning()
+    public void ShowCurrentWarning()
     {
         // 텍스트 숨겨두고, 해당 타입만 활성화
         messageText.gameObject.SetActive(false);
