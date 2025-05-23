@@ -15,15 +15,13 @@ public class DoorPopup : PopupBase
         ShowCurrentWarning();
 
         confirmButton.onClick.RemoveAllListeners();
-        confirmButton.onClick.AddListener(() =>
-        {
-            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
-            HideDirect();
-        });
+        confirmButton.onClick.AddListener(ClosePopup);
     }
 
     private void ShowCurrentWarning()
     {
+        confirmButton.onClick.RemoveAllListeners();
+
         // 현재 경고 타입 가져오기
         messageText.text = "잠겨있다. 풀 방법이 없을까?";
 
@@ -33,6 +31,8 @@ public class DoorPopup : PopupBase
 
     public void SetText(string text)
     {
+        confirmButton.onClick.RemoveAllListeners();
+
         // 현재 경고 타입 가져오기
         messageText.text = text;
 
@@ -40,7 +40,10 @@ public class DoorPopup : PopupBase
         messageText.gameObject.SetActive(true);
     }
 
-    
+    private void ClosePopup()
+    {
+        Managers.Instance.UIManager.Hide<DoorPopup>();
+    }
 
 }
 
