@@ -10,7 +10,7 @@ public class Chapter0503Base : SceneBase
     public Collider2D meetingBihyiTriger; // 뒤
 
     [SerializeField] private BgmLayeredFader bgmLayeredFader;
-    
+
     private void Start()
     {
         var gm = Managers.Instance.GameManager;
@@ -30,6 +30,9 @@ public class Chapter0503Base : SceneBase
             meetingBihyiTriger.enabled = true;
 
             if (Managers.Instance.GameManager.ChapterProgress == 3)
+                Managers.Instance.GameManager.UpdateProgress();
+            
+            if (Managers.Instance.GameManager.IsNewGame)
                 gm.ChapterProgress = 4;
         }
 
@@ -37,12 +40,7 @@ public class Chapter0503Base : SceneBase
         if (gm.ChapterProgress == 4)
             crowd.SetActive(false);
 
-        EditorLog.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
-    }
-
-    private void Update()
-    {
-        Debug.Log(Managers.Instance.GameManager.ChapterProgress);
+        EditorLog.Log(Managers.Instance.GameManager.ChapterProgress);
     }
 
     protected override void CreatePool()
