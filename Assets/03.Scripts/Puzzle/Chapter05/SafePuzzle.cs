@@ -10,7 +10,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public Image[] safeImage;
     public float rotationDuration = 0.5f;
     public SafePopup safePopup;
-    public PuzzleTrigger puzzleTrigger;
+    public SafePuzzleTrigger puzzleTrigger;
 
     // 모드별 제한 시간
     private int currentTime;
@@ -22,7 +22,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        puzzleTrigger = FindObjectOfType<PuzzleTrigger>();
+        puzzleTrigger = FindObjectOfType<SafePuzzleTrigger>();
 
         rotationAmount = new Dictionary<GameObject, float>
         {
@@ -131,7 +131,14 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
 
-        StartCoroutine(HidePopupAfterDelay(1f));
+        //if (!Managers.Instance.GameManager.clearedSafeByScene.ContainsKey(puzzleTrigger.sceneType))
+        //{
+        //    Managers.Instance.GameManager.clearedSafeByScene[puzzleTrigger.sceneType] = new HashSet<int>();
+        //}
+        //Managers.Instance.GameManager.clearedSafeByScene[puzzleTrigger.sceneType].Add(safeNumber);
+
+        //Debug.Log($"[SafePuzzle] {puzzleTrigger.sceneType} 퍼즐 완료 - {safeNumber}");
+
 
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
@@ -174,14 +181,10 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
         else if (puzzleTrigger.door != null)
         {
-            puzzleTrigger.door.gameObject.SetActive(true);
+            puzzleTrigger.door.isDoorOpen = true;
         }
     }
-    private IEnumerator HidePopupAfterDelay(float delaySeconds)
-    {
-        yield return new WaitForSeconds(delaySeconds);
-        Managers.Instance.UIManager.Hide<SafePopup>();
-    }
+
 
     public void SetSafeNumber(int number)
     {

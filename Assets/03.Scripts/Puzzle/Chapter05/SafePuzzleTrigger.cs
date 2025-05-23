@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PuzzleTrigger : MonoBehaviour
+public class SafePuzzleTrigger : MonoBehaviour
 {
     [Header("상호작용 이펙트")]
     public SceneType sceneType;
