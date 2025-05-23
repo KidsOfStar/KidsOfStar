@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SafePuzzle : MonoBehaviour, IPointerClickHandler
@@ -10,7 +9,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public Image[] safeImage;
     public float rotationDuration = 0.5f;
     public SafePopup safePopup;
-    public SafePuzzleTrigger puzzleTrigger;
+    public SafePuzzleTrigger safePuzzleSystem;
 
     // 모드별 제한 시간
     private int currentTime;
@@ -22,7 +21,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        puzzleTrigger = FindObjectOfType<SafePuzzleTrigger>();
+        safePuzzleSystem = FindObjectOfType<SafePuzzleTrigger>();
 
         rotationAmount = new Dictionary<GameObject, float>
         {
@@ -131,20 +130,20 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
 
-        //if (!Managers.Instance.GameManager.clearedSafeByScene.ContainsKey(puzzleTrigger.sceneType))
-        //{
-        //    Managers.Instance.GameManager.clearedSafeByScene[puzzleTrigger.sceneType] = new HashSet<int>();
-        //}
-        //Managers.Instance.GameManager.clearedSafeByScene[puzzleTrigger.sceneType].Add(safeNumber);
+        if (!Managers.Instance.GameManager.clearedSafeByScene.TryGetValue(safePuzzleSystem.sceneType, out var clearedSet))
+        {
+            clearedSet = new HashSet<int>();
+            Managers.Instance.GameManager.clearedSafeByScene[safePuzzleSystem.sceneType] = clearedSet;
+        }
+        clearedSet.Add(safeNumber);
 
-        //Debug.Log($"[SafePuzzle] {puzzleTrigger.sceneType} 퍼즐 완료 - {safeNumber}");
-
+        Debug.Log($"[SafePuzzle] {safePuzzleSystem.sceneType} 퍼즐 완료 - {safeNumber}");
 
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
         Managers.Instance.GameManager.UpdateProgress();
 
-        puzzleTrigger.DisableExclamation();
+        safePuzzleSystem.DisableExclamation();
 
         AddObject();
 
@@ -174,14 +173,14 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     private void AddObject()
     {
-        if (puzzleTrigger.VentDoor != null)
+        if (safePuzzleSystem.VentDoor != null)
         {
-            puzzleTrigger.VentDoor.SetActive(true);
+            safePuzzleSystem.VentDoor.SetActive(true);
         }
 
-        else if (puzzleTrigger.door != null)
+        else if (safePuzzleSystem.door != null)
         {
-            puzzleTrigger.door.isDoorOpen = true;
+            safePuzzleSystem.door.isDoorOpen = true;
         }
     }
 

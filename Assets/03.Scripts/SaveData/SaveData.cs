@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -22,6 +23,7 @@ public class SaveData
     public PlayerFormType currentPlayerForm;
     public EndingType completedEnding;
     public int visitCount;
+    public Dictionary<SceneType, HashSet<int>> clearedSafeByScene = new();
 
     public void InitData()
     {
@@ -36,6 +38,8 @@ public class SaveData
         chapterTrust = gameManager.GetTrustArray();
         completedEnding = gameManager.CompletedEnding;
         visitCount = gameManager.VisitCount;
+        clearedSafeByScene = gameManager.clearedSafeByScene;
+
     }
 
     public void LoadData()

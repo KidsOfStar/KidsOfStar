@@ -10,7 +10,7 @@ public class EntranceBlock : MonoBehaviour
             if (player != null)
             {
                 var formType = player.FormControl.CurFormData.playerFormType;
-                Debug.Log($"플레이어 형태: {formType}");
+                //Debug.Log($"플레이어 형태: {formType}");
 
 
                 // 은신 폼(Hide)이 아닐 경우 무조건 막기
