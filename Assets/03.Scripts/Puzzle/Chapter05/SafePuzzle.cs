@@ -131,7 +131,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
 
-        Managers.Instance.GameManager.clearedSafePuzzles[safeNumber, safePopup.countIndex] = true;
+        SafePuzzleClearData();
 
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
@@ -206,6 +206,31 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             int randomMultiplier = UnityEngine.Random.Range(0, 3);
             float randomRotation = pair.Value * randomMultiplier;
             pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
+        }
+    }
+
+    // 퍼즐 클리어 데이터 저장
+    private void SafePuzzleClearData()
+    {
+        int safeIndex = GetSafeIndexFromSceneType(safePuzzleSystem.sceneType);  // 0~2
+        int puzzleIndex = safePopup.countIndex; // 0~2
+
+        // 인덱스 범위 체크
+        if (safeIndex >= 0 && safeIndex < 3 && puzzleIndex >= 0 && puzzleIndex < 3)
+        {
+            Managers.Instance.GameManager.clearedSafePuzzles[safeNumber, puzzleIndex] = true;
+        }
+        
+    }
+    // 씬 타입에 따라 안전한 금고 인덱스 반환
+    private int GetSafeIndexFromSceneType(SceneType sceneType)
+    {
+        switch (sceneType)
+        {
+            case SceneType.Chapter501: return 0;
+            case SceneType.Chapter502: return 1;
+            case SceneType.Chapter504: return 2;
+            default: return 0;
         }
     }
 }
