@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class BgmLayeredFader : MonoBehaviour
 {
-    // TODO: 503 SceneBase에서 풀매니저로 먼저 생성시킬 것. Instantiate 괘오래걸림
-    // TODO: GameManager에 넣을 수 밖에 없지 않냐..
-    
     [Header("Audio")]
     [SerializeField] private AudioSource[] mainSources;
     [SerializeField] private AudioSource[] loopEffects;
 
     [Header("Loop Time")]
     [SerializeField] private float mainLoopTime = 192.5f;
-    [SerializeField] private float bufferOffset = 0.1f;
+    [SerializeField] private float bufferOffset = 0.5f;
     
     [Header("Dialog")]
     [SerializeField] private int strMelodyIndex = 5012;
