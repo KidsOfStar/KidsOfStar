@@ -60,6 +60,7 @@ public class UITitle : UIBase
         Managers.Instance.AnalyticsManager.SendFunnel("2");
 
         // 게임 시작 시 로드 씬으로 이동
+        Managers.Instance.GameManager.SetNewGame();
         LoadScene();
     }
 

@@ -6,7 +6,7 @@ public class AnalyticsManager
 {
     // Chapter 103
     public int TryCount { get; set; }
-    
+
     // Chapter 2, 4
     public int fallCount;
 
@@ -22,7 +22,6 @@ public class AnalyticsManager
             //Unity Services 초기화
             await UnityServices.InitializeAsync();
             AnalyticsService.Instance.StartDataCollection();
-
         }
         catch (System.Exception error)
         {
@@ -35,6 +34,10 @@ public class AnalyticsManager
         params (string key, object value)[] parameters
     )
     {
+#if UNITY_EDITOR
+        return;
+#endif
+
         // 1) CustomEvent 객체 생성
         var ce = new CustomEvent(eventType);
 
@@ -46,19 +49,19 @@ public class AnalyticsManager
         foreach (var (key, value) in parameters)
             ce[key] = value;
 
-        // 4) Analytics 전송
         AnalyticsService.Instance.RecordEvent(ce);
     }
 
     public void SendFunnel(string number)
     {
+#if UNITY_EDITOR
+        Debug.Log("SendFunnel : " + number);
+        return;
+#endif
+        
         var funnelEvent = new CustomEvent("Funnel_Chapter");
         funnelEvent["Funnel_Chapter_Number"] = number;
-        
+
         AnalyticsService.Instance.RecordEvent(funnelEvent);
-        Debug.Log("SendFunnel : " + number);
     }
 }
-
-
-
