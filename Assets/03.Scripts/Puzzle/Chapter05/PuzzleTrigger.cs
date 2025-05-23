@@ -13,7 +13,7 @@ public class PuzzleTrigger : MonoBehaviour
     private GameObject bubbleTextInstance; // 문 위에 생성된 프리팹 인스턴스
 
     private SkillBTN skillBTN;
-    [Header("튜토리얼 문인지 체크")]
+    [Header("튜토리얼 체크")]
     [SerializeField] private bool isTutorial = true;
 
     // 동물 폼
@@ -22,7 +22,9 @@ public class PuzzleTrigger : MonoBehaviour
     [Header("금고 번호")]
     public int safeNumber; // 각 씬의 금고 번호
 
+    [Header("필요 시 추가 상호작용 요소")]
     public Door door;
+    public GameObject VentDoor;
 
 
     private void Start()
