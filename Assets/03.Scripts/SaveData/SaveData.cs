@@ -23,7 +23,8 @@ public class SaveData
     public PlayerFormType currentPlayerForm;
     public EndingType completedEnding;
     public int visitCount;
-    public Dictionary<SceneType, HashSet<int>> clearedSafeByScene = new();
+    public bool[,] clearedSafePuzzles = new bool[3, 3];
+
 
     public void InitData()
     {
@@ -38,8 +39,7 @@ public class SaveData
         chapterTrust = gameManager.GetTrustArray();
         completedEnding = gameManager.CompletedEnding;
         visitCount = gameManager.VisitCount;
-        clearedSafeByScene = gameManager.clearedSafeByScene;
-
+        clearedSafePuzzles = gameManager.clearedSafePuzzles;
     }
 
     public void LoadData()

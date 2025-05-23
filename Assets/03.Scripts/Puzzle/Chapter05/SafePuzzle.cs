@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -130,14 +131,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
 
-        if (!Managers.Instance.GameManager.clearedSafeByScene.TryGetValue(safePuzzleSystem.sceneType, out var clearedSet))
-        {
-            clearedSet = new HashSet<int>();
-            Managers.Instance.GameManager.clearedSafeByScene[safePuzzleSystem.sceneType] = clearedSet;
-        }
-        clearedSet.Add(safeNumber);
-
-        Debug.Log($"[SafePuzzle] {safePuzzleSystem.sceneType} 퍼즐 완료 - {safeNumber}");
+        Managers.Instance.GameManager.clearedSafePuzzles[safeNumber, safePopup.countIndex] = true;
 
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
