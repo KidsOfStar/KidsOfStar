@@ -25,19 +25,18 @@ public class SafePuzzleTrigger : MonoBehaviour
 
     [Header("필요 시 추가 상호작용 요소")]
     public Door door;
-    
-    public GameObject ventDoor;
 
-
-    public void init()
+    private void Start()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
+    }
+    public void init()
+    {
         // 진행도 갱신 이벤트 구독
         Managers.Instance.GameManager.OnProgressUpdated += DisableExclamation;
 
         Debug.Log($"{Managers.Instance.GameManager.ChapterProgress}");
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -139,6 +138,7 @@ public class SafePuzzleTrigger : MonoBehaviour
     public void DisableExclamation()
     {
         Debug.Log("실행 중");
+        Debug.Log($"현재 진행도: {Managers.Instance.GameManager.ChapterProgress}, 설정된 진행도: {curChapterProgress}");
         if (Managers.Instance.GameManager.ChapterProgress != curChapterProgress)
             exclamationInstance.SetActive(false);
         if (Managers.Instance.GameManager.ChapterProgress > curChapterProgress)

@@ -28,7 +28,6 @@ public class BaseSaveLoadPopup : PopupBase
             {
                 slot.SetInteractable(false);
             }
-
         }
     }
 
@@ -51,7 +50,5 @@ public class BaseSaveLoadPopup : PopupBase
     {
         string path = Application.persistentDataPath + $"/SaveData{slotIndex}.json";
         return File.Exists(path);
-
     }
-
 }
