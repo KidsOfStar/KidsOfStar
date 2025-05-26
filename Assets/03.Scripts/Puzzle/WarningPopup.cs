@@ -71,6 +71,12 @@ public class WarningPopup : PopupBase
                 ButtonWithSfx(confirmButton, SfxSoundType.ButtonPush, OnConfirmPressed);
                 break;
 
+            case WarningType.Ladder:
+                messageText.text = "몰래 사용해야 할 것 같다.";
+                messageText.gameObject.SetActive(true);
+                ButtonWithSfx(confirmButton,SfxSoundType.ButtonPush, OnConfirmPressed);
+                break;
+
             default:
                 messageText.text = "…";
                 messageText.gameObject.SetActive(true);
