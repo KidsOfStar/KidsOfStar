@@ -80,11 +80,9 @@ public class TreePuzzleSystem : PuzzleSystemBase
                      : 0;
         if (sequence != 0)
             Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
+        
+        base.StartPuzzle();
 
-        challengeCount++;
-
-        currentTime = timeLimit;
-        isRunning = true;
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForestPuzzle);
         foreach (var piece in pieces)
         {
