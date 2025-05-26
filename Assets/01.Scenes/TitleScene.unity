@@ -795,9 +795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a624abfd7425546bdfd0de5379868f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonWidth: 180
-  buttonHeight: 60
-  fontSize: 30
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

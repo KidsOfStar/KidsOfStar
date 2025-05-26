@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AcornPuzzle
   m_EditorClassIdentifier: 
   puzzleId: AcornPuzzle
-  backgroundSprite: {fileID: -930275152, guid: b542dc146b0b5a14c963f38d2679721d, type: 3}
+  <BackGroundSprite>k__BackingField: {fileID: -930275152, guid: b542dc146b0b5a14c963f38d2679721d, type: 3}
   pieceSprites:
   - {fileID: -1755681074, guid: b542dc146b0b5a14c963f38d2679721d, type: 3}
   - {fileID: -1219625041, guid: b542dc146b0b5a14c963f38d2679721d, type: 3}

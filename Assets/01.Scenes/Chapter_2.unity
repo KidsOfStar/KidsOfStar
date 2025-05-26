@@ -9372,11 +9372,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18bf7cc9091a0c4fb84a3ffc031a72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequenceIndex: 0
+  requiredProgress: 2
+  exclamationInstance: {fileID: 3125597759484119318}
   isTutorialDoor: 1
   puzzleData: {fileID: 11400000, guid: edc478d643bdb114cad935b95c8748a6, type: 2}
-  sequenceIndex: 0
-  exclamationInstance: {fileID: 3125597759484119318}
-  requiredProgress: 2
   puzzleLayerName: PuzzleDoor
 --- !u!61 &1575658467
 BoxCollider2D:
@@ -9480,11 +9480,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18bf7cc9091a0c4fb84a3ffc031a72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequenceIndex: 1
+  requiredProgress: 4
+  exclamationInstance: {fileID: 2041152587}
   isTutorialDoor: 0
   puzzleData: {fileID: 11400000, guid: 5a61ba438c50a08468318dea14f7e3c5, type: 2}
-  sequenceIndex: 1
-  exclamationInstance: {fileID: 2041152587}
-  requiredProgress: 4
   puzzleLayerName: PuzzleDoor
 --- !u!4 &1595888734 stripped
 Transform:
@@ -10183,6 +10183,9 @@ MonoBehaviour:
     cutSceneStartFunnel: []
   spawnPointer: {fileID: 1925362554}
   scrollingBackGround: {fileID: 1083819329}
+  puzzleTriggers:
+  - {fileID: 1575658466}
+  - {fileID: 1595185366}
 --- !u!1001 &1893283791
 PrefabInstance:
   m_ObjectHideFlags: 0

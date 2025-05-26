@@ -1,191 +1,191 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using UnityEngine.EventSystems;
+//using UnityEngine.UI;
 
-public class SafePuzzle : MonoBehaviour, IPointerClickHandler
-{
-    public Image[] safeImage;
-    public float rotationDuration = 0.5f;
-    public SafePopup safePopup;
-    public PuzzleTrigger puzzleTrigger;
-    public Door door;
+//public class SafePuzzle : MonoBehaviour, IPointerClickHandler
+//{
+//    public Image[] safeImage;
+//    public float rotationDuration = 0.5f;
+//    public SafePopup safePopup;
+//    public PuzzleTrigger puzzleTrigger;
+//    public Door door;
 
-    // 모드별 제한 시간
-    private int currentTime;
-    private int safeNumber;
+//    // 모드별 제한 시간
+//    private int currentTime;
+//    private int safeNumber;
 
-    public Dictionary<GameObject, float> rotationAmount;
-    private HashSet<GameObject> completedPieces = new HashSet<GameObject>();
-    private Dictionary<GameObject, Coroutine> rotationCorotines = new Dictionary<GameObject, Coroutine>();
+//    public Dictionary<GameObject, float> rotationAmount;
+//    private HashSet<GameObject> completedPieces = new HashSet<GameObject>();
+//    private Dictionary<GameObject, Coroutine> rotationCorotines = new Dictionary<GameObject, Coroutine>();
 
-    void Start()
-    {
-        door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
-        puzzleTrigger = FindObjectOfType<PuzzleTrigger>();
+//    void Start()
+//    {
+//        door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
+//        puzzleTrigger = FindObjectOfType<PuzzleTrigger>();
 
-        rotationAmount = new Dictionary<GameObject, float>
-        {
-            { safeImage[0].gameObject, 90f },
-            { safeImage[1].gameObject, 60f },
-            { safeImage[2].gameObject, 135f }
-        };
+//        rotationAmount = new Dictionary<GameObject, float>
+//        {
+//            { safeImage[0].gameObject, 90f },
+//            { safeImage[1].gameObject, 60f },
+//            { safeImage[2].gameObject, 135f }
+//        };
 
-        RandomizeRotation();
-    }
+//        RandomizeRotation();
+//    }
 
-    private void OnEnable()
-    {
-        StartCoroutine(ClearTime());
-    }
+//    private void OnEnable()
+//    {
+//        StartCoroutine(ClearTime());
+//    }
 
-    private IEnumerator ClearTime()
-    {
-        currentTime = 0;   // 초기화
-        // 1초마다 currentTime 증가
-        WaitForSeconds oneSeconds = new WaitForSeconds(1f);
+//    private IEnumerator ClearTime()
+//    {
+//        currentTime = 0;   // 초기화
+//        // 1초마다 currentTime 증가
+//        WaitForSeconds oneSeconds = new WaitForSeconds(1f);
 
-        while (true)
-        {
-            yield return oneSeconds;
-            currentTime += 1;
-        }
-    }
+//        while (true)
+//        {
+//            yield return oneSeconds;
+//            currentTime += 1;
+//        }
+//    }
 
-    // 금고 다이얼 랜덤 배치 
-    private void RandomizeRotation()
-    {
-        foreach (var pair in rotationAmount)
-        {
-            int randomMultiplier = UnityEngine.Random.Range(0, 3);
-            float randomRotation = pair.Value * randomMultiplier;
+//    // 금고 다이얼 랜덤 배치 
+//    private void RandomizeRotation()
+//    {
+//        foreach (var pair in rotationAmount)
+//        {
+//            int randomMultiplier = UnityEngine.Random.Range(0, 3);
+//            float randomRotation = pair.Value * randomMultiplier;
 
-            while (randomRotation == 0f) // 0도 포함되면 안됨
-            {
-                randomMultiplier = UnityEngine.Random.Range(0, 3);
-                randomRotation = pair.Value * randomMultiplier;
-            }
+//            while (randomRotation == 0f) // 0도 포함되면 안됨
+//            {
+//                randomMultiplier = UnityEngine.Random.Range(0, 3);
+//                randomRotation = pair.Value * randomMultiplier;
+//            }
 
-            pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
-        }
-    }
+//            pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
+//        }
+//    }
 
-    public void RotatePuzzlePiece(GameObject puzzlePiece)
-    {
-        if (completedPieces.Contains(puzzlePiece)) return;
-        if (!rotationAmount.ContainsKey(puzzlePiece)) return;
-        if (rotationCorotines.ContainsKey(puzzlePiece)) return;
+//    public void RotatePuzzlePiece(GameObject puzzlePiece)
+//    {
+//        if (completedPieces.Contains(puzzlePiece)) return;
+//        if (!rotationAmount.ContainsKey(puzzlePiece)) return;
+//        if (rotationCorotines.ContainsKey(puzzlePiece)) return;
 
-        float amount = rotationAmount[puzzlePiece];
+//        float amount = rotationAmount[puzzlePiece];
 
-        Coroutine coroutine = StartCoroutine(RotateOverTime(puzzlePiece, amount));
-        rotationCorotines[puzzlePiece] = coroutine;
+//        Coroutine coroutine = StartCoroutine(RotateOverTime(puzzlePiece, amount));
+//        rotationCorotines[puzzlePiece] = coroutine;
 
-        CheckClearCondition();
-    }
+//        CheckClearCondition();
+//    }
 
-    private IEnumerator RotateOverTime(GameObject puzzlePiece, float amount)
-    {
-        Quaternion startRotation = puzzlePiece.transform.rotation;
-        Quaternion endRotation = startRotation * Quaternion.Euler(0f, 0f, amount);
-        float elapsedTime = 0f;
+//    private IEnumerator RotateOverTime(GameObject puzzlePiece, float amount)
+//    {
+//        Quaternion startRotation = puzzlePiece.transform.rotation;
+//        Quaternion endRotation = startRotation * Quaternion.Euler(0f, 0f, amount);
+//        float elapsedTime = 0f;
 
-        while (elapsedTime < rotationDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / rotationDuration);
-            puzzlePiece.transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
-            yield return null;
-        }
+//        while (elapsedTime < rotationDuration)
+//        {
+//            elapsedTime += Time.deltaTime;
+//            float t = Mathf.Clamp01(elapsedTime / rotationDuration);
+//            puzzlePiece.transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
+//            yield return null;
+//        }
 
-        puzzlePiece.transform.rotation = endRotation;
-        rotationCorotines.Remove(puzzlePiece);
+//        puzzlePiece.transform.rotation = endRotation;
+//        rotationCorotines.Remove(puzzlePiece);
 
-        CheckClearCondition();
-    }
+//        CheckClearCondition();
+//    }
 
-    private void CheckClearCondition()
-    {
-        Quaternion target = Quaternion.Euler(0f, 0f, 0f);
+//    private void CheckClearCondition()
+//    {
+//        Quaternion target = Quaternion.Euler(0f, 0f, 0f);
 
-        foreach (var pair in rotationAmount)
-        {
-            GameObject piece = pair.Key;
-            if (completedPieces.Contains(piece)) continue;
+//        foreach (var pair in rotationAmount)
+//        {
+//            GameObject piece = pair.Key;
+//            if (completedPieces.Contains(piece)) continue;
 
-            if (Quaternion.Angle(piece.transform.rotation, target) <= 1f)
-            {
-                completedPieces.Add(piece);
-            }
-        }
+//            if (Quaternion.Angle(piece.transform.rotation, target) <= 1f)
+//            {
+//                completedPieces.Add(piece);
+//            }
+//        }
 
-        // 퍼즐 완료 체크
-        if (completedPieces.Count == rotationAmount.Count)
-        {
-            ClearPuzzle();
-        }
-    }
+//        // 퍼즐 완료 체크
+//        if (completedPieces.Count == rotationAmount.Count)
+//        {
+//            ClearPuzzle();
+//        }
+//    }
 
-    private void ClearPuzzle()
-    {
-        StopCoroutine(ClearTime());
-        EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
-        Managers.Instance.UIManager.Hide<SafePopup>();
-        Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
-        Managers.Instance.GameManager.UpdateProgress();
+//    private void ClearPuzzle()
+//    {
+//        StopCoroutine(ClearTime());
+//        EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
+//        Managers.Instance.UIManager.Hide<SafePopup>();
+//        Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
+//        Managers.Instance.GameManager.UpdateProgress();
 
-        puzzleTrigger.DisableExclamation();
+//        puzzleTrigger.DisableExclamation();
 
-        door.isDoorOpen = true;
+//        door.isDoorOpen = true;
 
-        var analyticsManager = Managers.Instance.AnalyticsManager;
-        analyticsManager.RecordChapterEvent("PopUpPuzzle",
-            ("PuzzleNumber", safeNumber),
-            ("ChallengeCount", safePopup.challengeCount),
-            ("ClearTime", currentTime)
-            );
+//        var analyticsManager = Managers.Instance.AnalyticsManager;
+//        analyticsManager.RecordChapterEvent("PopUpPuzzle",
+//            ("PuzzleNumber", safeNumber),
+//            ("ChallengeCount", safePopup.challengeCount),
+//            ("ClearTime", currentTime)
+//            );
 
-        if (safeNumber == 1)
-        {
-            analyticsManager.SendFunnel("42");
-        }
-        else if (safeNumber == 2)
-        {
-            analyticsManager.SendFunnel("43");
-        }
-        else if (safeNumber == 3)
-        {
-            analyticsManager.SendFunnel("45");
-        }
-    }
+//        if (safeNumber == 1)
+//        {
+//            analyticsManager.SendFunnel("42");
+//        }
+//        else if (safeNumber == 2)
+//        {
+//            analyticsManager.SendFunnel("43");
+//        }
+//        else if (safeNumber == 3)
+//        {
+//            analyticsManager.SendFunnel("45");
+//        }
+//    }
 
-    public void SetSafeNumber(int number)
-    {
-        safeNumber = number;
-    }
+//    public void SetSafeNumber(int number)
+//    {
+//        safeNumber = number;
+//    }
 
-    // 클릭 이벤트 처리
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        GameObject clicked = eventData.pointerCurrentRaycast.gameObject;
-        if (rotationAmount.ContainsKey(clicked))
-        {
-            RotatePuzzlePiece(clicked);
-        }
-    }
+//    // 클릭 이벤트 처리
+//    public void OnPointerClick(PointerEventData eventData)
+//    {
+//        GameObject clicked = eventData.pointerCurrentRaycast.gameObject;
+//        if (rotationAmount.ContainsKey(clicked))
+//        {
+//            RotatePuzzlePiece(clicked);
+//        }
+//    }
 
-    // 퍼즐 상태 초기화
-    public void ResetPuzzleState()
-    {
-        completedPieces.Clear();
-        rotationCorotines.Clear();
+//    // 퍼즐 상태 초기화
+//    public void ResetPuzzleState()
+//    {
+//        completedPieces.Clear();
+//        rotationCorotines.Clear();
 
-        foreach (var pair in rotationAmount)
-        {
-            int randomMultiplier = UnityEngine.Random.Range(0, 3);
-            float randomRotation = pair.Value * randomMultiplier;
-            pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
-        }
-    }
-}
+//        foreach (var pair in rotationAmount)
+//        {
+//            int randomMultiplier = UnityEngine.Random.Range(0, 3);
+//            float randomRotation = pair.Value * randomMultiplier;
+//            pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
+//        }
+//    }
+//}

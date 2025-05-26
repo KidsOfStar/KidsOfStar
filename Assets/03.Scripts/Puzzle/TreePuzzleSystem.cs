@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TreePuzzleSystem : MonoBehaviour
+public class TreePuzzleSystem : PuzzleSystemBase
 {
     [Header("Background & Hint")]
     [SerializeField] private Image backgroundImage;    // SO.backgroundSprite 할당용
@@ -13,50 +12,33 @@ public class TreePuzzleSystem : MonoBehaviour
     [SerializeField] private GameObject piecePrefab;
     [SerializeField] private Transform puzzleParent;
 
-    [Header("UI")]
-    [SerializeField] private TextMeshProUGUI timerTxt;
-
+    public bool IsRunning => isRunning;
     // 정답 Sprite 목록
     private List<Sprite> correctSprites;
     // 퍼즐 배열 가로의 개수
     private int gridWidth;
-    // 모드별 제한 시간
-    protected float timeLimit;
-    protected float currentTime;
-    // 작동중인지 체크
-    protected bool isRunning;
     // 현재 선택된 퍼즐 조각의 Index
     private int selectedIndex;
     public int SelectedIndex => selectedIndex;  
     // 생성된 모든 퍼즐 조각목록
     private List<TreePuzzlePiece> pieces = new();
-    // 퍼즐 고유ID
-    protected int puzzleIndex;
     // 성공 완료된 퍼즐 ID의 집합
     protected HashSet<int> clearPuzzlenum = new();
-    // 에디터에서 씬의 전체 퍼즐의 개수
-    [SerializeField] protected int totalPuzzleCount = 2;
-    // Trigger형태를 저장한 딕셔너리
-    protected Dictionary<int, TreePuzzleTrigger> triggerMap;
-
-    private int challengeCount;
-
-    //TODO: FindObjectsType보다 다른 방법으로 리펙토링하기.
-    private void Awake()
-    {
-        triggerMap = new Dictionary<int, TreePuzzleTrigger>();
-        foreach (var trig in FindObjectsOfType<TreePuzzleTrigger>())
-        {
-            triggerMap[trig.SequenceIndex] = trig;
-        }
-    }
 
     // 퍼즐 준비
-    public virtual void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
+    public override void SetupPuzzle(ScriptableObject puzzleData, int index)
     {
-        puzzleIndex = puzzleClearIndex;
+        var data = puzzleData as TreePuzzleData;
+
+        if (data == null)
+        {
+            EditorLog.LogWarning("TreePuzzleData가 아님");
+            return;
+        }
+        puzzleIndex = index;
         correctSprites = new List<Sprite>(data.pieceSprites);
         gridWidth = data.gridWidth;
+
         bool isEasy = Managers.Instance.GameManager.Difficulty == Difficulty.Easy;
         timeLimit = isEasy ? data.easyTimeLimit : data.hardTimeLimit;
 
@@ -68,7 +50,7 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // 퍼즐 조각 생성
-    public void GeneratePuzzle()
+    public override void GeneratePuzzle()
     {
         selectedIndex = 0;
         // 기존 조각 제거
@@ -90,21 +72,8 @@ public class TreePuzzleSystem : MonoBehaviour
         HighlightSelectedPiece();
     }
 
-    private void Update()
-    {
-        if (!isRunning) return;
-
-        currentTime -= Time.deltaTime;
-        timerTxt.text = Mathf.CeilToInt(currentTime).ToString();
-
-        if (currentTime <= 0f)
-        {
-            FailPuzzle();
-        }
-    }
-
     // 퍼즐 시작
-    public void StartPuzzle()
+    public override void StartPuzzle()
     {
         var sequence = puzzleIndex == 0 ? 13
                      : puzzleIndex == 1 ? 15
@@ -134,9 +103,7 @@ public class TreePuzzleSystem : MonoBehaviour
     private void HighlightSelectedPiece()
     {
         for (int i = 0; i < pieces.Count; i++)
-        {
             pieces[i].SetHighlight(i == selectedIndex);
-        }
     }
 
     // 조각 체크
@@ -184,50 +151,20 @@ public class TreePuzzleSystem : MonoBehaviour
                                            ("ChallengeCount", challengeCount),
                                            ("ClearTime", clearTime));
         challengeCount = 0;
-        puzzleIndex = 0;
         Managers.Instance.AnalyticsManager.fallCount = 0;
 
         var sequence = puzzleIndex == 1 ? 14
                      : puzzleIndex == 2 ? 16
-                     : 0;
+                     : -1;
 
-        if (sequence != 0)
+        if (sequence > 0)
             analyticsManager.SendFunnel(sequence.ToString());
-    }
-
-    // 퍼즐 실패시
-    protected virtual void FailPuzzle()
-    {
-        isRunning = false;
-        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
-
-        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
-        Managers.Instance.UIManager.Show<GameOverPopup>();
-        OnExit();
-
-        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
-        {
-            trig.ResetTrigger();
-        }
-    }
-    
-    //퍼즐 취소시
-    public void StopPuzzle()
-    {
-        isRunning = false;
-
-        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
-
-        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
-            trig.ResetTrigger();
     }
 
     public virtual void OnClearButtonClicked()
     {
-        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
-        {
-            trig.DisableExclamation();
-        }
+        var trigger = Managers.Instance.PuzzleManager.GetTrigger(puzzleIndex);
+        trigger?.DisableExclamation();
 
         // 팝업 닫고 플레이어 제어 복구
         OnExit();
@@ -247,9 +184,9 @@ public class TreePuzzleSystem : MonoBehaviour
     }
 
     // UI닫기
-    public virtual void OnExit()
+    public override void OnExit()
     {
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
-        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+        base.OnExit();
     }
 }

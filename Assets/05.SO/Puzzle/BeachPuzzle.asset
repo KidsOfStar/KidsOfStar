@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BeachPuzzle
   m_EditorClassIdentifier: 
   puzzleId: Beach Puzzle
-  backgroundSprite: {fileID: 421949277, guid: 78a994e42f62559439ddd1f5604aa101, type: 3}
+  <BackGroundSprite>k__BackingField: {fileID: 421949277, guid: 78a994e42f62559439ddd1f5604aa101, type: 3}
   pieceSprites:
   - {fileID: 1880364602, guid: 78a994e42f62559439ddd1f5604aa101, type: 3}
   - {fileID: 938938908, guid: 78a994e42f62559439ddd1f5604aa101, type: 3}

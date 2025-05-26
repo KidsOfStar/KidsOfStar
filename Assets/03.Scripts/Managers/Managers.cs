@@ -21,6 +21,8 @@ public class Managers : Singleton<Managers>
     public CutSceneManager CutSceneManager { get; private set; }
     public AnalyticsManager AnalyticsManager { get; private set; }
 
+    public PuzzleManager PuzzleManager { get; private set; }
+
     protected override void Awake()
     {
         if (Instance != null && Instance != this)
@@ -40,6 +42,7 @@ public class Managers : Singleton<Managers>
         SaveManager = new SaveManager();
         CutSceneManager = new CutSceneManager();
         AnalyticsManager = new AnalyticsManager();
+        PuzzleManager = new PuzzleManager();
 #if UNITY_EDITOR
         if (!IsDebugMode) return;
 
