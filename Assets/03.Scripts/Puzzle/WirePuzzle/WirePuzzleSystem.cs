@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WirePuzzleSystem : MonoBehaviour
+public class WirePuzzleSystem : PuzzleSystemBase
 {
     [Header("외부 참조")]
     [SerializeField, Tooltip("퍼즐 조각 프리팹")] private GameObject piecePrefab;
@@ -15,11 +15,6 @@ public class WirePuzzleSystem : MonoBehaviour
     [SerializeField, Tooltip("조각의 크기")] private float cellSize = 75f;
     [SerializeField, Tooltip("padding 보정용")] private Vector2 offset = new Vector2(15f, 15f);
 
-    [Header("UI")]
-    [SerializeField, Tooltip("타이머 텍스트")] private TextMeshProUGUI timerTxt;
-
-    // 퍼즐 트리거 딕셔너리
-    Dictionary<int, WirePuzzleTrigger> triggerMap;
     // 정답 조각들
     private List<Sprite> correctSprites;
     // 퍼즐 조각 배열
@@ -31,60 +26,33 @@ public class WirePuzzleSystem : MonoBehaviour
     private int selectY = 0;
     // 퍼즐 한 줄의 조각 수
     private int gridWidth = 4;
-    // 현재 퍼즐 ID
-    private int puzzleIndex;
-    // 제한 시간
-    private float timeLimit;
-    // 남은 시간
-    [SerializeField, Tooltip("타임 오버 테스트를 위함")]private float currentTime;
-    // 퍼즐 진행 여부
-    private bool isRunning;
     public bool IsRunning => isRunning;
 
-    // 퍼즐 시도 횟수
-    private int challengeCount = 0;
-
-    private void Awake()
-    {
-        // 씬 내 모든 트리거 탐색 및 연결
-        triggerMap = new Dictionary<int, WirePuzzleTrigger>();
-
-        foreach(var trigger in FindObjectsOfType<WirePuzzleTrigger>())
-        {
-            triggerMap[trigger.SequenceIndex] = trigger;
-        }
-    }
-
-    void Update()
-    {
-        if (!isRunning) return;
-
-        currentTime -= Time.deltaTime;
-        timerTxt.text = Mathf.CeilToInt(currentTime).ToString();
-
-        if(currentTime <= 0f)
-        {
-            FailPuzzle();
-        }
-    }
-
     // 퍼즐 데이터 초기화
-    public void SetupPuzzle(WirePuzzleData data, int idx)
+    public override void SetupPuzzle(ScriptableObject data, int idx)
     {
-        puzzleData = data;
+        var wirePuzzleData = data as WirePuzzleData;
+
+        if(wirePuzzleData == null)
+        {
+            EditorLog.LogWarning("WirePuzzleData 아님");
+            return;
+        }
+
+        puzzleData = wirePuzzleData;
         puzzleIndex = idx;
 
-        correctSprites = new List<Sprite>(data.pieceSprites);
-        gridWidth = data.gridWidth;
+        correctSprites = new List<Sprite>(wirePuzzleData.pieceSprites);
+        gridWidth = wirePuzzleData.gridWidth;
 
         bool isEasy = Managers.Instance.GameManager.Difficulty == Difficulty.Easy;
-        timeLimit = isEasy ? data.easyTimeLimit : data.hardTimeLimit;
+        timeLimit = isEasy ? wirePuzzleData.easyTimeLimit : wirePuzzleData.hardTimeLimit;
 
         if (backgroundImage != null)
-            backgroundImage.sprite = data.backgroundSprite;
+            backgroundImage.sprite = wirePuzzleData.backgroundSprite;
     }
 
-    public void GeneratePuzzle()
+    public override void GeneratePuzzle()
     {
         foreach(Transform child in puzzlePanel)
         {
@@ -129,42 +97,22 @@ public class WirePuzzleSystem : MonoBehaviour
     }
 
     // 퍼즐 시작
-    public void StartPuzzle()
+    public override void StartPuzzle()
     {
-        currentTime = timeLimit;
-        isRunning = true;
+        //base.StartPuzzle();
 
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.CityPuzzle);
-        challengeCount++;
-    }
-
-    // 퍼즐 중단
-    public void StopPuzzle()
-    {
-        isRunning = false;
-
-        if (triggerMap.TryGetValue(puzzleIndex, out var trigger))
-        {
-            trigger.ResetTrigger();
-        }
     }
 
     // 퍼즐 실패
-    private void FailPuzzle()
+    protected override void FailPuzzle()
     {
-        isRunning = false;
-        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
-        OnExit();
-        Managers.Instance.UIManager.Show<GameOverPopup>();
-
-        if(triggerMap.TryGetValue(puzzleIndex, out var trigger))
-        {
-            trigger.ResetTrigger();
-        }
+        Managers.Instance.UIManager.Hide<WirePuzzlePopup>();
+        base.FailPuzzle();
     }
 
     // 퍼즐 클리어
-    private void CompletePuzzle()
+    protected void CompletePuzzle()
     {
         isRunning = false;
 
@@ -193,20 +141,24 @@ public class WirePuzzleSystem : MonoBehaviour
     // 클리어 팝업 내 버튼 클릭 시 처리
     public void OnClearButtonClicked()
     {
-        if(triggerMap.TryGetValue(puzzleIndex, out var trigger))
+        if (!Managers.Instance.PuzzleManager.triggerMap.TryGetValue(puzzleIndex, out var trigger))
         {
-            trigger.DisableExclamation();
+            return;
+        }
+        trigger.DisableExclamation();
+
+        if (trigger is WirePuzzleTrigger puzzleTrigger)
+        {
             // 엘리베이터 잠금 해제
-            trigger.LockedElevator.UnlockElevator();
+            puzzleTrigger.LockedElevator.UnlockElevator();
         }
     }
 
     // 팝업 닫고 제어 복구
-    public void OnExit()
+    public override void OnExit()
     {
-        Managers.Instance.UIManager.Hide<WirePuzzlePopup>();
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.City);
-        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+        base.OnExit();
     }
 
     // 나사 생성
