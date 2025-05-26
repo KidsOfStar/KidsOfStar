@@ -136,17 +136,18 @@ public class WirePuzzleSystem : PuzzleSystemBase
     }
 
     // 클리어 팝업 내 버튼 클릭 시 처리
-    public void OnClearButtonClicked()
+    public override void OnClearButtonClicked()
     {
-        if (!Managers.Instance.PuzzleManager.triggerMap.TryGetValue(puzzleIndex, out var trigger))
-        {
-            return;
-        }
-        trigger.DisableExclamation();
+        base.OnClearButtonClicked();
+        //if (!Managers.Instance.PuzzleManager.triggerMap.TryGetValue(puzzleIndex, out var trigger))
+        //{
+        //    return;
+        //}
+        //trigger.DisableExclamation();
 
-        OnExit();
+        //OnExit();
 
-        if (trigger is WirePuzzleTrigger puzzleTrigger)
+        if (Managers.Instance.PuzzleManager.GetTrigger(puzzleIndex) is WirePuzzleTrigger puzzleTrigger)
         {
             // 엘리베이터 잠금 해제
             puzzleTrigger.LockedElevator.UnlockElevator();

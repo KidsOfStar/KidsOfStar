@@ -117,11 +117,10 @@ public class TreePuzzleSystem : PuzzleSystemBase
     }
 
     //퍼즐 Clear시
-    protected virtual void CompletePuzzle()
+    protected override void CompletePuzzle()
     {
- 
+        base.CompletePuzzle();
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
-        // OnExit();
 
         EditorLog.Log("퍼즐 성공!");
         if (!clearPuzzlenum.Contains(puzzleIndex))
@@ -155,14 +154,9 @@ public class TreePuzzleSystem : PuzzleSystemBase
             analyticsManager.SendFunnel(sequence.ToString());
     }
 
-    public virtual void OnClearButtonClicked()
+    public override void OnClearButtonClicked()
     {
-        var trigger = Managers.Instance.PuzzleManager.GetTrigger(puzzleIndex);
-        trigger?.DisableExclamation();
-
-        // 팝업 닫고 플레이어 제어 복구
-        OnExit();
-
+        base.OnClearButtonClicked();
         // clearPuzzlenum.Count 에 따라 컷신 분기 재생
         if (clearPuzzlenum.Count == 1)
         {

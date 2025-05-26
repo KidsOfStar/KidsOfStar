@@ -69,5 +69,14 @@ public abstract class PuzzleSystemBase : MonoBehaviour
         // Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest); // 또는 상황에 따라 분기
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
     }
+
+    public virtual void OnClearButtonClicked()
+    {
+        var trigger = Managers.Instance.PuzzleManager.GetTrigger(puzzleIndex);
+        trigger?.DisableExclamation();
+
+        // 팝업 닫고 플레이어 제어 복구
+        OnExit();
+    }
 }
 
