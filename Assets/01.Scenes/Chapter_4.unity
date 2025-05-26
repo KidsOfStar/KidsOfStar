@@ -1289,6 +1289,13 @@ MonoBehaviour:
   spawnPointer: {fileID: 0}
   scrollingBackGround: {fileID: 1023085340}
   puzzleClearDialog: 499c0000529c0000
+  puzzleTriggers:
+  - {fileID: 1606073769}
+  - {fileID: 2128547456}
+  - {fileID: 1448515610}
+  - {fileID: 2117145478}
+  - {fileID: 1969860125}
+  - {fileID: 213096838}
 --- !u!1 &370988011
 GameObject:
   m_ObjectHideFlags: 0

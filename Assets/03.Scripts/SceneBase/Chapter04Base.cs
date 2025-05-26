@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Chapter04Base : SceneBase
@@ -7,11 +8,21 @@ public class Chapter04Base : SceneBase
     [Header("Chapter 4")]
     [SerializeField] private int[] puzzleClearDialog;
 
+    [SerializeField] List<PuzzleTriggerBase> puzzleTriggers;
+
     protected override void InitSceneExtra(Action callback)
     {
         callback?.Invoke();
         Managers.Instance.GameManager.OnProgressUpdated += AddListenerTutorial;
         Managers.Instance.DialogueManager.OnDialogStepStart += RecordPuzzleClear;
+
+        var puzzleManager = Managers.Instance.PuzzleManager;
+        puzzleManager.OnSceneLoaded();
+        foreach (var trigger in puzzleTriggers)
+        {
+            trigger?.InitTrigger();
+            trigger?.SetupUI();
+        }
     }
     
     protected override void CutSceneEndCallback()
