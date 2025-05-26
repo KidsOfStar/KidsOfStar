@@ -25,15 +25,12 @@ public class TreePuzzleTrigger : PuzzleTriggerBase
 
     public override void ResetTrigger()
     {
-        triggered = false;
-
-        HideInteraction();
+        base.ResetTrigger();
 
         if (hasPlayer && hasBox)
         {
             SetupInteraction();
         }
-
     }
     protected override void OnPuzzleButtonPressed()
     {
@@ -41,11 +38,9 @@ public class TreePuzzleTrigger : PuzzleTriggerBase
         TryStartPuzzle();
     }
 
-    private void TryStartPuzzle()
+    protected override void TryStartPuzzle()
     {
-        if (triggered) return;
-        triggered = true;
-        HideInteraction();
+        base.TryStartPuzzle();
 
         if (isTutorialDoor &&
             requiredProgress == Managers.Instance.GameManager.ChapterProgress &&

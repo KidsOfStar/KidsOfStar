@@ -38,11 +38,9 @@ public abstract class PuzzleSystemBase : MonoBehaviour
     public virtual void StopPuzzle()
     {
         isRunning = false;
-        Managers.Instance.UIManager.Hide<PopupBase>();
 
         var trigger = Managers.Instance.PuzzleManager.GetTrigger(puzzleIndex);
 
-        Debug.Log($"[PuzzleSystem] 트리거 Reset 호출됨: {puzzleIndex}");
         trigger?.ResetTrigger();
     }
 

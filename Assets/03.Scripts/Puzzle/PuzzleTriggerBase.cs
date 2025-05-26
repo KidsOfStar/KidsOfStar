@@ -62,7 +62,11 @@ public abstract class PuzzleTriggerBase : MonoBehaviour, IPuzzleTrigger
             exclamationRenderer.enabled = false;
     }
 
-    public abstract void ResetTrigger(); // 추상 메서드로 자식에서 구현
+    public virtual void ResetTrigger()
+    {
+        triggered = false;
+        HideInteraction();
+    }
 
     protected void HideInteraction()
     {
@@ -109,6 +113,13 @@ public abstract class PuzzleTriggerBase : MonoBehaviour, IPuzzleTrigger
 
         if (hasPlayer && hasBox)
             SetupInteraction();
+    }
+
+    protected virtual void TryStartPuzzle()
+    {
+        if (triggered) return;
+        triggered = true;
+        HideInteraction();
     }
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
