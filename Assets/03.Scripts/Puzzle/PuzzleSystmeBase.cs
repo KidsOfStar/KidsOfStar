@@ -15,7 +15,12 @@ public abstract class PuzzleSystemBase : MonoBehaviour
 
     public abstract void SetupPuzzle(ScriptableObject puzzleData, int index);
     public abstract void GeneratePuzzle();
-    public abstract void StartPuzzle();
+    public virtual void StartPuzzle()
+    {
+        currentTime = timeLimit;
+        isRunning = true;
+        challengeCount++;
+    }
 
     protected virtual void Update()
     {
