@@ -115,6 +115,7 @@ public class WirePuzzleSystem : PuzzleSystemBase
     protected override void CompletePuzzle()
     {
         base.CompletePuzzle();
+        Managers.Instance.UIManager.Hide<WirePuzzlePopup>();
         float clearTime = Mathf.CeilToInt(timeLimit - currentTime);
         Managers.Instance.AnalyticsManager.RecordChapterEvent("PopUpPuzzle",
             ("PuzzleNumber", puzzleIndex), 
