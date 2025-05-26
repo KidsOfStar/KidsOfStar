@@ -60,6 +60,7 @@ public static class Extensions
             SfxSoundType.Thunder         => "Thunder",
             SfxSoundType.ImportantChoice => "ImportantChoice",
             SfxSoundType.BrokenElevator  => "BrokenElevator",
+            SfxSoundType.Beep            => "Beep",
             _                           => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
         };
     }

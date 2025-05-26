@@ -126,6 +126,7 @@ public enum SfxSoundType
 	Thunder,
     ImportantChoice,
     BrokenElevator,
+    Beep,
 }
 
 public enum FootstepType
