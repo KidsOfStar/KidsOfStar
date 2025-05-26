@@ -32,8 +32,6 @@ public class GameManager
     // 챕터 5에서만 사용하는 변수
     public int VisitCount { get; set; } = 0;    // 방문 횟수
 
-    public bool[,] clearedSafePuzzles = new bool[3, 3]; // / [금고][퍼즐] 구조 (3금고, 각 3퍼즐)
-
     public GameManager()
     {
 #if UNITY_WEBGL

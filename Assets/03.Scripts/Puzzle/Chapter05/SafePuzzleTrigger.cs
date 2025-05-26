@@ -19,21 +19,32 @@ public class SafePuzzleTrigger : MonoBehaviour
     // 동물 폼
     [SerializeField] private PlayerFormType dangerFormMask;
 
-    [Header("금고 번호")]
+    [Header("현재 진행도와 금고 번호")]
+    [SerializeField] private int curChapterProgress; // 현재 진행도
     public int safeNumber; // 각 씬의 금고 번호
 
     [Header("필요 시 추가 상호작용 요소")]
     public Door door;
-    public GameObject VentDoor;
+    
+    public GameObject ventDoor;
 
 
-    private void Start()
+    public void init()
     {
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
+
+        // 진행도 갱신 이벤트 구독
+        Managers.Instance.GameManager.OnProgressUpdated += DisableExclamation;
+
+        Debug.Log($"{Managers.Instance.GameManager.ChapterProgress}");
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (door.isDoorOpen || Managers.Instance.GameManager.ChapterProgress != curChapterProgress)
+            return;
+
         if (collision.CompareTag("Player"))
         {
             skillBTN.ShowInteractionButton(true); // 상호작용 버튼 활성화
@@ -127,6 +138,15 @@ public class SafePuzzleTrigger : MonoBehaviour
     // 게임 클리어시 비활성화
     public void DisableExclamation()
     {
-        exclamationInstance.SetActive(false);
+        Debug.Log("실행 중");
+        if (Managers.Instance.GameManager.ChapterProgress != curChapterProgress)
+            exclamationInstance.SetActive(false);
+        if (Managers.Instance.GameManager.ChapterProgress > curChapterProgress)
+            door.isDoorOpen = true; // 문 열기
+    }
+
+    private void OnDestroy()
+    {
+        Managers.Instance.GameManager.OnProgressUpdated -= DisableExclamation; // 이벤트 구독 해제
     }
 }

@@ -10,7 +10,6 @@ public class SafePopup : PopupBase
     public SafePuzzleSystem puzzleSystem; // 3개 퍼즐 시스템 (각 퍼즐 UI와 연결됨)
     public SafePuzzle safePuzzle; // 금고 퍼즐
 
-
     private int[] puzzleIndexs;        // 현재 씬에서 사용할 퍼즐 3개의 인덱스
     public int countIndex = 0;
 

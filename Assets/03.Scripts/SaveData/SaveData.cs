@@ -39,7 +39,6 @@ public class SaveData
         chapterTrust = gameManager.GetTrustArray();
         completedEnding = gameManager.CompletedEnding;
         visitCount = gameManager.VisitCount;
-        clearedSafePuzzles = gameManager.clearedSafePuzzles;
     }
 
     public void LoadData()

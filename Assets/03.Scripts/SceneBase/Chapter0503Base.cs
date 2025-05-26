@@ -40,11 +40,6 @@ public class Chapter0503Base : SceneBase
         EditorLog.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
     }
 
-    private void Update()
-    {
-        Debug.Log(Managers.Instance.GameManager.ChapterProgress);
-    }
-
     protected override void CreatePool()
     {
         base.CreatePool();
