@@ -61,7 +61,7 @@ public abstract class PuzzleSystemBase : MonoBehaviour
         isRunning = false;
 
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-        Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
+        Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
     }
 
     public virtual void OnExit()
