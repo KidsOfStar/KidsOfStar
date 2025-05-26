@@ -1,13 +1,11 @@
 using UnityEngine;
 
 public class TreePuzzleTrigger : PuzzleTriggerBase
-{
-    private bool hasPlayer = false;
-    private bool hasBox = false;
+{ 
 
     [Header("튜토리얼 문인지 체크")]
     [SerializeField] private bool isTutorialDoor = false;
-
+    
     [SerializeField] private TreePuzzleData puzzleData;
 
     [SerializeField] private string puzzleLayerName = "PuzzleDoor";
@@ -22,15 +20,20 @@ public class TreePuzzleTrigger : PuzzleTriggerBase
         {
             enabled = false;
         }
+        Managers.Instance.PuzzleManager.RegisterTrigger(PuzzleId, this);
     }
 
     public override void ResetTrigger()
     {
         triggered = false;
+
         HideInteraction();
 
         if (hasPlayer && hasBox)
+        {
             SetupInteraction();
+        }
+
     }
     protected override void OnPuzzleButtonPressed()
     {
@@ -61,19 +64,15 @@ public class TreePuzzleTrigger : PuzzleTriggerBase
         Managers.Instance.UIManager.Show<TreePuzzlePopup>(puzzleData, sequenceIndex);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameObject.layer != LayerMask.NameToLayer("PuzzleDoor"))
-            return;
+        base.OnTriggerEnter2D(collision);
 
-        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress) 
+        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress)
             return;
 
         if (collision.CompareTag("Player"))
         {
-            if (hasPlayer) return;
-            hasPlayer = true;
-
             // 다람쥐 형태 검사
             var formControl = Managers.Instance.GameManager.Player.FormControl;
             bool isSquirrel = formControl.ReturnCurFormType() == PlayerFormType.Squirrel;
@@ -104,28 +103,5 @@ public class TreePuzzleTrigger : PuzzleTriggerBase
                 );
             }
         }
-        else if (collision.CompareTag("Box"))
-        {
-            if (hasBox) return;
-            hasBox = true;
-        }
-        else
-            return;
-
-
-        if (hasPlayer && hasBox)
-            SetupInteraction();
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress) return;
-
-        if (collision.CompareTag("Player")) hasPlayer = false;
-        else if (collision.CompareTag("Box")) hasBox = false;
-        else return;
-
-        HideInteraction();
-    }
-
 }

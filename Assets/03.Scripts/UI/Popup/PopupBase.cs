@@ -37,13 +37,8 @@ public class PopupBase : UIBase
     public override void HideDirect()
     {
         base.HideDirect();
-        if (checkTimeStop)
-        {
-            Time.timeScale = 1; // 게임 재개
-            if (Managers.Instance.SceneLoadManager.CurrentScene != SceneType.Title)
-            {
-                Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
-            }
-        }
+        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+
+        Time.timeScale = 1; // 게임 재개
     }
 }

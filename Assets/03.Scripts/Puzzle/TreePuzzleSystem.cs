@@ -26,7 +26,7 @@ public class TreePuzzleSystem : PuzzleSystemBase
     protected HashSet<int> clearPuzzlenum = new();
 
     // 퍼즐 준비
-    public override void SetupPuzzle(ScriptableObject puzzleData, int index)
+    public override void SetupPuzzle(ScriptableObject puzzleData, int puzzleId)
     {
         var data = puzzleData as TreePuzzleData;
 
@@ -35,7 +35,7 @@ public class TreePuzzleSystem : PuzzleSystemBase
             EditorLog.LogWarning("TreePuzzleData가 아님");
             return;
         }
-        puzzleIndex = index;
+        this.puzzleIndex = puzzleId;
         correctSprites = new List<Sprite>(data.pieceSprites);
         gridWidth = data.gridWidth;
 
@@ -181,6 +181,12 @@ public class TreePuzzleSystem : PuzzleSystemBase
             Managers.Instance.GameManager.UpdateProgress();
             Managers.Instance.AnalyticsManager.SendFunnel("17");
         }
+    }
+
+    protected override void FailPuzzle()
+    {
+        Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
+        base.FailPuzzle();
     }
 
     // UI닫기

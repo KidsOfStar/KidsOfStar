@@ -33,6 +33,19 @@ public abstract class PuzzlePopupBase<TSystem, TData> : PopupBase
         puzzleSystem.StartPuzzle();
     }
 
+    protected override void Start()
+    {
+        base.Start(); 
+        if (closeBtn != null)
+        {
+            closeBtn.onClick.AddListener(() =>
+            {
+                OnCancelButtonClicked();
+            });
+
+        }
+    }
+
     protected virtual void OnCancelButtonClicked()
     {
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);

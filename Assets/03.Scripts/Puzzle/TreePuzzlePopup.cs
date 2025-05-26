@@ -5,6 +5,6 @@ public class TreePuzzlePopup : PuzzlePopupBase<TreePuzzleSystem, TreePuzzleData>
 {
     protected override void OnCancelButtonClicked()
     {
-
+        base.OnCancelButtonClicked();
     }
 }

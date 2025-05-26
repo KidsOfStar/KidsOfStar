@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+
 public class PuzzleManager 
 {
     private Dictionary<int, IPuzzleTrigger> triggerMap = new();
@@ -10,9 +11,9 @@ public class PuzzleManager
         // 필요한 경우 기본 데이터 로딩 등 수행
     }
 
-    public void RegisterTrigger(IPuzzleTrigger trigger)
+    public void RegisterTrigger(int puzzleId, IPuzzleTrigger trigger)
     {
-        triggerMap[trigger.SequenceIndex] = trigger;
+        triggerMap[puzzleId] = trigger;
     }
 
     public void UnregisterTrigger(IPuzzleTrigger trigger)

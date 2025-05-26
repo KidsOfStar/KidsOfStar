@@ -36,6 +36,8 @@ public abstract class PuzzleSystemBase : MonoBehaviour
         Managers.Instance.UIManager.Hide<PopupBase>();
 
         var trigger = Managers.Instance.PuzzleManager.GetTrigger(puzzleIndex);
+
+        Debug.Log($"[PuzzleSystem] 트리거 Reset 호출됨: {puzzleIndex}");
         trigger?.ResetTrigger();
     }
 
@@ -54,7 +56,6 @@ public abstract class PuzzleSystemBase : MonoBehaviour
     public virtual void OnExit()
     {
         // Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest); // 또는 상황에 따라 분기
-        Time.timeScale = 1;
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
     }
 }

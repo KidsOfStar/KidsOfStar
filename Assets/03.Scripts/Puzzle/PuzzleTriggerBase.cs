@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public interface IPuzzleTrigger
@@ -20,6 +19,11 @@ public abstract class PuzzleTriggerBase : MonoBehaviour, IPuzzleTrigger
 
     protected bool triggered = false;
     protected bool tutorialShown = false;
+    protected bool hasPlayer = false;
+    protected bool hasBox = false;
+
+    [SerializeField] protected int puzzleId;
+    public int PuzzleId => puzzleId;
 
     protected SkillBTN skillBtn;
 
@@ -28,7 +32,7 @@ public abstract class PuzzleTriggerBase : MonoBehaviour, IPuzzleTrigger
         if (exclamationInstance != null)
             exclamationRenderer = exclamationInstance.GetComponent<SpriteRenderer>();
 
-        Managers.Instance.PuzzleManager.RegisterTrigger(this);
+        Managers.Instance.PuzzleManager.RegisterTrigger(puzzleId, this);
     }
 
     public void SetupUI()
@@ -74,6 +78,53 @@ public abstract class PuzzleTriggerBase : MonoBehaviour, IPuzzleTrigger
     }
 
     protected abstract void OnPuzzleButtonPressed();
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress)
+            return;
+
+        if (collision.CompareTag("Player"))
+            hasPlayer = true;
+        else if (collision.CompareTag("Box"))
+            hasBox = true;
+        else
+            return;
+
+        if (hasPlayer && hasBox)
+            SetupInteraction();
+    }
+
+    protected virtual void OnTriggerStay2D(Collider2D collision)
+    {
+        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress)
+            return;
+
+        if (collision.CompareTag("Player"))
+            hasPlayer = true;
+        else if (collision.CompareTag("Box"))
+            hasBox = true;
+        else
+            return;
+
+        if (hasPlayer && hasBox)
+            SetupInteraction();
+    }
+
+    protected virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        if (triggered || Managers.Instance.GameManager.ChapterProgress != requiredProgress)
+            return;
+
+        if (collision.CompareTag("Player"))
+            hasPlayer = false;
+        else if (collision.CompareTag("Box"))
+            hasBox = false;
+        else
+            return;
+
+        HideInteraction();
+    }
 
     protected virtual void OnDestroy()
     {

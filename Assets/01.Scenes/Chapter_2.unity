@@ -9375,6 +9375,7 @@ MonoBehaviour:
   sequenceIndex: 0
   requiredProgress: 2
   exclamationInstance: {fileID: 3125597759484119318}
+  puzzleId: 0
   isTutorialDoor: 1
   puzzleData: {fileID: 11400000, guid: edc478d643bdb114cad935b95c8748a6, type: 2}
   puzzleLayerName: PuzzleDoor
@@ -9483,6 +9484,7 @@ MonoBehaviour:
   sequenceIndex: 1
   requiredProgress: 4
   exclamationInstance: {fileID: 2041152587}
+  puzzleId: 1
   isTutorialDoor: 0
   puzzleData: {fileID: 11400000, guid: 5a61ba438c50a08468318dea14f7e3c5, type: 2}
   puzzleLayerName: PuzzleDoor
