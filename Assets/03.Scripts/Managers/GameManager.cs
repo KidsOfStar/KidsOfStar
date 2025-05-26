@@ -58,12 +58,21 @@ public class GameManager
 
     private void InitDictionary()
     {
+        trustDict.Clear();
         var count = Enum.GetValues(typeof(ChapterType)).Length;
         for (int i = 0; i < count; i++)
         {
             var chapter = (ChapterType)i;
             trustDict.TryAdd(chapter, 0);
         }
+    }
+
+    public void SetNewGame()
+    {
+        IsNewGame = true;
+        UnlockedForms = 0;
+        UnlockForm(PlayerFormType.Stone);
+        InitDictionary();
     }
 
     public void SetLoadData(SaveData saveData)
@@ -96,23 +105,21 @@ public class GameManager
         return trustArr;
     }
 
-    public void SetChapter(ChapterType chapter)
-    {
-        CurrentChapter = chapter;
-    }
-
     public void UpdateProgress()
     {
         ChapterProgress++;
         EditorLog.Log(ChapterProgress.ToString());
-        Debug.Log("ChapterProgress : " + ChapterProgress);
         if (ChapterProgress > Managers.Instance.DataManager.GetMaxProgress(CurrentChapter))
             return;
 
         OnProgressUpdated?.Invoke();
-        Debug.Log("OnProgressUpdated");
     }
 
+    public void SetChapter(ChapterType chapter)
+    {
+        CurrentChapter = chapter;
+    }
+    
     public void SetLoadedProgress()
     {
         ChapterProgress = ChapterProgress;
