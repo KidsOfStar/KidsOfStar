@@ -11,17 +11,12 @@ public class ProgressNpcPlacer : MonoBehaviour
         Managers.Instance.GameManager.OnProgressUpdated += MoveNpcToPosition;
         
         if (isDisableInStart) gameObject.SetActive(false);
-        
-        EditorLog.Log("Init : " + gameObject.name);
     }
     
     private void MoveNpcToPosition()
     {
         if (!this)
-        {
             Managers.Instance.GameManager.OnProgressUpdated -= MoveNpcToPosition;
-            EditorLog.Log("Try To Move NpcToPosition But Npc is Destroyed");
-        }
         
         for (int i = 0; i < positionDatas.Length; i++)
         {
@@ -43,7 +38,6 @@ public class ProgressNpcPlacer : MonoBehaviour
     private void OnDestroy()
     {
         Managers.Instance.GameManager.OnProgressUpdated -= MoveNpcToPosition;
-        EditorLog.Log("OnDestroy : " + gameObject.name);
     }
 }
 

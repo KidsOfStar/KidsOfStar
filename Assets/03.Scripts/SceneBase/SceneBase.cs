@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 // 풀 생성, npc 넘겨주기 등 씬 초기화에 필요한 작업들을 담당

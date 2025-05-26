@@ -89,19 +89,21 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
 
         if (IsOnBox(other.collider))
         {
+            // 플레이어의 부모가 박스가 아니라면 박스를 부모로 설정
+            if (other.transform.parent == transform)
+                return;
+
             other.transform.SetParent(transform);
             boxWeight = baseWight + weightable.GetWeight();
         }
-    }
+        else
+        {
+            if (other.transform.parent != transform)
+                return;
 
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (!canOnWeightable) return;
-        if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
-        if (!IsOnBox(other.collider)) return;
-        
-        other.transform.SetParent(null);
-        boxWeight = baseWight;
+            other.transform.SetParent(null);
+            boxWeight = baseWight;
+        }
     }
 
     private bool IsOnBox(Collider2D weightable)
