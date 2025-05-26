@@ -92,17 +92,13 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
             other.transform.SetParent(transform);
             boxWeight = baseWight + weightable.GetWeight();
         }
-        else
-        {
-            other.transform.SetParent(null);
-            boxWeight = baseWight;
-        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
         if (!canOnWeightable) return;
         if (!other.gameObject.TryGetComponent(out IWeightable weightable)) return;
+        if (!IsOnBox(other.collider)) return;
         
         other.transform.SetParent(null);
         boxWeight = baseWight;
@@ -111,8 +107,14 @@ public class Box : MonoBehaviour, IWeightable, ILeafJumpable
     private bool IsOnBox(Collider2D weightable)
     {
         var obj = weightable.bounds;
-        var elevator = coll.bounds;
+        var box = coll.bounds;
+        
+        bool overlapY = !(Mathf.Abs(obj.min.y - box.max.y) > 0.1f);
+        
+        float overlapX = Mathf.Min(obj.max.x, box.max.x) 
+                         - Mathf.Max(obj.min.x, box.min.x);
+        bool halfWidthOverlap = overlapX >= (obj.size.x * 0.5f);
 
-        return !(Mathf.Abs(obj.min.y - elevator.max.y) > 0.1f);
+        return overlapY && halfWidthOverlap;
     }
 }
