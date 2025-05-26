@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PuzzleManager 
 {
-    private Dictionary<int, IPuzzleTrigger> triggerMap = new();
+    public Dictionary<int, IPuzzleTrigger> triggerMap = new();
 
     public void OnSceneLoaded()
     {
