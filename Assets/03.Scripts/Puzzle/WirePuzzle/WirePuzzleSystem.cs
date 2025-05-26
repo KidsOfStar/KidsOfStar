@@ -112,19 +112,16 @@ public class WirePuzzleSystem : PuzzleSystemBase
     }
 
     // 퍼즐 클리어
-    protected void CompletePuzzle()
+    protected override void CompletePuzzle()
     {
-        isRunning = false;
-
+        base.CompletePuzzle();
         float clearTime = Mathf.CeilToInt(timeLimit - currentTime);
         Managers.Instance.AnalyticsManager.RecordChapterEvent("PopUpPuzzle",
             ("PuzzleNumber", puzzleIndex), 
             ("ChallengeCount", challengeCount),
             ("ClearTime", clearTime));
         challengeCount = 0;
-        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-        Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
-        OnExit();
+        // OnExit();
 
         var sequence = puzzleIndex == 0 ? 32
                      : puzzleIndex == 1 ? 33
@@ -146,6 +143,8 @@ public class WirePuzzleSystem : PuzzleSystemBase
             return;
         }
         trigger.DisableExclamation();
+
+        OnExit();
 
         if (trigger is WirePuzzleTrigger puzzleTrigger)
         {

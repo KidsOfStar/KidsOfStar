@@ -76,7 +76,7 @@ public class WirePuzzleTrigger : PuzzleTriggerBase
     protected override void OnPuzzleButtonPressed()
     {
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Communication);
-        //TryStartPuzzle();
+        TryStartPuzzle();
     }
 
     // 퍼즐 시작 처리

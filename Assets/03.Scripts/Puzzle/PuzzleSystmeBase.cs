@@ -56,6 +56,14 @@ public abstract class PuzzleSystemBase : MonoBehaviour
         trigger?.ResetTrigger();
     }
 
+    protected virtual void CompletePuzzle()
+    {
+        isRunning = false;
+
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
+        Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
+    }
+
     public virtual void OnExit()
     {
         // Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest); // 또는 상황에 따라 분기

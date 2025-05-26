@@ -119,12 +119,8 @@ public class TreePuzzleSystem : PuzzleSystemBase
     //퍼즐 Clear시
     protected virtual void CompletePuzzle()
     {
-        isRunning = false;
-
-        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-
+ 
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
-        Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
         // OnExit();
 
         EditorLog.Log("퍼즐 성공!");
