@@ -105,7 +105,7 @@ public class WirePuzzleTrigger : PuzzleTriggerBase
     // 퍼즐 트리거 초기화
     public override void ResetTrigger()
     {
-        //base.ResetTrigger();
+        base.ResetTrigger();
 
         if (hasPlayer)
             TryEnableInteraction();

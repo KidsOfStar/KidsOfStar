@@ -99,7 +99,7 @@ public class WirePuzzleSystem : PuzzleSystemBase
     // 퍼즐 시작
     public override void StartPuzzle()
     {
-        //base.StartPuzzle();
+        base.StartPuzzle();
 
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.CityPuzzle);
     }

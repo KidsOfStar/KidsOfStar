@@ -142,7 +142,7 @@ MonoBehaviour:
   closeBtn: {fileID: 3443919887015519879}
   checkTimeStop: 0
   isFirst: 1
-  currentPuzzle: {fileID: 1263653712108124025}
+  puzzleSystem: {fileID: 1263653712108124025}
   hintImage: {fileID: 2255951737987203601}
 --- !u!114 &1263653712108124025
 MonoBehaviour:
@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813586fb8eb36d049a645735eb9c628a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalPuzzleCount: 6
+  timerTxt: {fileID: 747426069442127631}
   piecePrefab: {fileID: 5496423736176100600, guid: 439a43f1c56054f46a1ff4efabbaf6bf, type: 3}
   boltPrefab: {fileID: 6331332658585386520, guid: 93003418d0b565547be4f7be19ef1482, type: 3}
   puzzlePanel: {fileID: 8312146499603604422}
@@ -163,8 +165,6 @@ MonoBehaviour:
   backgroundImage: {fileID: 8244192779974652735}
   cellSize: 140
   offset: {x: 20, y: 20}
-  timerTxt: {fileID: 747426069442127631}
-  currentTime: 0
 --- !u!1 &3337007087445417625
 GameObject:
   m_ObjectHideFlags: 0

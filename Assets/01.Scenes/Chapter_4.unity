@@ -652,12 +652,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75efd12a5852a5e4c8c156fe515fa39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequenceIndex: 5
+  requiredProgress: 5
+  exclamationInstance: {fileID: 1569248400}
+  puzzleId: 5
   isTutorialDoor: 0
   puzzleData: {fileID: 11400000, guid: 69bc2eb5601337c408536d998886e678, type: 2}
-  exclamationInstance: {fileID: 1569248400}
-  requireProgress: 5
   lockedElevator: {fileID: 1256390697}
-  sequenceIndex: 5
 --- !u!61 &213096839
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8875,12 +8876,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75efd12a5852a5e4c8c156fe515fa39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequenceIndex: 2
+  requiredProgress: 3
+  exclamationInstance: {fileID: 1347188248}
+  puzzleId: 2
   isTutorialDoor: 0
   puzzleData: {fileID: 11400000, guid: ea777eefbe53c0144b3caf9747fa24be, type: 2}
-  exclamationInstance: {fileID: 1347188248}
-  requireProgress: 3
   lockedElevator: {fileID: 1838862231}
-  sequenceIndex: 2
 --- !u!61 &1448515611
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10296,12 +10298,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75efd12a5852a5e4c8c156fe515fa39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequenceIndex: 0
+  requiredProgress: 3
+  exclamationInstance: {fileID: 1564333699}
+  puzzleId: 0
   isTutorialDoor: 1
   puzzleData: {fileID: 11400000, guid: 240787f8fc032314d97198ba8024c5c9, type: 2}
-  exclamationInstance: {fileID: 1564333699}
-  requireProgress: 3
   lockedElevator: {fileID: 185111707}
-  sequenceIndex: 0
 --- !u!1 &1626703094
 GameObject:
   m_ObjectHideFlags: 0
@@ -11806,12 +11809,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75efd12a5852a5e4c8c156fe515fa39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequenceIndex: 4
+  requiredProgress: 5
+  exclamationInstance: {fileID: 1492133668}
+  puzzleId: 4
   isTutorialDoor: 0
   puzzleData: {fileID: 11400000, guid: 0f93708fb51e22a4ab84f2fa135a6b71, type: 2}
-  exclamationInstance: {fileID: 1492133668}
-  requireProgress: 5
   lockedElevator: {fileID: 1565481806}
-  sequenceIndex: 4
 --- !u!61 &1969860126
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12191,12 +12195,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75efd12a5852a5e4c8c156fe515fa39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequenceIndex: 3
+  requiredProgress: 5
+  exclamationInstance: {fileID: 1851705458}
+  puzzleId: 3
   isTutorialDoor: 0
   puzzleData: {fileID: 11400000, guid: 7cf790c9ae819214daee61680def9acd, type: 2}
-  exclamationInstance: {fileID: 1851705458}
-  requireProgress: 5
   lockedElevator: {fileID: 5541103235540955175}
-  sequenceIndex: 3
 --- !u!61 &2117145479
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12288,12 +12293,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75efd12a5852a5e4c8c156fe515fa39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sequenceIndex: 1
+  requiredProgress: 3
+  exclamationInstance: {fileID: 755087877}
+  puzzleId: 1
   isTutorialDoor: 0
   puzzleData: {fileID: 11400000, guid: bcdb2a4e01ca2a0488cf6071c4c1424b, type: 2}
-  exclamationInstance: {fileID: 755087877}
-  requireProgress: 3
   lockedElevator: {fileID: 1510078685}
-  sequenceIndex: 1
 --- !u!61 &2128547457
 BoxCollider2D:
   m_ObjectHideFlags: 0
