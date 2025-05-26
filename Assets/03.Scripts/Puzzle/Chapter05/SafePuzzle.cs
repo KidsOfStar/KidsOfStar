@@ -136,9 +136,10 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
         UnlockDoor();
 
+        Managers.Instance.GameManager.UpdateProgress();
+
         safePuzzleSystem.DisableExclamation();
 
-        Managers.Instance.GameManager.UpdateProgress();
 
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
@@ -169,10 +170,6 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         if (safePuzzleSystem.door != null)
         {
             safePuzzleSystem.door.isDoorOpen = true;
-        }
-        else if (safePuzzleSystem.ventDoor != null)
-        {
-            safePuzzleSystem.ventDoor.SetActive(true);
         }
     }
 

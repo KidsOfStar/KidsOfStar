@@ -14595,6 +14595,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 701440934}
     - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+      propertyPath: ventDoor
+      value: 
+      objectReference: {fileID: 701440934}
+    - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
       propertyPath: sceneType
       value: 10
       objectReference: {fileID: 0}
@@ -14688,7 +14692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &701440935
 Transform:
   m_ObjectHideFlags: 0
@@ -14740,7 +14744,17 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 701440938}
+    m_ColliderPaths:
+    - - X: 364749984
+        Y: -10000000
+      - X: 355000000
+        Y: -10000000
+      - X: 355000000
+        Y: -30000000
+      - X: 364749984
+        Y: -30000000
   m_CompositePaths:
     m_Paths:
     - - {x: 36.47497, y: -3}
