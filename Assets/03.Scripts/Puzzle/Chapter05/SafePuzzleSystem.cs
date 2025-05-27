@@ -1,78 +1,140 @@
-//using UnityEngine;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
-//public class SafePuzzleSystem : TreePuzzleSystem
-//{
-//    public SafePuzzle safePuzzle;
-//    public SafePopup safePopup;
-//    public int safeIndex;       // 금고 다이얼의 인덱스
+public class SafePuzzleSystem : PuzzleSystemBase
+{
+    [Header("Background & Hint")]
+    [SerializeField] private Image backgroundImage;    // SO.backgroundSprite 할당용
+    [SerializeField] private GameObject easyModeOutline; // Easy 모드일 때만 켤 테두리
 
-//    퍼블 성공
-//    protected override void CompletePuzzle()
-//    {
-//        isRunning = false;
-//        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-//        SafeSetActive(safeIndex);
 
-//        if (!clearPuzzlenum.Contains(puzzleIndex))
-//        {
-//            clearPuzzlenum.Add(puzzleIndex);
-//        }
+    [Header("Prefab & Layout")]
+    [SerializeField] private GameObject piecePrefab;        
+    [SerializeField] private Transform puzzleParent;
 
-//        safePopup.nextPuzzle();
-//    }
+    public SafePuzzle safePuzzle;
+    public SafePopup safePopup;
 
-//    퍼즐 실패
-//    protected override void FailPuzzle()
-//    {
-//        isRunning = false;
-//        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleFail);
-//        OnExit(); // UI 닫고 플레이어 언락
-//        Managers.Instance.UIManager.Show<GameOverPopup>(); // 실패 팝업
-//        safePopup.FullReset(); // 퍼즐 시스템 리셋
+    public int safeIndex;                   // 금고 다이얼의 인덱스
+    private List<Sprite> correctSprites;    // 정답 Sprite 목록
+    private int gridWidth;                  // 퍼즐 배열 가로의 개수
 
-//        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
-//        {
-//            trig.ResetTrigger(); // 트리거 리셋
-//        }
-//    }
+    private int selectedIndex;
+    public int SelectedIndex => selectedIndex;  // 현재 선택된 퍼즐 조각의 Index
 
-//    public override void OnClearButtonClicked()
-//    {
-//        if (triggerMap.TryGetValue(puzzleIndex, out var trig))
-//        {
-//            trig.DisableExclamation();
-//        }
+    private List<TreePuzzlePiece> pieces = new();   // 생성된 모든 퍼즐 조각목록
 
-//        OnExit();
-//    }
+    public override void SetupPuzzle(ScriptableObject puzzleData, int puzzleId)
+    {
+        var data = puzzleData as TreePuzzleData;
 
-//    public override void OnExit()
-//    {
-//        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest);
-//        Managers.Instance.UIManager.Hide<SafePopup>();
-//        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
-//    }
+        if (data == null)
+        {
+            EditorLog.LogWarning("TreePuzzleData가 아님");
+            return;
+        }
+        this.puzzleIndex = puzzleId;
+        correctSprites = new List<Sprite>(data.pieceSprites);
+        gridWidth = data.gridWidth;
 
-//    private void SafeSetActive(int indexs)
-//    {
-//        safePuzzle.safeImage[indexs].raycastTarget = true;
-//        safePuzzle.safeImage[indexs].color = Color.white;
-//        safeIndex++;
-//    }
+        bool isEasy = Managers.Instance.GameManager.Difficulty == Difficulty.Easy;
+        timeLimit = isEasy ? data.easyTimeLimit : data.hardTimeLimit;
 
-//    시스템 초기화
-//    public void ResetSystem()
-//    {
-//        safeIndex = 0;
-//        clearPuzzlenum.Clear();
-//        isRunning = false;
+        if (backgroundImage != null)
+            backgroundImage.sprite = data.backgroundSprite;
 
-//        foreach (var img in safePuzzle.safeImage)
-//        {
-//            img.raycastTarget = false;
-//            img.color = Color.gray;
-//        }
+        if (easyModeOutline != null)
+            easyModeOutline.SetActive(isEasy);
+    }
 
-//        safePuzzle.ResetPuzzleState(); // 퍼즐 상태 초기화
-//    }
-//}
+    //퍼블 성공
+    protected override void CompletePuzzle()
+    {
+        isRunning = false;
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
+
+        SafeSetActive(safeIndex);
+
+        if (!clearPuzzleSet.Contains(puzzleIndex))
+        {
+            clearPuzzleSet.Add(puzzleIndex);
+        }
+
+        safePopup.nextPuzzle();
+    }
+
+    //퍼즐 실패
+    protected override void FailPuzzle()
+    {
+        base.FailPuzzle();
+
+        safePopup.FullReset(); // 퍼즐 시스템 리셋
+    }
+
+    public override void OnClearButtonClicked()
+    {
+        base.OnClearButtonClicked();
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
+        Managers.Instance.UIManager.Hide<SafePopup>();
+    }
+
+    // 금고 다이얼 활성화
+    private void SafeSetActive(int indexs)
+    {
+        safePuzzle.safeImage[indexs].raycastTarget = true;
+        safePuzzle.safeImage[indexs].color = Color.white;
+        safeIndex++;
+    }
+
+    //시스템 초기화
+    public void ResetSystem()
+    {
+        safeIndex = 0;
+        clearPuzzleSet.Clear();
+        isRunning = false;
+
+        foreach (var img in safePuzzle.safeImage)
+        {
+            img.raycastTarget = false;
+            img.color = Color.gray;
+        }
+
+        safePuzzle.ResetPuzzleState(); // 퍼즐 상태 초기화
+    }
+
+
+    // 퍼즐 조각 생성
+    public override void GeneratePuzzle()
+    {
+        selectedIndex = 0;
+        // 기존 조각 제거
+        foreach (Transform child in puzzleParent)
+        {
+            Destroy(child.gameObject);
+        }
+        pieces.Clear();
+
+        // 퍼즐 조각 생성
+        for (int i = 0; i < correctSprites.Count; i++)
+        {
+            GameObject pieceGO = Instantiate(piecePrefab, puzzleParent);
+            TreePuzzlePiece piece = pieceGO.GetComponent<TreePuzzlePiece>();
+            piece.SetSprite(correctSprites[i]);
+            piece.Initialize(this, 0, i); // 정답각도는 0
+            pieces.Add(piece);
+        }
+        HighlightSelectedPiece();
+    }
+
+    private void HighlightSelectedPiece()
+    {
+        throw new NotImplementedException();
+    }
+}
