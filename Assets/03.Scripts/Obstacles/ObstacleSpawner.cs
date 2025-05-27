@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class ObstaclesSpawner : MonoBehaviour
 {
-#if UNITY_EDITOR
+#if TEST_BUILD
     [Header("Debug")]
     [SerializeField] private bool isTest = false;
 #endif
@@ -54,7 +54,7 @@ public class ObstaclesSpawner : MonoBehaviour
     //장애물을 Pool에서 스폰
     public void StartSpawn()
     {
-#if UNITY_EDITOR
+#if TEST_BUILD
         if (isTest)
         {
             currentWave = 3;
@@ -191,9 +191,9 @@ public class ObstaclesSpawner : MonoBehaviour
     {
         var analytics = Managers.Instance.AnalyticsManager;
         analytics.RecordChapterEvent("ChaseClear",
-                                     ("ChallengeCount", analytics.ChaseTryCount));
+                                     ("ChallengeCount", analytics.TryCount));
 
-        analytics.ChaseTryCount = 0;
+        analytics.TryCount = 0;
     }
 
     private IEnumerator OnDialogEnd()

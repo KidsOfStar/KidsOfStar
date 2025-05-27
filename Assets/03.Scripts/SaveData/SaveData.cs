@@ -12,18 +12,25 @@ public class SaveData
 
     public string saveName;
     public int difficulty;
+    public int scene;
+
     public int chapter;
     public int chapterProgress;
     public Vector3 playerPosition;
     public int[] chapterTrust;
+    
     public PlayerFormType unlockedPlayerForms;
     public PlayerFormType currentPlayerForm;
     public EndingType completedEnding;
+    public int visitCount;
+    public bool[,] clearedSafePuzzles = new bool[3, 3];
+
 
     public void InitData()
     {
         var gameManager = Managers.Instance.GameManager;
         difficulty = (int)gameManager.Difficulty;
+        scene = (int)gameManager.CurrentScene;
         chapter = (int)gameManager.CurrentChapter;
         chapterProgress = gameManager.ChapterProgress;
         playerPosition = gameManager.Player.transform.position;
@@ -31,6 +38,7 @@ public class SaveData
         currentPlayerForm = gameManager.Player.FormControl.CurFormData.playerFormType; 
         chapterTrust = gameManager.GetTrustArray();
         completedEnding = gameManager.CompletedEnding;
+        visitCount = gameManager.VisitCount;
     }
 
     public void LoadData()
@@ -54,7 +62,8 @@ public class SaveData
         var difficultyName = ((Difficulty)difficulty).GetName();
         var chapterName = ((ChapterType)chapter).GetName();
         var result = internetTime.ToString("yy-MM-dd HH:mm:ss");
-        saveName = $"[{difficultyName}]{chapterName}. {result}";
+        // saveName = $"[{difficultyName}]{chapterName}. {result}";
+        saveName = $"{chapterName}. {result}";
         onFetched?.Invoke();
     }
 }

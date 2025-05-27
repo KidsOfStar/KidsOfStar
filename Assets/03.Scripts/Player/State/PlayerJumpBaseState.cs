@@ -25,7 +25,8 @@ public class PlayerJumpBaseState : PlayerStateBase
         elapsedTime += Time.deltaTime;
 
         // 땅에 닿은 상태 && 점프 상태 진입 후 정해둔 만큼의 시간이 지남
-        if (context.Controller.IsGround && elapsedTime >= groundIgnoreTimer)
+        if (context.Controller.IsGround && elapsedTime >= groundIgnoreTimer
+            && context.Rigid.velocity.y < 0.01f)
         {
             // 이동 키 입력이 없음
             if (context.Controller.MoveDir == Vector2.zero)

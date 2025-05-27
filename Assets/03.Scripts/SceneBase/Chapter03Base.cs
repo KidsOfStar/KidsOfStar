@@ -11,7 +11,10 @@ public class Chapter03Base : SceneBase
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogs);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Wind);
         if (isFirstTime)
+        {
             Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DogFormChange, playIntroCallback);
+            Managers.Instance.AnalyticsManager.SendFunnel("18");
+        }
 
         DashGameInit();
         SkillForm();

@@ -6,6 +6,7 @@ public class SavePopup : BaseSaveLoadPopup
         isSaveMode = true;  // Save모드 
         CreateSlotUI();     // 저장할 프리맵 생성
     }
+
     protected override void SaveSlot(int slotIndex, SlotUI slot)
     {
         var saveTop = Managers.Instance.UIManager.Show<SaveTop>();

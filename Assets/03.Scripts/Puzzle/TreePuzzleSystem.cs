@@ -21,8 +21,8 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 배열 가로의 개수
     private int gridWidth;
     // 모드별 제한 시간
-    private float timeLimit;
-    private float currentTime;
+    protected float timeLimit;
+    protected float currentTime;
     // 작동중인지 체크
     protected bool isRunning;
     public bool IsRunning => isRunning;
@@ -55,6 +55,7 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 준비
     public virtual void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
     {
+
         puzzleIndex = puzzleClearIndex;
         correctSprites = new List<Sprite>(data.pieceSprites);
         gridWidth = data.gridWidth;
@@ -107,6 +108,14 @@ public class TreePuzzleSystem : MonoBehaviour
     // 퍼즐 시작
     public void StartPuzzle()
     {
+        var sequence = puzzleIndex == 0 ? 13
+                     : puzzleIndex == 1 ? 15
+                     : -1;
+        if (sequence > 0)
+            Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
+
+        EditorLog.Log(sequence.ToString());
+
         challengeCount++;
 
         currentTime = timeLimit;
@@ -144,17 +153,18 @@ public class TreePuzzleSystem : MonoBehaviour
         }
 
         CompletePuzzle();
-    }
+    } //
 
     //퍼즐 Clear시
     protected virtual void CompletePuzzle()
     {
         isRunning = false;
+
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
 
         Managers.Instance.UIManager.Hide<TreePuzzlePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
-        OnExit();
+        // OnExit();
 
         EditorLog.Log("퍼즐 성공!");
         if (!clearPuzzlenum.Contains(puzzleIndex))
@@ -166,17 +176,20 @@ public class TreePuzzleSystem : MonoBehaviour
         var analyticsManager = Managers.Instance.AnalyticsManager;
         var fallNum = Managers.Instance.AnalyticsManager.fallCount;
 
-        analyticsManager.RecordChapterEvent("MapPuzzle",
-                                            ("PuzzleNumber", puzzleIndex),
-                                            ("FallCount", fallNum));
+        if (Managers.Instance.GameManager.CurrentChapter == ChapterType.Chapter2)
+        {
+            analyticsManager.RecordChapterEvent("MapPuzzle",
+                                               ("PuzzleNumber", puzzleIndex),
+                                               ("FallCount", fallNum));
+        }
 
         analyticsManager.RecordChapterEvent("PopUpPuzzle",
                                            ("PuzzleNumber", puzzleIndex),
                                            ("ChallengeCount", challengeCount),
                                            ("ClearTime", clearTime));
-        fallNum = 0;
         challengeCount = 0;
-        puzzleIndex = 0;
+
+        Managers.Instance.AnalyticsManager.fallCount = 0;
     }
 
     // 퍼즐 실패시
@@ -216,16 +229,29 @@ public class TreePuzzleSystem : MonoBehaviour
         // 팝업 닫고 플레이어 제어 복구
         OnExit();
 
-        // clearPuzzlenum.Count 에 따라 컷신 분기 재생
-        if (clearPuzzlenum.Count == 1)
+        var analyticsManager = Managers.Instance.AnalyticsManager;
+
+        var sequence = puzzleIndex == 0 ? 14
+                     : puzzleIndex == 1 ? 16
+                     : -1;
+        EditorLog.Log(sequence.ToString());
+
+        if (sequence > 0)
+            analyticsManager.SendFunnel(sequence.ToString());
+
+        switch (puzzleIndex)
         {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
-            Managers.Instance.GameManager.UpdateProgress();
-        }
-        else if (clearPuzzlenum.Count >= totalPuzzleCount)
-        {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
-            Managers.Instance.GameManager.UpdateProgress();
+            case 0:
+                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
+                Managers.Instance.GameManager.UpdateProgress();
+                Managers.Instance.AnalyticsManager.SendFunnel("14");
+                break;
+
+            case 1:
+                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
+                Managers.Instance.GameManager.UpdateProgress();
+                Managers.Instance.AnalyticsManager.SendFunnel("17");
+                break;
         }
     }
 

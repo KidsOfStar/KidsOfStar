@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -171,22 +170,6 @@ public class SoundManager : ISceneLifecycleHandler
         sfxSource.volume = volume;
         footstepSource.volume = volume;
     }
-
-    // 효과음 재생하고 재생 시간만큼 대기
-    // public IEnumerator PlaySfxWithDelay(SfxSoundType sound)
-    // {
-    //     var resourceManager = Managers.Instance.ResourceManager;
-    //     AudioClip audioClip = resourceManager.Load<AudioClip>($"{Define.sfxPath}{sound.GetName()}");
-    // 
-    //     if (!audioClip)
-    //     {
-    //         EditorLog.LogError($"SoundManager : {sound.GetName()} is not found.");
-    //         yield break;
-    //     }
-    //     
-    //     sfxSource.PlayOneShot(audioClip);
-    //     yield return new WaitForSeconds(audioClip.length); //사운드 종료되기 전 씬이 넘어가는 것을 방지
-    // }
 
     public void OnSceneLoaded()
     {

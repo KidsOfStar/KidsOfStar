@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class InteractObject : MonoBehaviour
 {
@@ -13,7 +12,6 @@ public class InteractObject : MonoBehaviour
         if (objectName == string.Empty) return;
         
         var dialogTable = Managers.Instance.DataManager.GetInteractionDataDict();
-
         foreach (var interactionData in dialogTable.Values)
         {
             if (interactionData.Object == objectName)
@@ -21,12 +19,15 @@ public class InteractObject : MonoBehaviour
                 dialogByProgress.Add(interactionData.Progress, interactionData.PlayerDialog);
             }
         }
+
+        SetSkillBtn();
     }
 
     private void SetSkillBtn()
     {
-        var playerBtn = Managers.Instance.UIManager.Get<PlayerBtn>();
+        var playerBtn = Managers.Instance.UIManager.Show<PlayerBtn>();
         skillPanel = playerBtn.skillPanel;
+        playerBtn.HideDirect();
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,8 +36,6 @@ public class InteractObject : MonoBehaviour
         
         // 상호작용 버튼 이벤트에 등록
         if (!other.CompareTag("Player")) return;
-
-        if (!skillPanel) SetSkillBtn();
 
         skillPanel.OnInteractBtnClick -= OnInteract;
         skillPanel.OnInteractBtnClick += OnInteract;
@@ -76,7 +75,6 @@ public class InteractObject : MonoBehaviour
         
         // 상호작용 버튼 이벤트에 해제
         if (!other.CompareTag("Player")) return;
-        if (!skillPanel) return;
 
         skillPanel.ShowInteractionButton(false);
         skillPanel.OnInteractBtnClick -= OnInteract;
@@ -87,5 +85,15 @@ public class InteractObject : MonoBehaviour
     {
         skillPanel.ShowInteractionButton(true);
         skillPanel.OnInteractBtnClick += OnInteract;
+    }
+
+    private void OnDestroy()
+    {
+        if (skillPanel != null)
+        {
+            skillPanel.OnInteractBtnClick -= OnInteract;
+        }
+        
+        Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButton;
     }
 }

@@ -41,6 +41,9 @@ public class WirePuzzleSystem : MonoBehaviour
     private bool isRunning;
     public bool IsRunning => isRunning;
 
+    // 퍼즐 시도 횟수
+    private int challengeCount = 0;
+
     private void Awake()
     {
         // 씬 내 모든 트리거 탐색 및 연결
@@ -132,6 +135,7 @@ public class WirePuzzleSystem : MonoBehaviour
         isRunning = true;
 
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.CityPuzzle);
+        challengeCount++;
     }
 
     // 퍼즐 중단
@@ -163,13 +167,27 @@ public class WirePuzzleSystem : MonoBehaviour
     private void CompletePuzzle()
     {
         isRunning = false;
+
+        float clearTime = Mathf.CeilToInt(timeLimit - currentTime);
+        Managers.Instance.AnalyticsManager.RecordChapterEvent("PopUpPuzzle",
+            ("PuzzleNumber", puzzleIndex), 
+            ("ChallengeCount", challengeCount),
+            ("ClearTime", clearTime));
+        challengeCount = 0;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
         OnExit();
 
-        // 나가기 버튼 클릭 이벤트 연결
-        //clearExitBtn.onClick.RemoveAllListeners();
-        //clearExitBtn.onClick.AddListener(OnClearButtonClicked);
+        var sequence = puzzleIndex == 0 ? 32
+                     : puzzleIndex == 1 ? 33
+                     : puzzleIndex == 2 ? 34
+                     : puzzleIndex == 3 ? 38
+                     : puzzleIndex == 4 ? 39
+                     : puzzleIndex == 5 ? 40
+                     : -1;
+
+        if (sequence > 0)
+            Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
     }
 
     // 클리어 팝업 내 버튼 클릭 시 처리
@@ -240,17 +258,20 @@ public class WirePuzzleSystem : MonoBehaviour
     // 생성된 퍼즐 조각 섞기
     private void ShufflePuzzle()
     {
-        for(int i = 0; i < puzzleData.ShuffleCount; i++)
+        do
         {
-            selectX = UnityEngine.Random.Range(0, gridWidth - 1);
-            selectY = UnityEngine.Random.Range(0,gridWidth - 1);
-            int rotateCount = UnityEngine.Random.Range(1, 3);
-
-            for(int j = 0; j < rotateCount; j++)
+            for (int i = 0; i < puzzleData.ShuffleCount; i++)
             {
-                RotateSelection();
+                selectX = UnityEngine.Random.Range(0, gridWidth - 1);
+                selectY = UnityEngine.Random.Range(0, gridWidth - 1);
+                int rotateCount = UnityEngine.Random.Range(1, 3);
+
+                for (int j = 0; j < rotateCount; j++)
+                {
+                    RotateSelection();
+                }
             }
-        }
+        } while(CheckPuzzleClear());
     }
 
     // 선택 영역의 조각 회전
@@ -322,7 +343,7 @@ public class WirePuzzleSystem : MonoBehaviour
         p3.WireColor = c2;
         p4.WireColor = c3;
 
-        if(CheckPuzzleClear())
+        if (CheckPuzzleClear())
         {
             CompletePuzzle();
         }

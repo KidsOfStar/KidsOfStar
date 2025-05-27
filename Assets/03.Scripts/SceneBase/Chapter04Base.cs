@@ -6,12 +6,13 @@ public class Chapter04Base : SceneBase
 {
     [Header("Chapter 4")]
     [SerializeField] private int[] puzzleClearDialog;
-    
+
     protected override void InitSceneExtra(Action callback)
     {
+        callback?.Invoke();
         Managers.Instance.GameManager.OnProgressUpdated += AddListenerTutorial;
         Managers.Instance.DialogueManager.OnDialogStepStart += RecordPuzzleClear;
-        callback?.Invoke();
+        SkillUnlock();
     }
     
     protected override void CutSceneEndCallback()
@@ -19,6 +20,12 @@ public class Chapter04Base : SceneBase
         PlayChapterIntro();
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.City);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.City);
+    }
+
+    private void SkillUnlock()
+    {
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
     }
 
     private void AddListenerTutorial()
@@ -40,7 +47,7 @@ public class Chapter04Base : SceneBase
         var catBtn = skillPanel.catBtn.GetComponent<RectTransform>();
         tutorial.SetTarget(catBtn);
     }
-
+    
     private void RecordPuzzleClear(int dialogIndex)
     {
         for (int i = 0; i < puzzleClearDialog.Length; i++)
@@ -55,7 +62,7 @@ public class Chapter04Base : SceneBase
             analytics.fallCount = 0;
         }
     }
-
+    
     protected override void OnDestroy()
     {
         base.OnDestroy();

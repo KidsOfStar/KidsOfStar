@@ -5,19 +5,20 @@ public class Chapter0503Base : SceneBase
 {
     [Header("Chapter 0503")]
     public GameObject crowd;
-    public Collider2D meetingWomanTriger;   // 앞
-    public Collider2D meetingBihyiTriger;   // 뒤
+
+    public Collider2D meetingWomanTriger; // 앞
+    public Collider2D meetingBihyiTriger; // 뒤
+
+    [SerializeField] private BgmLayeredFader bgmLayeredFader;
 
     private void Start()
     {
         var gm = Managers.Instance.GameManager;
 
-
-        gm.ChapterProgress = 3;
-
         if (gm.VisitCount == 0)
         {
             // 처음 503 진입
+            gm.ChapterProgress = 3;
             meetingWomanTriger.enabled = true;
             meetingBihyiTriger.enabled = false;
             gm.VisitCount++;
@@ -27,21 +28,29 @@ public class Chapter0503Base : SceneBase
             // 두 번째 503 진입 (504 -> 503)
             meetingWomanTriger.enabled = false;
             meetingBihyiTriger.enabled = true;
-            gm.ChapterProgress = 4;
-        }
 
+            if (Managers.Instance.GameManager.ChapterProgress == 3)
+                Managers.Instance.GameManager.UpdateProgress();
+            
+            if (Managers.Instance.GameManager.IsNewGame)
+                gm.ChapterProgress = 4;
+        }
 
         // Crowd 처리
         if (gm.ChapterProgress == 4)
             crowd.SetActive(false);
 
-        Debug.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
+        EditorLog.Log($"[Chapter503] 최종 VisitCount: {gm.VisitCount}");
+        EditorLog.Log(Managers.Instance.GameManager.ChapterProgress);
     }
 
-    protected override void CutSceneEndCallback()
+    protected override void CreatePool()
     {
-        PlayChapterIntro();
+        base.CreatePool();
+        Managers.Instance.PoolManager.CreatePool(bgmLayeredFader.gameObject, 1);
     }
+
+    protected override void CutSceneEndCallback() { }
 
     protected override void InitSceneExtra(Action callback)
     {

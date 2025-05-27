@@ -1,26 +1,20 @@
 using System;
-using UnityEngine.Rendering;
-
 
 public class Chapter0501Base : SceneBase
 {
     public bool istutorialForm = false;
-    protected override void CutSceneEndCallback()
-    {
-        PlayChapterIntro();
-    }
 
     protected override void InitSceneExtra(Action callback)
     {
+        SkillForm();
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
-
-        if (istutorialForm)
-        {
-            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(3);
-            istutorialForm = true;
-        }
-
+        callback?.Invoke();
+    }
+    
+    protected override void CutSceneEndCallback()
+    {
+        PlayChapterIntro(HideTutorial);
         SkillForm();
     }
 
@@ -28,7 +22,14 @@ public class Chapter0501Base : SceneBase
     {
         Managers.Instance.GameManager.UnlockForm(PlayerFormType.Hide);
     }
-    // 진행도를 저장하는 함수
-}
 
+    private void HideTutorial()
+    {
+        if (istutorialForm)
+        {
+            var popup = Managers.Instance.UIManager.Show<TutorialPopup>(3);
+            istutorialForm = true;
+        }
+    }
+}
 

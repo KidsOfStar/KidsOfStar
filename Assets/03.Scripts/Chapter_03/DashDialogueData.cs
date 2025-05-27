@@ -52,7 +52,6 @@ public class DashDialogueData : ScriptableObject
                 return entry;
             }
         }
-        Debug.Log("Returning the last entry as default.");
         return entries[entries.Count - 1]; // 기준 시간보다 큰 항목이 없으면 마지막 항목 반환
     }
 }

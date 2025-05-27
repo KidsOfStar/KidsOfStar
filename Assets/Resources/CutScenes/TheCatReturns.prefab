@@ -3365,6 +3365,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
     - {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
+    - {fileID: 11400000, guid: 03a8f1bb4da0bef4390b7347d0c7cd3f, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -3390,6 +3391,20 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 1201340515140486854}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
               UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2140848008327329960}
+          m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -5286,6 +5301,8 @@ GameObject:
   - component: {fileID: 1635494894384813816}
   - component: {fileID: 6236399253675237637}
   - component: {fileID: 6154774850738526493}
+  - component: {fileID: 8315799837458656658}
+  - component: {fileID: 2140848008327329960}
   m_Layer: 0
   m_Name: TheCatReturns
   m_TagString: Untagged
@@ -5348,6 +5365,33 @@ MonoBehaviour:
   - {fileID: 4001063906698871713}
   - {fileID: 7591769613737581436}
   - {fileID: 4127170347864507004}
+--- !u!114 &8315799837458656658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280678066399883095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd44269260663b459601ae854110866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SceneType>k__BackingField: 7
+--- !u!114 &2140848008327329960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280678066399883095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc9964b2bc5e9b4a8022a86f9da83b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxSignal: {fileID: 11400000, guid: 03a8f1bb4da0bef4390b7347d0c7cd3f, type: 2}
+  sfxSounds: 03000000
 --- !u!1 &8902101599657771129
 GameObject:
   m_ObjectHideFlags: 0

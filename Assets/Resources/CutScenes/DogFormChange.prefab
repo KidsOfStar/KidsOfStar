@@ -374,6 +374,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: ee65c02d847674044be6200a16cb5487, type: 2}
     - {fileID: 11400000, guid: 2eca4b4b448990a4ab57ff4b64d64771, type: 2}
+    - {fileID: 11400000, guid: 03a8f1bb4da0bef4390b7347d0c7cd3f, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -399,6 +400,20 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 2629225833504904095}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
               UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 587481837740195751}
+          m_TargetAssemblyTypeName: SfxPlayer, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2053,6 +2068,7 @@ GameObject:
   - component: {fileID: 6470671634325313337}
   - component: {fileID: 3345719928569300506}
   - component: {fileID: 5668679501224371915}
+  - component: {fileID: 587481837740195751}
   m_Layer: 0
   m_Name: DogFormChange
   m_TagString: Untagged
@@ -2112,6 +2128,20 @@ MonoBehaviour:
   dialogIndexes: b80b0000
   <Npcs>k__BackingField:
   - {fileID: 139998777861428612}
+--- !u!114 &587481837740195751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239127504030760159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc9964b2bc5e9b4a8022a86f9da83b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxSignal: {fileID: 11400000, guid: 03a8f1bb4da0bef4390b7347d0c7cd3f, type: 2}
+  sfxSounds: 03000000
 --- !u!1 &7634103704487084343
 GameObject:
   m_ObjectHideFlags: 0

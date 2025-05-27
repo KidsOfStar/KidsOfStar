@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 // 챕터 1 특이사항
 // 챕터 1에서 재생해야하는 컷씬이 두개라서 좀 복잡해졌습니다.
@@ -18,14 +17,15 @@ public class Chapter01Base : SceneBase
     
     protected override void InitSceneExtra(Action callback)
     {
-        //Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FallingDown, callback);
-        callback?.Invoke();
+        Managers.Instance.AnalyticsManager.SendFunnel("3");
+        Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.FallingDown, callback);
         sceneEventTrigger.Init();
     }
 
     // 씬이 로드되자마자 재생되는 컷신이 있다면 이 곳에 컷신이 끝났을 때 호출 될 콜백을 작성합니다.
     protected override void CutSceneEndCallback()
     {
+        Managers.Instance.AnalyticsManager.SendFunnel("4");
         PlayChapterIntro(ChapterIntroEndCallback);
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Maorum);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.UnderWater);
@@ -33,6 +33,7 @@ public class Chapter01Base : SceneBase
 
     private void ChapterIntroEndCallback()
     {
+        Managers.Instance.AnalyticsManager.SendFunnel("5");
         var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
         var joystick = Managers.Instance.UIManager.Get<UIJoystick>();
         tutorial.SetTarget(joystick.joystickBase);
@@ -43,6 +44,7 @@ public class Chapter01Base : SceneBase
         if (!isTutorial) return;
         isTutorial = false;
         
+        Managers.Instance.AnalyticsManager.SendFunnel("6");
         var tutorial = Managers.Instance.UIManager.Show<UITutorial>();
         var skillPanel = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
         var interactBtn = skillPanel.interactionBtn.GetComponent<RectTransform>();

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FormBlocker : MonoBehaviour
@@ -17,7 +16,6 @@ public class FormBlocker : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             OnInteraction();
-            Debug.Log($"OnInteraction");
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -75,18 +73,22 @@ public class FormBlocker : MonoBehaviour
         if (bubbleText != null)
         {
             bubbleText.SetText("정체를 들킬 것 같다.");
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Beep);
         }
         yield return new WaitForSeconds(1f);
 
         if (bubbleText != null)
         {
             bubbleText.SetText("당장 피해야 한다.");
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Beep);
+
         }
         yield return new WaitForSeconds(1f);
 
         if (bubbleText != null)
         {
             bubbleText.SetText("위험하다.");
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Beep);
         }
         yield return new WaitForSeconds(1f);
 

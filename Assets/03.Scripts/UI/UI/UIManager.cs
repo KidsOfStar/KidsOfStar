@@ -4,9 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : ISceneLifecycleHandler
 {
-    public SkillBTN SkillBTN { get; set; }
-    public SkillUnlock SkillUnlock { get; set; }
-
     public RectTransform CanvasRectTr { get; private set; }
     private List<Transform> parents;
 
@@ -125,7 +122,7 @@ public class UIManager : ISceneLifecycleHandler
 
         if (canvasPrefab == null)
         {
-            Debug.LogError("Canvas prefab not found at path: UI/Canvas");
+            EditorLog.LogError("Canvas prefab not found at path: UI/Canvas");
             return;
         }
 
@@ -148,7 +145,7 @@ public class UIManager : ISceneLifecycleHandler
             }
             else
             {
-                Debug.LogWarning($"Canvas 하위에서 '{childName}' 오브젝트를 찾지 못했습니다.");
+                EditorLog.LogWarning($"Canvas 하위에서 '{childName}' 오브젝트를 찾지 못했습니다.");
             }
         }
 

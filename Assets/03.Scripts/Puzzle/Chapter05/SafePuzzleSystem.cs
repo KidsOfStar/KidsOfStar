@@ -1,20 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SafePuzzleSystem : TreePuzzleSystem
 {
     public SafePuzzle safePuzzle;
     public SafePopup safePopup;
-    public int index;
+    public int safeIndex;       // 금고 다이얼의 인덱스
 
     // 퍼블 성공
     protected override void CompletePuzzle()
     {
         isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-        SafeSetActive(index);
+        SafeSetActive(safeIndex);
 
         if (!clearPuzzlenum.Contains(puzzleIndex))
         {
@@ -39,7 +36,6 @@ public class SafePuzzleSystem : TreePuzzleSystem
         }
     }
 
-
     public override void OnClearButtonClicked()
     {
         if (triggerMap.TryGetValue(puzzleIndex, out var trig))
@@ -61,13 +57,13 @@ public class SafePuzzleSystem : TreePuzzleSystem
     {
         safePuzzle.safeImage[indexs].raycastTarget = true;
         safePuzzle.safeImage[indexs].color = Color.white;
-        index++;
+        safeIndex++;
     }
 
     // 시스템 초기화
     public void ResetSystem()
     {
-        index = 0;
+        safeIndex = 0;
         clearPuzzlenum.Clear();
         isRunning = false;
 
@@ -79,10 +75,4 @@ public class SafePuzzleSystem : TreePuzzleSystem
 
         safePuzzle.ResetPuzzleState(); // 퍼즐 상태 초기화
     }
-
-    public override void SetupPuzzle(TreePuzzleData data, int puzzleClearIndex)
-    {
-        base.SetupPuzzle(data, puzzleClearIndex);
-    }
-
 }

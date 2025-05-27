@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,8 +10,11 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public Image[] safeImage;
     public float rotationDuration = 0.5f;
     public SafePopup safePopup;
-    public PuzzleTrigger puzzleTrigger;
-    public Door door;
+    public SafePuzzleTrigger safePuzzleSystem;
+
+    // 모드별 제한 시간
+    private int currentTime;
+    private int safeNumber;
 
     public Dictionary<GameObject, float> rotationAmount;
     private HashSet<GameObject> completedPieces = new HashSet<GameObject>();
@@ -18,24 +22,39 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-
-        door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
-        puzzleTrigger = FindObjectOfType<PuzzleTrigger>();
+        safePuzzleSystem = FindObjectOfType<SafePuzzleTrigger>();
 
         rotationAmount = new Dictionary<GameObject, float>
         {
-            { safeImage[0].gameObject, 45f },
+            { safeImage[0].gameObject, 90f },
             { safeImage[1].gameObject, 60f },
             { safeImage[2].gameObject, 135f }
         };
 
         RandomizeRotation();
     }
-    
+
+    private void OnEnable()
+    {
+        StartCoroutine(ClearTime());
+    }
+
+    private IEnumerator ClearTime()
+    {
+        currentTime = 0;   // 초기화
+        // 1초마다 currentTime 증가
+        WaitForSeconds oneSeconds = new WaitForSeconds(1f);
+
+        while (true)
+        {
+            yield return oneSeconds;
+            currentTime += 1;
+        }
+    }
+
     // 금고 다이얼 랜덤 배치 
     private void RandomizeRotation()
     {
-
         foreach (var pair in rotationAmount)
         {
             int randomMultiplier = UnityEngine.Random.Range(0, 3);
@@ -106,16 +125,59 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             ClearPuzzle();
         }
     }
-
+    // 퍼즐 완료 시 호출되는 메소드
     private void ClearPuzzle()
     {
-        Debug.Log("퍼즐이 완료되었습니다.");
+        StopCoroutine(ClearTime());
+        EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
+
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
+
+        UnlockDoor();
+
         Managers.Instance.GameManager.UpdateProgress();
-        //Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
-        puzzleTrigger.DisableExclamation();
-        door.isDoorOpen = true;
+
+        safePuzzleSystem.DisableExclamation();
+
+
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
+
+        var analyticsManager = Managers.Instance.AnalyticsManager;
+        analyticsManager.RecordChapterEvent("PopUpPuzzle",
+            ("PuzzleNumber", safeNumber),
+            ("ChallengeCount", safePopup.challengeCount),
+            ("ClearTime", currentTime)
+            );
+
+        if (safeNumber == 1)
+        {
+            analyticsManager.SendFunnel("42");
+        }
+        else if (safeNumber == 2)
+        {
+            analyticsManager.SendFunnel("43");
+        }
+        else if (safeNumber == 3)
+        {
+            analyticsManager.SendFunnel("45");
+        }
+    }
+
+    private void UnlockDoor()
+    {
+        if (safePuzzleSystem.door != null)
+        {
+            safePuzzleSystem.door.isDoorOpen = true;
+        }
+    }
+
+
+    public void SetSafeNumber(int number)
+    {
+        safeNumber = number;
+        Debug.Log($"[SafePuzzle] 금고 번호 설정: {safeNumber}");
     }
 
     // 클릭 이벤트 처리
@@ -140,7 +202,5 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             float randomRotation = pair.Value * randomMultiplier;
             pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
         }
-
-        Debug.Log("SafePuzzle 회전 상태와 완료 상태가 초기화되었습니다.");
     }
 }
