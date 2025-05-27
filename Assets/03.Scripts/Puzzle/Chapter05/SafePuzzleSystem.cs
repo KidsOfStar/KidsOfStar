@@ -22,10 +22,10 @@ public class SafePuzzleSystem : PuzzleSystemBase
     private int gridWidth;                  // 퍼즐 배열 가로의 개수
 
     private int selectedIndex;
-    public int SelectedIndex => selectedIndex;  // 현재 선택된 퍼즐 조각의 Index
+    public override int SelectedIndex => selectedIndex;  // 현재 선택된 퍼즐 조각의 Index
 
     private List<TreePuzzlePiece> pieces = new();   // 생성된 모든 퍼즐 조각목록
-
+    public int ChallengeCount => challengeCount; // 현재 퍼즐 ID
     public override void SetupPuzzle(ScriptableObject puzzleData, int puzzleId)
     {
         var data = puzzleData as TreePuzzleData;
@@ -62,15 +62,13 @@ public class SafePuzzleSystem : PuzzleSystemBase
             clearPuzzleSet.Add(puzzleIndex);
         }
 
-        safePopup.nextPuzzle();
+        safePopup.NextPuzzle();
     }
 
     //퍼즐 실패
     protected override void FailPuzzle()
     {
         base.FailPuzzle();
-
-        safePopup.FullReset(); // 퍼즐 시스템 리셋
     }
 
     public override void OnClearButtonClicked()
@@ -135,6 +133,13 @@ public class SafePuzzleSystem : PuzzleSystemBase
 
     private void HighlightSelectedPiece()
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < pieces.Count; i++)
+            pieces[i].SetHighlight(i == selectedIndex);
+    }
+
+    public override void OnPieceSelected(int index)
+    {
+        selectedIndex = index;
+        HighlightSelectedPiece();
     }
 }

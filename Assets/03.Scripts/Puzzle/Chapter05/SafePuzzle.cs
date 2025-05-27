@@ -10,6 +10,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public float rotationDuration = 0.5f;
     public SafePopup safePopup;
     public SafePuzzleTrigger puzzleTrigger;
+    public SafePuzzleSystem puzzleSystem;
     public Door door;
 
     // 모드별 제한 시간
@@ -142,7 +143,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         var analyticsManager = Managers.Instance.AnalyticsManager;
         analyticsManager.RecordChapterEvent("PopUpPuzzle",
             ("PuzzleNumber", safeNumber),
-            ("ChallengeCount", safePopup.challengeCount),
+            ("ChallengeCount", puzzleSystem.ChallengeCount),
             ("ClearTime", currentTime)
             );
 
