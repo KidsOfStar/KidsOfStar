@@ -26500,7 +26500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDisableInStart: 0
+  isDisableInStart: 1
   positionDatas:
   - progress: 1
     isFlip: 0
@@ -27795,7 +27795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDisableInStart: 0
+  isDisableInStart: 1
   positionDatas:
   - progress: 3
     isFlip: 0
