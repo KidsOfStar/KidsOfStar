@@ -7,11 +7,16 @@ public abstract class PuzzleSystemBase : MonoBehaviour
     protected int puzzleIndex;
     protected float timeLimit;
     protected float currentTime;
-    protected bool isRunning;
+    public bool isRunning;
     protected int challengeCount;
     protected HashSet<int> clearPuzzleSet = new();
     [SerializeField] protected int totalPuzzleCount = 2;
     [SerializeField] protected TextMeshProUGUI timerTxt;
+
+    public virtual int SelectedIndex => 1;
+    public virtual void OnPieceSelected(int index) { }
+
+    public virtual void CheckPuzzle() {  }
 
     public abstract void SetupPuzzle(ScriptableObject puzzleData, int index);
     public abstract void GeneratePuzzle();
@@ -78,5 +83,6 @@ public abstract class PuzzleSystemBase : MonoBehaviour
         // 팝업 닫고 플레이어 제어 복구
         OnExit();
     }
+
 }
 

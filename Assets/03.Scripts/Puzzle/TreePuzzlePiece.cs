@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class TreePuzzlePiece : MonoBehaviour, IPointerClickHandler
 {
-    private TreePuzzleSystem system;
+    private PuzzleSystemBase system;
     private int curIndex;
 
     [SerializeField] private Image pieceImage; // UI용 조각 이미지
@@ -18,7 +18,7 @@ public class TreePuzzlePiece : MonoBehaviour, IPointerClickHandler
         outLine.SetActive(false);
         pieceImage.raycastTarget = true;
     }
-    public void Initialize(TreePuzzleSystem systemManager, int correctionRotation, int index)
+    public void Initialize(PuzzleSystemBase systemManager, int correctionRotation, int index)
     {
         system = systemManager;
         correctRotation = correctionRotation;
@@ -28,7 +28,7 @@ public class TreePuzzlePiece : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!system.IsRunning) return;
+        if (!system.isRunning) return;
 
         // 같은 조각을 다시 클릭하면 회전
         if (system.SelectedIndex == curIndex)

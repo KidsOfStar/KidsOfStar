@@ -19,7 +19,7 @@ public class TreePuzzleSystem : PuzzleSystemBase
     private int gridWidth;
     // 현재 선택된 퍼즐 조각의 Index
     private int selectedIndex;
-    public int SelectedIndex => selectedIndex;  
+    public override int SelectedIndex => selectedIndex;  
     // 생성된 모든 퍼즐 조각목록
     private List<TreePuzzlePiece> pieces = new();
     // 성공 완료된 퍼즐 ID의 집합
@@ -91,7 +91,7 @@ public class TreePuzzleSystem : PuzzleSystemBase
     }
 
     // 퍼즐 조각 클릭시 실행되는 아웃라인 및 회전 메서드
-    public void OnPieceSelected(int index)
+    public override void OnPieceSelected(int index)
     {
         selectedIndex = index;
         HighlightSelectedPiece();
@@ -105,7 +105,7 @@ public class TreePuzzleSystem : PuzzleSystemBase
     }
 
     // 조각 체크
-    public void CheckPuzzle()
+    public override void CheckPuzzle()
     {
         foreach (var piece in pieces)
         {
