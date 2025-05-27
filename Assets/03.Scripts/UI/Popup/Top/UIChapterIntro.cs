@@ -24,10 +24,10 @@ public class UIChapterIntro : UIBase
         }
 
         Managers.Instance.GameManager.Player.Controller.IsControllable = false;
-        introText.text = string.Empty;
         
         typewriter.onTextShowed.AddListener(() => StartCoroutine(CompleteTextShowed()));
         typewriter.ShowText(text);
+        typewriter.StartShowingText();
     }
 
     private IEnumerator CompleteTextShowed()
