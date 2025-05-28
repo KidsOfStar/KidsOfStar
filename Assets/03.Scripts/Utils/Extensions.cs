@@ -6,6 +6,7 @@ public static class Extensions
     {
         return bgm switch
         {
+            BgmSoundType.Night          => "Night",
             BgmSoundType.Maorum         => "Maorum",
             BgmSoundType.MaorumChase    => "MaorumChase",
             BgmSoundType.InForest       => "InForest",
