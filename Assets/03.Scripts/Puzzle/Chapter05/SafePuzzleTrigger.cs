@@ -31,6 +31,7 @@ public class SafePuzzleTrigger : MonoBehaviour
         skillBTN = Managers.Instance.UIManager.Get<PlayerBtn>().skillPanel;
 
     }
+
     public void init()
     {
         // 진행도 갱신 이벤트 구독
@@ -75,9 +76,6 @@ public class SafePuzzleTrigger : MonoBehaviour
         if ((dangerFormMask & currentForm.playerFormType) != 0)
         {
             OntextBubbleText();
-            //Managers.Instance.UIManager.Show<WarningPopup>(
-            //    WarningType.Squirrel
-            //    );
         }
         else
             TryStartPuzzle();
