@@ -80,6 +80,7 @@ public enum DialogCustomMethodType
 
 public enum BgmSoundType
 {
+    Night,
     Maorum,
     MaorumChase,
     InForest,
