@@ -83,23 +83,41 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         CheckClearCondition();
     }
 
+    // 퍼즐 조각을 부드럽게 회전시키는 코루틴
     private IEnumerator RotateOverTime(GameObject puzzlePiece, float amount)
     {
+        // 현재 회전 상태 저장
         Quaternion startRotation = puzzlePiece.transform.rotation;
+
+        // 목표 회전값 계산 (Z축 기준으로 amount만큼 회전)
         Quaternion endRotation = startRotation * Quaternion.Euler(0f, 0f, amount);
+
+        // 경과 시간 초기화
         float elapsedTime = 0f;
 
+        // 지정된 시간(duration) 동안 회전 수행
         while (elapsedTime < rotationDuration)
         {
+            // 경과 시간 누적
             elapsedTime += Time.deltaTime;
+
+            // 보간 비율 계산 (0에서 1 사이)
             float t = Mathf.Clamp01(elapsedTime / rotationDuration);
+
+            // 현재 회전을 시작과 끝 사이에서 보간하여 적용 (부드러운 회전 효과)
             puzzlePiece.transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
+
+            // 다음 프레임까지 대기
             yield return null;
         }
 
+        // 정확한 회전값 보정 (보간으로 인해 오차 발생 가능)
         puzzlePiece.transform.rotation = endRotation;
+
+        // 회전 중인 코루틴 목록에서 제거
         rotationCorotines.Remove(puzzlePiece);
 
+        // 퍼즐 클리어 조건 확인
         CheckClearCondition();
     }
 
