@@ -16,6 +16,7 @@ public static class Extensions
             BgmSoundType.City           => "City",
             BgmSoundType.CityPuzzle     => "CityPuzzle",
             BgmSoundType.Aquarium       => "Aquarium",
+            BgmSoundType.Intro          => "Intro",
             _                           => throw new ArgumentOutOfRangeException(nameof(bgm), bgm, null)
         };
     }

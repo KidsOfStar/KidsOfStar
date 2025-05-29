@@ -90,6 +90,7 @@ public enum BgmSoundType
     City,
     CityPuzzle,
     Aquarium,
+    Intro,
 }
 
 public enum AmbienceSoundType
