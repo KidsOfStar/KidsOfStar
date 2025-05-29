@@ -4418,9 +4418,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf595605bd2f874da47e57debda173d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BgmSoundType>k__BackingField: 2
+  <BgmSoundType>k__BackingField: 3
   <AmbienceSoundType>k__BackingField: 1
+  <PlayAmbience>k__BackingField: 1
   <PlayBgmSignal>k__BackingField: {fileID: 11400000, guid: b89bdacf10816754d83f49b7f9d1d962, type: 2}
+  <StopBgmSignal>k__BackingField: {fileID: 0}
 --- !u!114 &7380230989693784354
 MonoBehaviour:
   m_ObjectHideFlags: 0
