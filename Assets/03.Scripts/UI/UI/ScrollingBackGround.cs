@@ -46,7 +46,7 @@ public class ScrollingBackGround : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (cam == null) return;
 
