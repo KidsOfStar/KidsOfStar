@@ -26,4 +26,9 @@ public class Chapter0502Base : SceneBase
         else
             Managers.Instance.GameManager.SetLoadedProgress();
     }
+
+    private void Update()
+    {
+        Debug.Log($"{Managers.Instance.GameManager.ChapterProgress}");
+    }
 }

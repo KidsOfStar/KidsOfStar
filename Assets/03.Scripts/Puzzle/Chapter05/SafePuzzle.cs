@@ -67,7 +67,6 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
                 randomMultiplier = UnityEngine.Random.Range(0, 3);
                 randomRotation = pair.Value * randomMultiplier;
             }
-
             pair.Key.transform.localEulerAngles = new Vector3(0, 0, randomRotation);
         }
     }
@@ -133,13 +132,15 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     {
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
+
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
+
+        door.isDoorOpen = true;
+
         Managers.Instance.GameManager.UpdateProgress();
 
         puzzleTrigger.DisableExclamation();
-
-        door.isDoorOpen = true;
 
         var analyticsManager = Managers.Instance.AnalyticsManager;
         analyticsManager.RecordChapterEvent("PopUpPuzzle",
