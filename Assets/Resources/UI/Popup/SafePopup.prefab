@@ -663,12 +663,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261166d5034a17c45bc34fe300ad7ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRunning: 0
+  totalPuzzleCount: 2
+  timerTxt: {fileID: 1581728804614112435}
   backgroundImage: {fileID: 1686434827717304990}
   easyModeOutline: {fileID: 2777863042289226755}
   piecePrefab: {fileID: 438276036279181801, guid: 455eb5035b83a4240a12a0a2ac60aa42, type: 3}
   puzzleParent: {fileID: 8751811173182245736}
-  timerTxt: {fileID: 1581728804614112435}
-  totalPuzzleCount: 3
   safePuzzle: {fileID: 4325809574330469050}
   safePopup: {fileID: 2533478449912557472}
   safeIndex: 0
@@ -875,6 +876,7 @@ MonoBehaviour:
   rotationDuration: 0.5
   safePopup: {fileID: 2533478449912557472}
   puzzleTrigger: {fileID: 0}
+  puzzleSystem: {fileID: 1569135355270111907}
   door: {fileID: 0}
 --- !u!1 &3985656495200401652
 GameObject:
@@ -1129,8 +1131,8 @@ MonoBehaviour:
   closeBtn: {fileID: 3008075300718502582}
   checkTimeStop: 0
   isFirst: 0
-  exclamationInstance: {fileID: 0}
-  door: {fileID: 0}
+  puzzleSystem: {fileID: 1569135355270111907}
+  hintImage: {fileID: 0}
   datas:
   - {fileID: 11400000, guid: 7b83764688543c847b25fd1177805430, type: 2}
   - {fileID: 11400000, guid: 541ea2a437c786946baa7ac68b9c5b63, type: 2}
@@ -1141,9 +1143,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f7259773c38ba147b70e2d4a21d6316, type: 2}
   - {fileID: 11400000, guid: bd2d2d5ea08cdc34281ed37d4ae893fc, type: 2}
   - {fileID: 11400000, guid: 696b0aabe1823ff4781bc917b57a5be9, type: 2}
-  puzzleSystem: {fileID: 1569135355270111907}
-  countIndex: 0
-  challengeCount: 0
+  curIndex: 0
   safePuzzle: {fileID: 4325809574330469050}
 --- !u!1 &4162094645368473258
 GameObject:
@@ -2510,7 +2510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 326271729, guid: eebe8c82e52791247be97d957c4a18cb, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

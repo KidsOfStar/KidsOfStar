@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Safe3Picture 2
   m_EditorClassIdentifier: 
   puzzleId: Safe3Picture
-  backgroundSprite: {fileID: 663694508, guid: e8d00a11473afc44dadde793755e8fa5, type: 3}
+  <BackGroundSprite>k__BackingField: {fileID: 0}
   pieceSprites:
   - {fileID: -2093140128, guid: e8d00a11473afc44dadde793755e8fa5, type: 3}
   - {fileID: -1541645342, guid: e8d00a11473afc44dadde793755e8fa5, type: 3}
@@ -32,5 +32,5 @@ MonoBehaviour:
   - {fileID: -1343130034, guid: e8d00a11473afc44dadde793755e8fa5, type: 3}
   - {fileID: 1501678051, guid: e8d00a11473afc44dadde793755e8fa5, type: 3}
   gridWidth: 4
-  easyTimeLimit: 80
+  easyTimeLimit: 90
   hardTimeLimit: 60

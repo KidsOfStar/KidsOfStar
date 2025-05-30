@@ -69,6 +69,17 @@ public abstract class PuzzleSystemBase : MonoBehaviour
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>(this);
     }
 
+    public void SafeCompletePuzzle()
+    {
+        if (clearPuzzleSet.Contains(puzzleIndex))
+        {
+            EditorLog.LogWarning($"이미 퍼즐 {puzzleIndex}를 완료했습니다.");
+            return;
+        }
+        clearPuzzleSet.Add(puzzleIndex);
+        CompletePuzzle();
+    }
+
     public virtual void OnExit()
     {
         // Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForest); // 또는 상황에 따라 분기

@@ -24,8 +24,9 @@ public class SafePuzzleSystem : PuzzleSystemBase
     private int selectedIndex;
     public override int SelectedIndex => selectedIndex;  // 현재 선택된 퍼즐 조각의 Index
 
-    private List<TreePuzzlePiece> pieces = new();   // 생성된 모든 퍼즐 조각목록
+    private List<PuzzlePiece> pieces = new();   // 생성된 모든 퍼즐 조각목록
     public int ChallengeCount => challengeCount; // 현재 퍼즐 ID
+
     public override void SetupPuzzle(ScriptableObject puzzleData, int puzzleId)
     {
         var data = puzzleData as TreePuzzleData;
@@ -49,12 +50,40 @@ public class SafePuzzleSystem : PuzzleSystemBase
             easyModeOutline.SetActive(isEasy);
     }
 
-    //퍼블 성공
+    // 퍼즐 시작
+    public override void StartPuzzle()
+    {
+        var sequence = puzzleIndex == 0 ? 13    
+                     : puzzleIndex == 1 ? 15
+                     : 0;
+        if (sequence != 0)
+            Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
+
+        base.StartPuzzle();
+
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.InForestPuzzle);
+        foreach (var piece in pieces)
+        {
+            piece.RandomizeRotation();
+        }
+    }
+    // 조각 체크
+
+    public override void CheckPuzzle()
+    {
+        foreach (var piece in pieces)
+        {
+            if (!piece.IsCorrect())
+                return;
+        }
+
+        CompletePuzzle();
+    }
+
+    //퍼블 성공 (다 맞추면)
     protected override void CompletePuzzle()
     {
-        isRunning = false;
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
-
         SafeSetActive(safeIndex);
 
         if (!clearPuzzleSet.Contains(puzzleIndex))
@@ -68,6 +97,7 @@ public class SafePuzzleSystem : PuzzleSystemBase
     //퍼즐 실패
     protected override void FailPuzzle()
     {
+        Managers.Instance.UIManager.Hide<SafePopup>();
         base.FailPuzzle();
     }
 
@@ -123,7 +153,7 @@ public class SafePuzzleSystem : PuzzleSystemBase
         for (int i = 0; i < correctSprites.Count; i++)
         {
             GameObject pieceGO = Instantiate(piecePrefab, puzzleParent);
-            TreePuzzlePiece piece = pieceGO.GetComponent<TreePuzzlePiece>();
+            PuzzlePiece piece = pieceGO.GetComponent<PuzzlePiece>();
             piece.SetSprite(correctSprites[i]);
             piece.Initialize(this, 0, i); // 정답각도는 0
             pieces.Add(piece);

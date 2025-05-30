@@ -159,6 +159,10 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         {
             analyticsManager.SendFunnel("45");
         }
+
+        if (puzzleSystem != null)
+            puzzleSystem.SafeCompletePuzzle();
+
     }
 
     public void SetSafeNumber(int number)

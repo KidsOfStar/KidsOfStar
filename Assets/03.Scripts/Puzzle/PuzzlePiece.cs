@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TreePuzzlePiece : MonoBehaviour, IPointerClickHandler
+public class PuzzlePiece : MonoBehaviour, IPointerClickHandler
 {
     private PuzzleSystemBase system;
     private int curIndex;

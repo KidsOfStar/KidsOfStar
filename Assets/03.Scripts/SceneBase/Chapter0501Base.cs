@@ -1,8 +1,12 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Chapter0501Base : SceneBase
 {
     public bool istutorialForm = false;
+
+    [SerializeField] List<PuzzleTriggerBase> puzzleTriggers;
 
     protected override void InitSceneExtra(Action callback)
     {
@@ -10,6 +14,14 @@ public class Chapter0501Base : SceneBase
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
         callback?.Invoke();
+
+        var puzzleManager = Managers.Instance.PuzzleManager;
+        puzzleManager.OnSceneLoaded();
+        foreach (var trigger in puzzleTriggers)
+        {
+            trigger?.InitTrigger();
+            trigger?.SetupUI();
+        }
     }
     
     protected override void CutSceneEndCallback()

@@ -1474,6 +1474,8 @@ MonoBehaviour:
     cutSceneStartFunnel: []
   spawnPointer: {fileID: 0}
   scrollingBackGround: {fileID: 0}
+  puzzleTriggers:
+  - {fileID: 1522170724}
 --- !u!1 &784139467
 GameObject:
   m_ObjectHideFlags: 0
@@ -9393,6 +9395,10 @@ PrefabInstance:
       propertyPath: safeNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+      propertyPath: requiredProgress
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9403,6 +9409,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2252567307373690126, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
   m_PrefabInstance: {fileID: 1522170722}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1522170724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+  m_PrefabInstance: {fileID: 1522170722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e307494ef45f3d4cad0e4545204a75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1532168380
 GameObject:
   m_ObjectHideFlags: 0

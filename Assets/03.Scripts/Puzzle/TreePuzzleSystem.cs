@@ -21,7 +21,7 @@ public class TreePuzzleSystem : PuzzleSystemBase
     private int selectedIndex;
     public override int SelectedIndex => selectedIndex;  
     // 생성된 모든 퍼즐 조각목록
-    private List<TreePuzzlePiece> pieces = new();
+    private List<PuzzlePiece> pieces = new();
     // 성공 완료된 퍼즐 ID의 집합
     protected HashSet<int> clearPuzzlenum = new();
 
@@ -64,7 +64,7 @@ public class TreePuzzleSystem : PuzzleSystemBase
         for (int i = 0; i < correctSprites.Count; i++)
         {
             GameObject pieceGO = Instantiate(piecePrefab, puzzleParent);
-            TreePuzzlePiece piece = pieceGO.GetComponent<TreePuzzlePiece>();
+            PuzzlePiece piece = pieceGO.GetComponent<PuzzlePiece>();
             piece.SetSprite(correctSprites[i]);
             piece.Initialize(this, 0,i); // 정답각도는 0
             pieces.Add(piece);

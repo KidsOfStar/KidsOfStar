@@ -1,7 +1,7 @@
 using System.Diagnostics.Contracts;
 using UnityEngine;
 
-public class SafePopup : PopupBase
+public class SafePopup : PuzzlePopupBase<SafePuzzleSystem, TreePuzzleData>
 {
     [Header("퍼즐 시스템")]
     private SceneType sceneType;
@@ -13,13 +13,13 @@ public class SafePopup : PopupBase
 
     public override void Opened(params object[] param)
     {
-        base.Opened(param);
+        //base.Opened(param);
 
         if (param.Length > 0 && param[0] is SceneType scene)
         {
             sceneType = scene;
             puzzleIndex = GetIndexSetForScene(scene);
-            curIndex = 1;
+            curIndex = 0;
         }
 
         NextPuzzle();
@@ -40,9 +40,21 @@ public class SafePopup : PopupBase
         }
 
         var data = datas[puzzleIndex[curIndex]];
+        int index = curIndex;
         curIndex++;
 
-        Managers.Instance.UIManager.Show<SafePopup>(data, 2);
+        if (safePuzzle != null && safePuzzle.puzzleSystem != null)
+        {
+            safePuzzle.puzzleSystem.SetupPuzzle(data, curIndex - 1);
+            safePuzzle.puzzleSystem.GeneratePuzzle();
+        }
+        else
+        {
+            Debug.LogError("[SafePopup] SafePuzzle 또는 SafePuzzleSystem이 할당되지 않았습니다.");
+        }
+
+        base.Opened(data, index);
+
     }
 
     public override void HideDirect()

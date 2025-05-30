@@ -56,7 +56,6 @@ public class SafePuzzleTrigger : PuzzleTriggerBase
         }
     }
 
-
     protected override void TryStartPuzzle()
     {
         base.TryStartPuzzle();
@@ -68,14 +67,13 @@ public class SafePuzzleTrigger : PuzzleTriggerBase
             var popup = Managers.Instance.UIManager.Show<TutorialPopup>(4);
             popup.OnClosed += () =>
             {
-                var safePopup = Managers.Instance.UIManager.Show<SafePopup>();
-                safePopup.Opened(sceneType);  // 안전한 폼일 경우 팝업 표시
+                var safePopup = Managers.Instance.UIManager.Show<SafePopup>(sceneType);
                 safePopup.safePuzzle.SetSafeNumber(safeNumber);
             };
             return;
         }
         // 튜토리얼 보여주고 시작
-        Managers.Instance.UIManager.Show<SafePopup>().Opened(sceneType); // 안전한 폼일 경우 팝업 표시
+        Managers.Instance.UIManager.Show<SafePopup>(sceneType); // 안전한 폼일 경우 팝업 표시
     }
 
     protected override void OnPuzzleButtonPressed()
