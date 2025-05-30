@@ -9,7 +9,6 @@ public class SafePuzzleSystem : PuzzleSystemBase
     [SerializeField] private Image backgroundImage;    // SO.backgroundSprite 할당용
     [SerializeField] private GameObject easyModeOutline; // Easy 모드일 때만 켤 테두리
 
-
     [Header("Prefab & Layout")]
     [SerializeField] private GameObject piecePrefab;        
     [SerializeField] private Transform puzzleParent;
@@ -23,9 +22,9 @@ public class SafePuzzleSystem : PuzzleSystemBase
 
     private int selectedIndex;
     public override int SelectedIndex => selectedIndex;  // 현재 선택된 퍼즐 조각의 Index
-
     private List<PuzzlePiece> pieces = new();   // 생성된 모든 퍼즐 조각목록
     public int ChallengeCount => challengeCount; // 현재 퍼즐 ID
+    public bool IsPuzzleCleared { get; private set; } = false;  // 퍼즐이 클리어되었는지 여부
 
     public override void SetupPuzzle(ScriptableObject puzzleData, int puzzleId)
     {
@@ -83,6 +82,7 @@ public class SafePuzzleSystem : PuzzleSystemBase
     //퍼블 성공 (다 맞추면)
     protected override void CompletePuzzle()
     {
+        IsPuzzleCleared = true; // 퍼즐 완료 상태 
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.PuzzleClear);
         SafeSetActive(safeIndex);
 
@@ -141,6 +141,8 @@ public class SafePuzzleSystem : PuzzleSystemBase
     // 퍼즐 조각 생성
     public override void GeneratePuzzle()
     {
+        IsPuzzleCleared = false; // 퍼즐 초기화
+
         selectedIndex = 0;
         // 기존 조각 제거
         foreach (Transform child in puzzleParent)

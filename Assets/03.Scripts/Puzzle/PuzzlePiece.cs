@@ -44,6 +44,10 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler
 
     public void RotateRight()
     {
+        // 퍼즐이 완료되었으면 회전 금지
+        if (system is SafePuzzleSystem safeSystem && safeSystem.IsPuzzleCleared)
+            return;
+
         Managers.Instance.SoundManager.PlaySfx(SfxSoundType.TurnPuzzle);
 
         currentRotation = (currentRotation + 90) % 360;

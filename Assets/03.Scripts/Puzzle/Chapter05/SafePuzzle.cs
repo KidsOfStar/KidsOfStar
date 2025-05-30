@@ -72,6 +72,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    // 퍼즐 조각 회전 처리
     public void RotatePuzzlePiece(GameObject puzzlePiece)
     {
         if (completedPieces.Contains(puzzlePiece)) return;
