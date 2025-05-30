@@ -11,10 +11,10 @@ public class PopupBase : UIBase
 
     public override void Opened(params object[] param)
     {
-        if(checkTimeStop) 
+        if (checkTimeStop)
             Time.timeScale = 0; // 게임 일시 정지
         // 특정 bool를 이용해서 앞에서 보여지게 하기
-        if(isFirst)
+        if (isFirst)
             transform.SetAsLastSibling();
         if (Managers.Instance.SceneLoadManager.CurrentScene != SceneType.Title)
         {
@@ -26,7 +26,7 @@ public class PopupBase : UIBase
     {
         if (closeBtn != null)
         {
-            closeBtn.onClick.AddListener(() => 
+            closeBtn.onClick.AddListener(() =>
             {
                 Managers.Instance.SoundManager.PlaySfx(SfxSoundType.UICancel);
                 HideDirect();
@@ -37,8 +37,13 @@ public class PopupBase : UIBase
     public override void HideDirect()
     {
         base.HideDirect();
-        Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
-
-        Time.timeScale = 1; // 게임 재개
+        if (checkTimeStop)
+        {
+            Time.timeScale = 1; // 게임 재개
+            if (Managers.Instance.SceneLoadManager.CurrentScene != SceneType.Title)
+            {
+                Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+            }
+        }
     }
 }
