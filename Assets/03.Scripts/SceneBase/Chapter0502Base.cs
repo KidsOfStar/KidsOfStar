@@ -10,7 +10,6 @@ public class Chapter0502Base : SceneBase
 
     protected override void InitSceneExtra(Action callback)
     {
-        safePuzzleTrigger.init();
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
 

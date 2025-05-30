@@ -160,17 +160,15 @@ public class TreePuzzleSystem : PuzzleSystemBase
         // clearPuzzlenum.Count 에 따라 컷신 분기 재생
         if (clearPuzzlenum.Count == 1)
         {
-            case 0:
-                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
-                Managers.Instance.GameManager.UpdateProgress();
-                Managers.Instance.AnalyticsManager.SendFunnel("14");
-                break;
-
-            case 1:
-                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
-                Managers.Instance.GameManager.UpdateProgress();
-                Managers.Instance.AnalyticsManager.SendFunnel("17");
-                break;
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
+            Managers.Instance.GameManager.UpdateProgress();
+            Managers.Instance.AnalyticsManager.SendFunnel("14");
+        }
+        else if (clearPuzzlenum.Count >= totalPuzzleCount)
+        {
+            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
+            Managers.Instance.GameManager.UpdateProgress();
+            Managers.Instance.AnalyticsManager.SendFunnel("17");
         }
     }
 

@@ -132,19 +132,13 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     {
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
-
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
-
-        UnlockDoor();
-
         Managers.Instance.GameManager.UpdateProgress();
 
-        safePuzzleSystem.DisableExclamation();
+        puzzleTrigger.DisableExclamation();
 
-
-        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
-        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
+        door.isDoorOpen = true;
 
         var analyticsManager = Managers.Instance.AnalyticsManager;
         analyticsManager.RecordChapterEvent("PopUpPuzzle",
@@ -170,15 +164,6 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             puzzleSystem.SafeCompletePuzzle();
 
     }
-
-    private void UnlockDoor()
-    {
-        if (safePuzzleSystem.door != null)
-        {
-            safePuzzleSystem.door.isDoorOpen = true;
-        }
-    }
-
 
     public void SetSafeNumber(int number)
     {
