@@ -99,6 +99,7 @@ public class SafePuzzleSystem : PuzzleSystemBase
     {
         Managers.Instance.UIManager.Hide<SafePopup>();
         base.FailPuzzle();
+        ResetSystem();
     }
 
     public override void OnClearButtonClicked()

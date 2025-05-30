@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Safe3Picture 1
   m_EditorClassIdentifier: 
   puzzleId: Safe3Picture
-  <BackGroundSprite>k__BackingField: {fileID: 0}
+  <BackGroundSprite>k__BackingField: {fileID: -110192742, guid: 6ab7e58ebc8f5404d835be9df2200ab9, type: 3}
   pieceSprites:
   - {fileID: 769118470, guid: 6ab7e58ebc8f5404d835be9df2200ab9, type: 3}
   - {fileID: -1626450344, guid: 6ab7e58ebc8f5404d835be9df2200ab9, type: 3}
