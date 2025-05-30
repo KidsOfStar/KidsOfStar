@@ -6037,7 +6037,8 @@ MonoBehaviour:
     cutSceneStartFunnel: []
   spawnPointer: {fileID: 57934970}
   scrollingBackGround: {fileID: 0}
-  puzzleTriggers: []
+  puzzleTriggers:
+  - {fileID: 668192162}
 --- !u!4 &109380599
 Transform:
   m_ObjectHideFlags: 0
@@ -14605,7 +14606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
       propertyPath: isTutorial
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
       propertyPath: safeNumber
@@ -14624,6 +14625,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+--- !u!114 &668192162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9044946303433149134, guid: 48063ee2f9ddac2419741308995bfb7b, type: 3}
+  m_PrefabInstance: {fileID: 668192161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e307494ef45f3d4cad0e4545204a75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &697589585
 GameObject:
   m_ObjectHideFlags: 0
