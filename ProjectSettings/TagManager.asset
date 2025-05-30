@@ -11,6 +11,7 @@ TagManager:
   - HideArea
   - Ladder
   - PuzzleDoor
+  - Enternce
   layers:
   - Default
   - TransparentFX

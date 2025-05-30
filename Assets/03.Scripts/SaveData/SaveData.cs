@@ -1,28 +1,33 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
 [Serializable]
 public class SaveData
 {
-    // TODO: 현재 폼 저장
-    // TODO: enumFlags로 폼 해금 저장
-
     public string saveName;
     public int difficulty;
+    public int scene;
+
     public int chapter;
     public int chapterProgress;
     public Vector3 playerPosition;
     public int[] chapterTrust;
+    
     public PlayerFormType unlockedPlayerForms;
     public PlayerFormType currentPlayerForm;
     public EndingType completedEnding;
+    public int savePoint;
+    public bool[,] clearedSafePuzzles = new bool[3, 3];
+
 
     public void InitData()
     {
         var gameManager = Managers.Instance.GameManager;
         difficulty = (int)gameManager.Difficulty;
+        scene = (int)gameManager.CurrentScene;
         chapter = (int)gameManager.CurrentChapter;
         chapterProgress = gameManager.ChapterProgress;
         playerPosition = gameManager.Player.transform.position;
@@ -30,6 +35,7 @@ public class SaveData
         currentPlayerForm = gameManager.Player.FormControl.CurFormData.playerFormType; 
         chapterTrust = gameManager.GetTrustArray();
         completedEnding = gameManager.CompletedEnding;
+        savePoint = gameManager.SavePoint;
     }
 
     public void LoadData()

@@ -1,3 +1,4 @@
+using Febucci.UI;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,17 +7,16 @@ public class UILoading : MonoBehaviour
 {
     [Header("Loading Data")]
     [SerializeField] private LoadingData androidData;
-
     [SerializeField] private LoadingData webGLData;
-    private LoadingData currentLoadingData;
 
     [Header("Loading UI")]
     [SerializeField] private SpriteRenderer backgroundImage;
-
-    [SerializeField] private TextMeshProUGUI tooltipText;
+    [SerializeField] private TypewriterByCharacter tooltipText;
+    [SerializeField] private GameObject title;
     [SerializeField] private string[] tooltips;
 
     private readonly WaitForSeconds tooltipWaitTime = new(2f);
+    private LoadingData currentLoadingData;
     private int currentTooltipIndex;
 
     private void Start()
@@ -27,6 +27,7 @@ public class UILoading : MonoBehaviour
             return;
         }
 
+        currentLoadingData = webGLData;
 #if UNITY_EDITOR
         currentLoadingData = webGLData;
 #elif UNITY_ANDROID
@@ -41,6 +42,10 @@ public class UILoading : MonoBehaviour
 
     private IEnumerator TooltipCoroutine()
     {
+        yield return new WaitForSeconds(0.2f);
+        
+        title.SetActive(true);
+        
         if (currentLoadingData.Tooltips.Length == 0)
         {
             EditorLog.LogError("No tooltips found in LoadingData.");
@@ -70,7 +75,8 @@ public class UILoading : MonoBehaviour
                 currentTooltipIndex = 0;
             }
 
-            tooltipText.text = tooltips[currentTooltipIndex];
+            tooltipText.ShowText(tooltips[currentTooltipIndex]);
+            tooltipText.StartShowingText();
             currentTooltipIndex++;
             yield return tooltipWaitTime;
         }

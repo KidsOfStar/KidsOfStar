@@ -24,7 +24,8 @@ public class DashGame : MonoBehaviour
 
     
     private SkillBTN skillBTN; // 스킬 버튼 UI
-    [SerializeField] private GameObject TestGameBlock;
+    [SerializeField] private GameObject TestGameBlock;  // 끌날 떄
+    [SerializeField] private GameObject StartGameBlock; // 게임 시작 블록
 
     [Header("AnalyticsManager")]
     [SerializeField] private DeadIine deadIine;     // 데드라인
@@ -51,6 +52,8 @@ public class DashGame : MonoBehaviour
         // AnalyticsManager 게임 시도
         Managers.Instance.AnalyticsManager.TryCount++; // 시도 횟수 증가
 
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogsRun);
+
         StartCoroutine(GameIntroSequence()); // 전체 흐름 관리
 
         Managers.Instance.AnalyticsManager.SendFunnel("20");
@@ -75,6 +78,9 @@ public class DashGame : MonoBehaviour
         Managers.Instance.UIManager.Show<StopWatch>();
 
         yield return StartCoroutine(StartGame(5f)); // 5초 카운트다운 후 게임 시작
+
+        StartGameBlock.SetActive(false); // 게임 시작 블록 비활성화
+
     }
 
     private IEnumerator VirtualCameraMove()
@@ -102,6 +108,7 @@ public class DashGame : MonoBehaviour
     private IEnumerator StartGame(float delay)
     {
         yield return null;  // 한 프레임 대기 유예하여 언락을 실행 다음에 락이 되도록 하기 위해 작성함
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogsRun);
 
         yield return new WaitForSeconds(delay); // 카운트다운 대기
         stopWatch.OnStartWatch();   // 스탑워치 시작
@@ -133,6 +140,7 @@ public class DashGame : MonoBehaviour
         resultPopup.OnDialogEnd -= DialogEnd;
         resultPopup.OnDialogEnd += DialogEnd;
 
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.WithDogs);
         Managers.Instance.UIManager.Hide<StopWatch>(); // 스탑워치 표시
         Managers.Instance.UIManager.Hide<CountDownPopup>(); // 카운트다운 팝업 숨김
 

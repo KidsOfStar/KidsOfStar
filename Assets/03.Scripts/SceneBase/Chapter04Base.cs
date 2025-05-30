@@ -32,6 +32,12 @@ public class Chapter04Base : SceneBase
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.City);
     }
 
+    private void SkillUnlock()
+    {
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Dog);
+        Managers.Instance.GameManager.UnlockForm(PlayerFormType.Squirrel);
+    }
+
     private void AddListenerTutorial()
     {
         if (!isFirstTime) return;
@@ -66,7 +72,7 @@ public class Chapter04Base : SceneBase
             analytics.fallCount = 0;
         }
     }
-
+    
     protected override void OnDestroy()
     {
         base.OnDestroy();

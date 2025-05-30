@@ -61,6 +61,8 @@ public class SafePopup : PuzzlePopupBase<SafePuzzleSystem, TreePuzzleData>
     {
         base.HideDirect();
         Managers.Instance.GameManager.Player.Controller.UnlockPlayer();
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
     }
 
     private int[] GetIndexSetForScene(SceneType sceneName)

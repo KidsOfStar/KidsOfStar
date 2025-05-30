@@ -90,9 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPosition: 1
-  closeBtn: {fileID: 0}
-  checkTimeStop: 0
-  isFirst: 0
   selectButtons:
   - {fileID: 1450839224606244662}
   - {fileID: 8156343106369579941}

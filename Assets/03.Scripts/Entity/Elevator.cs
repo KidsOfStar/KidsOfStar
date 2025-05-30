@@ -28,12 +28,13 @@ public class Elevator : MonoBehaviour
     [SerializeField] private Direction direction = Direction.None;
 
     private readonly WaitForFixedUpdate waitForFixedUpdate = new();
-    private readonly WaitForSeconds moveWaitTime = new(1.5f);
     private readonly WaitForSeconds repairTime = new(5f);
 
     private readonly List<IWeightable> weightables = new();
+    private const float MoveWaitTime = 2f;
     private const float MaxWeight = 3f;
     private const float VerticalMargin = 0.1f;
+    private const string BreakWarning = "너무 무거워서 떨어질 것 같다.";
 
     private Vector3 prevPos;
     private Vector3 startPos;
@@ -45,30 +46,47 @@ public class Elevator : MonoBehaviour
         targetPos = GetTargetPosition();
 
         if (!isLocked)
-            StartCoroutine(Move());
+            StartCoroutine(Move(false));
     }
 
+    // 배선판 퍼즐 클리어 시 사용 할 함수
     public void UnlockElevator()
     {
         isLocked = false;
         StartCoroutine(Move());
     }
 
-    private IEnumerator Move()
+    private IEnumerator Move(bool isPlaySound = true)
     {
-        yield return moveWaitTime;
+        yield return MoveWaitRoutine();
 
+        if (isPlaySound)
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.ElevatorMove);
+        
         while (true)
         {
-            yield return MoveRoutine(startPos, targetPos, true);
-            yield return moveWaitTime;
+            yield return MoveRoutine(startPos, targetPos);
+            yield return MoveWaitRoutine();
 
             yield return MoveRoutine(targetPos, startPos);
-            yield return moveWaitTime;
+            yield return MoveWaitRoutine();
         }
     }
 
-    private IEnumerator MoveRoutine(Vector3 from, Vector3 to, bool toTarget = false)
+    private IEnumerator MoveWaitRoutine()
+    {
+        float elapsed = 0f;
+        while (elapsed < MoveWaitTime)
+        {
+            if (GetCurrentWeight() > MaxWeight)
+                yield return StartCoroutine(BreakSequence());
+            
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator MoveRoutine(Vector3 from, Vector3 to)
     {
         float distance = Vector3.Distance(from, to);
         float duration = distance / speed;
@@ -100,6 +118,9 @@ public class Elevator : MonoBehaviour
         const float blinkInterval = 0.5f; // 0.5초씩 색상 전환
         for (int i = 0; i < 3; i++)
         {
+            if (i == 1)
+                Managers.Instance.DialogueManager.SetInteractObjectDialog(BreakWarning);
+            
             // 1) White → Red
             float t = 0f;
             while (t < blinkInterval)
@@ -115,7 +136,6 @@ public class Elevator : MonoBehaviour
                 t += Time.deltaTime;
                 yield return new WaitForFixedUpdate();
             }
-
             sprite.color = Color.red;
 
             // 2) Red → White
@@ -132,17 +152,16 @@ public class Elevator : MonoBehaviour
                 t += Time.deltaTime;
                 yield return null;
             }
-
             sprite.color = Color.white;
         }
 
         // 3초 경고 후에도 과부하 상태라면 완전 고장
+        Managers.Instance.SoundManager.PlaySfx(SfxSoundType.BrokenElevator);
+        
         // 복구 대기
-        EditorLog.Log($"{gameObject.name} : is Broken");
         yield return repairTime;
 
         // 고장 해제
-        EditorLog.Log($"{gameObject.name} : is repair");
         sprite.color = Color.white;
     }
 
@@ -235,7 +254,13 @@ public class Elevator : MonoBehaviour
         var elevator = coll.bounds;
 
         // 물체의 바닥면이 엘레베이터의 바닥면보다 맞지 않으면 false
-        return !(Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin);
+        bool overlapY = !(Mathf.Abs(obj.min.y - elevator.max.y) > VerticalMargin);
+        
+        float overlapX = Mathf.Min(obj.max.x, elevator.max.x) 
+                         - Mathf.Max(obj.min.x, elevator.min.x);
+        bool halfWidthOverlap = overlapX >= (obj.size.x * 0.7f);
+
+        return overlapY && halfWidthOverlap;
     }
 
     private void OnDestroy()

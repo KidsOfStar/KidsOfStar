@@ -45,7 +45,6 @@ public abstract class InteractSpeaker : MonoBehaviour
 
         if (indexList == null || indexList.Length == 0)
         {
-            Debug.LogWarning($"No required dialog index found for {ChapterType}");
             return;
         }
         
@@ -75,6 +74,15 @@ public abstract class InteractSpeaker : MonoBehaviour
 
     private void DespawnExclamationIcon(int index)
     {
+        if (!this)
+        {
+            Managers.Instance.GameManager.OnProgressUpdated -= CheckExistRequiredDialog;
+            Managers.Instance.DialogueManager.OnDialogStepEnd -= DespawnExclamationIcon;
+            Managers.Instance.DialogueManager.OnDialogEnd -= ShowInteractionButtonCallback;
+            EditorLog.Log("Destroy InteractSpeaker But Not Destroy");
+            return;
+        }
+        
         if (BubbleTr.childCount == 0) return;
         
         foreach (var value in requiredDialogByProgress.Values)
@@ -119,7 +127,6 @@ public abstract class InteractSpeaker : MonoBehaviour
         var key = Managers.Instance.GameManager.ChapterProgress;
         if (!dialogByProgress.TryGetValue(key, out int dialogIndex))
         {
-            Debug.LogWarning($"No dialog found for progress {key}");
             return;
         }
 

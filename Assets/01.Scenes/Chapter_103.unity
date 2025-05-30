@@ -3731,24 +3731,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 3}
   m_EdgeRadius: 0
---- !u!114 &1603123273808882347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5065356159584511498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7bd8dbbd0be334eabd8c944d6cde0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDisableInStart: 0
-  positionDatas:
-  - progress: 2
-    isFlip: 0
-    isActive: 1
-    position: {x: 20, y: -2.19, z: 0}
 --- !u!61 &1824104151785129960
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3891,7 +3873,6 @@ GameObject:
   - component: {fileID: 4633986023284743235}
   - component: {fileID: 4071668484214120451}
   - component: {fileID: 1824104151785129960}
-  - component: {fileID: 1603123273808882347}
   - component: {fileID: 1289202278}
   - component: {fileID: 5065356159584511499}
   m_Layer: 0

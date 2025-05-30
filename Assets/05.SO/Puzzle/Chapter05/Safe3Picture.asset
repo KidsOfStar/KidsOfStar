@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: Safe3Picture
   m_EditorClassIdentifier: 
   puzzleId: Safe3Picture
-  <BackGroundSprite>k__BackingField: {fileID: 1926160534, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
+  backgroundSprite: {fileID: -1014811952, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
   pieceSprites:
-  - {fileID: -335616703, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: 1076050830, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: -73536733, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: -1893957811, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: 1808720187, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: 1578859611, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: -1071149252, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: 2118115848, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: 1441115511, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: -2134274282, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: 385721676, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: -80584863, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: -1051031091, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: -140725579, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: 1403286883, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
-  - {fileID: 621677140, guid: 4adf7df18051770428bd325d887ea31b, type: 3}
+  - {fileID: -824263981, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: 240121104, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: 993386208, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: -218249250, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: -564900259, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: -991710524, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: -117049721, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: 2141890773, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: -1580085568, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: 1034308636, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: -1298008212, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: 1439958867, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: -2012322288, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: 574289964, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: 268706734, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
+  - {fileID: -1830050362, guid: 8d5103b57b11c7940a1262aa4c465c33, type: 3}
   gridWidth: 4
-  easyTimeLimit: 90
+  easyTimeLimit: 80
   hardTimeLimit: 60

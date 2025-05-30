@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WarningEndTop : PopupBase
 {
-    public Button appltBtn;
+    public Button allowBtn;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -12,7 +12,7 @@ public class WarningEndTop : PopupBase
         base.Start();
         Time.timeScale = 0; // 게임 일시 정지
 
-        appltBtn.onClick.AddListener(OnExitBtnClick);
+        allowBtn.onClick.AddListener(OnExitBtnClick);
     }
     private void OnExitBtnClick()
     {

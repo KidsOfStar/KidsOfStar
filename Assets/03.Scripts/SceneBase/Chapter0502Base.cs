@@ -10,10 +10,9 @@ public class Chapter0502Base : SceneBase
 
     protected override void InitSceneExtra(Action callback)
     {
+        safePuzzleTrigger.init();
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
-
-        Managers.Instance.GameManager.UpdateProgress(); // 진행도 2
 
         var puzzleManager = Managers.Instance.PuzzleManager;
         puzzleManager.OnSceneLoaded();
@@ -22,5 +21,10 @@ public class Chapter0502Base : SceneBase
             trigger?.InitTrigger();
             trigger?.SetupUI();
         }
+
+        if (isFirstTime)
+            Managers.Instance.GameManager.UpdateProgress(); // 진행도 2
+        else
+            Managers.Instance.GameManager.SetLoadedProgress();
     }
 }

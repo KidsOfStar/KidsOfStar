@@ -73,18 +73,22 @@ public class FormBlocker : MonoBehaviour
         if (bubbleText != null)
         {
             bubbleText.SetText("정체를 들킬 것 같다.");
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Beep);
         }
         yield return new WaitForSeconds(1f);
 
         if (bubbleText != null)
         {
             bubbleText.SetText("당장 피해야 한다.");
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Beep);
+
         }
         yield return new WaitForSeconds(1f);
 
         if (bubbleText != null)
         {
             bubbleText.SetText("위험하다.");
+            Managers.Instance.SoundManager.PlaySfx(SfxSoundType.Beep);
         }
         yield return new WaitForSeconds(1f);
 

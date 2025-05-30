@@ -13,11 +13,7 @@ public class PlayerGroundState : PlayerStateBase
         // 플레이어가 땅에 닿은 상태 && 플레이어가 사다리에 닿은 상태
         if(context.Controller.TouchLadder && context.Controller.IsGround)
         {
-            // 플레이어의 현재 형태가 은신 형태
-            if(context.FormController.CurFormData.playerFormType == PlayerFormType.Hide)
-            {
-                CheckLadderClimb();
-            }
+            CheckLadderClimb();
         }
     }
 
@@ -48,21 +44,33 @@ public class PlayerGroundState : PlayerStateBase
             onEffector = hit.collider.TryGetComponent<PlatformEffector2D>(out effector);
         }
 
-        // 위쪽 방향으로 입력 중이라면
-        if(!onEffector && context.Controller.MoveDir.y > 0)
+        // 플레이어의 현재 형태가 은신 형태
+        if(context.FormController.CurFormData.playerFormType == PlayerFormType.Hide)
         {
-            // 상태 전환
-            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.OnLadder));
+            // 위쪽 방향으로 입력 중이라면
+            if(!onEffector && context.Controller.MoveDir.y > 0)
+            {
+                // 상태 전환
+                context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.OnLadder));
+            }
+            else if(onEffector && context.Controller.MoveDir.y < 0)
+            {
+                // 아래 방향으로 입력 중이라면
+                // 딛고 있는 플랫폼과의 충돌을 일시적으로 무시
+                effector.surfaceArc = 0f;
+                // 상태 전환
+                context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.OnLadder));
+                // 물리 처리 무시된 플랫폼의 콜라이더를 변수에 캐싱
+                context.IgnoredPlatform = hit.collider;
+            }
         }
-        else if(onEffector && context.Controller.MoveDir.y < 0)
+        else
         {
-            // 아래 방향으로 입력 중이라면
-            // 딛고 있는 플랫폼과의 충돌을 일시적으로 무시
-            effector.surfaceArc = 0f;
-            // 상태 전환
-            context.StateMachine.ChangeState(factory.GetPlayerState(PlayerStateType.OnLadder));
-            // 물리 처리 무시된 플랫폼의 콜라이더를 변수에 캐싱
-            context.IgnoredPlatform = hit.collider;
+            // 플레이어의 현재 형태가 은신 형태가 아닐 경우
+            var popup = Managers.Instance.UIManager.Show<WarningPopup>(WarningType.Ladder);
+            Vector3 worldAboveHead = context.Controller.transform.position 
+                + new Vector3(0, 2, 0);
+            popup.SetScreenPosition(worldAboveHead);
         }
     }
 

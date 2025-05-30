@@ -77,8 +77,8 @@ public class TreePuzzleSystem : PuzzleSystemBase
     {
         var sequence = puzzleIndex == 0 ? 13
                      : puzzleIndex == 1 ? 15
-                     : 0;
-        if (sequence != 0)
+                     : -1;
+        if (sequence > 0)
             Managers.Instance.AnalyticsManager.SendFunnel(sequence.ToString());
         
         base.StartPuzzle();
@@ -114,7 +114,7 @@ public class TreePuzzleSystem : PuzzleSystemBase
         }
 
         CompletePuzzle();
-    }
+    } 
 
     //퍼즐 Clear시
     protected override void CompletePuzzle()
@@ -160,14 +160,17 @@ public class TreePuzzleSystem : PuzzleSystemBase
         // clearPuzzlenum.Count 에 따라 컷신 분기 재생
         if (clearPuzzlenum.Count == 1)
         {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
-            Managers.Instance.GameManager.UpdateProgress();
-        }
-        else if (clearPuzzlenum.Count >= totalPuzzleCount)
-        {
-            Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
-            Managers.Instance.GameManager.UpdateProgress();
-            Managers.Instance.AnalyticsManager.SendFunnel("17");
+            case 0:
+                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.DaunRoom);
+                Managers.Instance.GameManager.UpdateProgress();
+                Managers.Instance.AnalyticsManager.SendFunnel("14");
+                break;
+
+            case 1:
+                Managers.Instance.CutSceneManager.PlayCutScene(CutSceneType.LeavingForest);
+                Managers.Instance.GameManager.UpdateProgress();
+                Managers.Instance.AnalyticsManager.SendFunnel("17");
+                break;
         }
     }
 

@@ -80,6 +80,7 @@ public enum DialogCustomMethodType
 
 public enum BgmSoundType
 {
+    Night,
     Maorum,
     MaorumChase,
     InForest,
@@ -89,6 +90,7 @@ public enum BgmSoundType
     City,
     CityPuzzle,
     Aquarium,
+    Intro,
 }
 
 public enum AmbienceSoundType
@@ -125,6 +127,8 @@ public enum SfxSoundType
     WallBreak,
 	Thunder,
     ImportantChoice,
+    BrokenElevator,
+    Beep,
 }
 
 public enum FootstepType
@@ -250,6 +254,9 @@ public enum WarningType
     Squirrel,
     BoxMissing,
     BoxFalling,
+    BackMove,
+    Coweb,
+    Ladder,
 }
 
 #endregion

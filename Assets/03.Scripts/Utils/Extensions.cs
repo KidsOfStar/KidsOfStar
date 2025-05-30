@@ -6,6 +6,7 @@ public static class Extensions
     {
         return bgm switch
         {
+            BgmSoundType.Night          => "Night",
             BgmSoundType.Maorum         => "Maorum",
             BgmSoundType.MaorumChase    => "MaorumChase",
             BgmSoundType.InForest       => "InForest",
@@ -15,6 +16,7 @@ public static class Extensions
             BgmSoundType.City           => "City",
             BgmSoundType.CityPuzzle     => "CityPuzzle",
             BgmSoundType.Aquarium       => "Aquarium",
+            BgmSoundType.Intro          => "Intro",
             _                           => throw new ArgumentOutOfRangeException(nameof(bgm), bgm, null)
         };
     }
@@ -59,6 +61,8 @@ public static class Extensions
             SfxSoundType.WallBreak       => "WallBreak",
             SfxSoundType.Thunder         => "Thunder",
             SfxSoundType.ImportantChoice => "ImportantChoice",
+            SfxSoundType.BrokenElevator  => "BrokenElevator",
+            SfxSoundType.Beep            => "Beep",
             _                           => throw new ArgumentOutOfRangeException(nameof(sfx), sfx, null)
         };
     }

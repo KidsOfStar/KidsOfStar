@@ -127,18 +127,24 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             ClearPuzzle();
         }
     }
-
+    // 퍼즐 완료 시 호출되는 메소드
     private void ClearPuzzle()
     {
         StopCoroutine(ClearTime());
         EditorLog.Log($"{currentTime}초 소요 - 퍼즐 완료");
+
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
+
+        UnlockDoor();
+
         Managers.Instance.GameManager.UpdateProgress();
 
-        puzzleTrigger.DisableExclamation();
+        safePuzzleSystem.DisableExclamation();
 
-        door.isDoorOpen = true;
+
+        Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
+        Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
 
         var analyticsManager = Managers.Instance.AnalyticsManager;
         analyticsManager.RecordChapterEvent("PopUpPuzzle",
@@ -164,6 +170,15 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
             puzzleSystem.SafeCompletePuzzle();
 
     }
+
+    private void UnlockDoor()
+    {
+        if (safePuzzleSystem.door != null)
+        {
+            safePuzzleSystem.door.isDoorOpen = true;
+        }
+    }
+
 
     public void SetSafeNumber(int number)
     {

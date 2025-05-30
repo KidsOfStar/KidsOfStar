@@ -13,6 +13,7 @@ public class GameManager
     // Stage Data
     private readonly Dictionary<ChapterType, int> trustDict = new();
     public Difficulty Difficulty { get; private set; }
+    public SceneType CurrentScene { get; private set; }
     public ChapterType CurrentChapter { get; private set; }
     public int ChapterProgress { get; set; } = 1;   
 
@@ -29,8 +30,7 @@ public class GameManager
 
     // Chapter Data
     // 챕터 5에서만 사용하는 변수
-    public int VisitCount { get; set; } = 0;
-    // 방문 횟수
+    public int SavePoint { get; set; } = 0;    // 방문 횟수
 
     public GameManager()
     {
@@ -57,6 +57,7 @@ public class GameManager
 
     private void InitDictionary()
     {
+        trustDict.Clear();
         var count = Enum.GetValues(typeof(ChapterType)).Length;
         for (int i = 0; i < count; i++)
         {
@@ -65,16 +66,26 @@ public class GameManager
         }
     }
 
+    public void SetNewGame()
+    {
+        IsNewGame = true;
+        UnlockedForms = 0;
+        UnlockForm(PlayerFormType.Stone);
+        InitDictionary();
+    }
+
     public void SetLoadData(SaveData saveData)
     {
         IsNewGame = false;
         Difficulty = (Difficulty)saveData.difficulty;
+        CurrentScene = (SceneType)saveData.scene;
         CurrentChapter = (ChapterType)saveData.chapter;
         ChapterProgress = saveData.chapterProgress;
         PlayerPosition = saveData.playerPosition;
         UnlockedForms = saveData.unlockedPlayerForms;
         CurrentForm = saveData.currentPlayerForm;
         CompletedEnding = saveData.completedEnding;
+        SavePoint = saveData.savePoint;
 
         for (int i = 0; i < saveData.chapterTrust.Length; i++)
             trustDict[(ChapterType)i] = saveData.chapterTrust[i];
@@ -93,11 +104,6 @@ public class GameManager
         return trustArr;
     }
 
-    public void SetChapter(ChapterType chapter)
-    {
-        CurrentChapter = chapter;
-    }
-
     public void UpdateProgress()
     {
         ChapterProgress++;
@@ -108,6 +114,11 @@ public class GameManager
         OnProgressUpdated?.Invoke();
     }
 
+    public void SetChapter(ChapterType chapter)
+    {
+        CurrentChapter = chapter;
+    }
+    
     public void SetLoadedProgress()
     {
         ChapterProgress = ChapterProgress;
@@ -166,6 +177,11 @@ public class GameManager
     public void SetCurrentForm(PlayerFormType formType)
     {
         CurrentForm = formType;
+    }
+
+    public void SetCurrentScene(SceneType sceneType)
+    {
+        CurrentScene = sceneType;
     }
 
     public void TriggerEnding(EndingType endingType)

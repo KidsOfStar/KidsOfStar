@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 // 풀 생성, npc 넘겨주기 등 씬 초기화에 필요한 작업들을 담당
@@ -17,7 +15,7 @@ public abstract class SceneBase : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] private GameObject playerPrefab; // TODO: 리소스 로드 할지?
     [SerializeField] protected PlayerFormType playerStartForm;
-    [SerializeField] private Transform playerSpawnPosition;
+    [SerializeField] protected Transform playerSpawnPosition;
 
     [Header("NPCs"), Tooltip("중복해서 넣지 않도록 주의해주세요")]
     [SerializeField] private SceneNpc[] speakers;
@@ -221,7 +219,9 @@ public abstract class SceneBase : MonoBehaviour
         foreach (var pair in dict)
         {
             if (pair.Key == dialogIndex)
+            {
                 Managers.Instance.AnalyticsManager.SendFunnel(pair.Value.ToString());
+            }
         }
     }
 
@@ -233,7 +233,9 @@ public abstract class SceneBase : MonoBehaviour
         foreach (var pair in dict)
         {
             if (pair.Key == dialogIndex)
+            {
                 Managers.Instance.AnalyticsManager.SendFunnel(pair.Value.ToString());
+            }
         }
     }
 
@@ -245,7 +247,9 @@ public abstract class SceneBase : MonoBehaviour
         foreach (var pair in dict)
         {
             if (pair.Key == Managers.Instance.CutSceneManager.CurrentCutSceneName)
+            {
                 Managers.Instance.AnalyticsManager.SendFunnel(pair.Value.ToString());
+            }
         }
     }
 

@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class BgmLayeredFader : MonoBehaviour
 {
-    // TODO: 503 SceneBase에서 풀매니저로 먼저 생성시킬 것. Instantiate 괘오래걸림
-    // TODO: GameManager에 넣을 수 밖에 없지 않냐..
-    
     [Header("Audio")]
     [SerializeField] private AudioSource[] mainSources;
     [SerializeField] private AudioSource[] loopEffects;
 
     [Header("Loop Time")]
     [SerializeField] private float mainLoopTime = 192.5f;
-    [SerializeField] private float bufferOffset = 0.1f;
+    [SerializeField] private float bufferOffset = 0.5f;
     
     [Header("Dialog")]
     [SerializeField] private int strMelodyIndex = 5012;
     [SerializeField] private int[] dialogIndexes;
-    
-    // 5022, 5023, 5024, 5026, 5027 시작할 때
-    // [SerializeField] private int[] finalDialogs;
 
     private readonly Dictionary<MainBgmSourceType, AudioSource> audioDict = new();
     private readonly Dictionary<int, MainBgmSourceType> audioByIndexDict = new();
@@ -173,6 +167,7 @@ public class BgmLayeredFader : MonoBehaviour
     {
         var scr = audioDict[srcType];
         var duration = srcType == MainBgmSourceType.StrMelody2 ? 2f : 1f;
+        duration = srcType == MainBgmSourceType.RiseEffect ? 8f : duration;
         EditorLog.LogWarning("Play Source : " + scr.gameObject.name);
         StartCoroutine(FadeInAudio(scr, duration));
     }

@@ -581,7 +581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 654785929, guid: 536705fdac5aa054ca4b4682629885df, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -645,7 +645,9 @@ MonoBehaviour:
   closeBtn: {fileID: 3944482044574856992}
   checkTimeStop: 0
   isFirst: 1
-  puzzleSystem: {fileID: 3806181142826928271}
+  exitButtons: []
+  cancelButton: {fileID: 3944482044574856992}
+  currentPuzzle: {fileID: 3806181142826928271}
   hintImage: {fileID: 4041717471517533206}
 --- !u!114 &3806181142826928271
 MonoBehaviour:
@@ -659,12 +661,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210ab7b41853b0b4c92610544c7a69dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalPuzzleCount: 2
-  timerTxt: {fileID: 8785609037610468846}
   backgroundImage: {fileID: 8353370623980588975}
   easyModeOutline: {fileID: 3214104287059010199}
   piecePrefab: {fileID: 438276036279181801, guid: 455eb5035b83a4240a12a0a2ac60aa42, type: 3}
   puzzleParent: {fileID: 1395759868511818523}
+  timerTxt: {fileID: 8785609037610468846}
+  totalPuzzleCount: 2
 --- !u!1 &7054284931983975553
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,8 +778,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 565.39996, y: 375}
-  m_SizeDelta: {x: 509.19998, y: -850}
+  m_AnchoredPosition: {x: 565.39996, y: 380}
+  m_SizeDelta: {x: 509.19998, y: -820}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2231626858842987087
 CanvasRenderer:

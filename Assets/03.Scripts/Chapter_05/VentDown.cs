@@ -38,16 +38,19 @@ public class VentDown : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (Managers.Instance.GameManager.ChapterProgress == 4)
         {
-            skillBTN.ShowInteractionButton(true); // 상호작용 버튼 활성화
-            skillBTN.OnInteractBtnClick += OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
-
-            if (isVentActive)
+            if (other.CompareTag("Player"))
             {
-                SetActiveGroup(ventIn, false);  // 벤트 안 비활성화
-                SetActiveGroup(ventOut, true);  // 벤트 밖 활성화
-                isVentActive = false;           // 벤트 밖 상태로 변경
+                skillBTN.ShowInteractionButton(true); // 상호작용 버튼 활성화
+                skillBTN.OnInteractBtnClick += OnVentInteraction; // 상호작용 버튼 클릭 이벤트 등록
+
+                if (isVentActive)
+                {
+                    SetActiveGroup(ventIn, false);  // 벤트 안 비활성화
+                    SetActiveGroup(ventOut, true);  // 벤트 밖 활성화
+                    isVentActive = false;           // 벤트 밖 상태로 변경
+                }
             }
         }
     }
