@@ -48,7 +48,7 @@ public class Chapter0503Base : SceneBase
 
 
         // Crowd 처리
-        if (gm.ChapterProgress == 4)
+        if (gm.ChapterProgress >= 4)
             crowd.SetActive(false);
 
         EditorLog.Log($"[Chapter503] 최종 VisitCount: {gm.SavePoint}");
