@@ -13,12 +13,20 @@ public class SafePuzzleTrigger : PuzzleTriggerBase
     private SkillBTN skillBTN;
     [Header("튜토리얼 문인지 체크")]
     [SerializeField] private bool isTutorial = false;
-
+    public Door door; // 문 오브젝트
     // 동물 폼
     [SerializeField] private PlayerFormType dangerFormMask;
 
     [Header("금고 번호")]
     public int safeNumber; // 각 씬의 금고 번호
+
+    public void Init()
+    {
+        if (Managers.Instance.GameManager.ChapterProgress != requiredProgress)
+            exclamationInstance.SetActive(false);
+        if (Managers.Instance.GameManager.ChapterProgress > requiredProgress)
+            door.isDoorOpen = true; // 문 열기
+    }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {

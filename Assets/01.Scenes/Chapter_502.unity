@@ -1476,6 +1476,7 @@ MonoBehaviour:
   scrollingBackGround: {fileID: 0}
   puzzleTriggers:
   - {fileID: 1522170724}
+  safePuzzleTrigger: {fileID: 1522170724}
 --- !u!1 &784139467
 GameObject:
   m_ObjectHideFlags: 0

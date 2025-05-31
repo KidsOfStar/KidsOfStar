@@ -11,7 +11,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
     public SafePopup safePopup;
     public SafePuzzleTrigger puzzleTrigger;
     public SafePuzzleSystem puzzleSystem;
-    public Door door;
+    //public Door door;
 
     // 모드별 제한 시간
     private int currentTime;
@@ -23,7 +23,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
+        //door = GameObject.FindWithTag("Interactable").GetComponent<Door>();
         puzzleTrigger = FindObjectOfType<SafePuzzleTrigger>();
 
         rotationAmount = new Dictionary<GameObject, float>
@@ -136,7 +136,7 @@ public class SafePuzzle : MonoBehaviour, IPointerClickHandler
         Managers.Instance.UIManager.Hide<SafePopup>();
         Managers.Instance.UIManager.Show<ClearPuzzlePopup>();
 
-        door.isDoorOpen = true;
+        puzzleTrigger.door.isDoorOpen = true;
 
         Managers.Instance.GameManager.UpdateProgress();
 

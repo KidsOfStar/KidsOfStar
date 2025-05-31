@@ -5,11 +5,14 @@ using UnityEngine;
 public class Chapter0502Base : SceneBase
 {
     [SerializeField] List<PuzzleTriggerBase> puzzleTriggers;
+    [SerializeField] private SafePuzzleTrigger safePuzzleTrigger;
 
     protected override void CutSceneEndCallback() { }
 
     protected override void InitSceneExtra(Action callback)
     {
+        safePuzzleTrigger.Init();
+
         Managers.Instance.SoundManager.PlayBgm(BgmSoundType.Aquarium);
         Managers.Instance.SoundManager.PlayAmbience(AmbienceSoundType.Aquarium);
 
@@ -25,10 +28,5 @@ public class Chapter0502Base : SceneBase
             Managers.Instance.GameManager.UpdateProgress(); // 진행도 2
         else
             Managers.Instance.GameManager.SetLoadedProgress();
-    }
-
-    private void Update()
-    {
-        Debug.Log($"{Managers.Instance.GameManager.ChapterProgress}");
     }
 }
